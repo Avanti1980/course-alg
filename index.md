@@ -1,0 +1,54 @@
+@import "css/theme/solarized.css"
+@import "css/index.css"
+
+## 算法设计与分析 <span style="font-weight:900">2022</span>
+
+---
+
+#### 概况
+
+授课：张腾 _tengzhang@hust.edu.cn_
+
+32 学时
+
+- 周三 3 ~ 4 节课 (第 9 ~ 16 周)
+- 周五 5 ~ 6 节课 (第 9 ~ 10 周)，周五 1 ~ 2 节课 (第 11 ~ 16 周)
+
+<div class="top-2"></div>
+
+#### 考核
+
+期末考试 (70%)、平时作业 (30%)
+
+#### 课件
+
+在线浏览，Space 翻页，Esc 导航
+
+<div class="threelines outline head-highlight">
+
+|        |                讲义                | 内容 |
+| :----: | :--------------------------------: | :--- |
+| 第零讲 |       [绪论](slides/00.html)       | 1.   |
+|   ^    |                 ^                  | 2.   |
+|   ^    |                 ^                  | 3.   |
+| 第一讲 |    [函数的增长](slides/02.html)    | -    |
+| 第二讲 |      [分治法](slides/03.html)      | -    |
+| 第三讲 |     [动态规划](slides/03.html)     | -    |
+| 第四讲 |     [贪心算法](slides/03.html)     | -    |
+| 第五讲 |    [最小生成树](slides/03.html)    | -    |
+| 第六讲 |  [单源点最短路径](slides/03.html)  | -    |
+| 第七讲 | [全节点对最短路径](slides/03.html) | -    |
+| 第八讲 |       [回溯](slides/03.html)       | -    |
+| 第九讲 |     [分支限界](slides/03.html)     | -    |
+| 第十讲 |      [最大流](slides/03.html)      | -    |
+
+</div>
+
+#### 补充
+
+#### 资料
+
+<span style="font-size:1.8rem;font-style:italic">Introduction to Algorithms</span> [3ed](<books/Introduction%20to%20Algorithms%20(3ed)%20-%20Thomas%20H.%20Cormen,%20Charles%20E.%20Leiserson,%20Ronald%20L.%20Rivest,%20Clifford%20Stein.pdf>) [4ed](<books/Introduction%20to%20Algorithms%20(4ed)%20-%20Thomas%20H.%20Cormen,%20Charles%20E.%20Leiserson,%20Ronald%20L.%20Rivest,%20Clifford%20Stein.pdf>)
+Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein
+
+#### 代码

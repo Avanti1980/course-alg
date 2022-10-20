@@ -1,0 +1,157 @@
+// Ysabeau     100       200   300         400    500        600      700     800       900
+$weight-array: Hairline, Thin, ExtraLight, Light, SemiLight, Regular, Medium, SemiBold, Bold;
+@for $i from 1 through length($weight-array) {
+  $weight: nth($weight-array, $i);
+  @font-face {
+    font-family: Ysabeau;
+    src: url("../fonts/YsabeauOffice/YsabeauOffice-#{$weight}.otf");
+    font-weight: 100 * $i;
+  }
+  @font-face {
+    font-family: Ysabeau;
+    src: url("../fonts/YsabeauOffice/YsabeauOffice-#{$weight}Italic.otf");
+    font-style: italic;
+    font-weight: 100 * $i;
+  }
+}
+
+// Operator    100     300    500   700     900
+$weight-array: XLight, Light, Book, Medium, Bold;
+@for $i from 1 through length($weight-array) {
+  $weight: nth($weight-array, $i);
+  @font-face {
+    font-family: Operator;
+    src: url("../fonts/Operator/OperatorMono-#{$weight}.otf");
+    font-weight: 100 * (2 * $i - 1);
+  }
+  @font-face {
+    font-family: Operator;
+    src: url("../fonts/Operator/OperatorMono-#{$weight}Italic.otf");
+    font-style: italic;
+    font-weight: 100 * (2 * $i - 1);
+  }
+}
+
+// LXGW        100        400      700
+$weight-array: SemiLight, Regular, Medium;
+@for $i from 1 through length($weight-array) {
+  $weight: nth($weight-array, $i);
+  @font-face {
+    font-family: LXGWWenKai;
+    src: url("../fonts/LxgwBright-1.235/LXGWBright-#{$weight}.woff2");
+    font-weight: 100 * (3 * $i - 2);
+  }
+  @font-face {
+    font-family: LXGWWenKai;
+    src: url("../fonts/LxgwBright-1.235/LXGWBright-#{$weight}Italic.woff2");
+    font-style: italic;
+    font-weight: 100 * (3 * $i - 2);
+  }
+}
+
+// NotoSansSC
+$weight-array: Thin, Light, Regular, Medium, Bold, "Black";
+$number-array: 100, 200, 400, 500, 700, 900;
+@for $i from 1 through length($weight-array) {
+  $weight: nth($weight-array, $i);
+  $number: nth($number-array, $i);
+  @font-face {
+    font-family: NotoSansSC;
+    src: url("../fonts/NotoSansSC/NotoSansSC-#{$weight}.otf");
+    font-weight: #{$number};
+  }
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  font-family: LXGWWenKai, "Noto Sans SC", NotoSansSC;
+  font-weight: 700;
+}
+
+.reveal h1 {
+  font-family: Ysabeau, "Noto Sans SC", NotoSansSC;
+  font-size: 2.2em;
+}
+
+.reveal h2 {
+  font-size: 1.6em;
+}
+
+.reveal h3 {
+  font-size: 1em;
+}
+
+.reveal h4 {
+  font-size: 0.8em;
+}
+
+.reveal h5 {
+  font-family: Ysabeau, "Noto Sans SC", NotoSansSC;
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
+.reveal p {
+  font-family: LXGWWenKai;
+  font-size: 0.8em;
+  font-weight: 700;
+}
+
+.reveal ul > li {
+  font-family: LXGWWenKai;
+  font-size: 0.7em;
+  font-weight: 700;
+}
+
+.reveal ol > li {
+  font-family: LXGWWenKai;
+  font-size: 0.65em;
+  font-weight: 700;
+}
+
+.reveal pre {
+  font-family: Operator, LXGWWenKai;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.MathJax .mtext span {
+  font-family: LXGWWenKai !important;
+  font-weight: 700 !important;
+}
+
+.mermaid text {
+  font-family: LXGWWenKai !important;
+  font-weight: 700 !important;
+}
+
+.reveal table,
+.reveal a {
+  font-family: LXGWWenKai;
+}
+
+.reveal table {
+  font-family: LXGWWenKai;
+  th,
+  td {
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+}
+
+@for $i from 1 to 50 {
+  .reveal .fs#{$i} {
+    th,
+    td {
+      font-size: 0.1rem * $i;
+    }
+    .MathJax_Display {
+      font-size: 0.1rem * $i !important;
+    }
+    font-size: 0.1rem * $i;
+  }
+}

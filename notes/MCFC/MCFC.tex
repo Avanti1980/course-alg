@@ -1,0 +1,241 @@
+\documentclass{ctexart}
+\usepackage{avanti}
+
+\begin{document}
+\title{\bf{图上的匹配、覆盖、流、割}}
+\author{张腾}
+\date{}
+\maketitle
+
+设二部图$\Gcal = (\Vcal, \Ecal)$，其中$\Vcal = \Vcal_1 \uplus \Vcal_2$，$\Ecal \subseteq \Vcal_1 \times \Vcal_2$，$\delta(v)$为与点$v$相连的边的集合。
+
+若边集$\Mcal$中任意两条边没有公共顶点，则称$\Mcal$为\blue{匹配}~(matching)。现对任意边$e$赋予一个\blue{非负整数}~$x_e$，则匹配满足对任意点$v$有$\sum_{e \in \delta(v)} x_e \le 1$。
+
+若点集$\Ccal$使得每条边都至少有一个顶点属于$\Ccal$，则称$\Ccal$为\blue{覆盖}~(cover)。现对任意点$v$赋予一个\blue{非负整数}~$z_v$，则覆盖满足对任意边$(u,v)$有$z_u + z_v \ge 1$。
+
+设$\Av = [a_{v,e}] \in \{ 0,1 \}^{|\Vcal| \times |\Ecal|}$是二部图$\Gcal$对应的\blue{关联矩阵}，即$a_{v,e} = 1_{e \in \delta(v)}$，则
+\begin{align*}
+    \forall v \in \Vcal, \sum_{e \in \delta(v)} x_e \le 1 & \Longleftrightarrow \Av \xv \le \onev      \\
+    \forall (u,v) \in \Ecal, ~ z_u + z_v \ge 1            & \Longleftrightarrow \Av^\top \zv \ge \onev
+\end{align*}
+
+\section{最大匹配}
+
+所有匹配中势最大的称为\blue{最大匹配}，求解最大匹配可形式化成
+\begin{align} \label{eq: max-matching}
+    \max_{\xv} ~ \{ \onev^\top \xv : \xv \in \Zbb_+^{|\Ecal|}, ~ \Av \xv \le \onev \}
+\end{align}
+由于$\xv$是整数向量，这是一个整数规划，难以直接求解，将离散集合$\Zbb_+^{|\Ecal|}$放松成连续集合$\Rbb_+^{|\Ecal|}$，可得线性规划
+\begin{align} \label{eq: relax-max-matching}
+    \max_{\xv} ~ \{ \onev^\top \xv : \xv \ge \zerov, ~ \Av \xv \le \onev \}
+\end{align}
+注意$\{ \xv \ge \zerov, ~ \Av \xv \le \onev \} \Longleftrightarrow [\Av; -\Iv] \xv \le [\onev; \zerov]$，由于二部图的关联矩阵必然是\href{https://avanti1980.github.io/notes-on-math/posts/matrix/TU-matrix.html}{全幺模矩阵}，故$[\Av; -\Iv]$也是全幺模矩阵，又$[\onev; \zerov]$是整数向量，故凸多面体$\{ \xv \ge \zerov, ~ \Av \xv \le \onev \}$的\href{https://avanti1980.github.io/notes-on-math/posts/optimization/analysis/extreme-point.html}{极点}是整数向量。由于线性规划必然在极点处取最优，因此线性规划(\ref{eq: relax-max-matching})的最优解就是整数规划(\ref{eq: max-matching})的最大匹配。
+
+上述将离散整数约束替换为连续实数约束的操作，其实是将可行域由匹配集合扩大成其\blue{凸包}：
+
+\begin{theorem}
+    记匹配$\Mcal$对应的向量为$\xv^{(\Mcal)}$，$\Pcal (\Gcal) \triangleq \conv \{ \xv^{(\Mcal_1)}, \xv^{(\Mcal_2)}, \ldots \}$，$\Qcal (\Gcal)$定义为：
+    \begin{align*}
+        \Qcal (\Gcal) = \{ \xv \mid \xv \ge \zerov, ~ \Av \xv \le \onev \} = \left\{ \xv \in \Rbb_+^{|\Ecal|} \mid \forall v \in \Vcal, \sum_{e \in \delta(v)} x_e \le 1 \right\}
+    \end{align*}
+    那么$\Pcal (\Gcal) = \Qcal (\Gcal)$。
+\end{theorem}
+
+\begin{proof}
+    正向比较简单，对任意$\xv = \sum_{i \in [n]} \alpha^{(\Mcal_i)} \xv^{(\Mcal_i)} \in \Pcal(\Gcal)$，非负性是显然的，又
+    \begin{align*}
+        \forall v \in \Vcal, \sum_{e \in \delta(v)} x_e & = \sum_{e \in \delta(v)} \sum_{i \in [n]} \alpha^{(\Mcal_i)} x^{(\Mcal_i)}_e = \sum_{i \in [n]} \alpha^{(\Mcal_i)} \overbrace{\blue{\sum_{e \in \delta(v)} x^{(\Mcal_i)}_e}}^{\le 1} \le \sum_{i \in [n]} \alpha^{(\Mcal_i)} = 1
+    \end{align*}
+    因此$\xv \in \Qcal (\Gcal)$。
+
+    反向较为麻烦，对任意$\xv \in \Qcal (\Gcal)$，记$\supp(\xv) = \{ e \in \Ecal \mid x_e > 0 \}$。下面对$|\supp(\xv)|$进行归纳，若$|\supp(\xv)| = 0$，则$\xv = \zerov$，对应零匹配；若$|\supp(\xv)| = 1$，即存在唯一的边$e$使得$0 < x_e \le 1$，其余分量均为零，显然这样的$\xv$可以表示成零匹配和单边匹配的凸组合。若$|\supp(\xv)| \ge 2$，分两种情况讨论：
+    \begin{itemize}
+        \item $\supp(\xv)$不是匹配，则$\supp(\xv)$包含长度$\ge 2$的路径，不妨就设为$v_1 \xrightarrow{e_1} v_2 \xrightarrow{e_2} v_3$，由于$x_{e_1}, x_{e_2} > 0$，故$x_{e_1}, x_{e_2} < 1$，否则$\sum_{e \in \delta(v_2)} x_e = x_{e_1} + x_{e_2} > 1$。记$\xv = [x_{e_1};x_{e_2};\tilde{\xv}]$、$\dv = [1;-1;\zerov]$，易知
+              \begin{align*}
+                  \xv - x_{e_1} \dv = \begin{bmatrix} x_{e_1} \\ x_{e_2} \\ \tilde{\xv} \end{bmatrix} - x_{e_1} \begin{bmatrix} 1 \\ -1 \\ \zerov \end{bmatrix} = \begin{bmatrix} 0 \\ x_{e_1} + x_{e_2} \\ \tilde{\xv} \end{bmatrix} \triangleq \xv_2, \quad \xv + x_{e_2} \dv = \begin{bmatrix} x_{e_1} \\ x_{e_2} \\ \tilde{\xv} \end{bmatrix} + x_{e_2} \begin{bmatrix} 1 \\ -1 \\ \zerov \end{bmatrix} = \begin{bmatrix} x_{e_1} + x_{e_2} \\ 0 \\ \tilde{\xv} \end{bmatrix} \triangleq \xv_1
+              \end{align*}
+              于是$x_{e_1} x_{e_2} \dv = x_{e_2} (\xv - \xv_2) = x_{e_1} (\xv_1 - \xv)$，从而
+              \begin{align*}
+                  \xv = \frac{x_{e_1}}{x_{e_1} + x_{e_2}} \xv_1 + \frac{x_{e_2}}{x_{e_1} + x_{e_2}} \xv_2 = \conv\{ \xv_1, \xv_2 \}
+              \end{align*}
+              注意$|\supp(\xv_1)| = |\supp(\xv_2)| = |\supp(\xv)| - 1$，由归纳假设知$\xv_1,\xv_2 \in \Pcal(\Gcal)$，于是$\xv \in \Pcal(\Gcal)$。
+
+        \item $\supp(\xv)$是匹配，不妨设$\supp(\xv) = \{ e_1, e_2, e_3, \ldots, e_n \}$且$x_{e_1} \le x_{e_2} \le x_{e_3} \le \cdots \le x_{e_n}$，定义
+              \begin{align*}
+                  \Mcal_i \triangleq \{ e_i, e_{i+1}, \ldots, e_n \}, \quad \xv^{(\Mcal_i)} = [\underbrace{0; \ldots; 0}_{1:i-1}; \underbrace{1; 1; \ldots; 1}_{i:n}; \underbrace{0; \ldots; 0}_{n+1:|\Ecal|}], \quad i \in [n]
+              \end{align*}
+              则
+              \begin{align*}
+                  \xv & = \begin{bmatrix} x_{e_1} \\ x_{e_2} \\ x_{e_3} \\ \vdots \\ x_{e_n} \\ \zerov \end{bmatrix} = \begin{bmatrix} x_{e_1} \\ x_{e_1} \\ x_{e_1} \\ \vdots \\ x_{e_1} \\ \zerov \end{bmatrix} + \begin{bmatrix} 0 \\ x_{e_2} - x_{e_1} \\ x_{e_2} - x_{e_1} \\ \vdots \\ x_{e_2} - x_{e_1} \\ \zerov \end{bmatrix} + \begin{bmatrix} 0 \\ 0 \\ x_{e_3} - x_{e_2} \\ \vdots \\ x_{e_3} - x_{e_2} \\ \zerov \end{bmatrix} + \cdots \\
+                      & = x_{e_1} \xv^{(\Mcal_1)} + (x_{e_2} - x_{e_1}) \xv^{(\Mcal_2)} + (x_{e_3} - x_{e_2}) \xv^{(\Mcal_3)}                                                                                                                                                                                                                                                                                                                        \\
+                      & \qquad + \cdots + (x_{e_n} - x_{e_{n-1}}) \xv^{(\Mcal_n)} + (1 - x_{e_n}) \zerov \in \Pcal (\Gcal)
+              \end{align*}
+    \end{itemize}
+\end{proof}
+
+由定义$\Pcal (\Gcal) = \conv \{ \xv^{(\Mcal_1)}, \xv^{(\Mcal_2)}, \ldots \}$知$\Pcal (\Gcal)$的任意极点都是$\Gcal$的匹配，反过来结论也成立：
+
+\begin{theorem} \label{thm: extreme-point-matching}
+    $\Gcal$的任意匹配都是$\Pcal$的极点。
+\end{theorem}
+
+\begin{proof}
+    对任意匹配$\Mcal$和非零向量$\dv$，不妨设$d_e \neq 0$，注意$x^{(\Mcal)}_e \in \{0, 1\}$，因此$x^{(\Mcal)}_e \pm \epsilon d_e$总有一个不属于$[0,1]$，即$\xv^{(\Mcal)} \pm \epsilon \dv$总有一个不属于$\Pcal$，故$\xv^{(\Mcal)}$是$\Pcal$的极点。
+\end{proof}
+
+\section{完美匹配}
+
+若匹配$\Mcal^\star$使得在子图$(\Vcal, \Mcal^\star)$中，所有点都有且仅有一条相连的边，则称为\blue{完美匹配}~(perfect matching)。完美匹配可表示为向量$\xv \in \Zbb_+^{|\Ecal|}$满足对任意$v \in \Vcal$有$\sum_{e \in \delta(v)} x_e = 1$，显然完美匹配是匹配的真子集。
+
+\begin{theorem}
+    设$\Pcal^\star (\Gcal)$为$\Gcal$的所有完美匹配构成的凸包，$\Qcal^\star (\Gcal)$定义为：
+    \begin{align*}
+        \Qcal^\star (\Gcal) = \{ \xv \mid \xv \ge \zerov, ~ \blue{\Av \xv = \onev} \} = \left\{ \xv \in \Rbb_+^{|\Ecal|} \mid \forall v \in \Vcal, \blue{\sum_{e \in \delta(v)} x_e = 1} \right\}
+    \end{align*}
+    则$\Pcal^\star (\Gcal) = \Qcal^\star (\Gcal)$。
+\end{theorem}
+
+\begin{proof}
+    一方面，对任意$\xv = \sum_{i \in [n]} \alpha^{(\Mcal_i^\star)} \xv^{(\Mcal_i^\star)} \in \Pcal^\star(\Gcal)$，易知
+    \begin{align*}
+        \forall v \in \Vcal, \sum_{e \in \delta(v)} x_e & = \sum_{e \in \delta(v)} \sum_{i \in [n]} \alpha^{(\Mcal_i^\star)} x^{(\Mcal_i^\star)}_e = \sum_{i \in [n]} \alpha^{(\Mcal_i^\star)} \sum_{e \in \delta(v)} x_e^{(\Mcal_i^\star)} = \sum_{i \in [n]} \alpha^{(\Mcal_i^\star)} = 1
+    \end{align*}
+    因此$\xv \in \Qcal^\star (\Gcal)$。
+
+    另一方面，对任意$\xv \in \Qcal^\star(\Gcal) \subseteq \Qcal(\Gcal) = \Pcal(\Gcal)$，设$\xv = \sum_{i \in [n]} \alpha^{(\Mcal_i)} \xv^{(\Mcal_i)}$。用反证法，若其凸组合表示中存在不完美匹配$\Mcal_j$，设$v$不是$\Mcal_j$中边的顶点，则
+    \begin{align*}
+        \sum_{e \in \delta(v)} x_e = \sum_{e \in \delta(v)} \sum_{i \in [n] \setminus \{j\}} \alpha^{(\Mcal_i)} x_e^{(\Mcal_i)} = \sum_{i \in [n] \setminus \{j\}} \alpha^{(\Mcal_i)} \sum_{e \in \delta(v)} x_e^{(\Mcal_i)} \le \sum_{i \in [n] \setminus \{j\}} \alpha^{(\Mcal_i)} < 1
+    \end{align*}
+    这和$\Qcal^\star (\Gcal)$的定义矛盾，故$\xv$的凸组合表示中不存在不完美匹配，即$\xv \in \Pcal^\star (\Gcal)$。
+\end{proof}
+
+\begin{theorem} \label{thm: extreme-point-perfect-matching}
+    $\Gcal$的任意完美匹配都是$\Pcal^\star$的极点。
+\end{theorem}
+
+\begin{proof}
+    完美匹配也是匹配，因此是$\Pcal$的极点，故无法由$\Pcal$中其它点的凸组合表示，又$\Pcal^\star \subseteq \Pcal$，因此也无法由$\Pcal^\star$中其它点的凸组合表示，从而也是$\Pcal^\star$的极点
+\end{proof}
+
+对于完全二部图$\Kcal_{n,n}$有$|\Ecal| = n^2$，对任意$\xv \in \Qcal^\star(\Kcal_{n,n})$有
+\begin{align*}
+    \xv \in \Rbb_+^{n^2}, ~ \forall v \in \Vcal, \sum_{e \in \delta(v)} x_e = 1
+\end{align*}
+又每个点恰有$n$条相连的边，因此$\xv$也可以写成一个$n \times n$的\blue{双随机矩阵}~(所有行和、列和均为$1$)。另一方面，对于完美匹配$\Mcal$，每个点有且仅有一条相连的边，其对应的$\xv^{(\Mcal)}$可以写成置换矩阵(每行、每列有且仅有一个$1$，其余为零)，由定理\ref{thm: extreme-point-perfect-matching}知\blue{双随机矩阵集合的极点是置换矩阵}，这就是Birkhoff-von Neumann定理。
+
+\section{König定理}
+
+前文已述最大匹配问题可放松成线性规划
+\begin{align*}
+    \max_{\xv} ~ \{ \onev^\top \xv : \xv \ge \zerov, ~ \Av \xv \le \onev \}
+\end{align*}
+引入Lagrange乘子$\yv \in \Rbb_+^{|\Ecal|}$、$\zv \in \Rbb_+^{|\Vcal|}$，对偶函数$\Lcal(\xv, \yv, \zv) = \onev^\top \xv + \yv^\top \xv - \zv^\top (\Av \xv - \onev)$，易知
+\begin{align*}
+    \frac{\partial \Lcal}{\partial \xv} = \onev + \yv - \Av^\top \zv = \zerov \Longrightarrow \Av^\top \zv - \onev = \yv \geq \zerov
+\end{align*}
+故对偶问题为线性规划
+\begin{align} \label{eq: relax-min-vertex-cover}
+    \min_{\zv} ~ \{ \onev^\top \zv : \zv \ge \zerov, ~ \Av^\top \zv \ge \onev \}
+\end{align}
+显然这是将\blue{最小点覆盖}问题
+\begin{align} \label{eq: min-vertex-cover}
+    \min_{\zv} ~ \{ \onev^\top \zv : \zv \in \Zbb_+^{|\Vcal|}, ~ \Av^\top \zv \ge \onev \}
+\end{align}
+的离散集合$\Zbb_+^{|\Vcal|}$放松成连续集合$\Rbb_+^{|\Ecal|}$得到的线性规划。同理由$\{ \zv \ge \zerov, ~ \Av^\top \zv \ge \onev \} \Longleftrightarrow [-\Av^\top; -\Iv] \zv \le [-\onev; \zerov]$以及$\Av$是全幺模矩阵知凸多面体$\{ \zv \mid \zv \ge \zerov, ~ \Av^\top \zv \ge \onev \}$的极点是整数向量。由于线性规划必然在极点处取最优，因此线性规划(\ref{eq: relax-min-vertex-cover})的最优解就是整数规划(\ref{eq: min-vertex-cover})的最小点覆盖。
+
+综上，\blue{最大匹配、最小点覆盖这两类整数规划问题，其最优解就是将整数约束放松后导出的线性规划的最优解，且这两类相应的线性规划互为对偶问题}。
+
+\begin{theorem} [König]
+    对于二部图$\Gcal = (\Vcal, \Ecal)$，设最大匹配问题的最优值为$\maxm(\Gcal)$，最小点覆盖问题的最优值为$\minvc(\Gcal)$，则有$\maxm(\Gcal) = \minvc(\Gcal)$。
+\end{theorem}
+
+\begin{proof}
+    $\minvc(\Gcal) \ge \maxm(\Gcal)$是显然的，因为对最大匹配中的任意一条边，至少要覆盖其中一个顶点。
+
+    下面证明另一个方向，若$\Ecal = \emptyset$，则$\maxm(\Gcal) = \minvc(\Gcal) = 0$，故不妨设$\Ecal$非空。对$|\Vcal|$进行归纳，若$|\Vcal| = 2$，易知$\maxm(\Gcal) = \minvc(\Gcal) = 1$。若$|\Vcal| > 2$，设$\zv^\star$是最小点覆盖问题的最优解，由于存在点$v$使得$z_v^\star > 0$，故根据\blue{互补松弛条件}可得
+    \begin{align*}
+        z_v^\star \left( \sum_{e \in \Ecal} a_{v,e} x_e^\star - 1 \right) = 0 \Longrightarrow 1 = \sum_{e \in \Ecal} a_{v,e} x_e^\star = \sum_{e \in \delta(v)} x_e^\star
+    \end{align*}
+    注意$\xv^\star$是最大匹配，故$v$出现在所有的最大匹配中，记$\tilde{\Gcal}$为$\Gcal$删除点$v$及其相连边后得到的图，于是
+    \begin{align*}
+        \maxm(\tilde{\Gcal}) = \maxm(\Gcal) - 1
+    \end{align*}
+    由归纳假设知$\maxm(\tilde{\Gcal}) = \minvc(\tilde{\Gcal})$，于是
+    \begin{align*}
+        \minvc(\Gcal) & \le \minvc(\tilde{\Gcal}) + 1 \\
+                      & = \maxm(\tilde{\Gcal}) + 1    \\
+                      & = \maxm(\Gcal)
+    \end{align*}
+\end{proof}
+
+König定理还可进一步推广，设$b$-匹配对应的向量满足对任意点$v$有$\sum_{e \in \delta(v)} x_e \le b_v$；$c$-点覆盖对应的向量满足对任意边$e = (u,v)$有$z_u + z_v \ge c_e$，易知有
+\begin{align*}
+    \max_{\xv} ~ \{ \cv^\top \xv : \xv \ge \zerov, ~ \Av \xv \le \bv \} = \min_{\zv} ~ \{ \bv^\top \zv : \zv \ge \zerov, ~ \Av^\top \zv \ge \cv \}
+\end{align*}
+即\blue{最大$c$-加权$b$-匹配等于最小$b$-加权$c$-点覆盖}。
+
+\section{最大流与最小割}
+
+类似于最大匹配和最小点覆盖，最大流和最小割也是一组对偶问题。给定有向流网络$\Gcal = (\Vcal, \Ecal)$、源点$s$、汇点$t$，设$\delta_{\text{in}}(v) / \delta_{\text{out}}(v)$是以点$v$为终点/起点的入边/出边集合，$\Av = [a_{v,e}] \in \{ 0, \pm 1 \}^{|\Vcal| \times |\Ecal|}$是$\Gcal$对应的关联矩阵，即
+\begin{align*}
+    a_{v,e} = \begin{cases}
+                  1  & e \in \delta_{\text{in}} (v)  \\
+                  -1 & e \in \delta_{\text{out}} (v) \\
+                  0  & \ow
+              \end{cases}
+\end{align*}
+$\tilde{\Av}$为$\Av$去掉$s$、$t$对应行的子矩阵，注意有向流网络中源点$s$只有出边、汇点$t$只有入边，因此$\tilde{\Av}$其实也是$\Gcal$删除$s$、$t$及其所有相连边后的有向图的关联矩阵，故$\tilde{\Av}$是全幺模矩阵。
+
+最大流问题可形式化为线性规划：
+\begin{align*}
+    \max_{\xv} ~ \{ \av^\top \xv : \zerov \le \xv \le \cv, ~ \tilde{\Av} \xv = \zerov \}
+\end{align*}
+其中$\av^\top$是$\Av$中汇点$t$对应的行，$\zerov \le \xv \le \cv$约束流的上下界，$\tilde{\Av} \xv = \zerov$约束非源点、汇点的流量要守恒。注意
+\begin{align*}
+    \{ \xv \mid \zerov \le \xv \le \cv, ~ \tilde{\Av} \xv = \zerov \} \Longleftrightarrow [\tilde{\Av}; -\tilde{\Av}; \Iv; -\Iv] \xv \leq [\zerov; \zerov; \cv; \zerov]
+\end{align*}
+由$\tilde{\Av}$是全幺模矩阵知$[\tilde{\Av}; -\tilde{\Av}; \Iv; -\Iv]$也是全幺模矩阵，若流量上限$\cv$是整数向量，则可行域$\{ \zv \mid \zerov \le \xv \le \cv, ~ \tilde{\Av} \xv = \zerov \}$的极点也是整数向量，即最大流是整数流。
+
+引入Lagrange乘子$\yv \in \Rbb_+^{|\Ecal|}$、$\zv \in \Rbb_+^{|\Ecal|}$、$\tilde{\wv} \in \Rbb_+^{|\Vcal|-2}$，对偶函数$\Lcal(\xv, \yv, \zv, \tilde{\wv}) = \av^\top \xv + \yv^\top \xv - \zv^\top (\xv - \cv) - \tilde{\wv}^\top \tilde{\Av} \xv$，易知
+\begin{align*}
+    \frac{\partial \Lcal}{\partial \xv} = \av + \yv - \zv - \tilde{\Av}^\top \tilde{\wv} = \zerov \Longrightarrow \tilde{\Av}^\top \tilde{\wv} + \zv \ge \av
+\end{align*}
+故对偶问题为
+\begin{align*}
+    \min_{\tilde{\wv}, \zv} ~ \{ \cv^\top \zv : \zv \ge \zerov, ~ \tilde{\Av}^\top \tilde{\wv} + \zv \ge \av \}
+\end{align*}
+注意
+\begin{align*}
+    \{ \zv \mid \zv \ge \zerov, ~ \tilde{\Av}^\top \tilde{\wv} + \zv \ge \av \} \Longleftrightarrow [-\tilde{\Av}^\top, -\Iv; \zerov, -\Iv] [\tilde{\wv}; \zv] \leq [-\av; \zerov]
+\end{align*}
+由$\tilde{\Av}$是全幺模矩阵知$[-\tilde{\Av}^\top, -\Iv; \zerov, -\Iv]$也是全幺模矩阵，故对偶问题的最优解$\tilde{\wv}^\star$、$\zv^\star$也是整数向量。
+
+注意$\tilde{\wv}^\star$的维度为$|\Vcal| - 2$，与$\tilde{\Av}$的行对应，现添加$w_s^\star = 0$、$w_t^\star = -1$将其扩充为$\wv^\star$，与$\Av$的行对应，于是$\Av^\top \wv^\star + \zv^\star = \tilde{\Av}^\top \tilde{\wv}^\star - \av + \zv^\star \ge \zerov$，从而$\zv^\star = \max \{ \zerov, - \Av^\top \wv^\star \}$，即对任意边$e = (u,v)$有$z^\star_e = \max \{ 0, w_u^\star - w_v^\star \}$。
+
+定义$\Scal = \{ v \in \Vcal \mid w_v^\star \ge 0 \}$，$\overline{\Scal} = \Vcal \setminus \Scal$，显然$s \in \Scal$、$t \in \overline{\Scal}$，将边分为四类：
+\begin{itemize}
+    \item $\delta(\Scal) \triangleq \{ (u,v) \in \Ecal \mid u \in \Scal, ~ v \in \Scal \}$为所有起点、终点均属于$\Scal$的边的集合；
+    \item $\delta(\overline{\Scal}) \triangleq \{ (u,v) \in \Ecal \mid u \in \overline{\Scal}, ~ v \in \overline{\Scal} \}$为所有起点、终点均属于$\overline{\Scal}$的边的集合；
+    \item $\delta_{\text{out}}(\Scal) \triangleq \{ (u,v) \in \Ecal \mid u \in \Scal, ~ v \in \overline{\Scal} \}$为所有起点属于$\Scal$、终点属于$\overline{\Scal}$的边的集合；
+    \item $\delta_{\text{in}}(\Scal) \triangleq \{ (u,v) \in \Ecal \mid u \in \overline{\Scal}, ~ v \in \Scal \}$为所有起点属于$\overline{\Scal}$、终点属于$\Scal$的边的集合；
+\end{itemize}
+注意在将所有$\delta_{\text{out}}(\Scal)$中的边删除后，$s$、$t$不再连通，因此$\delta_{\text{out}}(\Scal)$称为割(cut)。
+
+由于$w_v^\star$都是整数，因此对任意边$e = (u,v) \in \delta_{\text{out}}(\Scal)$有$z_e^\star \ge w_u^\star - w_v^\star \ge 1$，于是
+\begin{align*}
+    \cv^\top \zv^\star \ge \sum_{e \in \delta_{\text{out}}(\Scal)} c_e z_e^\star \ge \sum_{e \in \delta_{\text{out}}(\Scal)} c_e \ge \sum_{e \in \delta_{\text{out}}(\Scal)} x_e^\star \ge \sum_{e \in \delta_{\text{in}}(t)} x_e^\star = \av^\top \xv^\star
+\end{align*}
+其中第一个不等号是因为$z_e^\star \ge 0$；第二个不等号是因为对任意边$e \in \delta_{\text{out}}(\Scal)$有$z_e^\star \ge 1$；第三个不等号是因为$c_e$是边$e$的流量上限；第四个不等号是因为$\delta_{\text{out}}(\Scal)$上的流量未必会全部进入汇点，可能会有一部分通过$\delta_{\text{in}}(\Scal)$再折回$\Scal$。
+
+根据强对偶定理所有的不等号都取等号，由此可以得到一些有趣的结论：
+\begin{itemize}
+    \item 根据第一个不等号取等号，对任意边$e \not \in \delta_{\text{out}}(\Scal)$有$z_e^\star = 0$，即对任意$\delta(\Scal)$、$\delta(\overline{\Scal})$、$\delta_{\text{in}}(\Scal)$中的边$e$，都有$z_e^\star = 0$；
+    \item 根据第二个不等号取等号，对任意边$e = (u,v) \in \delta_{\text{out}}(\Scal)$有$z_e^\star = 1$，故只可能是$w_u^\star = 0$、$w_v^\star = -1$，于是对任意边$e = (p, u) \in \delta(\Scal)$，必然有$w_p^\star = 0$，否则$z_e^\star \ge w_p^\star - w_u^\star > 0$，与前一个结论矛盾，依此类推，对所有$\Scal$中的点$u$都有$w_u^\star = 0$。同理，对所有$\overline{\Scal}$中的点$v$都有$w_v^\star = -1$；
+    \item 根据第三个不等号取等号，当流量达到最大时，$\delta_{\text{out}}(\Scal)$中每条边的流量都达到上限，这个也可由互补松弛条件$z_e (x_e - c_e) = 0$得到：$z_e^\star = 1 > 0 \Longrightarrow x_e^\star = c_e$；
+    \item 根据第四个不等号取等号，$\delta_{\text{out}}(\Scal)$上的流量全部进入$t$，不折回$\Scal$，即$\delta_{\text{in}}(\Scal)$上的流量为零，这个也可由互补松弛条件$y_e x_e = 0$得到：$z_e^\star = 0 > -1 = w_u^\star - w_v^\star$，故$y_e^\star = z_e^\star - (w_u^\star - w_v^\star) > 0$，从而$x_e^\star = 0$。
+\end{itemize}
+
+
+
+\end{document}
+

@@ -1,0 +1,229 @@
+\documentclass{ctexart}
+\usepackage{avanti}
+
+\begin{document}
+\title{\textbf{主定理证明}}
+\author{张腾}
+\date{\today}
+\maketitle
+
+\begin{theorem} [主定理]
+    令$a \ge 1$和$b > 1$是常数，$f(n)$是一个函数，$T(n)$是定义在\textbf{非负整数}上的递归式：
+    \begin{align*}
+        T(n) = a \cdot T \left( \frac{n}{b} \right) + f(n)
+    \end{align*}
+    其中我们将$n/b$解释为$\lfloor n/b \rfloor$或$\lceil n/b \rceil$，那么$T(n)$有如下渐进界：
+    \begin{enumerate}
+        \item 若对某个常数$\varepsilon > 0$有$f(n) = O(n^{\log_b a - \varepsilon})$，则$T(n) = \Theta (n^{\log_b a})$。
+        \item 若$f(n) = \Theta (n^{\log_b a})$，则$T(n) = \Theta (n^{\log_b a} \lg n)$。
+        \item 若对某个常数$\varepsilon > 0$有$f(n) = \Omega(n^{\log_b a + \varepsilon})$，且对某个常数$c<1$和所有足够大的$n$有$a f(n/b) \le c f(n)$，则$T(n) = \Theta (f(n))$。
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    若$n$是$b$的整数幂次，不妨设$n = b^k$，此时$n/b$最后正好会递归成$1$，即
+    \begin{align*}
+        T \left( \frac{n}{b^0} \right)     & = a \cdot T \left( \frac{n}{b^1} \right) + f \left( \frac{n}{b^0} \right)     \\
+        T \left( \frac{n}{b^1} \right)     & = a \cdot T \left( \frac{n}{b^2} \right) + f \left( \frac{n}{b^1} \right)     \\
+                                           & \vdots                                                                        \\
+        T \left( \frac{n}{b^{k-1}} \right) & = a \cdot T \left( \frac{n}{b^k} \right) + f \left( \frac{n}{b^{k-1}} \right)
+    \end{align*}
+    注意上面共有$k$个递推式，又$a^k = (b^{\log_b a})^k = (b^k)^{\log_b a} = n^{\log_b a}$、$n = b^k$，于是
+    \begin{align*}
+        T(n) = a^k \cdot T \left( \frac{n}{b^k} \right) + f \left( \frac{n}{b^0} \right) + a f \left( \frac{n}{b^1} \right) + \cdots + a^{k-1} f \left( \frac{n}{b^{k-1}} \right) = n^{\log_b a} \cdot T(1) + \sum_{i=0}^{k-1} a^i f \left( \frac{n}{b^i} \right)
+    \end{align*}
+    显然前一项$n^{\log_b a} \cdot T(1) = \Theta(n^{\log_b a})$，故关键就是后面求和这一项，下面分情况讨论：
+    \begin{enumerate}
+        \item 由$f(n) = O(n^{\log_b a - \varepsilon})$可知
+              \begin{align*}
+                  a^i f \left( \frac{n}{b^i} \right) = a^i O \left( \left( \frac{n}{b^i} \right)^{\log_b a - \varepsilon} \right) = a^i O \left( \frac{n^{\log_b a - \varepsilon}}{a^i b^{-\varepsilon i}} \right) = O(n^{\log_b a - \varepsilon}) b^{\varepsilon i}
+              \end{align*}
+              故
+              \begin{align*}
+                  g(n) = \sum_{i=0}^{k-1} f \left( \frac{n}{b^i} \right) = O(n^{\log_b a - \varepsilon}) \sum_{i=0}^{k-1} b^{\varepsilon i} = O(n^{\log_b a - \varepsilon}) \frac{1 - b^{k \varepsilon}}{1 - b^\varepsilon} = O(n^{\log_b a - \varepsilon}) \frac{n^\varepsilon - 1}{b^\varepsilon - 1} = O(n^{\log_b a})
+              \end{align*}
+              从而$T(n) = \Theta(n^{\log_b a}) + O(n^{\log_b a}) = \Theta(n^{\log_b a})$，即此时$T(n)$的复杂度由前一项决定。
+
+        \item 由$f(n) = \Theta (n^{\log_b a})$可知
+              \begin{align*}
+                  a^i f \left( \frac{n}{b^i} \right) = a^i \Theta \left( \left( \frac{n}{b^i} \right)^{\log_b a} \right) = a^i \Theta \left( \frac{n^{\log_b a}}{a^i} \right) = \Theta(n^{\log_b a})
+              \end{align*}
+              于是
+              \begin{align*}
+                  g(n) = \sum_{i=0}^{k-1} a^i f \left( \frac{n}{b^i} \right) = \sum_{i=0}^{k-1} \Theta(n^{\log_b a}) = \Theta(n^{\log_b a}) \log_b n = \Theta(n^{\log_b a} \lg n)
+              \end{align*}
+              从而$T(n) = \Theta(n^{\log_b a}) + \Theta(n^{\log_b a} \lg n) = \Theta(n^{\log_b a} \lg n)$，即此时$T(n)$的复杂度由求和这一项决定。
+
+        \item 由条件知存在$j$使得当$n' \ge b^{k-j+1} = n / b^{j-1}$时递推式$a f(n'/b) \le c f(n')$恒成立，于是
+              \begin{align*}
+                  a^j f \left( \frac{n}{b^j} \right) \le a^{j-1} c f \left( \frac{n}{b^{j-1}} \right) \le \cdots \le a^2 c^{j-2} f \left( \frac{n}{b^2} \right) \le a c^{j-1} f \left( \frac{n}{b} \right) \le c^j f(n)
+              \end{align*}
+              从而对$\forall i \le j$有$a^i f(n/b^i) \le c^{i} f(n)$，代入可得
+              \begin{align*}
+                  g(n) & = \sum_{i=0}^{k-1} a^i f \left( \frac{n}{b^i} \right) = \sum_{i=0}^j a^i f \left( \frac{n}{b^i} \right) + \overbrace{a^{j+1} f \left(\frac{n}{b^{j+1}} \right) + \cdots + a^{k-1} f \left(\frac{n}{b^{k-1}} \right)}^{\text{不满足递推式的部分，复杂度为}O(1)} \\
+                       & \le \sum_{i=0}^j c^i f(n) + O(1) < f(n) \sum_{i=0}^\infty c^i + O(1) \overset{c<1}{=} \frac{f(n)}{1-c} + O(1) = O(f(n))
+              \end{align*}
+              又$f(n)$是$g(n)$中的一项且$g(n)$所有求和项非负，故$g(n) \ge f(n)$，从而
+              \begin{align*}
+                  g(n) = \Theta (f(n)) = \Omega(n^{\log_b a + \varepsilon}) > \Theta(n^{\log_b a})
+              \end{align*}
+              于是$T(n) = \Theta(n^{\log_b a}) + g(n) = \Theta (f(n))$，即此时$T(n)$的复杂度由求和这一项决定。
+    \end{enumerate}
+
+    \noindent \rule[0.25\baselineskip]{\textwidth}{0.5pt}
+
+    若$n$不是$b$的整数幂次，则递推中某一轮$n/b$不一定为整数，又$T(n)$是定义在非负整数上的，因此还需多做一步取整，此时递推式可写成
+    \begin{align*}
+        T(n_0) & = a \cdot T(n_1) + f(n_0), \quad n_1 = [n_0/b] \\
+        T(n_1) & = a \cdot T(n_2) + f(n_1), \quad n_2 = [n_1/b] \\
+        T(n_2) & = a \cdot T(n_3) + f(n_2), \quad n_3 = [n_2/b] \\
+               & \vdots
+    \end{align*}
+    不妨先考虑向上取整，即
+    \begin{align*}
+        n_i = \begin{cases}
+                  n & i = 0 \\ \lceil n_{i-1} / b \rceil & i > 0
+              \end{cases}
+    \end{align*}
+    根据$x \le \lceil x \rceil \le x + 1$易知
+    \begin{align*}
+        \frac{n}{b}   \le n_1 & \le \frac{n}{b} + 1                                 \\
+        \frac{n}{b^2} \le n_2 & \le \frac{n}{b^2} + \frac{1}{b} + 1                 \\
+        \frac{n}{b^3} \le n_3 & \le \frac{n}{b^3} + \frac{1}{b^2} + \frac{1}{b} + 1 \\
+        \vdots                &
+    \end{align*}
+    于是
+    \begin{align} \label{eq: ni-upper-bound}
+        \frac{n}{b^i} \le n_i \le \frac{n}{b^i} + \frac{1}{b^{i-1}} + \cdots + \frac{1}{b} + 1 < \frac{n}{b^i} + \frac{1}{1 - 1/b} = \frac{n}{b^i} + \frac{b}{b-1}
+    \end{align}
+    令$k = \lfloor \log_b n \rfloor \ge \log_b n - 1$，即$n \le b^{k+1}$，代入式(\ref{eq: ni-upper-bound})可得
+    \begin{align*}
+        n_k < \frac{n}{b^k} + \frac{b}{b-1} \le \frac{b^{k+1}}{b^k} + \frac{b}{b-1} = b + \frac{b}{b-1} = O(1)
+    \end{align*}
+    故递推到第$k$轮，子问题$T(n_k)$已经是$O(1)$复杂度了，同前面一样有
+    \begin{align*}
+        T(n) = a^k T(n_k) + f(n_0) + a f(n_1) + \cdots + a^{k-1} f(n_{k-1}) = \Theta(n^{\log_b a}) + \sum_{i=0}^{k-1} a^i f(n_i)
+    \end{align*}
+    关键依然是后面求和这一项，继续分情况讨论：
+    \begin{enumerate}
+        \item 由$f(n) = O(n^{\log_b a - \varepsilon})$可知存在正常数$c_i$和$n_i$使得对$\forall n \ge n_i$有
+              \begin{align*}
+                  a^i f(n_i) & \le a^i c_i n_i^{\log_b a - \varepsilon} < a^i c_i \left( \frac{n}{b^i} + \frac{b}{b-1} \right)^{\log_b a - \varepsilon} = a^i c_i \left( \frac{n}{b^i} \right)^{\log_b a - \varepsilon} \left( 1 + \frac{b^i}{n} \frac{b}{b-1} \right)^{\log_b a - \varepsilon} \\
+                             & \overset{b^i \le n}{\le} a^i c_i n^{\log_b a - \varepsilon} \frac{b^{\varepsilon i}}{a^i} \left( 1 + \frac{b}{b-1} \right)^{\log_b a - \varepsilon} = c_i n^{\log_b a - \varepsilon} b^{\varepsilon i} \left( \frac{2b-1}{b-1} \right)^{\log_b a - \varepsilon}
+              \end{align*}
+              令$\cbar = \max_i \{c_i\}$、$\nbar = \max_i \{n_i\}$，于是对$\forall n \ge \nbar$有
+              \begin{align*}
+                  g(n) & = \sum_{i=0}^{k-1} a^i f(n_i) < \sum_{i=0}^{k-1} c_i n^{\log_b a - \varepsilon} b^{\varepsilon i} \left( \frac{2b-1}{b-1} \right)^{\log_b a - \varepsilon} \le \cbar n^{\log_b a - \varepsilon} \left( \frac{2b-1}{b-1} \right)^{\log_b a - \varepsilon} \sum_{i=0}^{k-1} b^{\varepsilon i} \\
+                       & \overset{b^k \le n}{\le} \cbar n^{\log_b a - \varepsilon} \left( \frac{2b-1}{b-1} \right)^{\log_b a - \varepsilon} \frac{n^\varepsilon - 1}{b^\varepsilon - 1} < \frac{\cbar}{b^\varepsilon - 1} \left( \frac{2b-1}{b-1} \right)^{\log_b a - \varepsilon} n^{\log_b a} = O(n^{\log_b a})
+              \end{align*}
+              从而$T(n) = \Theta(n^{\log_b a}) + O(n^{\log_b a}) = \Theta(n^{\log_b a})$，即此时$T(n)$的复杂度由前一项决定。
+
+        \item 由$f(n) = \Theta (n^{\log_b a})$可知存在正常数$c_i$、$d_i$和$n_i$使得对$\forall n \ge n_i$有
+              \begin{align*}
+                  a^i f(n_i) \le a^i c_i n_i^{\log_b a} < a^i c_i \left( \frac{n}{b^i} \right)^{\log_b a} \left( 1 + \frac{b^i}{n} \frac{b}{b-1} \right)^{\log_b a} \le c_i \left( 1 + \frac{b}{b-1} \right)^{\log_b a} n^{\log_b a} = O(n^{\log_b a})
+              \end{align*}
+              以及
+              \begin{align*}
+                  a^i f(n_i) \ge a^i d_i n_i^{\log_b a} \ge a^i d_i \left( \frac{n}{b^i} \right)^{\log_b a} = d_i n^{\log_b a} = \Omega (n^{\log_b a})
+              \end{align*}
+              故$a^i f(n_i) = \Theta(n^{\log_b a})$，于是
+              \begin{align*}
+                  g(n) = \sum_{i=0}^{k-1} a^i f(n_i) = \Theta(n^{\log_b a}) k = \Theta(n^{\log_b a} \lg n)
+              \end{align*}
+              从而$T(n) = \Theta(n^{\log_b a}) + \Theta(n^{\log_b a} \lg n) = \Theta(n^{\log_b a} \lg n)$，即此时$T(n)$的复杂度由求和这一项决定。
+
+        \item 由条件知存在$j$使得当$n \ge n_{j-1}$时递推式$a f(\lceil n/b \rceil) \le c f(n)$恒成立，于是
+              \begin{align*}
+                  a^j f(n_j) \le a^{j-1} c f(n_{j-1}) \le \cdots \le a^2 c^{j-2} f(n_2) \le a c^{j-1} f(n_1) \le c^j f(n_0)
+              \end{align*}
+              从而对$\forall i \le j$有$a^i f(n_i) \le c^{i} f(n)$，代入可得
+              \begin{align*}
+                  g(n) & = \sum_{i=0}^{k-1} a^i f(n_i) = \sum_{i=0}^j a^i f(n_i) + \overbrace{a^{j+1} f(n_{j+1}) + \cdots + a^{k-1} f(n_{k-1})}^{\text{不满足递推式的部分，复杂度为}O(1)} \\
+                       & \le \sum_{i=0}^j c^i f(n) + O(1) < f(n) \sum_{i=0}^\infty c^i + O(1) \overset{c<1}{=} \frac{f(n)}{1-c} + O(1) = O(f(n))
+              \end{align*}
+              又$f(n)$是$g(n)$中的一项且$g(n)$所有求和项非负，故$g(n) \ge f(n)$，从而
+              \begin{align*}
+                  g(n) = \Theta (f(n)) = \Omega(n^{\log_b a + \varepsilon}) > \Theta(n^{\log_b a})
+              \end{align*}
+              于是$T(n) = \Theta(n^{\log_b a}) + g(n) = \Theta (f(n))$，即此时$T(n)$的复杂度由求和这一项决定。
+    \end{enumerate}
+
+    \noindent \rule[0.25\baselineskip]{\textwidth}{0.5pt}
+
+    最后考虑向下取整，即
+    \begin{align*}
+        n_i = \begin{cases}
+                  n & i = 0 \\ \lfloor n_{i-1}/b \rfloor & i > 0
+              \end{cases}
+    \end{align*}
+    根据$x-1 \le \lfloor x \rfloor \le x$易知
+    \begin{align*}
+        \frac{n}{b} - 1   \le n_1                               & \le \frac{n}{b}   \\
+        \frac{n}{b^2} - \frac{1}{b} - 1    \le n_2              & \le \frac{n}{b^2} \\
+        \frac{n}{b^3} - \frac{1}{b^2} - \frac{1}{b} - 1 \le n_3 & \le \frac{n}{b^3} \\
+        \vdots                                                  &
+    \end{align*}
+    于是
+    \begin{align} \label{eq: ni-lower-bound}
+        \frac{n}{b^i} - \frac{b}{b-1} = \frac{n}{b^i} - \frac{1}{1 - 1/b} < \frac{n}{b^i} - \frac{1}{b^{i-1}} - \cdots - \frac{1}{b} - 1 \le n_i \le \frac{n}{b^i}
+    \end{align}
+    令$k = \lfloor \log_b n(b-1) \rfloor - 2 \ge \log_b n(b-1) - 3$，即$n(b-1) \le b^{k+3}$，代入式(\ref{eq: ni-lower-bound})可得
+    \begin{align*}
+        n_k \le \frac{n}{b^k} \le \frac{b^{k+3}}{b^k} = \frac{b^3}{b-1} = O(1)
+    \end{align*}
+    故递推到第$k$轮，子问题$T(n_k)$已经是$O(1)$复杂度了，同前面一样有
+    \begin{align*}
+        T(n) = a^k T(n_k) + f(n_0) + a f(n_1) + \cdots + a^{k-1} f(n_{k-1}) = \Theta(n^{\log_b a}) + \sum_{i=0}^{k-1} a^i f(n_i)
+    \end{align*}
+    关键依然是后面求和这一项，继续分情况讨论：
+    \begin{enumerate}
+        \item 由$f(n) = O(n^{\log_b a - \varepsilon})$可知存在正常数$c_i$和$n_i$使得对$\forall n \ge n_i$有
+              \begin{align*}
+                  a^i f(n_i) \le a^i c_i n_i^{\log_b a - \varepsilon} < a^i c_i \left( \frac{n}{b^i} \right)^{\log_b a - \varepsilon} = c_i n^{\log_b a - \varepsilon} b^{\varepsilon i}
+              \end{align*}
+              令$\cbar = \max_i \{c_i\}$、$\nbar = \max_i \{n_i\}$，于是对$\forall n \ge \nbar$有
+              \begin{align*}
+                  g(n) & = \sum_{i=0}^{k-1} a^i f(n_i) < \sum_{i=0}^{k-1} c_i n^{\log_b a - \varepsilon} b^{\varepsilon i} \le \cbar n^{\log_b a - \varepsilon} \sum_{i=0}^{k-1} b^{\varepsilon i} \le \cbar n^{\log_b a - \varepsilon} \frac{n^\varepsilon - 1}{b^\varepsilon - 1} = O(n^{\log_b a})
+              \end{align*}
+              从而$T(n) = \Theta(n^{\log_b a}) + O(n^{\log_b a}) = \Theta(n^{\log_b a})$，即此时$T(n)$的复杂度由前一项决定。
+
+        \item 由$f(n) = \Theta (n^{\log_b a})$可知存在正常数$c_i$、$d_i$和$n_i$使得对$\forall n \ge n_i$有
+              \begin{align*}
+                  a^i f(n_i) \le a^i c_i n_i^{\log_b a} \le a^i c_i \left( \frac{n}{b^i} \right)^{\log_b a} \le c_i n^{\log_b a} = O(n^{\log_b a})
+              \end{align*}
+              以及
+              \begin{align*}
+                  a^i f(n_i) & \ge a^i d_i n_i^{\log_b a} \ge a^i d_i \left( \frac{n}{b^i} - \frac{b}{b-1} \right)^{\log_b a} = a^i d_i \left( \frac{n}{b^i} \right)^{\log_b a} \left( 1 - \frac{b^i}{n} \frac{b}{b-1} \right)^{\log_b a} \\
+                             & = d_i n^{\log_b a} \left( 1 - \frac{b^i}{n} \frac{b}{b-1} \right)^{\log_b a}
+              \end{align*}
+              注意$k = \lfloor \log_b n(b-1) \rfloor - 2 \le \log_b n(b-1) - 2$，即$n(b-1) \ge b^{k+2}$，于是
+              \begin{align*}
+                  1 > 1 - \frac{b^i}{n} \frac{b}{b-1} \ge 1 - \frac{b^{i+1}}{b^{k+2}} > 0 \Longrightarrow 1 - \frac{b^i}{n} \frac{b}{b-1} \in (0,1) \Longrightarrow a^i f(n_i) = \Omega (n^{\log_b a})
+              \end{align*}
+              故$a^i f(n_i) = \Theta(n^{\log_b a})$，于是
+              \begin{align*}
+                  g(n) = \sum_{i=0}^{k-1} a^i f(n_i) = \Theta(n^{\log_b a}) k = \Theta(n^{\log_b a} \lg n)
+              \end{align*}
+              从而$T(n) = \Theta(n^{\log_b a}) + \Theta(n^{\log_b a} \lg n) = \Theta(n^{\log_b a} \lg n)$，即此时$T(n)$的复杂度由求和这一项决定。
+
+        \item 由条件知存在$j$使得当$n \ge n_{j-1}$时递推式$a f(\lfloor n/b \rfloor) \le c f(n)$恒成立，于是
+              \begin{align*}
+                  a^j f(n_j) \le a^{j-1} c f(n_{j-1}) \le \cdots \le a^2 c^{j-2} f(n_2) \le a c^{j-1} f(n_1) \le c^j f(n_0)
+              \end{align*}
+              从而对$\forall i \le j$有$a^i f(n_i) \le c^{i} f(n)$，代入可得
+              \begin{align*}
+                  g(n) & = \sum_{i=0}^{k-1} a^i f(n_i) = \sum_{i=0}^j a^i f(n_i) + \overbrace{a^{j+1} f(n_{j+1}) + \cdots + a^{k-1} f(n_{k-1})}^{\text{不满足递推式的部分，复杂度为}O(1)} \\
+                       & \le \sum_{i=0}^j c^i f(n) + O(1) < f(n) \sum_{i=0}^\infty c^i + O(1) \overset{c<1}{=} \frac{f(n)}{1-c} + O(1) = O(f(n))
+              \end{align*}
+              又$f(n)$是$g(n)$中的一项且$g(n)$所有求和项非负，故$g(n) \ge f(n)$，从而
+              \begin{align*}
+                  g(n) = \Theta (f(n)) = \Omega(n^{\log_b a + \varepsilon}) > \Theta(n^{\log_b a})
+              \end{align*}
+              于是$T(n) = \Theta(n^{\log_b a}) + g(n) = \Theta (f(n))$，即此时$T(n)$的复杂度由求和这一项决定。
+    \end{enumerate}
+
+
+\end{proof}
+
+
+\end{document}

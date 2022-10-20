@@ -1,0 +1,134 @@
+.reveal .slides section,
+.reveal .slides section > section {
+  display: flex !important; /* 改为flex布局 */
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  text-transform: none;
+}
+
+.reveal h5 {
+  text-align: left;
+  margin: 1rem auto 0.5rem 2rem;
+}
+
+.reveal hr {
+  border: none;
+  height: 0.06rem;
+  background-color: var(--solarized-base00);
+  margin-left: 2rem;
+  margin-top: 0px;
+  width: 50%;
+}
+
+.reveal p {
+  margin: 1rem 2rem;
+  text-align: justify;
+  word-wrap: break-word;
+}
+
+.reveal p .MathJax_Display {
+  margin-top: -1rem !important;
+}
+
+.reveal ul > li,
+.reveal ol > li {
+  color: var(--solarized-yellow);
+  margin-right: 2rem;
+}
+
+.reveal ul {
+  list-style-type: "\266b  ";
+}
+
+.reveal pre {
+  background-color: transparent !important;
+  box-shadow: none;
+  width: 86%;
+}
+
+.reveal .invis {
+  p,
+  ul > li,
+  .MathJax_Display,
+  .MathJax {
+    color: var(--solarized-base1) !important;
+  }
+  color: var(--solarized-base1) !important;
+}
+
+.reveal .center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.reveal p .center {
+  text-align: center !important;
+}
+
+.mermaid {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.reveal blockquote {
+  width: 90%;
+  margin: var(--r-block-margin) auto;
+  padding: 5px;
+  font-style: italic;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.2);
+}
+
+.reveal blockquote p {
+  text-align: justify;
+  word-wrap: break-word;
+}
+
+.reveal table {
+  margin: 2rem auto;
+}
+
+#venn-ml {
+  width: 800px;
+  height: 500px;
+}
+
+#venn-entropy {
+  width: 540px;
+  height: 360px;
+}
+
+.reveal .waveform {
+  width: 800px;
+  height: 128px;
+  margin: 1rem auto;
+}
+
+.reveal a svg {
+  width: 50px;
+  height: 50px;
+}
+
+.spare-pieces-top-e4b47,
+.spare-pieces-bottom-29dac {
+  padding-left: 0 !important;
+}
+
+#board2 {
+  line-height: 1 !important;
+  .piece-1e8b9 {
+    margin: 0 !important;
+  }
+}

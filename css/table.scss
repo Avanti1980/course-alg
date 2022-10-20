@@ -1,0 +1,125 @@
+.reveal table {
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 0;
+  th,
+  td {
+    border: none;
+    text-align: center;
+    color: var(--base01);
+    padding: 0.4rem 1rem 0.2rem 1rem;
+  }
+}
+
+.reveal .tr-hover {
+  tbody tr:hover {
+    background-color: var(--solarized-base2);
+  }
+}
+
+@for $i from 0 to 20 {
+  @each $style in "solid", "dashed", "dotted" {
+    // 每列左右边框
+    @each $direction in "left", "right" {
+      .reveal .column#{$i}-border-#{$direction}-#{$style} {
+        th:nth-child(#{$i}),
+        td:nth-child(#{$i}) {
+          border-#{$direction}: 1px #{$style} var(--solarized-base01);
+        }
+      }
+    }
+
+    // 每行上下边框
+    @each $direction in "top", "bottom" {
+      .reveal .row#{$i}-border-#{$direction}-#{$style} {
+        tr:nth-child(#{$i}) {
+          border-#{$direction}: 1px #{$style} var(--solarized-base01);
+        }
+      }
+    }
+
+    @each $direction in "left", "right", "top", "bottom" {
+      @each $thick in "1", "2" {
+        // 表头每格边框
+        .reveal .column#{$i}-border#{$thick}-#{$direction}-#{$style}-head {
+          th:nth-child(#{$i}) {
+            border-#{$direction}: #{$thick}px #{$style} var(--solarized-base01);
+          }
+        }
+        // 表身每格边框
+        @for $j from 0 to 10 {
+          .reveal
+            .row#{$i}-column#{$j}-border#{$thick}-#{$direction}-#{$style} {
+            tr:nth-child(#{$i}) {
+              td:nth-child(#{$j}) {
+                border-#{$direction}: #{$thick}px
+                  #{$style}
+                  var(--solarized-base01);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  // 列加粗
+  .reveal .column#{$i}-bold {
+    td:nth-child(#{$i}) {
+      font-weight: 900;
+    }
+  }
+  // 首行深色
+  .reveal .head-highlight-#{$i} {
+    th:nth-child(n + #{$i}) {
+      background-color: var(--solarized-base2);
+    }
+  }
+  // 单元格着色
+  @for $j from 0 to 20 {
+    @each $color in "base03", "base02", "base01", "base00", "base0", "base1",
+      "base2", "base3", "yellow", "orange", "red", "magenta", "violet", "blue",
+      "cyan", "green"
+    {
+      .reveal .row#{$i}-column#{$j}-#{$color} {
+        tr:nth-child(#{$i}) {
+          td:nth-child(#{$j}) {
+            background-color: var(--solarized-#{$color});
+            color: var(--solarized-base3);
+          }
+        }
+      }
+    }
+  }
+}
+
+// 全边框
+.reveal .fullborder {
+  th,
+  td {
+    border: 1px solid var(--solarized-base01);
+  }
+}
+
+// 子表全边框 四个参数分别对应行的起始结束和列的起始结束 
+@mixin subatable-fullborder($i, $j, $k, $l) {
+  .reveal .row#{$i}-#{$j}-column#{$k}-#{$l}-fullborder {
+    tr:nth-child(n + #{$i}):nth-child(-n + #{$j}) {
+      td:nth-child(n + #{$k}):nth-child(-n + #{$l}) {
+        border: 1px solid var(--solarized-base01);
+      }
+    }
+  }
+}
+
+@include subatable-fullborder(1, 5, 2, 10);
+
+// 三线表
+.reveal .threelines {
+  th {
+    border-top: 2px solid var(--solarized-base01); // 表头上边框
+    border-bottom: 1px solid var(--solarized-base01); // 表头下边框
+  }
+  tbody tr:nth-last-child(1) {
+    border-bottom: 2px solid var(--solarized-base01); // 最后一行下边框
+  }
+}

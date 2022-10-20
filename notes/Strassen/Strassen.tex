@@ -1,0 +1,317 @@
+\documentclass{ctexart}
+\usepackage{avanti}
+
+\begin{document}
+\title{\textbf{矩阵乘法加速}}
+\author{张腾}
+\date{\today}
+\maketitle
+
+设矩阵$\Av = (a_{ij})$和$\Bv = (b_{ij})$是$n$阶方阵，乘积$\Cv = (c_{ij})$亦是$n$阶方阵，其中
+\begin{align*}
+    c_{ij} = \sum_{k \in [n]} a_{ik} b_{kj}
+\end{align*}
+因此按标准的矩阵乘法，计算$\Cv$的时间开销为$\Omega(n^3)$，事实上这个时间复杂度是可以改进的。
+
+\section{分治递归}
+
+设计算$\Cv$的时间开销为$T(n)$，将矩阵分成$2 \times 2 = 4$块，由分块矩阵乘法有
+\begin{align*}
+    \begin{bmatrix}
+        \Cv_{11} & \Cv_{12} \\ \Cv_{21} & \Cv_{22}
+    \end{bmatrix} =
+    \begin{bmatrix}
+        \Av_{11} & \Av_{12} \\ \Av_{21} & \Av_{22}
+    \end{bmatrix}
+    \begin{bmatrix}
+        \Bv_{11} & \Bv_{12} \\ \Bv_{21} & \Bv_{22}
+    \end{bmatrix} =
+    \begin{bmatrix}
+        \Av_{11} \Bv_{11} + \Av_{12} \Bv_{21} & \Av_{11} \Bv_{12} + \Av_{12} \Bv_{22} \\
+        \Av_{21} \Bv_{11} + \Av_{22} \Bv_{21} & \Av_{21} \Bv_{12} + \Av_{22} \Bv_{22}
+    \end{bmatrix}
+\end{align*}
+其中包含$8$个$n/2$阶方阵相乘、$4$个$n/2$阶方阵相加，注意每个$n/2$阶方阵有$n^2/4$个元素，因此共需进行$n^2$次加法，综上有递推关系
+\begin{align*}
+    T(n) = 8 \cdot T(n/2) + c_1 n^2
+\end{align*}
+其中$c_1$为单次加法的时间开销。设$n = 2^k$，则
+\begin{align*}
+    T(2^k)               & = 8^1 \cdot T(2^{k-1}) + 8^0 \cdot c_1 4^k     \\
+    8^1 \cdot T(2^{k-1}) & = 8^2 \cdot T(2^{k-2}) + 8^1 \cdot c_1 4^{k-1} \\
+    8^2 \cdot T(2^{k-2}) & = 8^3 \cdot T(2^{k-3}) + 8^2 \cdot c_1 4^{k-2} \\
+                         & \vdots                                         \\
+    8^{k-1} \cdot T(2^1) & = 8^k \cdot T(2^0) + 8^{k-1} \cdot c_1 4^1
+\end{align*}
+注意$8^k = n^3$，$T(1) = c_2$是单次乘法的时间开销，累加可得
+\begin{align*}
+    T(n) & = c_2 n^3 + c_1 4^k + 2^1 \cdot c_1 4^k + 2^2 \cdot c_1 4^k + \cdots + 2^{k-1} \cdot c_1 4^k = c_2 n^3 + c_1 4^k \frac{1-2^k}{1-2} \\
+         & = c_2 n^3 + c_1 n^2 (n-1) = (c_2 + c_1) n^3 - c_1 n^2
+\end{align*}
+即直接分治递归并不能改进时间复杂度。
+
+\section{基本想法}
+
+要想改进时间复杂度，必须得减少子问题的个数，即乘法的次数。将乘积拉直，易知
+\begin{align*}
+    \begin{bmatrix}
+        \Av_{11} \Bv_{11} + \Av_{12} \Bv_{21} \\
+        \Av_{11} \Bv_{12} + \Av_{12} \Bv_{22} \\
+        \Av_{21} \Bv_{11} + \Av_{22} \Bv_{21} \\
+        \Av_{21} \Bv_{12} + \Av_{22} \Bv_{22}
+    \end{bmatrix} =
+    \begin{bmatrix}
+        \Av_{11} & \zerov   & \Av_{12} & \zerov   \\
+        \zerov   & \Av_{11} & \zerov   & \Av_{12} \\
+        \Av_{21} & \zerov   & \Av_{22} & \zerov   \\
+        \zerov   & \Av_{21} & \zerov   & \Av_{22}
+    \end{bmatrix}
+    \begin{bmatrix}
+        \Bv_{11} \\ \Bv_{12} \\ \Bv_{21} \\ \Bv_{22}
+    \end{bmatrix} = \widetilde{\Av}
+    \begin{bmatrix}
+        \Bv_{11} \\ \Bv_{12} \\ \Bv_{21} \\ \Bv_{22}
+    \end{bmatrix}
+\end{align*}
+\blue{现假设$\widetilde{\Av}$可以分解成$m$个``块秩$1$矩阵''的和：
+    \begin{align} \label{eq: decomposition}
+        \widetilde{\Av} =
+        \begin{bmatrix}
+            \Av_{11} & \zerov   & \Av_{12} & \zerov   \\
+            \zerov   & \Av_{11} & \zerov   & \Av_{12} \\
+            \Av_{21} & \zerov   & \Av_{22} & \zerov   \\
+            \zerov   & \Av_{21} & \zerov   & \Av_{22}
+        \end{bmatrix} = \sum_{i \in [m]}
+        \begin{bmatrix}
+            \Pv_{i1} \\ \Pv_{i2} \\ \Pv_{i3} \\ \Pv_{i4}
+        \end{bmatrix} \Rv_i
+        \begin{bmatrix}
+            \Qv_{i1} \\ \Qv_{i2} \\ \Qv_{i3} \\ \Qv_{i4}
+        \end{bmatrix}^\top
+    \end{align}
+    其中$\Rv_i$只由$\Av_{11}, \Av_{12}, \Av_{21}, \Av_{22}$进行加减运算得到且$\Pv_{i1}, \ldots,\Pv_{i4}, \Qv_{i1}, \ldots, \Qv_{i4} \in \{ \pm \Iv, \zerov \}$。}则
+\begin{align*}
+    \begin{bmatrix}
+        \Av_{11} \Bv_{11} + \Av_{12} \Bv_{21} \\
+        \Av_{11} \Bv_{12} + \Av_{12} \Bv_{22} \\
+        \Av_{21} \Bv_{11} + \Av_{22} \Bv_{21} \\
+        \Av_{21} \Bv_{12} + \Av_{22} \Bv_{22}
+    \end{bmatrix} = \sum_{i \in [m]}
+    \begin{bmatrix}
+        \Pv_{i1} \\ \Pv_{i2} \\ \Pv_{i3} \\ \Pv_{i4}
+    \end{bmatrix} \Rv_i
+    \green{\begin{bmatrix}
+                   \Qv_{i1} \\ \Qv_{i2} \\ \Qv_{i3} \\ \Qv_{i4}
+               \end{bmatrix}^\top
+        \begin{bmatrix}
+            \Bv_{11} \\ \Bv_{12} \\ \Bv_{21} \\ \Bv_{22}
+        \end{bmatrix}} = \sum_{i \in [m]}
+    \begin{bmatrix}
+        \Pv_{i1} \\ \Pv_{i2} \\ \Pv_{i3} \\ \Pv_{i4}
+    \end{bmatrix} \Rv_i \green{\Sv_i} = \sum_{i \in [m]}
+    \begin{bmatrix}
+        \Pv_{i1} \\ \Pv_{i2} \\ \Pv_{i3} \\ \Pv_{i4}
+    \end{bmatrix} \Tv_i
+\end{align*}
+其中$\Sv_i = \Qv_{i1} \Bv_{11} + \Qv_{i2} \Bv_{12} + \Qv_{i3} \Bv_{21} + \Qv_{i4} \Bv_{22}$只由$\Bv_{11}, \Bv_{12}, \Bv_{21}, \Bv_{22}$进行加减运算得到。计算全部$m$个$\Tv_i = \Rv_i \Sv_i$会产生$m$个子问题。又$\Pv_{i1}, \ldots, \Pv_{i4} \in \{ \pm \Iv, \zerov \}$，因此
+\begin{align*}
+    \begin{bmatrix}
+        \Av_{11} \Bv_{11} + \Av_{12} \Bv_{21} \\
+        \Av_{11} \Bv_{12} + \Av_{12} \Bv_{22} \\
+        \Av_{21} \Bv_{11} + \Av_{22} \Bv_{21} \\
+        \Av_{21} \Bv_{12} + \Av_{22} \Bv_{22}
+    \end{bmatrix} = \sum_{i \in [m]}
+    \begin{bmatrix}
+        \Pv_{i1} \\ \Pv_{i2} \\ \Pv_{i3} \\ \Pv_{i4}
+    \end{bmatrix} \Tv_i =
+    \begin{bmatrix}
+        \Pv_{11} \Tv_1 + \cdots + \Pv_{m1} \Tv_m \\
+        \Pv_{12} \Tv_1 + \cdots + \Pv_{m2} \Tv_m \\
+        \Pv_{13} \Tv_1 + \cdots + \Pv_{m3} \Tv_m \\
+        \Pv_{14} \Tv_1 + \cdots + \Pv_{m4} \Tv_m
+    \end{bmatrix}
+\end{align*}
+只由$\Tv_1, \ldots, \Tv_m$进行加减运算得到。综上，关键就是如何使式(\ref{eq: decomposition})中的$m < 8$。
+
+下面给出一个$m = 7$的分解方法，首先去掉左上的$\Av_{11}$和右下的$\Av_{22}$
+\begin{align*}
+    \widetilde{\Av} -
+     &
+    \begin{bmatrix}
+        \Av_{11} & \zerov & \Av_{11} & \zerov \\
+        \zerov   & \zerov & \zerov   & \zerov \\
+        \Av_{11} & \zerov & \Av_{11} & \zerov \\
+        \zerov   & \zerov & \zerov   & \zerov
+    \end{bmatrix} -
+    \begin{bmatrix}
+        \zerov & \zerov & \zerov & \zerov \\ \zerov & \Av_{22} & \zerov & \Av_{22} \\ \zerov & \zerov & \zerov & \zerov \\ \zerov & \Av_{22} & \zerov & \Av_{22}
+    \end{bmatrix} =
+    \begin{bmatrix}
+        \zerov & \zerov & \Av_{12} - \Av_{11} & \zerov \\ \zerov & \Av_{11} - \Av_{22} & \zerov & \Av_{12} - \Av_{22} \\ \Av_{21} - \Av_{11} & \zerov & \Av_{22} - \Av_{11} & \zerov \\ \zerov & \Av_{21} - \Av_{22} & \zerov & \zerov
+    \end{bmatrix} \\
+     & =
+    \begin{bmatrix}
+        \zerov & \zerov & \zerov & \zerov \\ \zerov & \Av_{11} - \Av_{22} & \Av_{11} - \Av_{22} & \zerov \\ \zerov & \Av_{22} - \Av_{11} & \Av_{22} - \Av_{11} & \zerov \\ \zerov & \zerov & \zerov & \zerov
+    \end{bmatrix} +
+    \begin{bmatrix}
+        \zerov & \zerov & \Av_{12} - \Av_{11} & \zerov \\ \zerov & \zerov & \Av_{22} - \Av_{11} & \Av_{12} - \Av_{22} \\ \Av_{21} - \Av_{11} & \Av_{11} - \Av_{22} & \zerov & \zerov \\ \zerov & \Av_{21} - \Av_{22} & \zerov & \zerov
+    \end{bmatrix} \\
+     & = \begin{bmatrix}
+             \zerov & \zerov & \zerov & \zerov \\ \zerov & \Av_{11} - \Av_{22} & \Av_{11} - \Av_{22} & \zerov \\ \zerov & \Av_{22} - \Av_{11} & \Av_{22} - \Av_{11} & \zerov \\ \zerov & \zerov & \zerov & \zerov
+         \end{bmatrix} +
+    \begin{bmatrix}
+        \zerov & \zerov & \zerov              & \zerov              \\
+        \zerov & \zerov & \Av_{22} - \Av_{12} & \Av_{12} - \Av_{22} \\
+        \zerov & \zerov & \zerov              & \zerov              \\
+        \zerov & \zerov & \zerov              & \zerov
+    \end{bmatrix} +
+    \begin{bmatrix}
+        \zerov & \zerov & \Av_{12} - \Av_{11} & \zerov \\
+        \zerov & \zerov & \Av_{12} - \Av_{11} & \zerov \\
+        \zerov & \zerov & \zerov              & \zerov \\
+        \zerov & \zerov & \zerov              & \zerov
+    \end{bmatrix}                                                                                                                                                                                \\
+     & \qquad +
+    \begin{bmatrix}
+        \zerov              & \zerov              & \zerov & \zerov \\
+        \zerov              & \zerov              & \zerov & \zerov \\
+        \Av_{21} - \Av_{11} & \Av_{11} - \Av_{21} & \zerov & \zerov \\
+        \zerov              & \zerov              & \zerov & \zerov
+    \end{bmatrix} +
+    \begin{bmatrix}
+        \zerov & \zerov              & \zerov & \zerov \\
+        \zerov & \zerov              & \zerov & \zerov \\
+        \zerov & \Av_{21} - \Av_{22} & \zerov & \zerov \\
+        \zerov & \Av_{21} - \Av_{22} & \zerov & \zerov
+    \end{bmatrix}                                                                                                                                                                                \\
+     & =
+    \begin{bmatrix}
+        \Iv \\ \zerov \\ \Iv \\ \zerov
+    \end{bmatrix} \Av_{11}
+    \begin{bmatrix}
+        \Iv \\ \zerov \\ \Iv \\ \zerov
+    \end{bmatrix}^\top +
+    \begin{bmatrix}
+        \zerov \\ \Iv \\ \zerov \\ \Iv
+    \end{bmatrix} \Av_{22}
+    \begin{bmatrix}
+        \zerov \\ \Iv \\ \zerov \\ \Iv
+    \end{bmatrix}^\top +
+    \begin{bmatrix}
+        \zerov \\ \Iv \\ -\Iv \\ \zerov
+    \end{bmatrix} (\Av_{11} - \Av_{22})
+    \begin{bmatrix}
+        \zerov \\ \Iv \\ \Iv \\ \zerov
+    \end{bmatrix}^\top +
+    \begin{bmatrix}
+        \zerov \\ \Iv \\ \zerov \\ \zerov
+    \end{bmatrix} (\Av_{22} - \Av_{12})
+    \begin{bmatrix}
+        \zerov \\ \zerov \\ \Iv \\ -\Iv
+    \end{bmatrix}^\top                                                                                                                                                                                                \\
+     & \qquad +
+    \begin{bmatrix}
+        \Iv \\ \Iv \\ \zerov \\ \zerov
+    \end{bmatrix} (\Av_{12} - \Av_{11})
+    \begin{bmatrix}
+        \zerov \\ \zerov \\ \Iv \\ \zerov
+    \end{bmatrix}^\top +
+    \begin{bmatrix}
+        \zerov \\ \zerov \\ \Iv \\ \zerov
+    \end{bmatrix} (\Av_{21} - \Av_{11})
+    \begin{bmatrix}
+        \Iv \\ -\Iv \\ \zerov \\ \zerov
+    \end{bmatrix}^\top +
+    \begin{bmatrix}
+        \zerov \\ \zerov \\ \Iv \\ \Iv
+    \end{bmatrix} (\Av_{21} - \Av_{22})
+    \begin{bmatrix}
+        \zerov \\ \Iv \\ \zerov \\ \zerov
+    \end{bmatrix}^\top
+\end{align*}
+
+\section{算法实现}
+
+根据上面的分解易知计算
+\begin{align*}
+    \begin{bmatrix}
+        \Sv_1 \\ \Sv_2 \\ \Sv_3 \\ \Sv_4 \\ \Sv_5 \\ \Sv_6 \\ \Sv_7
+    \end{bmatrix} =
+    \begin{bmatrix}
+        \Iv    & \zerov & \Iv    & \zerov \\
+        \zerov & \Iv    & \zerov & \Iv    \\
+        \zerov & \Iv    & \Iv    & \zerov \\
+        \zerov & \zerov & \Iv    & -\Iv   \\
+        \zerov & \zerov & \Iv    & \zerov \\
+        \Iv    & -\Iv   & \zerov & \zerov \\
+        \zerov & \Iv    & \zerov & \zerov
+    \end{bmatrix}
+    \begin{bmatrix}
+        \Bv_{11} \\ \Bv_{12} \\ \Bv_{21} \\ \Bv_{22}
+    \end{bmatrix} =
+    \begin{bmatrix}
+        \Bv_{11} + \Bv_{21} \\ \Bv_{12} + \Bv_{22} \\ \Bv_{12} + \Bv_{21} \\ \Bv_{21} - \Bv_{22} \\ \Bv_{21} \\ \Bv_{11} - \Bv_{12} \\ \Bv_{12}
+    \end{bmatrix}, \quad
+    \begin{bmatrix}
+        \Rv_1 \\ \Rv_2 \\ \Rv_3 \\ \Rv_4 \\ \Rv_5 \\ \Rv_6 \\ \Rv_7
+    \end{bmatrix} =
+    \begin{bmatrix}
+        \Av_{11} \\ \Av_{22} \\ \Av_{11} - \Av_{22} \\ \Av_{22} - \Av_{12} \\ \Av_{12} - \Av_{11} \\ \Av_{21} - \Av_{11} \\ \Av_{21} - \Av_{22}
+    \end{bmatrix}
+\end{align*}
+共会产生$10$次加减运算，计算$\Tv_1 = \Rv_1 \Sv_1, \ldots, \Tv_7 = \Rv_7 \Sv_7$共会产生$7$个子问题，最后计算
+\begin{align*}
+    \begin{bmatrix}
+        \Av_{11} \Bv_{11} + \Av_{12} \Bv_{21} \\
+        \Av_{11} \Bv_{12} + \Av_{12} \Bv_{22} \\
+        \Av_{21} \Bv_{11} + \Av_{22} \Bv_{21} \\
+        \Av_{21} \Bv_{12} + \Av_{22} \Bv_{22}
+    \end{bmatrix}
+     & =
+    \begin{bmatrix}
+        \Iv \\ \zerov \\ \Iv \\ \zerov
+    \end{bmatrix} \Tv_1 +
+    \begin{bmatrix}
+        \zerov \\ \Iv \\ \zerov \\ \Iv
+    \end{bmatrix} \Tv_2 +
+    \begin{bmatrix}
+        \zerov \\ \Iv \\ -\Iv \\ \zerov
+    \end{bmatrix} \Tv_3 +
+    \begin{bmatrix}
+        \zerov \\ \Iv \\ \zerov \\ \zerov
+    \end{bmatrix} \Tv_4 +
+    \begin{bmatrix}
+        \Iv \\ \Iv \\ \zerov \\ \zerov
+    \end{bmatrix} \Tv_5 +
+    \begin{bmatrix}
+        \zerov \\ \zerov \\ \Iv \\ \zerov
+    \end{bmatrix} \Tv_6 +
+    \begin{bmatrix}
+        \zerov \\ \zerov \\ \Iv \\ \Iv
+    \end{bmatrix} \Tv_7 \\
+     & =
+    \begin{bmatrix}
+        \Tv_1 + \Tv_5 \\ \Tv_2 + \Tv_3 + \Tv_4 + \Tv_5 \\ \Tv_1 - \Tv_3 + \Tv_6 + \Tv_7 \\ \Tv_2 + \Tv_7
+    \end{bmatrix}
+\end{align*}
+共会产生$8$次加减运算。
+
+综上，一共会产生$7$个子问题和$18$次加减运算，此时递推关系变成
+\begin{align*}
+    T(n) = 7 \cdot T(n/2) + \frac{18}{4} c_1 n^2
+\end{align*}
+设$n = 2^k$，则
+\begin{align*}
+    T(2^k)               & = 7^1 \cdot T(2^{k-1}) + \frac{18}{4} c_1 4^k         \\
+    7^1 \cdot T(2^{k-1}) & = 7^2 \cdot T(2^{k-2}) + 7^1 \frac{18}{4} c_1 4^{k-1} \\
+    7^2 \cdot T(2^{k-2}) & = 7^3 \cdot T(2^{k-3}) + 7^2 \frac{18}{4} c_1 4^{k-2} \\
+                         & \vdots                                                \\
+    7^{k-1} \cdot T(2^1) & = 7^k \cdot T(2^0) + 7^{k-1} \frac{18}{4} c_1 4^1
+\end{align*}
+注意$7^k = (2^{\lg 7})^k = (2^k)^{\lg 7} = n^{\lg 7} \approx n^{2.81}$，
+累加可得
+\begin{align*}
+    T(n) = c_2 n^{\lg 7} + \frac{18}{4} c_1 4^k \frac{1-(7/4)^k}{1-(7/4)} = c_2 n^{\lg 7} + 6 c_1 (n^{\lg 7} - n^2) = \left( c_2 + 6 c_1 \right) n^{\lg 7} - 6 c_1 n^2
+\end{align*}
+
+\end{document}
