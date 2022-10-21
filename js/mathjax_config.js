@@ -166,7 +166,7 @@ module.exports = {
       const: "{\\mathrm {const}}",
       cov: "{\\mathrm {cov}}",
       grad: "{\\mathrm {grad}}",
-      div: "{\\mathrm {div}}",
+      divv: "{\\mathrm {div}}",
       var: "{\\mathrm {var}}",
       softmax: "{\\mathrm {softmax}}",
       att: "{\\mathrm {att}}",
