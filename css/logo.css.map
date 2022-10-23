@@ -1,9 +1,1 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,OAAO,CAAC,OAAO,AAAC,CACd,gBAAgB,CAAE,sBAAsB,CACxC,mBAAmB,CAAE,KAAK,CAC1B,iBAAiB,CAAE,SAAS,CAC5B,eAAe,CAAE,UACnB,CAAC",
-    "sources": [
-        "logo.scss"
-    ],
-    "names": [],
-    "file": "logo.css"
-}
+{"version":3,"sources":["logo.scss"],"names":[],"mappings":"AAAA,gBACE,uCAAA,CACA,yBAAA,CACA,2BAAA,CACA,0BAAA","file":"logo.css"}

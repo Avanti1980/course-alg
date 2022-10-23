@@ -3,7 +3,8 @@ def bubble_sort(a, n):
         for j in range(n-1, i, -1):
             if a[j] < a[j-1]:
                 a[j], a[j-1] = a[j-1], a[j]
-        print(i+1, a)
+            print(a)
+        
 
 
 def selection_sort(a, n):
