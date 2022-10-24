@@ -1,9 +1,11 @@
 def bubble_sort(a, n):
+    t = 0
     for i in range(n):
         for j in range(n-1, i, -1):
             if a[j] < a[j-1]:
                 a[j], a[j-1] = a[j-1], a[j]
-            print(a)
+            t += 1
+            print(t, a)
         
 
 
