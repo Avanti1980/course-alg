@@ -1,19 +1,16 @@
 def bubble_sort(a, n):
     t = 0
-    for i in range(n):
+    for i in range(n-1):
         for j in range(n-1, i, -1):
             if a[j] < a[j-1]:
                 a[j], a[j-1] = a[j-1], a[j]
-            t += 1
-            print(t, a)
-        
 
 
 def selection_sort(a, n):
-    for i in range(len(a)):
+    for i in range(n):
         min_index = i
         min_val = a[i]
-        for j in range(i, len(a)):
+        for j in range(i+1, n):
             if a[j] < min_val:
                 min_val = a[j]
                 min_index = j
