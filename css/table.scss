@@ -111,7 +111,8 @@
   }
 }
 
-@include subatable-fullborder(1, 6, 2, 16);
+@include subatable-fullborder(1, 5, 2, 7);
+@include subatable-fullborder(1, 4, 10, 15);
 
 @include subatable-fullborder(1, 1, 2, 7);
 @include subatable-fullborder(1, 1, 10, 15);

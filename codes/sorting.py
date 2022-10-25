@@ -24,16 +24,81 @@ def insertion_sort(a, n):
         a[j+1] = key
 
 
+def merge(a, l, m, r):
+    n1, n2 = m - l + 1, r - m  # 子数组的长度
+    L, R = [0] * (n1), [0] * (n2)  # 创建临时数组
+
+    for i in range(0, n1):  # 拷贝数据到临时数组L
+        L[i] = a[l + i]
+
+    for j in range(0, n2):  # 拷贝数据到临时数组R
+        R[j] = a[m + 1 + j]
+
+    i, j, k = 0, 0, l
+    while i < n1 and j < n2:  # 归并L和R到a[l..r]
+        if L[i] <= R[j]:
+            a[k] = L[i]
+            i += 1
+        else:
+            a[k] = R[j]
+            j += 1
+        k += 1
+
+    while i < n1:  # 拷贝L的剩余元素
+        a[k] = L[i]
+        i += 1
+        k += 1
+
+    while j < n2:  # 拷贝R的剩余元素
+        a[k] = R[j]
+        j += 1
+        k += 1
+
+
+def merge_sort(a, l, r):
+    if l < r:
+        m = int((l+r)/2)  # 取中间点分开
+        merge_sort(a, l, m)
+        merge_sort(a, m+1, r)
+        merge(a, l, m, r)
+
+
+def partition(a, l, r):
+    pivot = a[r]  # 最右元素作为主元
+    i = l  # 小于主元的元素的存放位置 初始为最左
+    for j in range(l, r):  # l -> r-1 遍历其他元素
+        if a[j] <= pivot:
+            a[i], a[j] = a[j], a[i]  # 找到一个小于主元的元素 将其放到主元左边
+            i += 1  # 存放位置右移一位
+
+    # 所有小于主元的元素已位于主元左边 当前的i就是主元应该放的位置 且当前的a[i]大于主元
+    a[i], a[r] = a[r], a[i]
+    return i
+
+
+def quick_sort(a, l, r):
+    if l < r:
+        m = partition(a, l, r)
+        quick_sort(a, l, m-1)
+        quick_sort(a, m+1, r)
+
+
 a = [5, 2, 4, 6, 1, 3]
+bubble_sort(a, len(a))
+print(a)
 
-b = [5, 2, 4, 6, 1, 3]
-bubble_sort(b, len(b))
-print(b)
+a = [5, 2, 4, 6, 1, 3]
+selection_sort(a, len(a))
+print(a)
 
-b = [5, 2, 4, 6, 1, 3]
-selection_sort(b, len(b))
-print(b)
+a = [5, 2, 4, 6, 1, 3]
+insertion_sort(a, len(a))
+print(a)
 
-b = [5, 2, 4, 6, 1, 3]
-insertion_sort(b, len(b))
-print(b)
+a = [5, 2, 4, 6, 1, 3]
+merge_sort(a, 0, len(a)-1)
+print(a)
+
+a = [5, 2, 4, 6, 1, 3]
+quick_sort(a, 0, len(a)-1)
+print(a)
