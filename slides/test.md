@@ -29,4 +29,6 @@ presentation:
 
 ---
 
-@import "../vega/outline-divide.json" {as="vega" .top-2 .width80per}
+<div class="center top2">
+<iframe src="http://player.bilibili.com/player.html?aid=67744781&bvid=BV1HJ411A7WP&cid=117433066&page=1" allowfullscreen="allowfullscreen" width="720" height="540" scrolling="no" frameborder="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"></iframe>
+</div>
