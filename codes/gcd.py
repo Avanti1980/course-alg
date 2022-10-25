@@ -26,13 +26,13 @@ def gcd4(a, b):  # 改进的更相减损
     if a == b:
         return b
     while True:
-        if not (a & 1) and not (b & 1):        # 均为偶
+        if not (a & 1) and not (b & 1):  # 均为偶 gcd(a,b) = 2*gcd(a/2, b/2)
             return gcd4(a >> 1, b >> 1) << 1
-        elif not (a & 1) and (b & 1):          # a偶 b奇
+        elif not (a & 1) and (b & 1):    # a偶 b奇 gcd(a,b) = gcd(a/2, b)
             return gcd4(a >> 1, b)
-        elif (a & 1) and not (b & 1):          # a奇 b偶
+        elif (a & 1) and not (b & 1):    # a奇 b偶 gcd(a,b) = gcd(a, b/2)
             return gcd4(a, b >> 1)
-        else:                                  # 均为奇
+        else:                            # 均为奇 gcd(a,b) = gcd(a-b, b)
             a, b = max(a, b), min(a, b)
             return gcd4(a-b, b)
 
