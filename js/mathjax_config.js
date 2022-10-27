@@ -17,7 +17,7 @@ module.exports = {
   },
   displayAlign: "left",
   TeX: {
-    equationNumbers: { autoNumber: "none", useLabelIds: true },
+    equationNumbers: { autoNumber: "all", useLabelIds: true },
     extensions: [
       "AMSmath.js",
       "AMSsymbols.js",
