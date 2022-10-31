@@ -1,0 +1,124 @@
+digraph g {
+    bgcolor=transparent
+    graph [nodesep=0.4, ranksep=0.3]
+    rankdir=LR
+    node [shape=none, color="#586e75", fontcolor="#b58900", fontsize=18, fontname="LXGWWenKai"]
+    edge [arrowhead=vee, color="#586e75", fontcolor="#268bd2", fontsize=16, fontname="LXGWWenKai", arrowsize=0.6]
+
+    n1 [label=<<table cellspacing="0" border="0">
+        <tr><td></td><td></td><td>↓</td><td></td><td></td><td></td><td>↓</td></tr>
+        <tr>
+        <td>(1)</td>
+        <td>&zwnj;</td>
+        <td border="1">2</td>
+        <td border="1">4</td>
+        <td border="1">5</td>
+        <td>&zwnj;</td>
+        <td border="1">1</td>
+        <td border="1">3</td>
+        <td border="1">6</td>
+        <td>&zwnj;</td>
+        <td border="1">1</td>
+        <td border="1">&zwnj;</td>
+        <td border="1">&zwnj;</td>
+        <td border="1">&zwnj;</td>
+        <td border="1">&zwnj;</td>
+        <td border="1">&zwnj;</td>
+        </tr>
+        <tr><td></td><td></td><td>↓</td><td></td><td></td><td></td><td></td><td>↓</td></tr>
+        <tr>
+        <td>(2)</td>
+        <td>&zwnj;</td>
+        <td border="1">2</td>
+        <td border="1">4</td>
+        <td border="1">5</td>
+        <td>&zwnj;</td>
+        <td border="1">1</td>
+        <td border="1">3</td>
+        <td border="1">6</td>
+        <td>&zwnj;</td>
+        <td border="1">1</td>
+        <td border="1">2</td>
+        <td border="1">&zwnj;</td>
+        <td border="1">&zwnj;</td>
+        <td border="1">&zwnj;</td>
+        <td border="1">&zwnj;</td>
+        </tr>
+        <tr><td></td><td></td><td></td><td>↓</td><td></td><td></td><td></td><td>↓</td></tr>
+        <tr>
+        <td>(3)</td>
+        <td>&zwnj;</td>
+        <td border="1">2</td>
+        <td border="1">4</td>
+        <td border="1">5</td>
+        <td>&zwnj;</td>
+        <td border="1">1</td>
+        <td border="1">3</td>
+        <td border="1">6</td>
+        <td>&zwnj;</td>
+        <td border="1">1</td>
+        <td border="1">2</td>
+        <td border="1">3</td>
+        <td border="1">&zwnj;</td>
+        <td border="1">&zwnj;</td>
+        <td border="1">&zwnj;</td>
+        </tr>
+        <tr><td></td><td></td><td></td><td>↓</td><td></td><td></td><td></td><td></td><td>↓</td></tr>
+        <tr>
+        <td>(4)</td>
+        <td>&zwnj;</td>
+        <td border="1">2</td>
+        <td border="1">4</td>
+        <td border="1">5</td>
+        <td>&zwnj;</td>
+        <td border="1">1</td>
+        <td border="1">3</td>
+        <td border="1">6</td>
+        <td>&zwnj;</td>
+        <td border="1">1</td>
+        <td border="1">2</td>
+        <td border="1">3</td>
+        <td border="1">4</td>
+        <td border="1">&zwnj;</td>
+        <td border="1">&zwnj;</td>
+        </tr>
+        <tr><td></td><td></td><td></td><td></td><td>↓</td><td></td><td></td><td></td><td>↓</td></tr>
+        <tr>
+        <td>(5)</td>
+        <td>&zwnj;</td>
+        <td border="1">2</td>
+        <td border="1">4</td>
+        <td border="1">5</td>
+        <td>&zwnj;</td>
+        <td border="1">1</td>
+        <td border="1">3</td>
+        <td border="1">6</td>
+        <td>&zwnj;</td>
+        <td border="1">1</td>
+        <td border="1">2</td>
+        <td border="1">3</td>
+        <td border="1">4</td>
+        <td border="1">5</td>
+        <td border="1">&zwnj;</td>
+        </tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>↓</td></tr>
+        <tr>
+        <td>(6)</td>
+        <td>&zwnj;</td>
+        <td border="1">2</td>
+        <td border="1">4</td>
+        <td border="1">5</td>
+        <td>&zwnj;</td>
+        <td border="1">1</td>
+        <td border="1">3</td>
+        <td border="1">6</td>
+        <td>&zwnj;</td>
+        <td border="1">1</td>
+        <td border="1">2</td>
+        <td border="1">3</td>
+        <td border="1">4</td>
+        <td border="1">5</td>
+        <td border="1">6</td>
+        </tr>
+        </table>>]
+}

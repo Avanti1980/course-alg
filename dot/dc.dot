@@ -1,0 +1,44 @@
+digraph g {
+    bgcolor=transparent
+    graph [nodesep=0.8, ranksep=1.0]
+    rankdir=TB
+    node [shape=ellipse, color="#586e75", fontcolor="#b58900", fontsize=20, fontname="LXGWWenKai"]
+    edge [arrowhead=vee, arrowsize=0.6, color="#586e75", fontcolor="#268bd2", fontsize=16]
+
+    原始问题规模n
+
+    subgraph cluster_0 {
+        style=dashed
+        fontname="LXGWWenKai"
+        label=分
+        fontsize=18
+        color="#586e75"
+        labelloc="l"
+        fontcolor="#d33682"
+
+        "子问题2规模n/2", "子问题1规模n/2"
+    }
+
+    原始问题规模n -> {"子问题1规模n/2", "子问题2规模n/2"}
+
+    subgraph cluster_1 {
+        style=dashed
+        fontname="LXGWWenKai"
+        label=治
+        fontsize=18
+        color="#586e75"
+        labelloc="b"
+        fontcolor="#d33682"
+
+        node [shape=box fontcolor="#268bd2"]
+
+        子问题2的解, 子问题1的解
+    }
+
+    "子问题1规模n/2" -> 子问题1的解
+    "子问题2规模n/2" -> 子问题2的解
+
+    node [shape=box fontcolor="#268bd2"]
+    
+    {子问题1的解, 子问题2的解} -> 原始问题的解
+}
