@@ -25,76 +25,178 @@ presentation:
 
 <!-- slide data-notes="" -->
 
-##### 矩阵加法
+##### <span style="font-weight:900">Strassen</span>矩阵乘法
 
 ---
 
-设$\Av = (a_{ij})_{n \times n}$、$\Bv = (b_{ij})_{n \times n}$为$n$阶方阵
-
-设$\Cv  = (c_{ij})_{n \times n} = \Av + \Bv$，则$c_{ij} = a_{ij} + b_{ij}$
-
-计算$\Cv = \Av + \Bv$的代码如下
-
-@import "../codes/matrix-multiply.py" {line_begin=3 line_end=8 .left4 .line-numbers .top1 .bottom1}
-
-因为二重 for 循环的存在，时间复杂度为$\Theta(n^2)$
-
-
-<!-- slide data-notes="" -->
-
-##### 矩阵乘法
-
----
-
-设$\Av = (a_{ij})_{n \times n}$、$\Bv = (b_{ij})_{n \times n}$为$n$阶方阵
-
-设$\Cv  = (c_{ij})_{n \times n} = \Av \Bv$，则$c_{ij} = \sum_{k=1}^n a_{ik} b_{kj}$
-
-计算$\Cv = \Cv + \Av \Bv$的代码如下
-
-@import "../codes/matrix-multiply.py" {line_begin=3 line_end=8 .left4 .line-numbers .top1 .bottom1}
-
-因为三重 for 循环的存在，时间复杂度为$\Theta(n^3)$
-
-<!-- slide data-notes="" -->
-
-##### 矩阵乘法 递归版
-
----
-
-将$\Av$、$\Bv$、$\Cv$分成$4$个分块矩阵，每块$n/2 \times n/2$
+<div class="top2"></div>
 
 $$
 \begin{align*}
-    \quad \Av = \begin{bmatrix} \Av_{11} & \Av_{12} \\ \Av_{21} & \Av_{22} \end{bmatrix}, \quad \Bv = \begin{bmatrix} \Bv_{11} & \Bv_{12} \\ \Bv_{21} & \Bv_{22} \end{bmatrix}, \quad \Cv = \begin{bmatrix} \Cv_{11} & \Cv_{12} \\ \Cv_{21} & \Cv_{22} \end{bmatrix}
+    \quad T(n) & = \begin{cases} 1 & n = 1 \\ \class{blue}{a} \cdot T(n/2) + \class{blue}{c n^2} & n > 1 \end{cases} = n^{\lg a} \cdot T(1) + \frac{4c}{a-4} (n^{\lg a} - n^2)
 \end{align*}
 $$
 
 <div class="top-2"></div>
 
-根据分块矩阵的运算法则
+我的启示 即便$f(n) = \Theta(n^2)$，只要$a < 8$，就可以改进时间复杂度
+
+Strassen 乘法：通过多做小矩阵的加法，少做小矩阵的乘法
+
+- 多做小矩阵的加法会增大$c$，但不影响，依然有$f(n) = \Theta(n^2)$
+- 少做小矩阵的乘法可以减小$a$，从而改进时间复杂度
+
+<div class="top2"></div>
+
+直观例子
+
+1. $x^2 - y^2 = (x+y)(x-y)$，前者 2 乘 1 加，后者 1 乘 2 加
+2. $(a + b \text{i})(c + d \text{i}) = ac - bd + (ad + bc) \text{i} = ac - bd + ((a+b)(c+d) - ac - bd) \text{i}$，前者 4 乘 2 加，后者 3 乘 5 加
+
+<!-- slide vertical=true data-notes="" -->
+
+##### <span style="font-weight:900">Strassen</span>矩阵乘法
+
+---
+
+<div class="top2"></div>
 
 $$
 \begin{align*}
-    \quad \begin{bmatrix} \Cv_{11} & \Cv_{12} \\ \Cv_{21} & \Cv_{22} \end{bmatrix} & = \begin{bmatrix} \Av_{11} & \Av_{12} \\ \Av_{21} & \Av_{22} \end{bmatrix} \begin{bmatrix} \Bv_{11} & \Bv_{12} \\ \Bv_{21} & \Bv_{22} \end{bmatrix} \\[2px]
-    & = \begin{bmatrix} \Av_{11} \Bv_{11} + \Av_{12} \Bv_{21} & \Av_{11} \Bv_{12} + \Av_{12} \Bv_{22} \\ \Av_{21} \Bv_{11} + \Av_{22} \Bv_{21} & \Av_{21} \Bv_{12} + \Av_{22} \Bv_{22} \end{bmatrix} \\[2px]
-    \Longrightarrow & ~ \begin{cases} \Cv_{11} = \Av_{11} \Bv_{11} + \Av_{12} \Bv_{21} \\
-    \Cv_{12} = \Av_{11} \Bv_{12} + \Av_{12} \Bv_{22} \\
-    \Cv_{21} = \Av_{21} \Bv_{11} + \Av_{22} \Bv_{21} \\
-    \Cv_{22} = \Av_{21} \Bv_{12} + \Av_{22} \Bv_{22} \end{cases}
+    \quad \begin{bmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{bmatrix} \begin{bmatrix} b_{11} & b_{12} \\ b_{21} & b_{22} \end{bmatrix} = \begin{bmatrix} a_{11} b_{11} + a_{12} b_{21} & a_{11} b_{12} + a_{12} b_{22} \\ a_{21} b_{11} + a_{22} b_{21} & a_{21} b_{12} + a_{22} b_{22} \end{bmatrix}
+\end{align*}
+$$
+
+<div class="top-3"></div>
+
+下面说明$2 \times 2$的矩阵相乘可以通过{==只做$7$次==}乘法实现
+
+$$
+\begin{align*}
+    \quad \begin{bmatrix}
+        a_{11} b_{11} + a_{12} b_{21} \\
+        a_{11} b_{12} + a_{12} b_{22} \\
+        a_{21} b_{11} + a_{22} b_{21} \\
+        a_{21} b_{12} + a_{22} b_{22}
+    \end{bmatrix} & =
+    \begin{bmatrix}
+        a_{11} & 0   & a_{12} & 0   \\
+        0   & a_{11} & 0   & a_{12} \\
+        a_{21} & 0   & a_{22} & 0   \\
+        0   & a_{21} & 0   & a_{22}
+    \end{bmatrix}
+    \begin{bmatrix}
+        b_{11} \\ b_{12} \\ b_{21} \\ b_{22}
+    \end{bmatrix} \\[4px]
+    & \triangleq \widetilde{\Av}
+    \begin{bmatrix}
+        b_{11} \\ b_{12} \\ b_{21} \\ b_{22}
+    \end{bmatrix}
 \end{align*}
 $$
 
 <!-- slide vertical=true data-notes="" -->
 
-##### 矩阵乘法 递归版
+##### <span style="font-weight:900">Strassen</span>矩阵乘法
 
 ---
 
-@import "../codes/matrix-multiply.py" {line_begin=11 line_end=42 .left4 .line-numbers .top1 .bottom1}
+<div class="top2"></div>
 
-<!-- slide data-notes="" -->
+$$
+\begin{align*}
+    \quad \begin{bmatrix}
+        a_{11} b_{11} + a_{12} b_{21} \\
+        a_{11} b_{12} + a_{12} b_{22} \\
+        a_{21} b_{11} + a_{22} b_{21} \\
+        a_{21} b_{12} + a_{22} b_{22}
+    \end{bmatrix} =
+    \begin{bmatrix}
+        a_{11} & 0   & a_{12} & 0   \\
+        0   & a_{11} & 0   & a_{12} \\
+        a_{21} & 0   & a_{22} & 0   \\
+        0   & a_{21} & 0   & a_{22}
+    \end{bmatrix}
+    \begin{bmatrix}
+        b_{11} \\ b_{12} \\ b_{21} \\ b_{22}
+    \end{bmatrix} \triangleq \widetilde{\Av}
+    \begin{bmatrix}
+        b_{11} \\ b_{12} \\ b_{21} \\ b_{22}
+    \end{bmatrix}
+\end{align*}
+$$
+
+<div class="top-3"></div>
+
+假设$\widetilde{\Av} \in \Rbb^{4 \times 4}$可以分解成$m$个秩$1$矩阵的和
+
+$$
+\begin{align*}
+    \quad \widetilde{\Av} = \begin{bmatrix}
+        a_{11} & 0   & a_{12} & 0   \\
+        0   & a_{11} & 0   & a_{12} \\
+        a_{21} & 0   & a_{22} & 0   \\
+        0   & a_{21} & 0   & a_{22}
+    \end{bmatrix} = \sum_{i \in [m]} r_i
+    \begin{bmatrix}
+        p_{i1} \\ p_{i2} \\ p_{i3} \\ p_{i4}
+    \end{bmatrix}
+    \begin{bmatrix}
+        q_{i1} \\ q_{i2} \\ q_{i3} \\ q_{i4}
+    \end{bmatrix}^\top
+\end{align*}
+$$
+
+- $r_i$只由$a_{11}, a_{12}, a_{21}, a_{22}$进行加减运算得到
+- $p_{i1}, \ldots,p_{i4}, q_{i1}, \ldots, q_{i4} \in \{ \pm 1, 0 \}$
+
+<!-- slide vertical=true data-notes="" -->
 
 ##### <span style="font-weight:900">Strassen</span>矩阵乘法
 
 ---
+
+<div class="top2"></div>
+
+$$
+\begin{align*}
+    \quad \begin{bmatrix}
+        a_{11} b_{11} + a_{12} b_{21} \\
+        a_{11} b_{12} + a_{12} b_{22} \\
+        a_{21} b_{11} + a_{22} b_{21} \\
+        a_{21} b_{12} + a_{22} b_{22}
+    \end{bmatrix} & = \widetilde{\Av}
+    \begin{bmatrix}
+        b_{11} \\ b_{12} \\ b_{21} \\ b_{22}
+    \end{bmatrix} = \sum_{i \in [m]} r_i 
+    \begin{bmatrix}
+        p_{i1} \\ p_{i2} \\ p_{i3} \\ p_{i4}
+    \end{bmatrix}
+    \begin{bmatrix}
+        q_{i1} \\ q_{i2} \\ q_{i3} \\ q_{i4}
+    \end{bmatrix}^\top
+    \begin{bmatrix}
+        b_{11} \\ b_{12} \\ b_{21} \\ b_{22}
+    \end{bmatrix} \\
+    & = \sum_{i \in [m]} r_i 
+    \begin{bmatrix}
+        p_{i1} \\ p_{i2} \\ p_{i3} \\ p_{i4}
+    \end{bmatrix} s_i = \sum_{i \in [m]} t_i
+    \begin{bmatrix}
+        p_{i1} \\ p_{i2} \\ p_{i3} \\ p_{i4}
+    \end{bmatrix} 
+\end{align*}
+$$
+
+- $r_i$只由$a_{11}, a_{12}, a_{21}, a_{22}$加减得到，$p_{i1}, \ldots,p_{i4}, q_{i1}, \ldots, q_{i4} \in \{ \pm 1, 0 \}$
+- $s_i = q_{i1} b_{11} + q_{i2} b_{12} + q_{i3} b_{21} + q_{i4} b_{22}$只由$b_{11}, b_{12}, b_{21}, b_{22}$加减得到
+- 计算全部$m$个$t_i = r_i s_i$需做$m$次乘法。又$p_{i1}, \ldots, p_{i4} \in \{ \pm \Iv, \zerov \}$
+
+<!-- slide vertical=true data-notes="" -->
+
+##### <span style="font-weight:900">Strassen</span>矩阵乘法
+
+---
+
+sss
+
