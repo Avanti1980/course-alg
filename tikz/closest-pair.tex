@@ -1,0 +1,70 @@
+\documentclass{ctexart}
+\usepackage{avanti-color}
+%\usepackage{avanti-font}
+\usepackage{avanti-math}
+\usepackage{avanti-theorem}
+\usepackage{avanti-others}
+
+\RequirePackage{fontspec}
+\xeCJKsetup{CJKmath=true}
+\setCJKmainfont[BoldFont=FZHei-B01,ItalicFont=]{LXGW Bright}
+
+\everymath{\color{Solarized-magenta}}
+\pagestyle{empty} % 没有页眉和页脚
+
+\tikzset{font=\Large}
+\tikzset{base/.style={smooth, very thick, Solarized-base01}}
+\tikzset{arrow/.style={->, -{Stealth[scale=1.0]}, base}}
+\tikzset{point/.style={circle, fill, inner sep=1.5pt, Solarized-base01}}
+
+\begin{document}
+
+\begin{tikzpicture}
+
+    \pgfmathsetmacro{\d}{2};
+    \pgfmathsetmacro{\h}{6};
+
+    \draw [base] (-\d,0) -- (\d,0);
+
+    \draw [base, dashed] (-\d,0) -- (-\d,\h);
+    \draw [base, dashed] (\d,0) -- (\d,\h);
+    \draw [base] (0,0) -- (0,\h);
+
+    \draw [base] (-\d,0) -- (0,0) node [midway, draw=none, above=2pt] {$\delta$};
+    \draw [base] (0,0) -- (\d,0) node [midway, draw=none, above=2pt] {$\delta$};
+
+    \node [point] () at (0,4) {};
+    \node [point] () at (1,1.8) {};
+    \node [point] () at (-0.3,1.2) {};
+    \node [point] () at (-1.6,2.5) {};
+    \node [point] () at (-1.2,5.9) {};
+    \node [point] (l1) at (-2.7,4.2) {};
+    \node [point] (l2) at (-3.7,2.6) {};
+
+    \draw [base] (l1) -- (l2) node [midway, draw=none, left=1pt] {$d_l$};
+
+    \node [point] (r1) at (1.6,5.7) {};
+    \node [point] (r2) at (3.4,5.2) {};
+    \node [point] () at (3.0,3.2) {};
+
+    \draw [base] (r1) -- (r2) node [midway, draw=none, above=1pt] {$d_r$};
+
+    \path (0, \h) node[draw=none,above=2pt] () {$x=m$};
+
+    \draw [base] (-\d+8,2) -- (8,2) node [midway, draw=none, below=1pt] {$\delta$};
+    \draw [base] (\d+8,2) -- (8,2) node [midway, draw=none, below=1pt] {$\delta$};
+
+
+    \draw [base, dashed] (-\d+8,4) -- (8,4) node [midway, draw=none, above=1pt] {$\delta$};
+    \draw [base, dashed] (8,4) -- (\d+8,4) node [midway, draw=none, above=1pt] {$\delta$};
+    \draw [base, dashed] (-\d+8,2) -- (-\d+8,4) node [midway, draw=none, left=1pt] {$\delta$};
+    \draw [base, dashed] (\d+8,2) -- (\d+8,4)  node [midway, draw=none, right=1pt] {$\delta$};
+    \draw [base] (8,0) -- (8,6);
+
+    \node [point] () at (8.6,2) {};
+
+    \path (8, \h) node[draw=none,above=2pt] () {$x=m$};
+
+\end{tikzpicture}
+
+\end{document}

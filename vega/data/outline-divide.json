@@ -40,22 +40,22 @@
   },
   {
     "id": 9,
-    "name": "最大连续子数组",
+    "name": "最大子数组 最近点对",
     "parent": 2
   },
   {
     "id": 10,
-    "name": "Strassen矩阵乘法",
+    "name": "矩阵加法乘法",
     "parent": 2
   },
   {
     "id": 11,
-    "name": "最近点对问题",
+    "name": "Strassen矩阵乘法",
     "parent": 2
   },
   {
     "id": 12,
-    "name": "主方法",
+    "name": "代入法 递归树 主方法",
     "parent": 2
   }
 ]
