@@ -131,3 +131,10 @@
     border-bottom: 2px solid var(--solarized-base01); // 最后一行下边框
   }
 }
+
+.reveal .tighttable {
+  td {
+    padding: 0.4rem 0.2rem 0.2rem 0.2rem;
+  }
+}
+
