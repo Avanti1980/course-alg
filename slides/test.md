@@ -55,7 +55,7 @@ presentation:
 
 <!-- slide data-notes="" -->
 
-##### 代入法
+##### 代入法 取整可忽略
 
 ---
 
@@ -79,7 +79,7 @@ $$
 
 <!-- slide vertical=true data-notes="" -->
 
-##### 代入法
+##### 代入法 取整可忽略
 
 ---
 
@@ -102,7 +102,7 @@ $$
 
 <!-- slide data-notes="" -->
 
-##### 代入法 
+##### 代入法 常数可忽略
 
 ---
 
@@ -125,33 +125,66 @@ $$
 
 出现了$\lg (n+34)$，没法推导下去了
 
-修改猜测为$T(n) \le c (n-t) \lg (n-t)$，其中$t \ge 0$是待定参数
+修改猜测为$T(n) \le c (n-t) \lg (n-t) = O(n \lg n)$，用$t$把$+34$消掉
 
 <!-- slide vertical=true data-notes="" -->
 
-##### 代入法 
+##### 代入法 常数可忽略
 
 ---
 
 例：$T(n) = \begin{cases} 1 & n = 1 \\ 2 \cdot T(\lfloor n/2 \rfloor + 17) + n & n > 1 \end{cases}$
 
+<div class="top-1"></div>
+
 猜测$T(n) \le c (n-t) \lg (n-t)$，其中$t \ge 0$是待定参数
+
+<div class="top-1"></div>
+
+归纳假设：$T(\lfloor n/2 \rfloor + 17) \le c (\lfloor n/2 \rfloor + 17-t) \lg (\lfloor n/2 \rfloor + 17-t)$
 
 $$
 \begin{align*}
-    \quad T(n) & = 2 \cdot T(\lfloor n/2 \rfloor + 17) + n \\
-    & \le 2 c (\lfloor n/2 \rfloor + 17) \lg (\lfloor n/2 \rfloor + 17) + n \\
-    & \le 2 c (n/2 + 17) \lg (n/2 + 17) + n \\
-    & = c (n+34) (\lg (n+34) - 1) + n
+    \quad T(n) & = 2 \cdot T (\lfloor n/2 \rfloor + 17) + n \\
+    & \le 2 c (\lfloor n/2 \rfloor + 17 - t) \lg (\lfloor n/2 \rfloor + 17 - t) + n \quad \leftarrow \text{归纳假设} \\
+    & \le c (n + 34 - 2t) (\lg (n + 34 - 2t) - 1) + n \\
+    & = c (n + 34 - 2t) \lg (n + 34 - 2t) - ((c-1)n - 34c + 2ct) \\
+    & \le c (n + 34 - 2t) \lg (n + 34 - 2t)
 \end{align*}
 $$
 
+<div class="top-3"></div>
+
+令$34 - 2t = -t$得$t = 34$，最后一个不等号成立只需$c \ge 1$
+
+<div class="top-1"></div>
+
+综上，$T(n) \le c (n-34) \lg (n-34) = O(n \lg n)$
+
 <!-- slide data-notes="" -->
 
-##### 代入法
+##### 代入法 减去低阶项
 
 ---
 
-如何猜测递归式？
+猜出了正确的渐进界，却卡在了归纳证明
 
-- 
+假设不够强，减去一个低阶项
+
+例：$T(n) = \begin{cases} 1 & n = 1 \\ 2 \cdot T(\lfloor n/2 \rfloor + 17) + n & n > 1 \end{cases}$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

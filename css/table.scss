@@ -100,7 +100,7 @@
   }
 }
 
-// 子表全边框 四个参数分别对应行的起始结束和列的起始结束 
+// 子表全边框 四个参数分别对应行的起始结束和列的起始结束
 @mixin subatable-fullborder($i, $j, $k, $l) {
   .reveal .row#{$i}-#{$j}-column#{$k}-#{$l}-fullborder {
     tr:nth-child(n + #{$i}):nth-child(-n + #{$j}) {
@@ -137,4 +137,3 @@
     padding: 0.4rem 0.2rem 0.2rem 0.2rem;
   }
 }
-
