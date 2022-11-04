@@ -50,7 +50,7 @@ $$
 \end{align*}
 $$
 
-@import "../tikz/tree2.svg" {.center .width90 .top-7 .bottom2}
+@import "../tikz/tree2.svg" {.center .width90 .top-7 .bottom4}
 
 - 每个结点表示某个单一子问题的时间复杂度
 - 第$i$层共有$3^i$个结点，对应第$i$层递归调用，总层数为$\log_4 n + 1$
@@ -69,7 +69,7 @@ $$
 \end{align*}
 $$
 
-@import "../tikz/tree2.svg" {.center .width90 .top-7 .bottom2}
+@import "../tikz/tree2.svg" {.center .width90 .top-7 .bottom4}
 
 $$
 \begin{align*}
