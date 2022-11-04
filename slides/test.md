@@ -73,7 +73,7 @@ $$
 
 $$
 \begin{align*}
-    \quad T(n) & = cn^2 + \frac{3}{16} cn^2 + \cdots + \left( \frac{3}{16} \right)^{\log_4 n} cn^2 + n^{\log_4 3} \Theta(1) \\
+    \quad T(n) & = cn^2 + \frac{3}{16} cn^2 + \cdots + \left( \frac{3}{16} \right)^{\log_4 n - 1} cn^2 + n^{\log_4 3} \Theta(1) \\
     & < \sum_{i=0}^\infty \left( \frac{3}{16} \right)^i cn^2 + \Theta(n^{\log_4 3}) = O(n^2)
 \end{align*}
 $$
