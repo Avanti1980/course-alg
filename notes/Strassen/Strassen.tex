@@ -1,5 +1,9 @@
 \documentclass{ctexart}
-\usepackage{avanti}
+\usepackage{avanti-color}
+\usepackage{avanti-font}
+\usepackage{avanti-math}
+\usepackage{avanti-theorem}
+\usepackage{avanti-others}
 
 \begin{document}
 \title{\textbf{矩阵乘法加速}}
@@ -48,7 +52,7 @@
     T(n) & = c_2 n^3 + c_1 4^k + 2^1 \cdot c_1 4^k + 2^2 \cdot c_1 4^k + \cdots + 2^{k-1} \cdot c_1 4^k = c_2 n^3 + c_1 4^k \frac{1-2^k}{1-2} \\
          & = c_2 n^3 + c_1 n^2 (n-1) = (c_2 + c_1) n^3 - c_1 n^2
 \end{align*}
-即直接分治递归并不能改进时间复杂度。
+即\blue{直接分治递归并不能改进时间复杂度}。
 
 \section{基本想法}
 
@@ -136,7 +140,7 @@
 下面给出一个$m = 7$的分解方法，首先去掉左上的$\Av_{11}$和右下的$\Av_{22}$
 \begin{align*}
     \widetilde{\Av} -
-     &
+                      &
     \begin{bmatrix}
         \Av_{11} & \zerov & \Av_{11} & \zerov \\
         \zerov   & \zerov & \zerov   & \zerov \\
@@ -149,16 +153,16 @@
     \begin{bmatrix}
         \zerov & \zerov & \Av_{12} - \Av_{11} & \zerov \\ \zerov & \Av_{11} - \Av_{22} & \zerov & \Av_{12} - \Av_{22} \\ \Av_{21} - \Av_{11} & \zerov & \Av_{22} - \Av_{11} & \zerov \\ \zerov & \Av_{21} - \Av_{22} & \zerov & \zerov
     \end{bmatrix} \\
-     & =
+                      & =
     \begin{bmatrix}
         \zerov & \zerov & \zerov & \zerov \\ \zerov & \Av_{11} - \Av_{22} & \Av_{11} - \Av_{22} & \zerov \\ \zerov & \Av_{22} - \Av_{11} & \Av_{22} - \Av_{11} & \zerov \\ \zerov & \zerov & \zerov & \zerov
     \end{bmatrix} +
     \begin{bmatrix}
         \zerov & \zerov & \Av_{12} - \Av_{11} & \zerov \\ \zerov & \zerov & \Av_{22} - \Av_{11} & \Av_{12} - \Av_{22} \\ \Av_{21} - \Av_{11} & \Av_{11} - \Av_{22} & \zerov & \zerov \\ \zerov & \Av_{21} - \Av_{22} & \zerov & \zerov
     \end{bmatrix} \\
-     & = \begin{bmatrix}
-             \zerov & \zerov & \zerov & \zerov \\ \zerov & \Av_{11} - \Av_{22} & \Av_{11} - \Av_{22} & \zerov \\ \zerov & \Av_{22} - \Av_{11} & \Av_{22} - \Av_{11} & \zerov \\ \zerov & \zerov & \zerov & \zerov
-         \end{bmatrix} +
+                      & = \begin{bmatrix}
+                              \zerov & \zerov & \zerov & \zerov \\ \zerov & \Av_{11} - \Av_{22} & \Av_{11} - \Av_{22} & \zerov \\ \zerov & \Av_{22} - \Av_{11} & \Av_{22} - \Av_{11} & \zerov \\ \zerov & \zerov & \zerov & \zerov
+                          \end{bmatrix} +
     \begin{bmatrix}
         \zerov & \zerov & \zerov              & \zerov              \\
         \zerov & \zerov & \Av_{22} - \Av_{12} & \Av_{12} - \Av_{22} \\
@@ -171,7 +175,7 @@
         \zerov & \zerov & \zerov              & \zerov \\
         \zerov & \zerov & \zerov              & \zerov
     \end{bmatrix}                                                                                                                                                                                \\
-     & \qquad +
+                      & \qquad +
     \begin{bmatrix}
         \zerov              & \zerov              & \zerov & \zerov \\
         \zerov              & \zerov              & \zerov & \zerov \\
@@ -184,7 +188,7 @@
         \zerov & \Av_{21} - \Av_{22} & \zerov & \zerov \\
         \zerov & \Av_{21} - \Av_{22} & \zerov & \zerov
     \end{bmatrix}                                                                                                                                                                                \\
-     & =
+    \Longrightarrow ~ & \widetilde{\Av} =
     \begin{bmatrix}
         \Iv \\ \zerov \\ \Iv \\ \zerov
     \end{bmatrix} \Av_{11}
@@ -205,22 +209,22 @@
     \end{bmatrix}^\top +
     \begin{bmatrix}
         \zerov \\ \Iv \\ \zerov \\ \zerov
-    \end{bmatrix} (\Av_{22} - \Av_{12})
+    \end{bmatrix} (\Av_{12} - \Av_{22})
     \begin{bmatrix}
-        \zerov \\ \zerov \\ \Iv \\ -\Iv
+        \zerov \\ \zerov \\ -\Iv \\ \Iv
     \end{bmatrix}^\top                                                                                                                                                                                                \\
-     & \qquad +
+                      & \qquad +
     \begin{bmatrix}
         \Iv \\ \Iv \\ \zerov \\ \zerov
-    \end{bmatrix} (\Av_{12} - \Av_{11})
+    \end{bmatrix} (\Av_{11} - \Av_{12})
     \begin{bmatrix}
-        \zerov \\ \zerov \\ \Iv \\ \zerov
+        \zerov \\ \zerov \\ -\Iv \\ \zerov
     \end{bmatrix}^\top +
     \begin{bmatrix}
         \zerov \\ \zerov \\ \Iv \\ \zerov
-    \end{bmatrix} (\Av_{21} - \Av_{11})
+    \end{bmatrix} (\Av_{11} - \Av_{21})
     \begin{bmatrix}
-        \Iv \\ -\Iv \\ \zerov \\ \zerov
+        -\Iv \\ \Iv \\ \zerov \\ \zerov
     \end{bmatrix}^\top +
     \begin{bmatrix}
         \zerov \\ \zerov \\ \Iv \\ \Iv
@@ -241,22 +245,22 @@
         \Iv    & \zerov & \Iv    & \zerov \\
         \zerov & \Iv    & \zerov & \Iv    \\
         \zerov & \Iv    & \Iv    & \zerov \\
-        \zerov & \zerov & \Iv    & -\Iv   \\
-        \zerov & \zerov & \Iv    & \zerov \\
-        \Iv    & -\Iv   & \zerov & \zerov \\
+        \zerov & \zerov & -\Iv   & \Iv    \\
+        \zerov & \zerov & -\Iv   & \zerov \\
+        -\Iv   & \Iv    & \zerov & \zerov \\
         \zerov & \Iv    & \zerov & \zerov
     \end{bmatrix}
     \begin{bmatrix}
         \Bv_{11} \\ \Bv_{12} \\ \Bv_{21} \\ \Bv_{22}
     \end{bmatrix} =
     \begin{bmatrix}
-        \Bv_{11} + \Bv_{21} \\ \Bv_{12} + \Bv_{22} \\ \Bv_{12} + \Bv_{21} \\ \Bv_{21} - \Bv_{22} \\ \Bv_{21} \\ \Bv_{11} - \Bv_{12} \\ \Bv_{12}
+        \Bv_{11} + \Bv_{21} \\ \Bv_{12} + \Bv_{22} \\ \Bv_{12} + \Bv_{21} \\ \Bv_{22} - \Bv_{21} \\ -\Bv_{21} \\ \Bv_{12} - \Bv_{11} \\ \Bv_{12}
     \end{bmatrix}, \quad
     \begin{bmatrix}
         \Rv_1 \\ \Rv_2 \\ \Rv_3 \\ \Rv_4 \\ \Rv_5 \\ \Rv_6 \\ \Rv_7
     \end{bmatrix} =
     \begin{bmatrix}
-        \Av_{11} \\ \Av_{22} \\ \Av_{11} - \Av_{22} \\ \Av_{22} - \Av_{12} \\ \Av_{12} - \Av_{11} \\ \Av_{21} - \Av_{11} \\ \Av_{21} - \Av_{22}
+        \Av_{11} \\ \Av_{22} \\ \Av_{11} - \Av_{22} \\ \Av_{12} - \Av_{22} \\ \Av_{11} - \Av_{12} \\ \Av_{11} - \Av_{21} \\ \Av_{21} - \Av_{22}
     \end{bmatrix}
 \end{align*}
 共会产生$10$次加减运算，计算$\Tv_1 = \Rv_1 \Sv_1, \ldots, \Tv_7 = \Rv_7 \Sv_7$共会产生$7$个子问题，最后计算

@@ -22,7 +22,7 @@
 
 #### 课件
 
-在线浏览，Space 翻页，Esc 导航
+在线浏览，Space 翻页，Esc 导航，可能需要科学上网
 
 <div class="threelines outline head-highlight">
 
@@ -44,6 +44,8 @@
 
 #### 补充
 
+[Strassen 矩阵乘法加速](notes/Strassen/Strassen.pdf)
+
 #### 资料
 
 <span style="font-size:1.8rem;font-style:italic">Introduction to Algorithms</span> [3ed](<books/Introduction%20to%20Algorithms%20(3ed)%20-%20Thomas%20H.%20Cormen,%20Charles%20E.%20Leiserson,%20Ronald%20L.%20Rivest,%20Clifford%20Stein.pdf>) [4ed](<books/Introduction%20to%20Algorithms%20(4ed)%20-%20Thomas%20H.%20Cormen,%20Charles%20E.%20Leiserson,%20Ronald%20L.%20Rivest,%20Clifford%20Stein.pdf>)
@@ -51,4 +53,4 @@ Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein
 
 #### 代码
 
-[最大公约数](codes/gcd.ipynb)，[排序](codes/sorting.ipynb)
+[最大公约数](codes/gcd.ipynb)，[排序](codes/sorting.ipynb)，[最大子数组](codes/max-subarray.ipynb)，[矩阵加法](codes/matrix-addition.ipynb)，[矩阵乘法](codes/matrix-multiply.ipynb)
