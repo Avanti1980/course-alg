@@ -1,0 +1,47 @@
+\documentclass{ctexart}
+\usepackage{avanti-color}
+%\usepackage{avanti-font}
+\usepackage{avanti-math}
+\usepackage{avanti-theorem}
+\usepackage{avanti-others}
+
+\RequirePackage{fontspec}
+\xeCJKsetup{CJKmath=true}
+\setCJKmainfont[BoldFont=FZHei-B01,ItalicFont=]{LXGW Bright}
+
+\everymath{\color{Solarized-magenta}}
+\pagestyle{empty} % 没有页眉和页脚
+
+% define the plot style and the axis style
+\tikzset{font=\Large}
+\tikzset{base/.style={smooth, thick, Solarized-base01}}
+\tikzset{arrow/.style={>=stealth, base}}
+
+\begin{document}
+
+\begin{center}
+    \begin{tikzpicture} [scale = 0.8]
+        \tikzset{level distance=40pt, sibling distance=10pt}
+        \tikzset{edge from parent/.append style={very thick, Solarized-base01}}
+        \tikzset{level 4+/.style={level distance=0pt}}
+        \tikzset{edge from parent/.style = {draw, thick, Solarized-base01, edge from parent path={(\tikzparentnode.south) -- +(0,-8pt) -| (\tikzchildnode)}}}
+        \Tree
+        [.$cn$
+            [.$c(\frac{n}{3})$
+                    [.$c(\frac{n}{9})$
+                            [.\node [below=-20pt] {$~$}; \edge[dashed]; \node [above=-16pt] {$\Theta(1)$}; ]
+                                [.\node [below=-20pt] {$~$}; \edge[dashed]; \node [above=-20pt] {$\Theta(1)$}; ] ]
+                        [.$c(\frac{2n}{9})$
+                            [.\node [below=-20pt] {$~$}; \edge[dashed]; \node [above=-24pt] {$\Theta(1)$}; ]
+                                [.\node [below=-20pt] {$~$}; \edge[dashed]; \node [above=-28pt] {$\Theta(1)$}; ] ] ]
+                [.$c(\frac{2n}{3})$
+                    [.$c(\frac{2n}{9})$
+                            [.\node [below=-20pt] {$~$}; \edge[dashed]; \node [above=-32pt] {$\Theta(1)$}; ]
+                                [.\node [below=-20pt] {$~$}; \edge[dashed]; \node [above=-36pt] {$\Theta(1)$}; ] ]
+                        [.$c(\frac{4n}{9})$
+                            [.\node [below=-20pt] {$~$}; \edge[dashed]; \node [above=-40pt] {$\Theta(1)$}; ]
+                                [.\node [below=-20pt] {$~$}; \edge[dashed]; \node [above=-44pt] {$\Theta(1)$}; ] ] ] ]
+    \end{tikzpicture}
+\end{center}
+
+\end{document}
