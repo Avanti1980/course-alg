@@ -23,9 +23,5 @@ presentation:
 @import "../plugin/chalkboard/style.css"
 @import "../plugin/menu/menu.js"
 
-<!-- slide data-notes="" -->
 
-##### 主方法 证明思路
-
----
 
