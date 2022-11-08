@@ -1,0 +1,35 @@
+digraph g {
+    bgcolor=transparent
+    graph [nodesep=0.5, ranksep=0.5]
+    node [shape=plain, color="#586e75", fontcolor="#b58900", fontsize=18, fontname="LXGWWenKai"]
+    edge [arrowhead=none, color="#586e75", fontcolor="#268bd2", fontsize=16, fontname="LXGWWenKai"]
+
+    f31 [label="F(3)"]
+    f32 [label="F(3)"]
+
+    f21 [label="F(2)"]
+    f22 [label="F(2)"]
+    f23 [label="F(2)"]
+
+    f11 [label="F(1)"]
+    f12 [label="F(1)"]
+    f13 [label="F(1)"]
+    f14 [label="F(1)"]
+
+    f01 [label="F(0)"]
+    f02 [label="F(0)"]
+
+    "F(5)" -> {"F(4)", f31}
+
+    "F(4)" -> {f32, f21}
+
+    f31 -> {f22, f11}
+
+    f32 -> {f23, f12}
+
+    f21 -> {f13, f01}
+
+    f22 -> {f14, f02}
+
+    f23 -> {"F(1)", "F(0)"}
+}

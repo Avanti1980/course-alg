@@ -41,6 +41,31 @@ def find_max_cross_subarray(A, low, mid, high):
     return l_index, r_index, l_sum + r_sum
 
 
+def find_max_subarray_dp(A):
+    dp = [0] * len(A)  # dp[i]为以A[i]作结尾的最大子数组的和
+    dp[0] = A[0]
+    for i in range(1, len(A)):
+        dp[i] = max(dp[i-1] + A[i], A[i])  # 状态转移
+    return max(dp)
+
+
+def find_max_subarray_dp2(A):
+    dp, s = [0] * len(A), [0] * len(A)  # dp[i]为以A[i]作结尾的最大子数组的和
+    dp[0] = s[0] = A[0]  # s[i]为以A[i]作结尾的最大子数组的起始索引
+    for i in range(1, len(A)):
+        if dp[i-1] >= 0:
+            dp[i] = dp[i-1] + A[i]
+            s[i] = s[i-1]
+        else:
+            dp[i] = A[i]
+            s[i] = i
+    max_value = max(dp)
+    max_index = dp.index(max_value)
+    return s[max_index], max_index, max_value
+
+
 A = [13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7]
 
 print(find_max_subarray(A, 0, len(A)-1))
+print(find_max_subarray_dp(A))
+print(find_max_subarray_dp2(A))
