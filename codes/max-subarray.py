@@ -45,13 +45,17 @@ def find_max_subarray_dp(A):
     dp = [0] * len(A)  # dp[i]为以A[i]作结尾的最大子数组的和
     dp[0] = A[0]
     for i in range(1, len(A)):
-        dp[i] = max(dp[i-1] + A[i], A[i])  # 状态转移
+        if dp[i-1] >= 0:
+            dp[i] = dp[i-1] + A[i]
+        else:
+            dp[i] = A[i]
     return max(dp)
 
 
 def find_max_subarray_dp2(A):
-    dp, s = [0] * len(A), [0] * len(A)  # dp[i]为以A[i]作结尾的最大子数组的和
-    dp[0] = s[0] = A[0]  # s[i]为以A[i]作结尾的最大子数组的起始索引
+    dp = [0] * len(A)  # dp[i]为以A[i]作结尾的最大子数组的和
+    s = [0] * len(A)   # s[i]为以A[i]作结尾的最大子数组的起始索引
+    dp[0], s[0] = A[0], 0
     for i in range(1, len(A)):
         if dp[i-1] >= 0:
             dp[i] = dp[i-1] + A[i]
