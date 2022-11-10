@@ -25,19 +25,23 @@ presentation:
 
 <!-- slide data-notes="" -->
 
-##### 矩阵连乘问题
+##### 小结
 
 ---
 
-设$\Av \in \Rbb^{p \times q}$、$\Bv \in \Rbb^{q \times r}$，则$\Cv = \Av \Bv \in \Rbb^{p \times r}$
+动态规划一般步骤：
 
-计算$c_{ij} = \sum_{1 \le k \le q} a_{ik} b_{kj}$需做$q$次标量乘法
+1. 分析最优解的结构特征 -> {==最优子结构性==}
+2. 递归定义最优解的值 -> {==递推关系式==}，也称{==状态转移方程==}
+3. 安排求解顺序，一般{==自底向上==}，依次计算最优解的值
+4. 若除最优解的值外还需最优解本身，在第 3 步里维护一些额外信息
 
-计算$\Cv$需$pqr$次标量乘法
+<div class="top2"></div>
 
-<div class="top4"></div>
+子问题无关性：同一个原问题的子问题之间相互独立
 
-设$\Av_1 \in \Rbb^{10 \times 100}$、$\Av_2 \in \Rbb^{100 \times 5}$、$\Av_3 \in \Rbb^{5 \times 50}$，根据结合律
+最长简单路径问题
 
-- 共$(\Av_1 \Av_2) \Av_3 = 10 \times 100 \times 5 \times 5$次标量乘法
-- 共$\Av_1 (\Av_2 \cdots \Av_3 =---------10 \times 100 \times 5 \times 5$次标量乘法
+```dot
+ss
+```

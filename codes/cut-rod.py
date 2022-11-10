@@ -1,3 +1,4 @@
+import sys
 from math import ceil  # 向上取整
 
 
@@ -67,7 +68,7 @@ def cut_rod_dp_bottom_up_print_sol(n):
 
 
 p = [0, 1, 5, 8, 9, 10, 17, 17, 20, 24, 30]   # 价格表
-infinity = 1e+16
+infinity = sys.maxsize
 
 print(cut_rod_rec(7))
 print(cut_rod_rec2(7))
