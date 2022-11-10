@@ -2093,6 +2093,77 @@ s <span class="token operator">=</span> <span class="token punctuation">[</span>
 <mark>&#x5B50;&#x95EE;&#x9898;&#x65E0;&#x5173;&#x6027;</mark>&#xFF1A;&#x540C;&#x4E00;&#x4E2A;&#x539F;&#x95EE;&#x9898;&#x7684;&#x5B50;&#x95EE;&#x9898;&#x4E4B;&#x95F4;&#x76F8;&#x4E92;&#x72EC;&#x7ACB;</p>
 <p>&#x6700;&#x77ED;&#x8DEF;&#x5F84;&#x7684;&#x4E24;&#x4E2A;&#x5B50;&#x95EE;&#x9898;&#x76F8;&#x4E92;&#x72EC;&#x7ACB;&#xFF0C;<span class="mathjax-exps">$p_1$</span>&#x3001;<span class="mathjax-exps">$p_2$</span>&#x9664;<span class="mathjax-exps">$w$</span>&#x5916;&#x6CA1;&#x6709;&#x516C;&#x5171;&#x70B9;&#xFF0C;&#x5426;&#x5219;&#x8BBE;&#x516C;&#x5171;&#x70B9;&#x4E3A;<span class="mathjax-exps">$x$</span>&#xFF0C;&#x5219;<span class="mathjax-exps">$u \rightsquigarrow x \rightsquigarrow w \rightsquigarrow x \rightsquigarrow v$</span>&#x53EF;&#x4F18;&#x5316;&#x4E3A;<span class="mathjax-exps">$u \rightsquigarrow x \rightsquigarrow v$</span></p>
 <p>&#x6700;&#x957F;&#x8DEF;&#x5F84;&#x7684;&#x4E24;&#x4E2A;&#x5B50;&#x95EE;&#x9898;&#x4E0D;&#x72EC;&#x7ACB;&#xFF0C;&#x5B50;&#x95EE;&#x9898; &#x2460; &#x5230; &#x2461; &#x7684;&#x6700;&#x957F;&#x8DEF;&#x5F84;&#x7ECF;&#x8FC7;&#x7684;&#x70B9;&#xFF0C;&#x5728;&#x5B50;&#x95EE;&#x9898; &#x2460; &#x5230; &#x2462; &#x7684;&#x6700;&#x957F;&#x8DEF;&#x5F84;&#x4E2D;&#x4E0D;&#x80FD;&#x518D;&#x7ECF;&#x8FC7;</p>
+</section></section><section data-notes lineno="828" class="slide " data-line="828" data-h="14" data-v="0">
+<h5 class="mume-header" id="%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97">&#x6700;&#x957F;&#x516C;&#x5171;&#x5B50;&#x5E8F;&#x5217;</h5>
+
+<hr>
+<p>DNA &#x7531; A&#x3001;C&#x3001;G&#x3001;T &#x56DB;&#x79CD;&#x78B1;&#x57FA;&#x7EC4;&#x6210;&#xFF0C;&#x73B0;&#x6709;&#x4E24;&#x4E2A;&#x6709;&#x673A;&#x4F53;&#x7684; DNA</p>
+<ul>
+<li>S1 = ACCG<mark>GTCG</mark>AG<mark>T</mark>G<mark>CG</mark>C<mark>G</mark>G<mark>AAGCCGGCCGAA</mark></li>
+<li>S2 = <mark>GTCGT</mark>T<mark>CGGAA</mark>T<mark>GCCG</mark>TT<mark>GC</mark>T<mark>C</mark>T<mark>G</mark>T<mark>AA</mark>A</li>
+</ul>
+<div class="top2"></div>
+<p>&#x4E24;&#x4E2A;&#x6709;&#x673A;&#x4F53;&#x6709;&#x591A;&#x201C;&#x76F8;&#x4F3C;&#x201D;&#xFF0C;&#x57FA;&#x56E0;&#x5E8F;&#x5217;&#x6BD4;&#x5BF9;</p>
+<ol>
+<li>&#x5C06;&#x5176;&#x4E2D;&#x4E00;&#x4E2A;&#x8F6C;&#x6362;&#x6210;&#x53E6;&#x4E00;&#x4E2A;&#x6240;&#x9700;&#x6539;&#x53D8;&#x7684;&#x5DE5;&#x4F5C;&#x91CF;&#xFF0C;&#x7F16;&#x8F91;&#x8DDD;&#x79BB; (edit distance)</li>
+<li>&#x627E;<mark>&#x6700;&#x957F;</mark>&#x7684; S3&#xFF0C;&#x5176;&#x4E2D;&#x7684;&#x57FA;&#x4EE5;&#x540C;&#x6837;&#x7684;&#x987A;&#x5E8F;&#x51FA;&#x73B0;&#x5728; S1 &#x548C; S2 &#x4E2D;&#xFF0C;&#x4F46;&#x4E0D;&#x4E00;&#x5B9A;&#x8FDE;&#x7EED;</li>
+</ol>
+<div class="top2"></div>
+<p>S3 = GTCGTCGGAAGCCGGCCGAA</p>
+<p>&#x4E24;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x6700;&#x957F;&#x516C;&#x5171;&#x975E;&#x8FDE;&#x7EED;&#x5B50;&#x4E32;&#x79F0;&#x4E3A;&#x6700;&#x957F;&#x516C;&#x5171;&#x5B50;&#x5E8F;&#x5217; (longest common subsequence, LCS)</p>
+</section><section><section data-notes lineno="852" class="slide " data-line="852" data-h="15" data-v="0">
+<h5 class="mume-header" id="span-stylefont-weight900lcsspan-%E6%9C%80%E4%BC%98%E5%AD%90%E7%BB%93%E6%9E%84%E6%80%A7"><span style="font-weight:900">LCS</span> &#x6700;&#x4F18;&#x5B50;&#x7ED3;&#x6784;&#x6027;</h5>
+
+<hr>
+<p>&#x5E8F;&#x5217;<span class="mathjax-exps">$X = \langle x_1, x_2, \ldots, x_m \rangle$</span>&#xFF0C;&#x5E8F;&#x5217;<span class="mathjax-exps">$Y = \langle y_1, y_2, \ldots, y_m \rangle$</span></p>
+<div class="top-2"></div>
+<p>&#x8BB0;<span class="mathjax-exps">$X$</span>&#x7684;&#x524D;<span class="mathjax-exps">$i$</span>&#x4E2A;&#x5143;&#x7D20;&#x6784;&#x6210;&#x7684;<mark>&#x524D;&#x7F00;</mark>&#x5B50;&#x5E8F;&#x5217;&#x4E3A;<span class="mathjax-exps">$X_i = \langle x_1, x_2, \ldots, x_i \rangle$</span></p>
+<div class="top-2"></div>
+<p>&#x8BBE;&#x5E8F;&#x5217;<span class="mathjax-exps">$Z = \langle z_1, z_2, \ldots, z_k \rangle$</span>&#x662F;<span class="mathjax-exps">$X$</span>&#x548C;<span class="mathjax-exps">$Y$</span>&#x7684;&#x4EFB;&#x610F; LCS</p>
+<div class="top2"></div>
+<p>&#x2460; &#x82E5;<span class="mathjax-exps">$x_m = y_n$</span>&#xFF0C;&#x5219;<span class="mathjax-exps">$z_k = x_m = y_n$</span>&#x4E14;<span class="mathjax-exps">$Z_{k-1}$</span>&#x662F;<span class="mathjax-exps">$X_{m-1}$</span>&#x548C;<span class="mathjax-exps">$Y_{n-1}$</span>&#x7684; LCS</p>
+<p>&#x53CD;&#x8BBE;<span class="mathjax-exps">$z_k \ne x_m = y_n$</span>&#xFF0C;&#x5C06;<span class="mathjax-exps">$x_m$</span>&#x63A5;&#x5230;<span class="mathjax-exps">$Z$</span>&#x7684;&#x672B;&#x5C3E;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x4E00;&#x4E2A;&#x957F;&#x4E3A;<span class="mathjax-exps">$k+1$</span>&#x7684;&#x516C;&#x5171;&#x5B50;&#x5E8F;&#x5217;&#xFF0C;&#x8FD9;&#x4E0E;<span class="mathjax-exps">$Z$</span>&#x7684;&#x6700;&#x4F18;&#x6027;&#x77DB;&#x76FE;</p>
+<p>&#x5DF2;&#x8BC1;<span class="mathjax-exps">$z_k = x_m = y_n$</span>&#xFF0C;&#x56E0;&#x6B64;<span class="mathjax-exps">$Z_{k-1}$</span>&#x662F;<span class="mathjax-exps">$X_{m-1}$</span>&#x548C;<span class="mathjax-exps">$Y_{n-1}$</span>&#x7684;&#x516C;&#x5171;&#x5B50;&#x5E8F;&#x5217;&#xFF0C;&#x82E5;&#x5176;&#x4E0D;&#x662F;&#x6700;&#x957F;&#xFF0C;&#x5219;&#x53E6;&#x6709;&#x4E00;&#x4E2A;&#x957F;&#x5EA6;&#x5927;&#x4E8E;<span class="mathjax-exps">$k-1$</span>&#x7684;&#x5B50;&#x5E8F;&#x5217;&#xFF0C;&#x5C06;<span class="mathjax-exps">$x_m$</span>&#x63A5;&#x5230;&#x8BE5;&#x5B50;&#x5E8F;&#x5217;&#x672B;&#x5C3E;&#x53EF;&#x4EE5;&#x5F97;&#x5230;<span class="mathjax-exps">$X$</span>&#x548C;<span class="mathjax-exps">$Y$</span>&#x7684;&#x4E00;&#x4E2A;&#x957F;&#x5EA6;&#x5927;&#x4E8E;<span class="mathjax-exps">$k$</span>&#x7684;&#x5B50;&#x5E8F;&#x5217;&#xFF0C;&#x77DB;&#x76FE;</p>
+</section><section vertical="true" data-notes lineno="876" class="slide " data-line="876" data-h="15" data-v="1">
+<h5 class="mume-header" id="span-stylefont-weight900lcsspan-%E6%9C%80%E4%BC%98%E5%AD%90%E7%BB%93%E6%9E%84%E6%80%A7-1"><span style="font-weight:900">LCS</span> &#x6700;&#x4F18;&#x5B50;&#x7ED3;&#x6784;&#x6027;</h5>
+
+<hr>
+<p>&#x5E8F;&#x5217;<span class="mathjax-exps">$X = \langle x_1, x_2, \ldots, x_m \rangle$</span>&#xFF0C;&#x5E8F;&#x5217;<span class="mathjax-exps">$Y = \langle y_1, y_2, \ldots, y_m \rangle$</span></p>
+<div class="top-2"></div>
+<p>&#x8BB0;<span class="mathjax-exps">$X$</span>&#x7684;&#x524D;<span class="mathjax-exps">$i$</span>&#x4E2A;&#x5143;&#x7D20;&#x6784;&#x6210;&#x7684;<mark>&#x524D;&#x7F00;</mark>&#x5B50;&#x5E8F;&#x5217;&#x4E3A;<span class="mathjax-exps">$X_i = \langle x_1, x_2, \ldots, x_i \rangle$</span></p>
+<div class="top-2"></div>
+<p>&#x8BBE;&#x5E8F;&#x5217;<span class="mathjax-exps">$Z = \langle z_1, z_2, \ldots, z_k \rangle$</span>&#x662F;<span class="mathjax-exps">$X$</span>&#x548C;<span class="mathjax-exps">$Y$</span>&#x7684;&#x4EFB;&#x610F; LCS</p>
+<div class="top2"></div>
+<p>&#x2461; &#x82E5;<span class="mathjax-exps">$x_m \ne y_n$</span>&#xFF0C;&#x5219;<span class="mathjax-exps">$z_k \ne x_m$</span>&#x8574;&#x542B;<span class="mathjax-exps">$Z$</span>&#x662F;<span class="mathjax-exps">$X_{m-1}$</span>&#x548C;<span class="mathjax-exps">$Y$</span>&#x7684;&#x4E00;&#x4E2A; LCS</p>
+<p>&#x82E5;<span class="mathjax-exps">$z_k \ne x_m$</span>&#xFF0C;<span class="mathjax-exps">$Z$</span>&#x663E;&#x7136;&#x662F;<span class="mathjax-exps">$X_{m-1}$</span>&#x548C;<span class="mathjax-exps">$Y$</span>&#x7684;&#x516C;&#x5171;&#x5B50;&#x5E8F;&#x5217;&#xFF0C;&#x82E5;&#x5176;&#x4E0D;&#x662F;&#x6700;&#x957F;&#xFF0C;&#x5219;&#x53E6;&#x6709;&#x4E00;&#x4E2A;&#x957F;&#x5EA6;&#x5927;&#x4E8E;<span class="mathjax-exps">$k$</span>&#x7684;&#x5B50;&#x5E8F;&#x5217;&#xFF0C;&#x8BE5;&#x5B50;&#x5E8F;&#x5217;&#x4E5F;&#x662F;<span class="mathjax-exps">$X$</span>&#x548C;<span class="mathjax-exps">$Y$</span>&#x7684;&#x5B50;&#x5E8F;&#x5217;&#xFF0C;&#x8FD9;&#x4E0E;<span class="mathjax-exps">$Z$</span>&#x7684;&#x6700;&#x4F18;&#x6027;&#x77DB;&#x76FE;</p>
+<div class="top2"></div>
+<p>&#x2462; &#x82E5;<span class="mathjax-exps">$x_m \ne y_n$</span>&#xFF0C;&#x5219;<span class="mathjax-exps">$z_k \ne y_n$</span>&#x8574;&#x542B;<span class="mathjax-exps">$Z$</span>&#x662F;<span class="mathjax-exps">$X$</span>&#x548C;<span class="mathjax-exps">$Y_{n-1}$</span>&#x7684;&#x4E00;&#x4E2A; LCS</p>
+</section><section vertical="true" data-notes lineno="902" class="slide " data-line="902" data-h="15" data-v="2">
+<h5 class="mume-header" id="span-stylefont-weight900lcsspan-%E9%80%92%E6%8E%A8%E5%85%B3%E7%B3%BB%E5%BC%8F"><span style="font-weight:900">LCS</span> &#x9012;&#x63A8;&#x5173;&#x7CFB;&#x5F0F;</h5>
+
+<hr>
+<p>&#x5E8F;&#x5217;<span class="mathjax-exps">$X = \langle x_1, x_2, \ldots, x_m \rangle$</span>&#xFF0C;&#x5E8F;&#x5217;<span class="mathjax-exps">$Y = \langle y_1, y_2, \ldots, y_m \rangle$</span></p>
+<div class="top-2"></div>
+<p>&#x8BB0;<span class="mathjax-exps">$X$</span>&#x7684;&#x524D;<span class="mathjax-exps">$i$</span>&#x4E2A;&#x5143;&#x7D20;&#x6784;&#x6210;&#x7684;<mark>&#x524D;&#x7F00;</mark>&#x5B50;&#x5E8F;&#x5217;&#x4E3A;<span class="mathjax-exps">$X_i = \langle x_1, x_2, \ldots, x_i \rangle$</span></p>
+<div class="top-2"></div>
+<p>&#x8BBE;&#x5E8F;&#x5217;<span class="mathjax-exps">$Z = \langle z_1, z_2, \ldots, z_k \rangle$</span>&#x662F;<span class="mathjax-exps">$X$</span>&#x548C;<span class="mathjax-exps">$Y$</span>&#x7684;&#x4EFB;&#x610F; LCS</p>
+<ul>
+<li>&#x82E5;<span class="mathjax-exps">$x_m = y_n$</span>&#xFF0C;&#x5219;<span class="mathjax-exps">$z_k = x_m = y_n$</span>&#x4E14;<span class="mathjax-exps">$Z_{k-1}$</span>&#x662F;<span class="mathjax-exps">$X_{m-1}$</span>&#x548C;<span class="mathjax-exps">$Y_{n-1}$</span>&#x7684; LCS</li>
+<li>&#x82E5;<span class="mathjax-exps">$x_m \ne y_n$</span>&#xFF0C;&#x5219;<span class="mathjax-exps">$z_k \ne x_m$</span>&#x8574;&#x542B;<span class="mathjax-exps">$Z$</span>&#x662F;<span class="mathjax-exps">$X_{m-1}$</span>&#x548C;<span class="mathjax-exps">$Y$</span>&#x7684;&#x4E00;&#x4E2A; LCS</li>
+<li>&#x82E5;<span class="mathjax-exps">$x_m \ne y_n$</span>&#xFF0C;&#x5219;<span class="mathjax-exps">$z_k \ne y_n$</span>&#x8574;&#x542B;<span class="mathjax-exps">$Z$</span>&#x662F;<span class="mathjax-exps">$X$</span>&#x548C;<span class="mathjax-exps">$Y_{n-1}$</span>&#x7684;&#x4E00;&#x4E2A; LCS</li>
+</ul>
+<div class="top2"></div>
+<p><span class="blue"><i class="fa fa-lightbulb-o" aria-hidden="true"></i></span> &#x4E24;&#x4E2A;&#x5E8F;&#x5217;&#x7684; LCS &#x7684;&#x524D;&#x7F00;&#x5B50;&#x5E8F;&#x5217;&#x4E5F;&#x662F;&#x5176;&#x5404;&#x81EA;&#x524D;&#x7F00;&#x5B50;&#x5E8F;&#x5217;&#x7684; LCS</p>
+<p>&#x8BB0;<span class="mathjax-exps">$c[i,j]$</span>&#x4E3A;<span class="mathjax-exps">$X_i$</span>&#x548C;<span class="mathjax-exps">$Y_j$</span>&#x7684; LCS &#x7684;&#x957F;&#x5EA6;&#xFF0C;&#x5219;&#x6709;&#x9012;&#x63A8;&#x5173;&#x7CFB;&#xFF1A;</p>
+<p>
+
+$$
+\begin{align*}
+    \quad c[i,j] = \begin{cases} 0, &amp; i = 0 \vee j = 0 \quad \text{&#x5176;&#x4E2D;&#x4E00;&#x4E2A;&#x4E3A;&#x7A7A;} \\ c[i-1,j-1]+1, &amp; i,j &gt; 0 \wedge x_i = y_j \\ \max \{ c[i,j-1], c[i-1,j] \}, &amp; i,j &gt; 0 \wedge x_i \ne y_j \end{cases}
+\end{align*}
+$$
+</p>
+
 </section></section>
       </div>
     </div>

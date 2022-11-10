@@ -25,69 +25,106 @@ presentation:
 
 <!-- slide data-notes="" -->
 
-##### 小结
+##### 最长公共子序列
 
 ---
 
-动态规划一般步骤：
+DNA 由 A、C、G、T 四种碱基组成，现有两个有机体的 DNA
 
-1. 分析最优解的结构特征
-2. 递归定义最优解的值
-3. 根据递推关系{==自底向上==}，依次计算最优解的值
-4. 若除最优解的值外还需最优解本身，在第 3 步里维护一些额外信息
-
-<div class="top4"></div>
-
-第 1 步就是判断{==最优子结构性==}是否成立
-
-- 以$A[i]$作结尾的最大子数组依赖以$A[i-1]$作结尾的最大子数组
-- 长度为$n$的钢条的最优切割方案依赖所有长度小于$n$的切割方案
-- 长度为$n$的矩阵序列的加括号方案依赖所有长度小于$n$的加括号方案
-
-<div class="top4"></div>
-
-第 2 步就是给出{==递推关系式==}，也称{==状态转移方程==}
-
-<!-- slide vertical=true data-notes="" -->
-
-##### 最优子结构性成立
-
----
-
-有向图上的无权最短路径具有最优子结构性
-
-设$u \ne v$，$u$到$v$的最短路径为$p$，记为$u \overset{p}{\rightsquigarrow} v$
-
-路径$p$上的中间结点$w$将$p$分为$p_1$、$p_2$两部分，$u \overset{p_1}{\rightsquigarrow} w \overset{p_2}{\rightsquigarrow} v$，则
-
-- $p_1$是从$u$到$w$的最短路径，否则设$p'_1$更短，则$u \overset{p'_1}{\rightsquigarrow} w \overset{p_2}{\rightsquigarrow} v$也更短
-- $p_2$是从$w$到$v$的最短路径，否则设$p'_2$更短，则$u \overset{p_1}{\rightsquigarrow} w \overset{p'_2}{\rightsquigarrow} v$也更短
+- S1 = ACCG{==GTCG==}AG{==T==}G{==CG==}C{==G==}G{==AAGCCGGCCGAA==}
+- S2 = {==GTCGT==}T{==CGGAA==}T{==GCCG==}TT{==GC==}T{==C==}T{==G==}T{==AA==}A
 
 <div class="top2"></div>
 
-最优子结构性均可用上述反证法来证，书上称{==剪切-粘贴==}技术
+两个有机体有多“相似”，基因序列比对
 
-1. 假设子问题的解不是其自身的最优解，最优解另有其解
-2. 将该解{==剪掉==}，并将最优解{==粘进来==}，从而得到原问题的一个更优解
-3. 这与最初的解是原问题的最优解矛盾
+1. 将其中一个转换成另一个所需改变的工作量，编辑距离 (edit distance)
+2. 找{==最长==}的 S3，其中的基以同样的顺序出现在 S1 和 S2 中，但不一定连续
 
-<!-- slide vertical=true data-notes="" -->
+<div class="top2"></div>
 
-##### 最优子结构性不成立
+S3 = GTCGTCGGAAGCCGGCCGAA
+
+两个字符串的最长公共非连续子串称为最长公共子序列 (longest common subsequence, LCS)
+
+<!-- slide data-notes="" -->
+
+##### <span style="font-weight:900">LCS</span> 最优子结构性
 
 ---
 
-有向图上的无权最长{==简单==}(无环)路径不具有最优子结构性
+序列$X = \langle x_1, x_2, \ldots, x_m \rangle$，序列$Y = \langle y_1, y_2, \ldots, y_m \rangle$
 
-- ①->②->③ 是 ① 到 ③ 的一条最长路径
-- ①->② 不是 ① 到 ② 的最长路径 (①->④->③->②)
-- ②->③ 不是 ② 到 ③ 的最长路径 (②->①->④->③)
-- ①->② 的最长路径连上 ②->③ 的最长路径不是简单路径
+<div class="top-2"></div>
 
-@import "../dot/longest-path.dot" {.left82per .top-18 .bottom2}
+记$X$的前$i$个元素构成的{==前缀==}子序列为$X_i = \langle x_1, x_2, \ldots, x_i \rangle$
 
-{==子问题无关性==}：同一个原问题的子问题之间相互独立
+<div class="top-2"></div>
 
-最短路径的两个子问题相互独立，$p_1$、$p_2$除$w$外没有公共点，否则设公共点为$x$，则$u \rightsquigarrow x \rightsquigarrow w \rightsquigarrow x \rightsquigarrow v$可优化为$u \rightsquigarrow x \rightsquigarrow v$
+设序列$Z = \langle z_1, z_2, \ldots, z_k \rangle$是$X$和$Y$的任意 LCS
 
-最长路径的两个子问题不独立，子问题 ① 到 ② 的最长路径经过的点，在子问题 ① 到 ③ 的最长路径中不能再经过
+<div class="top2"></div>
+
+① 若$x_m = y_n$，则$z_k = x_m = y_n$且$Z_{k-1}$是$X_{m-1}$和$Y_{n-1}$的 LCS
+
+反设$z_k \ne x_m = y_n$，将$x_m$接到$Z$的末尾可以得到一个长为$k+1$的公共子序列，这与$Z$的最优性矛盾
+
+已证$z_k = x_m = y_n$，因此$Z_{k-1}$是$X_{m-1}$和$Y_{n-1}$的公共子序列，若其不是最长，则另有一个长度大于$k-1$的子序列，将$x_m$接到该子序列末尾可以得到$X$和$Y$的一个长度大于$k$的子序列，矛盾
+
+<!-- slide vertical=true data-notes="" -->
+
+##### <span style="font-weight:900">LCS</span> 最优子结构性
+
+---
+
+序列$X = \langle x_1, x_2, \ldots, x_m \rangle$，序列$Y = \langle y_1, y_2, \ldots, y_m \rangle$
+
+<div class="top-2"></div>
+
+记$X$的前$i$个元素构成的{==前缀==}子序列为$X_i = \langle x_1, x_2, \ldots, x_i \rangle$
+
+<div class="top-2"></div>
+
+设序列$Z = \langle z_1, z_2, \ldots, z_k \rangle$是$X$和$Y$的任意 LCS
+
+<div class="top2"></div>
+
+② 若$x_m \ne y_n$，则$z_k \ne x_m$蕴含$Z$是$X_{m-1}$和$Y$的一个 LCS
+
+若$z_k \ne x_m$，$Z$显然是$X_{m-1}$和$Y$的公共子序列，若其不是最长，则另有一个长度大于$k$的子序列，该子序列也是$X$和$Y$的子序列，这与$Z$的最优性矛盾
+
+<div class="top2"></div>
+
+③ 若$x_m \ne y_n$，则$z_k \ne y_n$蕴含$Z$是$X$和$Y_{n-1}$的一个 LCS
+
+<!-- slide vertical=true data-notes="" -->
+
+##### <span style="font-weight:900">LCS</span> 最优子结构性
+
+---
+
+序列$X = \langle x_1, x_2, \ldots, x_m \rangle$，序列$Y = \langle y_1, y_2, \ldots, y_m \rangle$
+
+<div class="top-2"></div>
+
+记$X$的前$i$个元素构成的{==前缀==}子序列为$X_i = \langle x_1, x_2, \ldots, x_i \rangle$
+
+<div class="top-2"></div>
+
+设序列$Z = \langle z_1, z_2, \ldots, z_k \rangle$是$X$和$Y$的任意 LCS
+
+- 若$x_m = y_n$，则$z_k = x_m = y_n$且$Z_{k-1}$是$X_{m-1}$和$Y_{n-1}$的 LCS
+- 若$x_m \ne y_n$，则$z_k \ne x_m$蕴含$Z$是$X_{m-1}$和$Y$的一个 LCS
+- 若$x_m \ne y_n$，则$z_k \ne y_n$蕴含$Z$是$X$和$Y_{n-1}$的一个 LCS
+
+<div class="top2"></div>
+
+我的启示 两个序列的 LCS 的前缀子序列也是其各自前缀子序列的 LCS
+
+记$c[i,j]$为$X_i$和$Y_j$的 LCS 的长度
+
+$$
+\begin{align*}
+    \quad c[i,j] = \begin{cases} 0, & i = 0 \vee j = 0 \quad \text{其中一个为空} \\ c[i-1,j-1]+1, & i,j > 0 \wedge x_i = y_j \\ \max \{ c[i,j-1], c[i-1,j] \}, & i,j > 0 \wedge x_i \ne y_j \end{cases}
+\end{align*}
+$$
