@@ -2,7 +2,7 @@ import sys
 from math import ceil  # 向上取整
 
 
-def cut_rod_rec(n):  # 单子问题
+def cut_rod_rec(n):  # 分治 单子问题
     if n == 1:
         return p[1]
     else:
@@ -12,7 +12,7 @@ def cut_rod_rec(n):  # 单子问题
     return v
 
 
-def cut_rod_rec2(n):  # 双子问题
+def cut_rod_rec2(n):  # 分治 双子问题
     if n == 1:
         return p[1]
     else:
