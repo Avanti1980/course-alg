@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022/Arch Linux) (preloaded format=xelatex 2022.11.8)  10 NOV 2022 17:52
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022/Arch Linux) (preloaded format=xelatex 2022.11.8)  11 NOV 2022 08:06
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1068,19 +1068,11 @@ LaTeX Font Info:    Trying to load font information for U+rsfs on input line 50.
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 
-LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <18.06749> not available
-(Font)              size <17.28> substituted on input line 50.
-
-
 LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <15.05624> not available
 (Font)              size <14.4> substituted on input line 50.
 
 LaTeX Font Info:    Trying to load font information for U+stmry on input line 50.
 (/usr/share/texmf-dist/tex/latex/stmaryrd/Ustmry.fd)
-
-LaTeX Font Warning: Font shape `U/stmry/m/n' in size <18.06749> not available
-(Font)              size <17.28> substituted on input line 50.
-
 
 LaTeX Font Warning: Font shape `U/stmry/m/n' in size <15.05624> not available
 (Font)              size <14.4> substituted on input line 50.
@@ -1090,7 +1082,7 @@ Missing character: There is no ; ("3B) in font nullfont!
 Missing character: There is no ; ("3B) in font nullfont!
 Missing character: There is no ; ("3B) in font nullfont!
 
-Overfull \hbox (64.5478pt too wide) in paragraph at lines 114--115
+Overfull \hbox (67.6685pt too wide) in paragraph at lines 114--115
  [] 
  []
 
@@ -1099,15 +1091,15 @@ Overfull \hbox (64.5478pt too wide) in paragraph at lines 114--115
 ] (./matrix-chain.aux)
 
 LaTeX Font Warning: Size substitutions with differences
-(Font)              up to 0.78749pt have occurred.
+(Font)              up to 0.65625pt have occurred.
 
 Package rerunfilecheck Info: File `matrix-chain.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 44764 strings out of 476156
- 1074484 string characters out of 5814963
- 1606828 words of memory out of 5000000
+ 44770 strings out of 476156
+ 1074525 string characters out of 5814963
+ 1607935 words of memory out of 5000000
  64746 multiletter control sequences out of 15000+600000
  481317 words of font info for 86 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191

@@ -117,6 +117,8 @@
 @include subatable-fullborder(5, 5, 2, 7);
 @include subatable-fullborder(5, 5, 10, 15);
 
+@include subatable-fullborder(2, 9, 3, 9);
+
 // 三线表
 .reveal .threelines {
   th {
