@@ -25,48 +25,21 @@ presentation:
 
 <!-- slide data-notes="" -->
 
-##### 最长递增子序列
+##### 最优二叉搜索树
 
 ---
 
-输入：$\{ 1,\ldots,n \}$的排列$X$
+场景：语言翻译，从英语到法语，对给定的单词，在单词表里找到该词
 
-<div class="top-2"></div>
+等等
 
-输出：$X$的最长递增子序列 (longest increasing subsequence, LIS)
 
-记$d[i]$为以$X[i]$结尾的 LIS 的长度，显然所有$d[i]$的最小值是 1
+方法：创建一棵二叉搜索树，以英语单词作为关键字构建树
 
-$d[0] = 1$，以$X[0]$结尾的 LIS 就是$X[0]$
+目标：尽快地找到英语单词，使“总”的搜索时间尽量少
 
-$d[1]$根据$X[1]$是否可以接在$X[0]$后面分两种情况：
+思路：频繁使用的单词，如the，应尽可能靠近根；而不经常出现的单词可以离根远一些
 
-- 若$X[0] < X[1]$，则$d[1] = 2$，此时 LIS 就是$X[0, 1]$
-- 若$X[0] > X[1]$，则$d[1] = 1$，此时 LIS 就是$X[1]$
+思考：如果反之会怎样？
 
-<!-- slide vertical=true data-notes="" -->
 
-##### 最长递增子序列
-
----
-
-输入：$\{ 1,\ldots,n \}$的排列$X$
-
-<div class="top-2"></div>
-
-输出：$X$的最长递增子序列 (longest increasing subsequence, LIS)
-
-记$d[i]$为以$X[i]$结尾的 LIS 的长度，显然所有$d[i]$的最小值是 1
-
-$X[i]$接在以$X[0], X[1], \ldots, X[i-1]$结尾的哪个 LIS 后面？
-
-在所有可接的 LIS 后面，选一个最长的，因此有递推关系：
-
-$$
-\begin{align*}
-    \quad d[i] = \begin{cases}
-    1, & i=0 \\
-    \max_{j < i} ~ \{ d[j] + 1 \}, & X[j] < X[i] \\
-    \end{cases}
-\end{align*}
-$$
