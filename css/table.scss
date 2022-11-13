@@ -32,7 +32,7 @@
     // 每行上下边框
     @each $direction in "top", "bottom" {
       .reveal .row#{$i}-border-#{$direction}-#{$style} {
-        tr:nth-child(#{$i}) {
+        tbody tr:nth-child(#{$i}) {
           border-#{$direction}: 1px #{$style} var(--solarized-base01);
         }
       }
@@ -124,6 +124,16 @@
   th {
     border-top: 2px solid var(--solarized-base01); // 表头上边框
     border-bottom: 1px solid var(--solarized-base01); // 表头下边框
+  }
+  tbody tr:nth-last-child(1) {
+    border-bottom: 2px solid var(--solarized-base01); // 最后一行下边框
+  }
+}
+
+// 双线表
+.reveal .twolines {
+  th {
+    border-top: 2px solid var(--solarized-base01); // 表头上边框
   }
   tbody tr:nth-last-child(1) {
     border-bottom: 2px solid var(--solarized-base01); // 最后一行下边框

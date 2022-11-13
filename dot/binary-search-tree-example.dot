@@ -1,0 +1,53 @@
+digraph g {
+    bgcolor=transparent
+    rankdir=TB
+    graph [nodesep=0.9, ranksep=0.4]
+    node [shape=plain, color="#586e75", fontcolor="#b58900", fontsize=18, fontname="LXGWWenKai"]
+    edge [arrowhead=none, color="#586e75", fontcolor="#268bd2", fontsize=16, fontname="LXGWWenKai"]
+
+    subgraph cluster_0 {
+        style=invis
+        fontname="LXGWWenKai"
+        fontsize=18
+        color="#586e75"
+        labelloc="l"
+        fontcolor="#d33682"
+
+        k2 -> {k1, k4}
+        k4 -> {k3, k5}
+        node [color="#586e75", fontcolor="#268bd2"]
+        k1 -> {d0, d1}
+        k3 -> {d2, d3}
+        k5 -> {d4, d5}
+    }
+    
+    subgraph cluster_1 {
+        style=invis
+        fontname="LXGWWenKai"
+        fontsize=18
+        color="#586e75"
+        labelloc="l"
+        fontcolor="#d33682"
+
+        k21 [label="k1"]
+        k22 [label="k2"]
+        k23 [label="k3"]
+        k24 [label="k4"]
+        k25 [label="k5"]
+
+        node [color="#586e75", fontcolor="#268bd2"]
+        
+        d20 [label="d0"]
+        d21 [label="d1"]
+        d22 [label="d2"]
+        d23 [label="d3"]
+        d24 [label="d4"]
+        d25 [label="d5"]
+
+        k22 -> {k21, k25}
+        k21 -> {d20, d21}
+        k25 -> {k24, d25}
+        k24 -> {k23, d24}
+        k23 -> {d22, d23}
+    }
+}
