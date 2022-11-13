@@ -3,8 +3,6 @@ import random
 # random.seed(0)
 
 
-
-
 d = [1 for i in range(n)]
 p = [-1 for i in range(n)]
 for i in range(1, n):
