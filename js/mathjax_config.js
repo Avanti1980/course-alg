@@ -212,7 +212,7 @@ module.exports = {
       SSB: "{\\mathrm {SSB}}",
       gain: "{\\mathrm {Gain}}",
       gini: "{\\mathrm {Gini}}",
-      dep: "{\\mathrm {depth}_T}",
+      dep: "{\\mathrm {depth}}",
       argmin: "{\\mathop{\\arg \\min}}",
       argmax: "{\\mathop{\\mathrm{argmax}}}",
     },

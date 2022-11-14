@@ -25,96 +25,54 @@ presentation:
 
 <!-- slide data-notes="" -->
 
-##### 最优二叉搜索树
+##### <span style="font-weight:900">OBST</span> 实现
 
 ---
-
-语言翻译，英译汉，对每个单词，在单词表里找到该词
-
-<div class="top-2"></div>
-
-有的词能找到对应的汉语词汇，有的找不到
-
-<div class="twolines row2-border-top-solid fs16 top-2 bottom-2">
-
-| When | you | play | the | game  | of  | thrones |   ,    |  you   | win |
-| :--: | :-: | :--: | :-: | :---: | :-: | :-----: | :----: | :----: | :-: |
-|  当  | 你  |  玩  |  >  | 游戏  | 的  |  权力   |   ,    |   你   | 赢  |
-|  or  | you | die  |  .  | There | is  |   no    | middle | ground |  .  |
-|  或  | 你  |  死  |  ,  |   >   | 有  |   没    |  中间  |  地带  |  .  |
-
-</div>
-
-{==Daenerys Stormborn==} of House {==Targaryen==}, the First of Her Name, Queen of the {==Andals==}, the {==Rhoynar==} and the {==First Men==}, Queen of {==Meereen==}, Protector of the Realm, Lady Regnant of the Seven Kingdoms, Mother of Dragons, {==Khaleesi==} of the Great Grass Sea, the Unburnt, Breaker of Chains.
-
-<!-- slide vertical=true data-notes="" -->
-
-##### 最优二叉搜索树
-
----
-
-方法：以英语单词作为关键字构建二叉搜索树
-
-<div class="top-2"></div>
-
-目标：尽快找到英语单词，使{==期望==}搜索时间最少
-
-<div class="top-2"></div>
-
-特点：
-
-- 第$i$层的关键字需比较$i$次才能找到
-- 左子树的所有元素比根结点小
-- 右子树的所有元素比根结点大
-- 左、右子树也是二叉搜索树
-
-@import "../dot/binary-search-tree.dot" {.left30per .top-12}
-
-<!-- slide vertical=true data-notes="" -->
-
-##### 最优二叉搜索树
-
----
-
-频繁使用的单词应尽可能靠近根，减少比较次数
-
-<div class="top-2"></div>
-
-不在词典中的情况也要纳入考虑，引入伪关键字$d_i = (k_i, k_{i+1})$
-
-<div class="top-2"></div>
-
-输入：
-
-- $n$个排好序的关键字$k_1 < k_2 < \ldots < k_n$，$\Pbb [x = k_i] = p_i$
-- $n+1$个伪关键字$d_0, d_1, \ldots, d_n$，$\Pbb [x \in d_i] = q_i$
 
 <div class="top2"></div>
 
-输出：以$k_1, k_2, \ldots k_n$为内部结点，以$d_0, d_1, \ldots, d_n$为叶子结点的最优二叉搜索树$T$，使得如下的期望搜索时间最少
-
 $$
 \begin{align*}
-    \quad \Ebb[\text{search time in } T] & = \sum_{i=1}^n (\dep (k_i) + 1) \cdot p_i + \sum_{i=0}^n (\dep (d_i) + 1) \cdot q_i \\
-    & = 1 + \sum_{i=1}^n \dep (k_i) \cdot p_i + \sum_{i=0}^n \dep (d_i) \cdot q_i
+    \quad e[i,j] = \begin{cases} q_{i-1}, & j = i - 1 \\ \min_{i \le r \le j} ~ \{ e[i,r-1] + e[r+1,j] + w(i,j) \}, & i \le j \end{cases}
 \end{align*}
 $$
 
-<!-- slide data-notes="" -->
+<div class="top-3"></div>
 
-##### 最优二叉搜索树 例子
+设$root[i,j]$是仅包含$k_i, \ldots, k_j$的 OBST 的根节点
+
+@import "../codes/optimal-bst.py" {line_begin=0 line_end=16 .left4 .line-numbers .top-1 .bottom-4}
+
+<!-- slide vertical=true data-notes="" -->
+
+##### <span style="font-weight:900">OBST</span> 例子
 
 ---
 
-设有$n = 5$个关键字，$6$个伪关键字，$\sum_{i=1}^n p_i + \sum_{i=0}^n q_i = 1$
+<div class="threelines left4 righta top-1 bottom0">
 
-<div class="threelines top-2 bottom-2">
-
-|  $i$  |   0    |  1   |  2   |  3   |  4   |  5   |
-| :---: | :----: | :--: | :--: | :--: | :--: | :--: |
-| $p_i$ | &zwnj; | 0.15 | 0.10 | 0.05 | 0.10 | 0.20 |
-| $q_i$ |  0.05  | 0.10 | 0.05 | 0.05 | 0.05 | 0.10 |
+| $k_1$ | $k_2$ | $k_3$ | $k_4$ | $k_5$ | $d_0$ | $d_1$ | $d_2$ | $d_3$ | $d_4$ | $d_5$ |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| 0.15  | 0.10  | 0.05  | 0.10  | 0.20  | 0.05  | 0.10  | 0.05  | 0.05  | 0.05  | 0.10  |
 
 </div>
 
-@import "../dot/binary-search-tree-example.dot" {.center .top1 .bottom-4}
+$$
+\begin{align*}
+    e[i,j] & = \begin{cases} q_{i-1}, & j = i - 1 \\ \min_{i \le r \le j} ~ \{ e[i,r-1] + e[r+1,j] + w(i,j) \}, & i \le j \end{cases} \\[4px]
+    e[1,0] & = 0.05, ~ e[2,1] = 0.1, ~ e[3,2] = e[4,3] = e[5,4] = 0.05, ~ e[6,5] = 0.1 \\[4px]
+    e[1,1] & = e[1,0] + e[2,1] + w(1,1) = 0.05 + 0.1 + 0.3 = 0.45 \\
+    e[2,2] & = 0.4, ~ e[3,3] = 0.25, ~ e[4,4] = 0.3, ~ e[5,5] = 0.5 \\[4px]
+    e[1,2] & = \min \{ \}
+\end{align*}
+$$
+
+@import "../tikz/obst-w.svg" {.left65per .width30 .bottom4}
+
+<!-- slide vertical=true data-notes="" -->
+
+##### <span style="font-weight:900">OBST</span> 例子
+
+---
+
+@import "../tikz/obst.svg" {.center .width90}

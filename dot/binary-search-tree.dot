@@ -1,8 +1,8 @@
 digraph g {
     bgcolor=transparent
     rankdir=TB
-    graph [nodesep=0.05, ranksep=0.3]
-    node [shape=plaintext, color="#586e75", fontcolor="#b58900", fontsize=18, fontname="LXGWWenKai"]
+    graph [nodesep=0.15, ranksep=0.3]
+    node [shape=ellipse, fixedsize=true, height=0.4, width=0.8, color="#586e75", fontcolor="#b58900", fontsize=16, fontname="LXGWWenKai"]
     edge [arrowhead=none, color="#586e75", fontcolor="#268bd2", fontsize=16, fontname="LXGWWenKai"]
 
     or -> {is, thrones}

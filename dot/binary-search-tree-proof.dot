@@ -1,0 +1,13 @@
+digraph g {
+    bgcolor=transparent
+    rankdir=TB
+    graph [nodesep=0.15, ranksep=0.3]
+    node [shape=circle, color="#586e75", fontcolor="#b58900", fontsize=16, fontname="LXGWWenKai"]
+    edge [arrowhead=none, color="#586e75", fontcolor="#268bd2", fontsize=16, fontname="LXGWWenKai"]
+
+    kr
+
+    node [shape=ellipse]
+
+    kr -> {"ki, ..., kr-1", "kr+1, ..., kj"}
+}

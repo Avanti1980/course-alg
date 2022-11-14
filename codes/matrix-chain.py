@@ -1,12 +1,9 @@
-import sys
-
-
 def matrix_chain(p):
-    for l in range(2, n+1):        # 子问题长度 l = 2 -> n
-        for i in range(1, n-l+2):  # 从第i个矩阵开始
-            j = i + l - 1          # 到第j个矩阵结束
-            m[i][j] = sys.maxsize  # 初始化为无穷大
-            for k in range(i, j):  # 遍历最优分开位置
+    for l in range(2, n+1):         # 子问题长度 l = 2 -> n
+        for i in range(1, n-l+2):   # 从第i个矩阵开始
+            j = i + l - 1           # 到第j个矩阵结束
+            m[i][j] = float("inf")  # 初始化为无穷大
+            for k in range(i, j):   # 遍历最优分开位置
                 cost = m[i][k] + m[k+1][j] + p[i-1] * p[k] * p[j]
                 if cost < m[i][j]:
                     m[i][j] = cost

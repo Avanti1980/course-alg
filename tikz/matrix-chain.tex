@@ -10,11 +10,7 @@
 
  % define the plot style and the axis style
 \tikzset{font=\Large}
-\definecolor{base01}{RGB} {088, 110, 117}
-\definecolor{base}{RGB} {131, 148, 150}
-\definecolor{base2}{RGB} {238, 232, 213}
-\definecolor{base00}{RGB} {101,123,131}
-\tikzset{arrow/.style={-,black}}
+
 \tikzset{global scale/.style={
     scale=#1,
     every node/.append style={scale=#1}
@@ -46,16 +42,16 @@
 
         % A_1 - A_6
         \foreach \i in {1,...,6} {
-                \node [base] (\i) at (\i*2*\hw,0) [below=2pt] {$A_{\i}$};
+                \node [Solarized-base0] (\i) at (\i*2*\hw,0) [below=2pt] {$A_{\i}$};
             }
 
         % 最后一行折线
         \foreach \i in {1,...,6}{
                 %左图
-                \draw [base] (\i*2*\hw-\hw,\hw) -- (\i*2*\hw,0) -- (\i*2*\hw+\hw,\hw);
+                \draw [Solarized-base0] (\i*2*\hw-\hw,\hw) -- (\i*2*\hw,0) -- (\i*2*\hw+\hw,\hw);
                 %右图
                 \ifthenelse{\NOT \i = 6}{
-                    \draw [base] (\offx+\i*2*\hw-\hw,\offy+\hw) -- (\offx+\i*2*\hw,\offy) -- (\offx+\i*2*\hw+\hw,\offy+\hw);
+                    \draw [Solarized-base0] (\offx+\i*2*\hw-\hw,\offy+\hw) -- (\offx+\i*2*\hw,\offy) -- (\offx+\i*2*\hw+\hw,\offy+\hw);
                 }{;}
             }
 
@@ -63,12 +59,12 @@
         \foreach \i in {1,...,6}{
                 %左图
                 \foreach \j in {\i,...,6}{
-                        \draw [base] (\j*2*\hw-\i*\hw,\i*\hw) -- (\j*2*\hw-\i*\hw+\hw,\i*\hw+\hw) -- (\j*2*\hw-\i*\hw+2*\hw,\i*\hw);
+                        \draw [Solarized-base0] (\j*2*\hw-\i*\hw,\i*\hw) -- (\j*2*\hw-\i*\hw+\hw,\i*\hw+\hw) -- (\j*2*\hw-\i*\hw+2*\hw,\i*\hw);
                     }
                 %右图
                 \ifthenelse{\NOT \i = 6}{
                     \foreach \j in {\i,...,5}{
-                            \draw [base] (\offx+\j*2*\hw-\i*\hw,\offy+\i*\hw) -- (\offx+\j*2*\hw-\i*\hw+\hw,\offy+\i*\hw+\hw) -- (\offx+\j*2*\hw-\i*\hw+2*\hw,\offy+\i*\hw);
+                            \draw [Solarized-base0] (\offx+\j*2*\hw-\i*\hw,\offy+\i*\hw) -- (\offx+\j*2*\hw-\i*\hw+\hw,\offy+\i*\hw+\hw) -- (\offx+\j*2*\hw-\i*\hw+2*\hw,\offy+\i*\hw);
                         }
                 }{;}
             }
@@ -77,12 +73,12 @@
         \foreach \i in {1,...,6}{
                 %左图
                 \foreach \j in {\i,...,6}{
-                        \node [base] (\i\j) at (\j*2*\hw-\i*\hw+\hw,\i*\hw) {$\pgfmathparse{\mtable[(\i-1)*6+\j]}\pgfmathresult$};
+                        \node [Solarized-base0] (\i\j) at (\j*2*\hw-\i*\hw+\hw,\i*\hw) {$\pgfmathparse{\mtable[(\i-1)*6+\j]}\pgfmathresult$};
                     }
                 %右图
                 \ifthenelse{\NOT \i = 6}{
                     \foreach \j in {\i,...,5}{
-                            \node [base] (\i\j) at (\offx+\j*2*\hw-\i*\hw+\hw,\offy+\i*\hw) {$\pgfmathparse{\stable[(\i-1)*5+\j]}\pgfmathresult$};
+                            \node [Solarized-base0] (\i\j) at (\offx+\j*2*\hw-\i*\hw+\hw,\offy+\i*\hw) {$\pgfmathparse{\stable[(\i-1)*5+\j]}\pgfmathresult$};
                         }
                 }{;}
             }
@@ -91,24 +87,24 @@
 
         \foreach \i in {1,...,6}{
                 %左图
-                \node [base] (0) at (\i*\hw+0.25*\hw,\i*\hw+0.5*\hw) [above] {$\i$};
-                \node [base] (0) at (6.75*\hw+\i*\hw,7.5*\hw-\i*\hw) [above] {$\i$};
+                \node [Solarized-base0] (0) at (\i*\hw+0.25*\hw,\i*\hw+0.5*\hw) [above] {$\i$};
+                \node [Solarized-base0] (0) at (6.75*\hw+\i*\hw,7.5*\hw-\i*\hw) [above] {$\i$};
                 %右图左侧
                 \ifthenelse{\NOT \i = 1}{
-                    \node [base] (0) at (\offx-\hw +\i*\hw+0.25*\hw,\i*\hw+0.5*\hw) [above] {$\i$};
+                    \node [Solarized-base0] (0) at (\offx-\hw +\i*\hw+0.25*\hw,\i*\hw+0.5*\hw) [above] {$\i$};
                 }{;}
                 %右图右侧
                 \ifthenelse{\NOT \i = 6}{
-                    \node [base] (0) at (\offx-\hw+6.75*\hw+\i*\hw,7.5*\hw-\i*\hw) [above] {$\i$};
+                    \node [Solarized-base0] (0) at (\offx-\hw+6.75*\hw+\i*\hw,7.5*\hw-\i*\hw) [above] {$\i$};
                 }
             }
 
-        \node [base] (M) at (7*\hw,8*\hw) {$m$};
-        \node [base] (S) at (\offx-\hw+7*\hw,8*\hw) {$s$};
-        \node [base] (j) at (3*\hw,5*\hw) {$j$};
-        \node [base] (j2) at (\offx-\hw+3*\hw,5*\hw) {$j$};
-        \node [base] (i) at (11*\hw,5*\hw) {$i$};
-        \node [base] (i2) at (\offx-\hw+11*\hw,5*\hw) {$i$};
+        \node [Solarized-base0] (M) at (7*\hw,8*\hw) {$m$};
+        \node [Solarized-base0] (S) at (\offx-\hw+7*\hw,8*\hw) {$s$};
+        \node [Solarized-base0] (j) at (3*\hw,5*\hw) {$j$};
+        \node [Solarized-base0] (j2) at (\offx-\hw+3*\hw,5*\hw) {$j$};
+        \node [Solarized-base0] (i) at (11*\hw,5*\hw) {$i$};
+        \node [Solarized-base0] (i2) at (\offx-\hw+11*\hw,5*\hw) {$i$};
 
 
     \end{tikzpicture}

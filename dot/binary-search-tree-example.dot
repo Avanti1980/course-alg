@@ -1,8 +1,8 @@
 digraph g {
     bgcolor=transparent
     rankdir=TB
-    graph [nodesep=0.9, ranksep=0.4]
-    node [shape=plain, color="#586e75", fontcolor="#b58900", fontsize=18, fontname="LXGWWenKai"]
+    graph [nodesep=0.6, ranksep=0.25]
+    node [shape=circle, fixedsize=true, width=0.35, color="#586e75", fontcolor="#b58900", fontsize=16, fontname="LXGWWenKai"]
     edge [arrowhead=none, color="#586e75", fontcolor="#268bd2", fontsize=16, fontname="LXGWWenKai"]
 
     subgraph cluster_0 {
@@ -15,12 +15,15 @@ digraph g {
 
         k2 -> {k1, k4}
         k4 -> {k3, k5}
-        node [color="#586e75", fontcolor="#268bd2"]
+        node [fontcolor="#268bd2"]
         k1 -> {d0, d1}
         k3 -> {d2, d3}
         k5 -> {d4, d5}
+        node [color="#fdf6e3", fontcolor="#fdf6e3"]
+        edge [color="#fdf6e3"]
+        d0 -> {d6, d7}
     }
-    
+
     subgraph cluster_1 {
         style=invis
         fontname="LXGWWenKai"
@@ -36,7 +39,7 @@ digraph g {
         k25 [label="k5"]
 
         node [color="#586e75", fontcolor="#268bd2"]
-        
+
         d20 [label="d0"]
         d21 [label="d1"]
         d22 [label="d2"]

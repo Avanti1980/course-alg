@@ -1,3 +1,6 @@
+import numpy as np
+
+
 def find_max_subarray(A, low, high):  # 返回最大子数组的起始索引、结束索引、和
 
     if low == high:
@@ -63,9 +66,8 @@ def find_max_subarray_dp2(A):
         else:
             dp[i] = A[i]
             s[i] = i
-    max_value = max(dp)
-    max_index = dp.index(max_value)
-    return s[max_index], max_index, max_value
+    max_index = np.argmax(dp)
+    return s[max_index], max_index, dp[max_index]
 
 
 A = [13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7]
