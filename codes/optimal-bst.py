@@ -3,16 +3,16 @@ def optimal_bst(p, q, n):
     w = [[0 for j in range(n+1)] for i in range(n+2)]
     root = [[0 for j in range(n+1)] for i in range(n+1)]
     for i in range(1, n+2):
-        e[i][i-1] = w[i][i-1] = q[i-1]
-    for l in range(1, n+1):          # 子问题 l = 1 -> n
-        for i in range(1, n-l+2):    # 从第i个关键字开始
-            j = i + l - 1            # 到第j个关键字结束
-            w[i][j] = w[i][j-1] + p[j] + q[j]
-            for r in range(i, j+1):  # 遍历寻找最优根节点
+        e[i][i-1] = w[i][i-1] = q[i-1]          # 边界情况
+    for l in range(1, n+1):                     # 子问题 l = 1 -> n
+        for i in range(1, n-l+2):               # 从第i个关键字
+            j = i + l - 1                       # 到第j个关键字
+            w[i][j] = w[i][j-1] + p[j] + q[j]   # 填写w表
+            for r in range(i, j+1):             # 遍历寻找最优根节点
                 t = e[i][r-1] + e[r+1][j] + w[i][j]
                 if t < e[i][j]:
-                    e[i][j] = t
-                    root[i][j] = r
+                    e[i][j] = t                 # 更新期望搜索代价
+                    root[i][j] = r              # 更新最优根节点
     return e, w, root
 
 
