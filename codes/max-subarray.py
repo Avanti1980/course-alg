@@ -27,7 +27,7 @@ def find_max_subarray(A, low, high):  # 返回最大子数组的起始索引、�
 
 
 def find_max_cross_subarray(A, low, mid, high):
-    l_sum = r_sum = -65536
+    l_sum = r_sum = -float("inf")
 
     sum = 0  # 找左边的最大子数组
     for i in range(mid, low-1, -1):
