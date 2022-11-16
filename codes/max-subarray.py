@@ -44,10 +44,10 @@ def find_max_cross_subarray(A, low, mid, high):
     return l_index, r_index, l_sum + r_sum
 
 
-def find_max_subarray_dp(A):
-    dp = [0] * len(A)  # dp[i]为以A[i]作结尾的最大子数组的和
+def find_max_subarray_dp(A, n):
+    dp = [0] * n  # dp[i]为以A[i]作结尾的最大子数组的和
     dp[0] = A[0]
-    for i in range(1, len(A)):
+    for i in range(1, n):
         if dp[i-1] >= 0:
             dp[i] = dp[i-1] + A[i]
         else:
@@ -55,11 +55,11 @@ def find_max_subarray_dp(A):
     return max(dp)
 
 
-def find_max_subarray_dp2(A):
-    dp = [0] * len(A)  # dp[i]为以A[i]作结尾的最大子数组的和
-    s = [0] * len(A)   # s[i]为以A[i]作结尾的最大子数组的起始索引
+def find_max_subarray_dp2(A, n):
+    dp = [0] * n  # dp[i]为以A[i]作结尾的最大子数组的和
+    s = [0] * n   # s[i]为以A[i]作结尾的最大子数组的起始索引
     dp[0], s[0] = A[0], 0
-    for i in range(1, len(A)):
+    for i in range(1, n):
         if dp[i-1] >= 0:
             dp[i] = dp[i-1] + A[i]
             s[i] = s[i-1]
@@ -73,5 +73,5 @@ def find_max_subarray_dp2(A):
 A = [13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7]
 
 print(find_max_subarray(A, 0, len(A)-1))
-print(find_max_subarray_dp(A))
-print(find_max_subarray_dp2(A))
+print(find_max_subarray_dp(A, len(A)))
+print(find_max_subarray_dp2(A, len(A)))
