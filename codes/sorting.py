@@ -27,23 +27,23 @@ def insertion_sort(a, n):
 def merge(a, l, m, r):
 
     # 子数组的长度
-    n1, n2 = m - l + 1, r - m  
+    n1, n2 = m - l + 1, r - m
 
     # 创建临时数组
-    L, R = [0] * (n1), [0] * (n2)  
+    L, R = [0] * n1, [0] * n2
 
     # 拷贝数据到临时数组L
-    for i in range(0, n1):  
+    for i in range(0, n1):
         L[i] = a[l + i]
 
     # 拷贝数据到临时数组R
-    for j in range(0, n2):  
+    for j in range(0, n2):
         R[j] = a[m + 1 + j]
 
     i, j, k = 0, 0, l
 
     # 归并L和R到a[l..r]
-    while i < n1 and j < n2:  
+    while i < n1 and j < n2:
         if L[i] <= R[j]:
             a[k] = L[i]
             i += 1
@@ -53,13 +53,13 @@ def merge(a, l, m, r):
         k += 1
 
     # 拷贝L的剩余元素
-    while i < n1:  
+    while i < n1:
         a[k] = L[i]
         i += 1
         k += 1
 
     # 拷贝R的剩余元素
-    while j < n2:  
+    while j < n2:
         a[k] = R[j]
         j += 1
         k += 1
