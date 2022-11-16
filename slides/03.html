@@ -331,7 +331,7 @@ $$
 <table>
 <thead>
 <tr>
-<th style="text-align:center">&#x5929;</th>
+<th style="text-align:center"><span class="mathjax-exps">$i$</span></th>
 <th style="text-align:center">0</th>
 <th style="text-align:center">1</th>
 <th style="text-align:center">2</th>
@@ -352,7 +352,7 @@ $$
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">&#x53D8;&#x5316;</td>
+<td style="text-align:center"><span class="mathjax-exps">$A[]$</span></td>
 <td style="text-align:center">13</td>
 <td style="text-align:center">-3</td>
 <td style="text-align:center">-25</td>
@@ -457,7 +457,7 @@ $$
 <table>
 <thead>
 <tr>
-<th style="text-align:center">&#x5929;</th>
+<th style="text-align:center"><span class="mathjax-exps">$i$</span></th>
 <th style="text-align:center">0</th>
 <th style="text-align:center">1</th>
 <th style="text-align:center">2</th>
@@ -478,7 +478,7 @@ $$
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">&#x53D8;&#x5316;</td>
+<td style="text-align:center"><span class="mathjax-exps">$A[]$</span></td>
 <td style="text-align:center">13</td>
 <td style="text-align:center">-3</td>
 <td style="text-align:center">-25</td>
@@ -706,13 +706,13 @@ $$
 <h5 class="mume-header" id="%E9%92%A2%E6%9D%A1%E5%88%87%E5%89%B2-%E5%88%86%E6%B2%BB">&#x94A2;&#x6761;&#x5207;&#x5272; &#x5206;&#x6CBB;</h5>
 
 <hr>
-<pre data-role="codeBlock" data-info="py line_begin=3 line_end=11 class=&quot;left4 line-numbers top0 bottom0&quot; highlight=[7]" class="language-python left4 line-numbers top0 bottom0" data-line="7"><span class="token keyword keyword-def">def</span> <span class="token function">cut_rod_rec</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># &#x5206;&#x6CBB; &#x5355;&#x5B50;&#x95EE;&#x9898;</span>
+<pre data-role="codeBlock" data-info="py line_begin=3 line_end=11 class=&quot;left4 line-numbers top0 bottom0&quot; highlight=[7]" class="language-python left4 line-numbers top0 bottom0" data-line="7"><span class="token keyword keyword-def">def</span> <span class="token function">cut_rod_rec</span><span class="token punctuation">(</span>p<span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># &#x5206;&#x6CBB; &#x5355;&#x5B50;&#x95EE;&#x9898;</span>
     <span class="token keyword keyword-if">if</span> n <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span>
         <span class="token keyword keyword-return">return</span> p<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
     <span class="token keyword keyword-else">else</span><span class="token punctuation">:</span>
         v <span class="token operator">=</span> p<span class="token punctuation">[</span>n<span class="token punctuation">]</span>
         <span class="token keyword keyword-for">for</span> i <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            v <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>v<span class="token punctuation">,</span> p<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> cut_rod_rec<span class="token punctuation">(</span>n<span class="token operator">-</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            v <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>v<span class="token punctuation">,</span> p<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> cut_rod_rec<span class="token punctuation">(</span>p<span class="token punctuation">,</span> n<span class="token operator">-</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span>
     <span class="token keyword keyword-return">return</span> v
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span><div class="line-highlight-wrapper">
 
@@ -1075,12 +1075,12 @@ $$
 <li>&#x7EE7;&#x7EED;&#x6309;&#x9012;&#x5F52;&#x7684;&#x5F62;&#x5F0F;&#x7F16;&#x7A0B;&#xFF0C;&#x5904;&#x7406;&#x8FC7;&#x7A0B;&#x4E2D;&#x4FDD;&#x5B58;&#x5B50;&#x95EE;&#x9898;&#x7684;&#x6700;&#x4F18;&#x89E3;</li>
 <li>&#x5F53;&#x9700;&#x8981;&#x65F6;&#xFF0C;&#x5148;&#x68C0;&#x67E5;&#x662F;&#x5426;&#x5DF2;&#x7ECF;&#x4FDD;&#x5B58;&#x8FC7;&#xFF0C;&#x82E5;&#x5426;&#x5219;&#x8BA1;&#x7B97;&#x4FDD;&#x5B58;</li>
 </ul>
-<pre data-role="codeBlock" data-info="py line_begin=23 line_end=39 class=&quot;left4 line-numbers top1 bottom0&quot; highlight=[2, 7]" class="language-python left4 line-numbers top1 bottom0" data-line="2,7"><span class="token keyword keyword-def">def</span> <span class="token function">cut_rod_dp_memoized</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<pre data-role="codeBlock" data-info="py line_begin=23 line_end=39 class=&quot;left4 line-numbers top1 bottom0&quot; highlight=[2, 7]" class="language-python left4 line-numbers top1 bottom0" data-line="2,7"><span class="token keyword keyword-def">def</span> <span class="token function">cut_rod_dp_memoized</span><span class="token punctuation">(</span>p<span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">:</span>
     r <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">-</span><span class="token builtin">float</span><span class="token punctuation">(</span><span class="token string">&quot;inf&quot;</span><span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token builtin">len</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span>  <span class="token comment"># &#x521D;&#x59CB;&#x5316;&#x4E3A;&#x8D1F;&#x65E0;&#x7A77;</span>
-    <span class="token keyword keyword-return">return</span> cut_rod_dp_memoized_aux<span class="token punctuation">(</span>n<span class="token punctuation">,</span> r<span class="token punctuation">)</span>
+    <span class="token keyword keyword-return">return</span> cut_rod_dp_memoized_aux<span class="token punctuation">(</span>p<span class="token punctuation">,</span> n<span class="token punctuation">,</span> r<span class="token punctuation">)</span>
 
 
-<span class="token keyword keyword-def">def</span> <span class="token function">cut_rod_dp_memoized_aux</span><span class="token punctuation">(</span>n<span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token keyword keyword-def">def</span> <span class="token function">cut_rod_dp_memoized_aux</span><span class="token punctuation">(</span>p<span class="token punctuation">,</span> n<span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">:</span>
     <span class="token keyword keyword-if">if</span> r<span class="token punctuation">[</span>n<span class="token punctuation">]</span> <span class="token operator">&gt;=</span> <span class="token number">0</span><span class="token punctuation">:</span>  <span class="token comment"># &#x67E5;&#x8868; &#x82E5;&#x4E4B;&#x524D;&#x5DF2;&#x8BA1;&#x7B97;&#x8FC7;&#x5C31;&#x76F4;&#x63A5;&#x7528;</span>
         <span class="token keyword keyword-return">return</span> r<span class="token punctuation">[</span>n<span class="token punctuation">]</span>
     <span class="token keyword keyword-if">if</span> n <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
@@ -1088,7 +1088,7 @@ $$
     <span class="token keyword keyword-else">else</span><span class="token punctuation">:</span>
         v <span class="token operator">=</span> <span class="token operator">-</span><span class="token builtin">float</span><span class="token punctuation">(</span><span class="token string">&quot;inf&quot;</span><span class="token punctuation">)</span>
         <span class="token keyword keyword-for">for</span> i <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> n<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            v <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>v<span class="token punctuation">,</span> p<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> cut_rod_dp_memoized_aux<span class="token punctuation">(</span>n<span class="token operator">-</span>i<span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            v <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>v<span class="token punctuation">,</span> p<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> cut_rod_dp_memoized_aux<span class="token punctuation">(</span>p<span class="token punctuation">,</span> n<span class="token operator">-</span>i<span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">)</span>
     r<span class="token punctuation">[</span>n<span class="token punctuation">]</span> <span class="token operator">=</span> v  <span class="token comment"># &#x4FDD;&#x5B58;&#x5F53;&#x524D;&#x8BA1;&#x7B97;&#x7684;&#x7ED3;&#x679C;</span>
     <span class="token keyword keyword-return">return</span> v
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span><div class="line-highlight-wrapper">
@@ -1104,12 +1104,12 @@ $$
 <h5 class="mume-header" id="%E9%92%A2%E6%9D%A1%E5%88%87%E5%89%B2-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-1">&#x94A2;&#x6761;&#x5207;&#x5272; &#x52A8;&#x6001;&#x89C4;&#x5212;</h5>
 
 <hr>
-<pre data-role="codeBlock" data-info="py line_begin=23 line_end=39 class=&quot;left4 line-numbers top1 bottom0&quot; highlight=[2, 7]" class="language-python left4 line-numbers top1 bottom0" data-line="2,7"><span class="token keyword keyword-def">def</span> <span class="token function">cut_rod_dp_memoized</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<pre data-role="codeBlock" data-info="py line_begin=23 line_end=39 class=&quot;left4 line-numbers top1 bottom0&quot; highlight=[2, 7]" class="language-python left4 line-numbers top1 bottom0" data-line="2,7"><span class="token keyword keyword-def">def</span> <span class="token function">cut_rod_dp_memoized</span><span class="token punctuation">(</span>p<span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">:</span>
     r <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">-</span><span class="token builtin">float</span><span class="token punctuation">(</span><span class="token string">&quot;inf&quot;</span><span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token builtin">len</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span>  <span class="token comment"># &#x521D;&#x59CB;&#x5316;&#x4E3A;&#x8D1F;&#x65E0;&#x7A77;</span>
-    <span class="token keyword keyword-return">return</span> cut_rod_dp_memoized_aux<span class="token punctuation">(</span>n<span class="token punctuation">,</span> r<span class="token punctuation">)</span>
+    <span class="token keyword keyword-return">return</span> cut_rod_dp_memoized_aux<span class="token punctuation">(</span>p<span class="token punctuation">,</span> n<span class="token punctuation">,</span> r<span class="token punctuation">)</span>
 
 
-<span class="token keyword keyword-def">def</span> <span class="token function">cut_rod_dp_memoized_aux</span><span class="token punctuation">(</span>n<span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token keyword keyword-def">def</span> <span class="token function">cut_rod_dp_memoized_aux</span><span class="token punctuation">(</span>p<span class="token punctuation">,</span> n<span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">:</span>
     <span class="token keyword keyword-if">if</span> r<span class="token punctuation">[</span>n<span class="token punctuation">]</span> <span class="token operator">&gt;=</span> <span class="token number">0</span><span class="token punctuation">:</span>  <span class="token comment"># &#x67E5;&#x8868; &#x82E5;&#x4E4B;&#x524D;&#x5DF2;&#x8BA1;&#x7B97;&#x8FC7;&#x5C31;&#x76F4;&#x63A5;&#x7528;</span>
         <span class="token keyword keyword-return">return</span> r<span class="token punctuation">[</span>n<span class="token punctuation">]</span>
     <span class="token keyword keyword-if">if</span> n <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
@@ -1117,7 +1117,7 @@ $$
     <span class="token keyword keyword-else">else</span><span class="token punctuation">:</span>
         v <span class="token operator">=</span> <span class="token operator">-</span><span class="token builtin">float</span><span class="token punctuation">(</span><span class="token string">&quot;inf&quot;</span><span class="token punctuation">)</span>
         <span class="token keyword keyword-for">for</span> i <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> n<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            v <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>v<span class="token punctuation">,</span> p<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> cut_rod_dp_memoized_aux<span class="token punctuation">(</span>n<span class="token operator">-</span>i<span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            v <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>v<span class="token punctuation">,</span> p<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> cut_rod_dp_memoized_aux<span class="token punctuation">(</span>p<span class="token punctuation">,</span> n<span class="token operator">-</span>i<span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">)</span>
     r<span class="token punctuation">[</span>n<span class="token punctuation">]</span> <span class="token operator">=</span> v  <span class="token comment"># &#x4FDD;&#x5B58;&#x5F53;&#x524D;&#x8BA1;&#x7B97;&#x7684;&#x7ED3;&#x679C;</span>
     <span class="token keyword keyword-return">return</span> v
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span><div class="line-highlight-wrapper">
@@ -1140,7 +1140,7 @@ $$
 <li>&#x5B50;&#x95EE;&#x9898;&#x6309;&#x89C4;&#x6A21;&#x4ECE;&#x5C0F;&#x5230;&#x5927;&#x7684;&#x987A;&#x5E8F;&#x4F9D;&#x6B21;&#x6C42;&#x89E3;</li>
 <li>&#x5F53;&#x6C42;&#x89E3;&#x67D0;&#x4E2A;&#x5B50;&#x95EE;&#x9898;&#x65F6;&#xFF0C;&#x5B83;&#x6240;&#x4F9D;&#x8D56;&#x7684;&#x66F4;&#x5C0F;&#x5B50;&#x95EE;&#x9898;&#x90FD;&#x5DF2;&#x6C42;&#x89E3;&#x5B8C;&#x6BD5;</li>
 </ul>
-<pre data-role="codeBlock" data-info="py line_begin=41 line_end=49 class=&quot;left4 line-numbers top1 bottom0&quot; highlight=[2, 7]" class="language-python left4 line-numbers top1 bottom0" data-line="2,7"><span class="token keyword keyword-def">def</span> <span class="token function">cut_rod_dp_bottom_up</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<pre data-role="codeBlock" data-info="py line_begin=41 line_end=49 class=&quot;left4 line-numbers top1 bottom0&quot; highlight=[2, 7]" class="language-python left4 line-numbers top1 bottom0" data-line="2,7"><span class="token keyword keyword-def">def</span> <span class="token function">cut_rod_dp_bottom_up</span><span class="token punctuation">(</span>p<span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">:</span>
     r <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token builtin">len</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span>
     <span class="token keyword keyword-for">for</span> j <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> n<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># &#x4F9D;&#x6B21;&#x6C42;&#x89E3; r[1], r[2], ...</span>
         v <span class="token operator">=</span> <span class="token operator">-</span><span class="token builtin">float</span><span class="token punctuation">(</span><span class="token string">&quot;inf&quot;</span><span class="token punctuation">)</span>
@@ -1175,7 +1175,7 @@ $$
 <h5 class="mume-header" id="%E9%87%8D%E6%9E%84%E6%9C%80%E4%BC%98%E5%88%87%E5%89%B2%E6%96%B9%E6%A1%88">&#x91CD;&#x6784;&#x6700;&#x4F18;&#x5207;&#x5272;&#x65B9;&#x6848;</h5>
 
 <hr>
-<pre data-role="codeBlock" data-info="py line_begin=51 line_end=64 class=&quot;left4 line-numbers top0 bottom0&quot; highlight=[3, 9, &quot;11-13&quot;]" class="language-python left4 line-numbers top0 bottom0" data-line="3,9,11-13"><span class="token keyword keyword-def">def</span> <span class="token function">cut_rod_dp_bottom_up_print_sol</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<pre data-role="codeBlock" data-info="py line_begin=51 line_end=64 class=&quot;left4 line-numbers top0 bottom0&quot; highlight=[3, 9, &quot;11-13&quot;]" class="language-python left4 line-numbers top0 bottom0" data-line="3,9,11-13"><span class="token keyword keyword-def">def</span> <span class="token function">cut_rod_dp_bottom_up_print_sol</span><span class="token punctuation">(</span>p<span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">:</span>
     r <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token builtin">len</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span>
     s <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token builtin">len</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span>  <span class="token comment"># s[i]&#x662F;&#x957F;&#x5EA6;&#x4E3A;i&#x7684;&#x94A2;&#x6761;&#x7684;&#x7B2C;&#x4E00;&#x5200;&#x6700;&#x4F18;&#x5207;&#x5272;&#x4F4D;&#x7F6E;</span>
     <span class="token keyword keyword-for">for</span> j <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> n<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
@@ -2214,7 +2214,7 @@ $$
 <div class="top-2"></div>
 <p><span class="mathjax-exps">$c[i,j]$</span>&#x4E3A;<span class="mathjax-exps">$X_i$</span>&#x548C;<span class="mathjax-exps">$Y_j$</span>&#x7684; LCS &#x7684;&#x957F;&#x5EA6;<br>
 <span class="mathjax-exps">$b[i,j]$</span>&#x8BB0;&#x5F55;<span class="mathjax-exps">$c[i,j]$</span>&#x7684;&#x8BA1;&#x7B97;&#x60C5;&#x51B5;</p>
-<div class="tighttable top-22per bottom-30 left50per row2-9-column3-9-fullborder">
+<div class="tighttable top-22per bottom-30 left51per row2-9-column3-9-fullborder">
 <table>
 <thead>
 <tr>
@@ -2353,7 +2353,7 @@ $$
 <div class="top-2"></div>
 <p><span class="mathjax-exps">$c[i,j]$</span>&#x4E3A;<span class="mathjax-exps">$X_i$</span>&#x548C;<span class="mathjax-exps">$Y_j$</span>&#x7684; LCS &#x7684;&#x957F;&#x5EA6;<br>
 <span class="mathjax-exps">$b[i,j]$</span>&#x8BB0;&#x5F55;<span class="mathjax-exps">$c[i,j]$</span>&#x7684;&#x8BA1;&#x7B97;&#x60C5;&#x51B5;</p>
-<div class="tighttable top-22per bottom-32 left50per row2-9-column3-9-fullborder">
+<div class="tighttable top-22per bottom-32 left51per row2-9-column3-9-fullborder">
 <table>
 <thead>
 <tr>
@@ -2472,16 +2472,16 @@ $$
 </table>
 </div>
 <p>&#x6253;&#x5370;&#x6700;&#x957F;&#x516C;&#x5171;&#x5B50;&#x5E8F;&#x5217;</p>
-<pre data-role="codeBlock" data-info="py line_begin=0 line_end=10 class=&quot;left4 line-numbers top-2 bottom-2&quot; highlight=[&quot;7-15&quot;]" class="language-python left4 line-numbers top-2 bottom-2" data-line="7-15"><span class="token keyword keyword-def">def</span> <span class="token function">lcs</span><span class="token punctuation">(</span>X<span class="token punctuation">,</span> Y<span class="token punctuation">,</span> m<span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    b <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">0</span> <span class="token keyword keyword-for">for</span> i <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token keyword keyword-for">for</span> j <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>m<span class="token punctuation">)</span><span class="token punctuation">]</span>
-    c <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">0</span> <span class="token keyword keyword-for">for</span> i <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>n<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token keyword keyword-for">for</span> j <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>m<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
-    <span class="token keyword keyword-for">for</span> i <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> m<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword keyword-for">for</span> j <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> n<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token keyword keyword-if">if</span> X<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">==</span> Y<span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">:</span>           <span class="token comment"># &#x5982;&#x679C;&#x5F53;&#x524D;&#x4E24;&#x4E2A;&#x5B50;&#x4E32;&#x7684;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x76F8;&#x540C;</span>
-                c<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> c<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token number">1</span>
-                b<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">&apos;&#x2196;&apos;</span>
-            <span class="token keyword keyword-elif">elif</span> c<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&gt;=</span> c<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
-                c<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> c<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span>
+<pre data-role="codeBlock" data-info="py line_begin=17 line_end=27 class=&quot;left4 line-numbers top-2 bottom-2&quot; highlight=[&quot;7-15&quot;]" class="language-python left4 line-numbers top-2 bottom-2" data-line="7-15"><span class="token keyword keyword-def">def</span> <span class="token function">restore_lcs</span><span class="token punctuation">(</span>b<span class="token punctuation">,</span> X<span class="token punctuation">,</span> i<span class="token punctuation">,</span> j<span class="token punctuation">,</span> LCS<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-if">if</span> i <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token keyword keyword-or">or</span> j <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-return">return</span>
+    <span class="token keyword keyword-if">if</span> b<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">&apos;&#x2196;&apos;</span><span class="token punctuation">:</span>
+        restore_lcs<span class="token punctuation">(</span>b<span class="token punctuation">,</span> X<span class="token punctuation">,</span> i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> LCS<span class="token punctuation">)</span>
+        LCS<span class="token punctuation">.</span>append<span class="token punctuation">(</span>X<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token keyword keyword-elif">elif</span> b<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">&apos;&#x2191;&apos;</span><span class="token punctuation">:</span>
+        restore_lcs<span class="token punctuation">(</span>b<span class="token punctuation">,</span> X<span class="token punctuation">,</span> i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> j<span class="token punctuation">,</span> LCS<span class="token punctuation">)</span>
+    <span class="token keyword keyword-else">else</span><span class="token punctuation">:</span>
+        restore_lcs<span class="token punctuation">(</span>b<span class="token punctuation">,</span> X<span class="token punctuation">,</span> i<span class="token punctuation">,</span> j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> LCS<span class="token punctuation">)</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre></section></section><section><section data-notes lineno="1044" class="slide " data-line="1044" data-h="17" data-v="0">
 <h5 class="mume-header" id="%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97">&#x6700;&#x957F;&#x9012;&#x589E;&#x5B50;&#x5E8F;&#x5217;</h5>
 

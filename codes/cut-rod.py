@@ -1,32 +1,32 @@
 from math import ceil  # 向上取整
 
 
-def cut_rod_rec(n):  # 分治 单子问题
+def cut_rod_rec(p, n):  # 分治 单子问题
     if n == 1:
         return p[1]
     else:
         v = p[n]
         for i in range(1, n):
-            v = max(v, p[i] + cut_rod_rec(n-i))
+            v = max(v, p[i] + cut_rod_rec(p, n-i))
     return v
 
 
-def cut_rod_rec2(n):  # 分治 双子问题
+def cut_rod_rec2(p, n):  # 分治 双子问题
     if n == 1:
         return p[1]
     else:
         v = p[n]
         for i in range(1, ceil(n/2)):
-            v = max(v, cut_rod_rec2(i) + cut_rod_rec2(n-i))
+            v = max(v, cut_rod_rec2(p, i) + cut_rod_rec2(p, n-i))
     return v
 
 
-def cut_rod_dp_memoized(n):
+def cut_rod_dp_memoized(p, n):
     r = [-float("inf")] * len(p)  # 初始化为负无穷
-    return cut_rod_dp_memoized_aux(n, r)
+    return cut_rod_dp_memoized_aux(p, n, r)
 
 
-def cut_rod_dp_memoized_aux(n, r):
+def cut_rod_dp_memoized_aux(p, n, r):
     if r[n] >= 0:  # 查表 若之前已计算过就直接用
         return r[n]
     if n == 0:
@@ -34,12 +34,12 @@ def cut_rod_dp_memoized_aux(n, r):
     else:
         v = -float("inf")
         for i in range(1, n+1):
-            v = max(v, p[i] + cut_rod_dp_memoized_aux(n-i, r))
+            v = max(v, p[i] + cut_rod_dp_memoized_aux(p, n-i, r))
     r[n] = v  # 保存当前计算的结果
     return v
 
 
-def cut_rod_dp_bottom_up(n):
+def cut_rod_dp_bottom_up(p, n):
     r = [0] * len(p)
     for j in range(1, n+1):  # 依次求解 r[1], r[2], ...
         v = -float("inf")
@@ -49,7 +49,7 @@ def cut_rod_dp_bottom_up(n):
     return r[n]
 
 
-def cut_rod_dp_bottom_up_print_sol(n):
+def cut_rod_dp_bottom_up_print_sol(p, n):
     r = [0] * len(p)
     s = [0] * len(p)  # s[i]是长度为i的钢条的第一刀最优切割位置
     for j in range(1, n+1):
@@ -65,8 +65,8 @@ def cut_rod_dp_bottom_up_print_sol(n):
 
 
 p = [0, 1, 5, 8, 9, 10, 17, 17, 20, 24, 30]   # 价格表
-print(cut_rod_rec(7))
-print(cut_rod_rec2(7))
-print(cut_rod_dp_memoized(7))
-print(cut_rod_dp_bottom_up(7))
-cut_rod_dp_bottom_up_print_sol(7)
+print(cut_rod_rec(p, 7))
+print(cut_rod_rec2(p, 7))
+print(cut_rod_dp_memoized(p, 7))
+print(cut_rod_dp_bottom_up(p, 7))
+cut_rod_dp_bottom_up_print_sol(p, 7)
