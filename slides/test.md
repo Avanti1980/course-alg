@@ -25,83 +25,133 @@ presentation:
 
 <!-- slide data-notes="" -->
 
-##### 最长递增子序列
+##### 文件编码
 
 ---
 
-输入：元素各不相同的序列$X$
+压缩一个有 10w 个字符的数据文件，只包含 a、b、c、d、e、f
 
-<div class="top-2"></div>
+<div class="threelines top0 bottom0">
 
-输出：$X$的最长递增子序列 (longest increasing subsequence, LIS)
+|   字符   |  a  |  b  |  c  |  d  |  e   |  f   |
+| :------: | :-: | :-: | :-: | :-: | :--: | :--: |
+|   频率   | 45  | 13  | 12  | 16  |  9   |  5   |
+| 定长编码 | 000 | 001 | 010 | 011 | 100  | 101  |
+| 变长编码 |  0  | 101 | 100 | 111 | 1101 | 1100 |
 
-最优子结构性：设以$X[i]$结尾的 LIS 为$X[i_1], \ldots, X[i_k], X[i]$
+</div>
 
-<div class="top-2"></div>
+采用二进制字符编码
 
-则$X[i_1], \ldots, X[i_k]$必然是以$X[i_k]$结尾的 LIS
-
-记$d[i]$为以$X[i]$结尾的 LIS 的长度，显然所有$d[i]$的最小值是 1
-
-<div class="top-2"></div>
-
-$d[0] = 1$，以$X[0]$结尾的 LIS 就是$X[0]$
-
-<div class="top-2"></div>
-
-$d[1]$根据$X[1]$是否可以接在$X[0]$后面分两种情况：
-
-- 若$X[0] < X[1]$，则$d[1] = 2$，此时 LIS 就是$X[0, 1]$
-- 若$X[0] > X[1]$，则$d[1] = 1$，此时 LIS 就是$X[1]$
+- 定长编码：3 \* 10w = 30w 个二进制位
+- 变长编码：约 22.4w 个二进制位，节约 25%空间
 
 <!-- slide vertical=true data-notes="" -->
 
-##### <span style="font-weight:900">LIS</span> 递推关系式
+##### 最优编码方案
 
 ---
 
-$X[i]$接在以$X[0], X[1], \ldots, X[i-1]$结尾的哪个 LIS 后面？
+变长编码必然是{==前缀码==} (prefix code)
 
-在所有可接的 LIS 后面选一个最长的，递推关系：
+码字{==互不为前缀==}，可以保证解码时无歧义
 
-$$
-\begin{align*}
-    \quad d[i] = \begin{cases}
-    1, & i=0 \\
-    \max_{j < i} ~ \{ d[j] + 1 \}, & X[j] < X[i] \\
-    \end{cases}
-\end{align*}
-$$
+<div class="threelines top0 bottom0">
 
-@import "../codes/lis.py" {line_begin=7 line_end=15 .left4 .line-numbers .top-3 .bottom0}
+| 字符 |  a  |  b  |  c  |  d  |  e   |  f   |
+| :--: | :-: | :-: | :-: | :-: | :--: | :--: |
+| 频率 | 45  | 13  | 12  | 16  |  9   |  5   |
+| 编码 |  0  | 101 | 100 | 111 | 1101 | 1100 |
 
-二重 for 循环时间复杂度$\Theta(n^2)$，一维表格空间复杂度$\Theta(n)$
+</div>
 
-<!-- slide vertical=true data-notes="" -->
+文件编码：0101100
 
-##### <span style="font-weight:900">LIS</span> 例子
+文件解码：<span class="red">0</span><span class="green">101</span>{==100==} -> <span class="red">a</span><span class="green">b</span>{==c==}
+
+<!-- slide data-notes="" -->
+
+##### 编码树
 
 ---
 
 <div class="top2"></div>
 
-$$
-\begin{align*}
-    \quad d[i] = \begin{cases}
-    1, & i=0 \\
-    \max_{j < i} ~ \{ d[j] + 1 \}, & X[j] < X[i] \\
-    \end{cases}
-\end{align*}
-$$
+- 每个字符对应一个叶子结点
+- 字符的码字由根结点到该字符叶子结点的路径表示
 
-<div class="threelines top-1">
+```dot
+digraph g {
+    bgcolor=transparent
+    rankdir=TB
+    graph [ranksep=0.3, nodesep=0.2]
+    node [shape=circle, fixedsize=true, width=0.35, color="#586e75", fontcolor="#b58900", fontsize=16, fontname="LXGWWenKai"]
+    edge [arrowhead=none, color="#586e75", fontcolor="#268bd2", fontsize=16, fontname="LXGWWenKai", len=0.1]
 
-| $i$ | <span class="yellow">0</span> |  1  | <span class="yellow">2</span> |  3  |  4  | <span class="yellow">5</span> |               6               |  7  |  8  |  9  |
-| :-: | :---------------------------: | :-: | :---------------------------: | :-: | :-: | :---------------------------: | :---------------------------: | :-: | :-: | :-: |
-| $X$ |            {==②==}            |  8  |            {==④==}            |  9  |  1  |            {==⑥==}            |            {==⑦==}            |  3  |  0  |  5  |
-| $d$ |               1               |  2  |               2               |  3  |  1  |               3               |  <span class="red">4</span>   |  2  |  1  |  3  |
-| $b$ |              -1               |  0  | <span class="yellow">0</span> |  1  | -1  | <span class="yellow">2</span> | <span class="yellow">5</span> |  0  | -1  |  2  |
+        100 -> 86 [label="0"]
+        100 -> 14 [label="1"]
 
-</div>
+        86 -> 58 [label="0"]  
+        86 -> 28 [label="1"]
 
-@import "../codes/lis.py" {line_begin=17 line_end=22 .left4 .line-numbers .top0 .bottom0 highlight=[7-9]}
+        n1 [label="14"]
+        14 -> n1 [label="0"]
+
+        node [color="#fdf6e3", fontcolor="#fdf6e3"]
+        edge [color="#fdf6e3"]
+
+        14 -> 15
+
+        node [shape=box, width=0.6, height=0.3, color="#586e75", fontcolor="#b58900"]
+        edge [color="#586e75"]
+
+        58 -> "a:45" [label="0"]
+        58 -> "b:13" [label="1"]
+        28 -> "c:12" [label="0"]
+        28 -> "d:16" [label="1"]
+        n1 -> "e:9" [label="0"]
+        n1 -> "f:5" [label="1"]
+
+        node [color="#fdf6e3", fontcolor="#fdf6e3"]
+        edge [color="#fdf6e3"]
+
+        15 -> "e:10"
+        15 -> "e:11"
+}
+```
+
+```dot {.top-30 .left50per}
+digraph g {
+    bgcolor=transparent
+    rankdir=TB
+    graph [ranksep=0.1, nodesep=0.3]
+    edge [arrowhead=none, color="#586e75", fontcolor="#268bd2", fontsize=14, fontname="LXGWWenKai", len=0.1]
+    node [shape=circle, fixedsize=true, width=0.35, color="#586e75", fontcolor="#b58900", fontsize=16, fontname="LXGWWenKai"]
+
+    100
+
+    node [shape=box, width=0.6, height=0.3]
+
+    100 -> "a:45" [label="0"]
+
+    node [shape=circle, width=0.4]
+
+    100 -> 55 [label="1"]
+    55 -> 25 [label="0"]
+    55 -> 30 [label="1"]
+    30 -> 14 [label="0"]
+
+    node [shape=box, width=0.6, height=0.3]
+
+    n5 [label="c:12"]
+    n6 [label="b:13"]
+    25 -> n5 [label="0"]
+    25 -> n6 [label="1"]
+    n7 [label="d:16"]
+    30 -> n7 [label="1"]
+    n8 [label="f:5"]
+    n9 [label="e:9"]
+    n4 -> n8 [label="0"]
+    n4 -> n9 [label="1"]
+}
+```

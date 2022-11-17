@@ -2,7 +2,7 @@ from bisect import bisect_left
 
 import numpy as np
 
-np.random.seed(0)
+# np.random.seed(1)
 
 
 def lis_dp(X, n):
@@ -28,12 +28,13 @@ def lis_greedy(X, n):
     for i in range(n):
         j = bisect_left(e, X[i])  # 在e中对X[i]进行二分查找
         if j == len(e):           # X[i] > e[-1] 将其接在e的最后可得更长的LIS
+            e.append(X[i])
             if j > 0:
                 b[i] = e[-1]
-            e.append(X[i])
         else:                     # e[j-1] < X[i] < e[j]
             e[j] = X[i]           # 将e[j]改为X[i] 可以改进现有长度为j的LIS
-            b[i] = e[j-1]
+            if j > 0:
+                b[i] = e[j-1]
     return e, b
 
 
@@ -47,7 +48,7 @@ def restore_lis_greedy(X, e, b):
 
 
 def restore_lis_greedy_aux(dict, m, b, pre, LIS):
-    if pre == -1:
+    if pre < 0:
         return
     restore_lis_greedy_aux(dict, m, b, b[dict[pre]], LIS)
     LIS.append(pre)
@@ -58,16 +59,16 @@ X = np.random.permutation(n)
 print('X =', X)
 
 d, b = lis_dp(X, n)
-print('d: %s' % d)
-print('b: %s' % b)
+# print('d: %s' % d)
+# print('b: %s' % b)
 
 LIS = []
 restore_lis_dp(X, b, np.argmax(d), LIS)
 print('LIS =', LIS)
 
 e, b = lis_greedy(X, n)
-print('e: %s' % e)
-print('b: %s' % b)
+# print('e: %s' % e)
+# print('b: %s' % b)
 
 LIS = restore_lis_greedy(X, e, b)
 print('LIS =', LIS)
