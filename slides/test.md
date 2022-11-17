@@ -80,78 +80,98 @@ presentation:
 - 每个字符对应一个叶子结点
 - 字符的码字由根结点到该字符叶子结点的路径表示
 
-```dot
-digraph g {
-    bgcolor=transparent
-    rankdir=TB
-    graph [ranksep=0.3, nodesep=0.2]
-    node [shape=circle, fixedsize=true, width=0.35, color="#586e75", fontcolor="#b58900", fontsize=16, fontname="LXGWWenKai"]
-    edge [arrowhead=none, color="#586e75", fontcolor="#268bd2", fontsize=16, fontname="LXGWWenKai", len=0.1]
+@import "../dot/coding-tree1.dot"
 
-        100 -> 86 [label="0"]
-        100 -> 14 [label="1"]
+@import "../dot/coding-tree2.dot" {.top-32per .left50per}
 
-        86 -> 58 [label="0"]  
-        86 -> 28 [label="1"]
+<div class="top-10"></div>
 
-        n1 [label="14"]
-        14 -> n1 [label="0"]
+左：定长编码树，右：变长编码树
 
-        node [color="#fdf6e3", fontcolor="#fdf6e3"]
-        edge [color="#fdf6e3"]
+最优编码树必然是满二叉树(右)，每个内部结点有两个子结点
 
-        14 -> 15
+<!-- slide vertical=true data-notes="" -->
 
-        node [shape=box, width=0.6, height=0.3, color="#586e75", fontcolor="#b58900"]
-        edge [color="#586e75"]
+##### 最优编码
 
-        58 -> "a:45" [label="0"]
-        58 -> "b:13" [label="1"]
-        28 -> "c:12" [label="0"]
-        28 -> "d:16" [label="1"]
-        n1 -> "e:9" [label="0"]
-        n1 -> "f:5" [label="1"]
+---
 
-        node [color="#fdf6e3", fontcolor="#fdf6e3"]
-        edge [color="#fdf6e3"]
+设$C$为字符表，对$\forall c \in C$，令$c.f$为$c$在文件中出现的频率
 
-        15 -> "e:10"
-        15 -> "e:11"
-}
-```
+设$T$为任意前缀编码树，令$d_T(c)$表示字符$c$对应的叶子结点在$T$中的深度，也是$c$的码字的长度
 
-```dot {.top-30 .left50per}
-digraph g {
-    bgcolor=transparent
-    rankdir=TB
-    graph [ranksep=0.1, nodesep=0.3]
-    edge [arrowhead=none, color="#586e75", fontcolor="#268bd2", fontsize=14, fontname="LXGWWenKai", len=0.1]
-    node [shape=circle, fixedsize=true, width=0.35, color="#586e75", fontcolor="#b58900", fontsize=16, fontname="LXGWWenKai"]
+采用编码方案$T$时，文件的编码长度
 
-    100
+<div class="top2"></div>
 
-    node [shape=box, width=0.6, height=0.3]
+$$
+\begin{align*}
+    \quad B(T) = \sum_{c \in C} c.f \times d_T(c)
+\end{align*}
+$$
 
-    100 -> "a:45" [label="0"]
+使得$B(T)$最小的编码称为{==最优编码==}
 
-    node [shape=circle, width=0.4]
+霍夫曼编码是一种最优编码
 
-    100 -> 55 [label="1"]
-    55 -> 25 [label="0"]
-    55 -> 30 [label="1"]
-    30 -> 14 [label="0"]
+<!-- slide data-notes="" -->
 
-    node [shape=box, width=0.6, height=0.3]
+##### 霍夫曼编码
 
-    n5 [label="c:12"]
-    n6 [label="b:13"]
-    25 -> n5 [label="0"]
-    25 -> n6 [label="1"]
-    n7 [label="d:16"]
-    30 -> n7 [label="1"]
-    n8 [label="f:5"]
-    n9 [label="e:9"]
-    n4 -> n8 [label="0"]
-    n4 -> n9 [label="1"]
-}
-```
+---
+
+<div class="threelines left6 righta top-1 bottom0">
+
+| 字符 |  a  |  b  |  c  |  d  |  e  |  f  |
+| :--: | :-: | :-: | :-: | :-: | :-: | :-: |
+| 频率 | 45  | 13  | 12  | 16  |  9  |  5  |
+
+</div>
+
+@import "../dot/huffman-tree-build1.dot"
+
+@import "../dot/huffman-tree-build2.dot" {.top0}
+
+@import "../dot/huffman-tree-build3.dot" {.top0}
+
+@import "../dot/huffman-tree-build4.dot" {.top-57per .left58per}
+
+@import "../dot/huffman-tree-build5.dot" {.top0 .bottom-4 .left58per}
+
+<!-- slide vertical=true data-notes="" -->
+
+##### 霍夫曼编码
+
+---
+
+最终霍夫曼编码树为
+
+<div class="threelines left20per top-10 bottom-10">
+
+| 字符 |  a  |  b  |  c  |  d  |  e  |  f  |
+| :--: | :-: | :-: | :-: | :-: | :-: | :-: |
+| 频率 | 45  | 13  | 12  | 16  |  9  |  5  |
+
+</div>
+
+@import "../dot/huffman-tree.dot" {.left-15 .top4}
+
+<!-- slide vertical=true data-notes="" -->
+
+##### 霍夫曼编码
+
+---
+
+
+最优前缀码对应的树是满二叉树，故必有
+
+- $|C|$个叶子结点
+- $|C|-1$个内部结点
+
+<div class="top2"></div>
+
+前缀编码树$T$对文件产生的编码长度$B(T) = \sum_{c \in C} c.freq \cdot d_T(c)$
+
+
+⑤⑥⑦⑧⑨⑩
+
