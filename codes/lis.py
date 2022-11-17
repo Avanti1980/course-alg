@@ -11,7 +11,7 @@ def lis_dp(X, n):
         for j in range(i):
             if X[j] < X[i] and d[i] < d[j] + 1:  # i接在j后面可以得到更长的LIS
                 d[i] = d[j] + 1
-                b[i] = j
+                b[i] = j  # 更新前一个元素的索引
     return d, b
 
 
