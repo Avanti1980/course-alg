@@ -22,12 +22,12 @@ def cut_rod_rec2(p, n):  # 分治 双子问题
 
 
 def cut_rod_dp_memoized(p, n):
-    r = [-float("inf")] * len(p)  # 初始化为负无穷
+    r = [-float("inf")] * len(p)  # 备忘录初始化为负无穷
     return cut_rod_dp_memoized_aux(p, n, r)
 
 
 def cut_rod_dp_memoized_aux(p, n, r):
-    if r[n] >= 0:  # 查表 若之前已计算过就直接用
+    if r[n] >= 0:  # 查备忘录 若之前已计算过就直接用
         return r[n]
     if n == 0:
         v = 0

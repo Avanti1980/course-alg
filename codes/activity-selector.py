@@ -3,7 +3,7 @@ def activity_selector_rec(s, f, k, n, a):
     while m <= n and s[m] < f[k]:  # 贪心选择寻找ak之后最早结束的活动
         m = m + 1
     if m <= n:  # 若找到 将其加入集合 递归寻找下一个兼容活动
-        a.append(m)      # 将am加入集合
+        a.append(m)  # 将am加入集合
         activity_selector_rec(s, f, m, n, a)
 
 

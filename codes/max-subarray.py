@@ -49,10 +49,10 @@ def find_max_subarray_dp(A, n):
     dp[0] = A[0]
     for i in range(1, n):
         if dp[i-1] >= 0:
-            dp[i] = dp[i-1] + A[i]
+            dp[i] = dp[i-1] + A[i]  # A[i]接在A[j,...,i-1]后面
         else:
-            dp[i] = A[i]
-    return max(dp)
+            dp[i] = A[i]  # A[i]不接在A[j,...,i-1]后面 另起炉灶
+    return max(dp)  # 返回dp的最大元
 
 
 def find_max_subarray_dp2(A, n):
@@ -61,12 +61,12 @@ def find_max_subarray_dp2(A, n):
     dp[0], s[0] = A[0], 0
     for i in range(1, n):
         if dp[i-1] >= 0:
-            dp[i] = dp[i-1] + A[i]
-            s[i] = s[i-1]
+            dp[i] = dp[i-1] + A[i]  # A[i]接在A[j,...,i-1]后面
+            s[i] = s[i-1]           # 继承其起始索引
         else:
-            dp[i] = A[i]
-            s[i] = i
-    max_index = np.argmax(dp)
+            dp[i] = A[i]  # A[i]不接在A[j,...,i-1]后面 另起炉灶
+            s[i] = i      # 起始索引就是当前位置
+    max_index = np.argmax(dp)  # 遍历dp获取最大元的索引
     return s[max_index], max_index, dp[max_index]
 
 
