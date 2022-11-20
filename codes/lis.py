@@ -9,7 +9,7 @@ def lis_dp(X, n):
     d, b = [1] * n, [-1] * n
     for i in range(1, n):
         for j in range(i):
-            if X[j] < X[i] and d[i] < d[j] + 1:  # i接在j后面可以得到更长的递增子序列
+            if X[j] < X[i] and d[i] < d[j] + 1:  # X[i]可接在X[j]后面
                 d[i] = d[j] + 1
                 b[i] = j  # 更新前一个元素的索引
     return d, b
@@ -22,7 +22,7 @@ def restore_lis_dp(X, b, index, LIS):
     LIS.append(X[index])
 
 
-def lis_greedy(X, n):
+def lis_dp_plus(X, n):
     e = []
     b = [-1] * n  # b[i]记录i在LIS中的前一个元素的值
     for i in range(n):
@@ -38,18 +38,18 @@ def lis_greedy(X, n):
     return e, b
 
 
-def restore_lis_greedy(X, e, b):
+def restore_lis_dp_plus(X, e, b):
     dict = {key: value for key, value in zip(X, range(n))}  # 倒排索引字典 X[i]: i
     pre = e[-1]  # e的最后一个元素是LIS的最后一个元素
     LIS = []
-    restore_lis_greedy_aux(dict, b, pre, LIS)  # 从最后一个元素开始 向前将LIS构造出来
+    restore_lis_dp_plus_aux(dict, b, pre, LIS)  # 从最后一个元素开始 向前将LIS构造出来
     return LIS
 
 
-def restore_lis_greedy_aux(dict, b, pre, LIS):
+def restore_lis_dp_plus_aux(dict, b, pre, LIS):
     if pre < 0:
         return
-    restore_lis_greedy_aux(dict, b, b[dict[pre]], LIS)
+    restore_lis_dp_plus_aux(dict, b, b[dict[pre]], LIS)
     LIS.append(pre)
 
 
@@ -65,9 +65,9 @@ LIS = []
 restore_lis_dp(X, b, np.argmax(d), LIS)
 print('LIS =', LIS)
 
-e, b = lis_greedy(X, n)
+e, b = lis_dp_plus(X, n)
 # print('e: %s' % e)
 # print('b: %s' % b)
 
-LIS = restore_lis_greedy(X, e, b)
+LIS = restore_lis_dp_plus(X, e, b)
 print('LIS =', LIS)
