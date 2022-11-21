@@ -1,0 +1,2256 @@
+<!DOCTYPE html><html><head>
+      <title>04</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <style>
+      /*!
+* reveal.js 4.0.2
+* https://revealjs.com
+* MIT licensed
+*
+* Copyright (C) 2020 Hakim El Hattab, https://hakim.se
+*/
+.reveal .r-stretch,.reveal .stretch{max-width:none;max-height:none}.reveal pre.r-stretch code,.reveal pre.stretch code{height:100%;max-height:100%;box-sizing:border-box}.reveal .r-fit-text{display:inline-block;white-space:nowrap}.reveal .r-stack{display:grid}.reveal .r-stack>*{grid-area:1/1;margin:auto}.reveal .r-hstack,.reveal .r-vstack{display:flex}.reveal .r-hstack img,.reveal .r-hstack video,.reveal .r-vstack img,.reveal .r-vstack video{min-width:0;min-height:0;-o-object-fit:contain;object-fit:contain}.reveal .r-vstack{flex-direction:column;align-items:center;justify-content:center}.reveal .r-hstack{flex-direction:row;align-items:center;justify-content:center}.reveal .items-stretch{align-items:stretch}.reveal .items-start{align-items:flex-start}.reveal .items-center{align-items:center}.reveal .items-end{align-items:flex-end}.reveal .justify-between{justify-content:space-between}.reveal .justify-around{justify-content:space-around}.reveal .justify-start{justify-content:flex-start}.reveal .justify-center{justify-content:center}.reveal .justify-end{justify-content:flex-end}html.reveal-full-page{width:100%;height:100%;height:100vh;height:calc(var(--vh,1vh) * 100);overflow:hidden}.reveal-viewport{height:100%;overflow:hidden;position:relative;line-height:1;margin:0;background-color:#fff;color:#000}.reveal .slides section .fragment{opacity:0;visibility:hidden;transition:all .2s ease;will-change:opacity}.reveal .slides section .fragment.visible{opacity:1;visibility:inherit}.reveal .slides section .fragment.disabled{transition:none}.reveal .slides section .fragment.grow{opacity:1;visibility:inherit}.reveal .slides section .fragment.grow.visible{transform:scale(1.3)}.reveal .slides section .fragment.shrink{opacity:1;visibility:inherit}.reveal .slides section .fragment.shrink.visible{transform:scale(.7)}.reveal .slides section .fragment.zoom-in{transform:scale(.1)}.reveal .slides section .fragment.zoom-in.visible{transform:none}.reveal .slides section .fragment.fade-out{opacity:1;visibility:inherit}.reveal .slides section .fragment.fade-out.visible{opacity:0;visibility:hidden}.reveal .slides section .fragment.semi-fade-out{opacity:1;visibility:inherit}.reveal .slides section .fragment.semi-fade-out.visible{opacity:.5;visibility:inherit}.reveal .slides section .fragment.strike{opacity:1;visibility:inherit}.reveal .slides section .fragment.strike.visible{text-decoration:line-through}.reveal .slides section .fragment.fade-up{transform:translate(0,40px)}.reveal .slides section .fragment.fade-up.visible{transform:translate(0,0)}.reveal .slides section .fragment.fade-down{transform:translate(0,-40px)}.reveal .slides section .fragment.fade-down.visible{transform:translate(0,0)}.reveal .slides section .fragment.fade-right{transform:translate(-40px,0)}.reveal .slides section .fragment.fade-right.visible{transform:translate(0,0)}.reveal .slides section .fragment.fade-left{transform:translate(40px,0)}.reveal .slides section .fragment.fade-left.visible{transform:translate(0,0)}.reveal .slides section .fragment.current-visible,.reveal .slides section .fragment.fade-in-then-out{opacity:0;visibility:hidden}.reveal .slides section .fragment.current-visible.current-fragment,.reveal .slides section .fragment.fade-in-then-out.current-fragment{opacity:1;visibility:inherit}.reveal .slides section .fragment.fade-in-then-semi-out{opacity:0;visibility:hidden}.reveal .slides section .fragment.fade-in-then-semi-out.visible{opacity:.5;visibility:inherit}.reveal .slides section .fragment.fade-in-then-semi-out.current-fragment{opacity:1;visibility:inherit}.reveal .slides section .fragment.highlight-blue,.reveal .slides section .fragment.highlight-current-blue,.reveal .slides section .fragment.highlight-current-green,.reveal .slides section .fragment.highlight-current-red,.reveal .slides section .fragment.highlight-green,.reveal .slides section .fragment.highlight-red{opacity:1;visibility:inherit}.reveal .slides section .fragment.highlight-red.visible{color:#ff2c2d}.reveal .slides section .fragment.highlight-green.visible{color:#17ff2e}.reveal .slides section .fragment.highlight-blue.visible{color:#1b91ff}.reveal .slides section .fragment.highlight-current-red.current-fragment{color:#ff2c2d}.reveal .slides section .fragment.highlight-current-green.current-fragment{color:#17ff2e}.reveal .slides section .fragment.highlight-current-blue.current-fragment{color:#1b91ff}.reveal:after{content:'';font-style:italic}.reveal iframe{z-index:1}.reveal a{position:relative}@keyframes bounce-right{0%,10%,25%,40%,50%{transform:translateX(0)}20%{transform:translateX(10px)}30%{transform:translateX(-5px)}}@keyframes bounce-left{0%,10%,25%,40%,50%{transform:translateX(0)}20%{transform:translateX(-10px)}30%{transform:translateX(5px)}}@keyframes bounce-down{0%,10%,25%,40%,50%{transform:translateY(0)}20%{transform:translateY(10px)}30%{transform:translateY(-5px)}}.reveal .controls{display:none;position:absolute;top:auto;bottom:12px;right:12px;left:auto;z-index:11;color:#000;pointer-events:none;font-size:10px}.reveal .controls button{position:absolute;padding:0;background-color:transparent;border:0;outline:0;cursor:pointer;color:currentColor;transform:scale(.9999);transition:color .2s ease,opacity .2s ease,transform .2s ease;z-index:2;pointer-events:auto;font-size:inherit;visibility:hidden;opacity:0;-webkit-appearance:none;-webkit-tap-highlight-color:transparent}.reveal .controls .controls-arrow:after,.reveal .controls .controls-arrow:before{content:'';position:absolute;top:0;left:0;width:2.6em;height:.5em;border-radius:.25em;background-color:currentColor;transition:all .15s ease,background-color .8s ease;transform-origin:.2em 50%;will-change:transform}.reveal .controls .controls-arrow{position:relative;width:3.6em;height:3.6em}.reveal .controls .controls-arrow:before{transform:translateX(.5em) translateY(1.55em) rotate(45deg)}.reveal .controls .controls-arrow:after{transform:translateX(.5em) translateY(1.55em) rotate(-45deg)}.reveal .controls .controls-arrow:hover:before{transform:translateX(.5em) translateY(1.55em) rotate(40deg)}.reveal .controls .controls-arrow:hover:after{transform:translateX(.5em) translateY(1.55em) rotate(-40deg)}.reveal .controls .controls-arrow:active:before{transform:translateX(.5em) translateY(1.55em) rotate(36deg)}.reveal .controls .controls-arrow:active:after{transform:translateX(.5em) translateY(1.55em) rotate(-36deg)}.reveal .controls .navigate-left{right:6.4em;bottom:3.2em;transform:translateX(-10px)}.reveal .controls .navigate-left.highlight{animation:bounce-left 2s 50 both ease-out}.reveal .controls .navigate-right{right:0;bottom:3.2em;transform:translateX(10px)}.reveal .controls .navigate-right .controls-arrow{transform:rotate(180deg)}.reveal .controls .navigate-right.highlight{animation:bounce-right 2s 50 both ease-out}.reveal .controls .navigate-up{right:3.2em;bottom:6.4em;transform:translateY(-10px)}.reveal .controls .navigate-up .controls-arrow{transform:rotate(90deg)}.reveal .controls .navigate-down{right:3.2em;bottom:-1.4em;padding-bottom:1.4em;transform:translateY(10px)}.reveal .controls .navigate-down .controls-arrow{transform:rotate(-90deg)}.reveal .controls .navigate-down.highlight{animation:bounce-down 2s 50 both ease-out}.reveal .controls[data-controls-back-arrows=faded] .navigate-up.enabled{opacity:.3}.reveal .controls[data-controls-back-arrows=faded] .navigate-up.enabled:hover{opacity:1}.reveal .controls[data-controls-back-arrows=hidden] .navigate-up.enabled{opacity:0;visibility:hidden}.reveal .controls .enabled{visibility:visible;opacity:.9;cursor:pointer;transform:none}.reveal .controls .enabled.fragmented{opacity:.5}.reveal .controls .enabled.fragmented:hover,.reveal .controls .enabled:hover{opacity:1}.reveal:not(.rtl) .controls[data-controls-back-arrows=faded] .navigate-left.enabled{opacity:.3}.reveal:not(.rtl) .controls[data-controls-back-arrows=faded] .navigate-left.enabled:hover{opacity:1}.reveal:not(.rtl) .controls[data-controls-back-arrows=hidden] .navigate-left.enabled{opacity:0;visibility:hidden}.reveal.rtl .controls[data-controls-back-arrows=faded] .navigate-right.enabled{opacity:.3}.reveal.rtl .controls[data-controls-back-arrows=faded] .navigate-right.enabled:hover{opacity:1}.reveal.rtl .controls[data-controls-back-arrows=hidden] .navigate-right.enabled{opacity:0;visibility:hidden}.reveal[data-navigation-mode=linear].has-horizontal-slides .navigate-down,.reveal[data-navigation-mode=linear].has-horizontal-slides .navigate-up{display:none}.reveal:not(.has-vertical-slides) .controls .navigate-left,.reveal[data-navigation-mode=linear].has-horizontal-slides .navigate-left{bottom:1.4em;right:5.5em}.reveal:not(.has-vertical-slides) .controls .navigate-right,.reveal[data-navigation-mode=linear].has-horizontal-slides .navigate-right{bottom:1.4em;right:.5em}.reveal:not(.has-horizontal-slides) .controls .navigate-up{right:1.4em;bottom:5em}.reveal:not(.has-horizontal-slides) .controls .navigate-down{right:1.4em;bottom:.5em}.reveal.has-dark-background .controls{color:#fff}.reveal.has-light-background .controls{color:#000}.reveal.no-hover .controls .controls-arrow:active:before,.reveal.no-hover .controls .controls-arrow:hover:before{transform:translateX(.5em) translateY(1.55em) rotate(45deg)}.reveal.no-hover .controls .controls-arrow:active:after,.reveal.no-hover .controls .controls-arrow:hover:after{transform:translateX(.5em) translateY(1.55em) rotate(-45deg)}@media screen and (min-width:500px){.reveal .controls[data-controls-layout=edges]{top:0;right:0;bottom:0;left:0}.reveal .controls[data-controls-layout=edges] .navigate-down,.reveal .controls[data-controls-layout=edges] .navigate-left,.reveal .controls[data-controls-layout=edges] .navigate-right,.reveal .controls[data-controls-layout=edges] .navigate-up{bottom:auto;right:auto}.reveal .controls[data-controls-layout=edges] .navigate-left{top:50%;left:.8em;margin-top:-1.8em}.reveal .controls[data-controls-layout=edges] .navigate-right{top:50%;right:.8em;margin-top:-1.8em}.reveal .controls[data-controls-layout=edges] .navigate-up{top:.8em;left:50%;margin-left:-1.8em}.reveal .controls[data-controls-layout=edges] .navigate-down{bottom:-.3em;left:50%;margin-left:-1.8em}}.reveal .progress{position:absolute;display:none;height:3px;width:100%;bottom:0;left:0;z-index:10;background-color:rgba(0,0,0,.2);color:#fff}.reveal .progress:after{content:'';display:block;position:absolute;height:10px;width:100%;top:-10px}.reveal .progress span{display:block;height:100%;width:100%;background-color:currentColor;transition:transform .8s cubic-bezier(.26,.86,.44,.985);transform-origin:0 0;transform:scaleX(0)}.reveal .slide-number{position:absolute;display:block;right:8px;bottom:8px;z-index:31;font-family:Helvetica,sans-serif;font-size:12px;line-height:1;color:#fff;background-color:rgba(0,0,0,.4);padding:5px}.reveal .slide-number a{color:currentColor}.reveal .slide-number-delimiter{margin:0 3px}.reveal{position:relative;width:100%;height:100%;overflow:hidden;touch-action:pinch-zoom}.reveal.embedded{touch-action:pan-y}.reveal .slides{position:absolute;width:100%;height:100%;top:0;right:0;bottom:0;left:0;margin:auto;pointer-events:none;overflow:visible;z-index:1;text-align:center;perspective:600px;perspective-origin:50% 40%}.reveal .slides>section{perspective:600px}.reveal .slides>section,.reveal .slides>section>section{display:none;position:absolute;width:100%;pointer-events:auto;z-index:10;transform-style:flat;transition:transform-origin .8s cubic-bezier(.26,.86,.44,.985),transform .8s cubic-bezier(.26,.86,.44,.985),visibility .8s cubic-bezier(.26,.86,.44,.985),opacity .8s cubic-bezier(.26,.86,.44,.985)}.reveal[data-transition-speed=fast] .slides section{transition-duration:.4s}.reveal[data-transition-speed=slow] .slides section{transition-duration:1.2s}.reveal .slides section[data-transition-speed=fast]{transition-duration:.4s}.reveal .slides section[data-transition-speed=slow]{transition-duration:1.2s}.reveal .slides>section.stack{padding-top:0;padding-bottom:0;pointer-events:none;height:100%}.reveal .slides>section.present,.reveal .slides>section>section.present{display:block;z-index:11;opacity:1}.reveal .slides>section:empty,.reveal .slides>section>section:empty,.reveal .slides>section>section[data-background-interactive],.reveal .slides>section[data-background-interactive]{pointer-events:none}.reveal.center,.reveal.center .slides,.reveal.center .slides section{min-height:0!important}.reveal .slides>section:not(.present),.reveal .slides>section>section:not(.present){pointer-events:none}.reveal.overview .slides>section,.reveal.overview .slides>section>section{pointer-events:auto}.reveal .slides>section.future,.reveal .slides>section.past,.reveal .slides>section>section.future,.reveal .slides>section>section.past{opacity:0}.reveal.slide section{-webkit-backface-visibility:hidden;backface-visibility:hidden}.reveal .slides>section[data-transition=slide].past,.reveal .slides>section[data-transition~=slide-out].past,.reveal.slide .slides>section:not([data-transition]).past{transform:translate(-150%,0)}.reveal .slides>section[data-transition=slide].future,.reveal .slides>section[data-transition~=slide-in].future,.reveal.slide .slides>section:not([data-transition]).future{transform:translate(150%,0)}.reveal .slides>section>section[data-transition=slide].past,.reveal .slides>section>section[data-transition~=slide-out].past,.reveal.slide .slides>section>section:not([data-transition]).past{transform:translate(0,-150%)}.reveal .slides>section>section[data-transition=slide].future,.reveal .slides>section>section[data-transition~=slide-in].future,.reveal.slide .slides>section>section:not([data-transition]).future{transform:translate(0,150%)}.reveal.linear section{-webkit-backface-visibility:hidden;backface-visibility:hidden}.reveal .slides>section[data-transition=linear].past,.reveal .slides>section[data-transition~=linear-out].past,.reveal.linear .slides>section:not([data-transition]).past{transform:translate(-150%,0)}.reveal .slides>section[data-transition=linear].future,.reveal .slides>section[data-transition~=linear-in].future,.reveal.linear .slides>section:not([data-transition]).future{transform:translate(150%,0)}.reveal .slides>section>section[data-transition=linear].past,.reveal .slides>section>section[data-transition~=linear-out].past,.reveal.linear .slides>section>section:not([data-transition]).past{transform:translate(0,-150%)}.reveal .slides>section>section[data-transition=linear].future,.reveal .slides>section>section[data-transition~=linear-in].future,.reveal.linear .slides>section>section:not([data-transition]).future{transform:translate(0,150%)}.reveal .slides section[data-transition=default].stack,.reveal.default .slides section.stack{transform-style:preserve-3d}.reveal .slides>section[data-transition=default].past,.reveal .slides>section[data-transition~=default-out].past,.reveal.default .slides>section:not([data-transition]).past{transform:translate3d(-100%,0,0) rotateY(-90deg) translate3d(-100%,0,0)}.reveal .slides>section[data-transition=default].future,.reveal .slides>section[data-transition~=default-in].future,.reveal.default .slides>section:not([data-transition]).future{transform:translate3d(100%,0,0) rotateY(90deg) translate3d(100%,0,0)}.reveal .slides>section>section[data-transition=default].past,.reveal .slides>section>section[data-transition~=default-out].past,.reveal.default .slides>section>section:not([data-transition]).past{transform:translate3d(0,-300px,0) rotateX(70deg) translate3d(0,-300px,0)}.reveal .slides>section>section[data-transition=default].future,.reveal .slides>section>section[data-transition~=default-in].future,.reveal.default .slides>section>section:not([data-transition]).future{transform:translate3d(0,300px,0) rotateX(-70deg) translate3d(0,300px,0)}.reveal .slides section[data-transition=convex].stack,.reveal.convex .slides section.stack{transform-style:preserve-3d}.reveal .slides>section[data-transition=convex].past,.reveal .slides>section[data-transition~=convex-out].past,.reveal.convex .slides>section:not([data-transition]).past{transform:translate3d(-100%,0,0) rotateY(-90deg) translate3d(-100%,0,0)}.reveal .slides>section[data-transition=convex].future,.reveal .slides>section[data-transition~=convex-in].future,.reveal.convex .slides>section:not([data-transition]).future{transform:translate3d(100%,0,0) rotateY(90deg) translate3d(100%,0,0)}.reveal .slides>section>section[data-transition=convex].past,.reveal .slides>section>section[data-transition~=convex-out].past,.reveal.convex .slides>section>section:not([data-transition]).past{transform:translate3d(0,-300px,0) rotateX(70deg) translate3d(0,-300px,0)}.reveal .slides>section>section[data-transition=convex].future,.reveal .slides>section>section[data-transition~=convex-in].future,.reveal.convex .slides>section>section:not([data-transition]).future{transform:translate3d(0,300px,0) rotateX(-70deg) translate3d(0,300px,0)}.reveal .slides section[data-transition=concave].stack,.reveal.concave .slides section.stack{transform-style:preserve-3d}.reveal .slides>section[data-transition=concave].past,.reveal .slides>section[data-transition~=concave-out].past,.reveal.concave .slides>section:not([data-transition]).past{transform:translate3d(-100%,0,0) rotateY(90deg) translate3d(-100%,0,0)}.reveal .slides>section[data-transition=concave].future,.reveal .slides>section[data-transition~=concave-in].future,.reveal.concave .slides>section:not([data-transition]).future{transform:translate3d(100%,0,0) rotateY(-90deg) translate3d(100%,0,0)}.reveal .slides>section>section[data-transition=concave].past,.reveal .slides>section>section[data-transition~=concave-out].past,.reveal.concave .slides>section>section:not([data-transition]).past{transform:translate3d(0,-80%,0) rotateX(-70deg) translate3d(0,-80%,0)}.reveal .slides>section>section[data-transition=concave].future,.reveal .slides>section>section[data-transition~=concave-in].future,.reveal.concave .slides>section>section:not([data-transition]).future{transform:translate3d(0,80%,0) rotateX(70deg) translate3d(0,80%,0)}.reveal .slides section[data-transition=zoom],.reveal.zoom .slides section:not([data-transition]){transition-timing-function:ease}.reveal .slides>section[data-transition=zoom].past,.reveal .slides>section[data-transition~=zoom-out].past,.reveal.zoom .slides>section:not([data-transition]).past{visibility:hidden;transform:scale(16)}.reveal .slides>section[data-transition=zoom].future,.reveal .slides>section[data-transition~=zoom-in].future,.reveal.zoom .slides>section:not([data-transition]).future{visibility:hidden;transform:scale(.2)}.reveal .slides>section>section[data-transition=zoom].past,.reveal .slides>section>section[data-transition~=zoom-out].past,.reveal.zoom .slides>section>section:not([data-transition]).past{transform:scale(16)}.reveal .slides>section>section[data-transition=zoom].future,.reveal .slides>section>section[data-transition~=zoom-in].future,.reveal.zoom .slides>section>section:not([data-transition]).future{transform:scale(.2)}.reveal.cube .slides{perspective:1300px}.reveal.cube .slides section{padding:30px;min-height:700px;-webkit-backface-visibility:hidden;backface-visibility:hidden;box-sizing:border-box;transform-style:preserve-3d}.reveal.center.cube .slides section{min-height:0}.reveal.cube .slides section:not(.stack):before{content:'';position:absolute;display:block;width:100%;height:100%;left:0;top:0;background:rgba(0,0,0,.1);border-radius:4px;transform:translateZ(-20px)}.reveal.cube .slides section:not(.stack):after{content:'';position:absolute;display:block;width:90%;height:30px;left:5%;bottom:0;background:0 0;z-index:1;border-radius:4px;box-shadow:0 95px 25px rgba(0,0,0,.2);transform:translateZ(-90px) rotateX(65deg)}.reveal.cube .slides>section.stack{padding:0;background:0 0}.reveal.cube .slides>section.past{transform-origin:100% 0;transform:translate3d(-100%,0,0) rotateY(-90deg)}.reveal.cube .slides>section.future{transform-origin:0 0;transform:translate3d(100%,0,0) rotateY(90deg)}.reveal.cube .slides>section>section.past{transform-origin:0 100%;transform:translate3d(0,-100%,0) rotateX(90deg)}.reveal.cube .slides>section>section.future{transform-origin:0 0;transform:translate3d(0,100%,0) rotateX(-90deg)}.reveal.page .slides{perspective-origin:0 50%;perspective:3000px}.reveal.page .slides section{padding:30px;min-height:700px;box-sizing:border-box;transform-style:preserve-3d}.reveal.page .slides section.past{z-index:12}.reveal.page .slides section:not(.stack):before{content:'';position:absolute;display:block;width:100%;height:100%;left:0;top:0;background:rgba(0,0,0,.1);transform:translateZ(-20px)}.reveal.page .slides section:not(.stack):after{content:'';position:absolute;display:block;width:90%;height:30px;left:5%;bottom:0;background:0 0;z-index:1;border-radius:4px;box-shadow:0 95px 25px rgba(0,0,0,.2);-webkit-transform:translateZ(-90px) rotateX(65deg)}.reveal.page .slides>section.stack{padding:0;background:0 0}.reveal.page .slides>section.past{transform-origin:0 0;transform:translate3d(-40%,0,0) rotateY(-80deg)}.reveal.page .slides>section.future{transform-origin:100% 0;transform:translate3d(0,0,0)}.reveal.page .slides>section>section.past{transform-origin:0 0;transform:translate3d(0,-40%,0) rotateX(80deg)}.reveal.page .slides>section>section.future{transform-origin:0 100%;transform:translate3d(0,0,0)}.reveal .slides section[data-transition=fade],.reveal.fade .slides section:not([data-transition]),.reveal.fade .slides>section>section:not([data-transition]){transform:none;transition:opacity .5s}.reveal.fade.overview .slides section,.reveal.fade.overview .slides>section>section{transition:none}.reveal .slides section[data-transition=none],.reveal.none .slides section:not([data-transition]){transform:none;transition:none}.reveal .pause-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:#000;visibility:hidden;opacity:0;z-index:100;transition:all 1s ease}.reveal .pause-overlay .resume-button{position:absolute;bottom:20px;right:20px;color:#ccc;border-radius:2px;padding:6px 14px;border:2px solid #ccc;font-size:16px;background:0 0;cursor:pointer}.reveal .pause-overlay .resume-button:hover{color:#fff;border-color:#fff}.reveal.paused .pause-overlay{visibility:visible;opacity:1}.reveal .no-transition,.reveal .no-transition *,.reveal .slides.disable-slide-transitions section{transition:none!important}.reveal .slides.disable-slide-transitions section{transform:none!important}.reveal .backgrounds{position:absolute;width:100%;height:100%;top:0;left:0;perspective:600px}.reveal .slide-background{display:none;position:absolute;width:100%;height:100%;opacity:0;visibility:hidden;overflow:hidden;background-color:rgba(0,0,0,0);transition:all .8s cubic-bezier(.26,.86,.44,.985)}.reveal .slide-background-content{position:absolute;width:100%;height:100%;background-position:50% 50%;background-repeat:no-repeat;background-size:cover}.reveal .slide-background.stack{display:block}.reveal .slide-background.present{opacity:1;visibility:visible;z-index:2}.print-pdf .reveal .slide-background{opacity:1!important;visibility:visible!important}.reveal .slide-background video{position:absolute;width:100%;height:100%;max-width:none;max-height:none;top:0;left:0;-o-object-fit:cover;object-fit:cover}.reveal .slide-background[data-background-size=contain] video{-o-object-fit:contain;object-fit:contain}.reveal>.backgrounds .slide-background[data-background-transition=none],.reveal[data-background-transition=none]>.backgrounds .slide-background{transition:none}.reveal>.backgrounds .slide-background[data-background-transition=slide],.reveal[data-background-transition=slide]>.backgrounds .slide-background{opacity:1;-webkit-backface-visibility:hidden;backface-visibility:hidden}.reveal>.backgrounds .slide-background.past[data-background-transition=slide],.reveal[data-background-transition=slide]>.backgrounds .slide-background.past{transform:translate(-100%,0)}.reveal>.backgrounds .slide-background.future[data-background-transition=slide],.reveal[data-background-transition=slide]>.backgrounds .slide-background.future{transform:translate(100%,0)}.reveal>.backgrounds .slide-background>.slide-background.past[data-background-transition=slide],.reveal[data-background-transition=slide]>.backgrounds .slide-background>.slide-background.past{transform:translate(0,-100%)}.reveal>.backgrounds .slide-background>.slide-background.future[data-background-transition=slide],.reveal[data-background-transition=slide]>.backgrounds .slide-background>.slide-background.future{transform:translate(0,100%)}.reveal>.backgrounds .slide-background.past[data-background-transition=convex],.reveal[data-background-transition=convex]>.backgrounds .slide-background.past{opacity:0;transform:translate3d(-100%,0,0) rotateY(-90deg) translate3d(-100%,0,0)}.reveal>.backgrounds .slide-background.future[data-background-transition=convex],.reveal[data-background-transition=convex]>.backgrounds .slide-background.future{opacity:0;transform:translate3d(100%,0,0) rotateY(90deg) translate3d(100%,0,0)}.reveal>.backgrounds .slide-background>.slide-background.past[data-background-transition=convex],.reveal[data-background-transition=convex]>.backgrounds .slide-background>.slide-background.past{opacity:0;transform:translate3d(0,-100%,0) rotateX(90deg) translate3d(0,-100%,0)}.reveal>.backgrounds .slide-background>.slide-background.future[data-background-transition=convex],.reveal[data-background-transition=convex]>.backgrounds .slide-background>.slide-background.future{opacity:0;transform:translate3d(0,100%,0) rotateX(-90deg) translate3d(0,100%,0)}.reveal>.backgrounds .slide-background.past[data-background-transition=concave],.reveal[data-background-transition=concave]>.backgrounds .slide-background.past{opacity:0;transform:translate3d(-100%,0,0) rotateY(90deg) translate3d(-100%,0,0)}.reveal>.backgrounds .slide-background.future[data-background-transition=concave],.reveal[data-background-transition=concave]>.backgrounds .slide-background.future{opacity:0;transform:translate3d(100%,0,0) rotateY(-90deg) translate3d(100%,0,0)}.reveal>.backgrounds .slide-background>.slide-background.past[data-background-transition=concave],.reveal[data-background-transition=concave]>.backgrounds .slide-background>.slide-background.past{opacity:0;transform:translate3d(0,-100%,0) rotateX(-90deg) translate3d(0,-100%,0)}.reveal>.backgrounds .slide-background>.slide-background.future[data-background-transition=concave],.reveal[data-background-transition=concave]>.backgrounds .slide-background>.slide-background.future{opacity:0;transform:translate3d(0,100%,0) rotateX(90deg) translate3d(0,100%,0)}.reveal>.backgrounds .slide-background[data-background-transition=zoom],.reveal[data-background-transition=zoom]>.backgrounds .slide-background{transition-timing-function:ease}.reveal>.backgrounds .slide-background.past[data-background-transition=zoom],.reveal[data-background-transition=zoom]>.backgrounds .slide-background.past{opacity:0;visibility:hidden;transform:scale(16)}.reveal>.backgrounds .slide-background.future[data-background-transition=zoom],.reveal[data-background-transition=zoom]>.backgrounds .slide-background.future{opacity:0;visibility:hidden;transform:scale(.2)}.reveal>.backgrounds .slide-background>.slide-background.past[data-background-transition=zoom],.reveal[data-background-transition=zoom]>.backgrounds .slide-background>.slide-background.past{opacity:0;visibility:hidden;transform:scale(16)}.reveal>.backgrounds .slide-background>.slide-background.future[data-background-transition=zoom],.reveal[data-background-transition=zoom]>.backgrounds .slide-background>.slide-background.future{opacity:0;visibility:hidden;transform:scale(.2)}.reveal[data-transition-speed=fast]>.backgrounds .slide-background{transition-duration:.4s}.reveal[data-transition-speed=slow]>.backgrounds .slide-background{transition-duration:1.2s}.reveal [data-auto-animate-target^=unmatched]{will-change:opacity}.reveal section[data-auto-animate]:not(.stack):not([data-auto-animate=running]) [data-auto-animate-target^=unmatched]{opacity:0}.reveal.overview{perspective-origin:50% 50%;perspective:700px}.reveal.overview .slides{-moz-transform-style:preserve-3d}.reveal.overview .slides section{height:100%;top:0!important;opacity:1!important;overflow:hidden;visibility:visible!important;cursor:pointer;box-sizing:border-box}.reveal.overview .slides section.present,.reveal.overview .slides section:hover{outline:10px solid rgba(150,150,150,.4);outline-offset:10px}.reveal.overview .slides section .fragment{opacity:1;transition:none}.reveal.overview .slides section:after,.reveal.overview .slides section:before{display:none!important}.reveal.overview .slides>section.stack{padding:0;top:0!important;background:0 0;outline:0;overflow:visible}.reveal.overview .backgrounds{perspective:inherit;-moz-transform-style:preserve-3d}.reveal.overview .backgrounds .slide-background{opacity:1;visibility:visible;outline:10px solid rgba(150,150,150,.1);outline-offset:10px}.reveal.overview .backgrounds .slide-background.stack{overflow:visible}.reveal.overview .slides section,.reveal.overview-deactivating .slides section{transition:none}.reveal.overview .backgrounds .slide-background,.reveal.overview-deactivating .backgrounds .slide-background{transition:none}.reveal.rtl .slides,.reveal.rtl .slides h1,.reveal.rtl .slides h2,.reveal.rtl .slides h3,.reveal.rtl .slides h4,.reveal.rtl .slides h5,.reveal.rtl .slides h6{direction:rtl;font-family:sans-serif}.reveal.rtl code,.reveal.rtl pre{direction:ltr}.reveal.rtl ol,.reveal.rtl ul{text-align:right}.reveal.rtl .progress span{transform-origin:100% 0}.reveal.has-parallax-background .backgrounds{transition:all .8s ease}.reveal.has-parallax-background[data-transition-speed=fast] .backgrounds{transition-duration:.4s}.reveal.has-parallax-background[data-transition-speed=slow] .backgrounds{transition-duration:1.2s}.reveal>.overlay{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1000;background:rgba(0,0,0,.9);transition:all .3s ease}.reveal>.overlay .spinner{position:absolute;display:block;top:50%;left:50%;width:32px;height:32px;margin:-16px 0 0 -16px;z-index:10;background-image:url(data:image/gif;base64,R0lGODlhIAAgAPMAAJmZmf%2F%2F%2F6%2Bvr8nJybW1tcDAwOjo6Nvb26ioqKOjo7Ozs%2FLy8vz8%2FAAAAAAAAAAAACH%2FC05FVFNDQVBFMi4wAwEAAAAh%2FhpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh%2BQQJCgAAACwAAAAAIAAgAAAE5xDISWlhperN52JLhSSdRgwVo1ICQZRUsiwHpTJT4iowNS8vyW2icCF6k8HMMBkCEDskxTBDAZwuAkkqIfxIQyhBQBFvAQSDITM5VDW6XNE4KagNh6Bgwe60smQUB3d4Rz1ZBApnFASDd0hihh12BkE9kjAJVlycXIg7CQIFA6SlnJ87paqbSKiKoqusnbMdmDC2tXQlkUhziYtyWTxIfy6BE8WJt5YJvpJivxNaGmLHT0VnOgSYf0dZXS7APdpB309RnHOG5gDqXGLDaC457D1zZ%2FV%2FnmOM82XiHRLYKhKP1oZmADdEAAAh%2BQQJCgAAACwAAAAAIAAgAAAE6hDISWlZpOrNp1lGNRSdRpDUolIGw5RUYhhHukqFu8DsrEyqnWThGvAmhVlteBvojpTDDBUEIFwMFBRAmBkSgOrBFZogCASwBDEY%2FCZSg7GSE0gSCjQBMVG023xWBhklAnoEdhQEfyNqMIcKjhRsjEdnezB%2BA4k8gTwJhFuiW4dokXiloUepBAp5qaKpp6%2BHo7aWW54wl7obvEe0kRuoplCGepwSx2jJvqHEmGt6whJpGpfJCHmOoNHKaHx61WiSR92E4lbFoq%2BB6QDtuetcaBPnW6%2BO7wDHpIiK9SaVK5GgV543tzjgGcghAgAh%2BQQJCgAAACwAAAAAIAAgAAAE7hDISSkxpOrN5zFHNWRdhSiVoVLHspRUMoyUakyEe8PTPCATW9A14E0UvuAKMNAZKYUZCiBMuBakSQKG8G2FzUWox2AUtAQFcBKlVQoLgQReZhQlCIJesQXI5B0CBnUMOxMCenoCfTCEWBsJColTMANldx15BGs8B5wlCZ9Po6OJkwmRpnqkqnuSrayqfKmqpLajoiW5HJq7FL1Gr2mMMcKUMIiJgIemy7xZtJsTmsM4xHiKv5KMCXqfyUCJEonXPN2rAOIAmsfB3uPoAK%2B%2BG%2Bw48edZPK%2BM6hLJpQg484enXIdQFSS1u6UhksENEQAAIfkECQoAAAAsAAAAACAAIAAABOcQyEmpGKLqzWcZRVUQnZYg1aBSh2GUVEIQ2aQOE%2BG%2BcD4ntpWkZQj1JIiZIogDFFyHI0UxQwFugMSOFIPJftfVAEoZLBbcLEFhlQiqGp1Vd140AUklUN3eCA51C1EWMzMCezCBBmkxVIVHBWd3HHl9JQOIJSdSnJ0TDKChCwUJjoWMPaGqDKannasMo6WnM562R5YluZRwur0wpgqZE7NKUm%2BFNRPIhjBJxKZteWuIBMN4zRMIVIhffcgojwCF117i4nlLnY5ztRLsnOk%2BaV%2BoJY7V7m76PdkS4trKcdg0Zc0tTcKkRAAAIfkECQoAAAAsAAAAACAAIAAABO4QyEkpKqjqzScpRaVkXZWQEximw1BSCUEIlDohrft6cpKCk5xid5MNJTaAIkekKGQkWyKHkvhKsR7ARmitkAYDYRIbUQRQjWBwJRzChi9CRlBcY1UN4g0%2FVNB0AlcvcAYHRyZPdEQFYV8ccwR5HWxEJ02YmRMLnJ1xCYp0Y5idpQuhopmmC2KgojKasUQDk5BNAwwMOh2RtRq5uQuPZKGIJQIGwAwGf6I0JXMpC8C7kXWDBINFMxS4DKMAWVWAGYsAdNqW5uaRxkSKJOZKaU3tPOBZ4DuK2LATgJhkPJMgTwKCdFjyPHEnKxFCDhEAACH5BAkKAAAALAAAAAAgACAAAATzEMhJaVKp6s2nIkolIJ2WkBShpkVRWqqQrhLSEu9MZJKK9y1ZrqYK9WiClmvoUaF8gIQSNeF1Er4MNFn4SRSDARWroAIETg1iVwuHjYB1kYc1mwruwXKC9gmsJXliGxc%2BXiUCby9ydh1sOSdMkpMTBpaXBzsfhoc5l58Gm5yToAaZhaOUqjkDgCWNHAULCwOLaTmzswadEqggQwgHuQsHIoZCHQMMQgQGubVEcxOPFAcMDAYUA85eWARmfSRQCdcMe0zeP1AAygwLlJtPNAAL19DARdPzBOWSm1brJBi45soRAWQAAkrQIykShQ9wVhHCwCQCACH5BAkKAAAALAAAAAAgACAAAATrEMhJaVKp6s2nIkqFZF2VIBWhUsJaTokqUCoBq%2BE71SRQeyqUToLA7VxF0JDyIQh%2FMVVPMt1ECZlfcjZJ9mIKoaTl1MRIl5o4CUKXOwmyrCInCKqcWtvadL2SYhyASyNDJ0uIiRMDjI0Fd30%2FiI2UA5GSS5UDj2l6NoqgOgN4gksEBgYFf0FDqKgHnyZ9OX8HrgYHdHpcHQULXAS2qKpENRg7eAMLC7kTBaixUYFkKAzWAAnLC7FLVxLWDBLKCwaKTULgEwbLA4hJtOkSBNqITT3xEgfLpBtzE%2FjiuL04RGEBgwWhShRgQExHBAAh%2BQQJCgAAACwAAAAAIAAgAAAE7xDISWlSqerNpyJKhWRdlSAVoVLCWk6JKlAqAavhO9UkUHsqlE6CwO1cRdCQ8iEIfzFVTzLdRAmZX3I2SfZiCqGk5dTESJeaOAlClzsJsqwiJwiqnFrb2nS9kmIcgEsjQydLiIlHehhpejaIjzh9eomSjZR%2BipslWIRLAgMDOR2DOqKogTB9pCUJBagDBXR6XB0EBkIIsaRsGGMMAxoDBgYHTKJiUYEGDAzHC9EACcUGkIgFzgwZ0QsSBcXHiQvOwgDdEwfFs0sDzt4S6BK4xYjkDOzn0unFeBzOBijIm1Dgmg5YFQwsCMjp1oJ8LyIAACH5BAkKAAAALAAAAAAgACAAAATwEMhJaVKp6s2nIkqFZF2VIBWhUsJaTokqUCoBq%2BE71SRQeyqUToLA7VxF0JDyIQh%2FMVVPMt1ECZlfcjZJ9mIKoaTl1MRIl5o4CUKXOwmyrCInCKqcWtvadL2SYhyASyNDJ0uIiUd6GGl6NoiPOH16iZKNlH6KmyWFOggHhEEvAwwMA0N9GBsEC6amhnVcEwavDAazGwIDaH1ipaYLBUTCGgQDA8NdHz0FpqgTBwsLqAbWAAnIA4FWKdMLGdYGEgraigbT0OITBcg5QwPT4xLrROZL6AuQAPUS7bxLpoWidY0JtxLHKhwwMJBTHgPKdEQAACH5BAkKAAAALAAAAAAgACAAAATrEMhJaVKp6s2nIkqFZF2VIBWhUsJaTokqUCoBq%2BE71SRQeyqUToLA7VxF0JDyIQh%2FMVVPMt1ECZlfcjZJ9mIKoaTl1MRIl5o4CUKXOwmyrCInCKqcWtvadL2SYhyASyNDJ0uIiUd6GAULDJCRiXo1CpGXDJOUjY%2BYip9DhToJA4RBLwMLCwVDfRgbBAaqqoZ1XBMHswsHtxtFaH1iqaoGNgAIxRpbFAgfPQSqpbgGBqUD1wBXeCYp1AYZ19JJOYgH1KwA4UBvQwXUBxPqVD9L3sbp2BNk2xvvFPJd%2BMFCN6HAAIKgNggY0KtEBAAh%2BQQJCgAAACwAAAAAIAAgAAAE6BDISWlSqerNpyJKhWRdlSAVoVLCWk6JKlAqAavhO9UkUHsqlE6CwO1cRdCQ8iEIfzFVTzLdRAmZX3I2SfYIDMaAFdTESJeaEDAIMxYFqrOUaNW4E4ObYcCXaiBVEgULe0NJaxxtYksjh2NLkZISgDgJhHthkpU4mW6blRiYmZOlh4JWkDqILwUGBnE6TYEbCgevr0N1gH4At7gHiRpFaLNrrq8HNgAJA70AWxQIH1%2BvsYMDAzZQPC9VCNkDWUhGkuE5PxJNwiUK4UfLzOlD4WvzAHaoG9nxPi5d%2BjYUqfAhhykOFwJWiAAAIfkECQoAAAAsAAAAACAAIAAABPAQyElpUqnqzaciSoVkXVUMFaFSwlpOCcMYlErAavhOMnNLNo8KsZsMZItJEIDIFSkLGQoQTNhIsFehRww2CQLKF0tYGKYSg%2BygsZIuNqJksKgbfgIGepNo2cIUB3V1B3IvNiBYNQaDSTtfhhx0CwVPI0UJe0%2Bbm4g5VgcGoqOcnjmjqDSdnhgEoamcsZuXO1aWQy8KAwOAuTYYGwi7w5h%2BKr0SJ8MFihpNbx%2B4Erq7BYBuzsdiH1jCAzoSfl0rVirNbRXlBBlLX%2BBP0XJLAPGzTkAuAOqb0WT5AH7OcdCm5B8TgRwSRKIHQtaLCwg1RAAAOwAAAAAAAAAAAA%3D%3D);visibility:visible;opacity:.6;transition:all .3s ease}.reveal>.overlay header{position:absolute;left:0;top:0;width:100%;padding:5px;z-index:2;box-sizing:border-box}.reveal>.overlay header a{display:inline-block;width:40px;height:40px;line-height:36px;padding:0 10px;float:right;opacity:.6;box-sizing:border-box}.reveal>.overlay header a:hover{opacity:1}.reveal>.overlay header a .icon{display:inline-block;width:20px;height:20px;background-position:50% 50%;background-size:100%;background-repeat:no-repeat}.reveal>.overlay header a.close .icon{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABkklEQVRYR8WX4VHDMAxG6wnoJrABZQPYBCaBTWAD2g1gE5gg6OOsXuxIlr40d81dfrSJ9V4c2VLK7spHuTJ/5wpM07QXuXc5X0opX2tEJcadjHuV80li/FgxTIEK/5QBCICBD6xEhSMGHgQPgBgLiYVAB1dpSqKDawxTohFw4JSEA3clzgIBPCURwE2JucBR7rhPJJv5OpJwDX+SfDjgx1wACQeJG1aChP9K/IMmdZ8DtESV1WyP3Bt4MwM6sj4NMxMYiqUWHQu4KYA/SYkIjOsm3BXYWMKFDwU2khjCQ4ELJUJ4SmClRArOCmSXGuKma0fYD5CbzHxFpCSGAhfAVSSUGDUk2BWZaff2g6GE15BsBQ9nwmpIGDiyHQddwNTMKkbZaf9fajXQca1EX44puJZUsnY0ObGmITE3GVLCbEhQUjGVt146j6oasWN+49Vph2w1pZ5EansNZqKBm1txbU57iRRcZ86RWMDdWtBJUHBHwoQPi1GV+JCbntmvok7iTX4/Up9mgyTc/FJYDTcndgH/AA5A/CHsyEkVAAAAAElFTkSuQmCC)}.reveal>.overlay header a.external .icon{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAcElEQVRYR+2WSQoAIQwEzf8f7XiOMkUQxUPlGkM3hVmiQfQR9GYnH1SsAQlI4DiBqkCMoNb9y2e90IAEJPAcgdznU9+engMaeJ7Azh5Y1U67gAho4DqBqmB1buAf0MB1AlVBek83ZPkmJMGc1wAR+AAqod/B97TRpQAAAABJRU5ErkJggg==)}.reveal>.overlay .viewport{position:absolute;display:flex;top:50px;right:0;bottom:0;left:0}.reveal>.overlay.overlay-preview .viewport iframe{width:100%;height:100%;max-width:100%;max-height:100%;border:0;opacity:0;visibility:hidden;transition:all .3s ease}.reveal>.overlay.overlay-preview.loaded .viewport iframe{opacity:1;visibility:visible}.reveal>.overlay.overlay-preview.loaded .viewport-inner{position:absolute;z-index:-1;left:0;top:45%;width:100%;text-align:center;letter-spacing:normal}.reveal>.overlay.overlay-preview .x-frame-error{opacity:0;transition:opacity .3s ease .3s}.reveal>.overlay.overlay-preview.loaded .x-frame-error{opacity:1}.reveal>.overlay.overlay-preview.loaded .spinner{opacity:0;visibility:hidden;transform:scale(.2)}.reveal>.overlay.overlay-help .viewport{overflow:auto;color:#fff}.reveal>.overlay.overlay-help .viewport .viewport-inner{width:600px;margin:auto;padding:20px 20px 80px 20px;text-align:center;letter-spacing:normal}.reveal>.overlay.overlay-help .viewport .viewport-inner .title{font-size:20px}.reveal>.overlay.overlay-help .viewport .viewport-inner table{border:1px solid #fff;border-collapse:collapse;font-size:16px}.reveal>.overlay.overlay-help .viewport .viewport-inner table td,.reveal>.overlay.overlay-help .viewport .viewport-inner table th{width:200px;padding:14px;border:1px solid #fff;vertical-align:middle}.reveal>.overlay.overlay-help .viewport .viewport-inner table th{padding-top:20px;padding-bottom:20px}.reveal .playback{position:absolute;left:15px;bottom:20px;z-index:30;cursor:pointer;transition:all .4s ease;-webkit-tap-highlight-color:transparent}.reveal.overview .playback{opacity:0;visibility:hidden}.reveal .hljs{min-height:100%}.reveal .hljs table{margin:initial}.reveal .hljs-ln-code,.reveal .hljs-ln-numbers{padding:0;border:0}.reveal .hljs-ln-numbers{opacity:.6;padding-right:.75em;text-align:right;vertical-align:top}.reveal .hljs.has-highlights tr:not(.highlight-line){opacity:.4}.reveal .hljs:not(:first-child).fragment{position:absolute;top:0;left:0;width:100%;box-sizing:border-box}.reveal pre[data-auto-animate-target]{overflow:hidden}.reveal pre[data-auto-animate-target] code{height:100%}.reveal .roll{display:inline-block;line-height:1.2;overflow:hidden;vertical-align:top;perspective:400px;perspective-origin:50% 50%}.reveal .roll:hover{background:0 0;text-shadow:none}.reveal .roll span{display:block;position:relative;padding:0 2px;pointer-events:none;transition:all .4s ease;transform-origin:50% 0;transform-style:preserve-3d;-webkit-backface-visibility:hidden;backface-visibility:hidden}.reveal .roll:hover span{background:rgba(0,0,0,.5);transform:translate3d(0,0,-45px) rotateX(90deg)}.reveal .roll span:after{content:attr(data-title);display:block;position:absolute;left:0;top:0;padding:0 2px;-webkit-backface-visibility:hidden;backface-visibility:hidden;transform-origin:50% 0;transform:translate3d(0,110%,0) rotateX(-90deg)}.reveal aside.notes{display:none}.reveal .speaker-notes{display:none;position:absolute;width:33.33333%;height:100%;top:0;left:100%;padding:14px 18px 14px 18px;z-index:1;font-size:18px;line-height:1.4;border:1px solid rgba(0,0,0,.05);color:#222;background-color:#f5f5f5;overflow:auto;box-sizing:border-box;text-align:left;font-family:Helvetica,sans-serif;-webkit-overflow-scrolling:touch}.reveal .speaker-notes .notes-placeholder{color:#ccc;font-style:italic}.reveal .speaker-notes:focus{outline:0}.reveal .speaker-notes:before{content:'Speaker notes';display:block;margin-bottom:10px;opacity:.5}.reveal.show-notes{max-width:75%;overflow:visible}.reveal.show-notes .speaker-notes{display:block}@media screen and (min-width:1600px){.reveal .speaker-notes{font-size:20px}}@media screen and (max-width:1024px){.reveal.show-notes{border-left:0;max-width:none;max-height:70%;max-height:70vh;overflow:visible}.reveal.show-notes .speaker-notes{top:100%;left:0;width:100%;height:42.85714%;height:30vh;border:0}}@media screen and (max-width:600px){.reveal.show-notes{max-height:60%;max-height:60vh}.reveal.show-notes .speaker-notes{top:100%;height:66.66667%;height:40vh}.reveal .speaker-notes{font-size:14px}}.zoomed .reveal *,.zoomed .reveal :after,.zoomed .reveal :before{-webkit-backface-visibility:visible!important;backface-visibility:visible!important}.zoomed .reveal .controls,.zoomed .reveal .progress{opacity:0}.zoomed .reveal .roll span{background:0 0}.zoomed .reveal .roll span:after{visibility:hidden}html.print-pdf *{-webkit-print-color-adjust:exact}html.print-pdf{width:100%;height:100%;overflow:visible}html.print-pdf body{margin:0 auto!important;border:0;padding:0;float:none!important;overflow:visible}html.print-pdf .nestedarrow,html.print-pdf .reveal .controls,html.print-pdf .reveal .playback,html.print-pdf .reveal .progress,html.print-pdf .reveal.overview,html.print-pdf .state-background{display:none!important}html.print-pdf .reveal pre code{overflow:hidden!important;font-family:Courier,'Courier New',monospace!important}html.print-pdf .reveal{width:auto!important;height:auto!important;overflow:hidden!important}html.print-pdf .reveal .slides{position:static;width:100%!important;height:auto!important;zoom:1!important;pointer-events:initial;left:auto;top:auto;margin:0!important;padding:0!important;overflow:visible;display:block;perspective:none;perspective-origin:50% 50%}html.print-pdf .reveal .slides .pdf-page{position:relative;overflow:hidden;z-index:1;page-break-after:always}html.print-pdf .reveal .slides section{visibility:visible!important;display:block!important;position:absolute!important;margin:0!important;padding:0!important;box-sizing:border-box!important;min-height:1px;opacity:1!important;transform-style:flat!important;transform:none!important}html.print-pdf .reveal section.stack{position:relative!important;margin:0!important;padding:0!important;page-break-after:avoid!important;height:auto!important;min-height:auto!important}html.print-pdf .reveal img{box-shadow:none}html.print-pdf .reveal .backgrounds{display:none}html.print-pdf .reveal .slide-background{display:block!important;position:absolute;top:0;left:0;width:100%;height:100%;z-index:auto!important}html.print-pdf .reveal.show-notes{max-width:none;max-height:none}html.print-pdf .reveal .speaker-notes-pdf{display:block;width:100%;height:auto;max-height:none;top:auto;right:auto;bottom:auto;left:auto;z-index:100}html.print-pdf .reveal .speaker-notes-pdf[data-layout=separate-page]{position:relative;color:inherit;background-color:transparent;padding:20px;page-break-after:always;border:0}html.print-pdf .reveal .slide-number-pdf{display:block;position:absolute;font-size:14px}html.print-pdf .aria-status{display:none}@media print{html:not(.print-pdf){background:#fff;width:auto;height:auto;overflow:visible}html:not(.print-pdf) body{background:#fff;font-size:20pt;width:auto;height:auto;border:0;margin:0 5%;padding:0;overflow:visible;float:none!important}html:not(.print-pdf) .controls,html:not(.print-pdf) .fork-reveal,html:not(.print-pdf) .nestedarrow,html:not(.print-pdf) .reveal .backgrounds,html:not(.print-pdf) .reveal .progress,html:not(.print-pdf) .reveal .slide-number,html:not(.print-pdf) .share-reveal,html:not(.print-pdf) .state-background{display:none!important}html:not(.print-pdf) body,html:not(.print-pdf) li,html:not(.print-pdf) p,html:not(.print-pdf) td{font-size:20pt!important;color:#000}html:not(.print-pdf) h1,html:not(.print-pdf) h2,html:not(.print-pdf) h3,html:not(.print-pdf) h4,html:not(.print-pdf) h5,html:not(.print-pdf) h6{color:#000!important;height:auto;line-height:normal;text-align:left;letter-spacing:normal}html:not(.print-pdf) h1{font-size:28pt!important}html:not(.print-pdf) h2{font-size:24pt!important}html:not(.print-pdf) h3{font-size:22pt!important}html:not(.print-pdf) h4{font-size:22pt!important;font-variant:small-caps}html:not(.print-pdf) h5{font-size:21pt!important}html:not(.print-pdf) h6{font-size:20pt!important;font-style:italic}html:not(.print-pdf) a:link,html:not(.print-pdf) a:visited{color:#000!important;font-weight:700;text-decoration:underline}html:not(.print-pdf) div,html:not(.print-pdf) ol,html:not(.print-pdf) p,html:not(.print-pdf) ul{visibility:visible;position:static;width:auto;height:auto;display:block;overflow:visible;margin:0;text-align:left!important}html:not(.print-pdf) .reveal pre,html:not(.print-pdf) .reveal table{margin-left:0;margin-right:0}html:not(.print-pdf) .reveal pre code{padding:20px}html:not(.print-pdf) .reveal blockquote{margin:20px 0}html:not(.print-pdf) .reveal .slides{position:static!important;width:auto!important;height:auto!important;left:0!important;top:0!important;margin-left:0!important;margin-top:0!important;padding:0!important;zoom:1!important;transform:none!important;overflow:visible!important;display:block!important;text-align:left!important;perspective:none;perspective-origin:50% 50%}html:not(.print-pdf) .reveal .slides section{visibility:visible!important;position:static!important;width:auto!important;height:auto!important;display:block!important;overflow:visible!important;left:0!important;top:0!important;margin-left:0!important;margin-top:0!important;padding:60px 20px!important;z-index:auto!important;opacity:1!important;page-break-after:always!important;transform-style:flat!important;transform:none!important;transition:none!important}html:not(.print-pdf) .reveal .slides section.stack{padding:0!important}html:not(.print-pdf) .reveal section:last-of-type{page-break-after:avoid!important}html:not(.print-pdf) .reveal section .fragment{opacity:1!important;visibility:visible!important;transform:none!important}html:not(.print-pdf) .reveal section img{display:block;margin:15px 0;background:#fff;border:1px solid #666;box-shadow:none}html:not(.print-pdf) .reveal section small{font-size:.8em}html:not(.print-pdf) .reveal .hljs{max-height:100%;white-space:pre-wrap;word-wrap:break-word;word-break:break-word;font-size:15pt}html:not(.print-pdf) .reveal .hljs .hljs-ln-numbers{white-space:nowrap}html:not(.print-pdf) .reveal .hljs td{font-size:inherit!important;color:inherit!important}}
+      
+      </style>
+      
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({"extensions":["tex2jax.js"],"jax":["input/TeX","output/HTML-CSS"],"messageStyle":"none","tex2jax":{"processEnvironments":false,"processEscapes":true,"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]],"skipTags":["script","noscript","style","textarea","pre","code"]},"displayAlign":"left","TeX":{"equationNumbers":{"autoNumber":"all","useLabelIds":true},"extensions":["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js","action.js","cancel.js","enclose.js","mhchem.js","extpfeil.js"],"Macros":{"zerov":"{\\boldsymbol 0}","onev":"{\\boldsymbol 1}","av":"{\\boldsymbol a}","bv":"{\\boldsymbol b}","cv":"{\\boldsymbol c}","dv":"{\\boldsymbol d}","ev":"{\\boldsymbol e}","fv":"{\\boldsymbol f}","gv":"{\\boldsymbol g}","hv":"{\\boldsymbol h}","iv":"{\\boldsymbol i}","jv":"{\\boldsymbol j}","kv":"{\\boldsymbol k}","lv":"{\\boldsymbol l}","mv":"{\\boldsymbol m}","nv":"{\\boldsymbol n}","ov":"{\\boldsymbol o}","pv":"{\\boldsymbol p}","qv":"{\\boldsymbol q}","rv":"{\\boldsymbol r}","sv":"{\\boldsymbol s}","tv":"{\\boldsymbol t}","uv":"{\\boldsymbol u}","vv":"{\\boldsymbol v}","wv":"{\\boldsymbol w}","xv":"{\\boldsymbol x}","yv":"{\\boldsymbol y}","zv":"{\\boldsymbol z}","Av":"{\\mathbf A}","Bv":"{\\mathbf B}","Cv":"{\\mathbf C}","Dv":"{\\mathbf D}","Ev":"{\\mathbf E}","Fv":"{\\mathbf F}","Gv":"{\\mathbf G}","Hv":"{\\mathbf H}","Iv":"{\\mathbf I}","Jv":"{\\mathbf J}","Kv":"{\\mathbf K}","Lv":"{\\mathbf L}","Mv":"{\\mathbf M}","Nv":"{\\mathbf N}","Ov":"{\\mathbf O}","Pv":"{\\mathbf P}","Qv":"{\\mathbf Q}","Rv":"{\\mathbf R}","Sv":"{\\mathbf S}","Tv":"{\\mathbf T}","Uv":"{\\mathbf U}","Vv":"{\\mathbf V}","Wv":"{\\mathbf W}","Xv":"{\\mathbf X}","Yv":"{\\mathbf Y}","Zv":"{\\mathbf Z}","alphav":"{\\boldsymbol {\\alpha}}","betav":"{\\boldsymbol {\\beta}}","lambdav":"{\\boldsymbol {\\lambda}}","muv":"{\\boldsymbol {\\mu}}","thetav":"{\\boldsymbol {\\theta}}","phiv":"{\\boldsymbol {\\phi}}","zetav":"{\\boldsymbol {\\zeta}}","deltav":"{\\boldsymbol {\\delta}}","sigmav":"{\\boldsymbol {\\sigma}}","Sigmav":"{\\boldsymbol {\\Sigma}}","Phiv":"{\\boldsymbol {\\Phi}}","Lambdav":"{\\boldsymbol {\\Lambda}}","Omegav":"{\\boldsymbol {\\Omega}}","Cbb":"{\\mathbb C}","Ebb":"{\\mathbb E}","Fbb":"{\\mathbb F}","Hbb":"{\\mathbb H}","Ibb":"{\\mathbb I}","Nbb":"{\\mathbb N}","Pbb":"{\\mathbb P}","Qbb":"{\\mathbb Q}","Rbb":"{\\mathbb R}","Zbb":"{\\mathbb Z}","Acal":"{\\mathcal A}","Bcal":"{\\mathcal B}","Ccal":"{\\mathcal C}","Dcal":"{\\mathcal D}","Ecal":"{\\mathcal E}","Fcal":"{\\mathcal F}","Gcal":"{\\mathcal G}","Hcal":"{\\mathcal H}","Ical":"{\\mathcal I}","Lcal":"{\\mathcal L}","Mcal":"{\\mathcal M}","Ncal":"{\\mathcal N}","Pcal":"{\\mathcal P}","Rcal":"{\\mathcal R}","Scal":"{\\mathcal S}","Ucal":"{\\mathcal U}","Vcal":"{\\mathcal V}","Wcal":"{\\mathcal W}","Xcal":"{\\mathcal X}","Ycal":"{\\mathcal Y}","Bbar":"{\\bar B}","fhat":"{\\hat f}","xhat":"{\\hat x}","yhat":"{\\hat y}","yvhat":"{\\hat {\\yv}}","Xvhat":"{\\hat {\\Xv}}","wvt":"{\\tilde {\\wv}}","xvt":"{\\tilde {\\xv}}","yvt":"{\\tilde {\\yv}}","Kvt":"{\\tilde {\\Kv}}","xbar":"{\\bar {x}}","ybar":"{\\bar {y}}","yvbar":"{\\bar {\\yv}}","Ffrak":"{\\mathfrak F}","sup":["{{(#1)}}",1],"acc":"{\\mathrm {acc}}","bias":"{\\mathrm {bias}}","variance":"{\\mathrm {variance}}","noise":"{\\mathrm {noise}}","diff":"{\\mathrm {d}}","diag":"{\\mathrm {diag}}","span":"{\\mathrm {span}}","sign":"{\\mathrm {sign}}","sgn":"{\\mathrm {sgn}}","st":"{\\mathrm {s.t.}}","VC":"{\\mathrm {VC}}","Pr":"{\\mathrm {Pr}}","tanh":"{\\mathrm {tanh}}","logistic":"{\\mathrm {logistic}}","relu":"{\\mathrm {ReLU}}","lrelu":"{\\mathrm {LeakyReLU}}","prelu":"{\\mathrm {PReLU}}","elu":"{\\mathrm {ELU}}","softplus":"{\\mathrm {Softplus}}","swish":"{\\mathrm {Swish}}","maxout":"{\\mathrm {Maxout}}","const":"{\\mathrm {const}}","cov":"{\\mathrm {cov}}","grad":"{\\mathrm {grad}}","divv":"{\\mathrm {div}}","var":"{\\mathrm {var}}","softmax":"{\\mathrm {softmax}}","att":"{\\mathrm {att}}","cut":"{\\mathrm {cut}}","rcut":"{\\mathrm {RatioCut}}","ncut":"{\\mathrm {NCut}}","tr":"{\\mathrm {tr}}","vol":"{\\mathrm {vol}}","mlp":"{\\mathrm {MLP}}","update":"{\\mathrm {Update}}","aggregate":"{\\mathrm {Aggregate}}","self":"{\\mathrm {self}}","set":"{\\mathrm {set}}","neigh":"{\\mathrm {neigh}}","base":"{\\mathrm {base}}","NULL":"{\\mathrm {NULL}}","new":"{\\mathrm {new}}","gru":"{\\mathrm {GRU}}","lstm":"{\\mathrm {LSTM}}","edge":"{\\mathrm {edge}}","node":"{\\mathrm {node}}","graph":"{\\mathrm {graph}}","train":"{\\mathrm {train}}","dec":"{\\mathrm {Dec}}","sym":"{\\mathrm {sym}}","modd":"{\\mathrm {mod} ~ }","hp":"{\\mathrm {hp}}","gen":"{\\mathrm {gen}}","ow":"{\\mathrm {o.w.}}","BetaDist":"{\\mathrm {Beta}}","BetaFunc":"{\\mathrm {B}}","Dir":"{\\mathrm {Dir}}","rot":"{\\mathbf {rot180}}","up":"{\\mathbf {up}}","cen":"{\\mathrm {cen}}","con":"{\\mathrm {con}}","TG":"{\\mathrm {TreeGenerate}}","TP":"{\\mathrm {TP}}","FP":"{\\mathrm {FP}}","TN":"{\\mathrm {TN}}","FN":"{\\mathrm {FN}}","SSE":"{\\mathrm {SSE}}","SSB":"{\\mathrm {SSB}}","gain":"{\\mathrm {Gain}}","gini":"{\\mathrm {Gini}}","dep":"{\\mathrm {depth}}","argmin":"{\\mathop{\\arg \\min}}","argmax":"{\\mathop{\\mathrm{argmax}}}"}},"HTML-CSS":{"linebreaks":{"automatic":false},"scale":100,"styles":{".MathJax_Display":{"margin-top":"0.6rem !important","margin-bottom":"1rem !important","border-radius":"0px !important","font-size":"1.8rem !important","color":"#d33682","text-align":"left !important"},".MathJax":{"margin-left":"0.2rem !important","margin-right":"0.2rem !important","border":"0px solid #ccc !important","color":"#d33682"}},"availableFonts":["TeX"]}});
+        </script>
+        <script type="text/javascript" async src="../plugin/MathJax-2.7.9/MathJax.js" charset="UTF-8"></script>
+        
+      
+      <link rel="stylesheet" href="file:////home/avanti/.local/bin/mpe2html-deps/node_modules/@shd101wyy/mume/dependencies/font-awesome/css/font-awesome.min.css">
+      
+        <script src="../js/head.min.js"></script>
+        <script src="../js/reveal.js"></script>
+      <script type="text/javascript" src="../plugin/mermaid/mermaid.min.js" charset="UTF-8"></script>
+      
+      
+      
+      
+      
+      <style>
+      pre{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;padding:1em;margin:.5em 0;overflow:auto;line-height:1.5;tab-size:4;hyphens:none;color:#657b83;background-color:#fbedc6 !important;border:#f8de97;border-radius:3px}pre[class*="language-"]{padding:1em}code[class*="language-"] .token.comment,pre[class*="language-"] .token.comment,code[class*="language-"] .token.prolog,pre[class*="language-"] .token.prolog,code[class*="language-"] .token.doctype,pre[class*="language-"] .token.doctype,code[class*="language-"] .token.cdata,pre[class*="language-"] .token.cdata{color:#93a1a1;font-style:italic}code[class*="language-"] .token.punctuation,pre[class*="language-"] .token.punctuation{color:#93a1a1}code[class*="language-"] .namespace,pre[class*="language-"] .namespace{opacity:.7}code[class*="language-"] .token.property,pre[class*="language-"] .token.property{color:#859900}code[class*="language-"] .token.boolean,pre[class*="language-"] .token.boolean,code[class*="language-"] .token.number,pre[class*="language-"] .token.number,code[class*="language-"] .token.function-name,pre[class*="language-"] .token.function-name{color:#d33682}code[class*="language-"] .token.tag,pre[class*="language-"] .token.tag{color:#268bd2}code[class*="language-"] .token.selector,pre[class*="language-"] .token.selector{color:#859900}code[class*="language-"] .token.attr-name,pre[class*="language-"] .token.attr-name{color:#657b83}code[class*="language-"] .token.string,pre[class*="language-"] .token.string{color:#2aa198}code[class*="language-"] .token.char,pre[class*="language-"] .token.char{color:#cb4b16}code[class*="language-"] .token.builtin,pre[class*="language-"] .token.builtin{color:#859900}code[class*="language-"] .token.entity,pre[class*="language-"] .token.entity{color:#268bd2}code[class*="language-"] .token.url,pre[class*="language-"] .token.url{color:#93a1a1}code[class*="language-"] .token.atrule,pre[class*="language-"] .token.atrule,code[class*="language-"] .token.attr-value,pre[class*="language-"] .token.attr-value,code[class*="language-"] .token.keyword,pre[class*="language-"] .token.keyword{color:#859900}code[class*="language-"] .token.function,pre[class*="language-"] .token.function{color:#268bd2}code[class*="language-"] .token.class-name,pre[class*="language-"] .token.class-name{color:#268bd2}code[class*="language-"] .token.variable,pre[class*="language-"] .token.variable{color:#268bd2}code[class*="language-"] .token.regex,pre[class*="language-"] .token.regex,code[class*="language-"] .token.important,pre[class*="language-"] .token.important{color:#dc322f}code[class*="language-"] .token.important,pre[class*="language-"] .token.important,code[class*="language-"] .token.bold,pre[class*="language-"] .token.bold{font-weight:bold}code[class*="language-"] .token.italic,pre[class*="language-"] .token.italic{font-style:italic}code[class*="language-"] .token.entity,pre[class*="language-"] .token.entity{cursor:help}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:rgba(153,122,102,0.08);background:linear-gradient(to right, rgba(153,122,102,0.1) 70%, rgba(153,122,102,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:rgba(153,122,102,0.4);color:#f5f2f0;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px white}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export" data-presentation-mode>
+      <div class="mume markdown-preview  " data-presentation-mode>
+      
+    <div style="display:none;"><link rel="stylesheet" href="../css/font-awesome-4.7.0/css/font-awesome.css">
+<link rel="stylesheet" href="../css/theme/solarized.css" id="theme">
+<link rel="stylesheet" href="../css/logo.css">
+<link rel="stylesheet" href="../css/font.css">
+<link rel="stylesheet" href="../css/color.css">
+<link rel="stylesheet" href="../css/margin.css">
+<link rel="stylesheet" href="../css/table.css">
+<link rel="stylesheet" href="../css/main.css">
+<script type="text/javascript" src="../plugin/zoom/zoom.js"></script>
+<script type="text/javascript" src="../plugin/customcontrols/plugin.js"></script>
+<link rel="stylesheet" href="../plugin/customcontrols/style.css">
+<script type="text/javascript" src="../plugin/chalkboard/plugin.js"></script>
+<link rel="stylesheet" href="../plugin/chalkboard/style.css">
+<script type="text/javascript" src="../plugin/menu/menu.js"></script>
+</div>
+    <div class="reveal">
+      <div class="slides">
+        <section><section id="front-page" data-notes lineno="25" class="slide " data-line="25" data-h="0" data-v="0">
+<div class="bottom20"></div>
+<h1 class="mume-header" id="%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90">&#x7B97;&#x6CD5;&#x8BBE;&#x8BA1;&#x4E0E;&#x5206;&#x6790;</h1>
+
+<hr class="width70 center">
+<h2 class="mume-header" id="%E8%B4%AA%E5%BF%83%E6%B3%95">&#x8D2A;&#x5FC3;&#x6CD5;</h2>
+
+<div class="bottom8"></div>
+<h3 class="mume-header" id="%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E9%99%A2-nbspnbsp-%E5%BC%A0%E8%85%BE">&#x8BA1;&#x7B97;&#x673A;&#x5B66;&#x9662; &#xA0;&#xA0; &#x5F20;&#x817E;</h3>
+
+<h4 class="mume-header" id="_tengzhanghusteducn_"><em><a href="mailto:tengzhang@hust.edu.cn">tengzhang@hust.edu.cn</a></em></h4>
+
+</section><section vertical="true" data-notes lineno="41" class="slide " data-line="41" data-h="0" data-v="1">
+<h5 class="mume-header" id="%E8%AF%BE%E7%A8%8B%E5%A4%A7%E7%BA%B2">&#x8BFE;&#x7A0B;&#x5927;&#x7EB2;</h5>
+
+<hr>
+<p as="vega" class="top-2"><!--?xml version="1.0" encoding="utf-8"?-->
+
+<svg class="marks" width="842" height="500" viewBox="0 0 842 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink"><g transform="translate(180,50)"><g class="mark-group role-frame root"><g transform="translate(0,0)"><path class="background" d="M0,0h600v400h-600Z" style="fill: none;"/><g><g class="mark-path role-mark"><path transform="translate(0,0)" d="M0,200C125,200 125,33.333333333333336 250,33.333333333333336" style="fill: none; stroke: #586e75;"/><path transform="translate(0,0)" d="M0,200C125,200 125,100 250,100" style="fill: none; stroke: #586e75;"/><path transform="translate(0,0)" d="M0,200C125,200 125,166.66666666666669 250,166.66666666666669" style="fill: none; stroke: #586e75;"/><path transform="translate(0,0)" d="M0,200C125,200 125,233.33333333333334 250,233.33333333333334" style="fill: none; stroke: #586e75;"/><path transform="translate(0,0)" d="M0,200C125,200 125,300 250,300" style="fill: none; stroke: #586e75;"/><path transform="translate(0,0)" d="M0,200C125,200 125,366.6666666666667 250,366.6666666666667" style="fill: none; stroke: #586e75;"/><path transform="translate(0,0)" d="M250,166.66666666666669C375,166.66666666666669 375,66.66666666666667 500,66.66666666666667" style="fill: none; stroke: #586e75;"/><path transform="translate(0,0)" d="M250,166.66666666666669C375,166.66666666666669 375,133.33333333333334 500,133.33333333333334" style="fill: none; stroke: #586e75;"/><path transform="translate(0,0)" d="M250,166.66666666666669C375,166.66666666666669 375,200 500,200" style="fill: none; stroke: #586e75;"/><path transform="translate(0,0)" d="M250,166.66666666666669C375,166.66666666666669 375,266.6666666666667 500,266.6666666666667" style="fill: none; stroke: #586e75;"/></g><g class="mark-symbol role-mark"><path transform="translate(0,200)" d="M5,0A5,5,0,1,1,-5,0A5,5,0,1,1,5,0" style="fill: rgb(0, 0, 4); stroke: #fff;"/><path transform="translate(250,33.333333333333336)" d="M5,0A5,5,0,1,1,-5,0A5,5,0,1,1,5,0" style="fill: rgb(182, 55, 122); stroke: #fff;"/><path transform="translate(250,100)" d="M5,0A5,5,0,1,1,-5,0A5,5,0,1,1,5,0" style="fill: rgb(182, 55, 122); stroke: #fff;"/><path transform="translate(250,166.66666666666669)" d="M5,0A5,5,0,1,1,-5,0A5,5,0,1,1,5,0" style="fill: rgb(182, 55, 122); stroke: #fff;"/><path transform="translate(250,233.33333333333334)" d="M5,0A5,5,0,1,1,-5,0A5,5,0,1,1,5,0" style="fill: rgb(182, 55, 122); stroke: #fff;"/><path transform="translate(250,300)" d="M5,0A5,5,0,1,1,-5,0A5,5,0,1,1,5,0" style="fill: rgb(182, 55, 122); stroke: #fff;"/><path transform="translate(250,366.6666666666667)" d="M5,0A5,5,0,1,1,-5,0A5,5,0,1,1,5,0" style="fill: rgb(182, 55, 122); stroke: #fff;"/><path transform="translate(500,66.66666666666667)" d="M5,0A5,5,0,1,1,-5,0A5,5,0,1,1,5,0" style="fill: rgb(252, 253, 191); stroke: #fff;"/><path transform="translate(500,133.33333333333334)" d="M5,0A5,5,0,1,1,-5,0A5,5,0,1,1,5,0" style="fill: rgb(252, 253, 191); stroke: #fff;"/><path transform="translate(500,200)" d="M5,0A5,5,0,1,1,-5,0A5,5,0,1,1,5,0" style="fill: rgb(252, 253, 191); stroke: #fff;"/><path transform="translate(500,266.6666666666667)" d="M5,0A5,5,0,1,1,-5,0A5,5,0,1,1,5,0" style="fill: rgb(252, 253, 191); stroke: #fff;"/></g><g class="mark-text role-mark"><text text-anchor="end" transform="translate(-7,207)" style="font-family: LXGWWenKai; font-size: 22px; font-weight: 900; fill: #b58900; opacity: 1;">&#x7B97;&#x6CD5;&#x8BBE;&#x8BA1;&#x4E0E;&#x5206;&#x6790;</text><text text-anchor="start" transform="translate(257,40.333333333333336)" style="font-family: LXGWWenKai; font-size: 22px; font-weight: 900; fill: #b58900; opacity: 1;">&#x5206;&#x6CBB;&#x6CD5;</text><text text-anchor="start" transform="translate(257,107)" style="font-family: LXGWWenKai; font-size: 22px; font-weight: 900; fill: #b58900; opacity: 1;">&#x52A8;&#x6001;&#x89C4;&#x5212;</text><text text-anchor="end" transform="translate(243,173.66666666666669)" style="font-family: LXGWWenKai; font-size: 22px; font-weight: 900; fill: #b58900; opacity: 1;">&#x8D2A;&#x5FC3;&#x6CD5;</text><text text-anchor="start" transform="translate(257,240.33333333333334)" style="font-family: LXGWWenKai; font-size: 22px; font-weight: 900; fill: #b58900; opacity: 1;">&#x56DE;&#x6EAF;&#x6CD5;</text><text text-anchor="start" transform="translate(257,307)" style="font-family: LXGWWenKai; font-size: 22px; font-weight: 900; fill: #b58900; opacity: 1;">&#x5206;&#x652F;&#x9650;&#x754C;&#x6CD5;</text><text text-anchor="start" transform="translate(257,373.6666666666667)" style="font-family: LXGWWenKai; font-size: 22px; font-weight: 900; fill: #b58900; opacity: 1;">&#x8FED;&#x4EE3;&#x6539;&#x8FDB;</text><text text-anchor="start" transform="translate(507,73.66666666666667)" style="font-family: LXGWWenKai; font-size: 22px; font-weight: 900; fill: #b58900; opacity: 1;">&#x6D3B;&#x52A8;&#x9009;&#x62E9;&#x95EE;&#x9898;</text><text text-anchor="start" transform="translate(507,140.33333333333334)" style="font-family: LXGWWenKai; font-size: 22px; font-weight: 900; fill: #b58900; opacity: 1;">&#x970D;&#x592B;&#x66FC;&#x7F16;&#x7801;</text><text text-anchor="start" transform="translate(507,207)" style="font-family: LXGWWenKai; font-size: 22px; font-weight: 900; fill: #b58900; opacity: 1;">&#x6700;&#x5C0F;&#x751F;&#x6210;&#x6811;</text><text text-anchor="start" transform="translate(507,273.6666666666667)" style="font-family: LXGWWenKai; font-size: 22px; font-weight: 900; fill: #b58900; opacity: 1;">&#x5355;&#x6E90;&#x6700;&#x77ED;&#x8DEF;&#x5F84;</text></g></g><path class="foreground" d="" style="display: none; fill: none;"/></g></g></g></svg></p></section></section><section data-notes lineno="49" class="slide " data-line="49" data-h="1" data-v="0">
+<h5 class="mume-header" id="%E8%B4%AA%E5%BF%83%E6%B3%95-1">&#x8D2A;&#x5FC3;&#x6CD5;</h5>
+
+<hr>
+<p>&#x52A8;&#x673A;&#xFF1A;&#x90E8;&#x5206;&#x6700;&#x4F18;&#x5316;&#x95EE;&#x9898;&#x7528;&#x52A8;&#x6001;&#x89C4;&#x5212;&#x6C42;&#x89E3;&#x8FC7;&#x4E8E;&#x6740;&#x9E21;&#x7528;&#x725B;&#x5200;</p>
+<div class="top2"></div>
+<p>&#x8D2A;&#x5FC3;&#x6CD5;&#xFF1A;&#x5206;&#x6B65;&#x64CD;&#x4F5C;&#xFF0C;&#x6BCF;&#x6B65;&#x53D6;&#x5C40;&#x90E8;&#x6700;&#x4F18;&#xFF0C;&#x6700;&#x7EC8;&#x5F97;&#x5230;&#x5168;&#x5C40;&#x6700;&#x4F18;&#x89E3;</p>
+<div class="top2"></div>
+<p>&#x8D2A;&#x5FC3;&#x6CD5;&#x53EA;&#x5BF9;<mark>&#x90E8;&#x5206;</mark>&#x6700;&#x4F18;&#x5316;&#x95EE;&#x9898;&#x6709;&#x6548;</p>
+<div class="top2"></div>
+<p>&#x7ECF;&#x5178;&#x7B97;&#x6CD5;</p>
+<ul>
+<li>&#x6700;&#x5C0F;&#x751F;&#x6210;&#x6811;&#x7684; Prim &#x7B97;&#x6CD5;&#x3001;Kruskal &#x7B97;&#x6CD5;</li>
+<li>&#x5355;&#x6E90;&#x6700;&#x77ED;&#x8DEF;&#x5F84;&#x7684; Dijkstra &#x7B97;&#x6CD5;</li>
+</ul>
+</section><section><section data-notes lineno="72" class="slide " data-line="72" data-h="2" data-v="0">
+<h5 class="mume-header" id="%E6%B4%BB%E5%8A%A8%E9%80%89%E6%8B%A9">&#x6D3B;&#x52A8;&#x9009;&#x62E9;</h5>
+
+<hr>
+<p>&#x73B0;&#x6709;<span class="mathjax-exps">$n$</span>&#x4E2A;&#x6D3B;&#x52A8;<span class="mathjax-exps">$S = \{ a_1, a_2, \ldots, a_n \}$</span>&#xFF0C;&#x6D3B;&#x52A8;<span class="mathjax-exps">$a_i$</span>&#x7684;&#x65F6;&#x95F4;&#x6BB5;&#x4E3A;<span class="mathjax-exps">$[s_i, f_i)$</span></p>
+<p>&#x8FD9;&#x4E9B;&#x6D3B;&#x52A8;&#x4F1A;&#x4F7F;&#x7528;&#x540C;&#x4E00;&#x8D44;&#x6E90;&#x4E14;&#x4E0D;&#x80FD;&#x5171;&#x7528;&#xFF0C;&#x5982;&#x4F1A;&#x573A;&#x7B49;</p>
+<p>&#x5982;&#x679C;&#x4E24;&#x4E2A;&#x6D3B;&#x52A8;&#x7684;&#x65F6;&#x95F4;&#x6BB5;&#x4E0D;&#x91CD;&#x53E0;&#xFF0C;&#x5219;&#x79F0;&#x5B83;&#x4EEC;&#x662F;<mark>&#x517C;&#x5BB9;</mark>&#x7684;</p>
+<div class="top4"></div>
+<p>&#x8F93;&#x5165;&#xFF1A;&#x6D3B;&#x52A8;&#x96C6;&#x5408;<span class="mathjax-exps">$S = \{ a_1 = [s_1, f_1), a_2 = [s_2, f_2), \ldots, a_n = [s_n, f_n) \}$</span></p>
+<p>&#x8F93;&#x51FA;&#xFF1A;&#x4ECE;<span class="mathjax-exps">$S$</span>&#x4E2D;&#x9009;&#x51FA;&#x6700;&#x5927;&#x517C;&#x5BB9;&#x6D3B;&#x52A8;&#x96C6;&#x5408;</p>
+<p>&#x8BBE;&#x6D3B;&#x52A8;&#x5DF2;&#x6309;&#x7ED3;&#x675F;&#x65F6;&#x95F4;&#x5355;&#x8C03;&#x9012;&#x589E;&#x6392;&#x5E8F;<span class="mathjax-exps">$f_1 \le f_2 \le \cdots \le f_n$</span></p>
+</section><section vertical="true" data-notes lineno="92" class="slide " data-line="92" data-h="2" data-v="1">
+<h5 class="mume-header" id="%E6%B4%BB%E5%8A%A8%E9%80%89%E6%8B%A9-%E4%BE%8B%E5%AD%90">&#x6D3B;&#x52A8;&#x9009;&#x62E9; &#x4F8B;&#x5B50;</h5>
+
+<hr>
+<p>&#x6709;<span class="mathjax-exps">$n = 11$</span>&#x4E2A;&#x6D3B;&#x52A8;</p>
+<div class="threelines top0 bottom0">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><span class="mathjax-exps">$i$</span></th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">4</th>
+<th style="text-align:center">5</th>
+<th style="text-align:center">6</th>
+<th style="text-align:center">7</th>
+<th style="text-align:center">8</th>
+<th style="text-align:center">9</th>
+<th style="text-align:center">10</th>
+<th style="text-align:center">11</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><span class="mathjax-exps">$s_i$</span></td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">12</td>
+</tr>
+<tr>
+<td style="text-align:center"><span class="mathjax-exps">$f_i$</span></td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">11</td>
+<td style="text-align:center">12</td>
+<td style="text-align:center">14</td>
+<td style="text-align:center">16</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><span class="mathjax-exps">$\{ a_3, a_9, a_{11} \}$</span>&#x3001;<span class="mathjax-exps">$\{ a_1, a_4, a_8, a_{11} \}$</span>&#x3001;<span class="mathjax-exps">$\{ a_2, a_4, a_9, a_{11} \}$</span>&#x662F;&#x517C;&#x5BB9;&#x6D3B;&#x52A8;&#x96C6;&#x5408;</p>
+<p>&#x540E;&#x4E24;&#x8005;&#x90FD;&#x662F;&#x6700;&#x5927;&#x517C;&#x5BB9;&#x6D3B;&#x52A8;&#x96C6;&#x5408;&#xFF0C;&#x53EF;&#x89C1;&#x6700;&#x5927;&#x517C;&#x5BB9;&#x6D3B;&#x52A8;&#x96C6;&#x5408;&#x4E0D;&#x552F;&#x4E00;</p>
+</section></section><section><section data-notes lineno="113" class="slide " data-line="113" data-h="3" data-v="0">
+<h5 class="mume-header" id="%E6%B4%BB%E5%8A%A8%E9%80%89%E6%8B%A9-%E6%9C%80%E4%BC%98%E5%AD%90%E7%BB%93%E6%9E%84">&#x6D3B;&#x52A8;&#x9009;&#x62E9; &#x6700;&#x4F18;&#x5B50;&#x7ED3;&#x6784;</h5>
+
+<hr>
+<p>&#x8BBE;<span class="mathjax-exps">$S_{ij}$</span>&#x8868;&#x793A;<span class="mathjax-exps">$a_i$</span>&#x7ED3;&#x675F;&#x540E;&#x5F00;&#x59CB;&#x3001;<span class="mathjax-exps">$a_j$</span>&#x5F00;&#x59CB;&#x524D;&#x7ED3;&#x675F;&#x7684;&#x6D3B;&#x52A8;&#x96C6;&#x5408;</p>
+<p>
+
+$$
+\begin{align*}
+    \quad S_{ij} &amp; = \{ a_k = [s_k, f_k) \mid f_i \le s_k &lt; f_k \le s_j \} \\[10px]
+    a_1, &amp; ~ \ldots, ~ a_i, ~ \underbrace{\overbrace{a_{i+1}, ~ \ldots, ~ a_{k-1}}^{S_{ik}}, ~ a_k, ~ \overbrace{a_{k+1}, ~ \ldots, ~ a_{j-1}}^{S_{kj}}}_{S_{ij}}, ~ a_j, ~ \ldots, ~ a_n
+\end{align*}
+$$
+</p>
+
+<p>&#x6700;&#x4F18;&#x5B50;&#x7ED3;&#x6784;&#x6027;&#xFF1A;&#x8BBE;<span class="mathjax-exps">$A_{ij}$</span>&#x662F;<span class="mathjax-exps">$S_{ij}$</span>&#x7684;&#x6700;&#x5927;&#x517C;&#x5BB9;&#x6D3B;&#x52A8;&#x96C6;&#x5408;&#x5E76;&#x5305;&#x542B;<span class="mathjax-exps">$a_k$</span></p>
+<ul>
+<li>&#x8BBE;<span class="mathjax-exps">$A_{ik}$</span>&#x4E3A;<span class="mathjax-exps">$A_{ij}$</span>&#x4E2D;<span class="mathjax-exps">$a_k$</span>&#x5F00;&#x59CB;&#x524D;&#x7684;&#x6D3B;&#x52A8;&#x96C6;&#x5408;&#xFF0C;&#x5219;&#x4E5F;&#x662F;<span class="mathjax-exps">$S_{ik}$</span>&#x7684;&#x6700;&#x5927;&#x517C;&#x5BB9;&#x6D3B;&#x52A8;&#x96C6;&#x5408;</li>
+<li>&#x8BBE;<span class="mathjax-exps">$A_{kj}$</span>&#x4E3A;<span class="mathjax-exps">$A_{ij}$</span>&#x4E2D;<span class="mathjax-exps">$a_k$</span>&#x7ED3;&#x675F;&#x540E;&#x7684;&#x6D3B;&#x52A8;&#x96C6;&#x5408;&#xFF0C;&#x5219;&#x4E5F;&#x662F;<span class="mathjax-exps">$S_{kj}$</span>&#x7684;&#x6700;&#x5927;&#x517C;&#x5BB9;&#x6D3B;&#x52A8;&#x96C6;&#x5408;</li>
+<li><span class="mathjax-exps">$A_{ij} = A_{ik} \cup \{a_k\} \cup A_{kj}$</span></li>
+</ul>
+<div class="top2"></div>
+<p>&#x82E5;<span class="mathjax-exps">$A_{ik}$</span>&#x4E0D;&#x662F;&#x6700;&#x5927;&#xFF0C;&#x5B58;&#x5728;<span class="mathjax-exps">$A&apos;_{ik}$</span>&#x66F4;&#x5927;&#xFF0C;&#x5219;<span class="mathjax-exps">$A&apos;_{ik} \cup \{a_k\} \cup A_{kj}$</span>&#x66F4;&#x5927;&#xFF0C;&#x77DB;&#x76FE;</p>
+</section><section vertical="true" data-notes lineno="142" class="slide " data-line="142" data-h="3" data-v="1">
+<h5 class="mume-header" id="%E6%B4%BB%E5%8A%A8%E9%80%89%E6%8B%A9-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92">&#x6D3B;&#x52A8;&#x9009;&#x62E9; &#x52A8;&#x6001;&#x89C4;&#x5212;</h5>
+
+<hr>
+<p>&#x8BBE;<span class="mathjax-exps">$A_{ij}$</span>&#x5305;&#x542B;<span class="mathjax-exps">$a_k$</span>&#xFF0C;<span class="mathjax-exps">$A_{ij} = A_{ik} \cup \{a_k\} \cup A_{kj}$</span></p>
+<p>&#x4EE4;<span class="mathjax-exps">$c[i,j] = |A_{ij}|$</span>&#x8868;&#x793A;<span class="mathjax-exps">$S_{ij}$</span>&#x7684;&#x6700;&#x5927;&#x517C;&#x5BB9;&#x6D3B;&#x52A8;&#x96C6;&#x5408;&#x7684;&#x5927;&#x5C0F;</p>
+<p>&#x9012;&#x63A8;&#x5173;&#x7CFB;</p>
+<div class="top2"></div>
+<p>
+
+$$
+\begin{align*}
+    \quad c[i,j] &amp; = c[i,k] + c[k,j] + 1 \\[6px]
+    \Longrightarrow &amp; ~ c[i,j] = \begin{cases} 0, &amp; S_{ij} = \emptyset \\ \max_{a_k \in S_{ij}} \{ c[i,k] + c[k,j] + 1 \}, &amp; S_{ij} \ne \emptyset \end{cases}
+\end{align*}
+$$
+</p>
+
+<p>&#x52A8;&#x6001;&#x89C4;&#x5212;&#xFF1A;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;<span class="mathjax-exps">$\Theta(n^3)$</span>&#xFF0C;&#x7A7A;&#x95F4;&#x590D;&#x6742;&#x5EA6;<span class="mathjax-exps">$\Theta(n^2)$</span></p>
+</section></section><section><section data-notes lineno="169" class="slide " data-line="169" data-h="4" data-v="0">
+<h5 class="mume-header" id="%E6%B4%BB%E5%8A%A8%E9%80%89%E6%8B%A9-%E8%B4%AA%E5%BF%83%E6%B3%95">&#x6D3B;&#x52A8;&#x9009;&#x62E9; &#x8D2A;&#x5FC3;&#x6CD5;</h5>
+
+<hr>
+<p>&#x521D;&#x59CB;&#x5316;&#x6700;&#x5927;&#x517C;&#x5BB9;&#x6D3B;&#x52A8;&#x96C6;&#x5408;<span class="mathjax-exps">$A = \emptyset$</span>&#xFF0C;&#x4E0D;&#x65AD;&#x5C06;&#x4E0E;<span class="mathjax-exps">$A$</span>&#x517C;&#x5BB9;&#x7684;&#x6D3B;&#x52A8;&#x52A0;&#x5165;<span class="mathjax-exps">$A$</span></p>
+<p><mark>&#x8D2A;&#x5FC3;&#x9009;&#x62E9;</mark>&#xFF1A;&#x6BCF;&#x6B65;&#x505A;&#x5F53;&#x524D;&#x6700;&#x4F18;&#x9009;&#x62E9;&#xFF0C;&#x4E5F;&#x79F0;&#x5C40;&#x90E8;&#x6700;&#x4F18;&#x9009;&#x62E9;</p>
+<p>&#x6D3B;&#x52A8;&#x9009;&#x62E9;&#x95EE;&#x9898;&#xFF1A;&#x9009;&#x62E9;&#x4E0E;<span class="mathjax-exps">$A$</span>&#x517C;&#x5BB9;&#x7684;&#x6D3B;&#x52A8;&#x4E2D;&#x7ED3;&#x675F;&#x65F6;&#x95F4;&#x6700;&#x65E9;&#x7684;</p>
+<p><span class="blue"><i class="fa fa-lightbulb-o" aria-hidden="true"></i></span> &#x8D2A;&#x5FC3;&#x9009;&#x62E9;&#x4F7F;&#x5269;&#x4F59;&#x53EF;&#x5B89;&#x6392;&#x65F6;&#x95F4;&#x6700;&#x5927;&#x5316;&#xFF0C;&#x7ED9;&#x672A;&#x6765;&#x7559;&#x4E0B;&#x8DB3;&#x591F;&#x7684;&#x4F59;&#x5730;</p>
+<p>&#x9996;&#x6B21;&#x9009;&#x62E9;<span class="mathjax-exps">$a_1$</span>&#xFF0C;&#x5176;&#x540E;&#x9009;&#x62E9;<mark>&#x7ED3;&#x675F;&#x65F6;&#x95F4;&#x6700;&#x65E9;</mark> (&#x8D2A;&#x5FC3;) &#x4E14;<mark>&#x5F00;&#x59CB;&#x65F6;&#x95F4;&#x4E0D;&#x65E9;&#x4E8E;&#x524D;&#x4E00;&#x4E2A;&#x6240;&#x9009;&#x6D3B;&#x52A8;&#x7ED3;&#x675F;&#x65F6;&#x95F4;</mark> (&#x517C;&#x5BB9;) &#x7684;&#x6D3B;&#x52A8;</p>
+<ul>
+<li>&#x82E5;&#x6D3B;&#x52A8;&#x5DF2;&#x6392;&#x597D;&#x5E8F;&#xFF0C;&#x53EA;&#x9700;<span class="mathjax-exps">$\Theta(n)$</span>&#x7684;&#x65F6;&#x95F4;&#x904D;&#x5386;&#x4E00;&#x904D;&#x6D3B;&#x52A8;&#x96C6;&#x5408;</li>
+<li>&#x82E5;&#x6D3B;&#x52A8;&#x672A;&#x6392;&#x597D;&#x5E8F;&#xFF0C;&#x53EF;&#x5148;&#x7528;<span class="mathjax-exps">$\Theta(n \lg n)$</span>&#x7684;&#x65F6;&#x95F4;&#x91CD;&#x6392;&#x5E8F;</li>
+</ul>
+</section><section vertical="true" data-notes lineno="188" class="slide " data-line="188" data-h="4" data-v="1">
+<h5 class="mume-header" id="%E6%B4%BB%E5%8A%A8%E9%80%89%E6%8B%A9-%E4%BE%8B%E5%AD%90-1">&#x6D3B;&#x52A8;&#x9009;&#x62E9; &#x4F8B;&#x5B50;</h5>
+
+<hr>
+<div class="top-2"></div>
+<div class="mermaid">gantt
+todayMarker off
+dateFormat  HH
+axisFormat %H
+
+section &#x9009;&#x7B2C;2&#x4E2A;&#x6D3B;&#x52A8;
+a1: active, 01, 04
+a2: done, 03, 05
+a3: done, 00, 06
+a4: done, 05, 07
+
+section &#x9009;&#x7B2C;3&#x4E2A;&#x6D3B;&#x52A8;
+a1: active, 01, 04
+a4: active, 05, 07
+a5: done, 03, 09
+a6: done, 05, 09
+a7: done, 06, 10
+a8: done, 08, 11
+
+section &#x9009;&#x7B2C;4&#x4E2A;&#x6D3B;&#x52A8;
+a1: active, 01, 04
+a4: active, 05, 07
+a8: active, 08, 11
+a9: done, 08, 12
+a10: done, 02, 14
+a11: done, 12, 16
+
+section &#x517C;&#x5BB9;&#x6D3B;&#x52A8;
+a1: active, 01, 04
+a4: active, 05, 07
+a8: active, 08, 11
+a11: active, 12, 16
+</div></section><section vertical="true" data-notes lineno="198" class="slide " data-line="198" data-h="4" data-v="2">
+<h5 class="mume-header" id="%E6%B4%BB%E5%8A%A8%E9%80%89%E6%8B%A9-%E5%AE%9E%E7%8E%B0">&#x6D3B;&#x52A8;&#x9009;&#x62E9; &#x5B9E;&#x73B0;</h5>
+
+<hr>
+<p>&#x81EA;&#x9876;&#x5411;&#x4E0B;&#x9012;&#x5F52;&#x5B9E;&#x73B0;&#xFF0C;&#x6BCF;&#x6B21;&#x9009;&#x62E9;&#x5C06;&#x95EE;&#x9898;&#x8F6C;&#x5316;&#x6210;&#x4E00;&#x4E2A;&#x89C4;&#x6A21;&#x66F4;&#x5C0F;&#x7684;&#x95EE;&#x9898;</p>
+<pre data-role="codeBlock" data-info="py line_begin=0 line_end=7 class=&quot;left4 line-numbers top-2 bottom0&quot;" class="language-python left4 line-numbers top-2 bottom0"><span class="token keyword keyword-def">def</span> <span class="token function">activity_selector_rec</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> f<span class="token punctuation">,</span> k<span class="token punctuation">,</span> n<span class="token punctuation">,</span> a<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    m <span class="token operator">=</span> k <span class="token operator">+</span> <span class="token number">1</span>
+    <span class="token keyword keyword-while">while</span> m <span class="token operator">&lt;=</span> n <span class="token keyword keyword-and">and</span> s<span class="token punctuation">[</span>m<span class="token punctuation">]</span> <span class="token operator">&lt;</span> f<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">:</span>  <span class="token comment"># &#x8D2A;&#x5FC3;&#x9009;&#x62E9;&#x5BFB;&#x627E;ak&#x4E4B;&#x540E;&#x6700;&#x65E9;&#x7ED3;&#x675F;&#x7684;&#x6D3B;&#x52A8;</span>
+        m <span class="token operator">=</span> m <span class="token operator">+</span> <span class="token number">1</span>
+    <span class="token keyword keyword-if">if</span> m <span class="token operator">&lt;=</span> n<span class="token punctuation">:</span>  <span class="token comment"># &#x82E5;&#x627E;&#x5230; &#x5C06;&#x5176;&#x52A0;&#x5165;&#x96C6;&#x5408; &#x9012;&#x5F52;&#x5BFB;&#x627E;&#x4E0B;&#x4E00;&#x4E2A;&#x517C;&#x5BB9;&#x6D3B;&#x52A8;</span>
+        a<span class="token punctuation">.</span>append<span class="token punctuation">(</span>m<span class="token punctuation">)</span>  <span class="token comment"># &#x5C06;am&#x52A0;&#x5165;&#x96C6;&#x5408;</span>
+        activity_selector_rec<span class="token punctuation">(</span>s<span class="token punctuation">,</span> f<span class="token punctuation">,</span> m<span class="token punctuation">,</span> n<span class="token punctuation">,</span> a<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre><p>&#x5C3E;&#x9012;&#x5F52; -&gt; &#x8FED;&#x4EE3;&#xFF0C;&#x4E00;&#x91CD; for &#x5FAA;&#x73AF;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;<span class="mathjax-exps">$\Theta(n)$</span></p>
+<pre data-role="codeBlock" data-info="py line_begin=9 line_end=17 class=&quot;left4 line-numbers top-2 bottom0&quot;" class="language-python left4 line-numbers top-2 bottom0"><span class="token keyword keyword-def">def</span> <span class="token function">activity_selector_greedy</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> f<span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>  <span class="token comment"># a1&#x76F4;&#x63A5;&#x9009;&#x62E9;</span>
+    k <span class="token operator">=</span> <span class="token number">1</span>
+    <span class="token keyword keyword-for">for</span> m <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> n<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># &#x4ECE;&#x524D;&#x5411;&#x540E;&#x904D;&#x5386;a1&#x4E4B;&#x540E;&#x7684;&#x6D3B;&#x52A8;</span>
+        <span class="token keyword keyword-if">if</span> s<span class="token punctuation">[</span>m<span class="token punctuation">]</span> <span class="token operator">&gt;</span> f<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">:</span>      <span class="token comment"># &#x82E5;&#x627E;&#x5230;ak&#x4E4B;&#x540E;&#x6700;&#x65E9;&#x7ED3;&#x675F;&#x7684;&#x6D3B;&#x52A8;am</span>
+            a<span class="token punctuation">.</span>append<span class="token punctuation">(</span>m<span class="token punctuation">)</span>      <span class="token comment"># &#x5C06;am&#x52A0;&#x5165;&#x96C6;&#x5408;</span>
+            k <span class="token operator">=</span> m            <span class="token comment"># &#x4ECE;am&#x4E4B;&#x540E;&#x7684;&#x6D3B;&#x52A8;&#x4E2D;&#x7EE7;&#x7EED;&#x5BFB;&#x627E;</span>
+    <span class="token keyword keyword-return">return</span> a
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre></section><section vertical="true" data-notes lineno="212" class="slide " data-line="212" data-h="4" data-v="3">
+<h5 class="mume-header" id="%E6%B4%BB%E5%8A%A8%E9%80%89%E6%8B%A9-%E8%B4%AA%E5%BF%83%E6%AD%A3%E7%A1%AE%E6%80%A7">&#x6D3B;&#x52A8;&#x9009;&#x62E9; &#x8D2A;&#x5FC3;&#x6B63;&#x786E;&#x6027;</h5>
+
+<hr>
+<p>&#x82E5;<span class="mathjax-exps">$a_m$</span>&#x5728;<span class="mathjax-exps">$S_k$</span>&#x4E2D;&#x7ED3;&#x675F;&#x6700;&#x65E9;&#xFF0C;&#x5219;&#x5176;&#x5FC5;&#x5728;<span class="mathjax-exps">$S_k$</span>&#x7684;&#x67D0;&#x4E2A;&#x6700;&#x5927;&#x517C;&#x5BB9;&#x6D3B;&#x52A8;&#x96C6;&#x5408;&#x4E2D;</p>
+<p>&#x8BC1;&#x660E;&#xFF1A;&#x4EE4;<span class="mathjax-exps">$A_k$</span>&#x662F;<span class="mathjax-exps">$S_k$</span>&#x7684;&#x6700;&#x5927;&#x517C;&#x5BB9;&#x6D3B;&#x52A8;&#x96C6;&#x5408;&#xFF0C;<span class="mathjax-exps">$a_j$</span>&#x5728;<span class="mathjax-exps">$A_k$</span>&#x4E2D;&#x7ED3;&#x675F;&#x6700;&#x65E9;</p>
+<p>&#x82E5;<span class="mathjax-exps">$a_j = a_m$</span>&#xFF0C;&#x5219;&#x7ED3;&#x8BBA;&#x5F97;&#x8BC1;&#xFF0C;&#x6545;&#x8BBE;<span class="mathjax-exps">$a_j \ne a_m$</span>&#xFF0C;&#x5373;<span class="mathjax-exps">$a_m$</span>&#x4E0D;&#x5728;<span class="mathjax-exps">$A_k$</span>&#x4E2D;</p>
+<p>&#x6CE8;&#x610F;&#x4EE5;&#x4E0B;&#x4E24;&#x4E2A;&#x4E8B;&#x5B9E;</p>
+<ul>
+<li><span class="mathjax-exps">$A_k$</span>&#x4E2D;&#x7684;&#x6D3B;&#x52A8;&#x90FD;&#x662F;&#x4E0D;&#x76F8;&#x4EA4;&#x7684;</li>
+<li><span class="mathjax-exps">$a_m$</span>&#x7684;&#x7ED3;&#x675F;&#x65F6;&#x95F4;&#x65E9;&#x4E8E;<span class="mathjax-exps">$a_j$</span></li>
+</ul>
+<div class="top2"></div>
+<p>&#x4EE4;<span class="mathjax-exps">$A&apos;_k = \{ A_k \setminus \{a_j\} \} \cup \{a_m\}$</span>&#xFF0C;&#x5219;<span class="mathjax-exps">$A&apos;_k$</span>&#x4E5F;&#x662F;&#x517C;&#x5BB9;&#x7684;</p>
+<p>&#x7531;&#x4E8E;<span class="mathjax-exps">$|A&apos;_k|=|A_k|$</span>&#xFF0C;&#x6545;<span class="mathjax-exps">$A&apos;_k$</span>&#x4E5F;&#x662F;&#x6700;&#x5927;&#x517C;&#x5BB9;&#x6D3B;&#x52A8;&#x96C6;&#x5408;&#x4E14;&#x5305;&#x542B;<span class="mathjax-exps">$a_m$</span></p>
+</section></section><section data-notes lineno="235" class="slide " data-line="235" data-h="5" data-v="0">
+<h5 class="mume-header" id="%E8%B4%AA%E5%BF%83%E6%B3%95%E7%9A%84%E4%B8%80%E8%88%AC%E6%AD%A5%E9%AA%A4">&#x8D2A;&#x5FC3;&#x6CD5;&#x7684;&#x4E00;&#x822C;&#x6B65;&#x9AA4;</h5>
+
+<hr>
+<div class="top2"></div>
+<ol>
+<li>&#x786E;&#x5B9A;&#x95EE;&#x9898;&#x7684;&#x6700;&#x4F18;&#x5B50;&#x7ED3;&#x6784;</li>
+<li>&#x5C06;&#x95EE;&#x9898;&#x8F6C;&#x5316;&#x4E3A;&#x4E00;&#x7CFB;&#x5217;&#x9009;&#x62E9;&#xFF0C;&#x6BCF;&#x6B21;&#x9009;&#x62E9;&#x540E;&#x53EA;&#x5269;&#x4E00;&#x4E2A;&#x5B50;&#x95EE;&#x9898;</li>
+<li>&#x8BC1;&#x660E;&#x4F5C;&#x51FA;&#x8D2A;&#x5FC3;&#x9009;&#x62E9;&#x540E;&#xFF0C;&#x5269;&#x4F59;&#x7684;&#x5B50;&#x95EE;&#x9898;&#x6EE1;&#x8DB3;&#xFF1A;<mark>&#x5176;&#x6700;&#x4F18;&#x89E3;&#x4E0E;&#x524D;&#x9762;&#x7684;&#x8D2A;&#x5FC3;&#x9009;&#x62E9;&#x7EC4;&#x5408;&#x5373;&#x53EF;&#x5F97;&#x5230;&#x539F;&#x95EE;&#x9898;&#x7684;&#x6700;&#x4F18;&#x89E3;</mark>&#xFF0C;&#x6362;&#x8A00;&#x4E4B;&#xFF0C;<mark>&#x5B58;&#x5728;&#x67D0;&#x4E2A;&#x6700;&#x4F18;&#x89E3;&#x5305;&#x542B;&#x8D2A;&#x5FC3;&#x9009;&#x62E9;</mark></li>
+</ol>
+<div class="top4"></div>
+<p>&#x7B2C;&#x4E09;&#x6B65;&#x8BC1;&#x660E;&#x601D;&#x8DEF;&#xFF1A;</p>
+<ol>
+<li>&#x5047;&#x8BBE;&#x6700;&#x4F18;&#x89E3;&#x4E0D;&#x5305;&#x542B;&#x8D2A;&#x5FC3;&#x9009;&#x62E9;</li>
+<li>&#x5BF9;&#x8BE5;&#x6700;&#x4F18;&#x89E3;&#x8FDB;&#x884C;&#x526A;&#x5207;-&#x7C98;&#x8D34;&#xFF0C;&#x5C06;&#x5176;&#x4E00;&#x90E8;&#x5206;&#x66FF;&#x6362;&#x4E3A;&#x8D2A;&#x5FC3;&#x9009;&#x62E9;</li>
+<li>&#x8BC1;&#x660E;&#x8FD9;&#x6837;&#x6784;&#x9020;&#x51FA;&#x7684;&#x89E3;&#x4E5F;&#x662F;&#x6700;&#x4F18;&#x89E3;</li>
+</ol>
+<div class="top4"></div>
+<p><span class="blue"><i class="fa fa-lightbulb-o" aria-hidden="true"></i></span> <mark>&#x6700;&#x4F18;&#x5B50;&#x7ED3;&#x6784;</mark>&#x548C;<mark>&#x53EF;&#x8D2A;&#x5FC3;&#x9009;&#x62E9;</mark>&#x662F;&#x8D2A;&#x5FC3;&#x6CD5;&#x7684;&#x4E24;&#x4E2A;&#x5173;&#x952E;</p>
+</section><section><section data-notes lineno="259" class="slide " data-line="259" data-h="6" data-v="0">
+<h5 class="mume-header" id="%E6%96%87%E4%BB%B6%E7%BC%96%E7%A0%81">&#x6587;&#x4EF6;&#x7F16;&#x7801;</h5>
+
+<hr>
+<p>&#x538B;&#x7F29;&#x4E00;&#x4E2A;&#x53EA;&#x5305;&#x542B; a&#x3001;b&#x3001;c&#x3001;d&#x3001;e&#x3001;f &#x7684; 10w &#x4E2A;&#x5B57;&#x7B26;&#x7684;&#x6570;&#x636E;&#x6587;&#x4EF6;</p>
+<div class="threelines top-1 bottom1">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">&#x5B57;&#x7B26;</th>
+<th style="text-align:center">a</th>
+<th style="text-align:center">b</th>
+<th style="text-align:center">c</th>
+<th style="text-align:center">d</th>
+<th style="text-align:center">e</th>
+<th style="text-align:center">f</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">&#x9891;&#x7387;</td>
+<td style="text-align:center">45</td>
+<td style="text-align:center">13</td>
+<td style="text-align:center">12</td>
+<td style="text-align:center">16</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td style="text-align:center">&#x5B9A;&#x957F;&#x7F16;&#x7801;</td>
+<td style="text-align:center">000</td>
+<td style="text-align:center">001</td>
+<td style="text-align:center">010</td>
+<td style="text-align:center">011</td>
+<td style="text-align:center">100</td>
+<td style="text-align:center">101</td>
+</tr>
+<tr>
+<td style="text-align:center">&#x53D8;&#x957F;&#x7F16;&#x7801;</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">101</td>
+<td style="text-align:center">100</td>
+<td style="text-align:center">111</td>
+<td style="text-align:center">1101</td>
+<td style="text-align:center">1100</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>&#x5B9A;&#x957F;&#x7F16;&#x7801;&#xFF1A;3 * 10w = 30w &#x4E2A;&#x4E8C;&#x8FDB;&#x5236;&#x4F4D;</li>
+<li>&#x53D8;&#x957F;&#x7F16;&#x7801;&#xFF1A;&#x7EA6; 22.4w &#x4E2A;&#x4E8C;&#x8FDB;&#x5236;&#x4F4D;&#xFF0C;&#x8282;&#x7EA6; 25%&#x7A7A;&#x95F4;</li>
+</ul>
+<div class="top2"></div>
+<p><mark>&#x524D;&#x7F00;&#x7801;</mark>&#xFF1A;&#x7801;&#x5B57;<mark>&#x4E92;&#x4E0D;&#x4E3A;&#x524D;&#x7F00;</mark>&#xFF0C;&#x53EF;&#x4EE5;&#x4FDD;&#x8BC1;&#x89E3;&#x7801;&#x65F6;&#x65E0;&#x6B67;&#x4E49;</p>
+<p><span class="red">0</span><span class="green">101</span><mark>100</mark> -&gt; <span class="red">a</span><span class="green">b</span><mark>c</mark></p>
+</section><section vertical="true" data-notes lineno="286" class="slide " data-line="286" data-h="6" data-v="1">
+<h5 class="mume-header" id="%E7%BC%96%E7%A0%81%E6%A0%91">&#x7F16;&#x7801;&#x6811;</h5>
+
+<hr>
+<div class="top2"></div>
+<ul>
+<li>&#x6BCF;&#x4E2A;&#x5B57;&#x7B26;&#x5BF9;&#x5E94;&#x4E00;&#x4E2A;&#x53F6;&#x5B50;&#x7ED3;&#x70B9;</li>
+<li>&#x5B57;&#x7B26;&#x7684;&#x7801;&#x5B57;&#x7531;&#x6839;&#x7ED3;&#x70B9;&#x5230;&#x8BE5;&#x5B57;&#x7B26;&#x53F6;&#x5B50;&#x7ED3;&#x70B9;&#x7684;&#x8DEF;&#x5F84;&#x8868;&#x793A;</li>
+</ul>
+<p><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: g Pages: 1 -->
+<svg width="450pt" height="211pt" viewBox="0.00 0.00 450.00 210.60" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 206.6)">
+<title>g</title>
+<!-- 100 -->
+<g id="node1" class="node">
+<title>100</title>
+<ellipse fill="none" stroke="#586e75" cx="226.5" cy="-190.1" rx="12.5" ry="12.5"/>
+<text text-anchor="middle" x="226.5" y="-185.3" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">100</text>
+</g>
+<!-- 86 -->
+<g id="node2" class="node">
+<title>86</title>
+<ellipse fill="none" stroke="#586e75" cx="170.5" cy="-129.9" rx="12.5" ry="12.5"/>
+<text text-anchor="middle" x="170.5" y="-125.1" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">86</text>
+</g>
+<!-- 100&#45;&gt;86 -->
+<g id="edge1" class="edge">
+<title>100-&gt;86</title>
+<path fill="none" stroke="#586e75" d="M217.75,-180.6938C207.291,-169.4503 189.8866,-150.7406 179.3734,-139.4389"/>
+<text text-anchor="middle" x="211.5" y="-155.2" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">0</text>
+</g>
+<!-- 14 -->
+<g id="node3" class="node">
+<title>14</title>
+<ellipse fill="none" stroke="#586e75" cx="284.5" cy="-129.9" rx="12.5" ry="12.5"/>
+<text text-anchor="middle" x="284.5" y="-125.1" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">14</text>
+</g>
+<!-- 100&#45;&gt;14 -->
+<g id="edge2" class="edge">
+<title>100-&gt;14</title>
+<path fill="none" stroke="#586e75" d="M235.309,-180.9569C246.2103,-169.642 264.6686,-150.4836 275.6081,-139.1291"/>
+<text text-anchor="middle" x="267.5" y="-155.2" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">1</text>
+</g>
+<!-- 58 -->
+<g id="node4" class="node">
+<title>58</title>
+<ellipse fill="none" stroke="#586e75" cx="78.5" cy="-69.7" rx="12.5" ry="12.5"/>
+<text text-anchor="middle" x="78.5" y="-64.9" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">58</text>
+</g>
+<!-- 86&#45;&gt;58 -->
+<g id="edge3" class="edge">
+<title>86-&gt;58</title>
+<path fill="none" stroke="#586e75" d="M159.9464,-122.9943C142.2943,-111.4437 106.9723,-88.3308 89.2139,-76.7106"/>
+<text text-anchor="middle" x="142.5" y="-95" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">0</text>
+</g>
+<!-- 28 -->
+<g id="node5" class="node">
+<title>28</title>
+<ellipse fill="none" stroke="#586e75" cx="170.5" cy="-69.7" rx="12.5" ry="12.5"/>
+<text text-anchor="middle" x="170.5" y="-64.9" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">28</text>
+</g>
+<!-- 86&#45;&gt;28 -->
+<g id="edge4" class="edge">
+<title>86-&gt;28</title>
+<path fill="none" stroke="#586e75" d="M170.5,-117.1331C170.5,-106.917 170.5,-92.6598 170.5,-82.4485"/>
+<text text-anchor="middle" x="174.5" y="-95" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">1</text>
+</g>
+<!-- n1 -->
+<g id="node6" class="node">
+<title>n1</title>
+<ellipse fill="none" stroke="#586e75" cx="284.5" cy="-69.7" rx="12.5" ry="12.5"/>
+<text text-anchor="middle" x="284.5" y="-64.9" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">14</text>
+</g>
+<!-- 14&#45;&gt;n1 -->
+<g id="edge5" class="edge">
+<title>14-&gt;n1</title>
+<path fill="none" stroke="#586e75" d="M284.5,-117.1331C284.5,-106.917 284.5,-92.6598 284.5,-82.4485"/>
+<text text-anchor="middle" x="288.5" y="-95" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">0</text>
+</g>
+<!-- 15 -->
+<g id="node7" class="node">
+<title>15</title>
+<ellipse fill="none" stroke="#fdf6e3" cx="363.5" cy="-69.7" rx="12.5" ry="12.5"/>
+<text text-anchor="middle" x="363.5" y="-64.9" font-family="LXGWWenKai" font-size="16.00" fill="#fdf6e3">15</text>
+</g>
+<!-- 14&#45;&gt;15 -->
+<g id="edge6" class="edge">
+<title>14-&gt;15</title>
+<path fill="none" stroke="#fdf6e3" d="M294.5054,-122.2756C309.6184,-110.7592 338.1147,-89.0443 353.3263,-77.4526"/>
+</g>
+<!-- a:45 -->
+<g id="node8" class="node">
+<title>a:45</title>
+<polygon fill="none" stroke="#586e75" points="43,-22 0,-22 0,0 43,0 43,-22"/>
+<text text-anchor="middle" x="21.5" y="-6.2" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">a:45</text>
+</g>
+<!-- 58&#45;&gt;a:45 -->
+<g id="edge7" class="edge">
+<title>58-&gt;a:45</title>
+<path fill="none" stroke="#586e75" d="M69.5938,-60.5281C59.5742,-50.2098 43.2925,-33.4424 32.4902,-22.318"/>
+<text text-anchor="middle" x="62.5" y="-34.8" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">0</text>
+</g>
+<!-- b:13 -->
+<g id="node9" class="node">
+<title>b:13</title>
+<polygon fill="none" stroke="#586e75" points="100,-22 57,-22 57,0 100,0 100,-22"/>
+<text text-anchor="middle" x="78.5" y="-6.2" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">b:13</text>
+</g>
+<!-- 58&#45;&gt;b:13 -->
+<g id="edge8" class="edge">
+<title>58-&gt;b:13</title>
+<path fill="none" stroke="#586e75" d="M78.5,-56.963C78.5,-46.5775 78.5,-32.0541 78.5,-22.1295"/>
+<text text-anchor="middle" x="82.5" y="-34.8" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">1</text>
+</g>
+<!-- c:12 -->
+<g id="node10" class="node">
+<title>c:12</title>
+<polygon fill="none" stroke="#586e75" points="157,-22 114,-22 114,0 157,0 157,-22"/>
+<text text-anchor="middle" x="135.5" y="-6.2" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">c:12</text>
+</g>
+<!-- 28&#45;&gt;c:12 -->
+<g id="edge9" class="edge">
+<title>28-&gt;c:12</title>
+<path fill="none" stroke="#586e75" d="M164.0805,-58.9335C157.8443,-48.4745 148.419,-32.667 142.1167,-22.0971"/>
+<text text-anchor="middle" x="162.5" y="-34.8" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">0</text>
+</g>
+<!-- d:16 -->
+<g id="node11" class="node">
+<title>d:16</title>
+<polygon fill="none" stroke="#586e75" points="214,-22 171,-22 171,0 214,0 214,-22"/>
+<text text-anchor="middle" x="192.5" y="-6.2" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">d:16</text>
+</g>
+<!-- 28&#45;&gt;d:16 -->
+<g id="edge10" class="edge">
+<title>28-&gt;d:16</title>
+<path fill="none" stroke="#586e75" d="M174.952,-57.8212C178.8694,-47.369 184.5287,-32.2689 188.3523,-22.0669"/>
+<text text-anchor="middle" x="189.5" y="-34.8" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">1</text>
+</g>
+<!-- e:9 -->
+<g id="node12" class="node">
+<title>e:9</title>
+<polygon fill="none" stroke="#586e75" points="271,-22 228,-22 228,0 271,0 271,-22"/>
+<text text-anchor="middle" x="249.5" y="-6.2" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">e:9</text>
+</g>
+<!-- n1&#45;&gt;e:9 -->
+<g id="edge11" class="edge">
+<title>n1-&gt;e:9</title>
+<path fill="none" stroke="#586e75" d="M278.0805,-58.9335C271.8443,-48.4745 262.419,-32.667 256.1167,-22.0971"/>
+<text text-anchor="middle" x="275.5" y="-34.8" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">0</text>
+</g>
+<!-- f:5 -->
+<g id="node13" class="node">
+<title>f:5</title>
+<polygon fill="none" stroke="#586e75" points="328,-22 285,-22 285,0 328,0 328,-22"/>
+<text text-anchor="middle" x="306.5" y="-6.2" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">f:5</text>
+</g>
+<!-- n1&#45;&gt;f:5 -->
+<g id="edge12" class="edge">
+<title>n1-&gt;f:5</title>
+<path fill="none" stroke="#586e75" d="M288.952,-57.8212C292.8694,-47.369 298.5287,-32.2689 302.3523,-22.0669"/>
+<text text-anchor="middle" x="302.5" y="-34.8" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">1</text>
+</g>
+<!-- e:10 -->
+<g id="node14" class="node">
+<title>e:10</title>
+<polygon fill="none" stroke="#fdf6e3" points="385,-22 342,-22 342,0 385,0 385,-22"/>
+<text text-anchor="middle" x="363.5" y="-6.2" font-family="LXGWWenKai" font-size="16.00" fill="#fdf6e3">e:10</text>
+</g>
+<!-- 15&#45;&gt;e:10 -->
+<g id="edge13" class="edge">
+<title>15-&gt;e:10</title>
+<path fill="none" stroke="#fdf6e3" d="M363.5,-56.963C363.5,-46.5775 363.5,-32.0541 363.5,-22.1295"/>
+</g>
+<!-- e:11 -->
+<g id="node15" class="node">
+<title>e:11</title>
+<polygon fill="none" stroke="#fdf6e3" points="442,-22 399,-22 399,0 442,0 442,-22"/>
+<text text-anchor="middle" x="420.5" y="-6.2" font-family="LXGWWenKai" font-size="16.00" fill="#fdf6e3">e:11</text>
+</g>
+<!-- 15&#45;&gt;e:11 -->
+<g id="edge14" class="edge">
+<title>15-&gt;e:11</title>
+<path fill="none" stroke="#fdf6e3" d="M372.4063,-60.5281C382.4258,-50.2098 398.7075,-33.4424 409.5098,-22.318"/>
+</g>
+</g>
+</svg>
+</p><p class="top-32per left50per"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: g Pages: 1 -->
+<svg width="284pt" height="271pt" viewBox="0.00 0.00 284.00 270.80" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 266.8)">
+<title>g</title>
+<!-- 100 -->
+<g id="node1" class="node">
+<title>100</title>
+<ellipse fill="none" stroke="#586e75" cx="113.5" cy="-250.3" rx="12.5" ry="12.5"/>
+<text text-anchor="middle" x="113.5" y="-245.5" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">100</text>
+</g>
+<!-- a:45 -->
+<g id="node2" class="node">
+<title>a:45</title>
+<polygon fill="none" stroke="#586e75" points="108,-201.1 65,-201.1 65,-179.1 108,-179.1 108,-201.1"/>
+<text text-anchor="middle" x="86.5" y="-185.3" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">a:45</text>
+</g>
+<!-- 100&#45;&gt;a:45 -->
+<g id="edge1" class="edge">
+<title>100-&gt;a:45</title>
+<path fill="none" stroke="#586e75" d="M106.7991,-239.633C104.9701,-236.5208 103.0635,-233.075 101.5,-229.8 97.0559,-220.4914 92.9864,-209.4909 90.211,-201.433"/>
+<text text-anchor="middle" x="105.5" y="-215.4" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">0</text>
+</g>
+<!-- 55 -->
+<g id="node3" class="node">
+<title>55</title>
+<ellipse fill="none" stroke="#586e75" cx="142.5" cy="-190.1" rx="12.5" ry="12.5"/>
+<text text-anchor="middle" x="142.5" y="-185.3" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">55</text>
+</g>
+<!-- 100&#45;&gt;55 -->
+<g id="edge2" class="edge">
+<title>100-&gt;55</title>
+<path fill="none" stroke="#586e75" d="M118.9547,-238.9768C124.1394,-228.214 131.8931,-212.1184 137.0698,-201.3724"/>
+<text text-anchor="middle" x="136.5" y="-215.4" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">1</text>
+</g>
+<!-- a:46 -->
+<g id="node12" class="node">
+<title>a:46</title>
+<polygon fill="none" stroke="#fdf6e3" points="43,-140.9 0,-140.9 0,-118.9 43,-118.9 43,-140.9"/>
+<text text-anchor="middle" x="21.5" y="-125.1" font-family="LXGWWenKai" font-size="16.00" fill="#fdf6e3">a:46</text>
+</g>
+<!-- a:45&#45;&gt;a:46 -->
+<g id="edge11" class="edge">
+<title>a:45-&gt;a:46</title>
+<path fill="none" stroke="#fdf6e3" d="M74.578,-179.0584C62.9965,-168.3321 45.4924,-152.1207 33.7881,-141.2807"/>
+</g>
+<!-- a:47 -->
+<g id="node13" class="node">
+<title>a:47</title>
+<polygon fill="none" stroke="#fdf6e3" points="108,-140.9 65,-140.9 65,-118.9 108,-118.9 108,-140.9"/>
+<text text-anchor="middle" x="86.5" y="-125.1" font-family="LXGWWenKai" font-size="16.00" fill="#fdf6e3">a:47</text>
+</g>
+<!-- a:45&#45;&gt;a:47 -->
+<g id="edge12" class="edge">
+<title>a:45-&gt;a:47</title>
+<path fill="none" stroke="#fdf6e3" d="M86.5,-179.0584C86.5,-168.3321 86.5,-152.1207 86.5,-141.2807"/>
+</g>
+<!-- 25 -->
+<g id="node4" class="node">
+<title>25</title>
+<ellipse fill="none" stroke="#586e75" cx="142.5" cy="-129.9" rx="12.5" ry="12.5"/>
+<text text-anchor="middle" x="142.5" y="-125.1" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">25</text>
+</g>
+<!-- 55&#45;&gt;25 -->
+<g id="edge3" class="edge">
+<title>55-&gt;25</title>
+<path fill="none" stroke="#586e75" d="M142.5,-177.3331C142.5,-167.117 142.5,-152.8598 142.5,-142.6485"/>
+<text text-anchor="middle" x="146.5" y="-155.2" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">0</text>
+</g>
+<!-- 30 -->
+<g id="node5" class="node">
+<title>30</title>
+<ellipse fill="none" stroke="#586e75" cx="198.5" cy="-129.9" rx="12.5" ry="12.5"/>
+<text text-anchor="middle" x="198.5" y="-125.1" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">30</text>
+</g>
+<!-- 55&#45;&gt;30 -->
+<g id="edge4" class="edge">
+<title>55-&gt;30</title>
+<path fill="none" stroke="#586e75" d="M151.25,-180.6938C161.709,-169.4503 179.1134,-150.7406 189.6266,-139.4389"/>
+<text text-anchor="middle" x="183.5" y="-155.2" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">1</text>
+</g>
+<!-- c:12 -->
+<g id="node7" class="node">
+<title>c:12</title>
+<polygon fill="none" stroke="#586e75" points="99,-80.7 56,-80.7 56,-58.7 99,-58.7 99,-80.7"/>
+<text text-anchor="middle" x="77.5" y="-64.9" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">c:12</text>
+</g>
+<!-- 25&#45;&gt;c:12 -->
+<g id="edge6" class="edge">
+<title>25-&gt;c:12</title>
+<path fill="none" stroke="#586e75" d="M133.1871,-121.2748C121.6731,-110.6111 102.0574,-92.4439 89.4457,-80.7635"/>
+<text text-anchor="middle" x="124.5" y="-95" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">0</text>
+</g>
+<!-- b:13 -->
+<g id="node8" class="node">
+<title>b:13</title>
+<polygon fill="none" stroke="#586e75" points="164,-80.7 121,-80.7 121,-58.7 164,-58.7 164,-80.7"/>
+<text text-anchor="middle" x="142.5" y="-64.9" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">b:13</text>
+</g>
+<!-- 25&#45;&gt;b:13 -->
+<g id="edge7" class="edge">
+<title>25-&gt;b:13</title>
+<path fill="none" stroke="#586e75" d="M142.5,-117.1331C142.5,-106.3648 142.5,-91.1066 142.5,-80.8293"/>
+<text text-anchor="middle" x="146.5" y="-95" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">1</text>
+</g>
+<!-- 14 -->
+<g id="node6" class="node">
+<title>14</title>
+<ellipse fill="none" stroke="#586e75" cx="198.5" cy="-69.7" rx="12.5" ry="12.5"/>
+<text text-anchor="middle" x="198.5" y="-64.9" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">14</text>
+</g>
+<!-- 30&#45;&gt;14 -->
+<g id="edge5" class="edge">
+<title>30-&gt;14</title>
+<path fill="none" stroke="#586e75" d="M198.5,-117.1331C198.5,-106.917 198.5,-92.6598 198.5,-82.4485"/>
+<text text-anchor="middle" x="202.5" y="-95" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">0</text>
+</g>
+<!-- d:16 -->
+<g id="node9" class="node">
+<title>d:16</title>
+<polygon fill="none" stroke="#586e75" points="276,-80.7 233,-80.7 233,-58.7 276,-58.7 276,-80.7"/>
+<text text-anchor="middle" x="254.5" y="-64.9" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">d:16</text>
+</g>
+<!-- 30&#45;&gt;d:16 -->
+<g id="edge8" class="edge">
+<title>30-&gt;d:16</title>
+<path fill="none" stroke="#586e75" d="M207.25,-120.4938C217.2168,-109.7794 233.4907,-92.285 244.0981,-80.8821"/>
+<text text-anchor="middle" x="239.5" y="-95" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">1</text>
+</g>
+<!-- f:5 -->
+<g id="node10" class="node">
+<title>f:5</title>
+<polygon fill="none" stroke="#586e75" points="187,-22 144,-22 144,0 187,0 187,-22"/>
+<text text-anchor="middle" x="165.5" y="-6.2" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">f:5</text>
+</g>
+<!-- 14&#45;&gt;f:5 -->
+<g id="edge9" class="edge">
+<title>14-&gt;f:5</title>
+<path fill="none" stroke="#586e75" d="M192.293,-58.659C186.4678,-48.2972 177.7928,-32.8662 171.9043,-22.3919"/>
+<text text-anchor="middle" x="191.5" y="-34.8" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">0</text>
+</g>
+<!-- e:9 -->
+<g id="node11" class="node">
+<title>e:9</title>
+<polygon fill="none" stroke="#586e75" points="252,-22 209,-22 209,0 252,0 252,-22"/>
+<text text-anchor="middle" x="230.5" y="-6.2" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">e:9</text>
+</g>
+<!-- 14&#45;&gt;e:9 -->
+<g id="edge10" class="edge">
+<title>14-&gt;e:9</title>
+<path fill="none" stroke="#586e75" d="M204.519,-58.659C210.1676,-48.2972 218.5797,-32.8662 224.2898,-22.3919"/>
+<text text-anchor="middle" x="223.5" y="-34.8" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">1</text>
+</g>
+</g>
+</svg>
+</p><div class="top-10"></div>
+<p>&#x5DE6;&#xFF1A;&#x5B9A;&#x957F;&#x7F16;&#x7801;&#x6811;&#xFF0C;&#x53F3;&#xFF1A;&#x53D8;&#x957F;&#x7F16;&#x7801;&#x6811;</p>
+<p>&#x6700;&#x4F18;&#x7F16;&#x7801;&#x6811;&#x5FC5;&#x7136;&#x662F;&#x6EE1;&#x4E8C;&#x53C9;&#x6811;(&#x53F3;)&#xFF0C;&#x6BCF;&#x4E2A;&#x5185;&#x90E8;&#x7ED3;&#x70B9;&#x6709;&#x4E24;&#x4E2A;&#x5B50;&#x7ED3;&#x70B9;</p>
+</section><section vertical="true" data-notes lineno="307" class="slide " data-line="307" data-h="6" data-v="2">
+<h5 class="mume-header" id="%E6%9C%80%E4%BC%98%E5%89%8D%E7%BC%80%E7%A0%81">&#x6700;&#x4F18;&#x524D;&#x7F00;&#x7801;</h5>
+
+<hr>
+<p>&#x8BBE;<span class="mathjax-exps">$C$</span>&#x4E3A;&#x5B57;&#x7B26;&#x8868;&#xFF0C;&#x5BF9;<span class="mathjax-exps">$\forall c \in C$</span>&#xFF0C;&#x4EE4;<span class="mathjax-exps">$c.f$</span>&#x4E3A;<span class="mathjax-exps">$c$</span>&#x5728;&#x6587;&#x4EF6;&#x4E2D;&#x51FA;&#x73B0;&#x7684;&#x9891;&#x7387;</p>
+<p>&#x8BBE;<span class="mathjax-exps">$T$</span>&#x4E3A;&#x4EFB;&#x610F;&#x524D;&#x7F00;&#x7F16;&#x7801;&#x6811;&#xFF0C;&#x4EE4;<span class="mathjax-exps">$d_T(c)$</span>&#x8868;&#x793A;&#x5B57;&#x7B26;<span class="mathjax-exps">$c$</span>&#x5BF9;&#x5E94;&#x7684;&#x53F6;&#x5B50;&#x7ED3;&#x70B9;&#x5728;<span class="mathjax-exps">$T$</span>&#x4E2D;&#x7684;&#x6DF1;&#x5EA6;&#xFF0C;&#x4E5F;&#x662F;<span class="mathjax-exps">$c$</span>&#x7684;&#x7801;&#x5B57;&#x7684;&#x957F;&#x5EA6;</p>
+<p>&#x91C7;&#x7528;&#x7F16;&#x7801;&#x65B9;&#x6848;<span class="mathjax-exps">$T$</span>&#x65F6;&#xFF0C;&#x6587;&#x4EF6;&#x7684;&#x7F16;&#x7801;&#x957F;&#x5EA6;</p>
+<div class="top2"></div>
+<p>
+
+$$
+\begin{align*}
+    \quad B(T) = \sum_{c \in C} c.f \times d_T(c)
+\end{align*}
+$$
+</p>
+
+<p>&#x4F7F;&#x5F97;<span class="mathjax-exps">$B(T)$</span>&#x6700;&#x5C0F;&#x7684;&#x524D;&#x7F00;&#x7801;&#x79F0;&#x4E3A;<mark>&#x6700;&#x4F18;&#x524D;&#x7F00;&#x7801;</mark></p>
+<p>&#x970D;&#x592B;&#x66FC;&#x7F16;&#x7801;&#x662F;&#x4E00;&#x79CD;&#x6700;&#x4F18;&#x524D;&#x7F00;&#x7801;</p>
+</section></section><section><section data-notes lineno="335" class="slide " data-line="335" data-h="7" data-v="0">
+<h5 class="mume-header" id="%E9%9C%8D%E5%A4%AB%E6%9B%BC%E7%BC%96%E7%A0%81">&#x970D;&#x592B;&#x66FC;&#x7F16;&#x7801;</h5>
+
+<hr>
+<div class="threelines left6 righta top-1 bottom0">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">&#x5B57;&#x7B26;</th>
+<th style="text-align:center">a</th>
+<th style="text-align:center">b</th>
+<th style="text-align:center">c</th>
+<th style="text-align:center">d</th>
+<th style="text-align:center">e</th>
+<th style="text-align:center">f</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">&#x9891;&#x7387;</td>
+<td style="text-align:center">45</td>
+<td style="text-align:center">13</td>
+<td style="text-align:center">12</td>
+<td style="text-align:center">16</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">5</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: g Pages: 1 -->
+<svg width="367pt" height="44pt" viewBox="0.00 0.00 366.50 44.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>g</title>
+<!-- 1) -->
+<g id="node1" class="node">
+<title>1)</title>
+<text text-anchor="middle" x="11" y="-12" font-family="LXGWWenKai" font-size="20.00" fill="#586e75">1)</text>
+</g>
+<!-- f:5 -->
+<g id="node2" class="node">
+<title>f:5</title>
+<polygon fill="none" stroke="#586e75" points="78.5,-29 35.5,-29 35.5,-7 78.5,-7 78.5,-29"/>
+<text text-anchor="middle" x="57" y="-13.2" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">f:5</text>
+</g>
+<!-- e:9 -->
+<g id="node3" class="node">
+<title>e:9</title>
+<polygon fill="none" stroke="#586e75" points="134.5,-29 91.5,-29 91.5,-7 134.5,-7 134.5,-29"/>
+<text text-anchor="middle" x="113" y="-13.2" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">e:9</text>
+</g>
+<!-- c:12 -->
+<g id="node4" class="node">
+<title>c:12</title>
+<polygon fill="none" stroke="#586e75" points="190.5,-29 147.5,-29 147.5,-7 190.5,-7 190.5,-29"/>
+<text text-anchor="middle" x="169" y="-13.2" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">c:12</text>
+</g>
+<!-- b:13 -->
+<g id="node5" class="node">
+<title>b:13</title>
+<polygon fill="none" stroke="#586e75" points="246.5,-29 203.5,-29 203.5,-7 246.5,-7 246.5,-29"/>
+<text text-anchor="middle" x="225" y="-13.2" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">b:13</text>
+</g>
+<!-- d:16 -->
+<g id="node6" class="node">
+<title>d:16</title>
+<polygon fill="none" stroke="#586e75" points="302.5,-29 259.5,-29 259.5,-7 302.5,-7 302.5,-29"/>
+<text text-anchor="middle" x="281" y="-13.2" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">d:16</text>
+</g>
+<!-- a:45 -->
+<g id="node7" class="node">
+<title>a:45</title>
+<polygon fill="none" stroke="#586e75" points="358.5,-29 315.5,-29 315.5,-7 358.5,-7 358.5,-29"/>
+<text text-anchor="middle" x="337" y="-13.2" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">a:45</text>
+</g>
+</g>
+</svg>
+</p><p class="top0"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: g Pages: 1 -->
+<svg width="293pt" height="101pt" viewBox="0.00 0.00 292.50 101.20" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 97.2)">
+<title>g</title>
+<!-- 2) -->
+<g id="node1" class="node">
+<title>2)</title>
+<text text-anchor="middle" x="11" y="-69.2" font-family="LXGWWenKai" font-size="20.00" fill="#586e75">2)</text>
+</g>
+<!-- c:12 -->
+<g id="node2" class="node">
+<title>c:12</title>
+<polygon fill="none" stroke="#586e75" points="78.5,-86.2 35.5,-86.2 35.5,-64.2 78.5,-64.2 78.5,-86.2"/>
+<text text-anchor="middle" x="57" y="-70.4" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">c:12</text>
+</g>
+<!-- b:13 -->
+<g id="node3" class="node">
+<title>b:13</title>
+<polygon fill="none" stroke="#586e75" points="134.5,-86.2 91.5,-86.2 91.5,-64.2 134.5,-64.2 134.5,-86.2"/>
+<text text-anchor="middle" x="113" y="-70.4" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">b:13</text>
+</g>
+<!-- 14 -->
+<g id="node4" class="node">
+<title>14</title>
+<ellipse fill="none" stroke="#586e75" cx="160" cy="-75.2" rx="12.5" ry="12.5"/>
+<text text-anchor="middle" x="160" y="-70.4" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">14</text>
+</g>
+<!-- f:5 -->
+<g id="node5" class="node">
+<title>f:5</title>
+<polygon fill="none" stroke="#586e75" points="153.5,-22 110.5,-22 110.5,0 153.5,0 153.5,-22"/>
+<text text-anchor="middle" x="132" y="-6.2" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">f:5</text>
+</g>
+<!-- 14&#45;&gt;f:5 -->
+<g id="edge1" class="edge">
+<title>14-&gt;f:5</title>
+<path fill="none" stroke="#586e75" d="M154.9942,-63.7223C149.8976,-52.0367 142.0433,-34.0279 136.9625,-22.3783"/>
+<text text-anchor="middle" x="153" y="-34.8" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">0</text>
+</g>
+<!-- e:9 -->
+<g id="node6" class="node">
+<title>e:9</title>
+<polygon fill="none" stroke="#586e75" points="209.5,-22 166.5,-22 166.5,0 209.5,0 209.5,-22"/>
+<text text-anchor="middle" x="188" y="-6.2" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">e:9</text>
+</g>
+<!-- 14&#45;&gt;e:9 -->
+<g id="edge2" class="edge">
+<title>14-&gt;e:9</title>
+<path fill="none" stroke="#586e75" d="M165.0058,-63.7223C170.1024,-52.0367 177.9567,-34.0279 183.0375,-22.3783"/>
+<text text-anchor="middle" x="182" y="-34.8" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">1</text>
+</g>
+<!-- d:16 -->
+<g id="node7" class="node">
+<title>d:16</title>
+<polygon fill="none" stroke="#586e75" points="228.5,-86.2 185.5,-86.2 185.5,-64.2 228.5,-64.2 228.5,-86.2"/>
+<text text-anchor="middle" x="207" y="-70.4" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">d:16</text>
+</g>
+<!-- a:45 -->
+<g id="node8" class="node">
+<title>a:45</title>
+<polygon fill="none" stroke="#586e75" points="284.5,-86.2 241.5,-86.2 241.5,-64.2 284.5,-64.2 284.5,-86.2"/>
+<text text-anchor="middle" x="263" y="-70.4" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">a:45</text>
+</g>
+</g>
+</svg>
+</p><p class="top0"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: g Pages: 1 -->
+<svg width="324pt" height="101pt" viewBox="0.00 0.00 323.50 101.20" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 97.2)">
+<title>g</title>
+<!-- 3) -->
+<g id="node1" class="node">
+<title>3)</title>
+<text text-anchor="middle" x="11" y="-69.2" font-family="LXGWWenKai" font-size="20.00" fill="#586e75">3)</text>
+</g>
+<!-- 14 -->
+<g id="node2" class="node">
+<title>14</title>
+<ellipse fill="none" stroke="#586e75" cx="64" cy="-75.2" rx="12.5" ry="12.5"/>
+<text text-anchor="middle" x="64" y="-70.4" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">14</text>
+</g>
+<!-- f:5 -->
+<g id="node6" class="node">
+<title>f:5</title>
+<polygon fill="none" stroke="#586e75" points="72.5,-22 29.5,-22 29.5,0 72.5,0 72.5,-22"/>
+<text text-anchor="middle" x="51" y="-6.2" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">f:5</text>
+</g>
+<!-- 14&#45;&gt;f:5 -->
+<g id="edge1" class="edge">
+<title>14-&gt;f:5</title>
+<path fill="none" stroke="#586e75" d="M61.4935,-62.8216C59.1029,-51.016 55.5358,-33.3998 53.2385,-22.0546"/>
+<text text-anchor="middle" x="63" y="-34.8" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">0</text>
+</g>
+<!-- e:9 -->
+<g id="node7" class="node">
+<title>e:9</title>
+<polygon fill="none" stroke="#586e75" points="144.5,-22 101.5,-22 101.5,0 144.5,0 144.5,-22"/>
+<text text-anchor="middle" x="123" y="-6.2" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">e:9</text>
+</g>
+<!-- 14&#45;&gt;e:9 -->
+<g id="edge2" class="edge">
+<title>14-&gt;e:9</title>
+<path fill="none" stroke="#586e75" d="M72.7057,-65.7271C83.3477,-54.1471 101.3357,-34.5737 112.6681,-22.2425"/>
+<text text-anchor="middle" x="108" y="-34.8" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">1</text>
+</g>
+<!-- d:16 -->
+<g id="node3" class="node">
+<title>d:16</title>
+<polygon fill="none" stroke="#586e75" points="162.5,-86.2 119.5,-86.2 119.5,-64.2 162.5,-64.2 162.5,-86.2"/>
+<text text-anchor="middle" x="141" y="-70.4" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">d:16</text>
+</g>
+<!-- 25 -->
+<g id="node4" class="node">
+<title>25</title>
+<ellipse fill="none" stroke="#586e75" cx="231" cy="-75.2" rx="12.5" ry="12.5"/>
+<text text-anchor="middle" x="231" y="-70.4" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">25</text>
+</g>
+<!-- c:12 -->
+<g id="node8" class="node">
+<title>c:12</title>
+<polygon fill="none" stroke="#586e75" points="216.5,-22 173.5,-22 173.5,0 216.5,0 216.5,-22"/>
+<text text-anchor="middle" x="195" y="-6.2" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">c:12</text>
+</g>
+<!-- 25&#45;&gt;c:12 -->
+<g id="edge3" class="edge">
+<title>25-&gt;c:12</title>
+<path fill="none" stroke="#586e75" d="M224.7293,-64.0172C218.1217,-52.2337 207.7792,-33.7896 201.1989,-22.0546"/>
+<text text-anchor="middle" x="221" y="-34.8" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">0</text>
+</g>
+<!-- b:13 -->
+<g id="node9" class="node">
+<title>b:13</title>
+<polygon fill="none" stroke="#586e75" points="288.5,-22 245.5,-22 245.5,0 288.5,0 288.5,-22"/>
+<text text-anchor="middle" x="267" y="-6.2" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">b:13</text>
+</g>
+<!-- 25&#45;&gt;b:13 -->
+<g id="edge4" class="edge">
+<title>25-&gt;b:13</title>
+<path fill="none" stroke="#586e75" d="M237.2707,-64.0172C243.8783,-52.2337 254.2208,-33.7896 260.8011,-22.0546"/>
+<text text-anchor="middle" x="259" y="-34.8" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">1</text>
+</g>
+<!-- a:45 -->
+<g id="node5" class="node">
+<title>a:45</title>
+<polygon fill="none" stroke="#586e75" points="315.5,-86.2 272.5,-86.2 272.5,-64.2 315.5,-64.2 315.5,-86.2"/>
+<text text-anchor="middle" x="294" y="-70.4" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">a:45</text>
+</g>
+</g>
+</svg>
+</p><p class="top-57per left58per"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: g Pages: 1 -->
+<svg width="262pt" height="161pt" viewBox="0.00 0.00 261.50 161.40" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 157.4)">
+<title>g</title>
+<!-- 4) -->
+<g id="node1" class="node">
+<title>4)</title>
+<text text-anchor="middle" x="11" y="-129.4" font-family="LXGWWenKai" font-size="20.00" fill="#586e75">4)</text>
+</g>
+<!-- 25 -->
+<g id="node2" class="node">
+<title>25</title>
+<ellipse fill="none" stroke="#586e75" cx="55" cy="-135.4" rx="12.5" ry="12.5"/>
+<text text-anchor="middle" x="55" y="-130.6" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">25</text>
+</g>
+<!-- c:12 -->
+<g id="node9" class="node">
+<title>c:12</title>
+<polygon fill="none" stroke="#586e75" points="45.5,-80.7 2.5,-80.7 2.5,-58.7 45.5,-58.7 45.5,-80.7"/>
+<text text-anchor="middle" x="24" y="-64.9" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">c:12</text>
+</g>
+<!-- 25&#45;&gt;c:12 -->
+<g id="edge5" class="edge">
+<title>25-&gt;c:12</title>
+<path fill="none" stroke="#586e75" d="M49.6002,-123.9559C43.9104,-111.8971 35.0043,-93.022 29.3379,-81.0129"/>
+<text text-anchor="middle" x="47" y="-95" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">0</text>
+</g>
+<!-- b:13 -->
+<g id="node10" class="node">
+<title>b:13</title>
+<polygon fill="none" stroke="#586e75" points="108.5,-80.7 65.5,-80.7 65.5,-58.7 108.5,-58.7 108.5,-80.7"/>
+<text text-anchor="middle" x="87" y="-64.9" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">b:13</text>
+</g>
+<!-- 25&#45;&gt;b:13 -->
+<g id="edge6" class="edge">
+<title>25-&gt;b:13</title>
+<path fill="none" stroke="#586e75" d="M60.574,-123.9559C66.4474,-111.8971 75.6407,-93.022 81.4899,-81.0129"/>
+<text text-anchor="middle" x="81" y="-95" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">1</text>
+</g>
+<!-- 30 -->
+<g id="node3" class="node">
+<title>30</title>
+<ellipse fill="none" stroke="#586e75" cx="178" cy="-135.4" rx="12.5" ry="12.5"/>
+<text text-anchor="middle" x="178" y="-130.6" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">30</text>
+</g>
+<!-- 14 -->
+<g id="node4" class="node">
+<title>14</title>
+<ellipse fill="none" stroke="#586e75" cx="141" cy="-69.7" rx="12.5" ry="12.5"/>
+<text text-anchor="middle" x="141" y="-64.9" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">14</text>
+</g>
+<!-- 30&#45;&gt;14 -->
+<g id="edge1" class="edge">
+<title>30-&gt;14</title>
+<path fill="none" stroke="#586e75" d="M171.7235,-124.2549C164.8784,-112.1003 153.9922,-92.7699 147.1839,-80.6805"/>
+<text text-anchor="middle" x="167" y="-95" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">0</text>
+</g>
+<!-- d:16 -->
+<g id="node6" class="node">
+<title>d:16</title>
+<polygon fill="none" stroke="#586e75" points="216.5,-80.7 173.5,-80.7 173.5,-58.7 216.5,-58.7 216.5,-80.7"/>
+<text text-anchor="middle" x="195" y="-64.9" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">d:16</text>
+</g>
+<!-- 30&#45;&gt;d:16 -->
+<g id="edge2" class="edge">
+<title>30-&gt;d:16</title>
+<path fill="none" stroke="#586e75" d="M181.1976,-123.0423C184.3138,-110.9988 189.0133,-92.8369 192.0443,-81.123"/>
+<text text-anchor="middle" x="194" y="-95" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">1</text>
+</g>
+<!-- f:5 -->
+<g id="node7" class="node">
+<title>f:5</title>
+<polygon fill="none" stroke="#586e75" points="131.5,-22 88.5,-22 88.5,0 131.5,0 131.5,-22"/>
+<text text-anchor="middle" x="110" y="-6.2" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">f:5</text>
+</g>
+<!-- 14&#45;&gt;f:5 -->
+<g id="edge3" class="edge">
+<title>14-&gt;f:5</title>
+<path fill="none" stroke="#586e75" d="M135.0229,-58.382C129.5335,-47.9876 121.4424,-32.6666 115.9588,-22.2832"/>
+<text text-anchor="middle" x="135" y="-34.8" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">0</text>
+</g>
+<!-- e:9 -->
+<g id="node8" class="node">
+<title>e:9</title>
+<polygon fill="none" stroke="#586e75" points="194.5,-22 151.5,-22 151.5,0 194.5,0 194.5,-22"/>
+<text text-anchor="middle" x="173" y="-6.2" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">e:9</text>
+</g>
+<!-- 14&#45;&gt;e:9 -->
+<g id="edge4" class="edge">
+<title>14-&gt;e:9</title>
+<path fill="none" stroke="#586e75" d="M147.019,-58.659C152.6676,-48.2972 161.0797,-32.8662 166.7898,-22.3919"/>
+<text text-anchor="middle" x="166" y="-34.8" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">1</text>
+</g>
+<!-- a:45 -->
+<g id="node5" class="node">
+<title>a:45</title>
+<polygon fill="none" stroke="#586e75" points="253.5,-146.4 210.5,-146.4 210.5,-124.4 253.5,-124.4 253.5,-146.4"/>
+<text text-anchor="middle" x="232" y="-130.6" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">a:45</text>
+</g>
+</g>
+</svg>
+</p><p class="top0 bottom-4 left58per"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: g Pages: 1 -->
+<svg width="259pt" height="222pt" viewBox="0.00 0.00 258.50 221.60" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 217.6)">
+<title>g</title>
+<!-- 5) -->
+<g id="node1" class="node">
+<title>5)</title>
+<text text-anchor="middle" x="11" y="-189.6" font-family="LXGWWenKai" font-size="20.00" fill="#586e75">5)</text>
+</g>
+<!-- a:45 -->
+<g id="node2" class="node">
+<title>a:45</title>
+<polygon fill="none" stroke="#586e75" points="94.5,-206.6 51.5,-206.6 51.5,-184.6 94.5,-184.6 94.5,-206.6"/>
+<text text-anchor="middle" x="73" y="-190.8" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">a:45</text>
+</g>
+<!-- 55 -->
+<g id="node3" class="node">
+<title>55</title>
+<ellipse fill="none" stroke="#586e75" cx="136" cy="-195.6" rx="12.5" ry="12.5"/>
+<text text-anchor="middle" x="136" y="-190.8" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">55</text>
+</g>
+<!-- 25 -->
+<g id="node4" class="node">
+<title>25</title>
+<ellipse fill="none" stroke="#586e75" cx="103" cy="-129.9" rx="12.5" ry="12.5"/>
+<text text-anchor="middle" x="103" y="-125.1" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">25</text>
+</g>
+<!-- 55&#45;&gt;25 -->
+<g id="edge1" class="edge">
+<title>55-&gt;25</title>
+<path fill="none" stroke="#586e75" d="M130.2518,-184.1559C124.1949,-172.0971 114.7143,-153.222 108.6823,-141.2129"/>
+<text text-anchor="middle" x="127" y="-155.2" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">0</text>
+</g>
+<!-- 30 -->
+<g id="node5" class="node">
+<title>30</title>
+<ellipse fill="none" stroke="#586e75" cx="166" cy="-129.9" rx="12.5" ry="12.5"/>
+<text text-anchor="middle" x="166" y="-125.1" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">30</text>
+</g>
+<!-- 55&#45;&gt;30 -->
+<g id="edge2" class="edge">
+<title>55-&gt;30</title>
+<path fill="none" stroke="#586e75" d="M141.2256,-184.1559C146.6648,-172.2442 155.1409,-153.6814 160.6323,-141.6553"/>
+<text text-anchor="middle" x="161" y="-155.2" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">1</text>
+</g>
+<!-- c:12 -->
+<g id="node10" class="node">
+<title>c:12</title>
+<polygon fill="none" stroke="#586e75" points="52.5,-80.7 9.5,-80.7 9.5,-58.7 52.5,-58.7 52.5,-80.7"/>
+<text text-anchor="middle" x="31" y="-64.9" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">c:12</text>
+</g>
+<!-- 25&#45;&gt;c:12 -->
+<g id="edge7" class="edge">
+<title>25-&gt;c:12</title>
+<path fill="none" stroke="#586e75" d="M93.2898,-121.7812C80.6228,-111.1902 58.4079,-92.6161 44.2151,-80.7493"/>
+<text text-anchor="middle" x="82" y="-95" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">0</text>
+</g>
+<!-- b:13 -->
+<g id="node11" class="node">
+<title>b:13</title>
+<polygon fill="none" stroke="#586e75" points="124.5,-80.7 81.5,-80.7 81.5,-58.7 124.5,-58.7 124.5,-80.7"/>
+<text text-anchor="middle" x="103" y="-64.9" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">b:13</text>
+</g>
+<!-- 25&#45;&gt;b:13 -->
+<g id="edge8" class="edge">
+<title>25-&gt;b:13</title>
+<path fill="none" stroke="#586e75" d="M103,-117.1331C103,-106.3648 103,-91.1066 103,-80.8293"/>
+<text text-anchor="middle" x="107" y="-95" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">1</text>
+</g>
+<!-- 14 -->
+<g id="node6" class="node">
+<title>14</title>
+<ellipse fill="none" stroke="#586e75" cx="166" cy="-69.7" rx="12.5" ry="12.5"/>
+<text text-anchor="middle" x="166" y="-64.9" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">14</text>
+</g>
+<!-- 30&#45;&gt;14 -->
+<g id="edge3" class="edge">
+<title>30-&gt;14</title>
+<path fill="none" stroke="#586e75" d="M166,-117.1331C166,-106.917 166,-92.6598 166,-82.4485"/>
+<text text-anchor="middle" x="170" y="-95" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">0</text>
+</g>
+<!-- d:16 -->
+<g id="node7" class="node">
+<title>d:16</title>
+<polygon fill="none" stroke="#586e75" points="250.5,-80.7 207.5,-80.7 207.5,-58.7 250.5,-58.7 250.5,-80.7"/>
+<text text-anchor="middle" x="229" y="-64.9" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">d:16</text>
+</g>
+<!-- 30&#45;&gt;d:16 -->
+<g id="edge4" class="edge">
+<title>30-&gt;d:16</title>
+<path fill="none" stroke="#586e75" d="M175.2959,-121.0173C186.3856,-110.4204 204.9458,-92.6851 217.0808,-81.0895"/>
+<text text-anchor="middle" x="211" y="-95" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">1</text>
+</g>
+<!-- f:5 -->
+<g id="node8" class="node">
+<title>f:5</title>
+<polygon fill="none" stroke="#586e75" points="151.5,-22 108.5,-22 108.5,0 151.5,0 151.5,-22"/>
+<text text-anchor="middle" x="130" y="-6.2" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">f:5</text>
+</g>
+<!-- 14&#45;&gt;f:5 -->
+<g id="edge5" class="edge">
+<title>14-&gt;f:5</title>
+<path fill="none" stroke="#586e75" d="M159.397,-58.9335C152.9827,-48.4745 143.2881,-32.667 136.8057,-22.0971"/>
+<text text-anchor="middle" x="158" y="-34.8" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">0</text>
+</g>
+<!-- e:9 -->
+<g id="node9" class="node">
+<title>e:9</title>
+<polygon fill="none" stroke="#586e75" points="223.5,-22 180.5,-22 180.5,0 223.5,0 223.5,-22"/>
+<text text-anchor="middle" x="202" y="-6.2" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">e:9</text>
+</g>
+<!-- 14&#45;&gt;e:9 -->
+<g id="edge6" class="edge">
+<title>14-&gt;e:9</title>
+<path fill="none" stroke="#586e75" d="M172.603,-58.9335C179.0173,-48.4745 188.7119,-32.667 195.1943,-22.0971"/>
+<text text-anchor="middle" x="194" y="-34.8" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">1</text>
+</g>
+</g>
+</svg>
+</p></section><section vertical="true" data-notes lineno="359" class="slide " data-line="359" data-h="7" data-v="1">
+<h5 class="mume-header" id="%E9%9C%8D%E5%A4%AB%E6%9B%BC%E7%BC%96%E7%A0%81-1">&#x970D;&#x592B;&#x66FC;&#x7F16;&#x7801;</h5>
+
+<hr>
+<p>&#x6700;&#x7EC8;&#x970D;&#x592B;&#x66FC;&#x7F16;&#x7801;&#x6811;&#x4E3A;</p>
+<div class="threelines left45per top0 bottom-20">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">&#x5B57;&#x7B26;</th>
+<th style="text-align:center">a</th>
+<th style="text-align:center">b</th>
+<th style="text-align:center">c</th>
+<th style="text-align:center">d</th>
+<th style="text-align:center">e</th>
+<th style="text-align:center">f</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">&#x9891;&#x7387;</td>
+<td style="text-align:center">45</td>
+<td style="text-align:center">13</td>
+<td style="text-align:center">12</td>
+<td style="text-align:center">16</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">5</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="left-15 top4"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: g Pages: 1 -->
+<svg width="586pt" height="327pt" viewBox="0.00 0.00 586.00 326.80" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 322.8)">
+<title>g</title>
+<!-- 100 -->
+<g id="node1" class="node">
+<title>100</title>
+<ellipse fill="none" stroke="#586e75" cx="288.5" cy="-306.3" rx="12.5" ry="12.5"/>
+<text text-anchor="middle" x="288.5" y="-301.5" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">100</text>
+</g>
+<!-- a:45 -->
+<g id="node2" class="node">
+<title>a:45</title>
+<polygon fill="none" stroke="#586e75" points="251,-243.1 208,-243.1 208,-221.1 251,-221.1 251,-243.1"/>
+<text text-anchor="middle" x="229.5" y="-227.3" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">a:45</text>
+</g>
+<!-- 100&#45;&gt;a:45 -->
+<g id="edge1" class="edge">
+<title>100-&gt;a:45</title>
+<path fill="none" stroke="#586e75" d="M280.543,-296.2931C269.5341,-282.4479 249.724,-257.5343 238.2901,-243.1546"/>
+<text text-anchor="middle" x="270.5" y="-264.4" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">0</text>
+</g>
+<!-- 55 -->
+<g id="node3" class="node">
+<title>55</title>
+<ellipse fill="none" stroke="#586e75" cx="377.5" cy="-232.1" rx="12.5" ry="12.5"/>
+<text text-anchor="middle" x="377.5" y="-227.3" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">55</text>
+</g>
+<!-- 100&#45;&gt;55 -->
+<g id="edge2" class="edge">
+<title>100-&gt;55</title>
+<path fill="none" stroke="#586e75" d="M298.3646,-298.0758C315.5628,-283.7376 350.8235,-254.3404 367.8617,-240.1355"/>
+<text text-anchor="middle" x="348.5" y="-264.4" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">1</text>
+</g>
+<!-- a:46 -->
+<g id="node12" class="node">
+<title>a:46</title>
+<polygon fill="none" stroke="#fdf6e3" points="122,-168.9 79,-168.9 79,-146.9 122,-146.9 122,-168.9"/>
+<text text-anchor="middle" x="100.5" y="-153.1" font-family="LXGWWenKai" font-size="16.00" fill="#fdf6e3">a:46</text>
+</g>
+<!-- a:45&#45;&gt;a:46 -->
+<g id="edge11" class="edge">
+<title>a:45-&gt;a:46</title>
+<path fill="none" stroke="#fdf6e3" d="M210.1874,-220.9915C185.8683,-207.0033 144.3259,-183.1084 119.9446,-169.0844"/>
+</g>
+<!-- a:47 -->
+<g id="node15" class="node">
+<title>a:47</title>
+<polygon fill="none" stroke="#fdf6e3" points="251,-168.9 208,-168.9 208,-146.9 251,-146.9 251,-168.9"/>
+<text text-anchor="middle" x="229.5" y="-153.1" font-family="LXGWWenKai" font-size="16.00" fill="#fdf6e3">a:47</text>
+</g>
+<!-- a:45&#45;&gt;a:47 -->
+<g id="edge14" class="edge">
+<title>a:45-&gt;a:47</title>
+<path fill="none" stroke="#fdf6e3" d="M229.5,-220.8306C229.5,-206.8844 229.5,-183.2705 229.5,-169.2754"/>
+</g>
+<!-- 25 -->
+<g id="node4" class="node">
+<title>25</title>
+<ellipse fill="none" stroke="#586e75" cx="377.5" cy="-157.9" rx="12.5" ry="12.5"/>
+<text text-anchor="middle" x="377.5" y="-153.1" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">25</text>
+</g>
+<!-- 55&#45;&gt;25 -->
+<g id="edge3" class="edge">
+<title>55-&gt;25</title>
+<path fill="none" stroke="#586e75" d="M377.5,-219.513C377.5,-205.9512 377.5,-184.4795 377.5,-170.7982"/>
+<text text-anchor="middle" x="381.5" y="-190.2" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">0</text>
+</g>
+<!-- 30 -->
+<g id="node5" class="node">
+<title>30</title>
+<ellipse fill="none" stroke="#586e75" cx="486.5" cy="-157.9" rx="12.5" ry="12.5"/>
+<text text-anchor="middle" x="486.5" y="-153.1" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">30</text>
+</g>
+<!-- 55&#45;&gt;30 -->
+<g id="edge4" class="edge">
+<title>55-&gt;30</title>
+<path fill="none" stroke="#586e75" d="M387.9514,-224.9854C408.7325,-210.839 455.0343,-179.3198 475.9201,-165.1021"/>
+<text text-anchor="middle" x="449.5" y="-190.2" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">1</text>
+</g>
+<!-- c:12 -->
+<g id="node7" class="node">
+<title>c:12</title>
+<polygon fill="none" stroke="#586e75" points="359,-94.7 316,-94.7 316,-72.7 359,-72.7 359,-94.7"/>
+<text text-anchor="middle" x="337.5" y="-78.9" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">c:12</text>
+</g>
+<!-- 25&#45;&gt;c:12 -->
+<g id="edge6" class="edge">
+<title>25-&gt;c:12</title>
+<path fill="none" stroke="#586e75" d="M371.4249,-146.6306C363.9067,-132.6844 351.1768,-109.0705 343.6323,-95.0754"/>
+<text text-anchor="middle" x="366.5" y="-116" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">0</text>
+</g>
+<!-- b:13 -->
+<g id="node8" class="node">
+<title>b:13</title>
+<polygon fill="none" stroke="#586e75" points="438,-94.7 395,-94.7 395,-72.7 438,-72.7 438,-94.7"/>
+<text text-anchor="middle" x="416.5" y="-78.9" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">b:13</text>
+</g>
+<!-- 25&#45;&gt;b:13 -->
+<g id="edge7" class="edge">
+<title>25-&gt;b:13</title>
+<path fill="none" stroke="#586e75" d="M383.4233,-146.6306C390.7535,-132.6844 403.1651,-109.0705 410.521,-95.0754"/>
+<text text-anchor="middle" x="406.5" y="-116" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">1</text>
+</g>
+<!-- 14 -->
+<g id="node6" class="node">
+<title>14</title>
+<ellipse fill="none" stroke="#586e75" cx="486.5" cy="-83.7" rx="12.5" ry="12.5"/>
+<text text-anchor="middle" x="486.5" y="-78.9" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">14</text>
+</g>
+<!-- 30&#45;&gt;14 -->
+<g id="edge5" class="edge">
+<title>30-&gt;14</title>
+<path fill="none" stroke="#586e75" d="M486.5,-145.313C486.5,-131.7512 486.5,-110.2795 486.5,-96.5982"/>
+<text text-anchor="middle" x="490.5" y="-116" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">0</text>
+</g>
+<!-- d:16 -->
+<g id="node9" class="node">
+<title>d:16</title>
+<polygon fill="none" stroke="#586e75" points="578,-94.7 535,-94.7 535,-72.7 578,-72.7 578,-94.7"/>
+<text text-anchor="middle" x="556.5" y="-78.9" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">d:16</text>
+</g>
+<!-- 30&#45;&gt;d:16 -->
+<g id="edge8" class="edge">
+<title>30-&gt;d:16</title>
+<path fill="none" stroke="#586e75" d="M495.0834,-148.8016C507.9341,-135.1798 532.1441,-109.5173 546.0203,-94.8085"/>
+<text text-anchor="middle" x="534.5" y="-116" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">1</text>
+</g>
+<!-- f:5 -->
+<g id="node10" class="node">
+<title>f:5</title>
+<polygon fill="none" stroke="#586e75" points="468,-22 425,-22 425,0 468,0 468,-22"/>
+<text text-anchor="middle" x="446.5" y="-6.2" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">f:5</text>
+</g>
+<!-- 14&#45;&gt;f:5 -->
+<g id="edge9" class="edge">
+<title>14-&gt;f:5</title>
+<path fill="none" stroke="#586e75" d="M480.4249,-72.6584C472.9067,-58.9941 460.1768,-35.8576 452.6323,-22.1455"/>
+<text text-anchor="middle" x="475.5" y="-41.8" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">0</text>
+</g>
+<!-- e:9 -->
+<g id="node11" class="node">
+<title>e:9</title>
+<polygon fill="none" stroke="#586e75" points="547,-22 504,-22 504,0 547,0 547,-22"/>
+<text text-anchor="middle" x="525.5" y="-6.2" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">e:9</text>
+</g>
+<!-- 14&#45;&gt;e:9 -->
+<g id="edge10" class="edge">
+<title>14-&gt;e:9</title>
+<path fill="none" stroke="#586e75" d="M492.4233,-72.6584C499.7535,-58.9941 512.1651,-35.8576 519.521,-22.1455"/>
+<text text-anchor="middle" x="515.5" y="-41.8" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">1</text>
+</g>
+<!-- a -->
+<g id="node13" class="node">
+<title>a</title>
+<polygon fill="none" stroke="#fdf6e3" points="43,-94.7 0,-94.7 0,-72.7 43,-72.7 43,-94.7"/>
+<text text-anchor="middle" x="21.5" y="-78.9" font-family="LXGWWenKai" font-size="16.00" fill="#fdf6e3">a</text>
+</g>
+<!-- a:46&#45;&gt;a -->
+<g id="edge12" class="edge">
+<title>a:46-&gt;a</title>
+<path fill="none" stroke="#fdf6e3" d="M88.5016,-146.6306C73.5668,-132.6033 48.219,-108.7956 33.3525,-94.8323"/>
+</g>
+<!-- b -->
+<g id="node14" class="node">
+<title>b</title>
+<polygon fill="none" stroke="#fdf6e3" points="122,-94.7 79,-94.7 79,-72.7 122,-72.7 122,-94.7"/>
+<text text-anchor="middle" x="100.5" y="-78.9" font-family="LXGWWenKai" font-size="16.00" fill="#fdf6e3">b</text>
+</g>
+<!-- a:46&#45;&gt;b -->
+<g id="edge13" class="edge">
+<title>a:46-&gt;b</title>
+<path fill="none" stroke="#fdf6e3" d="M100.5,-146.6306C100.5,-132.6844 100.5,-109.0705 100.5,-95.0754"/>
+</g>
+<!-- c -->
+<g id="node16" class="node">
+<title>c</title>
+<polygon fill="none" stroke="#fdf6e3" points="201,-94.7 158,-94.7 158,-72.7 201,-72.7 201,-94.7"/>
+<text text-anchor="middle" x="179.5" y="-78.9" font-family="LXGWWenKai" font-size="16.00" fill="#fdf6e3">c</text>
+</g>
+<!-- a:47&#45;&gt;c -->
+<g id="edge15" class="edge">
+<title>a:47-&gt;c</title>
+<path fill="none" stroke="#fdf6e3" d="M221.9061,-146.6306C212.5083,-132.6844 196.596,-109.0705 187.1654,-95.0754"/>
+</g>
+<!-- d -->
+<g id="node17" class="node">
+<title>d</title>
+<polygon fill="none" stroke="#fdf6e3" points="280,-94.7 237,-94.7 237,-72.7 280,-72.7 280,-94.7"/>
+<text text-anchor="middle" x="258.5" y="-78.9" font-family="LXGWWenKai" font-size="16.00" fill="#fdf6e3">d</text>
+</g>
+<!-- a:47&#45;&gt;d -->
+<g id="edge16" class="edge">
+<title>a:47-&gt;d</title>
+<path fill="none" stroke="#fdf6e3" d="M233.9045,-146.6306C239.3552,-132.6844 248.5843,-109.0705 254.0541,-95.0754"/>
+</g>
+</g>
+</svg>
+</p></section></section><section><section data-notes lineno="377" class="slide " data-line="377" data-h="8" data-v="0">
+<h5 class="mume-header" id="%E9%9C%8D%E5%A4%AB%E6%9B%BC%E7%AE%97%E6%B3%95-%E8%B4%AA%E5%BF%83%E9%80%89%E6%8B%A9">&#x970D;&#x592B;&#x66FC;&#x7B97;&#x6CD5; &#x8D2A;&#x5FC3;&#x9009;&#x62E9;</h5>
+
+<hr>
+<p class="top-7per lefta right4 bottom-32per"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: g Pages: 1 -->
+<svg width="284pt" height="271pt" viewBox="0.00 0.00 284.00 270.80" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 266.8)">
+<title>g</title>
+<!-- 100 -->
+<g id="node1" class="node">
+<title>100</title>
+<ellipse fill="none" stroke="#586e75" cx="113.5" cy="-250.3" rx="12.5" ry="12.5"/>
+<text text-anchor="middle" x="113.5" y="-245.5" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">100</text>
+</g>
+<!-- a:45 -->
+<g id="node2" class="node">
+<title>a:45</title>
+<polygon fill="none" stroke="#586e75" points="108,-201.1 65,-201.1 65,-179.1 108,-179.1 108,-201.1"/>
+<text text-anchor="middle" x="86.5" y="-185.3" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">a:45</text>
+</g>
+<!-- 100&#45;&gt;a:45 -->
+<g id="edge1" class="edge">
+<title>100-&gt;a:45</title>
+<path fill="none" stroke="#586e75" d="M106.7991,-239.633C104.9701,-236.5208 103.0635,-233.075 101.5,-229.8 97.0559,-220.4914 92.9864,-209.4909 90.211,-201.433"/>
+<text text-anchor="middle" x="105.5" y="-215.4" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">0</text>
+</g>
+<!-- 55 -->
+<g id="node3" class="node">
+<title>55</title>
+<ellipse fill="none" stroke="#586e75" cx="142.5" cy="-190.1" rx="12.5" ry="12.5"/>
+<text text-anchor="middle" x="142.5" y="-185.3" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">55</text>
+</g>
+<!-- 100&#45;&gt;55 -->
+<g id="edge2" class="edge">
+<title>100-&gt;55</title>
+<path fill="none" stroke="#586e75" d="M118.9547,-238.9768C124.1394,-228.214 131.8931,-212.1184 137.0698,-201.3724"/>
+<text text-anchor="middle" x="136.5" y="-215.4" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">1</text>
+</g>
+<!-- a:46 -->
+<g id="node12" class="node">
+<title>a:46</title>
+<polygon fill="none" stroke="#fdf6e3" points="43,-140.9 0,-140.9 0,-118.9 43,-118.9 43,-140.9"/>
+<text text-anchor="middle" x="21.5" y="-125.1" font-family="LXGWWenKai" font-size="16.00" fill="#fdf6e3">a:46</text>
+</g>
+<!-- a:45&#45;&gt;a:46 -->
+<g id="edge11" class="edge">
+<title>a:45-&gt;a:46</title>
+<path fill="none" stroke="#fdf6e3" d="M74.578,-179.0584C62.9965,-168.3321 45.4924,-152.1207 33.7881,-141.2807"/>
+</g>
+<!-- a:47 -->
+<g id="node13" class="node">
+<title>a:47</title>
+<polygon fill="none" stroke="#fdf6e3" points="108,-140.9 65,-140.9 65,-118.9 108,-118.9 108,-140.9"/>
+<text text-anchor="middle" x="86.5" y="-125.1" font-family="LXGWWenKai" font-size="16.00" fill="#fdf6e3">a:47</text>
+</g>
+<!-- a:45&#45;&gt;a:47 -->
+<g id="edge12" class="edge">
+<title>a:45-&gt;a:47</title>
+<path fill="none" stroke="#fdf6e3" d="M86.5,-179.0584C86.5,-168.3321 86.5,-152.1207 86.5,-141.2807"/>
+</g>
+<!-- 25 -->
+<g id="node4" class="node">
+<title>25</title>
+<ellipse fill="none" stroke="#586e75" cx="142.5" cy="-129.9" rx="12.5" ry="12.5"/>
+<text text-anchor="middle" x="142.5" y="-125.1" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">25</text>
+</g>
+<!-- 55&#45;&gt;25 -->
+<g id="edge3" class="edge">
+<title>55-&gt;25</title>
+<path fill="none" stroke="#586e75" d="M142.5,-177.3331C142.5,-167.117 142.5,-152.8598 142.5,-142.6485"/>
+<text text-anchor="middle" x="146.5" y="-155.2" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">0</text>
+</g>
+<!-- 30 -->
+<g id="node5" class="node">
+<title>30</title>
+<ellipse fill="none" stroke="#586e75" cx="198.5" cy="-129.9" rx="12.5" ry="12.5"/>
+<text text-anchor="middle" x="198.5" y="-125.1" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">30</text>
+</g>
+<!-- 55&#45;&gt;30 -->
+<g id="edge4" class="edge">
+<title>55-&gt;30</title>
+<path fill="none" stroke="#586e75" d="M151.25,-180.6938C161.709,-169.4503 179.1134,-150.7406 189.6266,-139.4389"/>
+<text text-anchor="middle" x="183.5" y="-155.2" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">1</text>
+</g>
+<!-- c:12 -->
+<g id="node7" class="node">
+<title>c:12</title>
+<polygon fill="none" stroke="#586e75" points="99,-80.7 56,-80.7 56,-58.7 99,-58.7 99,-80.7"/>
+<text text-anchor="middle" x="77.5" y="-64.9" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">c:12</text>
+</g>
+<!-- 25&#45;&gt;c:12 -->
+<g id="edge6" class="edge">
+<title>25-&gt;c:12</title>
+<path fill="none" stroke="#586e75" d="M133.1871,-121.2748C121.6731,-110.6111 102.0574,-92.4439 89.4457,-80.7635"/>
+<text text-anchor="middle" x="124.5" y="-95" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">0</text>
+</g>
+<!-- b:13 -->
+<g id="node8" class="node">
+<title>b:13</title>
+<polygon fill="none" stroke="#586e75" points="164,-80.7 121,-80.7 121,-58.7 164,-58.7 164,-80.7"/>
+<text text-anchor="middle" x="142.5" y="-64.9" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">b:13</text>
+</g>
+<!-- 25&#45;&gt;b:13 -->
+<g id="edge7" class="edge">
+<title>25-&gt;b:13</title>
+<path fill="none" stroke="#586e75" d="M142.5,-117.1331C142.5,-106.3648 142.5,-91.1066 142.5,-80.8293"/>
+<text text-anchor="middle" x="146.5" y="-95" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">1</text>
+</g>
+<!-- 14 -->
+<g id="node6" class="node">
+<title>14</title>
+<ellipse fill="none" stroke="#586e75" cx="198.5" cy="-69.7" rx="12.5" ry="12.5"/>
+<text text-anchor="middle" x="198.5" y="-64.9" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">14</text>
+</g>
+<!-- 30&#45;&gt;14 -->
+<g id="edge5" class="edge">
+<title>30-&gt;14</title>
+<path fill="none" stroke="#586e75" d="M198.5,-117.1331C198.5,-106.917 198.5,-92.6598 198.5,-82.4485"/>
+<text text-anchor="middle" x="202.5" y="-95" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">0</text>
+</g>
+<!-- d:16 -->
+<g id="node9" class="node">
+<title>d:16</title>
+<polygon fill="none" stroke="#586e75" points="276,-80.7 233,-80.7 233,-58.7 276,-58.7 276,-80.7"/>
+<text text-anchor="middle" x="254.5" y="-64.9" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">d:16</text>
+</g>
+<!-- 30&#45;&gt;d:16 -->
+<g id="edge8" class="edge">
+<title>30-&gt;d:16</title>
+<path fill="none" stroke="#586e75" d="M207.25,-120.4938C217.2168,-109.7794 233.4907,-92.285 244.0981,-80.8821"/>
+<text text-anchor="middle" x="239.5" y="-95" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">1</text>
+</g>
+<!-- f:5 -->
+<g id="node10" class="node">
+<title>f:5</title>
+<polygon fill="none" stroke="#586e75" points="187,-22 144,-22 144,0 187,0 187,-22"/>
+<text text-anchor="middle" x="165.5" y="-6.2" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">f:5</text>
+</g>
+<!-- 14&#45;&gt;f:5 -->
+<g id="edge9" class="edge">
+<title>14-&gt;f:5</title>
+<path fill="none" stroke="#586e75" d="M192.293,-58.659C186.4678,-48.2972 177.7928,-32.8662 171.9043,-22.3919"/>
+<text text-anchor="middle" x="191.5" y="-34.8" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">0</text>
+</g>
+<!-- e:9 -->
+<g id="node11" class="node">
+<title>e:9</title>
+<polygon fill="none" stroke="#586e75" points="252,-22 209,-22 209,0 252,0 252,-22"/>
+<text text-anchor="middle" x="230.5" y="-6.2" font-family="LXGWWenKai" font-size="16.00" fill="#b58900">e:9</text>
+</g>
+<!-- 14&#45;&gt;e:9 -->
+<g id="edge10" class="edge">
+<title>14-&gt;e:9</title>
+<path fill="none" stroke="#586e75" d="M204.519,-58.659C210.1676,-48.2972 218.5797,-32.8662 224.2898,-22.3919"/>
+<text text-anchor="middle" x="223.5" y="-34.8" font-family="LXGWWenKai" font-size="16.00" fill="#268bd2">1</text>
+</g>
+</g>
+</svg>
+</p><div class="top0 bottom0"></div>
+<p>&#x7F16;&#x7801;&#x957F;&#x5EA6;<span class="mathjax-exps">$B(T) = \sum_{c \in C} c.f \times d_T(c)$</span></p>
+<p><mark>$B(T)$&#x4E5F;&#x7B49;&#x4E8E;&#x7F16;&#x7801;&#x6811;&#x4E2D;&#x6240;&#x6709;&#x7ED3;&#x70B9;&#x9891;&#x7387;&#x503C;&#x7684;&#x548C;</mark></p>
+<p>&#x8BC1;&#x660E;&#x4F9D;&#x8D56;&#x4EE5;&#x4E0B;&#x4E8B;&#x5B9E;&#xFF1A;</p>
+<ul>
+<li>&#x7236;&#x7ED3;&#x70B9;&#x9891;&#x7387;&#x503C;&#x7B49;&#x4E8E;&#x4E24;&#x4E2A;&#x5B50;&#x7ED3;&#x70B9;&#x9891;&#x7387;&#x503C;&#x503C;&#x548C;</li>
+<li>&#x7956;&#x5148;&#x7ED3;&#x70B9;&#x9891;&#x7387;&#x503C;&#x7B49;&#x4E8E;&#x5176;&#x540E;&#x4EE3;&#x53F6;&#x5B50;&#x7ED3;&#x70B9;&#x9891;&#x7387;&#x503C;&#x7684;&#x548C;</li>
+<li>&#x5BF9;&#x4EFB;&#x610F;&#x5B57;&#x7B26;<span class="mathjax-exps">$c$</span>&#xFF0C;&#x5176;&#x6DF1;&#x5EA6;<span class="mathjax-exps">$d_T(c) = |\text{&#x7956;&#x5148;&#x7ED3;&#x70B9;}|+1$</span></li>
+</ul>
+<div class="top2"></div>
+<p>&#x6EE1;&#x4E8C;&#x53C9;&#x6811;&#xFF1A;<span class="mathjax-exps">$|\text{&#x5185;&#x90E8;&#x7ED3;&#x70B9;}| = |\text{&#x53F6;&#x5B50;&#x7ED3;&#x70B9;}| - 1 = |C| - 1$</span></p>
+<p>&#x5185;&#x90E8;&#x7ED3;&#x70B9;&#x5747;&#x662F;&#x7531;&#x5176;&#x5B83;&#x4E24;&#x4E2A;&#x7ED3;&#x70B9;&#x5408;&#x5E76;&#x51FA;&#x6765;&#x7684;</p>
+<p>&#x8D2A;&#x5FC3;&#x9009;&#x62E9;&#xFF1A;<mark>&#x6BCF;&#x6B21;&#x9009;&#x9891;&#x7387;&#x6700;&#x4F4E;&#x7684;&#x4E24;&#x4E2A;&#x7ED3;&#x70B9;&#x5408;&#x5E76;</mark></p>
+</section><section vertical="true" data-notes lineno="405" class="slide " data-line="405" data-h="8" data-v="1">
+<h5 class="mume-header" id="%E9%9C%8D%E5%A4%AB%E6%9B%BC%E7%AE%97%E6%B3%95-%E8%B4%AA%E5%BF%83%E9%80%89%E6%8B%A9-1">&#x970D;&#x592B;&#x66FC;&#x7B97;&#x6CD5; &#x8D2A;&#x5FC3;&#x9009;&#x62E9;</h5>
+
+<hr>
+<p>&#x8BBE;<span class="mathjax-exps">$x$</span>&#x548C;<span class="mathjax-exps">$y$</span>&#x662F;<span class="mathjax-exps">$C$</span>&#x4E2D;&#x9891;&#x7387;&#x6700;&#x4F4E;&#x7684;&#x4E24;&#x4E2A;&#x5B57;&#x7B26;&#xFF0C;&#x5219;&#x5B58;&#x5728;<span class="mathjax-exps">$C$</span>&#x7684;&#x4E00;&#x4E2A;&#x6700;&#x4F18;&#x524D;&#x7F00;&#x7801;&#xFF0C;&#x5728;&#x5BF9;&#x5E94;&#x7684;&#x7F16;&#x7801;&#x6811;&#x4E2D;&#xFF0C;<span class="mathjax-exps">$x$</span>&#x548C;<span class="mathjax-exps">$y$</span>&#x662F;&#x4E00;&#x5BF9;&#x6700;&#x6DF1;&#x7684;&#x5144;&#x5F1F;&#x53F6;&#x5B50;&#x7ED3;&#x70B9;</p>
+<p>&#x8BC1;&#x660E;&#xFF1A;&#x53CD;&#x8BBE;<span class="mathjax-exps">$T$</span>&#x662F;&#x6700;&#x4F18;&#x7F16;&#x7801;&#x6811;&#xFF0C;<span class="mathjax-exps">$x$</span>&#x548C;<span class="mathjax-exps">$y$</span>&#x4E0D;&#x662F;&#x4E00;&#x5BF9;&#x5144;&#x5F1F;&#x53F6;&#x5B50;&#x7ED3;&#x70B9;</p>
+<p>&#x5C06;<span class="mathjax-exps">$x$</span>&#x548C;<span class="mathjax-exps">$y$</span>&#x4E0E;<span class="mathjax-exps">$T$</span>&#x4E2D;&#x6700;&#x6DF1;&#x7684;&#x4E00;&#x5BF9;&#x5144;&#x5F1F;&#x53F6;&#x5B50;&#x7ED3;&#x70B9;<span class="mathjax-exps">$a$</span>&#x548C;<span class="mathjax-exps">$b$</span>&#x4EA4;&#x6362;&#x4F1A;&#x5982;&#x4F55;&#xFF1F;</p>
+<p class="top4 left8"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: g Pages: 1 -->
+<svg width="178pt" height="166pt" viewBox="0.00 0.00 178.00 166.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 162)">
+<title>g</title>
+<!-- 1 -->
+<g id="node1" class="node">
+<title>1</title>
+<ellipse fill="none" stroke="#586e75" cx="108.5" cy="-143.5" rx="14.5" ry="14.5"/>
+</g>
+<!-- 2 -->
+<g id="node2" class="node">
+<title>2</title>
+<ellipse fill="none" stroke="#586e75" cx="61.5" cy="-100.5" rx="14.5" ry="14.5"/>
+</g>
+<!-- 1&#45;&gt;2 -->
+<g id="edge1" class="edge">
+<title>1-&gt;2</title>
+<path fill="none" stroke="#586e75" d="M97.5991,-133.5269C90.0062,-126.5801 79.9218,-117.3539 72.3418,-110.4191"/>
+</g>
+<!-- x -->
+<g id="node3" class="node">
+<title>x</title>
+<polygon fill="none" stroke="#586e75" points="170,-115 141,-115 141,-86 170,-86 170,-115"/>
+<text text-anchor="middle" x="155.5" y="-93.9" font-family="LXGWWenKai" font-size="22.00" fill="#b58900">x</text>
+</g>
+<!-- 1&#45;&gt;x -->
+<g id="edge2" class="edge">
+<title>1-&gt;x</title>
+<path fill="none" stroke="#586e75" d="M119.4009,-133.5269C125.8007,-127.6717 133.9704,-120.1973 140.9187,-113.8404"/>
+</g>
+<!-- y -->
+<g id="node4" class="node">
+<title>y</title>
+<polygon fill="none" stroke="#586e75" points="29,-72 0,-72 0,-43 29,-43 29,-72"/>
+<text text-anchor="middle" x="14.5" y="-50.9" font-family="LXGWWenKai" font-size="22.00" fill="#b58900">y</text>
+</g>
+<!-- 2&#45;&gt;y -->
+<g id="edge3" class="edge">
+<title>2-&gt;y</title>
+<path fill="none" stroke="#586e75" d="M50.5991,-90.5269C44.1993,-84.6717 36.0296,-77.1973 29.0813,-70.8404"/>
+</g>
+<!-- 3 -->
+<g id="node5" class="node">
+<title>3</title>
+<ellipse fill="none" stroke="#586e75" cx="108.5" cy="-57.5" rx="14.5" ry="14.5"/>
+</g>
+<!-- 2&#45;&gt;3 -->
+<g id="edge4" class="edge">
+<title>2-&gt;3</title>
+<path fill="none" stroke="#586e75" d="M72.4009,-90.5269C79.9938,-83.5801 90.0782,-74.3539 97.6582,-67.4191"/>
+</g>
+<!-- a -->
+<g id="node6" class="node">
+<title>a</title>
+<polygon fill="none" stroke="#586e75" points="76,-29 47,-29 47,0 76,0 76,-29"/>
+<text text-anchor="middle" x="61.5" y="-7.9" font-family="LXGWWenKai" font-size="22.00" fill="#b58900">a</text>
+</g>
+<!-- 3&#45;&gt;a -->
+<g id="edge5" class="edge">
+<title>3-&gt;a</title>
+<path fill="none" stroke="#586e75" d="M97.5991,-47.5269C91.1993,-41.6717 83.0296,-34.1973 76.0813,-27.8404"/>
+</g>
+<!-- b -->
+<g id="node7" class="node">
+<title>b</title>
+<polygon fill="none" stroke="#586e75" points="170,-29 141,-29 141,0 170,0 170,-29"/>
+<text text-anchor="middle" x="155.5" y="-7.9" font-family="LXGWWenKai" font-size="22.00" fill="#b58900">b</text>
+</g>
+<!-- 3&#45;&gt;b -->
+<g id="edge6" class="edge">
+<title>3-&gt;b</title>
+<path fill="none" stroke="#586e75" d="M119.4009,-47.5269C125.8007,-41.6717 133.9704,-34.1973 140.9187,-27.8404"/>
+</g>
+</g>
+</svg>
+</p><p class="center top-26per"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: g Pages: 1 -->
+<svg width="178pt" height="166pt" viewBox="0.00 0.00 178.00 166.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 162)">
+<title>g</title>
+<!-- 1 -->
+<g id="node1" class="node">
+<title>1</title>
+<ellipse fill="none" stroke="#586e75" cx="108.5" cy="-143.5" rx="14.5" ry="14.5"/>
+</g>
+<!-- 2 -->
+<g id="node2" class="node">
+<title>2</title>
+<ellipse fill="none" stroke="#586e75" cx="61.5" cy="-100.5" rx="14.5" ry="14.5"/>
+</g>
+<!-- 1&#45;&gt;2 -->
+<g id="edge1" class="edge">
+<title>1-&gt;2</title>
+<path fill="none" stroke="#586e75" d="M97.5991,-133.5269C90.0062,-126.5801 79.9218,-117.3539 72.3418,-110.4191"/>
+</g>
+<!-- a -->
+<g id="node3" class="node">
+<title>a</title>
+<polygon fill="none" stroke="#586e75" points="170,-115 141,-115 141,-86 170,-86 170,-115"/>
+<text text-anchor="middle" x="155.5" y="-93.9" font-family="LXGWWenKai" font-size="22.00" fill="#b58900">a</text>
+</g>
+<!-- 1&#45;&gt;a -->
+<g id="edge2" class="edge">
+<title>1-&gt;a</title>
+<path fill="none" stroke="#586e75" d="M119.4009,-133.5269C125.8007,-127.6717 133.9704,-120.1973 140.9187,-113.8404"/>
+</g>
+<!-- y -->
+<g id="node4" class="node">
+<title>y</title>
+<polygon fill="none" stroke="#586e75" points="29,-72 0,-72 0,-43 29,-43 29,-72"/>
+<text text-anchor="middle" x="14.5" y="-50.9" font-family="LXGWWenKai" font-size="22.00" fill="#b58900">y</text>
+</g>
+<!-- 2&#45;&gt;y -->
+<g id="edge3" class="edge">
+<title>2-&gt;y</title>
+<path fill="none" stroke="#586e75" d="M50.5991,-90.5269C44.1993,-84.6717 36.0296,-77.1973 29.0813,-70.8404"/>
+</g>
+<!-- 3 -->
+<g id="node5" class="node">
+<title>3</title>
+<ellipse fill="none" stroke="#586e75" cx="108.5" cy="-57.5" rx="14.5" ry="14.5"/>
+</g>
+<!-- 2&#45;&gt;3 -->
+<g id="edge4" class="edge">
+<title>2-&gt;3</title>
+<path fill="none" stroke="#586e75" d="M72.4009,-90.5269C79.9938,-83.5801 90.0782,-74.3539 97.6582,-67.4191"/>
+</g>
+<!-- x -->
+<g id="node6" class="node">
+<title>x</title>
+<polygon fill="none" stroke="#586e75" points="76,-29 47,-29 47,0 76,0 76,-29"/>
+<text text-anchor="middle" x="61.5" y="-7.9" font-family="LXGWWenKai" font-size="22.00" fill="#b58900">x</text>
+</g>
+<!-- 3&#45;&gt;x -->
+<g id="edge5" class="edge">
+<title>3-&gt;x</title>
+<path fill="none" stroke="#586e75" d="M97.5991,-47.5269C91.1993,-41.6717 83.0296,-34.1973 76.0813,-27.8404"/>
+</g>
+<!-- b -->
+<g id="node7" class="node">
+<title>b</title>
+<polygon fill="none" stroke="#586e75" points="170,-29 141,-29 141,0 170,0 170,-29"/>
+<text text-anchor="middle" x="155.5" y="-7.9" font-family="LXGWWenKai" font-size="22.00" fill="#b58900">b</text>
+</g>
+<!-- 3&#45;&gt;b -->
+<g id="edge6" class="edge">
+<title>3-&gt;b</title>
+<path fill="none" stroke="#586e75" d="M119.4009,-47.5269C125.8007,-41.6717 133.9704,-34.1973 140.9187,-27.8404"/>
+</g>
+</g>
+</svg>
+</p><p class="lefta right8 top-26per"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: g Pages: 1 -->
+<svg width="178pt" height="166pt" viewBox="0.00 0.00 178.00 166.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 162)">
+<title>g</title>
+<!-- 1 -->
+<g id="node1" class="node">
+<title>1</title>
+<ellipse fill="none" stroke="#586e75" cx="108.5" cy="-143.5" rx="14.5" ry="14.5"/>
+</g>
+<!-- 2 -->
+<g id="node2" class="node">
+<title>2</title>
+<ellipse fill="none" stroke="#586e75" cx="61.5" cy="-100.5" rx="14.5" ry="14.5"/>
+</g>
+<!-- 1&#45;&gt;2 -->
+<g id="edge1" class="edge">
+<title>1-&gt;2</title>
+<path fill="none" stroke="#586e75" d="M97.5991,-133.5269C90.0062,-126.5801 79.9218,-117.3539 72.3418,-110.4191"/>
+</g>
+<!-- a -->
+<g id="node3" class="node">
+<title>a</title>
+<polygon fill="none" stroke="#586e75" points="170,-115 141,-115 141,-86 170,-86 170,-115"/>
+<text text-anchor="middle" x="155.5" y="-93.9" font-family="LXGWWenKai" font-size="22.00" fill="#b58900">a</text>
+</g>
+<!-- 1&#45;&gt;a -->
+<g id="edge2" class="edge">
+<title>1-&gt;a</title>
+<path fill="none" stroke="#586e75" d="M119.4009,-133.5269C125.8007,-127.6717 133.9704,-120.1973 140.9187,-113.8404"/>
+</g>
+<!-- b -->
+<g id="node4" class="node">
+<title>b</title>
+<polygon fill="none" stroke="#586e75" points="29,-72 0,-72 0,-43 29,-43 29,-72"/>
+<text text-anchor="middle" x="14.5" y="-50.9" font-family="LXGWWenKai" font-size="22.00" fill="#b58900">b</text>
+</g>
+<!-- 2&#45;&gt;b -->
+<g id="edge3" class="edge">
+<title>2-&gt;b</title>
+<path fill="none" stroke="#586e75" d="M50.5991,-90.5269C44.1993,-84.6717 36.0296,-77.1973 29.0813,-70.8404"/>
+</g>
+<!-- 3 -->
+<g id="node5" class="node">
+<title>3</title>
+<ellipse fill="none" stroke="#586e75" cx="108.5" cy="-57.5" rx="14.5" ry="14.5"/>
+</g>
+<!-- 2&#45;&gt;3 -->
+<g id="edge4" class="edge">
+<title>2-&gt;3</title>
+<path fill="none" stroke="#586e75" d="M72.4009,-90.5269C79.9938,-83.5801 90.0782,-74.3539 97.6582,-67.4191"/>
+</g>
+<!-- x -->
+<g id="node6" class="node">
+<title>x</title>
+<polygon fill="none" stroke="#586e75" points="76,-29 47,-29 47,0 76,0 76,-29"/>
+<text text-anchor="middle" x="61.5" y="-7.9" font-family="LXGWWenKai" font-size="22.00" fill="#b58900">x</text>
+</g>
+<!-- 3&#45;&gt;x -->
+<g id="edge5" class="edge">
+<title>3-&gt;x</title>
+<path fill="none" stroke="#586e75" d="M97.5991,-47.5269C91.1993,-41.6717 83.0296,-34.1973 76.0813,-27.8404"/>
+</g>
+<!-- y -->
+<g id="node7" class="node">
+<title>y</title>
+<polygon fill="none" stroke="#586e75" points="170,-29 141,-29 141,0 170,0 170,-29"/>
+<text text-anchor="middle" x="155.5" y="-7.9" font-family="LXGWWenKai" font-size="22.00" fill="#b58900">y</text>
+</g>
+<!-- 3&#45;&gt;y -->
+<g id="edge6" class="edge">
+<title>3-&gt;y</title>
+<path fill="none" stroke="#586e75" d="M119.4009,-47.5269C125.8007,-41.6717 133.9704,-34.1973 140.9187,-27.8404"/>
+</g>
+</g>
+</svg>
+</p></section><section vertical="true" data-notes lineno="423" class="slide " data-line="423" data-h="8" data-v="2">
+<h5 class="mume-header" id="%E9%9C%8D%E5%A4%AB%E6%9B%BC%E7%AE%97%E6%B3%95-%E8%B4%AA%E5%BF%83%E9%80%89%E6%8B%A9-2">&#x970D;&#x592B;&#x66FC;&#x7B97;&#x6CD5; &#x8D2A;&#x5FC3;&#x9009;&#x62E9;</h5>
+
+<hr>
+<p>&#x8BBE;<span class="mathjax-exps">$a$</span>&#x3001;<span class="mathjax-exps">$x$</span>&#x4EA4;&#x6362;&#x540E;&#x7684;&#x65B0;&#x6811;&#x4E3A;<span class="mathjax-exps">$T&apos;$</span>&#xFF0C;&#x5219;<span class="mathjax-exps">$d_{T&apos;}(a) = d_T(x)$</span>&#x3001;<span class="mathjax-exps">$d_{T&apos;}(x) = d_T(a)$</span></p>
+<div class="top-2"></div>
+<p>&#x4E0D;&#x96BE;&#x8BC1;&#x660E;<span class="mathjax-exps">$T&apos;$</span>&#x4E5F;&#x662F;&#x6700;&#x4F18;&#x524D;&#x7F00;&#x6811;&#xFF0C;&#x540C;&#x7406;&#x518D;&#x5C06;<span class="mathjax-exps">$b$</span>&#x3001;<span class="mathjax-exps">$y$</span>&#x4EA4;&#x6362;&#x540E;&#x4F9D;&#x7136;&#x8FD8;&#x662F;</p>
+<p>
+
+$$
+\begin{align*}
+    \quad \Delta B(T) &amp; = a.f \times d_{T&apos;}(a) + x.f \times d_{T&apos;}(x) - a.f \times d_T(a) - x.f \times d_T(x) \\
+    &amp; = a.f \times d_T(x) + x.f \times d_T(a) - a.f \times d_T(a) - x.f \times d_T(x) \\
+&amp; = \underbrace{(a.f - x.f)}_{\ge ~ 0} \underbrace{(d_T(x) - d_T(a))}_{\le ~ 0} \le 0
+\end{align*}
+$$
+</p>
+
+<p class="top-1 left8"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: g Pages: 1 -->
+<svg width="178pt" height="166pt" viewBox="0.00 0.00 178.00 166.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 162)">
+<title>g</title>
+<!-- 1 -->
+<g id="node1" class="node">
+<title>1</title>
+<ellipse fill="none" stroke="#586e75" cx="108.5" cy="-143.5" rx="14.5" ry="14.5"/>
+</g>
+<!-- 2 -->
+<g id="node2" class="node">
+<title>2</title>
+<ellipse fill="none" stroke="#586e75" cx="61.5" cy="-100.5" rx="14.5" ry="14.5"/>
+</g>
+<!-- 1&#45;&gt;2 -->
+<g id="edge1" class="edge">
+<title>1-&gt;2</title>
+<path fill="none" stroke="#586e75" d="M97.5991,-133.5269C90.0062,-126.5801 79.9218,-117.3539 72.3418,-110.4191"/>
+</g>
+<!-- x -->
+<g id="node3" class="node">
+<title>x</title>
+<polygon fill="none" stroke="#586e75" points="170,-115 141,-115 141,-86 170,-86 170,-115"/>
+<text text-anchor="middle" x="155.5" y="-93.9" font-family="LXGWWenKai" font-size="22.00" fill="#b58900">x</text>
+</g>
+<!-- 1&#45;&gt;x -->
+<g id="edge2" class="edge">
+<title>1-&gt;x</title>
+<path fill="none" stroke="#586e75" d="M119.4009,-133.5269C125.8007,-127.6717 133.9704,-120.1973 140.9187,-113.8404"/>
+</g>
+<!-- y -->
+<g id="node4" class="node">
+<title>y</title>
+<polygon fill="none" stroke="#586e75" points="29,-72 0,-72 0,-43 29,-43 29,-72"/>
+<text text-anchor="middle" x="14.5" y="-50.9" font-family="LXGWWenKai" font-size="22.00" fill="#b58900">y</text>
+</g>
+<!-- 2&#45;&gt;y -->
+<g id="edge3" class="edge">
+<title>2-&gt;y</title>
+<path fill="none" stroke="#586e75" d="M50.5991,-90.5269C44.1993,-84.6717 36.0296,-77.1973 29.0813,-70.8404"/>
+</g>
+<!-- 3 -->
+<g id="node5" class="node">
+<title>3</title>
+<ellipse fill="none" stroke="#586e75" cx="108.5" cy="-57.5" rx="14.5" ry="14.5"/>
+</g>
+<!-- 2&#45;&gt;3 -->
+<g id="edge4" class="edge">
+<title>2-&gt;3</title>
+<path fill="none" stroke="#586e75" d="M72.4009,-90.5269C79.9938,-83.5801 90.0782,-74.3539 97.6582,-67.4191"/>
+</g>
+<!-- a -->
+<g id="node6" class="node">
+<title>a</title>
+<polygon fill="none" stroke="#586e75" points="76,-29 47,-29 47,0 76,0 76,-29"/>
+<text text-anchor="middle" x="61.5" y="-7.9" font-family="LXGWWenKai" font-size="22.00" fill="#b58900">a</text>
+</g>
+<!-- 3&#45;&gt;a -->
+<g id="edge5" class="edge">
+<title>3-&gt;a</title>
+<path fill="none" stroke="#586e75" d="M97.5991,-47.5269C91.1993,-41.6717 83.0296,-34.1973 76.0813,-27.8404"/>
+</g>
+<!-- b -->
+<g id="node7" class="node">
+<title>b</title>
+<polygon fill="none" stroke="#586e75" points="170,-29 141,-29 141,0 170,0 170,-29"/>
+<text text-anchor="middle" x="155.5" y="-7.9" font-family="LXGWWenKai" font-size="22.00" fill="#b58900">b</text>
+</g>
+<!-- 3&#45;&gt;b -->
+<g id="edge6" class="edge">
+<title>3-&gt;b</title>
+<path fill="none" stroke="#586e75" d="M119.4009,-47.5269C125.8007,-41.6717 133.9704,-34.1973 140.9187,-27.8404"/>
+</g>
+</g>
+</svg>
+</p><p class="center top-26per"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: g Pages: 1 -->
+<svg width="178pt" height="166pt" viewBox="0.00 0.00 178.00 166.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 162)">
+<title>g</title>
+<!-- 1 -->
+<g id="node1" class="node">
+<title>1</title>
+<ellipse fill="none" stroke="#586e75" cx="108.5" cy="-143.5" rx="14.5" ry="14.5"/>
+</g>
+<!-- 2 -->
+<g id="node2" class="node">
+<title>2</title>
+<ellipse fill="none" stroke="#586e75" cx="61.5" cy="-100.5" rx="14.5" ry="14.5"/>
+</g>
+<!-- 1&#45;&gt;2 -->
+<g id="edge1" class="edge">
+<title>1-&gt;2</title>
+<path fill="none" stroke="#586e75" d="M97.5991,-133.5269C90.0062,-126.5801 79.9218,-117.3539 72.3418,-110.4191"/>
+</g>
+<!-- a -->
+<g id="node3" class="node">
+<title>a</title>
+<polygon fill="none" stroke="#586e75" points="170,-115 141,-115 141,-86 170,-86 170,-115"/>
+<text text-anchor="middle" x="155.5" y="-93.9" font-family="LXGWWenKai" font-size="22.00" fill="#b58900">a</text>
+</g>
+<!-- 1&#45;&gt;a -->
+<g id="edge2" class="edge">
+<title>1-&gt;a</title>
+<path fill="none" stroke="#586e75" d="M119.4009,-133.5269C125.8007,-127.6717 133.9704,-120.1973 140.9187,-113.8404"/>
+</g>
+<!-- y -->
+<g id="node4" class="node">
+<title>y</title>
+<polygon fill="none" stroke="#586e75" points="29,-72 0,-72 0,-43 29,-43 29,-72"/>
+<text text-anchor="middle" x="14.5" y="-50.9" font-family="LXGWWenKai" font-size="22.00" fill="#b58900">y</text>
+</g>
+<!-- 2&#45;&gt;y -->
+<g id="edge3" class="edge">
+<title>2-&gt;y</title>
+<path fill="none" stroke="#586e75" d="M50.5991,-90.5269C44.1993,-84.6717 36.0296,-77.1973 29.0813,-70.8404"/>
+</g>
+<!-- 3 -->
+<g id="node5" class="node">
+<title>3</title>
+<ellipse fill="none" stroke="#586e75" cx="108.5" cy="-57.5" rx="14.5" ry="14.5"/>
+</g>
+<!-- 2&#45;&gt;3 -->
+<g id="edge4" class="edge">
+<title>2-&gt;3</title>
+<path fill="none" stroke="#586e75" d="M72.4009,-90.5269C79.9938,-83.5801 90.0782,-74.3539 97.6582,-67.4191"/>
+</g>
+<!-- x -->
+<g id="node6" class="node">
+<title>x</title>
+<polygon fill="none" stroke="#586e75" points="76,-29 47,-29 47,0 76,0 76,-29"/>
+<text text-anchor="middle" x="61.5" y="-7.9" font-family="LXGWWenKai" font-size="22.00" fill="#b58900">x</text>
+</g>
+<!-- 3&#45;&gt;x -->
+<g id="edge5" class="edge">
+<title>3-&gt;x</title>
+<path fill="none" stroke="#586e75" d="M97.5991,-47.5269C91.1993,-41.6717 83.0296,-34.1973 76.0813,-27.8404"/>
+</g>
+<!-- b -->
+<g id="node7" class="node">
+<title>b</title>
+<polygon fill="none" stroke="#586e75" points="170,-29 141,-29 141,0 170,0 170,-29"/>
+<text text-anchor="middle" x="155.5" y="-7.9" font-family="LXGWWenKai" font-size="22.00" fill="#b58900">b</text>
+</g>
+<!-- 3&#45;&gt;b -->
+<g id="edge6" class="edge">
+<title>3-&gt;b</title>
+<path fill="none" stroke="#586e75" d="M119.4009,-47.5269C125.8007,-41.6717 133.9704,-34.1973 140.9187,-27.8404"/>
+</g>
+</g>
+</svg>
+</p></section></section><section><section data-notes lineno="451" class="slide " data-line="451" data-h="9" data-v="0">
+<h5 class="mume-header" id="%E6%9C%80%E4%BC%98%E5%AD%90%E7%BB%93%E6%9E%84">&#x6700;&#x4F18;&#x5B50;&#x7ED3;&#x6784;</h5>
+
+<hr>
+<p>&#x8BBE;<span class="mathjax-exps">$C&apos; = C \setminus \{ x,y \} \cup \{ z \}$</span>&#xFF0C;<span class="mathjax-exps">$z.f = x.f + y.f$</span>&#xFF0C;&#x5176;&#x5B83;&#x5B57;&#x7B26;&#x9891;&#x7387;&#x4E0D;&#x53D8;</p>
+<p>&#x8BBE;<span class="mathjax-exps">$T&apos;$</span>&#x662F;<span class="mathjax-exps">$C&apos;$</span>&#x7684;&#x4EFB;&#x4E00;&#x6700;&#x4F18;&#x524D;&#x7F00;&#x7801;&#x6811;&#xFF0C;&#x5C06;<span class="mathjax-exps">$T&apos;$</span>&#x4E2D;<span class="mathjax-exps">$z$</span>&#x5BF9;&#x5E94;&#x7684;&#x53F6;&#x5B50;&#x7ED3;&#x70B9;&#x66FF;&#x6362;&#x4E3A;&#x4EE5;<span class="mathjax-exps">$x$</span>&#x3001;<span class="mathjax-exps">$y$</span>&#x4E3A;&#x5B69;&#x5B50;&#x7684;&#x5185;&#x90E8;&#x7ED3;&#x70B9;&#xFF0C;&#x5219;&#x5F97;&#x5230;&#x7684;&#x6811;<span class="mathjax-exps">$T$</span>&#x662F;<span class="mathjax-exps">$C$</span>&#x7684;&#x4E00;&#x4E2A;&#x6700;&#x4F18;&#x524D;&#x7F00;&#x7801;&#x6811;</p>
+<p class="top4 left25"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: g Pages: 1 -->
+<svg width="178pt" height="123pt" viewBox="0.00 0.00 178.00 123.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 119)">
+<title>g</title>
+<!-- 1 -->
+<g id="node1" class="node">
+<title>1</title>
+<ellipse fill="none" stroke="#586e75" cx="108.5" cy="-100.5" rx="14.5" ry="14.5"/>
+</g>
+<!-- 2 -->
+<g id="node2" class="node">
+<title>2</title>
+<ellipse fill="none" stroke="#586e75" cx="61.5" cy="-57.5" rx="14.5" ry="14.5"/>
+</g>
+<!-- 1&#45;&gt;2 -->
+<g id="edge1" class="edge">
+<title>1-&gt;2</title>
+<path fill="none" stroke="#586e75" d="M97.5991,-90.5269C90.0062,-83.5801 79.9218,-74.3539 72.3418,-67.4191"/>
+</g>
+<!-- a -->
+<g id="node3" class="node">
+<title>a</title>
+<polygon fill="none" stroke="#586e75" points="170,-72 141,-72 141,-43 170,-43 170,-72"/>
+</g>
+<!-- 1&#45;&gt;a -->
+<g id="edge2" class="edge">
+<title>1-&gt;a</title>
+<path fill="none" stroke="#586e75" d="M119.4009,-90.5269C125.8007,-84.6717 133.9704,-77.1973 140.9187,-70.8404"/>
+</g>
+<!-- b -->
+<g id="node4" class="node">
+<title>b</title>
+<polygon fill="none" stroke="#586e75" points="29,-29 0,-29 0,0 29,0 29,-29"/>
+</g>
+<!-- 2&#45;&gt;b -->
+<g id="edge3" class="edge">
+<title>2-&gt;b</title>
+<path fill="none" stroke="#586e75" d="M50.5991,-47.5269C44.1993,-41.6717 36.0296,-34.1973 29.0813,-27.8404"/>
+</g>
+<!-- z -->
+<g id="node5" class="node">
+<title>z</title>
+<polygon fill="none" stroke="#586e75" points="123,-29 94,-29 94,0 123,0 123,-29"/>
+<text text-anchor="middle" x="108.5" y="-7.9" font-family="LXGWWenKai" font-size="22.00" fill="#b58900">z</text>
+</g>
+<!-- 2&#45;&gt;z -->
+<g id="edge4" class="edge">
+<title>2-&gt;z</title>
+<path fill="none" stroke="#586e75" d="M72.4009,-47.5269C78.8007,-41.6717 86.9704,-34.1973 93.9187,-27.8404"/>
+</g>
+</g>
+</svg>
+</p><p class="top-20per right30 lefta bottom-30"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: g Pages: 1 -->
+<svg width="178pt" height="166pt" viewBox="0.00 0.00 178.00 166.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 162)">
+<title>g</title>
+<!-- 1 -->
+<g id="node1" class="node">
+<title>1</title>
+<ellipse fill="none" stroke="#586e75" cx="108.5" cy="-143.5" rx="14.5" ry="14.5"/>
+</g>
+<!-- 2 -->
+<g id="node2" class="node">
+<title>2</title>
+<ellipse fill="none" stroke="#586e75" cx="61.5" cy="-100.5" rx="14.5" ry="14.5"/>
+</g>
+<!-- 1&#45;&gt;2 -->
+<g id="edge1" class="edge">
+<title>1-&gt;2</title>
+<path fill="none" stroke="#586e75" d="M97.5991,-133.5269C90.0062,-126.5801 79.9218,-117.3539 72.3418,-110.4191"/>
+</g>
+<!-- a -->
+<g id="node3" class="node">
+<title>a</title>
+<polygon fill="none" stroke="#586e75" points="170,-115 141,-115 141,-86 170,-86 170,-115"/>
+</g>
+<!-- 1&#45;&gt;a -->
+<g id="edge2" class="edge">
+<title>1-&gt;a</title>
+<path fill="none" stroke="#586e75" d="M119.4009,-133.5269C125.8007,-127.6717 133.9704,-120.1973 140.9187,-113.8404"/>
+</g>
+<!-- b -->
+<g id="node4" class="node">
+<title>b</title>
+<polygon fill="none" stroke="#586e75" points="29,-72 0,-72 0,-43 29,-43 29,-72"/>
+</g>
+<!-- 2&#45;&gt;b -->
+<g id="edge3" class="edge">
+<title>2-&gt;b</title>
+<path fill="none" stroke="#586e75" d="M50.5991,-90.5269C44.1993,-84.6717 36.0296,-77.1973 29.0813,-70.8404"/>
+</g>
+<!-- 3 -->
+<g id="node5" class="node">
+<title>3</title>
+<ellipse fill="none" stroke="#586e75" cx="108.5" cy="-57.5" rx="14.5" ry="14.5"/>
+</g>
+<!-- 2&#45;&gt;3 -->
+<g id="edge4" class="edge">
+<title>2-&gt;3</title>
+<path fill="none" stroke="#586e75" d="M72.4009,-90.5269C79.9938,-83.5801 90.0782,-74.3539 97.6582,-67.4191"/>
+</g>
+<!-- x -->
+<g id="node6" class="node">
+<title>x</title>
+<polygon fill="none" stroke="#586e75" points="76,-29 47,-29 47,0 76,0 76,-29"/>
+<text text-anchor="middle" x="61.5" y="-7.9" font-family="LXGWWenKai" font-size="22.00" fill="#b58900">x</text>
+</g>
+<!-- 3&#45;&gt;x -->
+<g id="edge5" class="edge">
+<title>3-&gt;x</title>
+<path fill="none" stroke="#586e75" d="M97.5991,-47.5269C91.1993,-41.6717 83.0296,-34.1973 76.0813,-27.8404"/>
+</g>
+<!-- y -->
+<g id="node7" class="node">
+<title>y</title>
+<polygon fill="none" stroke="#586e75" points="170,-29 141,-29 141,0 170,0 170,-29"/>
+<text text-anchor="middle" x="155.5" y="-7.9" font-family="LXGWWenKai" font-size="22.00" fill="#b58900">y</text>
+</g>
+<!-- 3&#45;&gt;y -->
+<g id="edge6" class="edge">
+<title>3-&gt;y</title>
+<path fill="none" stroke="#586e75" d="M119.4009,-47.5269C125.8007,-41.6717 133.9704,-34.1973 140.9187,-27.8404"/>
+</g>
+</g>
+</svg>
+</p><div class="top0 bottom0"></div>
+<p>
+
+$$
+\begin{align*}
+    \quad \qquad \qquad \qquad \qquad T&apos; \qquad \qquad \qquad \qquad \quad ~ T
+\end{align*}
+$$
+</p>
+
+</section><section vertical="true" data-notes lineno="477" class="slide " data-line="477" data-h="9" data-v="1">
+<h5 class="mume-header" id="%E6%9C%80%E4%BC%98%E5%AD%90%E7%BB%93%E6%9E%84-1">&#x6700;&#x4F18;&#x5B50;&#x7ED3;&#x6784;</h5>
+
+<hr>
+<p>&#x8BC1;&#x660E;&#xFF1A;&#x53CD;&#x8BBE;<span class="mathjax-exps">$T$</span>&#x5BF9;&#x5E94;&#x7684;&#x524D;&#x7F00;&#x7801;&#x4E0D;&#x662F;<span class="mathjax-exps">$C$</span>&#x7684;&#x6700;&#x4F18;&#x524D;&#x7F00;&#x7801;</p>
+<p>&#x6700;&#x4F18;&#x524D;&#x7F00;&#x7801;&#x6811;&#x4E3A;<span class="mathjax-exps">$T&apos;&apos;$</span>&#xFF0C;&#x4E8E;&#x662F;<span class="mathjax-exps">$B(T&apos;&apos;) &lt; B(T)$</span></p>
+<p>&#x5C06;<span class="mathjax-exps">$T&apos;&apos;$</span>&#x4E2D;&#x7684;<span class="mathjax-exps">$x$</span>&#x3001;<span class="mathjax-exps">$y$</span>&#x548C;&#x5B83;&#x4EEC;&#x7684;&#x7236;&#x8282;&#x70B9;&#x6574;&#x4F53;&#x66FF;&#x6362;&#x6210;<span class="mathjax-exps">$z$</span>&#xFF0C;&#x5F97;&#x5230;<span class="mathjax-exps">$T&apos;&apos;&apos;$</span></p>
+<p>&#x6CE8;&#x610F;&#x7F16;&#x7801;&#x957F;&#x5EA6;&#x7B49;&#x4E8E;&#x6811;&#x4E2D;&#x6240;&#x6709;&#x7ED3;&#x70B9;&#x9891;&#x7387;&#x503C;&#x7684;&#x548C;</p>
+<p><span class="mathjax-exps">$B(T&apos;&apos;&apos;) = B(T&apos;&apos;) - x.f - y.f$</span>&#x3001;<span class="mathjax-exps">$B(T) = B(T&apos;) + x.f + y.f$</span></p>
+<p>&#x4E24;&#x5F0F;&#x76F8;&#x52A0;&#x53EF;&#x5F97;<span class="mathjax-exps">$B(T&apos;&apos;&apos;) = B(T&apos;&apos;) - B(T) + B(T&apos;) &lt; B(T&apos;)$</span></p>
+<p>&#x6545;<span class="mathjax-exps">$T&apos;$</span>&#x4E0D;&#x53EF;&#x80FD;&#x662F;<span class="mathjax-exps">$C&apos;$</span>&#x7684;&#x6700;&#x4F18;&#x524D;&#x7F00;&#x7801;&#x6811;&#xFF0C;&#x77DB;&#x76FE;&#xFF01;</p>
+</section><section vertical="true" data-notes lineno="497" class="slide " data-line="497" data-h="9" data-v="2">
+<h5 class="mume-header" id="%E5%B0%8F%E7%BB%93">&#x5C0F;&#x7ED3;</h5>
+
+<hr>
+<p>&#x524D;&#x4E00;&#x4E2A;&#x547D;&#x9898;&#x8868;&#x660E;&#x9009;&#x62E9;&#x9891;&#x7387;&#x6700;&#x4F4E;&#x7684;&#x4E24;&#x4E2A;&#x5B57;&#x7B26;&#x53EF;&#x4EE5;&#x6784;&#x9020;&#x6700;&#x4F18;&#x524D;&#x7F00;&#x7801;&#x6811;</p>
+<p>&#x540E;&#x4E00;&#x4E2A;&#x547D;&#x9898;&#x8868;&#x660E;&#x5C06;&#x9891;&#x7387;&#x6700;&#x4F4E;&#x7684;&#x4E24;&#x4E2A;&#x5B57;&#x7B26;<span class="mathjax-exps">$x$</span>&#x3001;<span class="mathjax-exps">$y$</span>&#x5408;&#x5E76;&#x6210;<span class="mathjax-exps">$z$</span>&#x540E;&#x52A0;&#x5165;&#x5143;&#x7D20;&#x96C6;&#x5408;&#xFF0C;&#x7531;&#x6B64;&#x6784;&#x9020;&#x51FA;&#x7684;&#x6700;&#x4F18;&#x524D;&#x7F00;&#x7801;&#x6811;&#x518D;&#x5C06;<span class="mathjax-exps">$z$</span>&#x5206;&#x89E3;&#x6210;<span class="mathjax-exps">$x$</span>&#x3001;<span class="mathjax-exps">$y$</span>&#xFF0C;&#x4F9D;&#x7136;&#x8FD8;&#x662F;&#x6700;&#x4F18;&#x524D;&#x7F00;&#x7801;&#x6811;</p>
+<p>&#x8D2A;&#x5FC3;&#x5408;&#x5E76;&#x3001;&#x653E;&#x5FC3;&#x5206;&#x89E3;&#xFF01;</p>
+</section></section><section data-notes lineno="509" class="slide " data-line="509" data-h="10" data-v="0">
+<h5 class="mume-header" id="%E4%BD%9C%E4%B8%9A">&#x4F5C;&#x4E1A;</h5>
+
+<hr>
+<p>&#x7B97;&#x6CD5;&#x5BFC;&#x8BBA; 3<sup>th</sup></p>
+<p>16.1-4&#x3001;16.2-7&#x3001;16.3-3&#x3001;16-1</p>
+<p>&#x6C42;&#x4EE5;&#x4E0B;&#x80CC;&#x5305;&#x95EE;&#x9898;&#x7684;&#x6700;&#x4F18;&#x89E3;&#xFF1A;<br>
+<span class="mathjax-exps">$n=7$</span>&#xFF0C;<span class="mathjax-exps">$M=15$</span>&#xFF0C;<span class="mathjax-exps">$\pv = [10,5,15,7,6,18,3]$</span>&#xFF0C;<span class="mathjax-exps">$\wv = [2,3,5,7,1,4,1]$</span></p>
+</section>
+      </div>
+    </div>
+    
+      </div>
+      
+      
+    
+    
+      <script>
+        Reveal.initialize({"margin":0,"center":false,"transition":"convex","enableSpeakerNotes":true,"slideNumber":"c/t","navigationMode":"linear","dependencies":[{"src":"../plugin/notes/notes.js","async":true}],chalkboard:{boardmarkerWidth:3,chalkWidth:7,chalkEffect:1.0,storage:null,src:null,readOnly:undefined,transition:800,theme:"chalkboard",background:['rgba(127,127,127,.1)',path+'img/blackboard.png'],grid:{color:'rgb(50,50,10,0.5)',distance:80,width:2},eraser:{src:path+'img/sponge.png',radius:20},boardmarkers:[{color:'rgba(100,100,100,1)',cursor:'url('+path+'img/boardmarker-black.png),auto'},{color:'rgba(30,144,255,1)',cursor:'url('+path+'img/boardmarker-blue.png),auto'},{color:'rgba(220,20,60,1)',cursor:'url('+path+'img/boardmarker-red.png),auto'},{color:'rgba(50,205,50,1)',cursor:'url('+path+'img/boardmarker-green.png),auto'},{color:'rgba(255,140,0,1)',cursor:'url('+path+'img/boardmarker-orange.png),auto'},{color:'rgba(150,0,20150,1)',cursor:'url('+path+'img/boardmarker-purple.png),auto'},{color:'rgba(255,220,0,1)',cursor:'url('+path+'img/boardmarker-yellow.png),auto'}],chalks:[{color:'rgba(255,255,255,0.5)',cursor:'url('+path+'img/chalk-white.png),auto'},{color:'rgba(96,154,244,0.5)',cursor:'url('+path+'img/chalk-blue.png),auto'},{color:'rgba(237,20,28,0.5)',cursor:'url('+path+'img/chalk-red.png),auto'},{color:'rgba(20,237,28,0.5)',cursor:'url('+path+'img/chalk-green.png),auto'},{color:'rgba(220,133,41,0.5)',cursor:'url('+path+'img/chalk-orange.png),auto'},{color:'rgba(220,0,220,0.5)',cursor:'url('+path+'img/chalk-purple.png),auto'},{color:'rgba(255,220,0,0.5)',cursor:'url('+path+'img/chalk-yellow.png),auto'}]},customcontrols:{controls:[{icon:'<iclass="fafa-pen-square"></i>',title:'Togglechalkboard(B)',action:'RevealChalkboard.toggleChalkboard();'},{icon:'<iclass="fafa-pen"></i>',title:'Togglenotescanvas(C)',action:'RevealChalkboard.toggleNotesCanvas();'}]},menu:{side:'left',width:'normal',numbers:'h.v',titleSelector:'h1,h2,h3,h4,h5,h6',useTextContentForMissingTitles:false,hideMissingTitles:false,markers:true,custom:[{title:'关于',icon:'<i class="fa fa-info">',content:'<p>本课件由 <b>张腾</b> 制作</p><br><p>欢迎发送问题至tengzhang@hust.edu.cn</p>'}],themes:true,themesPath:'../css/theme/',transitions:true,openButton:true,openSlideNumber:false,keyboard:true,sticky:false,autoOpen:true,delayInit:false,openOnInit:false,loadIcons:true},plugins:[RevealZoom,RevealChalkboard,RevealCustomControls,RevealMenu]})
+      </script>
+      
+    <script>
+// config mermaid init call
+// http://knsv.github.io/mermaid/#configuration
+//
+// You can edit the 'MERMAID_CONFIG' variable below.
+MERMAID_CONFIG = {
+  startOnLoad: false
+}
+
+if (window['MERMAID_CONFIG']) {
+  window['MERMAID_CONFIG'].startOnLoad = false
+  window['MERMAID_CONFIG'].cloneCssStyles = false
+  window['MERMAID_CONFIG'].theme = "mermaid.css"
+}
+mermaid.initialize(window['MERMAID_CONFIG'] || {})
+if (typeof(window['Reveal']) !== 'undefined') {
+  function mermaidRevealHelper(event) {
+    var currentSlide = event.currentSlide
+    var diagrams = currentSlide.querySelectorAll('.mermaid')
+    for (var i = 0; i < diagrams.length; i++) {
+      var diagram = diagrams[i]
+      if (!diagram.hasAttribute('data-processed')) {
+        mermaid.init(null, diagram, ()=> {
+          Reveal.slide(event.indexh, event.indexv)
+        })
+      }
+    }
+  }
+  Reveal.addEventListener('slidechanged', mermaidRevealHelper)
+  Reveal.addEventListener('ready', mermaidRevealHelper)
+} else {
+  mermaid.init(null, document.getElementsByClassName('mermaid'))
+}
+</script>
+    
+    
+    
+    
+    
+  
+    </body></html>
