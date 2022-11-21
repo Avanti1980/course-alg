@@ -1,0 +1,222 @@
+\documentclass{ctexart}
+\usepackage{avanti-color}
+%\usepackage{avanti-font}
+\usepackage{avanti-math}
+\usepackage{avanti-theorem}
+\usepackage{avanti-others}
+
+\RequirePackage{fontspec}
+\xeCJKsetup{CJKmath=true}
+\setCJKmainfont[BoldFont=FZHei-B01,ItalicFont=]{LXGW Bright}
+
+\everymath{\color{Solarized-magenta}}
+\pagestyle{empty} % 没有页眉和页脚
+
+%\tikzset{font=\Large}
+\tikzset{base/.style={smooth, very thick, Solarized-base01}}
+\tikzset{arrow/.style={->, -{Stealth[scale=0.8]}, base}}
+\tikzset{arrow2/.style={->, -{Stealth[scale=0.8]}, base, ultra thick, Solarized-blue}}
+\tikzset{point/.style={circle, minimum height=0.8cm, base, draw=Solarized-base01}}
+\tikzset{point2/.style={point, fill=Solarized-base2}}
+\tikzset{point3/.style={point, fill=Solarized-base1}}
+\begin{document}
+
+\begin{center}
+    \begin{tikzpicture}
+
+        \pgfmathsetmacro{\s}{0.5};
+        \pgfmathsetmacro{\h}{6.5};
+        \pgfmathsetmacro{\v}{5.5};
+        \pgfmathsetmacro{\inc}{2.5};
+
+        \node [point] (y) at (-\h,0) {$\infty$};
+        \path (y) ++(\inc,0) node[point] (z) {$\infty$};
+        \path (y) ++(0,\inc) node[point] (t) {$\infty$};
+        \path (y) ++(\inc,\inc) node[point] (x) {$\infty$};
+        \path (y) ++(150:\inc) node[point2] (s) {$0$};
+
+        \path (y) ++(0,-1.3*\s) node[] () {$\yv$};
+        \path (z) ++(0,-1.3*\s) node[] () {$\zv$};
+        \path (s) ++(0,+1.3*\s) node[] () {$\sv$};
+        \path (t) ++(0,+1.3*\s) node[] () {$\tv$};
+        \path (x) ++(0,+1.3*\s) node[] () {$\xv$};
+
+        \draw [arrow] (s) -- (y) node [midway, draw=none, below=2pt] {$5$};
+        \draw [arrow] (s) -- (t) node [midway, draw=none, above=3pt] {$10$};
+        \draw [arrow] (t) to [out=260, in=100] (y);
+        \path (y) ++(-\s,\inc/2) node[] () {$2$};
+        \draw [arrow] (y) to [out=80, in=280] (t);
+        \path (y) ++(\s,\inc/2) node[] () {$3$};
+        \draw [arrow] (y) -- (z) node [midway, draw=none, below=2pt] {$2$};
+        \draw [arrow] (x) to [out=260, in=100] (z);
+        \path (y) ++(\inc-\s,\inc/2) node[] () {$4$};
+        \draw [arrow] (z) to [out=80, in=280] (x);
+        \path (y) ++(\inc+\s,\inc/2) node[] () {$6$};
+
+        \draw [arrow] (y) -- (x) node [midway, draw=none, above=2pt] {$9$};
+        \draw [arrow] (t) -- (x) node [midway, draw=none, above=2pt] {$1$};
+        \draw [arrow] (z) -- (s) node [midway, draw=none, above=2pt, pos=0.2] {$7$};
+
+        \path (y) ++(\s,-\inc/2) node[] () {$\bm{S = \emptyset}$};
+
+        %
+        \node [point2] (y1) at (0,0) {$5$};
+        \path (y1) ++(\inc,0) node[point] (z1) {$\infty$};
+        \path (y1) ++(0,\inc) node[point] (t1) {$10$};
+        \path (y1) ++(\inc,\inc) node[point] (x1) {$\infty$};
+        \path (y1) ++(150:\inc) node[point3] (s1) {$0$};
+
+        \path (y1) ++(0,-1.3*\s) node[] () {$\yv$};
+        \path (z1) ++(0,-1.3*\s) node[] () {$\zv$};
+        \path (s1) ++(0,+1.3*\s) node[] () {$\sv$};
+        \path (t1) ++(0,+1.3*\s) node[] () {$\tv$};
+        \path (x1) ++(0,+1.3*\s) node[] () {$\xv$};
+
+        \draw [arrow2] (s1) -- (y1) node [midway, draw=none, below=2pt] {$5$};
+        \draw [arrow2] (s1) -- (t1) node [midway, draw=none, above=3pt] {$10$};
+        \draw [arrow] (t1) to [out=260, in=100] (y1);
+        \path (y1) ++(-\s,\inc/2) node[] () {$2$};
+        \draw [arrow] (y1) to [out=80, in=280] (t1);
+        \path (y1) ++(\s,\inc/2) node[] () {$3$};
+        \draw [arrow] (y1) -- (z1) node [midway, draw=none, below=2pt] {$2$};
+        \draw [arrow] (x1) to [out=260, in=100] (z1);
+        \path (y1) ++(\inc-\s,\inc/2) node[] () {$4$};
+        \draw [arrow] (z1) to [out=80, in=280] (x1);
+        \path (y1) ++(\inc+\s,\inc/2) node[] () {$6$};
+
+        \draw [arrow] (y1) -- (x1) node [midway, draw=none, above=2pt] {$9$};
+        \draw [arrow] (t1) -- (x1) node [midway, draw=none, above=2pt] {$1$};
+        \draw [arrow] (z1) -- (s1) node [midway, draw=none, above=2pt, pos=0.2] {$7$};
+
+        \path (y1) ++(\s,-\inc/2) node[] () {$\bm{S = \{s\}}$};
+
+        %
+        \node [point3] (y2) at (\h,0) {$5$};
+        \path (y2) ++(\inc,0) node[point2] (z2) {$7$};
+        \path (y2) ++(0,\inc) node[point] (t2) {$8$};
+        \path (y2) ++(\inc,\inc) node[point] (x2) {$14$};
+        \path (y2) ++(150:\inc) node[point3] (s2) {$0$};
+
+        \path (y2) ++(0,-1.3*\s) node[] () {$\yv$};
+        \path (z2) ++(0,-1.3*\s) node[] () {$\zv$};
+        \path (s2) ++(0,+1.3*\s) node[] () {$\sv$};
+        \path (t2) ++(0,+1.3*\s) node[] () {$\tv$};
+        \path (x2) ++(0,+1.3*\s) node[] () {$\xv$};
+
+        \draw [arrow2] (s2) -- (y2) node [midway, draw=none, below=2pt] {$5$};
+        \draw [arrow] (s2) -- (t2) node [midway, draw=none, above=3pt] {$10$};
+        \draw [arrow] (t2) to [out=260, in=100] (y2);
+        \path (y2) ++(-\s,\inc/2) node[] () {$2$};
+        \draw [arrow2] (y2) to [out=80, in=280] (t2);
+        \path (y2) ++(\s,\inc/2) node[] () {$3$};
+        \draw [arrow2] (y2) -- (z2) node [midway, draw=none, below=2pt] {$2$};
+        \draw [arrow] (x2) to [out=260, in=100] (z2);
+        \path (y2) ++(\inc-\s,\inc/2) node[] () {$4$};
+        \draw [arrow] (z2) to [out=80, in=280] (x2);
+        \path (y2) ++(\inc+\s,\inc/2) node[] () {$6$};
+
+        \draw [arrow2] (y2) -- (x2) node [midway, draw=none, above=2pt] {$9$};
+        \draw [arrow] (t2) -- (x2) node [midway, draw=none, above=2pt] {$1$};
+        \draw [arrow] (z2) -- (s2) node [midway, draw=none, above=2pt, pos=0.2] {$7$};
+
+        \path (y2) ++(\s,-\inc/2) node[] () {$\bm{S = \{s, y\}}$};
+
+        %
+        \node [point3] (y3) at (-\h,-\v) {$5$};
+        \path (y3) ++(\inc,0) node[point3] (z3) {$7$};
+        \path (y3) ++(0,\inc) node[point2] (t3) {$8$};
+        \path (y3) ++(\inc,\inc) node[point] (x3) {$13$};
+        \path (y3) ++(150:\inc) node[point3] (s3) {$0$};
+
+        \path (y3) ++(0,-1.3*\s) node[] () {$\yv$};
+        \path (z3) ++(0,-1.3*\s) node[] () {$\zv$};
+        \path (s3) ++(0,+1.3*\s) node[] () {$\sv$};
+        \path (t3) ++(0,+1.3*\s) node[] () {$\tv$};
+        \path (x3) ++(0,+1.3*\s) node[] () {$\xv$};
+
+        \draw [arrow2] (s3) -- (y3) node [midway, draw=none, below=2pt] {$5$};
+        \draw [arrow] (s3) -- (t3) node [midway, draw=none, above=3pt] {$10$};
+        \draw [arrow] (t3) to [out=260, in=100] (y3);
+        \path (y3) ++(-\s,\inc/2) node[] () {$2$};
+        \draw [arrow2] (y3) to [out=80, in=280] (t3);
+        \path (y3) ++(\s,\inc/2) node[] () {$3$};
+        \draw [arrow2] (y3) -- (z3) node [midway, draw=none, below=2pt] {$2$};
+        \draw [arrow] (x3) to [out=260, in=100] (z3);
+        \path (y3) ++(\inc-\s,\inc/2) node[] () {$4$};
+        \draw [arrow2] (z3) to [out=80, in=280] (x3);
+        \path (y3) ++(\inc+\s,\inc/2) node[] () {$6$};
+
+        \draw [arrow] (y3) -- (x3) node [midway, draw=none, above=2pt] {$9$};
+        \draw [arrow] (t3) -- (x3) node [midway, draw=none, above=2pt] {$1$};
+        \draw [arrow] (z3) -- (s3) node [midway, draw=none, above=2pt, pos=0.2] {$7$};
+
+        \path (y3) ++(\s,-\inc/2) node[] () {$\bm{S = \{s, y, z\}}$};
+
+        %
+        \node [point3] (y4) at (0,-\v) {$5$};
+        \path (y4) ++(\inc,0) node[point3] (z4) {$7$};
+        \path (y4) ++(0,\inc) node[point3] (t4) {$8$};
+        \path (y4) ++(\inc,\inc) node[point2] (x4) {$9$};
+        \path (y4) ++(150:\inc) node[point3] (s4) {$0$};
+
+        \path (y4) ++(0,-1.3*\s) node[] () {$\yv$};
+        \path (z4) ++(0,-1.3*\s) node[] () {$\zv$};
+        \path (s4) ++(0,+1.3*\s) node[] () {$\sv$};
+        \path (t4) ++(0,+1.3*\s) node[] () {$\tv$};
+        \path (x4) ++(0,+1.3*\s) node[] () {$\xv$};
+
+        \draw [arrow2] (s4) -- (y4) node [midway, draw=none, below=2pt] {$5$};
+        \draw [arrow] (s4) -- (t4) node [midway, draw=none, above=3pt] {$10$};
+        \draw [arrow] (t4) to [out=260, in=100] (y4);
+        \path (y4) ++(-\s,\inc/2) node[] () {$2$};
+        \draw [arrow2] (y4) to [out=80, in=280] (t4);
+        \path (y4) ++(\s,\inc/2) node[] () {$3$};
+        \draw [arrow2] (y4) -- (z4) node [midway, draw=none, below=2pt] {$2$};
+        \draw [arrow] (x4) to [out=260, in=100] (z4);
+        \path (y4) ++(\inc-\s,\inc/2) node[] () {$4$};
+        \draw [arrow] (z4) to [out=80, in=280] (x4);
+        \path (y4) ++(\inc+\s,\inc/2) node[] () {$6$};
+
+        \draw [arrow] (y4) -- (x4) node [midway, draw=none, above=2pt] {$9$};
+        \draw [arrow2] (t4) -- (x4) node [midway, draw=none, above=2pt] {$1$};
+        \draw [arrow] (z4) -- (s4) node [midway, draw=none, above=2pt, pos=0.2] {$7$};
+
+        \path (y4) ++(\s,-\inc/2) node[] () {$\bm{S = \{s, y, z, t\}}$};
+
+        %
+        \node [point3] (y5) at (\h,-\v) {$5$};
+        \path (y5) ++(\inc,0) node[point3] (z5) {$7$};
+        \path (y5) ++(0,\inc) node[point3] (t5) {$8$};
+        \path (y5) ++(\inc,\inc) node[point3] (x5) {$9$};
+        \path (y5) ++(150:\inc) node[point3] (s5) {$0$};
+
+        \path (y5) ++(0,-1.3*\s) node[] () {$\yv$};
+        \path (z5) ++(0,-1.3*\s) node[] () {$\zv$};
+        \path (s5) ++(0,+1.3*\s) node[] () {$\sv$};
+        \path (t5) ++(0,+1.3*\s) node[] () {$\tv$};
+        \path (x5) ++(0,+1.3*\s) node[] () {$\xv$};
+
+        \draw [arrow2] (s5) -- (y5) node [midway, draw=none, below=2pt] {$5$};
+        \draw [arrow] (s5) -- (t5) node [midway, draw=none, above=3pt] {$10$};
+        \draw [arrow] (t5) to [out=260, in=100] (y5);
+        \path (y5) ++(-\s,\inc/2) node[] () {$2$};
+        \draw [arrow2] (y5) to [out=80, in=280] (t5);
+        \path (y5) ++(\s,\inc/2) node[] () {$3$};
+        \draw [arrow2] (y5) -- (z5) node [midway, draw=none, below=2pt] {$2$};
+        \draw [arrow] (x5) to [out=260, in=100] (z5);
+        \path (y5) ++(\inc-\s,\inc/2) node[] () {$4$};
+        \draw [arrow] (z5) to [out=80, in=280] (x5);
+        \path (y5) ++(\inc+\s,\inc/2) node[] () {$6$};
+
+        \draw [arrow] (y5) -- (x5) node [midway, draw=none, above=2pt] {$9$};
+        \draw [arrow2] (t5) -- (x5) node [midway, draw=none, above=2pt] {$1$};
+        \draw [arrow] (z5) -- (s5) node [midway, draw=none, above=2pt, pos=0.2] {$7$};
+
+        \path (y5) ++(\s,-\inc/2) node[] () {$\bm{S = \{s, y, z, t, x\}}$};
+
+    \end{tikzpicture}
+\end{center}
+
+
+
+\end{document}

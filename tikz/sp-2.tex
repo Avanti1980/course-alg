@@ -1,0 +1,52 @@
+\documentclass{ctexart}
+\usepackage{avanti-color}
+%\usepackage{avanti-font}
+\usepackage{avanti-math}
+\usepackage{avanti-theorem}
+\usepackage{avanti-others}
+
+\RequirePackage{fontspec}
+\xeCJKsetup{CJKmath=true}
+\setCJKmainfont[BoldFont=FZHei-B01,ItalicFont=]{LXGW Bright}
+
+\everymath{\color{Solarized-magenta}}
+\pagestyle{empty} % 没有页眉和页脚
+
+\tikzset{font=\Large}
+\tikzset{base/.style={smooth, very thick, Solarized-base01}}
+\tikzset{arrow/.style={->, -{Stealth[scale=1.0]}, base}}
+\tikzset{point/.style={circle, minimum height=0.8cm, base, draw=Solarized-base01}}
+\begin{document}
+
+\begin{tikzpicture}
+
+    \pgfmathsetmacro{\d}{2};
+    \pgfmathsetmacro{\h}{6};
+    \pgfmathsetmacro{\inc}{4};
+    \pgfmathsetmacro{\s}{0.6};
+
+    \node [point] (y) at (0,0) {$y$};
+    \node [point] (z) at (\inc,0) {$z$};
+    \node [point] (t) at (0,\inc) {$t$};
+    \node [point] (x) at (\inc,\inc) {$x$};
+    \path (0,0) ++(150:\inc) node[point] (s) {$s$};
+
+    \draw [arrow] (s) -- (y) node [midway, draw=none, below=2pt] {$5$};
+    \draw [arrow] (s) -- (t) node [midway, draw=none, above=3pt] {$10$};
+    \draw [arrow] (t) to [out=260, in=100] (y);
+    \node [] () at (-\s,\inc/2) {$2$};
+    \draw [arrow] (y) to [out=80, in=280] (t);
+    \node [] () at (0.6,\inc/2) {$3$};
+    \draw [arrow] (y) -- (z) node [midway, draw=none, below=2pt] {$2$};
+    \draw [arrow] (x) to [out=260, in=100] (z);
+    \node [] () at (\inc-\s,\inc/2) {$4$};
+    \draw [arrow] (z) to [out=80, in=280] (x);
+    \node [] () at (\inc+\s,\inc/2) {$6$};
+
+    \draw [arrow] (y) -- (x) node [midway, draw=none, above=2pt] {$9$};
+    \draw [arrow] (t) -- (x) node [midway, draw=none, above=2pt] {$1$};
+
+    \draw [arrow] (z) -- (s) node [midway, draw=none, above=2pt, pos=0.2] {$7$};
+\end{tikzpicture}
+
+\end{document}
