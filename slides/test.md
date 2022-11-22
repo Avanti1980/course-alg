@@ -36,4 +36,33 @@ presentation:
 
 <div class="top2"></div>
 
+初始$\Scal = \emptyset$，之后源点$s$第一个加入$\Scal$，显然$s.d = \delta (s,s) = 0$
+
+<div class="top-1"></div>
+
+设$u$是{==第一个==}加入$\Scal$时$u.d \ne \delta (s,u)$的点，此时存在$s \rightsquigarrow u$的路径
+
+否则$u.d = \delta (s,u) = \infty$，与假设矛盾
+
+设$s$到$u$的最短路径为$p$
+
+
+
+<!-- slide vertical=true data-notes="" -->
+
+##### <span style="font-weight:900">Dijkstra</span> 算法 正确性
+
+---
+
+下面说明$u$是路径$p$上第一个不在$\Scal$中的点
+
+<div class="top-1"></div>
+
+否则设$u$前还有点$y$不在$\Scal$中，$s \overset{p_1}{\rightsquigarrow} y \overset{p_2}{\rightsquigarrow} u$
+
+那么
+
+设$y$是路径$p$上第一个不在$\Scal$中的点，$y$的前驱$x \in \Scal$
+
+路径分为$s \rightsquigarrow x \rightarrow y \rightsquigarrow u$
 
