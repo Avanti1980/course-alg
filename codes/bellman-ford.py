@@ -2,12 +2,12 @@ def bellman_ford(g, s):
     d, p = dict(), dict()
     for v in g:  # 距离初始化为无穷大 前驱初始化为空
         d[v], p[v] = float("inf"), None
-    d[s] = 0  # 源点到自己的距离为零
+    d[s] = 0  # 源点到自己的最短路径长度为零
 
     for _ in range(len(g) - 1):  # 遍历|V|-1次
         for u in g:
-            for v in g[u]:
-                if d[v] > d[u] + g[u][v]:  # 如果 d(s,v) > d(s,u) + w(u,v)
+            for v in g[u]:  # 内部的二重for循环遍历所有边
+                if d[v] > d[u] + g[u][v]:             # 松弛
                     d[v], p[v] = (d[u] + g[u][v], u)  # 更新当前最短距离和前驱
 
     for u in g:
@@ -27,3 +27,7 @@ g = {
 
 d, p = bellman_ford(g, s="s")
 print(d)
+print(p)
+---------------------------------------------------
+{'s': 0, 't': 2, 'y': 7, 'z': -2, 'x': 4}
+{'s': None, 't': 'x', 'y': 's', 'z': 't', 'x': 'y'}

@@ -1,44 +1,38 @@
-def dijkstra(matrix, s):
+def dijkstra(g, s):
+    d, p, in_S = dict(), dict(), dict()
+    for v in g:  # 距离初始化为无穷大 前驱初始化为空 S为空集
+        d[v], p[v], in_S[v] = float("inf"), None, False
+    d[s] = 0  # 源点到自己的最短路径长度为零
 
-    nodes = len(matrix)
-    in_S = [False] * nodes
-    d = [float('inf')] * nodes
-
-    # 初始化，将起始节点的最短路径修改成0
-    d[s] = 0
-
-    # 将访问节点中未访问的个数作为循环值，其实也可以用个点长度代替。
-    while in_S.count(False):
+    for _ in range(len(g)):
         min_value = float('inf')
-        min_value_index = 999
+        u = None
 
-        # 在最短路径节点中找到最小值，已经访问过的不在参与循环。
-        # 得到最小值下标，每循环一次肯定有一个最小值
-        for index in range(nodes):
-            if not in_S[index] and d[index] < min_value:
-                min_value = d[index]
-                min_value_index = index
+        for v in g:  # 遍历所有点 寻找不在S中且最短路径估计值最小的点
+            if not in_S[v] and d[v] < min_value:
+                min_value = d[v]
+                u = v
 
-        # 将访问节点数组对应的值修改成True，标志其已经访问过了
-        in_S[min_value_index] = True
+        if u != None:
+            in_S[u] = True  # 将u加入S
+            for v in g[u]:  # 更新u指向的点的最短路径的估计值
+                if d[v] > d[u] + g[u][v]:             # 松弛
+                    d[v], p[v] = (d[u] + g[u][v], u)  # 更新当前最短距离和前驱
 
-        # 更新d数组。
-        # 以B点为例：d[x] 起始点达到B点的距离，
-        # d[min_value_index] + matrix[min_value_index][index] 是起始点经过某点达到B点的距离，比较两个值，取较小的那个。
-        for index in range(nodes):
-            d[index] = min(d[index], d[min_value_index] + matrix[min_value_index][index])
-
-    return d
+    return d, p, in_S
 
 
-matrix = [
-    [0, 10, float('inf'), 4, float('inf'), float('inf')],
-    [10, 0, 8, 2, 6, float('inf')],
-    [float('inf'), 8, 10, 15, 1, 5],
-    [4, 2, 15, 0, 6, float('inf')],
-    [float('inf'), 6, 1, 6, 0, 12],
-    [float('inf'), float('inf'), 5, float('inf'), 12, 0]
-]
+g = {
+    "s": {"t": 10, "y": 5},         # w(s,t) = 6, w(s,y) = 5
+    "t": {"x": 1, "y": 2},          # w(t,x) = 1, w(t,y) = 2
+    "y": {"t": 3, "z": 2, "x": 9},  # w(y,t) = 3, w(y,z) = 2, w(y,x) = 9
+    "z": {"s": 7, "x": 6},          # w(z,s) = 7, w(z,x) = 6
+    "x": {"z": 4},                  # w(x,z) = 4
+}
 
-result = dijkstra(matrix, 0)
-print('起始节点到其他点距离：%s' % result)
+d, p, in_S = dijkstra(g, "s")
+print(d)
+print(p)
+---------------------------------------------------
+{'s': 0, 't': 8, 'y': 5, 'z': 7, 'x': 9}
+{'s': None, 't': 'y', 'y': 's', 'z': 'y', 'x': 't'}
