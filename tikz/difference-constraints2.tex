@@ -17,6 +17,7 @@
 
 \tikzset{base/.style={smooth, very thick, Solarized-base01}}
 \tikzset{arrow/.style={->, -{Stealth[scale=1.0]}, base}}
+\tikzset{arrow2/.style={->, -{Stealth[scale=1.0]}, base, ultra thick, Solarized-blue}}
 \tikzset{point/.style={circle, minimum height=1.0cm, base, draw=Solarized-base01, fill=Solarized-base2}}
 
 \begin{document}
@@ -26,25 +27,32 @@
     \pgfmathsetmacro{\l}{3};
     \pgfmathsetmacro{\s}{0.8};
 
+    \node [point] (v1) at (0,0) {$-5$};
+    \path (v1) ++(324:\l) node[point] (v2) {$-3$};
+    \path (v1) ++(216:\l) node[point] (v5) {$-4$};
+    \path (v2) ++(252:\l) node[point] (v3) {$0$};
+    \path (v5) ++(288:\l) node[point] (v4) {$-1$};
+    \path (v5) ++(180:\l) node[point] (v0) {$0$};
+
     \tikzset{font=\Large}
 
-    \node [point] (v1) at (0,0) {$v_1$};
-    \path (v1) ++(324:\l) node[point] (v2) {$v_2$};
-    \path (v1) ++(216:\l) node[point] (v5) {$v_5$};
-    \path (v2) ++(252:\l) node[point] (v3) {$v_3$};
-    \path (v5) ++(288:\l) node[point] (v4) {$v_4$};
-    \path (v5) ++(180:\l) node[point] (v0) {$v_0$};
+    \path (v1) ++(\s,0) node[] () {$v_1$};
+    \path (v5) ++(0,\s) node[] () {$v_5$};
+    \path (v2) ++(0,-\s-0.05) node[] () {$v_2$};
+    \path (v3) ++(\s+0.05,0) node[] () {$v_3$};
+    \path (v4) ++(0,-\s-0.05) node[] () {$v_4$};
+    \path (v0) ++(-\s-0.05,0) node[] () {$v_0$};
 
     \tikzset{font=\large}
 
     \draw [arrow] (v2) -- (v1) node [right=5pt, pos=0.6] {$0$};
-    \draw [arrow] (v5) -- (v1) node [left=5pt, pos=0.6] {$-1$};
-    \draw [arrow] (v5) -- (v2) node [above=2pt, pos=0.5] {$1$};
+    \draw [arrow2] (v5) -- (v1) node [left=5pt, pos=0.6] {$-1$};
+    \draw [arrow2] (v5) -- (v2) node [above=2pt, pos=0.5] {$1$};
     \draw [arrow] (v1) -- (v4) node [right=0, pos=0.5] {$4$};
     \draw [arrow] (v1) -- (v3) node [right=0, pos=0.5] {$5$};
     \draw [arrow] (v3) -- (v5) node [right=5pt, pos=0.5] {$-3$};
-    \draw [arrow] (v3) -- (v4) node [above=2pt, pos=0.5] {$-1$};
-    \draw [arrow] (v4) -- (v5) node [left=2pt, pos=0.5] {$-3$};
+    \draw [arrow2] (v3) -- (v4) node [above=2pt, pos=0.5] {$-1$};
+    \draw [arrow2] (v4) -- (v5) node [left=2pt, pos=0.5] {$-3$};
 
     \draw [arrow] (v0) -- (v5) node [above=0pt, pos=0.5] {$0$};
 
@@ -54,7 +62,7 @@
     \draw [arrow] (v0) to [out=80, in=100] (v2);
     \path (v0) ++(\l,0.8*\l) node[] () {$0$};
 
-    \draw [arrow] (v0) to [out=270, in=220] (v3);
+    \draw [arrow2] (v0) to [out=270, in=220] (v3);
     \path (v0) ++(0.9*\l,-1.12*\l) node[] () {$0$};
 
     \draw [arrow] (v0) to [out=40, in=180] (v1);
