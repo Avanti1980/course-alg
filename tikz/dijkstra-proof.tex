@@ -1,0 +1,49 @@
+\documentclass{ctexart}
+\usepackage{avanti-color}
+%\usepackage{avanti-font}
+\usepackage{avanti-math}
+\usepackage{avanti-theorem}
+\usepackage{avanti-others}
+
+\RequirePackage{fontspec}
+\xeCJKsetup{CJKmath=true}
+\setCJKmainfont[BoldFont=FZHei-B01,ItalicFont=]{LXGW Bright}
+
+\everymath{\color{Solarized-magenta}}
+\pagestyle{empty} % 没有页眉和页脚
+
+ % define the plot style and the axis style
+\tikzset{font=\LARGE}
+
+\tikzset{base/.style={smooth, very thick, Solarized-base01}}
+\tikzset{arrow/.style={->, -{Stealth[scale=1.0]}, base}}
+
+\begin{document}
+
+\begin{tikzpicture}
+    \draw [base] plot [tension=0.7] coordinates {
+            (0,6)  (-1,5.4) (-3,4.8) (-2.6,3.6) (-3.2,2.4) (-2.4,1.6) (-3,0.4) (0,0.8) (1.4,0.4) (1.8,0.8) (2.4,1.6) (2,2.4) (2.4,3.2)
+            (1.6,4.4) (2,5) (1,5.4)  (0,6)
+        }
+    ;
+
+    %封闭图形内组件
+    \draw [base] (-1.4,3.6) circle (0.4) node () {$\sv$};
+    \draw [base] (1.2,2) circle (0.4) node () {$\xv$};
+    \draw [arrow] plot [smooth, tension=0.7] coordinates {(-1.4,3.2) (-1.8,2.6) (-1.2,2) (0,2.4) (0.8,2)};
+    \node at (-1.1,2.1) [above] {$p_1$};
+    \node at (0.2,4) {$\Scal$};
+
+    %封闭图形外组件
+    \draw [base] (4,2.8) circle (0.4) node () {$\yv$};
+    \draw [arrow] (1.6,2) -- (3.6,2.8);
+
+    \draw [base] (8,4.5) circle (0.4) node () {$\uv$};
+    \draw [arrow] plot [smooth,tension = .7] coordinates
+        {
+            (4,3.2) (3.2,3.5) (1.2,3)  (2,4.3) (5.4,3.8) (7.3,3.6) (8,4.1)
+        };
+    \node at (5.4,3.8) [above] {$p_2$};
+\end{tikzpicture}
+
+\end{document}

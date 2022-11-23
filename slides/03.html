@@ -2231,7 +2231,7 @@ s <span class="token operator">=</span> <span class="token punctuation">[</span>
 
 $$
 \begin{align*}
-    \quad c[i,j] = \begin{cases} 0, &amp; i = 0 \vee j = 0 \quad \text{&#x5176;&#x4E2D;&#x4E00;&#x4E2A;&#x4E3A;&#x7A7A;} \\ c[i-1,j-1]+1, &amp; i,j &gt; 0 \wedge x_i = y_j \\ \max \{ c[i,j-1], c[i-1,j] \}, &amp; i,j &gt; 0 \wedge x_i \ne y_j \end{cases}
+    \quad c[i,j] = \begin{cases} 0, &amp; i = 0 \vee j = 0 \quad \text{&#x5176;&#x4E2D;&#x4E00;&#x4E2A;&#x4E3A;&#x7A7A;} \\ c[i-1,j-1]+1, &amp; i,j &gt; 0 \wedge x_i = y_j \\ \max \{ c[i,j-1], ~ c[i-1,j] \}, &amp; i,j &gt; 0 \wedge x_i \ne y_j \end{cases}
 \end{align*}
 $$
 </p>
@@ -2245,7 +2245,7 @@ $$
 
 $$
 \begin{align*}
-    \quad \small c[i,j] = \begin{cases} 0, &amp; i = 0 \vee j = 0 \quad \text{&#x5176;&#x4E2D;&#x4E00;&#x4E2A;&#x4E3A;&#x7A7A;} \\ c[i-1,j-1]+1, &amp; i,j &gt; 0 \wedge x_i = y_j \\ \max \{ c[i,j-1], c[i-1,j] \}, &amp; i,j &gt; 0 \wedge x_i \ne y_j \end{cases}
+    \quad \small c[i,j] = \begin{cases} 0, &amp; i = 0 \vee j = 0 \quad \text{&#x5176;&#x4E2D;&#x4E00;&#x4E2A;&#x4E3A;&#x7A7A;} \\ c[i-1,j-1]+1, &amp; i,j &gt; 0 \wedge x_i = y_j \\ \max \{ c[i,j-1], ~ c[i-1,j] \}, &amp; i,j &gt; 0 \wedge x_i \ne y_j \end{cases}
 \end{align*}
 $$
 </p>
@@ -2679,7 +2679,7 @@ $$
 <div class="top4"></div>
 <p>&#x4EE5;<span class="mathjax-exps">$X = [2, 8, 4, 9, 1, 6, 7, 3, 0, 5]$</span>&#x4E3A;&#x4F8B;&#xFF0C;&#x6700;&#x7EC8;<span class="mathjax-exps">$e = [0, 3, 5, 7]$</span></p>
 <p><span class="mathjax-exps">$e$</span>&#x7684;&#x957F;&#x5EA6;&#x4E3A; 4 &#x4EE3;&#x8868; LIS &#x7684;&#x957F;&#x5EA6;&#x4E3A;<span class="mathjax-exps">$4$</span></p>
-<p><span class="mathjax-exps">$e[-1] = 7$</span>&#x4EE3;&#x8868; LIS &#x672B;&#x5C3E;&#x5143;&#x7D20;&#x4E3A;<span class="mathjax-exps">$7$</span>&#xFF0C;<span class="mathjax-exps">$[2, 4, 6, 7]$</span>&#x662F;&#x4E00;&#x4E2A; LIS</p>
+<p><span class="mathjax-exps">$e[-1] = 7$</span>&#x4EE3;&#x8868; LIS &#x672B;&#x4F4D;&#x5143;&#x7D20;&#x4E3A;<span class="mathjax-exps">$7$</span>&#xFF0C;<span class="mathjax-exps">$[2, 4, 6, 7]$</span>&#x662F;&#x4E00;&#x4E2A; LIS</p>
 <p><span class="yellow"><i class="fa fa-weixin" aria-hidden="true"></i></span> <span class="mathjax-exps">$e$</span>&#x7684;&#x5143;&#x7D20;&#x662F;&#x5355;&#x8C03;&#x9012;&#x589E;&#x7684;&#xFF0C;&#x8FD9;&#x662F;&#x63D0;&#x5347;&#x901F;&#x5EA6;&#x7684;&#x5173;&#x952E;</p>
 </section><section vertical="true" data-notes lineno="1178" class="slide " data-line="1178" data-h="18" data-v="1">
 <h5 class="mume-header" id="span-stylefont-weight900lisspan-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E6%94%B9%E8%BF%9B-1"><span style="font-weight:900">LIS</span> &#x52A8;&#x6001;&#x89C4;&#x5212; &#x6539;&#x8FDB;</h5>
