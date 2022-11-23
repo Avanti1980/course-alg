@@ -8,9 +8,12 @@ def dijkstra(g, s):
         min_value = float('inf')
         u = None
 
-        for v in g:  # 遍历所有点 寻找不在S中且最短路径估计值最小的点
+        # 遍历所有点 寻找不在S中且最短路径估计值最小的点 
+        # 我们这儿就是用个无序的字典实现d[] 遍历找最小时间复杂度O(V)
+        # d[]可以用二叉堆、斐波那契堆等数据结构实现 找最小的时间复杂度可以改进
+        for v in g:  
             if not in_S[v] and d[v] < min_value:
-                min_value = d[v]
+                min_value = d[v]  
                 u = v
 
         if u != None:
