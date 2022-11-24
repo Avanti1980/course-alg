@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022/Arch Linux) (preloaded format=xelatex 2022.11.8)  24 NOV 2022 23:18
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022/Arch Linux) (preloaded format=xelatex 2022.11.8)  25 NOV 2022 01:50
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1245,7 +1245,7 @@ Package rerunfilecheck Info: File `sp-dijkstra.out' has not changed.
 Here is how much of TeX's memory you used:
  46459 strings out of 476156
  1110903 string characters out of 5814963
- 1719209 words of memory out of 5000000
+ 1719208 words of memory out of 5000000
  66375 multiletter control sequences out of 15000+600000
  479661 words of font info for 98 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
