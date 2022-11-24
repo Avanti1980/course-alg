@@ -5,6 +5,8 @@
 \usepackage{avanti-theorem}
 \usepackage{avanti-others}
 
+\geometry{a2paper, left=2mm}
+
 \RequirePackage{fontspec}
 \xeCJKsetup{CJKmath=true}
 \setCJKmainfont[BoldFont=FZHei-B01,ItalicFont=]{LXGW Bright}
@@ -57,7 +59,7 @@
         \draw [arrow] (t) -- (x) node [midway, draw=none, above=2pt] {$1$};
         \draw [arrow] (z) -- (s) node [midway, draw=none, above=2pt, pos=0.2] {$7$};
 
-        \path (y) ++(\s,-\inc/2) node[] () {$\bm{S = \emptyset}$};
+        \path (y) ++(\s,-\inc/2) node[] () {$\bm{\Scal = \emptyset}$};
 
         %
         \node [point2] (y1) at (0,0) {$5$};
@@ -88,7 +90,7 @@
         \draw [arrow] (t1) -- (x1) node [midway, draw=none, above=2pt] {$1$};
         \draw [arrow] (z1) -- (s1) node [midway, draw=none, above=2pt, pos=0.2] {$7$};
 
-        \path (y1) ++(\s,-\inc/2) node[] () {$\bm{S = \{s\}}$};
+        \path (y1) ++(\s,-\inc/2) node[] () {$\bm{\Scal = \{s\}}$};
 
         %
         \node [point3] (y2) at (\h,0) {$5$};
@@ -119,7 +121,7 @@
         \draw [arrow] (t2) -- (x2) node [midway, draw=none, above=2pt] {$1$};
         \draw [arrow] (z2) -- (s2) node [midway, draw=none, above=2pt, pos=0.2] {$7$};
 
-        \path (y2) ++(\s,-\inc/2) node[] () {$\bm{S = \{s, y\}}$};
+        \path (y2) ++(\s,-\inc/2) node[] () {$\bm{\Scal = \{s, y\}}$};
 
         %
         \node [point3] (y3) at (-\h,-\v) {$5$};
@@ -150,7 +152,7 @@
         \draw [arrow] (t3) -- (x3) node [midway, draw=none, above=2pt] {$1$};
         \draw [arrow] (z3) -- (s3) node [midway, draw=none, above=2pt, pos=0.2] {$7$};
 
-        \path (y3) ++(\s,-\inc/2) node[] () {$\bm{S = \{s, y, z\}}$};
+        \path (y3) ++(\s,-\inc/2) node[] () {$\bm{\Scal = \{s, y, z\}}$};
 
         %
         \node [point3] (y4) at (0,-\v) {$5$};
@@ -181,7 +183,7 @@
         \draw [arrow2] (t4) -- (x4) node [midway, draw=none, above=2pt] {$1$};
         \draw [arrow] (z4) -- (s4) node [midway, draw=none, above=2pt, pos=0.2] {$7$};
 
-        \path (y4) ++(\s,-\inc/2) node[] () {$\bm{S = \{s, y, z, t\}}$};
+        \path (y4) ++(\s,-\inc/2) node[] () {$\bm{\Scal = \{s, y, z, t\}}$};
 
         %
         \node [point3] (y5) at (\h,-\v) {$5$};
@@ -212,7 +214,7 @@
         \draw [arrow2] (t5) -- (x5) node [midway, draw=none, above=2pt] {$1$};
         \draw [arrow] (z5) -- (s5) node [midway, draw=none, above=2pt, pos=0.2] {$7$};
 
-        \path (y5) ++(\s,-\inc/2) node[] () {$\bm{S = \{s, y, z, t, x\}}$};
+        \path (y5) ++(\s,-\inc/2) node[] () {$\bm{\Scal = \{\sv, \yv, \zv, \tv, \xv\}}$};
 
     \end{tikzpicture}
 \end{center}

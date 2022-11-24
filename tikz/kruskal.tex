@@ -5,6 +5,8 @@
 \usepackage{avanti-theorem}
 \usepackage{avanti-others}
 
+\geometry{a2paper, left=2mm}
+
 \RequirePackage{fontspec}
 \xeCJKsetup{CJKmath=true}
 \setCJKmainfont[BoldFont=FZHei-B01,ItalicFont=]{LXGW Bright}
@@ -12,7 +14,7 @@
 \everymath{\color{Solarized-magenta}}
 \pagestyle{empty} % 没有页眉和页脚
 
- % define the plot style and the axis style
+% define the plot style and the axis style
 \tikzset{font=\large}
 
 \tikzset{base/.style={smooth, very thick, Solarized-base01}}
@@ -24,7 +26,7 @@
 \begin{center}
     \begin{tikzpicture}
 
-        \pgfmathsetmacro{\l}{1.3};
+        \pgfmathsetmacro{\l}{1.5};
 
         % 1, 1
         \node [point] (a) at (0,0) {$\av$};
@@ -53,7 +55,7 @@
         \draw [base] (f) -- (e) node [right=5pt, pos=0.3] {$10$};
 
         % 1, 2
-        \node [point] (a2) at (7.5*\l,0) {$\av$};
+        \node [point] (a2) at (7.2*\l,0) {$\av$};
         \path (a2) ++(\l,\l)  node[point] (b2) {$\bv$};
         \path (a2) ++(\l,-\l) node[point] (h2) {$\hv$};
         \path (a2) ++(2*\l,0) node[point] (i2) {$\iv$};
@@ -78,8 +80,8 @@
         \draw [base] (i2) -- (g2) node [below=5pt, pos=0.3] {$6$};
         \draw [base] (f2) -- (e2) node [right=5pt, pos=0.3] {$10$};
 
-        % 2, 1
-        \node [point] (a3) at (0,-3.5*\l) {$\av$};
+        % 1, 3
+        \node [point] (a3) at (14.4*\l,0) {$\av$};
         \path (a3) ++(\l,\l)  node[point] (b3) {$\bv$};
         \path (a3) ++(\l,-\l) node[point] (h3) {$\hv$};
         \path (a3) ++(2*\l,0) node[point] (i3) {$\iv$};
@@ -104,8 +106,8 @@
         \draw [base] (i3) -- (g3) node [below=5pt, pos=0.3] {$6$};
         \draw [base] (f3) -- (e3) node [right=5pt, pos=0.3] {$10$};
 
-        % 2, 2
-        \node [point] (a4) at (7.5*\l,-3.5*\l) {$\av$};
+        % 2, 1
+        \node [point] (a4) at (0,-3.5*\l) {$\av$};
         \path (a4) ++(\l,\l)  node[point] (b4) {$\bv$};
         \path (a4) ++(\l,-\l) node[point] (h4) {$\hv$};
         \path (a4) ++(2*\l,0) node[point] (i4) {$\iv$};
@@ -130,8 +132,8 @@
         \draw [base] (i4) -- (g4) node [below=5pt, pos=0.3] {$6$};
         \draw [base] (f4) -- (e4) node [right=5pt, pos=0.3] {$10$};
 
-        % 3, 1
-        \node [point] (a5) at (0,-7*\l) {$\av$};
+        % 2, 2
+        \node [point] (a5) at (7.2*\l,-3.5*\l) {$\av$};
         \path (a5) ++(\l,\l)  node[point] (b5) {$\bv$};
         \path (a5) ++(\l,-\l) node[point] (h5) {$\hv$};
         \path (a5) ++(2*\l,0) node[point] (i5) {$\iv$};
@@ -156,8 +158,8 @@
         \draw [base] (i5) -- (g5) node [below=5pt, pos=0.3] {$6$};
         \draw [base] (f5) -- (e5) node [right=5pt, pos=0.3] {$10$};
 
-        % 3, 2
-        \node [point] (a6) at (7.5*\l,-7*\l) {$\av$};
+        % 2, 3
+        \node [point] (a6) at (14.4*\l,-3.5*\l) {$\av$};
         \path (a6) ++(\l,\l)  node[point] (b6) {$\bv$};
         \path (a6) ++(\l,-\l) node[point] (h6) {$\hv$};
         \path (a6) ++(2*\l,0) node[point] (i6) {$\iv$};
@@ -182,8 +184,8 @@
         \draw [base] (i6) -- (g6) node [below=5pt, pos=0.3] {$6$};
         \draw [base] (f6) -- (e6) node [right=5pt, pos=0.3] {$10$};
 
-        % 4, 1
-        \node [point] (a7) at (0,-10.5*\l) {$\av$};
+        % 3, 1
+        \node [point] (a7) at (0,-7*\l) {$\av$};
         \path (a7) ++(\l,\l)  node[point] (b7) {$\bv$};
         \path (a7) ++(\l,-\l) node[point] (h7) {$\hv$};
         \path (a7) ++(2*\l,0) node[point] (i7) {$\iv$};
@@ -209,7 +211,7 @@
         \draw [base] (f7) -- (e7) node [right=5pt, pos=0.3] {$10$};
 
         % 4, 2
-        \node [point] (a8) at (7.5*\l,-10.5*\l) {$\av$};
+        \node [point] (a8) at (7.2*\l,-7*\l) {$\av$};
         \path (a8) ++(\l,\l)  node[point] (b8) {$\bv$};
         \path (a8) ++(\l,-\l) node[point] (h8) {$\hv$};
         \path (a8) ++(2*\l,0) node[point] (i8) {$\iv$};
