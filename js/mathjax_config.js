@@ -122,6 +122,7 @@ module.exports = {
       Pcal: "{\\mathcal P}",
       Rcal: "{\\mathcal R}",
       Scal: "{\\mathcal S}",
+      Tcal: "{\\mathcal T}",
       Ucal: "{\\mathcal U}",
       Vcal: "{\\mathcal V}",
       Wcal: "{\\mathcal W}",

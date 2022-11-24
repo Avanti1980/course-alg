@@ -1,0 +1,68 @@
+\documentclass{ctexart}
+\usepackage{avanti-color}
+%\usepackage{avanti-font}
+\usepackage{avanti-math}
+\usepackage{avanti-theorem}
+\usepackage{avanti-others}
+
+\RequirePackage{fontspec}
+\xeCJKsetup{CJKmath=true}
+\setCJKmainfont[BoldFont=FZHei-B01,ItalicFont=]{LXGW Bright}
+
+\everymath{\color{Solarized-magenta}}
+\pagestyle{empty} % 没有页眉和页脚
+
+ % define the plot style and the axis style
+\tikzset{font=\Large}
+
+\tikzset{base/.style={smooth, very thick, Solarized-base01}}
+\tikzset{point/.style={circle, minimum height=0.8cm, base, draw=Solarized-base01, fill=Solarized-base2}}
+\tikzset{point2/.style={circle, minimum height=0.8cm, base, draw=Solarized-base01, fill=Solarized-base1}}
+\tikzset{span/.style={base, line width=1.5mm, Solarized-blue}}
+
+\begin{document}
+
+\begin{tikzpicture}
+
+    \pgfmathsetmacro{\l}{2};
+
+    \node [point2] (a) at (0,0) {$\av$};
+    \path (a) ++(\l,\l) node[point2] (b) {$\bv$};
+    \path (a) ++(\l,-\l) node[point] (h) {$\hv$};
+    \path (a) ++(2*\l,0) node[point] (i) {$\iv$};
+    \path (b) ++(2*\l,0) node[point] (c) {$\cv$};
+    \path (h) ++(2*\l,0) node[point] (g) {$\gv$};
+    \path (c) ++(2*\l,0) node[point2] (d) {$\dv$};
+    \path (g) ++(2*\l,0) node[point] (f) {$\fv$};
+    \path (d) ++(\l,-\l) node[point2] (e) {$\ev$};
+
+    \draw [span] (a) -- (b) node [left=5pt, pos=0.7] {$4$};
+    \draw [base] (b) -- (c) node [above=0pt, pos=0.5] {$8$};
+    \draw [base] (c) -- (d) node [above=0pt, pos=0.5] {$7$};
+    \draw [span] (h) -- (g) node [below=0pt, pos=0.5] {$1$};
+    \draw [span] (g) -- (f) node [below=0pt, pos=0.5] {$2$};
+    \draw [span] (c) -- (i) node [below=5pt, pos=0.3] {$2$};
+    \draw [span] (c) -- (f) node [below=5pt, pos=0.4] {$4$};
+    \draw [span] (d) -- (e) node [right=5pt, pos=0.3] {$9$};
+
+    \draw [base] (a) -- (h) node [left=5pt, pos=0.7] {$8$};
+    \draw [base] (b) -- (h) node [left=0pt, pos=0.5] {$11$};
+    \draw [base] (d) -- (f) node [right=0pt, pos=0.5] {$14$};
+    \draw [base] (i) -- (h) node [below=5pt, pos=0.3] {$7$};
+    \draw [base] (i) -- (g) node [below=5pt, pos=0.3] {$6$};
+    \draw [base] (f) -- (e) node [right=5pt, pos=0.3] {$10$};
+
+    \path (a) ++(-0.6*\l,0.3*\l) node[] () {$\Scal$};
+    \path (a) ++(-0.6*\l,-0.8*\l) node[] () {$\Vcal \setminus \Scal$};
+
+    \path (a) ++(6.6*\l,0.3*\l) node[] () {$\Scal$};
+    \path (a) ++(6.6*\l,-0.8*\l) node[] () {$\Vcal \setminus \Scal$};
+
+    \draw [base,dashed] plot [smooth, tension = 0.6] coordinates
+        {
+            (-\l,0) (0.5*\l,-0.5*\l) (3*\l,1.5*\l)  (5.5*\l,-0.5*\l) (7*\l,0)
+        };
+    
+\end{tikzpicture}
+
+\end{document}
