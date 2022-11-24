@@ -52,4 +52,4 @@ Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein
 [最大子数组](codes/max-subarray.ipynb)、[矩阵加法](codes/matrix-addition.ipynb)、[矩阵乘法](codes/matrix-multiply.ipynb)
 [钢条切割](codes/cut-rod.ipynb)、[矩阵连乘](codes/matrix-chain.ipynb)、[最长公共子序列](codes/lcs.ipynb)、[最长递增子序列](codes/lis.ipynb)、[最优二叉搜索树](codes/optiaml-bst.ipynb)
 [最大兼容活动集合](codes/activity-selector.ipynb)
-[Bellman-Ford 算法](codes/bellman-ford.ipynb)、[Dijkstra 算法](codes/dijkstra.ipynb)
+[Bellman-Ford](codes/bellman-ford.ipynb)、[Dijkstra](codes/dijkstra.ipynb)
