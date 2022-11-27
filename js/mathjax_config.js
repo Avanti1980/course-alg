@@ -169,6 +169,7 @@ module.exports = {
       grad: "{\\mathrm {grad}}",
       divv: "{\\mathrm {div}}",
       var: "{\\mathrm {var}}",
+      shu: "{|}",
       softmax: "{\\mathrm {softmax}}",
       att: "{\\mathrm {att}}",
       cut: "{\\mathrm {cut}}",
