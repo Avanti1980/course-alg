@@ -26,18 +26,18 @@
 
 <div class="threelines outline head-highlight">
 
-|        |              讲义              |                         补充                         |
-| :----: | :----------------------------: | :--------------------------------------------------: |
-| 第一讲 |     [绪论](slides/01.html)     |                          -                           |
-| 第二讲 |  [函数的增长](slides/02.html)  |                          -                           |
-| 第三讲 |    [分治法](slides/03.html)    | [Strassen 矩阵乘法加速](notes/Strassen/Strassen.pdf) |
-| 第四讲 |   [动态规划](slides/04.html)   |                          -                           |
-| 第五讲 |    [贪心法](slides/05.html)    |                          -                           |
-| 第六讲 | [单源最短路径](slides/06.html) |                          -                           |
-| 第七讲 |        全结点对最短路径        |                          -                           |
-| 第八讲 |              回溯              |                          -                           |
-| 第九讲 |            分支限界            |                          -                           |
-| 第十讲 |             最大流             |                          -                           |
+|        |                讲义                |                         补充                         |
+| :----: | :--------------------------------: | :--------------------------------------------------: |
+| 第一讲 |       [绪论](slides/01.html)       |                          -                           |
+| 第二讲 |    [函数的增长](slides/02.html)    |                          -                           |
+| 第三讲 |      [分治法](slides/03.html)      | [Strassen 矩阵乘法加速](notes/Strassen/Strassen.pdf) |
+| 第四讲 |     [动态规划](slides/04.html)     |                          -                           |
+| 第五讲 |      [贪心法](slides/05.html)      |                          -                           |
+| 第六讲 |   [单源最短路径](slides/06.html)   |                          -                           |
+| 第七讲 | [全结点对最短路径](slides/07.html) |                          -                           |
+| 第八讲 |                回溯                |                          -                           |
+| 第九讲 |              分支限界              |                          -                           |
+| 第十讲 |               最大流               |                          -                           |
 
 </div>
 
@@ -52,4 +52,4 @@ Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein
 [最大子数组](codes/max-subarray.ipynb)、[矩阵加法](codes/matrix-addition.ipynb)、[矩阵乘法](codes/matrix-multiply.ipynb)
 [钢条切割](codes/cut-rod.ipynb)、[矩阵连乘](codes/matrix-chain.ipynb)、[最长公共子序列](codes/lcs.ipynb)、[最长递增子序列](codes/lis.ipynb)、[最优二叉搜索树](codes/optiaml-bst.ipynb)
 [最大兼容活动集合](codes/activity-selector.ipynb)
-[Bellman-Ford](codes/bellman-ford.ipynb)、[Dijkstra](codes/dijkstra.ipynb)
+[Bellman-Ford](codes/bellman-ford.ipynb)、[Dijkstra](codes/dijkstra.ipynb)、[Floyd-Warshall 等动态规划算法](codes/sp-all-dp.ipynb)、[传递闭包](codes/transitive-closure.ipynb)、[Johnson](codes/sp-all-johnson.ipynb)
