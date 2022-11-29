@@ -1,0 +1,78 @@
+digraph g {
+    bgcolor=transparent
+    rankdir=TB
+    graph [nodesep=0.2, ranksep=0.4]
+    node [shape=plain, color="#586e75", fontcolor="#b58900", fontsize=22, fontname="LXGWWenKai"]
+    edge [arrowhead=vee, color="#586e75", fontcolor="#268bd2", fontsize=18, fontname="LXGWWenKai" arrowsize=0.6]
+
+    ① -> ② [label="1"]
+    ① -> ⑱ [label="2"]
+    ① -> ㉞ [label="3"]
+    ① -> ㊿ [label="4"]
+
+    ② -> ③ [label="2"]
+    ② -> ⑧ [label="3"]
+    ② -> ⑬ [label="4"]
+
+    ③ -> ④ [label="3"]
+    ③ -> ⑥ [label="4"]
+
+    ④ -> ⑤ [label="4"]
+    ⑥ -> ⑦ [label="3"]
+
+    ⑧ -> ⑨ [label="2"]
+    ⑧ -> ⑪ [label="4"]
+
+    ⑨ -> ⑩ [label="4"]
+    ⑪ -> ⑫ [label="2"]
+
+    ⑬ -> ⑭ [label="2"]
+    ⑬ -> ⑯ [label="3"]
+
+    ⑭ -> ⑮ [label="3"]
+    ⑯ -> ⑰ [label="2"]
+
+    ⑱ -> ⑲ [label="1"]
+    ⑱ -> ㉔ [label="3"]
+    ⑱ -> ㉙ [label="4"]
+
+    ⑲ -> ⑳ [label="3"]
+    ⑲ -> ㉒ [label="4"]
+
+    ⑳ -> ㉑ [label="4"]
+    ㉒ -> ㉓ [label="3"]
+
+    ㉔ -> ㉕ [label="1"]
+    ㉔ -> ㉗ [label="4"]
+
+    ㉕ -> ㉖ [label="4"]
+    ㉗ -> ㉘ [label="1"]
+
+    ㉙ -> ㉚ [label="1"]
+    ㉙ -> ㉜ [label="3"]
+
+    ㉚ -> ㉛ [label="3"]
+    ㉜ -> ㉝ [label="1"]
+
+    ㉞ -> ㉟ [label="1"]
+    ㉞ -> ㊵ [label="2"]
+    ㉞ -> ㊺ [label="4"]
+
+    ㉟ -> ㊱ [label="2"]
+    ㉟ -> ㊳ [label="4"]
+
+    ㊱ -> ㊲ [label="4"]
+    ㊳ -> ㊴ [label="2"]
+
+    ㊵ -> ㊶ [label="1"]
+    ㊵ -> ㊸ [label="4"]
+
+    ㊶ -> ㊷ [label="4"]
+    ㊸ -> ㊹ [label="1"]
+
+    ㊺ -> ㊻ [label="1"]
+    ㊺ -> ㊽ [label="2"]
+
+    ㊻ -> ㊼ [label="2"]
+    ㊽ -> ㊾ [label="1"]
+}

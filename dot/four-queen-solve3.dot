@@ -1,0 +1,51 @@
+digraph g {
+    bgcolor=transparent
+    rankdir=TB
+    graph [nodesep=0.62, ranksep=0.05]
+    node [shape=plain, color="#586e75", fontcolor="#b58900", fontsize=20, fontname="LXGWWenKai"]
+    edge [arrowhead=vee, color="#586e75", fontcolor="#268bd2", fontsize=14, fontname="LXGWWenKai" arrowsize=0.6]
+
+    n10 [label=①]
+    n11 [label=②]
+    n12 [label=③]
+    n13 [label=⑧]
+    n14 [label=⑨]
+    n15 [label=⑪]
+    n16 [label=⑬]
+
+    n10 -> n11 [label="1"]
+    n11 -> n12 [label="2"]
+    n11 -> n13 [label="3"]
+    n13 -> n14 [label="2"]
+    n13 -> n15 [label="4"]
+    n11 -> n16 [label="4"]
+
+    n1 [label=①]
+    n2 [label=②]
+    n3 [label=③]
+    n4 [label=⑧]
+    n5 [label=⑨]
+    n6 [label=⑪]
+    n7 [label=⑬]
+    n8 [label=⑭]
+
+    n1 -> n2 [label="1"]
+    n2 -> n3 [label="2"]
+    n2 -> n4 [label="3"]
+    n4 -> n5 [label="2"]
+    n4 -> n6 [label="4"]
+    n2 -> n7 [label="4"]
+    n7 -> n8 [label="2"]
+
+    ① -> ② [label="1"]
+
+    ② -> ③ [label="2"]
+    ② -> ⑧ [label="3"]
+    ② -> ⑬ [label="4"]
+
+    ⑧ -> ⑨ [label="2"]
+    ⑧ -> ⑪ [label="4"]
+
+    ⑬ -> ⑭ [label="2"]
+    ⑭ -> ⑮ [label="3"]
+}
