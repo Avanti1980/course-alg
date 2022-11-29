@@ -1,0 +1,14 @@
+digraph g {
+    bgcolor=transparent
+    rankdir=TB
+    graph [nodesep=0.8, ranksep=0.8]
+    node [shape=plain, color="#586e75", fontcolor="#b58900", fontsize=32, fontname="LXGWWenKai"]
+    edge [arrowhead=vee, color="#586e75", fontcolor="#268bd2", fontsize=16, fontname="LXGWWenKai" arrowsize=0.6]
+
+    ② -> ③ -> ② 
+    ② -> ④ -> ③ 
+    ④ -> ①
+
+    {rank="same"; ①; ②}
+    {rank="same"; ③; ④}
+}
