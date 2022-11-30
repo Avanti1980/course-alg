@@ -29,7 +29,7 @@ def closest_pair(v, low, high, sort_y):
 
     for i in range(len(sort_y)-1, -1, -1):  # 删除所有不在中间带状区域中的点
         if v[sort_y[i], 0] - xmid >= d or v[sort_y[i], 0] - xmid <= -d:
-            np.delete(sort_y, i)
+            sort_y = np.delete(sort_y, i)
 
     closest = float("inf")
     l = len(sort_y)
