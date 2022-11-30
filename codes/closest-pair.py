@@ -28,8 +28,8 @@ def closest_pair(v, low, high, sort_y):
     d = min(dl, dr)
 
     for i in range(len(sort_y)-1, -1, -1):  # 删除所有不在中间带状区域中的点
-        if v[sort_y[i], 0] - xmid >= d and v[sort_y[i], 0] - xmid <= -d:
-            del sort_y[i]
+        if v[sort_y[i], 0] - xmid >= d or v[sort_y[i], 0] - xmid <= -d:
+            np.delete(sort_y, i)
 
     closest = float("inf")
     l = len(sort_y)
@@ -60,17 +60,17 @@ for t in range(trial):
             if d < closest:
                 closest = d
     time_cost[0, t] = time.time() - tc
-    # print(closest)
+    print(closest)
 
     tc = time.time()
     v = v[v[:, 0].argsort()]    # 对v按x升序
     sort_y = v[:, 1].argsort()  # 对v按y升序 sort_y记录升序后元素在原来v中的索引
     closest = closest_pair(v, 0, n-1, sort_y)
     time_cost[1, t] = time.time() - tc
-    # print(closest)
+    print(closest)
 
-# np.set_printoptions(precision=6, suppress=True)
-# print(time_cost)
+np.set_printoptions(precision=6, suppress=True)
+print(time_cost)
 
 with plt.style.context('Solarize_Light2'):
     x = [v for v in range(4, 4+trial)]

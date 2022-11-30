@@ -1,0 +1,29 @@
+digraph g {
+    bgcolor=transparent
+    rankdir=TB
+    graph [nodesep=0.5, ranksep=0.4]
+    node [shape=plain, color="#586e75", fontcolor="#b58900", fontsize=20, fontname="LXGWWenKai"]
+    edge [arrowhead=vee, color="#586e75", fontcolor="#268bd2", fontsize=14, fontname="LXGWWenKai" arrowsize=0.6]
+
+    ① -> ② [label="1"]
+
+    ② -> ③ [label="2"]
+    ② -> ⑧ [label="3"]
+    ② -> ⑬ [label="4"]
+
+    ⑧ -> ⑨ [label="2"]
+    ⑧ -> ⑪ [label="4"]
+
+    ⑬ -> ⑭ [label="2"]
+    ⑭ -> ⑮ [label="3"]
+    ⑬ -> ⑯ [label="3"]
+
+    ① -> ⑱ [label="2"]
+    ⑱ -> ⑲ [label="1"]
+
+    ⑱ -> ㉔ [label="3"]
+    ⑱ -> ㉙ [label="4"]
+    ㉙ -> ㉚ [label="1"]
+
+    ㉚ -> ㉛ [label="3"]
+}
