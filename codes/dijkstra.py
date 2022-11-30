@@ -19,8 +19,8 @@ def dijkstra(g, s):
         if u != None:
             in_S[u] = True  # 将u加入S
             for v in g[u]:  # 更新u指向的点的最短路径的估计值
-                if d[v] > d[u] + g[u][v]:             # 松弛
-                    d[v], p[v] = (d[u] + g[u][v], u)  # 更新当前最短距离和前驱
+                if d[v] > d[u] + g[u][v]:           # 松弛
+                    d[v], p[v] = d[u] + g[u][v], u  # 更新当前最短距离和前驱
 
     return d, p, in_S
 

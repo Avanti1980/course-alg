@@ -1,0 +1,88 @@
+digraph g {
+    bgcolor=transparent
+    rankdir=TB
+    graph [nodesep=0.3, ranksep=0.2]
+    node [shape=plain, color="#586e75", fontcolor="#b58900", fontsize=20, fontname="LXGWWenKai"]
+    edge [arrowhead=vee, color="#586e75", fontcolor="#268bd2", fontsize=16, fontname="LXGWWenKai" arrowsize=0.6]
+
+    ① -> ② [label="1"]
+    ① -> ③ [label="2"]
+    ① -> ④ [label="3"]
+    ① -> ⑤ [label="4"]
+
+    node [fontcolor="#2aa198"]
+
+    ② -> ⑥ [label="2"]
+
+    node [fontcolor="#b58900"]
+
+    ② -> ⑦ [label="3"]
+
+    ② -> ⑧ [label="4"]
+
+    node [fontcolor="#2aa198"]
+
+    ③ -> ⑨ [label="1"]
+    ③ -> ⑩ [label="3"]
+
+    node [fontcolor="#b58900"]
+
+    ③ -> ⑪ [label="4"]
+
+    ④ -> ⑫ [label="1"]
+
+    node [fontcolor="#2aa198"]
+
+    ④ -> ⑬ [label="2"]
+    ④ -> ⑭ [label="4"]
+
+    node [fontcolor="#b58900"]
+
+    ⑤ -> ⑮ [label="1"]
+    ⑤ -> ⑯ [label="2"]
+
+    node [fontcolor="#2aa198"]
+
+    ⑤ -> ⑰ [label="3"]
+    ⑦ -> ⑱ [label="2"]
+    ⑦ -> ⑲ [label="4"]
+
+    node [fontcolor="#b58900"]
+
+    ⑧ -> ⑳ [label="2"]
+
+    node [fontcolor="#2aa198"]
+
+    ⑧ -> ㉑ [label="3"]
+
+    node [fontcolor="#dc322f"]
+
+    ⑪ -> ㉒ [label="1"]
+
+    node [fontcolor="#2aa198"]
+
+    ⑪ -> ㉓ [label="3"]
+    ⑫ -> ㉔ [label="2"]
+
+    node [fontcolor="#b58900"]
+
+    ⑫ -> ㉕ [label="4"]
+
+    node [fontcolor="#2aa198"]
+
+    ⑮ -> ㉖ [label="2"]
+
+    node [fontcolor="#b58900"]
+
+    ⑮ -> ㉗ [label="3"]
+
+    node [fontcolor="#2aa198"]
+
+    ⑯ -> ㉘ [label="1"]
+    ⑯ -> ㉙ [label="3"]
+    ⑳ -> ㉚ [label="3"]
+
+    node [fontcolor="#b58900"]
+
+    ㉒ -> ㉛ [label="3"]
+}

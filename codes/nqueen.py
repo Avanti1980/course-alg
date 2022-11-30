@@ -1,59 +1,52 @@
-def available(row, col):
-    """检查当前位置是否合法"""
-    for k in range(row):
-        if queen[k] == col or queen[k]-col == k - row or queen[k]-col == row - k:
+def not_attack(queen, row, col):  # 不会被攻击吗？
+    for i in range(row):  # 遍历已在棋盘上的皇后
+        # 在同一列 或 在同一个斜角线
+        if queen[i] == col or abs(row - i) == abs(queen[i] - col):
             return False
     return True
 
 
-def find(n):
-    """回溯法求解"""
-    count = 0
-    row = 0
-    global queen
-    queen[row] = 0
-    while row >= 0:  # 当前行为 -1 时结束
-        if row < n and queen[row] < n:  # 当前行、当前列均为到达最后
-            if available(row, queen[row]):  # 当前位置合法，则探索下一行
-                row += 1
-                queen[row] = 0
-            else:  # 当前位置不合法，探测当前行的下一个位置
+def nqueen(n, queen):
+    count = row = 0
+    queen[row] = 0                   # 先将皇后1放在第1列
+    while row >= 0:                  # 全部结点都检测完后会回溯到-1行
+        if queen[row] < n:           # 当前行未检测到最后一列
+            if not_attack(queen, row, queen[row]):  # 当前位置不会被攻击
+                if row == n-1:       # 已到最后一行
+                    count += 1       # 解计数+1
+                    print(queen)     # 输出
+                    row -= 1         # 返回上一行
+                    queen[row] += 1  # 上一行的皇后右移一格
+                else:
+                    row += 1         # 考虑下一行的皇后右移一格
+                    queen[row] = 0   # 将下一行的皇后放在第1列
+            else:                    # 当前位置不合法，探测当前行的下一个位置
                 queen[row] += 1
-        else:
-            if row >= n:  # 当前行、当前列均到了最后，记录一个解
-                count += 1
-                # print(queen)
-            row -= 1  # 返回上一行，继续探索
-            queen[row] += 1
+        else:                        # 当前行已检测到最后一列
+            row -= 1                 # 返回上一行
+            queen[row] += 1          # 上一行的皇后右移一格
     return count
 
 
-global queen
-n = 8
-queen = [-1]*(n+1)
-print(find(n))
-
-# 检测（x,y）这个位置是否合法（不会被其他皇后攻击到）
-
-
-def is_attack(queue, x, y):
-    for i in range(x):
-        if queue[i] == y or abs(x - i) == abs(queue[i] - y):
-            return True
-    return False
-
-
-# 按列来摆放皇后
-def put_position(n, queue, col):
-    for i in range(n):
-        if not is_attack(queue, col, i):
-            queue[col] = i
-            if col == n - 1:    # 此时最后一个皇后摆放好了，打印结果。
-                print(queue)
+def nqueen_rec(n, queen, row):
+    for col in range(n):                 # 遍历n个可放位置
+        if not_attack(queen, row, col):  # 若(row, col)位置不会被攻击
+            queen[row] = col
+            if row == n - 1:             # 若是最后一个皇后 输出
+                print(queen)
             else:
-                put_position(n, queue, col + 1)
+                nqueen_rec(n, queen, row + 1)
 
 
-n = 4       # 这里是n 就是n皇后
-queue = [None for i in range(n)]        # 存储皇后位置的一维数组，数组下标表示皇后所在的列，下标对应的值为皇后所在的行。
-put_position(n, queue, 0)
+n = 4
+queen = [None for i in range(n)]
+print(nqueen(n, queen))
+
+queen = [None for i in range(n)]
+nqueen_rec(n, queen, 0)
+--------------------------------
+[1, 3, 0, 2]
+[2, 0, 3, 1]
+2
+[1, 3, 0, 2]
+[2, 0, 3, 1]

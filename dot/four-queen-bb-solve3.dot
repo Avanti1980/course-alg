@@ -1,0 +1,36 @@
+digraph g {
+    bgcolor=transparent
+    rankdir=TB
+    graph [nodesep=0.3, ranksep=0.3]
+    node [shape=plain, color="#586e75", fontcolor="#b58900", fontsize=20, fontname="LXGWWenKai"]
+    edge [arrowhead=vee, color="#586e75", fontcolor="#268bd2", fontsize=16, fontname="LXGWWenKai" arrowsize=0.6]
+
+    ① -> ② [label="1"]
+
+    node [fontcolor="#dc322f"]
+
+    ① -> ③ [label="2"]
+
+    node [fontcolor="#b58900"]
+
+    ① -> ④ [label="3"]
+    ① -> ⑤ [label="4"]
+
+    node [fontcolor="#2aa198"]
+
+    ② -> ⑥ [label="2"]
+
+    node [fontcolor="#b58900"]
+
+    ② -> ⑦ [label="3"]
+    ② -> ⑧ [label="4"]
+
+    node [fontcolor="#2aa198"]
+
+    ③ -> ⑨ [label="1"]
+    ③ -> ⑩ [label="3"]
+
+    node [fontcolor="#b58900"]
+
+    ③ -> ⑪ [label="4"]
+}

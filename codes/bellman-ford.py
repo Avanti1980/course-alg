@@ -7,8 +7,8 @@ def bellman_ford(g, s):
     for _ in range(len(g) - 1):  # 遍历|V|-1次
         for u in g:
             for v in g[u]:  # 内部的二重for循环遍历所有边
-                if d[v] > d[u] + g[u][v]:             # 松弛
-                    d[v], p[v] = (d[u] + g[u][v], u)  # 更新当前最短距离和前驱
+                if d[v] > d[u] + g[u][v]:           # 松弛
+                    d[v], p[v] = d[u] + g[u][v], u  # 更新当前最短距离和前驱
 
     for u in g:
         for v in g[u]:

@@ -126,6 +126,10 @@
 @include subatable-fullborder(0, 4, 7, 10);
 @include subatable-fullborder(0, 4, 13, 16);
 
+@include subatable-fullborder(0, 1, 2, 7);
+
+@include subatable-fullborder(0, 4, 8, 11);
+
 // 三线表
 .reveal .threelines {
   th {
