@@ -88,17 +88,83 @@
   }
 }
 
+// 棋盘着色
+@mixin chessboard($color, $parity: "even") {
+  @if $parity == "odd" {
+    .reveal .chessboard-#{$color}-odd {
+      // 首行奇数格着色
+      th:nth-child(2n + 1),
+      tr:nth-child(2n + 1) > td:nth-child(2n),
+      tr:nth-child(2n) > td:nth-child(2n + 1) {
+        background-color: var(--solarized-#{$color});
+      }
+    }
+  } @else {
+    .reveal .chessboard-#{$color}-even {
+      // 首行偶数格着色
+      th:nth-child(2n),
+      tr:nth-child(2n + 1) > td:nth-child(2n + 1),
+      tr:nth-child(2n) > td:nth-child(2n) {
+        background-color: var(--solarized-#{$color});
+      }
+    }
+  }
+}
+
+// 09.md 画华容道用
+@include chessboard("blue", "odd");
+@include chessboard("blue");
+@include chessboard("base2", "odd");
+
+@mixin queen8($color) {
+  .reveal .queen8-#{$color} {
+    tr:nth-child(2n) > td:nth-child(2n + 3):nth-child(-2n + 9),
+    tr:nth-child(2n) > td:nth-child(2n + 14):nth-child(-2n + 20),
+    tr:nth-child(2n + 1) > td:nth-child(2n + 2):nth-child(-2n + 8),
+    tr:nth-child(2n + 1) > td:nth-child(2n + 13):nth-child(-2n + 19) {
+      background-color: var(--solarized-#{$color});
+    }
+  }
+}
+
+@include queen8("base2");
+
+@mixin queen4($color) {
+  .reveal .queen4-#{$color} {
+    th:nth-child(2n + 1):nth-child(-2n + 3),
+    th:nth-child(2n + 7):nth-child(-2n + 9),
+    th:nth-child(2n + 13):nth-child(-2n + 15),
+    tr:nth-child(2n) > td:nth-child(2n + 1):nth-child(-2n + 3),
+    tr:nth-child(2n) > td:nth-child(2n + 7):nth-child(-2n + 9),
+    tr:nth-child(2n) > td:nth-child(2n + 13):nth-child(-2n + 15),
+    tr:nth-child(2n + 1) > td:nth-child(2n + 2):nth-child(-2n + 4),
+    tr:nth-child(2n + 1) > td:nth-child(2n + 8):nth-child(-2n + 10),
+    tr:nth-child(2n + 1) > td:nth-child(2n + 14):nth-child(-2n + 16) {
+      background-color: var(--solarized-#{$color});
+    }
+  }
+}
+
+@include queen4("base2");
+
 // 全边框
 .reveal .fullborder {
   th,
   td {
-    border: 1px solid var(--solarized-base01);
+    border: 1px solid var(--solarized-base01) !important;
   }
 }
 
-// 子表全边框 四个参数分别对应行的起始结束和列的起始结束
-@mixin subatable-fullborder($i, $j, $k, $l) {
+// 子表全边框 行 i -> j 列 k -> l 包含两端
+// 行从0开始 0代表表头行 列从1开始
+@mixin subtable-fullborder($i, $j, $k, $l) {
   .reveal .row#{$i}-#{$j}-column#{$k}-#{$l}-fullborder {
+    @if $i == 0 {
+      // 包含表头行
+      th:nth-child(n + #{$k}):nth-child(-n + #{$l}) {
+        border: 1px solid var(--solarized-base01);
+      }
+    }
     tr:nth-child(n + #{$i}):nth-child(-n + #{$j}) {
       td:nth-child(n + #{$k}):nth-child(-n + #{$l}) {
         border: 1px solid var(--solarized-base01);
@@ -107,28 +173,35 @@
   }
 }
 
-@include subatable-fullborder(1, 5, 2, 7);
-@include subatable-fullborder(1, 4, 10, 15);
+// 01.md 冒泡排序用
+@include subtable-fullborder(1, 5, 2, 7);
+@include subtable-fullborder(1, 4, 10, 15);
 
-@include subatable-fullborder(1, 1, 2, 7);
-@include subatable-fullborder(1, 1, 10, 15);
-@include subatable-fullborder(3, 3, 2, 7);
-@include subatable-fullborder(3, 3, 10, 15);
-@include subatable-fullborder(5, 5, 2, 7);
-@include subatable-fullborder(5, 5, 10, 15);
+// 01.md 插入排序用
+@include subtable-fullborder(1, 1, 2, 7);
+@include subtable-fullborder(1, 1, 10, 15);
+@include subtable-fullborder(3, 3, 2, 7);
+@include subtable-fullborder(3, 3, 10, 15);
+@include subtable-fullborder(5, 5, 2, 7);
+@include subtable-fullborder(5, 5, 10, 15);
 
-@include subatable-fullborder(2, 9, 3, 9);
+// 04.md LCS用
+@include subtable-fullborder(2, 9, 3, 9);
 
-@include subatable-fullborder(1, 8, 2, 9);
-@include subatable-fullborder(1, 8, 13, 20);
+// 08.md 8皇后用
+@include subtable-fullborder(1, 8, 2, 9);
+@include subtable-fullborder(1, 8, 13, 20);
 
-@include subatable-fullborder(0, 4, 0, 4);
-@include subatable-fullborder(0, 4, 7, 10);
-@include subatable-fullborder(0, 4, 13, 16);
+// 08.md 4皇后回溯求解用
+@include subtable-fullborder(0, 3, 1, 4);
+@include subtable-fullborder(0, 3, 7, 10);
+@include subtable-fullborder(0, 3, 13, 16);
 
-@include subatable-fullborder(0, 1, 2, 7);
+// 09.md 4皇后分支限界画队列用
+@include subtable-fullborder(0, 0, 2, 7);
 
-@include subatable-fullborder(0, 4, 8, 11);
+// 09.md 画华容道用
+@include subtable-fullborder(0, 3, 8, 11);
 
 // 三线表
 .reveal .threelines {
