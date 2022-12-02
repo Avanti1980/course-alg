@@ -48,10 +48,13 @@
         }
         // 表身每格边框
         @for $j from 0 to 10 {
-          .reveal .row#{$i}-column#{$j}-border#{$thick}-#{$direction}-#{$style} {
+          .reveal
+            .row#{$i}-column#{$j}-border#{$thick}-#{$direction}-#{$style} {
             tr:nth-child(#{$i}) {
               td:nth-child(#{$j}) {
-                border-#{$direction}: #{$thick}px #{$style} var(--solarized-base01);
+                border-#{$direction}: #{$thick}px
+                  #{$style}
+                  var(--solarized-base01);
               }
             }
           }
@@ -73,8 +76,9 @@
   }
   // 单元格着色
   @for $j from 0 to 20 {
-    @each $color in "base03", "base02", "base01", "base00", "base0", "base1", "base2", "base3", "yellow", "orange",
-      "red", "magenta", "violet", "blue", "cyan", "green"
+    @each $color in "base03", "base02", "base01", "base00", "base0", "base1",
+      "base2", "base3", "yellow", "orange", "red", "magenta", "violet", "blue",
+      "cyan", "green"
     {
       .reveal .row#{$i}-column#{$j}-#{$color} {
         tr:nth-child(#{$i}) {
@@ -118,10 +122,10 @@
 
 @mixin queen8($color) {
   .reveal .queen8-#{$color} {
-    tr:nth-child(2n) > td:nth-child(2n + 3):nth-child(-2n + 9),
-    tr:nth-child(2n) > td:nth-child(2n + 14):nth-child(-2n + 20),
-    tr:nth-child(2n + 1) > td:nth-child(2n + 2):nth-child(-2n + 8),
-    tr:nth-child(2n + 1) > td:nth-child(2n + 13):nth-child(-2n + 19) {
+    tr:nth-child(2n + 1) > td:nth-child(2n + 3):nth-child(-2n + 9),
+    tr:nth-child(2n + 1) > td:nth-child(2n + 14):nth-child(-2n + 20),
+    tr:nth-child(2n) > td:nth-child(2n + 2):nth-child(-2n + 8),
+    tr:nth-child(2n) > td:nth-child(2n + 13):nth-child(-2n + 19) {
       background-color: var(--solarized-#{$color});
     }
   }
@@ -131,12 +135,9 @@
 
 @mixin queen4($color) {
   .reveal .queen4-#{$color} {
-    th:nth-child(2n + 1):nth-child(-2n + 3),
-    th:nth-child(2n + 7):nth-child(-2n + 9),
-    th:nth-child(2n + 13):nth-child(-2n + 15),
-    tr:nth-child(2n) > td:nth-child(2n + 1):nth-child(-2n + 3),
-    tr:nth-child(2n) > td:nth-child(2n + 7):nth-child(-2n + 9),
-    tr:nth-child(2n) > td:nth-child(2n + 13):nth-child(-2n + 15),
+    tr:nth-child(2n) > td:nth-child(2n + 3):nth-child(-2n + 5),
+    tr:nth-child(2n) > td:nth-child(2n + 9):nth-child(-2n + 11),
+    tr:nth-child(2n) > td:nth-child(2n + 15):nth-child(-2n + 17),
     tr:nth-child(2n + 1) > td:nth-child(2n + 2):nth-child(-2n + 4),
     tr:nth-child(2n + 1) > td:nth-child(2n + 8):nth-child(-2n + 10),
     tr:nth-child(2n + 1) > td:nth-child(2n + 14):nth-child(-2n + 16) {
@@ -193,9 +194,9 @@
 @include subtable-fullborder(1, 8, 13, 20);
 
 // 08.md 4皇后回溯求解用
-@include subtable-fullborder(0, 3, 1, 4);
-@include subtable-fullborder(0, 3, 7, 10);
-@include subtable-fullborder(0, 3, 13, 16);
+@include subtable-fullborder(1, 4, 2, 5);
+@include subtable-fullborder(1, 4, 8, 11);
+@include subtable-fullborder(1, 4, 14, 17);
 
 // 09.md 4皇后分支限界画队列用
 @include subtable-fullborder(0, 0, 2, 7);
@@ -229,3 +230,20 @@
     padding: 0.4rem 0.2rem 0.2rem 0.2rem;
   }
 }
+
+@mixin tightcell($i, $j) {
+  .reveal .tightcell-#{$i}-#{$j} {
+    @if $i == 0 {
+      th:nth-child(#{$j}) {
+        padding: 0.4rem 0.2rem 0.2rem 0.2rem;
+      }
+    } @else {
+      tr:nth-child(#{$i}) > td:nth-child(#{$j}) {
+        padding: 0.4rem 0.2rem 0.2rem 0.2rem;
+      }
+    }
+  }
+}
+
+// 08.md 4皇后回溯求解用
+@include tightcell(0, 7);

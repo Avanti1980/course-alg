@@ -8,53 +8,53 @@ digraph g {
     n1 [label=<<table cellspacing="0" border="1">
         <tr>
         <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
         <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
+        </tr>
+        <tr>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
         <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
         <td>&zwnj;&zwnj;</td>
         </tr>
         <tr>
         <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
         <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
         </tr>
         <tr>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
         <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
-        </tr>
-        <tr>
-        <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
         <td>&zwnj;&zwnj;</td>
         </tr>
         </table>>]
 
     n2 [label=<<table cellspacing="0" border="1">
         <tr>
-        <td><b>Q</b></td>
+        <td>👑</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
         <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
+        </tr>
+        <tr>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
         <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
         <td>&zwnj;&zwnj;</td>
         </tr>
         <tr>
         <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
         <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
         </tr>
         <tr>
+        <td bgcolor="#eee8d5"></td>
         <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
-        </tr>
-        <tr>
-        <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
         <td>&zwnj;&zwnj;</td>
         </tr>
         </table>>]
@@ -62,118 +62,118 @@ digraph g {
     n3 [label=<<table cellspacing="0" border="1">
         <tr>
         <td>&zwnj;&zwnj;</td>
-        <td><b>Q</b></td>
+        <td bgcolor="#eee8d5">👑</td>
         <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
+        </tr>
+        <tr>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
+        <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
         <td>&zwnj;&zwnj;</td>
         </tr>
         <tr>
         <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
         <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
         </tr>
         <tr>
-        <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
-        </tr>
-        <tr>
-        <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5"></td>
+        <td></td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
         <td>&zwnj;&zwnj;</td>
         </tr>
         </table>>]
 
     n1 -> {n2,n3}
 
-    n4 [label=❌]
-    n5 [label=❌]
+    n4 [label=✘]
+    n5 [label=✘]
 
     n6 [label=<<table cellspacing="0" border="1">
         <tr>
-        <td><b>Q</b></td>
+        <td>👑</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
         <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
+        </tr>
+        <tr>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
         <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">👑</td>
         <td>&zwnj;&zwnj;</td>
         </tr>
         <tr>
         <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
-        <td><b>Q</b></td>
-        <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
+        <td></td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
         </tr>
         <tr>
+        <td bgcolor="#eee8d5"></td>
         <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
-        </tr>
-        <tr>
-        <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
         <td>&zwnj;&zwnj;</td>
         </tr>
         </table>>]
 
     n7 [label=<<table cellspacing="0" border="1">
         <tr>
-        <td><b>Q</b></td>
+        <td>👑</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
         <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
+        </tr>
+        <tr>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
         <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
+        <td>👑</td>
         </tr>
         <tr>
         <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
         <td></td>
-        <td><b>Q</b></td>
+        <td bgcolor="#eee8d5"></td>
         </tr>
         <tr>
+        <td bgcolor="#eee8d5"></td>
         <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
-        </tr>
-        <tr>
-        <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
         <td>&zwnj;&zwnj;</td>
         </tr>
         </table>>]
 
     n2 -> {n4,n5,n6,n7}
 
-    n8 [label=❌]
-    n9 [label=❌]
-    n10 [label=❌]
+    n8 [label=✘]
+    n9 [label=✘]
+    n10 [label=✘]
 
     n11 [label=<<table cellspacing="0" border="1">
         <tr>
         <td>&zwnj;&zwnj;</td>
-        <td><b>Q</b></td>
+        <td bgcolor="#eee8d5">👑</td>
         <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
+        </tr>
+        <tr>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
         <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
+        <td>👑</td>
         </tr>
         <tr>
         <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
-        <td><b>Q</b></td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
+        <td></td>
+        <td bgcolor="#eee8d5"></td>
         </tr>
         <tr>
-        <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
-        </tr>
-        <tr>
-        <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5"></td>
+        <td></td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
         <td>&zwnj;&zwnj;</td>
         </tr>
         </table>>]
@@ -181,44 +181,44 @@ digraph g {
 
     n3 -> {n8,n9,n10,n11}
 
-    n12 [label=❌]
-    n13 [label=❌]
-    n14 [label=❌]
-    n15 [label=❌]
+    n12 [label=✘]
+    n13 [label=✘]
+    n14 [label=✘]
+    n15 [label=✘]
 
     n6 -> {n12,n13,n14,n15}
 
-    n16 [label=❌]
+    n16 [label=✘]
 
     n17 [label=<<table cellspacing="0" border="1">
         <tr>
-        <td><b>Q</b></td>
+        <td>👑</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
         <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
         </tr>
         <tr>
-        <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
         <td></td>
-        <td><b>Q</b></td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
+        <td>👑</td>
         </tr>
         <tr>
         <td>&zwnj;&zwnj;</td>
-        <td><b>Q</b></td>
-        <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">👑</td>
+        <td></td>
+        <td bgcolor="#eee8d5"></td>
         </tr>
         <tr>
+        <td bgcolor="#eee8d5"></td>
         <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
-        <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
         <td>&zwnj;&zwnj;</td>
         </tr>
         </table>>]
 
-    n18 [label=❌]
-    n19 [label=❌]
+    n18 [label=✘]
+    n19 [label=✘]
 
     n7 -> {n16,n17,n18,n19}
 }

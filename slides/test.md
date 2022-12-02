@@ -23,3 +23,111 @@ presentation:
 @import "../plugin/chalkboard/style.css"
 @import "../plugin/menu/menu.js"
 
+<!-- slide data-notes="" -->
+
+##### 状态空间树 无剪枝
+
+---
+
+```dot {.center}
+digraph g {
+    bgcolor=transparent
+    rankdir=TB
+    graph [nodesep=0.1, ranksep=0.3]
+    node [shape=circle, fixedsize=true, width=0.28, color="#586e75", fontcolor="#b58900", fontsize=16, fontname="LXGWWenKai"]
+    edge [arrowhead=vee, color="#586e75", fontcolor="#268bd2", fontsize=14, fontname="LXGWWenKai" arrowsize=0.6]
+
+    1 -> 2 [label="1"]
+    1 -> 18 [label="2"]
+    1 -> 34 [label="3"]
+    1 -> 50 [label="4"]
+
+    2 -> 3 [label="2"]
+    2 -> 8 [label="3"]
+    2 -> 13 [label="4"]
+
+    3 -> 4 [label="3"]
+    3 -> 6 [label="4"]
+
+    4 -> 5 [label="4"]
+    6 -> 7 [label="3"]
+
+    8 -> 9 [label="2"]
+    8 -> 11 [label="4"]
+
+    9 -> 10 [label="4"]
+    11 -> 12 [label="2"]
+
+    13 -> 14 [label="2"]
+    13 -> 16 [label="3"]
+
+    14 -> 15 [label="3"]
+    16 -> 17 [label="2"]
+
+    18 -> 19 [label="1"]
+    18 -> 24 [label="3"]
+    18 -> 29 [label="4"]
+
+    19 -> 20 [label="3"]
+    19 -> 22 [label="4"]
+
+    20 -> 21 [label="4"]
+    22 -> 23 [label="3"]
+
+    24 -> 25 [label="1"]
+    24 -> 27 [label="4"]
+
+    25 -> 26 [label="4"]
+    27 -> 28 [label="1"]
+
+    29 -> 30 [label="1"]
+    29 -> 32 [label="3"]
+
+    30 -> 31 [label="3"]
+    32 -> 33 [label="1"]
+
+    34 -> 35 [label="1"]
+    34 -> 40 [label="2"]
+    34 -> 45 [label="4"]
+
+    35 -> 36 [label="2"]
+    35 -> 38 [label="4"]
+
+    36 -> 37 [label="4"]
+    38 -> 39 [label="2"]
+
+    40 -> 41 [label="1"]
+    40 -> 43 [label="4"]
+
+    41 -> 42 [label="4"]
+    43 -> 44 [label="1"]
+
+    45 -> 46 [label="1"]
+    45 -> 48 [label="2"]
+
+    46 -> 47 [label="2"]
+    48 -> 49 [label="1"]
+
+    50 -> 51 [label="1"]
+    50 -> 56 [label="2"]
+    50 -> 61 [label="3"]
+
+    51 -> 52 [label="2"]
+    51 -> 54 [label="3"]
+
+    52 -> 53 [label="3"]
+    54 -> 55 [label="2"]
+
+    56 -> 57 [label="1"]
+    56 -> 59 [label="3"]
+
+    57 -> 58 [label="3"]
+    59 -> 60 [label="1"]
+
+    61 -> 62 [label="1"]
+    61 -> 64 [label="2"]
+
+    62 -> 63 [label="2"]
+    64 -> 65 [label="1"]
+}
+```
