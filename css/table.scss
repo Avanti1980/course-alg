@@ -48,13 +48,10 @@
         }
         // 表身每格边框
         @for $j from 0 to 10 {
-          .reveal
-            .row#{$i}-column#{$j}-border#{$thick}-#{$direction}-#{$style} {
+          .reveal .row#{$i}-column#{$j}-border#{$thick}-#{$direction}-#{$style} {
             tr:nth-child(#{$i}) {
               td:nth-child(#{$j}) {
-                border-#{$direction}: #{$thick}px
-                  #{$style}
-                  var(--solarized-base01);
+                border-#{$direction}: #{$thick}px #{$style} var(--solarized-base01);
               }
             }
           }
@@ -76,9 +73,8 @@
   }
   // 单元格着色
   @for $j from 0 to 20 {
-    @each $color in "base03", "base02", "base01", "base00", "base0", "base1",
-      "base2", "base3", "yellow", "orange", "red", "magenta", "violet", "blue",
-      "cyan", "green"
+    @each $color in "base03", "base02", "base01", "base00", "base0", "base1", "base2", "base3", "yellow", "orange",
+      "red", "magenta", "violet", "blue", "cyan", "green"
     {
       .reveal .row#{$i}-column#{$j}-#{$color} {
         tr:nth-child(#{$i}) {
@@ -119,6 +115,7 @@
 @include chessboard("blue", "odd");
 @include chessboard("blue");
 @include chessboard("base2", "odd");
+@include chessboard("base2");
 
 @mixin queen8($color) {
   .reveal .queen8-#{$color} {
@@ -135,12 +132,12 @@
 
 @mixin queen4($color) {
   .reveal .queen4-#{$color} {
-    tr:nth-child(2n) > td:nth-child(2n + 3):nth-child(-2n + 5),
-    tr:nth-child(2n) > td:nth-child(2n + 9):nth-child(-2n + 11),
-    tr:nth-child(2n) > td:nth-child(2n + 15):nth-child(-2n + 17),
-    tr:nth-child(2n + 1) > td:nth-child(2n + 2):nth-child(-2n + 4),
-    tr:nth-child(2n + 1) > td:nth-child(2n + 8):nth-child(-2n + 10),
-    tr:nth-child(2n + 1) > td:nth-child(2n + 14):nth-child(-2n + 16) {
+    tr:nth-child(2n + 1) > td:nth-child(2n + 3):nth-child(-2n + 5),
+    tr:nth-child(2n + 1) > td:nth-child(2n + 9):nth-child(-2n + 11),
+    tr:nth-child(2n + 1) > td:nth-child(2n + 15):nth-child(-2n + 17),
+    tr:nth-child(2n) > td:nth-child(2n + 2):nth-child(-2n + 4),
+    tr:nth-child(2n) > td:nth-child(2n + 8):nth-child(-2n + 10),
+    tr:nth-child(2n) > td:nth-child(2n + 14):nth-child(-2n + 16) {
       background-color: var(--solarized-#{$color});
     }
   }

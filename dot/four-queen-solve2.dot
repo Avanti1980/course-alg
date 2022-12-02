@@ -1,36 +1,50 @@
 digraph g {
     bgcolor=transparent
     rankdir=TB
-    graph [nodesep=1.0, ranksep=0.1]
-    node [shape=plain, color="#586e75", fontcolor="#b58900", fontsize=24, fontname="LXGWWenKai"]
-    edge [arrowhead=vee, color="#586e75", fontcolor="#268bd2", fontsize=18, fontname="LXGWWenKai" arrowsize=0.6]
+    graph [nodesep=0.4, ranksep=0.1]
+    node [shape=circle, fixedsize=true, width=0.28, color="#586e75", fontcolor="#b58900", fontsize=16, fontname="LXGWWenKai"]
+    edge [arrowhead=vee, color="#586e75", fontcolor="#268bd2", fontsize=14, fontname="LXGWWenKai" arrowsize=0.6]
 
-    n1 [label=①]
-    n2 [label=②]
-    n3 [label=③]
-    n4 [label=⑧]
+    n1 [label=1]
+    n2 [label=2]
+    n3 [label=3]
+    n4 [label=8]
 
     n1 -> n2 [label="1"]
     n2 -> n3 [label="2"]
     n2 -> n4 [label="3"]
 
-    n5 [label=①]
-    n6 [label=②]
-    n7 [label=③]
-    n8 [label=⑧]
-    n9 [label=⑨]
+    node [color="#fdf6e3", fontcolor="#fdf6e3"]
+
+    1, 2
+
+    node [color="#586e75", fontcolor="#b58900"]
+    
+    n5 [label=1]
+    n6 [label=2]
+    n7 [label=3]
+    n8 [label=8]
+    n9 [label=9]
 
     n5 -> n6 [label="1"]
     n6 -> n7 [label="2"]
     n6 -> n8 [label="3"]
     n8 -> n9 [label="2"]
 
-    n10 [label=①]
-    n11 [label=②]
-    n12 [label=③]
-    n13 [label=⑧]
-    n14 [label=⑨]
-    n15 [label=⑪]
+    node [color="#fdf6e3", fontcolor="#fdf6e3"]
+
+    3, 4
+
+    node [color="#586e75", fontcolor="#b58900"]
+
+    {rank="same"; n3; n4; 1; 2; 3; 4} 
+
+    n10 [label=1]
+    n11 [label=2]
+    n12 [label=3]
+    n13 [label=8]
+    n14 [label=9]
+    n15 [label=11]
 
     n10 -> n11 [label="1"]
     n11 -> n12 [label="2"]

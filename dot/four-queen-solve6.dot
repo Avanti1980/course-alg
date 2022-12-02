@@ -2,28 +2,28 @@ digraph g {
     bgcolor=transparent
     rankdir=TB
     graph [nodesep=0.5, ranksep=0.4]
-    node [shape=plain, color="#586e75", fontcolor="#b58900", fontsize=20, fontname="LXGWWenKai"]
+    node [shape=circle, fixedsize=true, width=0.28, color="#586e75", fontcolor="#b58900", fontsize=16, fontname="LXGWWenKai"]
     edge [arrowhead=vee, color="#586e75", fontcolor="#268bd2", fontsize=14, fontname="LXGWWenKai" arrowsize=0.6]
 
-    ① -> ② [label="1"]
+    1 -> 2 [label="1"]
 
-    ② -> ③ [label="2"]
-    ② -> ⑧ [label="3"]
-    ② -> ⑬ [label="4"]
+    2 -> 3 [label="2"]
+    2 -> 8 [label="3"]
+    2 -> 13 [label="4"]
 
-    ⑧ -> ⑨ [label="2"]
-    ⑧ -> ⑪ [label="4"]
+    8 -> 9 [label="2"]
+    8 -> 11 [label="4"]
 
-    ⑬ -> ⑭ [label="2"]
-    ⑭ -> ⑮ [label="3"]
-    ⑬ -> ⑯ [label="3"]
+    13 -> 14 [label="2"]
+    14 -> 15 [label="3"]
+    13 -> 16 [label="3"]
 
-    ① -> ⑱ [label="2"]
-    ⑱ -> ⑲ [label="1"]
+    1 -> 18 [label="2"]
+    18 -> 19 [label="1"]
 
-    ⑱ -> ㉔ [label="3"]
-    ⑱ -> ㉙ [label="4"]
-    ㉙ -> ㉚ [label="1"]
+    18 -> 24 [label="3"]
+    18 -> 29 [label="4"]
+    29 -> 30 [label="1"]
 
-    ㉚ -> ㉛ [label="3"]
+    30 -> 31 [label="3"]
 }

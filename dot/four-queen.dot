@@ -1,9 +1,9 @@
 digraph g {
     bgcolor=transparent
-    graph [nodesep=0.1, ranksep=0.3]
+    graph [nodesep=0.3, ranksep=0.3]
     rankdir=TB
-    node [shape=none, color="#586e75", fontcolor="#b58900", fontsize=10.5, fontname="LXGWWenKai"]
-    edge [arrowhead=vee, color="#586e75", fontcolor="#268bd2", fontsize=16, fontname="LXGWWenKai", arrowsize=0.6]
+    node [shape=none, color="#586e75", fontcolor="#b58900", fontsize=9, fontname="LXGWWenKai"]
+    edge [arrowhead=vee, color="#586e75", fontcolor="#268bd2", fontsize=2, fontname="LXGWWenKai", arrowsize=0.4]
 
     n1 [label=<<table cellspacing="0" border="1">
         <tr>
@@ -86,9 +86,62 @@ digraph g {
         </tr>
         </table>>]
 
-    n1 -> {n2,n3}
+    n21 [label=<<table cellspacing="0" border="1">
+        <tr>
+        <td></td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
+        <td>👑</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
+        </tr>
+        <tr>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
+        <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
+        <td>&zwnj;&zwnj;</td>
+        </tr>
+        <tr>
+        <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
+        <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
+        </tr>
+        <tr>
+        <td bgcolor="#eee8d5"></td>
+        <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
+        <td>&zwnj;&zwnj;</td>
+        </tr>
+        </table>>]
 
-    n4 [label=✘]
+    n22 [label=<<table cellspacing="0" border="1">
+        <tr>
+        <td></td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
+        <td></td>
+        <td bgcolor="#eee8d5">👑</td>
+        </tr>
+        <tr>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
+        <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
+        <td>&zwnj;&zwnj;</td>
+        </tr>
+        <tr>
+        <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
+        <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
+        </tr>
+        <tr>
+        <td bgcolor="#eee8d5"></td>
+        <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
+        <td>&zwnj;&zwnj;</td>
+        </tr>
+        </table>>]
+
+    n1 -> {n2,n3,n21,n22}
+    
     n5 [label=✘]
 
     n6 [label=<<table cellspacing="0" border="1">
@@ -145,10 +198,9 @@ digraph g {
         </tr>
         </table>>]
 
-    n2 -> {n4,n5,n6,n7}
+    n2 -> {n5,n6,n7}
 
     n8 [label=✘]
-    n9 [label=✘]
     n10 [label=✘]
 
     n11 [label=<<table cellspacing="0" border="1">
@@ -178,17 +230,12 @@ digraph g {
         </tr>
         </table>>]
 
+    n3 -> {n8,n10,n11}
 
-    n3 -> {n8,n9,n10,n11}
-
-    n12 [label=✘]
     n13 [label=✘]
-    n14 [label=✘]
     n15 [label=✘]
 
-    n6 -> {n12,n13,n14,n15}
-
-    n16 [label=✘]
+    n6 -> {n13,n15}
 
     n17 [label=<<table cellspacing="0" border="1">
         <tr>
@@ -218,7 +265,70 @@ digraph g {
         </table>>]
 
     n18 [label=✘]
-    n19 [label=✘]
 
-    n7 -> {n16,n17,n18,n19}
+    n7 -> {n17,n18}
+
+    n20 [label=<<table cellspacing="0" border="1">
+        <tr>
+        <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">👑</td>
+        <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
+        </tr>
+        <tr>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
+        <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
+        <td>👑</td>
+        </tr>
+        <tr>
+        <td>👑</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
+        <td></td>
+        <td bgcolor="#eee8d5"></td>
+        </tr>
+        <tr>
+        <td bgcolor="#eee8d5"></td>
+        <td></td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
+        <td>&zwnj;&zwnj;</td>
+        </tr>
+        </table>>]
+
+    n24 [label=✘]
+
+    n11 -> {n20,n24}
+
+    n28 [label=✘]
+
+    n17 -> {n28}
+
+    n32 [label=<<table cellspacing="0" border="1">
+        <tr>
+        <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">👑</td>
+        <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
+        </tr>
+        <tr>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
+        <td>&zwnj;&zwnj;</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
+        <td>👑</td>
+        </tr>
+        <tr>
+        <td>👑</td>
+        <td bgcolor="#eee8d5">&zwnj;&zwnj;</td>
+        <td></td>
+        <td bgcolor="#eee8d5"></td>
+        </tr>
+        <tr>
+        <td bgcolor="#eee8d5"></td>
+        <td></td>
+        <td bgcolor="#eee8d5">👑</td>
+        <td>&zwnj;&zwnj;</td>
+        </tr>
+        </table>>]
+
+    n20 -> {n32}
 }
