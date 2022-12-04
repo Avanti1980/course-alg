@@ -1,4 +1,4 @@
-def optimal_bst(p, q, n):
+def optimal_bst():
     e = [[float("inf") for j in range(n+1)] for i in range(n+2)]
     w = [[0 for j in range(n+1)] for i in range(n+2)]
     root = [[0 for j in range(n+1)] for i in range(n+1)]
@@ -19,7 +19,7 @@ def optimal_bst(p, q, n):
 p = [0, 0.15, 0.1, 0.05, 0.1, 0.2]
 q = [0.05, 0.1, 0.05, 0.05, 0.05, 0.1]
 n = len(p) - 1
-e, w, root = optimal_bst(p, q, n)
+e, w, root = optimal_bst()
 print(e[1][n])
 print("e =", [e[i][:n+1] for i in range(1, n+2)])
 print("w =", [w[i][:n+1] for i in range(1, n+2)])

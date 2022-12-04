@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def add(A, B, C, n):
+def add(C):
     for i in range(n):
         for j in range(n):
             C[i, j] = A[i, j] + B[i, j]
@@ -26,7 +26,7 @@ def add_rec_copy(A, B, C, n):
         add_rec_copy(A22, B22, C[mid:, mid:], mid)
 
 
-def add_rec_nocopy(A, B, C, ar1, ar2, ac1, ac2, br1, br2, bc1, bc2, cr1, cr2, cc1, cc2):
+def add_rec_nocopy(C, ar1, ar2, ac1, ac2, br1, br2, bc1, bc2, cr1, cr2, cc1, cc2):
     if ar1 == ar2 - 1:
         C[cr1, cc1] = A[ar1, ac1] + B[br1, bc1]
     else:
@@ -35,16 +35,16 @@ def add_rec_nocopy(A, B, C, ar1, ar2, ac1, ac2, br1, br2, bc1, bc2, cr1, cr2, cc
         cr, cc = int((cr1 + cr2) / 2), int((cc1 + cc2) / 2)
 
         # C11 = A11 + B11
-        add_rec_nocopy(A, B, C, ar1, ar, ac1, ac, br1, br, bc1, bc, cr1, cr, cc1, cc)
+        add_rec_nocopy(C, ar1, ar, ac1, ac, br1, br, bc1, bc, cr1, cr, cc1, cc)
 
         # C12 = A12 + B12
-        add_rec_nocopy(A, B, C, ar1, ar, ac, ac2, br1, br, bc, bc2, cr1, cr, cc, cc2)
+        add_rec_nocopy(C, ar1, ar, ac, ac2, br1, br, bc, bc2, cr1, cr, cc, cc2)
 
         # C21 = A21 + B21
-        add_rec_nocopy(A, B, C, ar, ar2, ac1, ac, br, br2, bc1, bc, cr, cr2, cc1, cc)
+        add_rec_nocopy(C, ar, ar2, ac1, ac, br, br2, bc1, bc, cr, cr2, cc1, cc)
 
         # C22 = A22 + B22
-        add_rec_nocopy(A, B, C, ar, ar2, ac, ac2, br, br2, bc, bc2, cr, cr2, cc, cc2)
+        add_rec_nocopy(C, ar, ar2, ac, ac2, br, br2, bc, bc2, cr, cr2, cc, cc2)
 
 
 m = n = 5
@@ -52,7 +52,7 @@ A = np.random.random((n, n))
 B = np.random.random((n, n))
 
 C1 = np.zeros((n, n))
-add(A, B, C1, n)
+add(C1)
 
 # 如果n不是2的幂次 将m置为最小的大于n的2的幂次
 if (n & (n - 1)) != 0:
@@ -72,12 +72,11 @@ add_rec_copy(A, B, C2, m)
 C2 = C2[:n, :n]
 
 C3 = np.zeros((m, m))
-add_rec_nocopy(A, B, C3, 0, m, 0, m, 0, m, 0, m, 0, m, 0, m)
+add_rec_nocopy(C3, 0, m, 0, m, 0, m, 0, m, 0, m, 0, m)
 C3 = C3[:n, :n]
 
-# print("C1 = ", C1)
-# print("C2 = ", C2)
-# print("C3 = ", C3)
-
+print("C1 =", C1)
+print("C2 =", C2)
+print("C3 =", C3)
 print((C1-C2).max(), (C1-C2).min())
 print((C1-C3).max(), (C1-C3).min())

@@ -1,4 +1,4 @@
-def lcs(X, Y, m, n):
+def lcs():
     b = [[0 for i in range(n)] for j in range(m)]
     c = [[0 for i in range(n+1)] for j in range(m+1)]
     for i in range(1, m+1):
@@ -15,26 +15,26 @@ def lcs(X, Y, m, n):
     return c, b
 
 
-def restore_lcs(b, X, i, j, LCS):
+def restore_lcs(i, j, LCS):
     if i == -1 or j == -1:
         return
     if b[i][j] == '↖':
-        restore_lcs(b, X, i-1, j-1, LCS)
+        restore_lcs(i-1, j-1, LCS)
         LCS.append(X[i])
     elif b[i][j] == '↑':
-        restore_lcs(b, X, i-1, j, LCS)
+        restore_lcs(i-1, j, LCS)
     else:
-        restore_lcs(b, X, i, j-1, LCS)
+        restore_lcs(i, j-1, LCS)
 
 
 X = ['A', 'B', 'C', 'B', 'D', 'A', 'B']
 Y = ['B', 'D', 'C', 'A', 'B', 'A']
 m, n = len(X), len(Y)
 
-c, b = lcs(X, Y, m, n)
+c, b = lcs()
 print(c)
 print(b)
 
 LCS = []
-restore_lcs(b, X, m-1, n-1, LCS)
+restore_lcs(m-1, n-1, LCS)
 print(LCS)

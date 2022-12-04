@@ -25,109 +25,46 @@ presentation:
 
 <!-- slide data-notes="" -->
 
-##### 状态空间树 无剪枝
+##### 子集和数问题
 
 ---
 
-```dot {.center}
+
+```dot {.center .top0}
 digraph g {
     bgcolor=transparent
-    rankdir=TB
-    graph [nodesep=0.1, ranksep=0.3]
-    node [shape=circle, fixedsize=true, width=0.28, color="#586e75", fontcolor="#b58900", fontsize=16, fontname="LXGWWenKai"]
-    edge [arrowhead=vee, color="#586e75", fontcolor="#268bd2", fontsize=14, fontname="LXGWWenKai" arrowsize=0.6]
+    graph [nodesep=0.8, ranksep=0.4]
+    node [shape=plain, color="#586e75", fontcolor="#b58900", fontsize=18, fontname="LXGWWenKai"]
+    edge [arrowhead=none, color="#586e75", fontcolor="#268bd2", fontsize=16, fontname="LXGWWenKai"]
 
-    1 -> 2 [label="1"]
-    1 -> 18 [label="2"]
-    1 -> 34 [label="3"]
-    1 -> 50 [label="4"]
+    cr31 [label="③"]
 
-    2 -> 3 [label="2"]
-    2 -> 8 [label="3"]
-    2 -> 13 [label="4"]
+    cr21 [label="②"]
+    cr22 [label="②"]
+    cr23 [label="②"]
 
-    3 -> 4 [label="3"]
-    3 -> 6 [label="4"]
+    cr11 [label="①"]
+    cr12 [label="①"]
+    cr13 [label="①"]
+    cr14 [label="①"]
+    cr15 [label="①"]
+    cr16 [label="①"]
+    cr17 [label="①"]
 
-    4 -> 5 [label="4"]
-    6 -> 7 [label="3"]
+    "⑤" -> {"④", "③", "②", "①"}
 
-    8 -> 9 [label="2"]
-    8 -> 11 [label="4"]
+    "②" -> cr11
 
-    9 -> 10 [label="4"]
-    11 -> 12 [label="2"]
+    "③" -> {cr12, cr21}
 
-    13 -> 14 [label="2"]
-    13 -> 16 [label="3"]
+    "④" -> {cr13, cr22, cr31}
 
-    14 -> 15 [label="3"]
-    16 -> 17 [label="2"]
+    cr21 -> cr14
 
-    18 -> 19 [label="1"]
-    18 -> 24 [label="3"]
-    18 -> 29 [label="4"]
+    cr22 -> cr15
 
-    19 -> 20 [label="3"]
-    19 -> 22 [label="4"]
+    cr31 -> {cr23, cr16}
 
-    20 -> 21 [label="4"]
-    22 -> 23 [label="3"]
-
-    24 -> 25 [label="1"]
-    24 -> 27 [label="4"]
-
-    25 -> 26 [label="4"]
-    27 -> 28 [label="1"]
-
-    29 -> 30 [label="1"]
-    29 -> 32 [label="3"]
-
-    30 -> 31 [label="3"]
-    32 -> 33 [label="1"]
-
-    34 -> 35 [label="1"]
-    34 -> 40 [label="2"]
-    34 -> 45 [label="4"]
-
-    35 -> 36 [label="2"]
-    35 -> 38 [label="4"]
-
-    36 -> 37 [label="4"]
-    38 -> 39 [label="2"]
-
-    40 -> 41 [label="1"]
-    40 -> 43 [label="4"]
-
-    41 -> 42 [label="4"]
-    43 -> 44 [label="1"]
-
-    45 -> 46 [label="1"]
-    45 -> 48 [label="2"]
-
-    46 -> 47 [label="2"]
-    48 -> 49 [label="1"]
-
-    50 -> 51 [label="1"]
-    50 -> 56 [label="2"]
-    50 -> 61 [label="3"]
-
-    51 -> 52 [label="2"]
-    51 -> 54 [label="3"]
-
-    52 -> 53 [label="3"]
-    54 -> 55 [label="2"]
-
-    56 -> 57 [label="1"]
-    56 -> 59 [label="3"]
-
-    57 -> 58 [label="3"]
-    59 -> 60 [label="1"]
-
-    61 -> 62 [label="1"]
-    61 -> 64 [label="2"]
-
-    62 -> 63 [label="2"]
-    64 -> 65 [label="1"]
+    cr23 -> cr17
 }
 ```

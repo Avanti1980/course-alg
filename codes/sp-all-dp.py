@@ -1,4 +1,4 @@
-def init_p(w):  # 初始化前驱矩阵
+def init_p():  # 初始化前驱矩阵
     p = [[None for _ in range(n)] for _ in range(n)]
     for i in range(n):
         for j in range(n):
@@ -7,15 +7,15 @@ def init_p(w):  # 初始化前驱矩阵
     return p
 
 
-def sp_all_dp(w, n):
+def sp_all_dp():
     l = [[w[i][j] for j in range(n)] for i in range(n)]
-    p = init_p(w)  # 初始化前驱矩阵
+    p = init_p()  # 初始化前驱矩阵
     for m in range(n-2):
-        sp_all_dp_extend(l, p, w, n)
+        sp_all_dp_extend(l, p)
     return l, p
 
 
-def sp_all_dp_extend(l, p, w, n):
+def sp_all_dp_extend(l, p):
     ll = [[l[i][j] for j in range(n)] for i in range(n)]  # 备份上一轮的L
     for i in range(n):
         for j in range(n):
@@ -25,17 +25,17 @@ def sp_all_dp_extend(l, p, w, n):
                     p[i][j] = k + 1               # 更新前驱
 
 
-def sp_all_dp_plus(w, n):
+def sp_all_dp_plus():
     l = [[w[i][j] for j in range(n)] for i in range(n)]
-    p = init_p(w)  # 初始化前驱矩阵
+    p = init_p()  # 初始化前驱矩阵
     m = 1
     while m < n-1:
-        sp_all_dp_plus_extend(l, p, n)
+        sp_all_dp_plus_extend(l, p)
         m *= 2
     return l, p
 
 
-def sp_all_dp_plus_extend(l, p, n):
+def sp_all_dp_plus_extend(l, p):
     ll = [[l[i][j] for j in range(n)] for i in range(n)]  # 备份上一轮的L
     for i in range(n):
         for j in range(n):
@@ -45,9 +45,9 @@ def sp_all_dp_plus_extend(l, p, n):
                     p[i][j] = p[k][j]              # 更新前驱
 
 
-def floyd_warshall(w, n):
+def floyd_warshall():
     d = [[w[i][j] for j in range(n)] for i in range(n)]
-    p = init_p(w)  # 初始化前驱矩阵
+    p = init_p()  # 初始化前驱矩阵
     for k in range(n):
         dd = [[d[i][j] for j in range(n)] for i in range(n)]  # 备份上一轮的d
         for i in range(n):
@@ -67,11 +67,6 @@ w = [[0, 3, 8, float('inf'), -4],
      ]
 n = len(w)
 
-l, p = sp_all_dp(w, n)
-print(l, p)
-
-l, p = sp_all_dp_plus(w, n)
-print(l, p)
-
-d, p = floyd_warshall(w, n)
-print(d, p)
+print(sp_all_dp())
+print(sp_all_dp_plus())
+print(floyd_warshall())

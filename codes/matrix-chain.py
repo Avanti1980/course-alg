@@ -1,4 +1,4 @@
-def matrix_chain(p, n):
+def matrix_chain():
     m = [[0 for j in range(n+1)] for i in range(n+1)]
     s = [[0 for j in range(n+1)] for i in range(n+1)]
     for l in range(2, n+1):         # 子问题长度 l = 2 -> n
@@ -14,23 +14,23 @@ def matrix_chain(p, n):
     return m, s
 
 
-def print_sol(s, i, j):
+def print_sol(i, j):
     if i == j:
         print("A%d" % (i), end='')
     else:
         print("(", end='')
-        print_sol(s, i, s[i][j])
-        print_sol(s, s[i][j]+1, j)
+        print_sol(i, s[i][j])
+        print_sol(s[i][j]+1, j)
         print(")", end='')
 
 
 p = [30, 35, 15, 5, 10, 20, 25]
 n = len(p) - 1  # 矩阵个数
-m, s = matrix_chain(p, n)
+m, s = matrix_chain()
 print(m[1][n])
 print([m[i][1:n+1] for i in range(1, n+1)])
 print([s[i][2:n+1] for i in range(1, n)])
-print_sol(s, 1, n)
+print_sol(1, n)
 ------------------------------------------
 15125
 m = [[0 15750  7875  9375 11875 15125]

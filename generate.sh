@@ -1,4 +1,4 @@
-for i in {1..6}; do
+for i in {1..8}; do
     mpe2html slides/0$i.md 1
 done
 # mpe2html slides/10.md 1

@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def mul(A, B, C, n):
+def mul(C):
     for i in range(n):
         for j in range(n):
             for k in range(n):
@@ -34,7 +34,7 @@ def mul_rec_copy(A, B, C, n):
         mul_rec_copy(A22, B22, C[mid:, mid:], mid)
 
 
-def mul_rec_nocopy(A, B, C, ar1, ar2, ac1, ac2, br1, br2, bc1, bc2, cr1, cr2, cc1, cc2):
+def mul_rec_nocopy(C, ar1, ar2, ac1, ac2, br1, br2, bc1, bc2, cr1, cr2, cc1, cc2):
     if ar1 == ar2 - 1:
         C[cr1, cc1] += A[ar1, ac1] * B[br1, bc1]
     else:
@@ -45,28 +45,28 @@ def mul_rec_nocopy(A, B, C, ar1, ar2, ac1, ac2, br1, br2, bc1, bc2, cr1, cr2, cc
         # 不进行子矩阵复制 直接将子矩阵的索引作为参数
 
         # C11 += A11 B11
-        mul_rec_nocopy(A, B, C, ar1, ar, ac1, ac, br1, br, bc1, bc, cr1, cr, cc1, cc)
+        mul_rec_nocopy(C, ar1, ar, ac1, ac, br1, br, bc1, bc, cr1, cr, cc1, cc)
 
         # C11 += A12 B21
-        mul_rec_nocopy(A, B, C, ar1, ar, ac, ac2, br, br2, bc1, bc, cr1, cr, cc1, cc)
+        mul_rec_nocopy(C, ar1, ar, ac, ac2, br, br2, bc1, bc, cr1, cr, cc1, cc)
 
         # C12 += A11 B12
-        mul_rec_nocopy(A, B, C, ar1, ar, ac1, ac, br1, br, bc, bc2, cr1, cr, cc, cc2)
+        mul_rec_nocopy(C, ar1, ar, ac1, ac, br1, br, bc, bc2, cr1, cr, cc, cc2)
 
         # C12 += A12 B22
-        mul_rec_nocopy(A, B, C, ar1, ar, ac, ac2, br, br2, bc, bc2, cr1, cr, cc, cc2)
+        mul_rec_nocopy(C, ar1, ar, ac, ac2, br, br2, bc, bc2, cr1, cr, cc, cc2)
 
         # C21 += A21 B11
-        mul_rec_nocopy(A, B, C, ar, ar2, ac1, ac, br1, br, bc1, bc, cr, cr2, cc1, cc)
+        mul_rec_nocopy(C, ar, ar2, ac1, ac, br1, br, bc1, bc, cr, cr2, cc1, cc)
 
         # C21 += A22 B21
-        mul_rec_nocopy(A, B, C, ar, ar2, ac, ac2, br, br2, bc1, bc, cr, cr2, cc1, cc)
+        mul_rec_nocopy(C, ar, ar2, ac, ac2, br, br2, bc1, bc, cr, cr2, cc1, cc)
 
         # C22 += A21 B12
-        mul_rec_nocopy(A, B, C, ar, ar2, ac1, ac, br1, br, bc, bc2, cr, cr2, cc, cc2)
+        mul_rec_nocopy(C, ar, ar2, ac1, ac, br1, br, bc, bc2, cr, cr2, cc, cc2)
 
         # C22 += A22 B22
-        mul_rec_nocopy(A, B, C, ar, ar2, ac, ac2, br, br2, bc, bc2, cr, cr2, cc, cc2)
+        mul_rec_nocopy(C, ar, ar2, ac, ac2, br, br2, bc, bc2, cr, cr2, cc, cc2)
 
 
 def mul_rec_strassen(A, B, C, n):
@@ -118,7 +118,7 @@ m = n = 8
 A = np.random.random((n, n))
 B = np.random.random((n, n))
 C1 = np.zeros((n, n))
-mul(A, B, C1, n)
+mul(C1)
 
 # 如果n不是2的幂次 将m置为最小的大于n的2的幂次
 if (n & (n - 1)) != 0:
@@ -138,7 +138,7 @@ mul_rec_copy(A, B, C2, m)
 C2 = C2[:n, :n]
 
 C3 = np.zeros((m, m))
-mul_rec_nocopy(A, B, C3, 0, m, 0, m, 0, m, 0, m, 0, m, 0, m)
+mul_rec_nocopy(C3, 0, m, 0, m, 0, m, 0, m, 0, m, 0, m)
 C3 = C3[:n, :n]
 
 C4 = np.zeros((m, m))

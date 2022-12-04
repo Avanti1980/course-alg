@@ -1,26 +1,25 @@
-def bellman_ford(g, s):
-    d, p = dict(), dict()
+def bellman_ford(s):
+    d = dict()
     for v in g:  # 距离初始化为无穷大 前驱初始化为空
-        d[v], p[v] = float("inf"), None
+        d[v] = float("inf")
     d[s] = 0  # 源点到自己的最短路径长度为零
 
     for _ in range(len(g) - 1):  # 遍历|V|-1次
         for u in g:
             for v in g[u]:  # 内部的二重for循环遍历所有边
-                if d[v] > d[u] + g[u][v]:             # 松弛
-                    d[v], p[v] = (d[u] + g[u][v], u)  # 更新当前最短距离和前驱
+                d[v] = min(d[v], d[u] + g[u][v])  # 松弛
 
     for u in g:
         for v in g[u]:
             assert (d[v] <= d[u] + g[u][v]), "有负环"
 
-    return d, p
+    return d
 
 
-def dijkstra(g, s):
-    d, p, in_S = dict(), dict(), dict()
+def dijkstra(s):
+    d, in_S = dict(), dict()
     for v in g:  # 距离初始化为无穷大 前驱初始化为空 S为空集
-        d[v], p[v], in_S[v] = float("inf"), None, False
+        d[v], in_S[v] = float("inf"), False
     d[s] = 0  # 源点到自己的最短路径长度为零
 
     for _ in range(len(g)):
@@ -38,10 +37,9 @@ def dijkstra(g, s):
         if u != None:
             in_S[u] = True  # 将u加入S
             for v in g[u]:  # 更新u指向的点的最短路径的估计值
-                if d[v] > d[u] + g[u][v]:             # 松弛
-                    d[v], p[v] = (d[u] + g[u][v], u)  # 更新当前最短距离和前驱
+                d[v] = min(d[v], d[u] + g[u][v])  # 松弛
 
-    return d, p, in_S
+    return d
 
 
 g = {
@@ -52,7 +50,7 @@ g = {
     "5": {"4": 6},                   # w(5,4) = 6
 }
 g["0"] = {"1": 0, "2": 0, "3": 0, "4": 0, "5": 0}  # 添加新结点0
-h, _ = bellman_ford(g, s="0")  # 以0为源点运行Bellman-Ford算法
+h = bellman_ford(s="0")  # 以0为源点运行Bellman-Ford算法
 
 for u in g:
     for v in g[u]:
@@ -61,7 +59,7 @@ for u in g:
 D = dict()
 for u in g:
     if u != "0":
-        D[u], _, _ = dijkstra(g, u)  # 以每个结点为源点运行Dijkstra算法
+        D[u] = dijkstra(u)  # 以每个结点为源点运行Dijkstra算法
         del D[u]["0"]
 
 del g["0"]
@@ -71,9 +69,9 @@ for u in g:
         D[u][v] += h[v] - h[u]  # 还原原权重下的最短路径长度
 
 print(D)
-#------------------------------
-{'1': {'1': 0, '2': 1,  '3': -3, '4': 2, '5': -4}, 
- '2': {'1': 3, '2': 0,  '3': -4, '4': 1, '5': -1}, 
- '3': {'1': 7, '2': 4,  '3': 0,  '4': 5, '5': 3 }, 
- '4': {'1': 2, '2': -1, '3': -5, '4': 0, '5': -2}, 
- '5': {'1': 8, '2': 5,  '3': 1,  '4': 6, '5': 0 }}
+------------------------------
+'1': {'1': 0, '2': 1,  '3': -3, '4': 2, '5': -4}
+'2': {'1': 3, '2': 0,  '3': -4, '4': 1, '5': -1}
+'3': {'1': 7, '2': 4,  '3': 0,  '4': 5, '5': 3 }
+'4': {'1': 2, '2': -1, '3': -5, '4': 0, '5': -2}
+'5': {'1': 8, '2': 5,  '3': 1,  '4': 6, '5': 0 }

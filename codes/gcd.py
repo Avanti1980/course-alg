@@ -26,18 +26,18 @@ def gcd4(a, b):  # 改进的更相减损
     if a == b:
         return b
     while True:
-        if not (a & 1) and not (b & 1):  # 均为偶 gcd(a,b) = 2*gcd(a/2, b/2)
+        if not (a & 1) and not (b & 1):  # 均为偶 gcd(a,b) = 2 * gcd(a/2, b/2)
             return gcd4(a >> 1, b >> 1) << 1
         elif not (a & 1) and (b & 1):    # a偶 b奇 gcd(a,b) = gcd(a/2, b)
             return gcd4(a >> 1, b)
         elif (a & 1) and not (b & 1):    # a奇 b偶 gcd(a,b) = gcd(a, b/2)
             return gcd4(a, b >> 1)
-        else:                            # 均为奇 gcd(a,b) = gcd(a-b, b)
+        else:                            # 均为奇 更相减损 gcd(a,b) = gcd(a-b, b)
             a, b = max(a, b), min(a, b)
             return gcd4(a-b, b)
 
 
-print(gcd1(10000, 65535))
-print(gcd2(10000, 65535))
-print(gcd3(10000, 65535))
-print(gcd4(10000, 65535))
+print(gcd1(2022, 1566))
+print(gcd2(2022, 1566))
+print(gcd3(2022, 1566))
+print(gcd4(2022, 1566))

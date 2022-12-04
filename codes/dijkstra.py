@@ -1,4 +1,4 @@
-def dijkstra(g, s):
+def dijkstra(s):
     d, p, in_S = dict(), dict(), dict()
     for v in g:  # 距离初始化为无穷大 前驱初始化为空 S为空集
         d[v], p[v], in_S[v] = float("inf"), None, False
@@ -33,9 +33,9 @@ g = {
     "x": {"z": 4},                  # w(x,z) = 4
 }
 
-d, p, in_S = dijkstra(g, "s")
+d, p, in_S = dijkstra("s")
 print(d)
 print(p)
----------------------------------------------------
-{'s': 0, 't': 8, 'y': 5, 'z': 7, 'x': 9}
-{'s': None, 't': 'y', 'y': 's', 'z': 'y', 'x': 't'}
+# ---------------------------------------------------
+# {'s': 0, 't': 8, 'y': 5, 'z': 7, 'x': 9}
+# {'s': None, 't': 'y', 'y': 's', 'z': 'y', 'x': 't'}

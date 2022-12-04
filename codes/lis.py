@@ -5,7 +5,7 @@ import numpy as np
 # np.random.seed(0)
 
 
-def lis_dp(X, n):
+def lis_dp():
     d, b = [1] * n, [-1] * n
     for i in range(1, n):
         for j in range(i):
@@ -15,14 +15,14 @@ def lis_dp(X, n):
     return d, b
 
 
-def restore_lis_dp(X, b, index, LIS):
+def restore_lis_dp(index, LIS):
     if index == -1:
         return
-    restore_lis_dp(X, b, b[index], LIS)
+    restore_lis_dp(b[index], LIS)
     LIS.append(X[index])
 
 
-def lis_dp_plus(X, n):
+def lis_dp_plus():
     e = []
     b = [-1] * n  # b[i]记录i在LIS中的前一个元素的值
     for i in range(n):
@@ -38,7 +38,7 @@ def lis_dp_plus(X, n):
     return e, b
 
 
-def restore_lis_dp_plus(X, e, b):
+def restore_lis_dp_plus(e, b):
     dict = {key: value for key, value in zip(X, range(n))}  # 倒排索引字典 X[i]: i
     pre = e[-1]  # e的最后一个元素是LIS的最后一个元素
     LIS = []
@@ -57,17 +57,17 @@ n = 10
 X = np.random.permutation(n)
 print('X =', X)
 
-d, b = lis_dp(X, n)
+d, b = lis_dp()
 # print('d: %s' % d)
 # print('b: %s' % b)
 
 LIS = []
-restore_lis_dp(X, b, np.argmax(d), LIS)
+restore_lis_dp(np.argmax(d), LIS)
 print('LIS =', LIS)
 
-e, b = lis_dp_plus(X, n)
+e, b = lis_dp_plus()
 # print('e: %s' % e)
 # print('b: %s' % b)
 
-LIS = restore_lis_dp_plus(X, e, b)
+LIS = restore_lis_dp_plus(e, b)
 print('LIS =', LIS)
