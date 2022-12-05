@@ -3,23 +3,24 @@ def subset_sum(i, s, left, x):
     if i == n:
         return
     else:
-        if s + w[i] == M:  # 找到一个解 输出
-            x[i] = 1
+        if s + w[i] == M:  # 找到一个解 输出 返回 不再递归
+            x.append(1)
             print([i for i in x if i != None])
-            x[i] = None
+            x.pop()
             return
         if s + left >= M and s + w[i] + w[i + 1] <= M:  # 选择w[i]
-            x[i] = 1
+            x.append(1)
             subset_sum(i + 1, s + w[i], left - w[i], x)
+            x.pop()
         if s - w[i] + left >= M and s + w[i + 1] <= M:  # 不选择w[i]
-            x[i] = 0
+            x.append(0)
             subset_sum(i + 1, s, left - w[i], x)
-        x[i] = None
+            x.pop()
 
 
 w = [5, 10, 12, 13, 15, 18]   # 集合
 n = len(w)
-x = [None for i in range(n)]  # 解
+x = []                        # 解
 M = 30                        # 目标和
 subset_sum(0, 0, sum(w), x)
 ---------------------------

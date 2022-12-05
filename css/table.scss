@@ -199,7 +199,8 @@
 @include subtable-fullborder(0, 0, 2, 7);
 
 // 09.md 画华容道用
-@include subtable-fullborder(0, 3, 8, 11);
+@include subtable-fullborder(1, 4, 1, 4);
+@include subtable-fullborder(1, 4, 8, 11);
 
 // 三线表
 .reveal .threelines {
