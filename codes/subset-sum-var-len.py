@@ -1,15 +1,16 @@
 def subset_sum(i, s, left, x):
-    print(i, s, left)
+    # i s left x = 待选数最小下标 已选数之和 剩余数之和 当前元组
+    # print(i, s, left)
     if i > n:
         return
     else:
-        for j in range(i, n):
-            if s + w[j] == M:  # 找到一个解 输出 返回 不再递归
+        for j in range(i, n):  # 依次尝试选择 w_i, w_i+1, ..., w_n
+            if s + w[j] == M:  # 若加上w[j]是一个解 输出
                 x.append(j)
                 print(x)
                 x.pop()
-            elif j < n-1:
-                if s + left >= M and s + w[j] + w[j + 1] <= M:  # 选择w[j]满足限界条件
+            elif j < n-1:  # 否则 若选择w[j]可满足限界条件 递归
+                if s + left >= M and s + w[j] + w[j + 1] <= M:
                     x.append(j)
                     subset_sum(j + 1, s + w[j], left - w[j], x)
                     x.pop()

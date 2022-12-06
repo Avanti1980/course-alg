@@ -1,18 +1,19 @@
 def subset_sum(i, s, left, x):
-    print(i, s, left)
+    # i s left x = 待选数下标 已选数之和 剩余数之和 当前元组
+    # print(i, s, left)
     if i > n:
         return
     else:
-        if s + w[i] == M:  # 找到一个解 输出 返回 不再递归
+        if s + w[i] == M:  # 若加上w[i]是一个解 输出 回溯
             x.append(1)
             print(x)
             x.pop()
             return
-        if s + left >= M and s + w[i] + w[i + 1] <= M:  # 选择w[i]满足限界条件
+        if s + left >= M and s + w[i] + w[i + 1] <= M:  # 否则 若选择w[i]可满足限界条件 递归
             x.append(1)
             subset_sum(i + 1, s + w[i], left - w[i], x)
             x.pop()
-        if s - w[i] + left >= M and s + w[i + 1] <= M:  # 不选择w[i]满足限界条件
+        if s - w[i] + left >= M and s + w[i + 1] <= M:  # 否则 若不选择w[i]可满足限界条件 递归
             x.append(0)
             subset_sum(i + 1, s, left - w[i], x)
             x.pop()
