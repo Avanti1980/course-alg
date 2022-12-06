@@ -1,18 +1,16 @@
 digraph g {
     bgcolor=transparent
     rankdir=TB
-    graph [nodesep=0.01, ranksep=0.6]
-    node [shape=plaintext, color="#586e75", fixedsize=true, width=0.6, height=0.3, fontcolor="#b58900", fontsize=14, fontname="LXGWWenKai"]
-    edge [arrowhead=vee, color="#586e75", fontcolor="#268bd2", fontsize=14, fontname="LXGWWenKai", arrowsize=0.6]
+    graph [nodesep=0.45,  ranksep=0.6]
+    node [shape=plaintext,  color="#586e75",  fixedsize=true,  width=0.6,  height=0.3,  fontcolor="#b58900",  fontsize=14,  fontname="LXGWWenKai"]
+    edge [arrowhead=vee,  color="#586e75",  fontcolor="#268bd2",  fontsize=14,  fontname="LXGWWenKai",  arrowsize=0.4]
 
     "(1, 0, 73)" -> "(2, 5, 68)" [label=1]
     "(2, 5, 68)" -> "(3, 15, 58)" [label=2]
 
     n1 [label=✘]
-    n2 [label=✘]
     
-    "(3, 15, 58)" -> n1 [label=3]
-    "(3, 15, 58)" -> n2 [label=4]
+    "(3, 15, 58)" -> n1 [label="3, 4"]
 
     node [fontcolor="#dc322f"]
 
@@ -26,6 +24,10 @@ digraph g {
 
     "(2, 5, 68)" -> "(4, 17, 56)" [label=3]
 
+    n14 [label=✘]
+
+    "(2, 5, 68)" -> n14 [label="4, 5, 6"]
+
     node [fontcolor="#dc322f"]
 
     "(4, 17, 56)" -> "(1, 3, 4)" [label=4]
@@ -33,30 +35,20 @@ digraph g {
     node [fontcolor="#b58900"]
 
     n4 [label=✘]
-    n5 [label=✘]
 
-    "(4, 17, 56)" -> n4 [label=5]
-    "(4, 17, 56)" -> n5 [label=6]
+    "(4, 17, 56)" -> n4 [label="5, 6"]
 
     "(1, 0, 73)" -> "(3, 10, 63)" [label=2]
 
     n6 [label=✘]
-    n7 [label=✘]
-    n8 [label=✘]
-    n9 [label=✘]
 
-    "(3, 10, 63)" -> n6 [label=3]
-    "(3, 10, 63)" -> n7 [label=4]
-    "(3, 10, 63)" -> n8 [label=5]
-    "(3, 10, 63)" -> n9 [label=6]
+    "(3, 10, 63)" -> n6 [label="3, 4, 5, 6"]
 
     "(1, 0, 73)" -> "(4, 12, 61)" [label=3]
 
     n10 [label=✘]
-    n11 [label=✘]
 
-    "(4, 12, 61)" -> n10 [label=4]
-    "(4, 12, 61)" -> n11 [label=5]
+    "(4, 12, 61)" -> n10 [label="4, 5"]
 
     node [fontcolor="#dc322f"]
 
@@ -67,8 +59,10 @@ digraph g {
     "(1, 0, 73)" -> "(5, 13, 60)" [label=4]
 
     n12 [label=✘]
-    n13 [label=✘]
 
-    "(5, 13, 60)" -> n12 [label=5]
-    "(5, 13, 60)" -> n13 [label=6]
+    "(5, 13, 60)" -> n12 [label="5, 6"]
+
+    n17 [label=✘]
+
+    "(1, 0, 73)" -> n17 [label="5, 6"]
 }
