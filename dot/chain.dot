@@ -1,0 +1,9 @@
+digraph g {
+    bgcolor=transparent
+    rankdir=LR
+    graph [nodesep=0.01, ranksep=0.3]
+    node [shape=plain, color="#586e75", fontcolor="#b58900", fontsize=24, fontname="LXGWWenKai"]
+    edge [arrowhead=vee, color="#586e75", fontcolor="#268bd2", fontsize=16, fontname="LXGWWenKai", arrowsize=0.6, label=1]
+
+    ⓢ -> ⓧ -> ⓨ -> ⓩ -> ⓣ
+}

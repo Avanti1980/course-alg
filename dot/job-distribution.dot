@@ -1,0 +1,23 @@
+digraph g {
+    bgcolor=transparent
+    rankdir=TB
+    graph [nodesep=0.2,  ranksep=0.2]
+    node [shape=plaintext,  color="#586e75",  fixedsize=true,  width=2,  height=0.3,  fontcolor="#b58900",  fontsize=14,  fontname="LXGWWenKai"]
+    edge [arrowhead=vee,  color="#586e75",  fontcolor="#268bd2",  fontsize=14,  fontname="LXGWWenKai",  arrowsize=0.4]
+
+    root [label="lb = 2 + 3 + 1 + 4 = 10"]
+
+    root -> "lb = 9 + 3 + 1 + 4 = 17" [label=1]
+    root -> "lb = 2 + 3 + 1 + 4 = 10" [label=2]
+    root -> "lb = 7 + 4 + 5 + 4 = 20" [label=3]
+    root -> "lb = 8 + 3 + 1 + 6 = 18" [label=4]
+
+    "lb = 2 + 3 + 1 + 4 = 10" -> "lb = 2 + 6 + 1 + 4 = 13" [label=1]
+    "lb = 2 + 3 + 1 + 4 = 10" -> "lb = 2 + 3 + 5 + 14 = 14" [label=3]
+    "lb = 2 + 3 + 1 + 4 = 10" -> "lb = 2 + 7 + 1 + 7 = 17" [label=4]
+
+    13 [label="lb = 2 + 6 + 1 + 4 = 13"]
+
+    "lb = 2 + 6 + 1 + 4 = 13" -> 13 [label="3"]
+    "lb = 2 + 6 + 1 + 4 = 13" -> "lb = 2 + 6 + 8 + 9 = 25" [label="4"]
+}
