@@ -1,28 +1,53 @@
 digraph g {
     bgcolor=transparent
     rankdir=TB
-    graph [nodesep=0.2,  ranksep=0.5]
-    node [shape=plaintext,  color="#586e75",  fixedsize=true,  width=2,  height=0.3,  fontcolor="#b58900",  fontsize=14,  fontname="LXGWWenKai"]
+    graph [nodesep=0.2,  ranksep=0.4]
+    node [shape=record,  color="#586e75",  fixedsize=true,  width=0.6,  height=0.3,  fontcolor="#b58900",  fontsize=14,  fontname="LXGWWenKai"]
     edge [arrowhead=vee,  color="#586e75",  fontcolor="#268bd2",  fontsize=14,  fontname="LXGWWenKai",  arrowsize=0.4]
 
-    root [label="ub = 10 × 10 = 100"]
+    root
 
-    root -> "ub = 40 + 6 × 6 = 76" [label=1]
-    root -> "ub = 6 × 10 = 60" [label=0]
+    node [width=1.8, height=0.6]
 
-    n1 [label=✘]
+    n1 [label="{ub = 40 + 6 × 6 = 76|lb = 40}"]
 
-    "ub = 40 + 6 × 6 = 76" -> n1 [label=1]
-    "ub = 40 + 6 × 6 = 76" -> "ub = 40 + 5 × 6 = 70" [label=0]
+    node [width=1.5]
 
-    "ub = 40 + 5 × 6 = 70" -> "ub = 40 + 25 + 4 × 1 = 69" [label=1]
-    "ub = 40 + 5 × 6 = 70" -> "ub = 40 + 4 × 6 = 64" [label=0]
+    n2 [label="{ub = 6 × 10 = 60|lb = 0}"]
 
-    n2 [label=✘]
+    root -> n1 [label=1]
+    root -> n2 [label=0]
 
-    "ub = 40 + 25 + 4 × 1 = 69" -> n2 [label=1]
+    node [shape=plaintext]
+
+    n10 [label=✘]
+
+    n1 -> n10 [label=1]
+
+    node [shape=record, width=1.8]
+
+    n3 [label="{ub = 40 + 5 × 6 = 70|lb = 40}"]
+
+    n1 -> n3 [label=0]
+
+    node [width=2.2]
+
+    n4 [label="{ub = 40 + 25 + 4 × 1 = 69|lb = 40 + 25 = 65}"]
+
+    node [width=1.8]
+
+    n5 [label="{ub = 40 + 4 × 6 = 64|lb = 40}"]
+
+    n3 -> n4 [label=1]
+    n3 -> n5 [label=0]
+
+    node [shape=plaintext]
+
+    n11 [label=✘]
+
+    n4 -> n11 [label=1]
 
     node [fontcolor="#dc322f"]
 
-    "ub = 40 + 25 + 4 × 1 = 69" -> "40 + 25 = 65" [label=0]
+    n4 -> "40 + 25 = 65" [label=0]
 }

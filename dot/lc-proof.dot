@@ -1,0 +1,15 @@
+digraph g {
+    bgcolor=transparent
+    rankdir=TB
+    graph [nodesep=0.6, ranksep=0.4]
+    node [shape=circle, fixedsize=true, width=0.35, color="#b58900", fontcolor="#b58900", fontsize=16, fontname="LXGWWenKai"]
+    edge [arrowhead=vee, color="#586e75", fontcolor="#268bd2", fontsize=14, fontname="LXGWWenKai" arrowsize=0.6]
+
+    R -> {a1, b1}
+
+    a1 -> n1 -> an -> a
+    b1 -> n2 -> bm -> b
+
+    n1 [shape=plaintext, label="⋮"]
+    n2 [shape=plaintext, label="⋮"]
+}
