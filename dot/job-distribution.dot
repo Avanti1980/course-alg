@@ -18,11 +18,11 @@ digraph g {
 
     node [fontcolor="#dc322f"]
 
-    13 [label="lb = 2 + 6 + 1 + 4 = 13"]
+    13 [label="2 + 6 + 1 + 4 = 13"]
 
     "lb = 2 + 6 + 1 + 4 = 13" -> 13 [label="3"]
 
     node [fontcolor="#b58900"]
 
-    "lb = 2 + 6 + 1 + 4 = 13" -> "lb = 2 + 6 + 8 + 9 = 25" [label="4"]
+    "lb = 2 + 6 + 1 + 4 = 13" -> "2 + 6 + 8 + 9 = 25" [label="4"]
 }

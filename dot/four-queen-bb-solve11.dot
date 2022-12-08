@@ -56,12 +56,16 @@ digraph g {
     8 -> 21 [label="3"]
 
     node [color="#b58900", fontcolor="#b58900"]
+
     11 -> 22 [label="1"]
 
     node [color="#2aa198", fontcolor="#2aa198"]
 
     11 -> 23 [label="3"]
     12 -> 24 [label="2"]
+
+    node [color="#b58900", fontcolor="#b58900"]
+    
     12 -> 25 [label="4"]
 
     node [color="#2aa198", fontcolor="#2aa198"]

@@ -145,6 +145,21 @@
 
 @include queen4("base2");
 
+@mixin klotski($color) {
+  .reveal .klotski-#{$color} {
+    tr:nth-child(2n) > td:nth-child(2n + 1):nth-child(-2n + 3),
+    tr:nth-child(2n) > td:nth-child(2n + 7):nth-child(-2n + 9),
+    tr:nth-child(2n+1) > td:nth-child(2n + 2):nth-child(-2n + 4),
+    tr:nth-child(2n+1) > td:nth-child(2n + 8):nth-child(-2n + 10) {
+      background-color: var(--solarized-#{$color});
+    }
+  }
+}
+
+@include klotski("base2");
+@include klotski("yellow");
+@include klotski("cyan");
+
 // 全边框
 .reveal .fullborder {
   th,
@@ -200,7 +215,7 @@
 
 // 09.md 画华容道用
 @include subtable-fullborder(1, 4, 1, 4);
-@include subtable-fullborder(1, 4, 8, 11);
+@include subtable-fullborder(1, 4, 7, 10);
 @include subtable-fullborder(0, 3, 1, 4);
 
 // 三线表

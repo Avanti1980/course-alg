@@ -1,7 +1,7 @@
 digraph g {
     bgcolor=transparent
     rankdir=TB
-    graph [nodesep=1,  ranksep=0.3]
+    graph [nodesep=0.2,  ranksep=0.5]
     node [shape=plaintext,  color="#586e75",  fixedsize=true,  width=2,  height=0.3,  fontcolor="#b58900",  fontsize=14,  fontname="LXGWWenKai"]
     edge [arrowhead=vee,  color="#586e75",  fontcolor="#268bd2",  fontsize=14,  fontname="LXGWWenKai",  arrowsize=0.4]
 
@@ -24,5 +24,5 @@ digraph g {
 
     node [fontcolor="#dc322f"]
 
-    "ub = 40 + 25 + 4 × 1 = 69" -> "ub = 40 + 25 = 65" [label=0]
+    "ub = 40 + 25 + 4 × 1 = 69" -> "40 + 25 = 65" [label=0]
 }
