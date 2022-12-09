@@ -9,11 +9,11 @@ digraph g {
 
     node [width=1.8, height=0.6]
 
-    n1 [label="{ub = 40 + 6 × 6 = 76|lb = 40}"]
+    n1 [label="{u = 40 + 6 × 6 = 76|l = 40}"]
 
     node [width=1.5]
 
-    n2 [label="{ub = 6 × 10 = 60|lb = 0}"]
+    n2 [label="{u = 6 × 10 = 60|l = 0}"]
 
     root -> n1 [label=1]
     root -> n2 [label=0]
@@ -26,17 +26,17 @@ digraph g {
 
     node [shape=record, width=1.8]
 
-    n3 [label="{ub = 40 + 5 × 6 = 70|lb = 40}"]
+    n3 [label="{u = 40 + 5 × 6 = 70|l = 40}"]
 
     n1 -> n3 [label=0]
 
     node [width=2.2]
 
-    n4 [label="{ub = 40 + 25 + 4 × 1 = 69|lb = 40 + 25 = 65}"]
+    n4 [label="{u = 40 + 25 + 4 × 1 = 69|l = 40 + 25 = 65}"]
 
     node [width=1.8]
 
-    n5 [label="{ub = 40 + 4 × 6 = 64|lb = 40}"]
+    n5 [label="{u = 40 + 4 × 6 = 64|l = 40}"]
 
     n3 -> n4 [label=1]
     n3 -> n5 [label=0]
