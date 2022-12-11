@@ -1,0 +1,87 @@
+\documentclass{ctexart}
+\usepackage{avanti-color}
+%\usepackage{avanti-font}
+\usepackage{avanti-math}
+\usepackage{avanti-theorem}
+\usepackage{avanti-others}
+
+\geometry{a2paper, left=2mm}
+
+\RequirePackage{fontspec}
+\xeCJKsetup{CJKmath=true}
+\setCJKmainfont[BoldFont=FZHei-B01,ItalicFont=]{LXGW Bright}
+
+\everymath{\color{Solarized-magenta}}
+\pagestyle{empty} % 没有页眉和页脚
+
+% define the plot style and the axis style
+\tikzset{font=\large}
+
+\tikzset{base/.style={smooth, very thick, Solarized-base01}}
+\tikzset{point/.style={circle, minimum height=0.8cm, base, draw=Solarized-base01, fill=Solarized-base2}}
+\tikzset{arrow/.style={->, -{Stealth[scale=0.8]}, base}}
+
+\begin{document}
+
+\begin{center}
+    \begin{tikzpicture}
+
+        \pgfmathsetmacro{\l}{3.5};
+
+        \node [point] (s) at (0,0) {$\sv$};
+        \path (s) ++(30:\l)  node[point] (v1) {$\vv_1$};
+        \path (s) ++(330:\l)  node[point] (v2) {$\vv_2$};
+        \path (v1) ++(\l,0)  node[point] (v3) {$\vv_3$};
+        \path (v2) ++(\l,0)  node[point] (v4) {$\vv_4$};
+        \path (v4) ++(30:\l)  node[point] (t) {$\tv$};
+
+        \draw [arrow] (s) -- (v1) node [above=2pt, pos=0.4] {$16$};
+        \draw [arrow] (s) -- (v2) node [below=2pt, pos=0.4] {$13$};
+
+        \draw [arrow] (v2) to [out=80, in=280] (v1);
+
+        \draw [arrow] (v1) to [out=260, in=100] (v2);
+
+        \path (v2) ++(0.15*\l,0.5*\l) node[] () {$4$};
+        \path (v2) ++(-0.18*\l,0.5*\l) node[] () {$10$};
+
+        \draw [arrow] (v1) -- (v3) node [above=0pt, pos=0.5] {$12$};
+        \draw [arrow] (v2) -- (v4) node [below=0pt, pos=0.5] {$14$};
+        \draw [arrow] (v4) -- (v3) node [right=0pt, pos=0.5] {$7$};
+        \draw [arrow] (v3) -- (v2) node [right=3pt, pos=0.6] {$9$};
+        \draw [arrow] (v3) -- (t) node [above=2pt, pos=0.6] {$20$};
+        \draw [arrow] (v4) -- (t) node [below=2pt, pos=0.6] {$4$};
+
+        \node [point] (s) at (12,0) {$\sv$};
+        \path (s) ++(30:\l)  node[point] (v1) {$\vv_1$};
+        \path (s) ++(330:\l)  node[point] (v2) {$\vv_2$};
+        \path (v1) ++(\l,0)  node[point] (v3) {$\vv_3$};
+        \path (v2) ++(\l,0)  node[point] (v4) {$\vv_4$};
+        \path (v4) ++(30:\l)  node[point] (t) {$\tv$};
+        \path (s) ++(0:0.5*\l)  node[point] (v) {$\vv$};
+
+        \tikzset{font=\LARGE}
+
+        \path (s) ++(180:0.32*\l) node[] () {$\Longrightarrow$};
+
+        \tikzset{font=\large}
+
+        \draw [arrow] (s) -- (v1) node [above=2pt, pos=0.4] {$16$};
+        \draw [arrow] (s) -- (v2) node [below=2pt, pos=0.4] {$13$};
+
+        \draw [arrow] (v2) -- (v1) node [right=0pt, pos=0.5] {$4$};
+        \draw [arrow] (v1) -- (v) node [right=0pt, pos=0.6] {$10$};
+        \draw [arrow] (v) -- (v2) node [right=0pt, pos=0.4] {$10$};
+
+        \draw [arrow] (v1) -- (v3) node [above=0pt, pos=0.5] {$12$};
+        \draw [arrow] (v2) -- (v4) node [below=0pt, pos=0.5] {$14$};
+        \draw [arrow] (v4) -- (v3) node [right=0pt, pos=0.5] {$7$};
+        \draw [arrow] (v3) -- (v2) node [right=3pt, pos=0.6] {$9$};
+        \draw [arrow] (v3) -- (t) node [above=2pt, pos=0.6] {$20$};
+        \draw [arrow] (v4) -- (t) node [below=2pt, pos=0.6] {$4$};
+
+    \end{tikzpicture}
+\end{center}
+
+
+\end{document}

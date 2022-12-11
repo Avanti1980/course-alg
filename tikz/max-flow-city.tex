@@ -1,0 +1,70 @@
+\documentclass{ctexart}
+\usepackage{avanti-color}
+%\usepackage{avanti-font}
+\usepackage{avanti-math}
+\usepackage{avanti-theorem}
+\usepackage{avanti-others}
+
+\geometry{a2paper, left=2mm}
+
+\RequirePackage{fontspec}
+\xeCJKsetup{CJKmath=true}
+\setCJKmainfont[BoldFont=FZHei-B01,ItalicFont=]{LXGW Bright}
+
+\everymath{\color{Solarized-magenta}}
+\pagestyle{empty} % 没有页眉和页脚
+
+% define the plot style and the axis style
+\tikzset{font=\large}
+
+\tikzset{base/.style={smooth, very thick, Solarized-base01, draw=Solarized-base01}}
+\tikzset{point/.style={circle, minimum height=0.8cm, base, draw=Solarized-base01, fill=Solarized-base2}}
+\tikzset{city/.style = {rectangle, minimum height=0.6cm, minimum width=1.0cm, base}}
+\tikzset{arrow/.style={->, -{Stealth[scale=0.8]}, base}}
+
+\begin{document}
+
+\begin{center}
+    \begin{tikzpicture}
+
+        \pgfmathsetmacro{\l}{3};
+
+        \node [city] (s) at (0,0) {北京};
+        \path (s) ++(30:\l)  node[city] (v1) {济南};
+        \path (s) ++(330:\l)  node[city] (v2) {天津};
+        \path (v1) ++(\l,0)  node[city] (v3) {合肥};
+        \path (v2) ++(\l,0)  node[city] (v4) {郑州};
+        \path (v4) ++(30:\l)  node[city] (t) {武汉};
+
+        \draw [arrow] (s) -- (v1) node [above=2pt, pos=0.4] {$16$};
+        \draw [arrow] (s) -- (v2) node [below=2pt, pos=0.4] {$13$};
+        \draw [arrow] (v2) -- (v1) node [left=0pt, pos=0.5] {$4$};
+        \draw [arrow] (v1) -- (v3) node [above=0pt, pos=0.5] {$12$};
+        \draw [arrow] (v2) -- (v4) node [below=0pt, pos=0.5] {$14$};
+        \draw [arrow] (v4) -- (v3) node [right=0pt, pos=0.5] {$7$};
+        \draw [arrow] (v3) -- (v2) node [right=3pt, pos=0.6] {$9$};
+        \draw [arrow] (v3) -- (t) node [above=2pt, pos=0.6] {$20$};
+        \draw [arrow] (v4) -- (t) node [below=2pt, pos=0.6] {$4$};
+
+        \node [city] (s) at (10,0) {北京};
+        \path (s) ++(30:\l)  node[city] (v1) {济南};
+        \path (s) ++(330:\l)  node[city] (v2) {天津};
+        \path (v1) ++(\l,0)  node[city] (v3) {合肥};
+        \path (v2) ++(\l,0)  node[city] (v4) {郑州};
+        \path (v4) ++(30:\l)  node[city] (t) {武汉};
+
+        \draw [arrow] (s) -- (v1) node [above=5pt, pos=0.2] {$11/16$};
+        \draw [arrow] (s) -- (v2) node [below=5pt, pos=0.2] {$8/13$};
+        \draw [arrow] (v2) -- (v1) node [left=0pt, pos=0.5] {$1/4$};
+        \draw [arrow] (v1) -- (v3) node [above=0pt, pos=0.5] {$12/12$};
+        \draw [arrow] (v2) -- (v4) node [below=0pt, pos=0.5] {$11/14$};
+        \draw [arrow] (v4) -- (v3) node [right=0pt, pos=0.5] {$7/7$};
+        \draw [arrow] (v3) -- (v2) node [right=3pt, pos=0.6] {$4/9$};
+        \draw [arrow] (v3) -- (t) node [above=5pt, pos=0.8] {$15/20$};
+        \draw [arrow] (v4) -- (t) node [below=4pt, pos=0.7] {$4/4$};
+
+    \end{tikzpicture}
+\end{center}
+
+
+\end{document}

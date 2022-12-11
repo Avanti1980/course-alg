@@ -1,10 +1,10 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022/Arch Linux) (preloaded format=xelatex 2022.11.8)  29 NOV 2022 03:43
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022/Arch Linux) (preloaded format=xelatex 2022.11.8)  11 DEC 2022 21:27
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/home/avanti/Slides/Courses/Alg/tikz/sp-all-johnson2
-(/home/avanti/Slides/Courses/Alg/tikz/sp-all-johnson2.tex
+**/home/avanti/Slides/Courses/Alg/tikz/max-flow-multiple-st
+(/home/avanti/Slides/Courses/Alg/tikz/max-flow-multiple-st.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2022-04-10> (/usr/share/texmf-dist/tex/latex/ctex/ctexart.cls (/usr/share/texmf-dist/tex/latex/ctex/config/ctexbackend.cfg
 File: ctexbackend.cfg 2021/12/12 v2.5.8 Backend configuration file (CTEX)
@@ -1061,8 +1061,8 @@ Package fontspec Info: Font family 'LXGWBright(0)' created for font 'LXGW
 \symCJKmath=\mathgroup255
 LaTeX Font Info:    Overwriting symbol font `CJKmath' in version `bold'
 (Font)                  TU/LXGWBright(0)/m/n --> TU/LXGWBright(0)/b/n on input line 24.
-(./sp-all-johnson2.aux)
-\openout1 = `sp-all-johnson2.aux'.
+(./max-flow-multiple-st.aux)
+\openout1 = `max-flow-multiple-st.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
 LaTeX Font Info:    ... okay on input line 24.
@@ -1149,14 +1149,14 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(0.0pt, 1015.76157pt, 179.25418pt)
+* h-part:(L,W,R)=(5.69054pt, 1010.07103pt, 179.25418pt)
 * v-part:(T,H,B)=(202.8133pt, 1183.06041pt, 304.21999pt)
 * \paperwidth=1195.01575pt
 * \paperheight=1690.09369pt
-* \textwidth=1015.76157pt
+* \textwidth=1010.07103pt
 * \textheight=1183.06041pt
-* \oddsidemargin=-72.26999pt
-* \evensidemargin=-72.26999pt
+* \oddsidemargin=-66.57945pt
+* \evensidemargin=-66.57945pt
 * \topmargin=130.5433pt
 * \headheight=0.0pt
 * \headsep=0.0pt
@@ -1190,71 +1190,59 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 24.
 LaTeX Info: Redefining \pageref on input line 24.
 LaTeX Info: Redefining \nameref on input line 24.
- (./sp-all-johnson2.out) (./sp-all-johnson2.out)
+ (./max-flow-multiple-st.out) (./max-flow-multiple-st.out)
 \@outlinefile=\write6
-\openout6 = `sp-all-johnson2.out'.
+\openout6 = `max-flow-multiple-st.out'.
 
 
 Missing character: There is no ; ("3B) in font nullfont!
-Missing character: There is no ; ("3B) in font nullfont!
-LaTeX Font Info:    Trying to load font information for U+msa on input line 32.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 31.
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 32.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 31.
  (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 32.
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 31.
  (/usr/share/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Font Info:    Trying to load font information for U+stmry on input line 32.
+LaTeX Font Info:    Trying to load font information for U+stmry on input line 31.
  (/usr/share/texmf-dist/tex/latex/stmaryrd/Ustmry.fd)
 
-LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <15.05624> not available
-(Font)              size <14.4> substituted on input line 40.
-
-
-LaTeX Font Warning: Font shape `U/stmry/m/n' in size <15.05624> not available
-(Font)              size <14.4> substituted on input line 40.
-
-
-LaTeX Font Warning: Font shape `U/stmry/b/n' undefined
-(Font)              using `U/stmry/m/n' instead on input line 40.
-
-
-LaTeX Font Warning: Font shape `U/stmry/b/n' in size <15.05624> not available
-(Font)              size <14.4> substituted on input line 40.
-
-
 LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <18.06749> not available
-(Font)              size <17.28> substituted on input line 105.
+(Font)              size <17.28> substituted on input line 77.
+
+
+LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <15.05624> not available
+(Font)              size <14.4> substituted on input line 77.
 
 
 LaTeX Font Warning: Font shape `U/stmry/m/n' in size <18.06749> not available
-(Font)              size <17.28> substituted on input line 105.
+(Font)              size <17.28> substituted on input line 77.
+
+
+LaTeX Font Warning: Font shape `U/stmry/m/n' in size <15.05624> not available
+(Font)              size <14.4> substituted on input line 77.
 
 [1
 
-] (./sp-all-johnson2.aux)
+] (./max-flow-multiple-st.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.78749pt have occurred.
 
-
-LaTeX Font Warning: Some font shapes were not available, defaults substituted.
-
-Package rerunfilecheck Info: File `sp-all-johnson2.out' has not changed.
+Package rerunfilecheck Info: File `max-flow-multiple-st.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 46360 strings out of 476156
- 1110092 string characters out of 5814963
- 1613858 words of memory out of 5000000
- 66256 multiletter control sequences out of 15000+600000
- 490033 words of font info for 144 fonts, out of 8000000 for 9000
+ 46321 strings out of 476156
+ 1108923 string characters out of 5814963
+ 1636608 words of memory out of 5000000
+ 66233 multiletter control sequences out of 15000+600000
+ 487134 words of font info for 125 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 103i,9n,105p,942b,743s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 103i,5n,105p,947b,723s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on sp-all-johnson2.pdf (1 page).
+Output written on max-flow-multiple-st.pdf (1 page).
