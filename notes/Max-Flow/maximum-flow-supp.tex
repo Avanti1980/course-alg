@@ -14,12 +14,12 @@
 \tikzset{label-below/.style = {midway, sloped, below}}
 
 \begin{document}
-\title{最大流补充资料}
+\title{\bf{Ford-Fulkerson方法的异常情况}}
 \author{张腾}
 \date{}
 \maketitle
 
-Ford-Fulkerson算法的时间复杂度是$O(E ~ |f^*|)$，事实上这个界是紧的。考虑图\ref{fig: worst-case}中的流网络，其中$m$是一个很大的整数，最大流量$|f^*| = 2m$，Ford-Fulkerson算法在此流网络上需迭代$2m$次才能得到最大流。
+Ford-Fulkerson算法的时间复杂度是$O(|\Ecal| |f^*|)$，事实上这个界是紧的。考虑图\ref{fig: worst-case}中的流网络，其中$m$是一个很大的整数，最大流量$|f^*| = 2m$，Ford-Fulkerson算法在此流网络上需迭代$2m$次才能得到最大流。
 
 初始化流$f = 0$，对应的残存网络就是原流网络，假设算法选择增广路径$s \rightarrow u \rightarrow v \rightarrow t$，流网络该路径上的流量都可以加$1$；接着假设选择增广路径$s \rightarrow v \rightarrow u \rightarrow t$，流网络该路径上的流量都可以加$1$；如此交替下去，每次都可以使得总流量增加$1$，总共需迭代$2m$次才能达到最优解。
 
@@ -208,6 +208,7 @@ Ford-Fulkerson算法的时间复杂度是$O(E ~ |f^*|)$，事实上这个界是�
 
     \end{tikzpicture}
     \caption{第一轮}
+    \label{fig: irrational-case}
 \end{figure}
 
 第二轮假设算法选择的增广路径为$s \rightarrow d \rightarrow c \rightarrow b \rightarrow a \rightarrow t$，流网络该路径上的流量都可以增加$\phi$，于是

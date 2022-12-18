@@ -26,18 +26,18 @@
 
 <div class="threelines outline head-highlight">
 
-|        |                讲义                |                                 补充                                  |
-| :----: | :--------------------------------: | :-------------------------------------------------------------------: |
-| 第一讲 |       [绪论](slides/01.html)       |                                   -                                   |
-| 第二讲 |    [函数的增长](slides/02.html)    |                                   -                                   |
-| 第三讲 |      [分治法](slides/03.html)      |         [Strassen 矩阵乘法加速](notes/Strassen/Strassen.pdf)          |
-| 第四讲 |     [动态规划](slides/04.html)     |                                   -                                   |
-| 第五讲 |      [贪心法](slides/05.html)      |                                   -                                   |
-| 第六讲 |   [单源最短路径](slides/06.html)   |                                   -                                   |
-| 第七讲 | [全结点对最短路径](slides/07.html) |                                   -                                   |
-| 第八讲 |      [回溯法](slides/08.html)      |                                   -                                   |
-| 第九讲 |    [分支限界法](slides/09.html)    |                                   -                                   |
-| 第十讲 |      [最大流](slides/10.html)      | [Ford-Fulkerson 方法的最坏情况](notes/Max-Flow/maximum-flow-supp.pdf) |
+|        |                讲义                |                                                       补充                                                       |
+| :----: | :--------------------------------: | :--------------------------------------------------------------------------------------------------------------: |
+| 第一讲 |       [绪论](slides/01.html)       |                                                        -                                                         |
+| 第二讲 |    [函数的增长](slides/02.html)    |                                                        -                                                         |
+| 第三讲 |      [分治法](slides/03.html)      |                               [Strassen 矩阵乘法加速](notes/Strassen/Strassen.pdf)                               |
+| 第四讲 |     [动态规划](slides/04.html)     |                                                        -                                                         |
+| 第五讲 |      [贪心法](slides/05.html)      |                                                        -                                                         |
+| 第六讲 |   [单源最短路径](slides/06.html)   |                                                        -                                                         |
+| 第七讲 | [全结点对最短路径](slides/07.html) |                                                        -                                                         |
+| 第八讲 |      [回溯法](slides/08.html)      |                                                        -                                                         |
+| 第九讲 |    [分支限界法](slides/09.html)    |                                                        -                                                         |
+| 第十讲 |      [最大流](slides/10.html)      | [Ford-Fulkerson 最坏情况](notes/Max-Flow/maximum-flow-supp.pdf)、[图上的匹配、覆盖、流、割](notes/MCFC/MCFC.pdf) |
 
 </div>
 
