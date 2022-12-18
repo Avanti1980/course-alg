@@ -1,0 +1,103 @@
+\documentclass{ctexart}
+\usepackage{avanti-color}
+%\usepackage{avanti-font}
+\usepackage{avanti-math}
+\usepackage{avanti-theorem}
+\usepackage{avanti-others}
+
+\geometry{a2paper, left=2mm}
+
+\RequirePackage{fontspec}
+\xeCJKsetup{CJKmath=true}
+\setCJKmainfont[BoldFont=FZHei-B01,ItalicFont=]{LXGW Bright}
+
+\everymath{\color{Solarized-magenta}}
+\pagestyle{empty} % 没有页眉和页脚
+
+% define the plot style and the axis style
+\tikzset{font=\large}
+
+\tikzset{base/.style={smooth, very thick, Solarized-base01}}
+\tikzset{point/.style={circle, minimum height=0.8cm, base, draw=Solarized-base01, fill=Solarized-base2}}
+\tikzset{arrow/.style={->, -{Stealth[scale=0.8]}, base}}
+\tikzset{arrow2/.style={arrow, ultra thick, Solarized-blue}}
+\tikzset{shift-x-above/.style = {transform canvas={xshift=0.4ex}}}
+\tikzset{shift-x-below/.style = {transform canvas={xshift=-0.4ex}}}
+\tikzset{shift-y-above/.style = {transform canvas={yshift=0.4ex}}}
+\tikzset{shift-y-below/.style = {transform canvas={yshift=-0.4ex}}}
+\tikzset{shift-xy-above/.style = {transform canvas={xshift=-0.34641ex, yshift=0.2ex}}}
+\tikzset{shift-xy-below/.style = {transform canvas={xshift=0.34641ex, yshift=-0.2ex}}}
+\tikzset{shift-xy2-above/.style = {transform canvas={xshift=0.34641ex, yshift=0.2ex}}}
+\tikzset{shift-xy2-below/.style = {transform canvas={xshift=-0.34641ex, yshift=-0.2ex}}}
+\tikzset{shift-xy3-above/.style = {transform canvas={xshift=-0.282842712474619ex, yshift=0.282842712474619ex}}}
+\tikzset{shift-xy3-below/.style = {transform canvas={xshift=0.282842712474619ex, yshift=-0.282842712474619ex}}}
+\tikzset{label-above/.style = {above, sloped, pos=0.5}}
+\tikzset{label-below/.style = {below, sloped, pos=0.5}}
+\tikzset{cut/.style = {base, dashed, thick, Solarized-yellow}}
+
+\begin{document}
+
+\begin{center}
+    \begin{tikzpicture}
+
+        \pgfmathsetmacro{\l}{2.5};
+        \pgfmathsetmacro{\x}{6};
+        \pgfmathsetmacro{\y}{-4};
+
+        % 1, 1
+        \node [point] (s) at (0,0) {$\sv$};
+        \path (s) ++(30:\l) node[point] (v) {$\vv$};
+        \path (s) ++(330:\l) node[point] (u) {$\uv$};
+        \path (u) ++(30:\l) node[point] (t) {$\tv$};
+
+        \draw [arrow2] (s) -- (u) node [label-below] {$100$};
+        \draw [arrow] (s) -- (v) node [label-above] {$100$};
+        \draw [arrow2] (u) -- (v) node [label-above] {$\boxed{1}$};
+        \draw [arrow] (u) -- (t) node [label-below] {$100$};
+        \draw [arrow2] (v) -- (t) node [label-above] {$100$};
+
+        % 1, 2
+        \node [point] (s) at (\x,0) {$\sv$};
+        \path (s) ++(30:\l) node[point] (v) {$\vv$};
+        \path (s) ++(330:\l) node[point] (u) {$\uv$};
+        \path (u) ++(30:\l) node[point] (t) {$\tv$};
+
+        \draw [arrow] (s) -- (u) node [label-below] {$1/100$};
+        \draw [arrow] (s) -- (v) node [label-above] {$100$};
+        \draw [arrow] (u) -- (v) node [label-above] {$1/1$};
+        \draw [arrow] (u) -- (t) node [label-below] {$100$};
+        \draw [arrow] (v) -- (t) node [label-above] {$1/100$};
+
+        % 2, 1
+        \node [point] (s) at (0,\y) {$\sv$};
+        \path (s) ++(30:\l) node[point] (v) {$\vv$};
+        \path (s) ++(330:\l) node[point] (u) {$\uv$};
+        \path (u) ++(30:\l) node[point] (t) {$\tv$};
+
+        \draw [arrow,shift-xy2-above] (s) -- (u) node [label-above] {$99$};
+        \draw [arrow,shift-xy2-below] (u) -- (s) node [label-below] {$1$};
+
+        \draw [arrow2] (s) -- (v) node [label-above] {$100$};
+        \draw [arrow2] (v) -- (u) node [label-above] {$\boxed{1}$};
+        \draw [arrow2] (u) -- (t) node [label-below] {$100$};
+        
+        \draw [arrow,shift-xy2-above] (v) -- (t) node [label-above] {$99$};
+        \draw [arrow,shift-xy2-below] (t) -- (v) node [label-below] {$1$};
+
+        % 2, 2
+        \node [point] (s) at (\x,\y) {$\sv$};
+        \path (s) ++(30:\l) node[point] (v) {$\vv$};
+        \path (s) ++(330:\l) node[point] (u) {$\uv$};
+        \path (u) ++(30:\l) node[point] (t) {$\tv$};
+
+        \draw [arrow] (s) -- (u) node [label-below] {$1/100$};
+        \draw [arrow] (s) -- (v) node [label-above] {$1/100$};
+        \draw [arrow] (u) -- (v) node [label-above] {$1$};
+        \draw [arrow] (u) -- (t) node [label-below] {$1/100$};
+        \draw [arrow] (v) -- (t) node [label-above] {$1/100$};
+
+    \end{tikzpicture}
+\end{center}
+
+
+\end{document}

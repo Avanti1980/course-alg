@@ -1,0 +1,550 @@
+\documentclass{ctexart}
+\usepackage{avanti-color}
+\usepackage{avanti-font}
+\usepackage{avanti-math}
+\usepackage{avanti-theorem}
+\usepackage{avanti-others}
+
+\tikzset{base/.style={smooth, very thick}}
+\tikzset{arrow/.style = {base, ->, -{Stealth[scale=0.8]}}}
+\tikzset{aug/.style = {arrow, Solarized-blue, ultra thick}}
+\tikzset{shift-above/.style = {arrow, transform canvas={yshift=0.6ex}}}
+\tikzset{shift-below/.style = {arrow, transform canvas={yshift=-0.6ex}}}
+\tikzset{label-above/.style = {midway, sloped, above}}
+\tikzset{label-below/.style = {midway, sloped, below}}
+
+\begin{document}
+\title{最大流补充资料}
+\author{张腾}
+\date{}
+\maketitle
+
+Ford-Fulkerson算法的时间复杂度是$O(E ~ |f^*|)$，事实上这个界是紧的。考虑图\ref{fig: worst-case}中的流网络，其中$m$是一个很大的整数，最大流量$|f^*| = 2m$，Ford-Fulkerson算法在此流网络上需迭代$2m$次才能得到最大流。
+
+初始化流$f = 0$，对应的残存网络就是原流网络，假设算法选择增广路径$s \rightarrow u \rightarrow v \rightarrow t$，流网络该路径上的流量都可以加$1$；接着假设选择增广路径$s \rightarrow v \rightarrow u \rightarrow t$，流网络该路径上的流量都可以加$1$；如此交替下去，每次都可以使得总流量增加$1$，总共需迭代$2m$次才能达到最优解。
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture} [thick, scale=1, font=\normalsize]
+
+        \pgfmathsetmacro{\x}{6}
+        \pgfmathsetmacro{\y}{-3.4}
+        \pgfmathsetmacro{\r}{2.5}
+
+        \path (0,0) coordinate (cs);
+        \path (cs) ++(-30:\r) coordinate (cu);
+        \path (cs) ++(30:\r) coordinate (cv);
+        \path (cu) ++(30:\r) coordinate (ct);
+        \node (s) at (cs) {$s$};
+        \node (u) at (cu) {$u$};
+        \node (v) at (cv) {$v$};
+        \node (t) at (ct) {$t$};
+
+        \draw [aug] (s) -- (u) node [label-above] {$m$};
+        \draw [arrow] (s) -- (v) node [label-above] {$m$};
+        \draw [aug] (u) -- (v) node [label-above] {$1$};
+        \draw [arrow] (u) -- (t) node [label-above] {$m$};
+        \draw [aug] (v) -- (t) node [label-above] {$m$};
+
+        \path (\x,0) coordinate (cs);
+        \path (cs) ++(-30:\r) coordinate (cu);
+        \path (cs) ++(30:\r) coordinate (cv);
+        \path (cu) ++(30:\r) coordinate (ct);
+        \node (s) at (cs) {$s$};
+        \node (u) at (cu) {$u$};
+        \node (v) at (cv) {$v$};
+        \node (t) at (ct) {$t$};
+
+        \draw [arrow] (s) -- (u) node [label-above] {$1 / m$};
+        \draw [arrow] (s) -- (v) node [label-above] {$m$};
+        \draw [arrow] (u) -- (v) node [label-above] {$1 / 1$};
+        \draw [arrow] (u) -- (t) node [label-above] {$m$};
+        \draw [arrow] (v) -- (t) node [label-above] {$1 / m$};
+
+        \path (0,\y) coordinate (cs);
+        \path (cs) ++(-30:\r) coordinate (cu);
+        \path (cs) ++(30:\r) coordinate (cv);
+        \path (cu) ++(30:\r) coordinate (ct);
+        \node (s) at (cs) {$s$};
+        \node (u) at (cu) {$u$};
+        \node (v) at (cv) {$v$};
+        \node (t) at (ct) {$t$};
+
+        \draw [shift-above] (s) -- (u) node [label-above] {$m-1$};
+        \draw [shift-below] (u) -- (s) node [label-below] {$1$};
+
+        \draw [aug] (s) -- (v) node [label-above] {$m$};
+        \draw [aug] (v) -- (u) node [label-above] {$1$};
+        \draw [aug] (u) -- (t) node [label-above] {$m$};
+        \draw [shift-above] (v) -- (t) node [label-above] {$m-1$};
+        \draw [shift-below] (t) -- (v) node [label-below] {$1$};
+
+        \path (\x,\y) coordinate (cs);
+        \path (cs) ++(-30:\r) coordinate (cu);
+        \path (cs) ++(30:\r) coordinate (cv);
+        \path (cu) ++(30:\r) coordinate (ct);
+        \node (s) at (cs) {$s$};
+        \node (u) at (cu) {$u$};
+        \node (v) at (cv) {$v$};
+        \node (t) at (ct) {$t$};
+
+        \draw [arrow] (s) -- (u) node [label-above] {$1 / m$};
+        \draw [arrow] (s) -- (v) node [label-above] {$1 / m$};
+        \draw [arrow] (u) -- (v) node [label-above] {$1$};
+        \draw [arrow] (u) -- (t) node [label-above] {$1 / m$};
+        \draw [arrow] (v) -- (t) node [label-above] {$1 / m$};
+
+        \path (0,2*\y) coordinate (cs);
+        \path (cs) ++(-30:\r) coordinate (cu);
+        \path (cs) ++(30:\r) coordinate (cv);
+        \path (cu) ++(30:\r) coordinate (ct);
+        \node (s) at (cs) {$s$};
+        \node (u) at (cu) {$u$};
+        \node (v) at (cv) {$v$};
+        \node (t) at (ct) {$t$};
+
+        \draw [shift-above, aug] (s) -- (u) node [label-above] {$m-1$};
+        \draw [shift-below] (u) -- (s) node [label-below] {$1$};
+
+        \draw [shift-above] (s) -- (v) node [label-above] {$m-1$};
+        \draw [shift-below] (v) -- (s) node [label-below] {$1$};
+
+        \draw [aug] (u) -- (v) node [label-above] {$1$};
+
+        \draw [shift-above] (u) -- (t) node [label-above] {$m-1$};
+        \draw [shift-below] (t) -- (u) node [label-below] {$1$};
+
+        \draw [shift-above, aug] (v) -- (t) node [label-above] {$m-1$};
+        \draw [shift-below] (t) -- (v) node [label-below] {$1$};
+
+        \path (\x,2*\y) coordinate (cs);
+        \path (cs) ++(-30:\r) coordinate (cu);
+        \path (cs) ++(30:\r) coordinate (cv);
+        \path (cu) ++(30:\r) coordinate (ct);
+        \node (s) at (cs) {$s$};
+        \node (u) at (cu) {$u$};
+        \node (v) at (cv) {$v$};
+        \node (t) at (ct) {$t$};
+
+        \draw [arrow] (s) -- (u) node [label-above] {$2 / m$};
+        \draw [arrow] (s) -- (v) node [label-above] {$1 / m$};
+        \draw [arrow] (u) -- (v) node [label-above] {$1 / 1$};
+        \draw [arrow] (u) -- (t) node [label-above] {$1 / m$};
+        \draw [arrow] (v) -- (t) node [label-above] {$2 / m$};
+
+    \end{tikzpicture}
+    \caption{每轮总流量增加$1$，总共需迭代$2m$次才能达到最大流}
+    \label{fig: worst-case}
+\end{figure}
+
+\section*{无理数容量上限}
+
+以上讨论都是针对容量上限为整数的情形，若容量上限为有理数，则先将其全部表示成既约分数，然后乘上分母的最小公倍数使其全部变成整数，之后在这个新的流网络上使用Ford-Fulkerson算法得到最大流，再除以分母的最小公倍数即可得到原流网络的最大流。
+
+对于容量上限为无理数的情形，Ford-Fulkerson算法就无能为力了，它既不会在有限步内停止，生成的流量序列也不趋向于最大流，例如图\ref{fig: irrational-case}中的流网络，其中$m$是一个很大的整数，$\phi = (\sqrt{5} - 1) / 2$为黄金分割比，满足$1 - \phi = \phi^2$，最大流量$|f^*| = 2m+1$。
+
+初始化流$f = 0$，对应的残存网络就是原流网络，假设算法选择增广路径$s \rightarrow b \rightarrow c \rightarrow t$，流网络该路径上的流量都可以加$1$，于是第一轮迭代的情况如下所示：
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture} [thick, scale=0.9, font=\normalsize]
+
+        \pgfmathsetmacro{\r}{2.5}
+        \pgfmathsetmacro{\rr}{2.4}
+
+        \path (0,0) coordinate (ca);
+        \path (\rr,0) coordinate (cb);
+        \path (2*\rr,0) coordinate (cc);
+        \path (3*\rr,0) coordinate (cd);
+
+        \path (cb) ++(60:\r) coordinate (cs);
+        \path (cc) ++(240:\r) coordinate (ct);
+
+        \node (a) at (ca) {$a$};
+        \node (b) at (cb) {$b$};
+        \node (c) at (cc) {$c$};
+        \node (d) at (cd) {$d$};
+        \node (s) at (cs) {$s$};
+        \node (t) at (ct) {$t$};
+
+        \draw [arrow] (s) -- (a) node [label-above] {$m$};
+        \draw [aug] (s) -- (b) node [label-above] {$m$};
+        \draw [arrow] (s) -- (d) node [label-above] {$m$};
+
+        \draw [arrow] (a) -- (t) node [label-above] {$m$};
+        \draw [aug] (c) -- (t) node [label-above] {$m$};
+        \draw [arrow] (d) -- (t) node [label-above] {$m$};
+
+        \draw [arrow] (b) -- (a) node [label-above] {$1$};
+        \draw [aug] (b) -- (c) node [label-above] {$1$};
+        \draw [arrow] (d) -- (c) node [label-above] {$\phi$};
+
+        \path (8.5,0) coordinate (ca);
+        \path (8.5+\rr,0) coordinate (cb);
+        \path (8.5+2*\rr,0) coordinate (cc);
+        \path (8.5+3*\rr,0) coordinate (cd);
+
+        \path (cb) ++(60:\r) coordinate (cs);
+        \path (cc) ++(240:\r) coordinate (ct);
+
+        \node (a) at (ca) {$a$};
+        \node (b) at (cb) {$b$};
+        \node (c) at (cc) {$c$};
+        \node (d) at (cd) {$d$};
+        \node (s) at (cs) {$s$};
+        \node (t) at (ct) {$t$};
+
+        \draw [arrow] (s) -- (a) node [label-above] {$m$};
+        \draw [arrow] (s) -- (b) node [label-above] {$1 / m$};
+        \draw [arrow] (s) -- (d) node [label-above] {$m$};
+
+        \draw [arrow] (a) -- (t) node [label-above] {$m$};
+        \draw [arrow] (c) -- (t) node [label-above] {$1 / m$};
+        \draw [arrow] (d) -- (t) node [label-above] {$m$};
+
+        \draw [arrow] (b) -- (a) node [label-above] {$1$};
+        \draw [arrow] (b) -- (c) node [label-above] {$1/1$};
+        \draw [arrow] (d) -- (c) node [label-above] {$\phi$};
+
+    \end{tikzpicture}
+    \caption{第一轮}
+\end{figure}
+
+第二轮假设算法选择的增广路径为$s \rightarrow d \rightarrow c \rightarrow b \rightarrow a \rightarrow t$，流网络该路径上的流量都可以增加$\phi$，于是
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture} [thick, scale=0.9, font=\normalsize]
+
+        \pgfmathsetmacro{\r}{2.5}
+        \pgfmathsetmacro{\rr}{2.4}
+
+        \path (0,0) coordinate (ca);
+        \path (\rr,0) coordinate (cb);
+        \path (2*\rr,0) coordinate (cc);
+        \path (3*\rr,0) coordinate (cd);
+
+        \path (cb) ++(60:\r) coordinate (cs);
+        \path (cc) ++(240:\r) coordinate (ct);
+
+        \node (a) at (ca) {$a$};
+        \node (b) at (cb) {$b$};
+        \node (c) at (cc) {$c$};
+        \node (d) at (cd) {$d$};
+        \node (s) at (cs) {$s$};
+        \node (t) at (ct) {$t$};
+
+        \draw [arrow] (s) -- (a) node [label-above] {$m$};
+        \draw [shift-above] (s) -- (b) node [label-above] {$m-1$};
+        \draw [shift-below] (b) -- (s) node [midway,sloped, below] {$1$};
+        \draw [aug] (s) -- (d) node [label-above] {$m$};
+
+        \draw [aug] (a) -- (t) node [label-above] {$m$};
+        \draw [shift-above] (c) -- (t) node [label-above] {$m-1$};
+        \draw [shift-below] (t) -- (c) node [midway,sloped, below] {$1$};
+        \draw [arrow] (d) -- (t) node [label-above] {$m$};
+
+        \draw [aug] (b) -- (a) node [label-above] {$1$};
+        \draw [aug] (c) -- (b) node [label-above] {$1$};
+        \draw [aug] (d) -- (c) node [label-above] {$\phi$};
+
+        \path (8.5+0,0) coordinate (ca);
+        \path (8.5+\rr,0) coordinate (cb);
+        \path (8.5+2*\rr,0) coordinate (cc);
+        \path (8.5+3*\rr,0) coordinate (cd);
+
+        \path (cb) ++(60:\r) coordinate (cs);
+        \path (cc) ++(240:\r) coordinate (ct);
+
+        \node (a) at (ca) {$a$};
+        \node (b) at (cb) {$b$};
+        \node (c) at (cc) {$c$};
+        \node (d) at (cd) {$d$};
+        \node (s) at (cs) {$s$};
+        \node (t) at (ct) {$t$};
+
+        \draw [arrow] (s) -- (a) node [label-above] {$m$};
+        \draw [arrow] (s) -- (b) node [label-above] {$1 / m$};
+        \draw [arrow] (s) -- (d) node [label-above] {$\phi / m$};
+
+        \draw [arrow] (a) -- (t) node [label-above] {$\phi / m$};
+        \draw [arrow] (c) -- (t) node [label-above] {$1 / m$};
+        \draw [arrow] (d) -- (t) node [label-above] {$m$};
+
+        \draw [arrow] (b) -- (a) node [label-above] {$\phi / 1$};
+        \draw [arrow] (b) -- (c) node [label-above] {$1 - \phi/1$};
+        \draw [arrow] (d) -- (c) node [label-above] {$\phi / \phi$};
+
+    \end{tikzpicture}
+    \caption{第二轮}
+\end{figure}
+
+结合这两个例子可以看出，容量上限为$m$的边不是瓶颈，关键是中间的三条横边，下面我们就省略源点$s$、汇点$t$以及和它们相连的边，只画中间这三条边。
+
+\begin{figure}[!ht]
+    \centering
+
+    \pgfmathsetmacro{\x}{8}
+    \pgfmathsetmacro{\y}{-1.8}
+    \pgfmathsetmacro{\r}{2.5}
+    \pgfmathsetmacro{\rr}{2.2}
+
+    % iter 2
+
+    \begin{tikzpicture} [thick, scale=1, font=\normalsize]
+
+        \path (0,0) coordinate (ca);
+        \path (\rr,0) coordinate (cb);
+        \path (2*\rr,0) coordinate (cc);
+        \path (3*\rr,0) coordinate (cd);
+
+        \node (a) at (ca) {$a$};
+        \node (b) at (cb) {$b$};
+        \node (c) at (cc) {$c$};
+        \node (d) at (cd) {$d$};
+
+        \draw [aug] (b) -- (a) node [label-above] {$1$};
+        \draw [aug] (c) -- (b) node [label-above] {$1$};
+        \draw [aug] (d) -- (c) node [label-above] {$\phi$};
+
+        \path (\x + 0,0) coordinate (ca);
+        \path (\x + \rr,0) coordinate (cb);
+        \path (\x + 2*\rr,0) coordinate (cc);
+        \path (\x + 3*\rr,0) coordinate (cd);
+
+        \node (a) at (ca) {$a$};
+        \node (b) at (cb) {$b$};
+        \node (c) at (cc) {$c$};
+        \node (d) at (cd) {$d$};
+
+        \draw [arrow] (b) -- (a) node [label-above] {$\phi / 1$};
+        \draw [arrow] (b) -- (c) node [label-above] {$1 - \phi / 1$};
+        \draw [arrow] (d) -- (c) node [label-above] {$\phi / \phi$};
+
+
+        \path (0,    \y) coordinate (ca);
+        \path (\rr,  \y) coordinate (cb);
+        \path (2*\rr,\y) coordinate (cc);
+        \path (3*\rr,\y) coordinate (cd);
+
+        \node (a) at (ca) {$a$};
+        \node (b) at (cb) {$b$};
+        \node (c) at (cc) {$c$};
+        \node (d) at (cd) {$d$};
+
+        \draw [shift-above] (b) -- (a) node [label-above] {$\phi^2$};
+        \draw [shift-below] (a) -- (b) node [label-below] {$1 - \phi^2$};
+        \draw [shift-above, aug] (b) -- (c) node [label-above] {$\phi$};
+        \draw [shift-below] (c) -- (b) node [label-below] {$1 - \phi$};
+        \draw [aug] (c) -- (d) node [label-above] {$\phi$};
+
+        \path (\x + 0,    \y) coordinate (ca);
+        \path (\x + \rr,  \y) coordinate (cb);
+        \path (\x + 2*\rr,\y) coordinate (cc);
+        \path (\x + 3*\rr,\y) coordinate (cd);
+
+        \node (a) at (ca) {$a$};
+        \node (b) at (cb) {$b$};
+        \node (c) at (cc) {$c$};
+        \node (d) at (cd) {$d$};
+
+        \draw [arrow] (b) -- (a) node [label-above] {$\phi / 1$};
+        \draw [arrow] (b) -- (c) node [label-above] {$1 / 1$};
+        \draw [arrow] (d) -- (c) node [label-above] {$\phi$};
+
+
+        \path (0,    2*\y) coordinate (ca);
+        \path (\rr,  2*\y) coordinate (cb);
+        \path (2*\rr,2*\y) coordinate (cc);
+        \path (3*\rr,2*\y) coordinate (cd);
+
+        \node (a) at (ca) {$a$};
+        \node (b) at (cb) {$b$};
+        \node (c) at (cc) {$c$};
+        \node (d) at (cd) {$d$};
+
+        \draw [shift-above, aug] (b) -- (a) node [label-above] {$\phi^2$};
+        \draw [shift-below] (a) -- (b) node [label-below] {$1 - \phi^2$};
+        \draw [aug] (c) -- (b) node [label-above] {$1$};
+        \draw [aug] (d) -- (c) node [label-above] {$\phi$};
+
+        \path (\x + 0,     2 * \y) coordinate (ca);
+        \path (\x + \rr,   2 * \y) coordinate (cb);
+        \path (\x + 2*\rr, 2 * \y) coordinate (cc);
+        \path (\x + 3*\rr, 2 * \y) coordinate (cd);
+
+        \node (a) at (ca) {$a$};
+        \node (b) at (cb) {$b$};
+        \node (c) at (cc) {$c$};
+        \node (d) at (cd) {$d$};
+
+        \draw [arrow] (b) -- (a) node [label-above] {$1 / 1$};
+        \draw [arrow] (b) -- (c) node [label-above] {$1 - \phi^2 / 1$};
+        \draw [arrow] (d) -- (c) node [label-above] {$\phi^2 / \phi$};
+
+        \path (0,     3 * \y) coordinate (ca);
+        \path (\rr,   3 * \y) coordinate (cb);
+        \path (2*\rr, 3 * \y) coordinate (cc);
+        \path (3*\rr, 3 * \y) coordinate (cd);
+
+        \node (a) at (ca) {$a$};
+        \node (b) at (cb) {$b$};
+        \node (c) at (cc) {$c$};
+        \node (d) at (cd) {$d$};
+
+        \draw [aug] (a) -- (b) node [label-above] {$1$};
+        \draw [shift-below] (c) -- (b) node [label-below] {$1 - \phi^2$};
+        \draw [shift-above, aug] (b) -- (c) node [label-above] {$\phi^2$};
+        \draw [shift-above] (d) -- (c) node [label-above] {$\phi^3$};
+        \draw [shift-below] (c) -- (d) node [label-below] {$\phi - \phi^3$};
+
+        \path (\x + 0,     3 * \y) coordinate (ca);
+        \path (\x + \rr,   3 * \y) coordinate (cb);
+        \path (\x + 2*\rr, 3 * \y) coordinate (cc);
+        \path (\x + 3*\rr, 3 * \y) coordinate (cd);
+
+        \node (a) at (ca) {$a$};
+        \node (b) at (cb) {$b$};
+        \node (c) at (cc) {$c$};
+        \node (d) at (cd) {$d$};
+
+        \draw [arrow] (b) -- (a) node [label-above] {$1 - \phi^2 / 1$};
+        \draw [arrow] (b) -- (c) node [label-above] {$1 / 1$};
+        \draw [arrow] (d) -- (c) node [label-above] {$\phi^2 / \phi$};
+
+
+        \path (0,     4 * \y) coordinate (ca);
+        \path (\rr,   4 * \y) coordinate (cb);
+        \path (2*\rr, 4 * \y) coordinate (cc);
+        \path (3*\rr, 4 * \y) coordinate (cd);
+
+        \node (a) at (ca) {$a$};
+        \node (b) at (cb) {$b$};
+        \node (c) at (cc) {$c$};
+        \node (d) at (cd) {$d$};
+
+        \draw [shift-above, aug] (b) -- (a) node [label-above] {$\phi^2$};
+        \draw [shift-below] (a) -- (b) node [label-below] {$1 - \phi^2$};
+        \draw [aug] (c) -- (b) node [label-above] {$1$};
+        \draw [shift-above, aug] (d) -- (c) node [label-above] {$\phi^3$};
+        \draw [shift-below] (c) -- (d) node [label-below] {$\phi - \phi^3$};
+
+        \path (\x + 0,     4 * \y) coordinate (ca);
+        \path (\x + \rr,   4 * \y) coordinate (cb);
+        \path (\x + 2*\rr, 4 * \y) coordinate (cc);
+        \path (\x + 3*\rr, 4 * \y) coordinate (cd);
+
+        \node (a) at (ca) {$a$};
+        \node (b) at (cb) {$b$};
+        \node (c) at (cc) {$c$};
+        \node (d) at (cd) {$d$};
+
+        \draw [arrow] (b) -- (a) node [label-above] {$\phi + \phi^3 / 1$};
+        \draw [arrow] (b) -- (c) node [label-above] {$1 - \phi^3 / 1$};
+        \draw [arrow] (d) -- (c) node [label-above] {$\phi / \phi$};
+
+
+        \path (0,     5 * \y) coordinate (ca);
+        \path (\rr,   5 * \y) coordinate (cb);
+        \path (2*\rr, 5 * \y) coordinate (cc);
+        \path (3*\rr, 5 * \y) coordinate (cd);
+
+        \node (a) at (ca) {$a$};
+        \node (b) at (cb) {$b$};
+        \node (c) at (cc) {$c$};
+        \node (d) at (cd) {$d$};
+
+        \draw [shift-above] (b) -- (a) node [label-above] {$\phi^4$};
+        \draw [shift-below] (a) -- (b) node [label-below] {$1 - \phi^4$};
+        \draw [shift-above, aug] (b) -- (c) node [label-above] {$\phi^3$};
+        \draw [shift-below] (c) -- (b) node [label-below] {$1 - \phi^3$};
+        \draw [aug] (c) -- (d) node [label-above] {$\phi$};
+
+        \path (\x + 0,     5 * \y) coordinate (ca);
+        \path (\x + \rr,   5 * \y) coordinate (cb);
+        \path (\x + 2*\rr, 5 * \y) coordinate (cc);
+        \path (\x + 3*\rr, 5 * \y) coordinate (cd);
+
+        \node (a) at (ca) {$a$};
+        \node (b) at (cb) {$b$};
+        \node (c) at (cc) {$c$};
+        \node (d) at (cd) {$d$};
+
+        \draw [arrow] (b) -- (a) node [label-above] {$\phi + \phi^3 / 1$};
+        \draw [arrow] (b) -- (c) node [label-above] {$1 / 1$};
+        \draw [arrow] (d) -- (c) node [label-above] {$\phi - \phi^3 / \phi$};
+
+
+        \path (0,     6 * \y) coordinate (ca);
+        \path (\rr,   6 * \y) coordinate (cb);
+        \path (2*\rr, 6 * \y) coordinate (cc);
+        \path (3*\rr, 6 * \y) coordinate (cd);
+
+        \node (a) at (ca) {$a$};
+        \node (b) at (cb) {$b$};
+        \node (c) at (cc) {$c$};
+        \node (d) at (cd) {$d$};
+
+        \draw [shift-above, aug] (b) -- (a) node [label-above] {$\phi^4$};
+        \draw [shift-below] (a) -- (b) node [label-below] {$1 - \phi^4$};
+        \draw [aug] (c) -- (b) node [label-above] {$1$};
+        \draw [shift-above, aug] (d) -- (c) node [label-above] {$\phi^3$};
+        \draw [shift-below] (c) -- (d) node [label-below] {$\phi - \phi^3$};
+
+        \path (\x + 0,     6 * \y) coordinate (ca);
+        \path (\x + \rr,   6 * \y) coordinate (cb);
+        \path (\x + 2*\rr, 6 * \y) coordinate (cc);
+        \path (\x + 3*\rr, 6 * \y) coordinate (cd);
+
+        \node (a) at (ca) {$a$};
+        \node (b) at (cb) {$b$};
+        \node (c) at (cc) {$c$};
+        \node (d) at (cd) {$d$};
+
+        \draw [arrow] (b) -- (a) node [label-above] {$1 / 1$};
+        \draw [arrow] (b) -- (c) node [label-above] {$1 - \phi^4 / 1$};
+        \draw [arrow] (d) -- (c) node [label-above] {$\phi^2 + \phi^4 / \phi$};
+
+
+        \path (0,     7 * \y) coordinate (ca);
+        \path (\rr,   7 * \y) coordinate (cb);
+        \path (2*\rr, 7 * \y) coordinate (cc);
+        \path (3*\rr, 7 * \y) coordinate (cd);
+
+        \node (a) at (ca) {$a$};
+        \node (b) at (cb) {$b$};
+        \node (c) at (cc) {$c$};
+        \node (d) at (cd) {$d$};
+
+        \draw [aug] (a) -- (b) node [label-above] {$1$};
+        \draw [shift-above, aug] (b) -- (c) node [label-above] {$\phi^4$};
+        \draw [shift-below] (c) -- (b) node [label-below] {$1 - \phi^4$};
+        \draw [shift-above] (d) -- (c) node [label-above] {$\phi^5$};
+        \draw [shift-below] (c) -- (d) node [label-below] {$\phi - \phi^5$};
+
+        \path (\x + 0,     7 * \y) coordinate (ca);
+        \path (\x + \rr,   7 * \y) coordinate (cb);
+        \path (\x + 2*\rr, 7 * \y) coordinate (cc);
+        \path (\x + 3*\rr, 7 * \y) coordinate (cd);
+
+        \node (a) at (ca) {$a$};
+        \node (b) at (cb) {$b$};
+        \node (c) at (cc) {$c$};
+        \node (d) at (cd) {$d$};
+
+        \draw [arrow] (b) -- (a) node [label-above] {$1 - \phi^4 / 1$};
+        \draw [arrow] (b) -- (c) node [label-above] {$1 / 1$};
+        \draw [arrow] (d) -- (c) node [label-above] {$\phi^2 + \phi^4 / \phi$};
+
+    \end{tikzpicture}
+    \caption{第二轮至第九轮，九轮后流值$|f| = 1 + 2 \phi + 2 \phi^2 + 2 \phi^3 + 2 \phi^4$}
+
+\end{figure}
+
+不难看出，每$4$轮一个周期，经过$4 n + 1$次迭代后，总流量
+\begin{align*}
+    |f| = 1 + 2 \sum_{i=1}^{2n} \phi^i = 1 + 2 \frac{\phi(1 - \phi^{2n})}{1 - \phi} \xrightarrow{\quad n \rightarrow \infty \quad} 1 + 2 \frac{\phi}{1 - \phi} = 1 + \frac{2}{\phi} = 2 + \sqrt{5} \ll 2m+1
+\end{align*}
+
+\end{document}
+

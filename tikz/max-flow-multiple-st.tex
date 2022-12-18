@@ -41,21 +41,21 @@
         \path (v3) ++(30:\l) node[point] (t2) {$\tv_2$};
         \path (v4) ++(30:\l) node[point] (t3) {$\tv_3$};
 
-        \draw [arrow] (s1) -- (v1) node [] {};
-        \draw [arrow] (s2) -- (v1) node [] {};
-        \draw [arrow] (s2) -- (v2) node [] {};
-        \draw [arrow] (s3) -- (v2) node [] {};
-        \draw [arrow] (s3) -- (v3) node [] {};
-        \draw [arrow] (s4) -- (v3) node [] {};
-        \draw [arrow] (s4) -- (v4) node [] {};
-        \draw [arrow] (s5) -- (v4) node [] {};
+        \draw [arrow] (s1) -- (v1) node [above=0pt, sloped, pos=0.5] {$1$};
+        \draw [arrow] (s2) -- (v1) node [above=0pt, sloped, pos=0.5] {$1$};
+        \draw [arrow] (s2) -- (v2) node [above=0pt, sloped, pos=0.5] {$1$};
+        \draw [arrow] (s3) -- (v2) node [above=0pt, sloped, pos=0.5] {$1$};
+        \draw [arrow] (s3) -- (v3) node [above=0pt, sloped, pos=0.5] {$1$};
+        \draw [arrow] (s4) -- (v3) node [above=0pt, sloped, pos=0.5] {$1$};
+        \draw [arrow] (s4) -- (v4) node [above=0pt, sloped, pos=0.5] {$1$};
+        \draw [arrow] (s5) -- (v4) node [above=0pt, sloped, pos=0.5] {$1$};
 
-        \draw [arrow] (v1) -- (t1) node [] {};
-        \draw [arrow] (v2) -- (t1) node [] {};
-        \draw [arrow] (v2) -- (t2) node [] {};
-        \draw [arrow] (v3) -- (t2) node [] {};
-        \draw [arrow] (v3) -- (t3) node [] {};
-        \draw [arrow] (v4) -- (t3) node [] {};
+        \draw [arrow] (v1) -- (t1) node [above=0pt, sloped, pos=0.5] {$1$};
+        \draw [arrow] (v2) -- (t1) node [above=0pt, sloped, pos=0.5] {$1$};
+        \draw [arrow] (v2) -- (t2) node [above=0pt, sloped, pos=0.5] {$1$};
+        \draw [arrow] (v3) -- (t2) node [above=0pt, sloped, pos=0.5] {$1$};
+        \draw [arrow] (v3) -- (t3) node [above=0pt, sloped, pos=0.5] {$1$};
+        \draw [arrow] (v4) -- (t3) node [above=0pt, sloped, pos=0.5] {$1$};
 
         \node [point] (s3) at (10,0) {$\sv_3$};
         \path (s3) ++(0,\l) node[point] (s2) {$\sv_2$};
@@ -78,31 +78,29 @@
 
         \tikzset{font=\large}
 
-        \draw [arrow] (s1) -- (v1) node [] {};
-        \draw [arrow] (s2) -- (v1) node [] {};
-        \draw [arrow] (s2) -- (v2) node [] {};
-        \draw [arrow] (s3) -- (v2) node [] {};
-        \draw [arrow] (s3) -- (v3) node [] {};
-        \draw [arrow] (s4) -- (v3) node [] {};
-        \draw [arrow] (s4) -- (v4) node [] {};
-        \draw [arrow] (s5) -- (v4) node [] {};
+        \draw [arrow] (s1) -- (v1) node [above=0pt, sloped, pos=0.5] {$1$};
+        \draw [arrow] (s2) -- (v1) node [above=0pt, sloped, pos=0.5] {$1$};
+        \draw [arrow] (s2) -- (v2) node [above=0pt, sloped, pos=0.5] {$1$};
+        \draw [arrow] (s3) -- (v2) node [above=0pt, sloped, pos=0.5] {$1$};
+        \draw [arrow] (s3) -- (v3) node [above=0pt, sloped, pos=0.5] {$1$};
+        \draw [arrow] (s4) -- (v3) node [above=0pt, sloped, pos=0.5] {$1$};
+        \draw [arrow] (s4) -- (v4) node [above=0pt, sloped, pos=0.5] {$1$};
+        \draw [arrow] (s5) -- (v4) node [above=0pt, sloped, pos=0.5] {$1$};
+        \draw [arrow] (v1) -- (t1) node [above=0pt, sloped, pos=0.5] {$1$};
+        \draw [arrow] (v2) -- (t1) node [above=0pt, sloped, pos=0.5] {$1$};
+        \draw [arrow] (v2) -- (t2) node [above=0pt, sloped, pos=0.5] {$1$};
+        \draw [arrow] (v3) -- (t2) node [above=0pt, sloped, pos=0.5] {$1$};
+        \draw [arrow] (v3) -- (t3) node [above=0pt, sloped, pos=0.5] {$1$};
+        \draw [arrow] (v4) -- (t3) node [above=0pt, sloped, pos=0.5] {$1$};
 
-        \draw [arrow] (v1) -- (t1) node [] {};
-        \draw [arrow] (v2) -- (t1) node [] {};
-        \draw [arrow] (v2) -- (t2) node [] {};
-        \draw [arrow] (v3) -- (t2) node [] {};
-        \draw [arrow] (v3) -- (t3) node [] {};
-        \draw [arrow] (v4) -- (t3) node [] {};
-
-        \draw [arrow] (s) -- (s1) node [left=2pt, pos=0.5] {$\infty$};
-        \draw [arrow] (s) -- (s2) node [above=4pt, pos=0.4] {$\infty$};
-        \draw [arrow] (s) -- (s3) node [above=0pt, pos=0.5] {$\infty$};
-        \draw [arrow] (s) -- (s4) node [below=4pt, pos=0.4] {$\infty$};
-        \draw [arrow] (s) -- (s5) node [left=2pt, pos=0.5] {$\infty$};
-
-        \draw [arrow] (t1) -- (t) node [above=4pt, pos=0.5] {$\infty$};
-        \draw [arrow] (t2) -- (t) node [above=0pt, pos=0.5] {$\infty$};
-        \draw [arrow] (t3) -- (t) node [below=4pt, pos=0.5] {$\infty$};
+        \draw [arrow] (s) -- (s1) node [above=0pt, sloped, pos=0.5] {$\infty$};
+        \draw [arrow] (s) -- (s2) node [above=0pt, sloped, pos=0.5] {$\infty$};
+        \draw [arrow] (s) -- (s3) node [above=0pt, sloped, pos=0.5] {$\infty$};
+        \draw [arrow] (s) -- (s4) node [above=0pt, sloped, pos=0.5] {$\infty$};
+        \draw [arrow] (s) -- (s5) node [above=0pt, sloped, pos=0.5] {$\infty$};
+        \draw [arrow] (t1) -- (t) node [above=0pt, sloped, pos=0.5] {$\infty$};
+        \draw [arrow] (t2) -- (t) node [above=0pt, sloped, pos=0.5] {$\infty$};
+        \draw [arrow] (t3) -- (t) node [above=0pt, sloped, pos=0.5] {$\infty$};
 
         %\path (s) ++(30:\l)  node[point] (v1) {$\vv_1$};
         %\path (s) ++(330:\l)  node[point] (v2) {$\vv_2$};

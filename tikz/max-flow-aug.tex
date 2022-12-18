@@ -21,6 +21,19 @@
 \tikzset{point/.style={circle, minimum height=0.8cm, base, draw=Solarized-base01, fill=Solarized-base2}}
 \tikzset{arrow/.style={->, -{Stealth[scale=0.8]}, base}}
 \tikzset{arrow2/.style={->, -{Stealth[scale=0.8]}, base, ultra thick, Solarized-blue}}
+\tikzset{shift-x-above/.style = {transform canvas={xshift=0.4ex}}}
+\tikzset{shift-x-below/.style = {transform canvas={xshift=-0.4ex}}}
+\tikzset{shift-y-above/.style = {transform canvas={yshift=0.4ex}}}
+\tikzset{shift-y-below/.style = {transform canvas={yshift=-0.4ex}}}
+\tikzset{shift-xy-above/.style = {transform canvas={xshift=-0.34641ex,yshift=0.2ex}}}
+\tikzset{shift-xy-below/.style = {transform canvas={xshift=0.34641ex,yshift=-0.2ex}}}
+\tikzset{shift-xy2-above/.style = {transform canvas={xshift=0.34641ex,yshift=0.2ex}}}
+\tikzset{shift-xy2-below/.style = {transform canvas={xshift=-0.34641ex,yshift=-0.2ex}}}
+\tikzset{shift-xy3-above/.style = {transform canvas={xshift=-0.282842712474619ex,yshift=0.282842712474619ex}}}
+\tikzset{shift-xy3-below/.style = {transform canvas={xshift=0.282842712474619ex,yshift=-0.282842712474619ex}}}
+\tikzset{label-above/.style = {midway, sloped, above}}
+\tikzset{label-below/.style = {midway, sloped, below}}
+\tikzset{highlight/.style={base, line width=1.2mm, Solarized-blue, opacity=0.6}}
 
 \begin{document}
 
@@ -36,15 +49,15 @@
         \path (v2) ++(\l,0)  node[point] (v4) {$\vv_4$};
         \path (v4) ++(30:\l)  node[point] (t) {$\tv$};
 
-        \draw [arrow] (s) -- (v1) node [above=5pt, pos=0.2] {$11/16$};
-        \draw [arrow] (s) -- (v2) node [below=5pt, pos=0.2] {$8/13$};
-        \draw [arrow] (v2) -- (v1) node [left=0pt, pos=0.5] {$1/4$};
+        \draw [arrow] (s) -- (v1) node [above=0pt, sloped, pos=0.5] {$11/16$};
+        \draw [arrow] (s) -- (v2) node [below=0pt, sloped, pos=0.5] {$8/13$};
+        \draw [arrow] (v2) -- (v1) node [above=0pt, sloped, pos=0.5] {$1/4$};
         \draw [arrow] (v1) -- (v3) node [above=0pt, pos=0.5] {$12/12$};
         \draw [arrow] (v2) -- (v4) node [below=0pt, pos=0.5] {$11/14$};
-        \draw [arrow] (v4) -- (v3) node [right=0pt, pos=0.5] {$7/7$};
-        \draw [arrow] (v3) -- (v2) node [right=3pt, pos=0.6] {$4/9$};
-        \draw [arrow] (v3) -- (t) node [above=5pt, pos=0.8] {$15/20$};
-        \draw [arrow] (v4) -- (t) node [below=4pt, pos=0.7] {$4/4$};
+        \draw [arrow] (v4) -- (v3) node [above=0pt, sloped, pos=0.5] {$7/7$};
+        \draw [arrow] (v3) -- (v2) node [above=0pt, sloped, pos=0.5] {$4/9$};
+        \draw [arrow] (v3) -- (t) node [above=0pt, sloped, pos=0.5] {$15/20$};
+        \draw [arrow] (v4) -- (t) node [below=0pt, sloped, pos=0.5] {$4/4$};
 
         \node [point] (s) at (9.5,0) {$\sv$};
         \path (s) ++(30:\l) node[point] (v1) {$\vv_1$};
@@ -59,45 +72,27 @@
 
         \tikzset{font=\large}
 
-        \draw [arrow] (s) to [out=40, in=200] (v1);
-        \draw [arrow] (v1) to [out=220, in=20] (s);
+        \draw [arrow,shift-xy-above] (s) -- (v1) node [label-above] {$5$};
+        \draw [arrow,shift-xy-below] (v1) -- (s) node [label-below] {$11$};
 
-        \draw [arrow2] (s) to [out=340, in=140] (v2);
-        \draw [arrow] (v2) to [out=160, in=320] (s);
+        \draw [arrow2,shift-xy2-above] (s) -- (v2) node [label-above] {$5$};
+        \draw [arrow,shift-xy2-below] (v2) -- (s) node [label-below] {$8$};
 
-        \draw [arrow] (v1) to [out=260, in=100] (v2);
-        \draw [arrow] (v2) to [out=80, in=280] (v1);
+        \draw [arrow,shift-x-below] (v2) -- (v1) node [label-above] {$3$};
+        \draw [arrow,shift-x-above] (v1) -- (v2) node [label-above] {$1$};
 
-        \draw [arrow2] (v3) to [out=340, in=140] (t);
-        \draw [arrow] (t) to [out=160, in=320] (v3);
+        \draw [arrow2,shift-xy2-above] (v3) -- (t) node [label-above] {$5$};
+        \draw [arrow,shift-xy2-below] (t) -- (v3) node [label-below] {$15$};
 
-        \draw [arrow] (v2) to [out=10, in=170] (v4);
-        \draw [arrow] (v4) to [out=190, in=350] (v2);
+        \draw [arrow,shift-y-above] (v2) -- (v4) node [label-above] {$3$};
+        \draw [arrow,shift-y-below] (v4) -- (v2) node [label-below] {$11$};
 
-        \draw [arrow] (v3) to [out=215, in=55] (v2);
-        \draw [arrow2] (v2) to [out=35, in=235] (v3);
+        \draw [arrow2,shift-xy3-above] (v2) -- (v3) node [label-above] {$4$};
+        \draw [arrow,shift-xy3-below] (v3) -- (v2) node [label-below] {$5$};
 
-        \path (s) ++(0.35*\l,0.4*\l) node[] () {$5$};
-        \path (s) ++(0.52*\l,0.1*\l) node[] () {$11$};
-
-        \path (s) ++(0.35*\l,-0.4*\l) node[] () {$8$};
-        \path (s) ++(0.52*\l,-0.1*\l) node[] () {$5$};
-
-        \path (v2) ++(0.15*\l,0.5*\l) node[] () {$3$};
-        \path (v2) ++(-0.15*\l,0.5*\l) node[] () {$1$};
-
-        \path (v2) ++(0.5*\l,0.18*\l) node[] () {$3$};
-        \path (v2) ++(0.5*\l,-0.18*\l) node[] () {$11$};
-
-        \path (v2) ++(0.42*\l,0.7*\l) node[] () {$5$};
-        \path (v2) ++(0.66*\l,0.4*\l) node[] () {$4$};
-
-        \path (v3) ++(0.35*\l,-0.4*\l) node[] () {$15$};
-        \path (v3) ++(0.52*\l,-0.1*\l) node[] () {$5$};
-
-        \draw [arrow] (v3) -- (v4) node [right=0pt, pos=0.5] {$7$};
+        \draw [arrow] (v3) -- (v4) node [above=0pt, sloped, pos=0.5] {$7$};
         \draw [arrow] (v3) -- (v1) node [above=0pt, pos=0.5] {$12$};
-        \draw [arrow] (t) -- (v4) node [below=0pt, pos=0.35] {$4$};
+        \draw [arrow] (t) -- (v4) node [below=0pt, sloped, pos=0.5] {$4$};
 
         \node [point] (s) at (0,-5) {$\sv$};
         \path (s) ++(30:\l)  node[point] (v1) {$\vv_1$};
@@ -106,15 +101,15 @@
         \path (v2) ++(\l,0)  node[point] (v4) {$\vv_4$};
         \path (v4) ++(30:\l)  node[point] (t) {$\tv$};
 
-        \draw [arrow] (s) -- (v1) node [above=5pt, pos=0.2] {$11/16$};
-        \draw [arrow2] (s) -- (v2) node [below=5pt, pos=0.2] {$12/13$};
-        \draw [arrow] (v2) -- (v1) node [left=0pt, pos=0.5] {$1/4$};
+        \draw [arrow] (s) -- (v1) node [above=0pt, sloped, pos=0.5] {$11/16$};
+        \draw [arrow] (s) -- (v2) node [below=0pt, sloped, pos=0.5] {$12/13$};
+        \draw [arrow] (v2) -- (v1) node [above=0pt, sloped, pos=0.5] {$1/4$};
         \draw [arrow] (v1) -- (v3) node [above=0pt, pos=0.5] {$12/12$};
         \draw [arrow] (v2) -- (v4) node [below=0pt, pos=0.5] {$11/14$};
-        \draw [arrow] (v4) -- (v3) node [right=0pt, pos=0.5] {$7/7$};
-        \draw [arrow2] (v3) -- (v2) node [right=3pt, pos=0.6] {$9$};
-        \draw [arrow2] (v3) -- (t) node [above=5pt, pos=0.8] {$19/20$};
-        \draw [arrow] (v4) -- (t) node [below=4pt, pos=0.7] {$4/4$};
+        \draw [arrow] (v4) -- (v3) node [above=0pt, sloped, pos=0.5] {$7/7$};
+        \draw [arrow] (v3) -- (v2) node [above=0pt, sloped, pos=0.5] {$9$};
+        \draw [arrow] (v3) -- (t) node [above=0pt, sloped, pos=0.5] {$19/20$};
+        \draw [arrow] (v4) -- (t) node [below=0pt, sloped, pos=0.5] {$4/4$};
 
     \end{tikzpicture}
 \end{center}
