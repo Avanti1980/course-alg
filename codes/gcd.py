@@ -5,6 +5,12 @@ def gcd1(a, b):  # 暴力穷举
     return gcd
 
 
+def coef(a, b):  # 暴力穷举
+    for i in range(b):        # 最大公约数不会大于两者中的较小者
+        if (1-a*i) % b == 0:  # 同时整除即为公约数
+            return i, int((1-a*i)/b)
+
+
 def gcd2(a, b):  # 辗转相除
     a, b = max(a, b), min(a, b)
     while a % b:
@@ -38,6 +44,7 @@ def gcd4(a, b):  # 改进的更相减损
 
 
 print(gcd1(2022, 1566))
+print(coef(8, 9))
 print(gcd2(2022, 1566))
 print(gcd3(2022, 1566))
 print(gcd4(2022, 1566))

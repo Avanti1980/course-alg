@@ -29,17 +29,8 @@ presentation:
 
 ---
 
-设$\Vcal_1 = \{ v \mid (s,v) \in \Ecal \}$、$\Vcal_2 = \{ v \mid (v,s) \in \Ecal \}$，注意$\Vcal_1 \cap \Vcal_2 = \emptyset$
 
-<div class="top2"></div>
 
-$$
-\begin{align*}
-    |f & \uparrow f'| = \sum_{v \in \Vcal_1} (f \uparrow f')(s,v) - \sum_{v \in \Vcal_2} (f \uparrow f')(v,s) \\
-    & = \sum_{v \in \Vcal_1} (f(s,v) + f'(s,v) - f'(v,s)) - \sum_{v \in \Vcal_2} (f(v,s) + f'(v,s) - f'(s,v)) \\
-    & = \sum_{v \in \Vcal_1} f(s,v) - \sum_{v \in \Vcal_2} f(v,s) + \sum_{v \in \Vcal_1 \cup \Vcal_2} f'(s,v) - \sum_{v \in \Vcal_1 \cup \Vcal_2} f'(v,s) \\
-    & = |f| + |f'|
-\end{align*}
-$$
+$a+b=c$
 
 如何在残存网络$\Gcal_f$中找流$f'$？

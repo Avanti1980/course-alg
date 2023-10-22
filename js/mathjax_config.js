@@ -156,6 +156,7 @@ module.exports = {
       st: "{\\mathrm {s.t.}}",
       VC: "{\\mathrm {VC}}",
       Pr: "{\\mathrm {Pr}}",
+      gcd: "{\\mathrm {gcd}}",
       tanh: "{\\mathrm {tanh}}",
       logistic: "{\\mathrm {logistic}}",
       relu: "{\\mathrm {ReLU}}",
