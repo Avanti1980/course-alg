@@ -1,7 +1,7 @@
 @import "css/theme/solarized.css"
 @import "css/index.css"
 
-## 算法设计与分析 <span style="font-weight:900">2022</span>
+## 算法设计与分析 <span style="font-weight:900">2023</span> 秋
 
 ---
 
@@ -9,10 +9,12 @@
 
 授课：张腾 _tengzhang@hust.edu.cn_
 
+地点：西十二楼 S308
+
 32 学时
 
-- 周三 3 ~ 4 节课 (第 9 ~ 16 周)
-- 周五 5 ~ 6 节课 (第 9 ~ 10 周)，周五 1 ~ 2 节课 (第 11 ~ 16 周)
+- 周一 3 ~ 4 节课 (第 9 ~ 10 周)，周二 3 ~ 4 节课 (第 11 ~ 16 周)
+- 周四 3 ~ 4 节课 (第 9 ~ 16 周)
 
 <div class="top-2"></div>
 
@@ -22,22 +24,22 @@
 
 #### 课件
 
-在线浏览，Space 翻页，Esc 导航，可能需要科学上网
+建议用 Firefox 在线浏览，Space 翻页，Esc 导航，可能需要{==科学上网==}
 
 <div class="threelines outline head-highlight">
 
-|        |                讲义                |                                                       补充                                                       |
-| :----: | :--------------------------------: | :--------------------------------------------------------------------------------------------------------------: |
-| 第一讲 |       [绪论](slides/01.html)       |                                                        -                                                         |
-| 第二讲 |    [函数的增长](slides/02.html)    |                                                        -                                                         |
-| 第三讲 |      [分治法](slides/03.html)      |                               [Strassen 矩阵乘法加速](notes/Strassen/Strassen.pdf)                               |
-| 第四讲 |     [动态规划](slides/04.html)     |                                                        -                                                         |
-| 第五讲 |      [贪心法](slides/05.html)      |                                                        -                                                         |
-| 第六讲 |   [单源最短路径](slides/06.html)   |                                                        -                                                         |
-| 第七讲 | [全结点对最短路径](slides/07.html) |                                                        -                                                         |
-| 第八讲 |      [回溯法](slides/08.html)      |                                                        -                                                         |
-| 第九讲 |    [分支限界法](slides/09.html)    |                                                        -                                                         |
-| 第十讲 |      [最大流](slides/10.html)      | [Ford-Fulkerson 最坏情况](notes/Max-Flow/maximum-flow-supp.pdf)、[图上的匹配、覆盖、流、割](notes/MCFC/MCFC.pdf) |
+|        |          讲义          | 补充 |
+| :----: | :--------------------: | :--: |
+| 第一讲 | [绪论](slides/01.html) |  -   |
+| 第二讲 |       函数的增长       |  -   |
+| 第三讲 |         分治法         |  -   |
+| 第四讲 |        动态规划        |  -   |
+| 第五讲 |         贪心法         |  -   |
+| 第六讲 |      单源最短路径      |  -   |
+| 第七讲 |    全结点对最短路径    |  -   |
+| 第八讲 |         回溯法         |  -   |
+| 第九讲 |       分支限界法       |  -   |
+| 第十讲 |         最大流         |  -   |
 
 </div>
 
@@ -49,8 +51,3 @@ Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein
 #### 代码
 
 [最大公约数](codes/gcd.ipynb)、[排序](codes/sorting.ipynb)
-[最大子数组](codes/max-subarray.ipynb)、[最近点对](codes/closest-pair.ipynb)、[矩阵加法](codes/matrix-addition.ipynb)、[矩阵乘法](codes/matrix-multiply.ipynb)
-[钢条切割](codes/cut-rod.ipynb)、[矩阵连乘](codes/matrix-chain.ipynb)、[最长公共子序列](codes/lcs.ipynb)、[最长递增子序列](codes/lis.ipynb)、[最优二叉搜索树](codes/optiaml-bst.ipynb)
-[最大兼容活动集合](codes/activity-selector.ipynb)
-[Bellman-Ford](codes/bellman-ford.ipynb)、[Dijkstra](codes/dijkstra.ipynb)、[Floyd-Warshall 等动态规划算法](codes/sp-all-dp.ipynb)、[传递闭包](codes/transitive-closure.ipynb)、[Johnson](codes/sp-all-johnson.ipynb)
-[n 皇后](codes/nqueen.ipynb)、[子集和数 定长元组](codes/subset-sum-fix-len.ipynb)、[子集和数 变长元组](codes/subset-sum-var-len.ipynb)
