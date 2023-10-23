@@ -1,14 +1,15 @@
-def gcd1(a, b):  # 暴力穷举
+def gcd1(a, b):
     for i in range(1, min(a, b) + 1):        # 最大公约数不会大于两者中的较小者
         if ((a % i == 0) and (b % i == 0)):  # 同时整除即为公约数
             gcd = i
     return gcd
 
 
-def coef(a, b):  # 暴力穷举
-    for i in range(b):        # 最大公约数不会大于两者中的较小者
-        if (1-a*i) % b == 0:  # 同时整除即为公约数
-            return i, int((1-a*i)/b)
+def coef(a, b):
+    for x in range(1, b):     # a 2a 3a ... ba构成一个模b的剩余系
+        if (1-a*x) % b == 0:  # 若y也为整数
+            y = int((1-a*x)/b)
+            return x, y
 
 
 def gcd2(a, b):  # 辗转相除
