@@ -13,10 +13,17 @@ def coef(a, b):
 
 
 def Euclidean(a, b):  # 辗转相除
-    a, b = max(a, b), min(a, b)
     while a % b:
         a, b = b, a % b
     return b
+
+
+def Euclidean_coef(a, b):  # 辗转相除
+    if a % b == 0:         # 递归停止条件：若b可以整除a
+        return b, 1, 1-int(a/b)
+    else:
+        d, x, y = Euclidean_coef(b, a % b)
+        return d, y, x - int(a/b)*y
 
 
 def gxjs(a, b):  # 更相减损
@@ -29,30 +36,42 @@ def gxjs(a, b):  # 更相减损
             return b
 
 
-def gxjs_mod(a, b):  # 改进的更相减损
+def gxjs_coef(a, b):  # 更相减损
+    if a == b:         # 递归停止条件：a = b
+        return b, 1, 0
+    elif a > b:
+        d, x, y = gxjs_coef(a - b, b)
+        return d, x, y-x
+    else:
+        d, x, y = gxjs_coef(a, b-a)
+        return d, x-y, y
+
+
+def gxjs2(a, b):  # 改进的更相减损
     if a == b:
-        return a, 1, 0
+        return a
     while True:
         if not (a & 1) and not (b & 1):  # 均为偶 gcd(a,b) = 2 * gcd(a/2, b/2)
-            d, x, y = gxjs_mod(a >> 1, b >> 1)
-            return d << 1, x, y
+            return gxjs2(a >> 1, b >> 1) << 1
         elif not (a & 1) and (b & 1):    # a偶 b奇 gcd(a,b) = gcd(a/2, b)
-            d, x, y = gxjs_mod(a >> 1, b)
-            return d, x << 1, y
+            return gxjs2(a >> 1, b)
         elif (a & 1) and not (b & 1):    # a奇 b偶 gcd(a,b) = gcd(a, b/2)
-            d, x, y = gxjs_mod(a, b >> 1)
-            return d, x, y << 1
+            return gxjs2(a, b >> 1)
         else:                            # 均为奇 更相减损 gcd(a,b) = gcd(a-b, b)
             if a > b:
-                d, x, y = gxjs_mod(a-b, b)
-                return d, x, y-x
+                return gxjs2(a-b, b)
             else:
-                d, x, y = gxjs_mod(a, b-a)
-                return d, x-y, y
+                return gxjs2(a, b-a)
 
 
-print(gcd(2024, 1024))
+print(gcd(2023, 1024))
 print(coef(2023, 1024))
-print(Euclidean(2024, 1024))
-print(gxjs(2024, 1024))
-print(gxjs_mod(8, 20))
+print(Euclidean_coef(2024, 1024))
+print(Euclidean_coef(2023, 1024))
+print(Euclidean_coef(64, 1024))
+print(gxjs_coef(2024, 1024))
+print(gxjs_coef(2023, 1024))
+print(gxjs_coef(64, 1024))
+print(gxjs2(2024, 1024))
+print(gxjs2(2023, 1024))
+print(gxjs2(64, 1024))
