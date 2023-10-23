@@ -39,12 +39,12 @@ $weight-array: SemiLight, Regular, Medium;
   $weight: nth($weight-array, $i);
   @font-face {
     font-family: LXGWWenKai;
-    src: url("../fonts/LxgwBright-1.235/LXGWBright-#{$weight}.woff2");
+    src: url("../fonts/LxgwBright-4.158/LXGWBright-#{$weight}.woff2");
     font-weight: 100 * (3 * $i - 2);
   }
   @font-face {
     font-family: LXGWWenKai;
-    src: url("../fonts/LxgwBright-1.235/LXGWBright-#{$weight}Italic.woff2");
+    src: url("../fonts/LxgwBright-4.158/LXGWBright-#{$weight}Italic.woff2");
     font-style: italic;
     font-weight: 100 * (3 * $i - 2);
   }
