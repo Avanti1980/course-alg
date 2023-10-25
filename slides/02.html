@@ -2445,7 +2445,7 @@ $$
 <hr>
 <p><span class="mathjax-exps">$d$</span>&#x9636;&#x591A;&#x9879;&#x5F0F;<span class="mathjax-exps">$p(n) = a_d n^d + a_{d-1} n^{d-1} + \cdots + a_1 n + a_0$</span>&#xFF0C;&#x5176;&#x4E2D;<span class="mathjax-exps">$a_d &gt; 0$</span></p>
 <p>&#x6613;&#x77E5;&#x6709;<span class="mathjax-exps">$\frac{p(n)}{n^d} = a_d + \frac{a_{d-1}}{n} + \cdots + \frac{a_1}{n^{d-1}} + \frac{a_0}{n^d} \triangleq q(n) \xrightarrow{~ n \rightarrow \infty ~} a_d$</span></p>
-<p>&#x6839;&#x636E;&#x6781;&#x9650;&#x7684;&#x5B9A;&#x4E49;&#xFF0C;&#x5B58;&#x5728;<span class="mathjax-exps">$n_0$</span>&#x4F7F;&#x5F97;&#x5BF9;<span class="mathjax-exps">$\forall n \ge n_0$</span>&#x6709;<span class="mathjax-exps">$|q(n) - a_d| \le a_d/2$</span>&#xFF0C;&#x5373;<span class="mathjax-exps">$a_d/2 \le q(n) \le 3 a_d/2$</span>&#xFF0C;&#x56E0;&#x6B64;&#x5F53;<span class="mathjax-exps">$n \ge 1$</span>&#x4E14;<span class="mathjax-exps">$k_1 \le d \le k_2$</span>&#x65F6;&#x6709;</p>
+<p>&#x6839;&#x636E;&#x6781;&#x9650;&#x5B9A;&#x4E49;&#xFF0C;&#x5B58;&#x5728;<span class="mathjax-exps">$n_0$</span>&#x4F7F;&#x5F97;&#x5BF9;<span class="mathjax-exps">$\forall n \ge n_0$</span>&#x6709;<span class="mathjax-exps">$|q(n) - a_d| \le a_d/2$</span>&#xFF0C;&#x5373;<span class="mathjax-exps">$a_d/2 \le q(n) \le 3 a_d/2$</span>&#xFF0C;&#x6545;&#x5F53;<span class="mathjax-exps">$n \ge \max \{ n_0, 1 \}$</span>&#x4E14;<span class="mathjax-exps">$k_1 \le d \le k_2$</span>&#x65F6;&#x6709;</p>
 <p>
 
 $$
@@ -2457,8 +2457,8 @@ $$
 
 <div class="top-1"></div>
 <ul>
-<li>&#x53D6;<span class="mathjax-exps">$c = 3 a_d/2$</span>&#x3001;<span class="mathjax-exps">$n_0 = \max \{ n_0, 1 \}$</span>&#xFF0C;&#x6709;<span class="mathjax-exps">$p(n) = O(n^k)$</span>&#x5176;&#x4E2D;<span class="mathjax-exps">$k \ge d$</span></li>
-<li>&#x53D6;<span class="mathjax-exps">$c = a_d/2$</span>&#x3001;<span class="mathjax-exps">$n_0 = \max \{ n_0, 1 \}$</span>&#xFF0C;&#x6709;<span class="mathjax-exps">$p(n) = \Omega(n^k)$</span>&#x5176;&#x4E2D;<span class="mathjax-exps">$k \le d$</span></li>
+<li>&#x53D6;<span class="mathjax-exps">$c = 3 a_d/2$</span>&#x3001;<span class="mathjax-exps">$n_0 = \max \{ n_0, 1 \}$</span>&#xFF0C;&#x6709;<span class="mathjax-exps">$p(n) = O(n^{k_2})$</span>&#x5176;&#x4E2D;<span class="mathjax-exps">$k_2 \ge d$</span></li>
+<li>&#x53D6;<span class="mathjax-exps">$c = a_d/2$</span>&#x3001;<span class="mathjax-exps">$n_0 = \max \{ n_0, 1 \}$</span>&#xFF0C;&#x6709;<span class="mathjax-exps">$p(n) = \Omega(n^{k_1})$</span>&#x5176;&#x4E2D;<span class="mathjax-exps">$k_1 \le d$</span></li>
 </ul>
 <div class="top3"></div>
 <p>&#x8FD9;&#x4E5F;&#x5370;&#x8BC1;&#x4E86;&#x524D;&#x9762;&#x7684;<span class="mathjax-exps">$7 n^3 + 100 n^2 - 20n + 6 = \begin{cases} O(n^k), &amp; k \ge 3 \\ \Omega(n^k), &amp; k \le 3 \end{cases}$</span></p>
