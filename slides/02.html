@@ -2563,11 +2563,10 @@ $$
 <p>
 
 $$
-\begin{align}
-    \quad o(g(n)) &amp; = \{ f(n) \mid \class{blue}{\forall c &gt; 0} ~ \exists n_0 &gt; 0 ~ \forall n \ge n_0 : 0 \le f(n) \class{blue}{&lt;} c g(n) \} \nonumber \\[4px]
-    \label{eq: def}
-    &amp; \Longrightarrow \class{blue}{\forall c &gt; 0} : 0 \le \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} &lt; c \Longleftrightarrow \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} = 0
-\end{align}
+\begin{align*}
+    \quad o(g(n)) &amp; = \{ f(n) \mid \class{blue}{\forall c &gt; 0} ~ \exists n_0 &gt; 0 ~ \forall n \ge n_0 : 0 \le f(n) \class{blue}{&lt;} c g(n) \} \\[4px]
+    &amp; \Longrightarrow \class{blue}{\forall c &gt; 0} : 0 \le \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} &lt; c \Longleftrightarrow \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} = 0 \qquad (*)
+\end{align*}
 $$
 </p>
 
@@ -2575,16 +2574,16 @@ $$
 <p><span class="mathjax-exps">$f(n) = o(g(n))$</span>&#x8868;&#x793A;&#x5728;&#x6E10;&#x8FDB;&#x610F;&#x4E49;&#x4E0B;<span class="mathjax-exps">$f(n)$</span>&#x76F8;&#x5BF9;<span class="mathjax-exps">$g(n)$</span>&#x53D8;&#x5F97;&#x5FAE;&#x4E0D;&#x8DB3;&#x9053;&#x4E86;</p>
 <div class="top2"></div>
 <ul>
-<li>&#x6709;&#x7684;&#x4E66;&#x4E0A;&#x4F1A;&#x91C7;&#x7528;&#x5F0F;(\ref{eq: def})&#x7684;&#x5B9A;&#x4E49;&#xFF0C;&#x5728;<span class="mathjax-exps">$f(n)$</span>&#x6E10;&#x8FDB;&#x975E;&#x8D1F;&#x7684;&#x524D;&#x63D0;&#x4E0B;&#x4E24;&#x5F0F;&#x7B49;&#x4EF7;</li>
+<li>&#x6709;&#x7684;&#x4E66;&#x4E0A;&#x4F1A;&#x91C7;&#x7528;&#x5F0F;(<span class="mathjax-exps">$*$</span>)&#x7684;&#x5B9A;&#x4E49;&#xFF0C;&#x5728;<span class="mathjax-exps">$f(n)$</span>&#x6E10;&#x8FDB;&#x975E;&#x8D1F;&#x7684;&#x524D;&#x63D0;&#x4E0B;&#x4E24;&#x5F0F;&#x7B49;&#x4EF7;</li>
 <li>&#x6839;&#x636E;&#x6781;&#x9650;&#x5B9A;&#x4E49;&#xFF0C;&#x5BF9;&#x4EFB;&#x610F;<span class="mathjax-exps">$c &gt; 0$</span>&#x5B58;&#x5728;<span class="mathjax-exps">$n_0$</span>&#x4F7F;&#x5F97;&#x5BF9;<span class="mathjax-exps">$\forall n \ge n_0$</span>&#x6709;<span class="mathjax-exps">$|\frac{f(n)}{g(n)} - 0| &lt; c$</span>&#xFF0C;&#x82E5;<span class="mathjax-exps">$f(n)$</span>&#x6E10;&#x8FDB;&#x975E;&#x8D1F;&#xFF0C;&#x5219;<span class="mathjax-exps">$f(n) &lt; c g(n)$</span></li>
 </ul>
 <div class="top2"></div>
 <p>&#x5BF9;&#x6570;&#x51FD;&#x6570; &lt; &#x591A;&#x9879;&#x5F0F;&#x51FD;&#x6570; &lt; &#x6307;&#x6570;&#x51FD;&#x6570;&#xFF1A;</p>
 <ul>
-<li>&#x5BF9;<span class="mathjax-exps">$\forall a &gt; 1$</span>&#x548C;<span class="mathjax-exps">$b$</span>&#x6709;<span class="mathjax-exps">$\lim_{n \rightarrow \infty} \frac{n^b}{a^n} = 0$</span>&#xFF0C;&#x4E8E;&#x662F;<span class="mathjax-exps">$n^b = o(a^n)$</span></li>
-<li>&#x5BF9;<span class="mathjax-exps">$\forall a &gt; 0$</span>&#x548C;<span class="mathjax-exps">$b$</span>&#x6709;<span class="mathjax-exps">$\lim_{n \rightarrow \infty} \frac{\lg^b n}{n^a} = 0$</span>&#xFF0C;&#x4E8E;&#x662F;<span class="mathjax-exps">$\lg^b n = o(n^a)$</span></li>
+<li>&#x5BF9;<span class="mathjax-exps">$\forall a &gt; 1$</span>&#x548C;<span class="mathjax-exps">$b$</span>&#x6709;<span class="mathjax-exps">$\lim_{n \rightarrow \infty} n^b/a^n = 0$</span>&#xFF0C;&#x4E8E;&#x662F;<span class="mathjax-exps">$n^b = o(a^n)$</span></li>
+<li>&#x5BF9;<span class="mathjax-exps">$\forall a &gt; 0$</span>&#x548C;<span class="mathjax-exps">$b$</span>&#x6709;<span class="mathjax-exps">$\lim_{n \rightarrow \infty} \lg^b n/n^a = 0$</span>&#xFF0C;&#x4E8E;&#x662F;<span class="mathjax-exps">$\lg^b n = o(n^a)$</span></li>
 </ul>
-</section></section><section><section data-notes lineno="400" class="slide " data-line="400" data-h="8" data-v="0">
+</section></section><section><section data-notes lineno="399" class="slide " data-line="399" data-h="8" data-v="0">
 <h5 class="mume-header" id="%E9%9D%9E%E7%B4%A7%E7%A1%AE%E6%B8%90%E8%BF%9B%E4%B8%8B%E7%95%8C">&#x975E;&#x7D27;&#x786E;&#x6E10;&#x8FDB;&#x4E0B;&#x754C;</h5>
 
 <hr>
@@ -2609,7 +2608,7 @@ $$
 </ul>
 <div class="top2"></div>
 <p>&#x4F8B;&#xFF1A;<span class="mathjax-exps">$2 n^2 = \omega (n)$</span>&#xFF0C;<span class="mathjax-exps">$2 n^2 \ne \omega(n^2)$</span></p>
-</section><section vertical="true" data-notes lineno="433" class="slide " data-line="433" data-h="8" data-v="1">
+</section><section vertical="true" data-notes lineno="432" class="slide " data-line="432" data-h="8" data-v="1">
 <h5 class="mume-header" id="%E9%9D%9E%E7%B4%A7%E7%A1%AE%E6%B8%90%E8%BF%9B%E7%95%8C">&#x975E;&#x7D27;&#x786E;&#x6E10;&#x8FDB;&#x754C;</h5>
 
 <hr>
@@ -2618,7 +2617,7 @@ $$
 <p>&#x82E5;<span class="mathjax-exps">$k &gt; d$</span>&#xFF0C;<span class="mathjax-exps">$\lim_{n \rightarrow \infty} \frac{p(n)}{n^k} = \lim_{n \rightarrow \infty} \frac{q(n)}{n^{k-d}} = 0 \Longrightarrow p(n) = o(n^k)$</span></p>
 <p>&#x82E5;<span class="mathjax-exps">$k &lt; d$</span>&#xFF0C;<span class="mathjax-exps">$\lim_{n \rightarrow \infty} \frac{p(n)}{n^k} = \lim_{n \rightarrow \infty} q(n) n^{d-k} = \infty \Longrightarrow p(n) = \omega(n^k)$</span></p>
 <p>&#x7EFC;&#x4E0A;&#xFF0C;&#x6700;&#x9AD8;&#x9879;&#x7CFB;&#x6570;&#x4E3A;&#x6B63;&#x7684;<span class="mathjax-exps">$d$</span>&#x9636;&#x591A;&#x9879;&#x5F0F;<span class="mathjax-exps">$p(n) = \begin{cases} O(n^k), &amp; k \ge d \\ \Omega(n^k), &amp; k \le d \\ \Theta(n^k), &amp; k = d \\ o(n^k), &amp; k &gt; d \\ \omega(n^k), &amp; k &lt; d \end{cases}$</span></p>
-</section></section><section><section data-notes lineno="449" class="slide " data-line="449" data-h="9" data-v="0">
+</section></section><section><section data-notes lineno="448" class="slide " data-line="448" data-h="9" data-v="0">
 <h5 class="mume-header" id="%E9%99%90%E7%95%8C%E5%87%BD%E6%95%B0%E7%9A%84%E7%9B%B8%E4%BA%92%E5%85%B3%E7%B3%BB">&#x9650;&#x754C;&#x51FD;&#x6570;&#x7684;&#x76F8;&#x4E92;&#x5173;&#x7CFB;</h5>
 
 <hr>
@@ -2705,7 +2704,7 @@ $$
 </tbody>
 </table>
 </div>
-</section><section vertical="true" data-notes lineno="478" class="slide " data-line="478" data-h="9" data-v="1">
+</section><section vertical="true" data-notes lineno="477" class="slide " data-line="477" data-h="9" data-v="1">
 <h5 class="mume-header" id="%E8%87%AA%E5%8F%8D%E6%80%A7">&#x81EA;&#x53CD;&#x6027;</h5>
 
 <hr>
@@ -2722,7 +2721,7 @@ $$
 
 <p>&#x53D6;<span class="mathjax-exps">$c_1 = c_2 = 1$</span>&#x3001;<span class="mathjax-exps">$n_0 = n_f$</span>&#x5373;&#x6709;<span class="mathjax-exps">$f(n) = \Theta(f(n))$</span></p>
 <p>&#x7531;<span class="mathjax-exps">$f(n) = \Theta(f(n)) \Longleftrightarrow \begin{cases} f(n) = O(f(n)) \\ f(n) = \Omega(f(n)) \end{cases}$</span>&#x53EF;&#x77E5;<span class="mathjax-exps">$O, \Omega$</span>&#x81EA;&#x53CD;&#x6027;&#x6210;&#x7ACB;</p>
-</section></section><section><section data-notes lineno="502" class="slide " data-line="502" data-h="10" data-v="0">
+</section></section><section><section data-notes lineno="501" class="slide " data-line="501" data-h="10" data-v="0">
 <h5 class="mume-header" id="%E5%AF%B9%E7%A7%B0%E6%80%A7">&#x5BF9;&#x79F0;&#x6027;</h5>
 
 <hr>
@@ -2746,7 +2745,7 @@ $$
 $$
 </p>
 
-</section><section vertical="true" data-notes lineno="532" class="slide " data-line="532" data-h="10" data-v="1">
+</section><section vertical="true" data-notes lineno="531" class="slide " data-line="531" data-h="10" data-v="1">
 <h5 class="mume-header" id="%E8%BD%AC%E7%BD%AE%E5%AF%B9%E7%A7%B0%E6%80%A7">&#x8F6C;&#x7F6E;&#x5BF9;&#x79F0;&#x6027;</h5>
 
 <hr>
@@ -2772,7 +2771,7 @@ $$
 
 <div class="top-2"></div>
 <p>&#x540C;&#x7406;&#x53EF;&#x8BC1;<span class="mathjax-exps">$f(n) = o(g(n)) \Longleftrightarrow g(n) = \omega(f(n))$</span></p>
-</section></section><section><section data-notes lineno="566" class="slide " data-line="566" data-h="11" data-v="0">
+</section></section><section><section data-notes lineno="565" class="slide " data-line="565" data-h="11" data-v="0">
 <h5 class="mume-header" id="%E4%BC%A0%E9%80%92%E6%80%A7">&#x4F20;&#x9012;&#x6027;</h5>
 
 <hr>
@@ -2799,7 +2798,7 @@ $$
 
 <div class="top-2"></div>
 <p>&#x540C;&#x7406;&#x53EF;&#x8BC1;<span class="mathjax-exps">$\begin{cases} f(n) = \Omega(g(n)) \\ g(n) = \Omega(h(n)) \end{cases} \Longrightarrow f(n) = \Omega(h(n))$</span></p>
-</section><section vertical="true" data-notes lineno="601" class="slide " data-line="601" data-h="11" data-v="1">
+</section><section vertical="true" data-notes lineno="600" class="slide " data-line="600" data-h="11" data-v="1">
 <h5 class="mume-header" id="%E4%BC%A0%E9%80%92%E6%80%A7-1">&#x4F20;&#x9012;&#x6027;</h5>
 
 <hr>
@@ -2816,7 +2815,7 @@ $$
 </p>
 
 <p>&#x6839;&#x636E;<span class="mathjax-exps">$O$</span>&#x3001;<span class="mathjax-exps">$\Omega$</span>&#x7684;&#x4F20;&#x9012;&#x6027;&#x6709;<span class="mathjax-exps">$\begin{cases} f(n) = O(h(n)) \\ f(n) = \Omega(h(n)) \end{cases} \Longrightarrow f(n) = \Theta(h(n))$</span></p>
-</section><section vertical="true" data-notes lineno="625" class="slide " data-line="625" data-h="11" data-v="2">
+</section><section vertical="true" data-notes lineno="624" class="slide " data-line="624" data-h="11" data-v="2">
 <h5 class="mume-header" id="%E4%BC%A0%E9%80%92%E6%80%A7-2">&#x4F20;&#x9012;&#x6027;</h5>
 
 <hr>
@@ -2843,7 +2842,7 @@ $$
 
 <div class="top-2"></div>
 <p>&#x540C;&#x7406;&#x53EF;&#x8BC1;<span class="mathjax-exps">$\begin{cases} f(n) = \omega(g(n)) \\ g(n) = \omega(h(n)) \end{cases} \Longrightarrow f(n) = \omega(h(n))$</span></p>
-</section></section><section><section data-notes lineno="660" class="slide " data-line="660" data-h="12" data-v="0">
+</section></section><section><section data-notes lineno="659" class="slide " data-line="659" data-h="12" data-v="0">
 <h5 class="mume-header" id="%E8%BF%90%E7%AE%97%E6%B3%95%E5%88%99">&#x8FD0;&#x7B97;&#x6CD5;&#x5219;</h5>
 
 <hr>
@@ -2860,7 +2859,7 @@ $$
 
 <div class="top-3"></div>
 <p>&#x6839;&#x636E;<span class="mathjax-exps">$\Theta$</span>&#x7684;&#x4F20;&#x9012;&#x6027;&#x6709;<span class="mathjax-exps">$h(n) = \Theta(f(n))$</span>&#xFF0C;&#x547D;&#x9898;&#x5F97;&#x8BC1;</p>
-</section><section vertical="true" data-notes lineno="684" class="slide " data-line="684" data-h="12" data-v="1">
+</section><section vertical="true" data-notes lineno="683" class="slide " data-line="683" data-h="12" data-v="1">
 <h5 class="mume-header" id="%E8%BF%90%E7%AE%97%E6%B3%95%E5%88%99-1">&#x8FD0;&#x7B97;&#x6CD5;&#x5219;</h5>
 
 <hr>
@@ -2891,7 +2890,7 @@ $$
 <p>&#x5BF9;<span class="mathjax-exps">$\forall n \ge \max\{ n_g, n_h \}$</span>&#x6709;<span class="mathjax-exps">$0 \le c_1 f(n) \le g(n) + h(n) \le (c_2 + c_3) f(n)$</span></p>
 <div class="top2"></div>
 <p>&#x540C;&#x7406;&#x53EF;&#x8BC1;&#xFF1A;<span class="mathjax-exps">$\Theta(f(n)) + o(f(n)) = \Theta(f(n))$</span>&#xFF0C;<span class="mathjax-exps">$o$</span>&#x4E5F;&#x53EF;&#x88AB;<span class="mathjax-exps">$\Theta$</span>&#x5438;&#x6536;</p>
-</section><section vertical="true" data-notes lineno="727" class="slide " data-line="727" data-h="12" data-v="2">
+</section><section vertical="true" data-notes lineno="726" class="slide " data-line="726" data-h="12" data-v="2">
 <h5 class="mume-header" id="%E8%BF%90%E7%AE%97%E6%B3%95%E5%88%99-2">&#x8FD0;&#x7B97;&#x6CD5;&#x5219;</h5>
 
 <hr>
@@ -2929,7 +2928,7 @@ $$
 $$
 </p>
 
-</section><section vertical="true" data-notes lineno="776" class="slide " data-line="776" data-h="12" data-v="3">
+</section><section vertical="true" data-notes lineno="775" class="slide " data-line="775" data-h="12" data-v="3">
 <h5 class="mume-header" id="%E8%BF%90%E7%AE%97%E6%B3%95%E5%88%99-3">&#x8FD0;&#x7B97;&#x6CD5;&#x5219;</h5>
 
 <hr>
@@ -2967,7 +2966,7 @@ $$
 $$
 </p>
 
-</section></section><section><section data-notes lineno="825" class="slide " data-line="825" data-h="13" data-v="0">
+</section></section><section><section data-notes lineno="824" class="slide " data-line="824" data-h="13" data-v="0">
 <h5 class="mume-header" id="%E4%BF%9D%E8%AF%81%E4%BA%8C%E6%AD%A7%E6%80%A7%E7%9A%84%E6%B8%90%E8%BF%9B%E7%AC%A6%E5%8F%B7">&#x4FDD;&#x8BC1;&#x4E8C;&#x6B67;&#x6027;&#x7684;&#x6E10;&#x8FDB;&#x7B26;&#x53F7;</h5>
 
 <hr>
@@ -2991,7 +2990,7 @@ $$
 
 <div class="top-3"></div>
 <p>&#x6CE8;&#x610F;<span class="mathjax-exps">$\mathop{\Omega}\limits^{\infty}$</span>&#x4E0D;&#x518D;&#x8981;&#x6C42;&#x6E10;&#x8FDB;&#x6027;&#x4E86;</p>
-</section><section vertical="true" data-notes lineno="858" class="slide " data-line="858" data-h="13" data-v="1">
+</section><section vertical="true" data-notes lineno="857" class="slide " data-line="857" data-h="13" data-v="1">
 <h5 class="mume-header" id="%E5%BF%BD%E7%95%A5%E6%AD%A3%E8%B4%9F%E7%9A%84%E6%B8%90%E8%BF%9B%E7%AC%A6%E5%8F%B7">&#x5FFD;&#x7565;&#x6B63;&#x8D1F;&#x7684;&#x6E10;&#x8FDB;&#x7B26;&#x53F7;</h5>
 
 <hr>
@@ -3016,7 +3015,7 @@ $$
 <li>&#x6B63;&#x65B9;&#x5411;&#x663E;&#x7136;&#x6210;&#x7ACB;&#xFF0C;&#x56E0;&#x4E3A;<span class="mathjax-exps">$O(g(n)) \subseteq O&apos;(g(n))$</span></li>
 <li>&#x53CD;&#x65B9;&#x5411;&#xFF0C;<span class="mathjax-exps">$f(n) = O&apos;(g(n))$</span>&#x4E0D;&#x8981;&#x6C42;<span class="mathjax-exps">$f(n)$</span>&#x6E10;&#x8FDB;&#x975E;&#x8D1F;&#xFF0C;&#x4F46;<span class="mathjax-exps">$f(n) = \Omega(g(n))$</span>&#x5F25;&#x8865;&#x4E86;&#x8FD9;&#x4E2A;&#x8981;&#x6C42;&#xFF0C;&#x6240;&#x4EE5;&#x6B64;&#x65F6;<span class="mathjax-exps">$O&apos;(g(n))$</span>&#x5347;&#x7EA7;&#x6210;&#x4E86;<span class="mathjax-exps">$O(g(n))$</span></li>
 </ul>
-</section><section vertical="true" data-notes lineno="887" class="slide " data-line="887" data-h="13" data-v="2">
+</section><section vertical="true" data-notes lineno="886" class="slide " data-line="886" data-h="13" data-v="2">
 <h5 class="mume-header" id="%E5%BF%BD%E7%95%A5%E5%AF%B9%E6%95%B0%E7%9A%84%E6%B8%90%E8%BF%9B%E7%AC%A6%E5%8F%B7">&#x5FFD;&#x7565;&#x5BF9;&#x6570;&#x7684;&#x6E10;&#x8FDB;&#x7B26;&#x53F7;</h5>
 
 <hr>
@@ -3045,7 +3044,7 @@ $$
 $$
 </p>
 
-</section></section><section><section data-notes lineno="923" class="slide " data-line="923" data-h="14" data-v="0">
+</section></section><section><section data-notes lineno="922" class="slide " data-line="922" data-h="14" data-v="0">
 <h5 class="mume-header" id="%E4%B8%80%E4%BA%9B%E4%BE%8B%E5%AD%90-%E5%88%A4%E6%96%AD">&#x4E00;&#x4E9B;&#x4F8B;&#x5B50; &#x5224;&#x65AD;</h5>
 
 <hr>
@@ -3060,7 +3059,7 @@ $$
 <li><span class="mathjax-exps">$f(n) = O(f(n/2))$</span>&#x4E0D;&#x6210;&#x7ACB;&#xFF0C;&#x53D6;<span class="mathjax-exps">$f(n) = 4^n$</span></li>
 <li><span class="mathjax-exps">$f(n) = O(g(n)) \Longrightarrow 2^{f(n)} = O(2^{g(n)})$</span>&#x4E0D;&#x6210;&#x7ACB;&#xFF0C;&#x53D6;<span class="mathjax-exps">$f(n) = 2n$</span>&#x3001;<span class="mathjax-exps">$g(n) = n$</span></li>
 </ul>
-</section><section vertical="true" data-notes lineno="946" class="slide " data-line="946" data-h="14" data-v="1">
+</section><section vertical="true" data-notes lineno="945" class="slide " data-line="945" data-h="14" data-v="1">
 <h5 class="mume-header" id="%E4%B8%80%E4%BA%9B%E4%BE%8B%E5%AD%90-%E5%88%A4%E6%96%AD-1">&#x4E00;&#x4E9B;&#x4F8B;&#x5B50; &#x5224;&#x65AD;</h5>
 
 <hr>
@@ -3070,7 +3069,7 @@ $$
 <div class="top4"></div>
 <p>&#x4F8B;&#xFF1A;<span class="mathjax-exps">$\min \{ f(n), g(n) \} = \Theta(f(n) + g(n))$</span>&#x662F;&#x5426;&#x6210;&#x7ACB;&#xFF1F;</p>
 <p>&#x4E0D;&#x6210;&#x7ACB;&#xFF0C;&#x53D6;<span class="mathjax-exps">$f(n) = n$</span>&#x3001;<span class="mathjax-exps">$g(n) = n^2$</span>&#xFF0C;&#x663E;&#x7136;<span class="mathjax-exps">$n \ne \Theta(n^2)$</span></p>
-</section></section><section><section data-notes lineno="964" class="slide " data-line="964" data-h="15" data-v="0">
+</section></section><section><section data-notes lineno="963" class="slide " data-line="963" data-h="15" data-v="0">
 <h5 class="mume-header" id="%E4%B8%80%E4%BA%9B%E4%BE%8B%E5%AD%90-%E8%AF%81%E6%98%8E">&#x4E00;&#x4E9B;&#x4F8B;&#x5B50; &#x8BC1;&#x660E;</h5>
 
 <hr>
@@ -3086,7 +3085,7 @@ $$
 </ul>
 <div class="top1"></div>
 <p>&#x65E0;&#x8BBA;&#x54EA;&#x79CD;&#x60C5;&#x51B5;&#xFF0C;&#x5747;&#x6709;<span class="mathjax-exps">$\lceil n \rceil^k = \Theta(n^k)$</span>&#x3001;<span class="mathjax-exps">$\lfloor n \rfloor^k = \Theta(n^k)$</span></p>
-</section><section vertical="true" data-notes lineno="989" class="slide " data-line="989" data-h="15" data-v="1">
+</section><section vertical="true" data-notes lineno="988" class="slide " data-line="988" data-h="15" data-v="1">
 <h5 class="mume-header" id="%E4%B8%80%E4%BA%9B%E4%BE%8B%E5%AD%90-%E8%AF%81%E6%98%8E-1">&#x4E00;&#x4E9B;&#x4F8B;&#x5B50; &#x8BC1;&#x660E;</h5>
 
 <hr>
@@ -3110,7 +3109,7 @@ $$
 </ul>
 <div class="top1"></div>
 <p>&#x65E0;&#x8BBA;&#x54EA;&#x79CD;&#x60C5;&#x51B5;&#xFF0C;&#x5747;&#x6709;<span class="mathjax-exps">$(n + f(n))^k = \Theta(n^k)$</span></p>
-</section><section vertical="true" data-notes lineno="1022" class="slide " data-line="1022" data-h="15" data-v="2">
+</section><section vertical="true" data-notes lineno="1021" class="slide " data-line="1021" data-h="15" data-v="2">
 <h5 class="mume-header" id="%E4%B8%80%E4%BA%9B%E4%BE%8B%E5%AD%90-%E8%AF%81%E6%98%8E-2">&#x4E00;&#x4E9B;&#x4F8B;&#x5B50; &#x8BC1;&#x660E;</h5>
 
 <hr>
@@ -3129,7 +3128,7 @@ $$
 <p>&#x6839;&#x636E;&#x5B9A;&#x4E49;<span class="mathjax-exps">$\exists c_1, c_2, n_0 &gt; 0$</span>&#x4F7F;&#x5F97;&#x5BF9;<span class="mathjax-exps">$\forall n \ge n_0$</span>&#x6709;<span class="mathjax-exps">$0 \le c_1 n \le f(n) \le c_2 n$</span></p>
 <p>&#x4ECE;&#x800C;<span class="mathjax-exps">$\lg c_1 + \lg n \le \lg (f(n)) \le \lg c_2 + \lg n$</span></p>
 <p>&#x4E24;&#x8FB9;&#x53EF;&#x8FDB;&#x4E00;&#x6B65;&#x653E;&#x7F29;&#x6210;<span class="mathjax-exps">$\lg n \le \lg (f(n)) \le 2 \lg n$</span>&#xFF0C;&#x547D;&#x9898;&#x5F97;&#x8BC1;</p>
-</section><section vertical="true" data-notes lineno="1050" class="slide " data-line="1050" data-h="15" data-v="3">
+</section><section vertical="true" data-notes lineno="1049" class="slide " data-line="1049" data-h="15" data-v="3">
 <h5 class="mume-header" id="%E4%B8%80%E4%BA%9B%E4%BE%8B%E5%AD%90-%E8%AF%81%E6%98%8E-3">&#x4E00;&#x4E9B;&#x4F8B;&#x5B50; &#x8BC1;&#x660E;</h5>
 
 <hr>
