@@ -51,4 +51,4 @@ Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein
 #### 代码
 
 [最大公约数](codes/gcd.ipynb)、[排序](codes/sorting.ipynb)
-[最大子数组](codes/max-subarray.ipynb)、[最近点对](codes/closest-pair.ipynb)、[矩阵加法](codes/matrix-addition.ipynb)
+[最大子数组](codes/max-subarray.ipynb)、[最近点对](codes/closest-pair.ipynb)、[矩阵加法](codes/matrix-addition.ipynb)、[矩阵乘法](codes/matrix-multiply.ipynb)
