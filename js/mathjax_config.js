@@ -155,6 +155,7 @@ module.exports = {
       sign: "{\\mathrm {sign}}",
       sgn: "{\\mathrm {sgn}}",
       st: "{\\mathrm {s.t.}}",
+      shu: "{|}",
       VC: "{\\mathrm {VC}}",
       Pr: "{\\mathrm {Pr}}",
       gcd: "{\\mathrm {gcd}}",
