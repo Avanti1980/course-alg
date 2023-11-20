@@ -130,6 +130,7 @@ module.exports = {
       Ycal: "{\\mathcal Y}",
       Bbar: "{\\bar B}",
       fhat: "{\\hat f}",
+      what: "{\\hat w}",
       xhat: "{\\hat x}",
       yhat: "{\\hat y}",
       xvhat: "{\\hat {\\xv}}",
