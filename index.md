@@ -38,7 +38,7 @@
 | 第六讲 |   [单源最短路径](slides/06.html)   |                          -                           |
 | 第七讲 | [全结点对最短路径](slides/07.html) |                          -                           |
 | 第八讲 |      [回溯法](slides/08.html)      |                          -                           |
-| 第九讲 |             分支限界法             |                          -                           |
+| 第九讲 |    [分支限界法](slides/09.html)    |                          -                           |
 | 第十讲 |               最大流               |                          -                           |
 
 </div>
@@ -55,3 +55,4 @@ Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein
 [钢条切割](codes/cut-rod.ipynb)、[矩阵连乘](codes/matrix-chain.ipynb)、[最长公共子序列](codes/lcs.ipynb)、[最长递增子序列](codes/lis.ipynb)、[最优二叉搜索树](codes/optiaml-bst.ipynb)
 [最大兼容活动集合](codes/activity-selector.ipynb)
 [Bellman-Ford](codes/bellman-ford.ipynb)、[Dijkstra](codes/dijkstra.ipynb)、[Floyd-Warshall 等动态规划算法](codes/sp-all-dp.ipynb)、[传递闭包](codes/transitive-closure.ipynb)、[Johnson](codes/sp-all-johnson.ipynb)
+[n 皇后](codes/nqueen.ipynb)、[子集和数 定长元组](codes/subset-sum-fix-len.ipynb)、[子集和数 变长元组](codes/subset-sum-var-len.ipynb)
