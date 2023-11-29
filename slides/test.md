@@ -2,7 +2,7 @@
 presentation:
   margin: 0
   center: false
-  transition: "convex"
+  transition: "none"
   enableSpeakerNotes: true
   slideNumber: "c/t"
   navigationMode: "linear"
@@ -23,14 +23,73 @@ presentation:
 @import "../plugin/chalkboard/style.css"
 @import "../plugin/menu/menu.js"
 
-<!-- slide data-notes="" -->
+<!-- slide data-notes="哈密顿回路的数目与给定初始点是无关的" -->
 
-##### 流的递增
+##### 哈密顿回路
 
 ---
 
+输入：无向图，初始点
 
+<div class="top-2"></div>
 
-$a+b=c$
+输出：从给定初始点出发，恰好经过每个顶点一次的回路
 
-如何在残存网络$\Gcal_f$中找流$f'$？
+@import "../dot/hamilton1.dot" {.left65per}
+
+<div class="top-26per"></div>
+
+例 1：从点 a 出发的 2 条哈密顿回路
+
+- a -> b -> c -> e -> d -> a
+- a -> d -> e -> c -> b -> a
+
+<!-- slide vertical=true data-notes="" -->
+
+##### 哈密顿回路
+
+---
+
+输入：无向图，初始点
+
+<div class="top-2"></div>
+
+输出：从给定初始点出发，恰好经过每个顶点一次的回路
+
+@import "../dot/hamilton2.dot" {.left65per}
+
+<div class="top-26per"></div>
+
+例 2：从点 c 出发的 6 条哈密顿回路
+
+- c -> a -> b -> f -> e -> d -> c
+- c -> a -> d -> e -> f -> b -> c
+- c -> b -> f -> e -> d -> a -> c
+- c -> d -> a -> b -> f -> e -> c
+- c -> d -> e -> f -> b -> a -> c
+- c -> e -> f -> b -> a -> d -> c
+
+<!-- slide vertical=true data-notes="" -->
+
+##### 状态空间树
+
+---
+
+@import "../dot/hamilton1.dot" {.left75per}
+
+<div class="top-26per"></div>
+
+@import "../dot/hamilton1-solution-space.dot" {.left8}
+
+<div class="top0"></div>
+
+- a -> b -> c -> e -> d -> a
+- a -> d -> e -> c -> b -> a
+
+<!-- slide vertical=true data-notes="" -->
+
+##### 哈密顿回路 回溯实现
+
+---
+
+@import "../codes/hamilton.py" {line_begin=0 line_end=48 .left4 .line-numbers .top0}

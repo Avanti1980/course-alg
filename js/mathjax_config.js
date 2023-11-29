@@ -116,6 +116,7 @@ module.exports = {
       Gcal: "{\\mathcal G}",
       Hcal: "{\\mathcal H}",
       Ical: "{\\mathcal I}",
+      Jcal: "{\\mathcal J}",
       Lcal: "{\\mathcal L}",
       Mcal: "{\\mathcal M}",
       Ncal: "{\\mathcal N}",

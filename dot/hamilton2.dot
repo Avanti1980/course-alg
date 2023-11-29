@@ -1,0 +1,16 @@
+digraph g {
+    bgcolor=transparent
+    rankdir=TB
+    graph [nodesep=0.8, ranksep=0.4]
+    node [shape=circle, fixedsize=true, width=0.4, color="#586e75", fontcolor="#b58900", fontsize=20, fontname="LXGWWenKai"]
+    edge [arrowhead=none, color="#586e75", fontcolor="#268bd2", fontsize=16, fontname="LXGWWenKai" arrowsize=0.6]
+
+    a -> {b,c,d}
+    b -> {c,f}
+    c -> {d,e}
+    d -> e -> f
+
+    {rank="same"; a; b}
+    {rank="same"; c; f}
+    {rank="same"; d; e}
+}
