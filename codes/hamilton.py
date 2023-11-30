@@ -36,7 +36,7 @@ g = {                           # a-----b
     'f': ['b', 'e'],            # d-----e
 }
 visited = {v: False for v in g}
-start = 'f'
+start = 'c'
 cycle = [start]
 hamilton(start)
 #------------------------------------
