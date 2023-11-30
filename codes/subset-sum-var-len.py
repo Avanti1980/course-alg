@@ -1,6 +1,6 @@
 def subset_sum(i, s, left, x):
     # i s left x = 待选数最小下标 已选数之和 剩余数之和 当前元组
-    # print(i, s, left)
+    print(i, s, left)
     if i > n:
         return
     else:
@@ -12,7 +12,10 @@ def subset_sum(i, s, left, x):
             elif j < n-1:  # 否则 若选择w[j]可满足限界条件 递归
                 if s + left >= M and s + w[j] + w[j + 1] <= M:
                     x.append(j)
-                    subset_sum(j + 1, s + w[j], left - w[j], x)
+                    left = 0
+                    for k in range(j+1, n):
+                        left += w[k]
+                    subset_sum(j + 1, s + w[j], left, x)
                     x.pop()
 
 
