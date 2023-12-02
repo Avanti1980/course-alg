@@ -23,73 +23,78 @@ presentation:
 @import "../plugin/chalkboard/style.css"
 @import "../plugin/menu/menu.js"
 
-<!-- slide data-notes="哈密顿回路的数目与给定初始点是无关的" -->
+<!-- slide data-notes="" -->
 
-##### 哈密顿回路
+##### <span style="font-weight:900">0/1</span>背包问题
 
 ---
 
-输入：无向图，初始点
+设背包承重量为 10，各物品价值如下，求可装包最大价值子集
 
-<div class="top-2"></div>
+<div class="left6 righta top-2 threelines">
 
-输出：从给定初始点出发，恰好经过每个顶点一次的回路
+| &ensp; | 物品 1 | 物品 2 | 物品 3 | 物品 4 |
+| :----: | :----: | :----: | :----: | :----: |
+|  重量  |   4    |   7    |   5    |   3    |
+|  价值  |   40   |   42   |   25   |   12   |
+|  单价  |   10   |   6    |   5    |   4    |
 
-@import "../dot/hamilton1.dot" {.left65per}
+</div>
 
-<div class="top-26per"></div>
+解的形式：$(x_1, x_2, x_3, x_4)$，其中$x_i$表示是否选择该物品
 
-例 1：从点 a 出发的 2 条哈密顿回路
+显式条件：$x_i \in \{1,0\}$
 
-- a -> b -> c -> e -> d -> a
-- a -> d -> e -> c -> b -> a
+隐式条件：$4 x_1 + 7 x_2 + 5 x_3 + 3 x_4 \le 10$
 
 <!-- slide vertical=true data-notes="" -->
 
-##### 哈密顿回路
+##### <span style="font-weight:900">0/1</span>背包问题
 
 ---
 
-输入：无向图，初始点
+<div class="left6 righta top-2 threelines">
 
-<div class="top-2"></div>
+| &ensp; | 物品 1 | 物品 2 | 物品 3 | 物品 4 |
+| :----: | :----: | :----: | :----: | :----: |
+|  重量  |   4    |   7    |   5    |   3    |
+|  价值  |   40   |   42   |   25   |   12   |
+|  单价  |   10   |   6    |   5    |   4    |
 
-输出：从给定初始点出发，恰好经过每个顶点一次的回路
+</div>
 
-@import "../dot/hamilton2.dot" {.left65per}
+对任一确定了部分分量的解
 
-<div class="top-26per"></div>
+- 上界：已选物品总价值 + 剩余承重量采用单价最大的物品的总价值
+- 下界：已选物品总价值
 
-例 2：从点 c 出发的 6 条哈密顿回路
+<div class="top2"></div>
 
-- c -> a -> b -> f -> e -> d -> c
-- c -> a -> d -> e -> f -> b -> c
-- c -> b -> f -> e -> d -> a -> c
-- c -> d -> a -> b -> f -> e -> c
-- c -> d -> e -> f -> b -> a -> c
-- c -> e -> f -> b -> a -> d -> c
+例如：若选了物品 1
+
+- 价值上界 = 40 + 6 × 6 = 76
+- 价值下界 = 40
 
 <!-- slide vertical=true data-notes="" -->
 
-##### 状态空间树
+##### <span style="font-weight:900">0/1</span>背包问题
 
 ---
 
-@import "../dot/hamilton1.dot" {.left75per}
+<div class="left4 righta top-2 threelines">
 
-<div class="top-26per"></div>
+| &ensp; | 物品 1 | 物品 2 | 物品 3 | 物品 4 |
+| :----: | :----: | :----: | :----: | :----: |
+|  重量  |   4    |   7    |   5    |   3    |
+|  价值  |   40   |   42   |   25   |   12   |
+|  单价  |   10   |   6    |   5    |   4    |
 
-@import "../dot/hamilton1-solution-space.dot" {.left8}
+</div>
 
-<div class="top0"></div>
+@import "../dot/bag.dot" {.right4 .lefta .top-28per}
 
-- a -> b -> c -> e -> d -> a
-- a -> d -> e -> c -> b -> a
+<div class="top-4"></div>
 
-<!-- slide vertical=true data-notes="" -->
+部分解 (1, 0, 1, -) 下界 65，可剪枝上界为 60、64 的两个活结点
 
-##### 哈密顿回路 回溯实现
 
----
-
-@import "../codes/hamilton.py" {line_begin=0 line_end=48 .left4 .line-numbers .top0}
