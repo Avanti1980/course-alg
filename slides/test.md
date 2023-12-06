@@ -81,7 +81,7 @@ $$
 
 <!-- slide data-notes="" -->
 
-##### 单纯形法
+##### 一些术语
 
 ---
 
@@ -117,13 +117,11 @@ $$
 
 <!-- slide vertical=true data-notes="" -->
 
-##### 迭代改进
+##### 单步改进
 
 ---
 
-根据问题画出{==单纯形表==} (simplex tableau)
-
-<div class="left4 righta top-2 row1-border-top-solid row4-border-top-dashed column1-border-right-solid column6-border-right-dashed">
+<div class="left4 righta top-2 bottom-2 row1-border-top-solid row4-border-top-dashed column1-border-right-solid column6-border-right-dashed">
 
 | &ensp; | $x_1$ | $x_2$ | $x_3$ | $x_4$ | $x_5$ | &ensp; |
 | :----: | :---: | :---: | :---: | ----- | ----- | ------ |
@@ -134,4 +132,100 @@ $$
 
 </div>
 
-基本可行解$[0,0,2,1,1]$不是最优的，适当增加$x_1$可以增大目标函数值
+$[0,0,2,1,1]$不是最优的，适当增大$x_1$或$x_2$可以增大目标函数值
+
+$x_1$须满足$\begin{cases} x_1 + x_3 = 2, ~ x_3 \ge 0 \\ x_1 + x_4 = 1, ~ x_4 \ge 0 \end{cases} \Longrightarrow x_1 \le \min (2,1) = 1$
+
+增大$x_1$至$1$得新基本可行解$[1,0,1,0,1]$，目标函数值为$3$
+
+<!-- slide vertical=true data-notes="" -->
+
+##### 单步改进
+
+---
+
+<div class="left4 righta top-2 bottom-2 row1-border-top-solid row4-border-top-dashed column1-border-right-solid column6-border-right-dashed">
+
+| &ensp; | $x_1$ | $x_2$ | $x_3$ | $x_4$ | $x_5$ | &ensp; |
+| :----: | :---: | :---: | :---: | ----- | ----- | ------ |
+| $x_3$  |  $1$  |  $3$  |  $1$  | $0$   | $0$   | $2$    |
+| $x_4$  |  $1$  |  $0$  |  $0$  | $1$   | $0$   | $1$    |
+| $x_5$  |  $0$  |  $1$  |  $0$  | $0$   | $1$   | $1$    |
+| &ensp; | $-3$  | $-6$  |  $0$  | $0$   | $0$   | $0$    |
+
+</div>
+
+$[0,0,2,1,1]$不是最优的，适当增大$x_1$或$x_2$可以增大目标函数值
+
+$x_2$须满足$\begin{cases} 3 x_2 + x_3 = 2, ~ x_3 \ge 0 \\ x_2 + x_5 = 1, ~ x_5 \ge 0 \end{cases} \Longrightarrow x_2 \le \min (2/3,1) = 2/3$
+
+增大$x_2$至$2/3$得新基本可行解$[0,2/3,0,1,1/3]$，目标函数值为$4$
+
+<!-- slide vertical=true data-notes="" -->
+
+##### 单步改进
+
+---
+
+<div class="left4 righta top-2 bottom-2 row1-border-top-solid row4-border-top-dashed column1-border-right-solid column6-border-right-dashed">
+
+| &ensp; | $x_1$ | $x_2$ | $x_3$ | $x_4$ | $x_5$ | &ensp; |
+| :----: | :---: | :---: | :---: | ----- | ----- | ------ |
+| $x_3$  |  $1$  |  $3$  |  $1$  | $0$   | $0$   | $2$    |
+| $x_4$  |  $1$  |  $0$  |  $0$  | $1$   | $0$   | $1$    |
+| $x_5$  |  $0$  |  $1$  |  $0$  | $0$   | $1$   | $1$    |
+| &ensp; | $-3$  | $-6$  |  $0$  | $0$   | $0$   | $0$    |
+
+</div>
+
+$[0,0,2,1,1]$不是最优的，适当增大$x_1$或$x_2$可以增大目标函数值
+
+目标行中的负元素指示着调整哪些变量：$-3 \rightarrow x_1$，$-6 \rightarrow x_2$
+
+取目标行中{==绝对值最大的负元素==}指示的变量进行调整 ({==主元列==})
+
+- $x_2$：{==输入变量==}，非基本变量 => 基本变量
+- $x_3$：{==分离变量==}，基本变量 => 非基本变量
+
+<!-- slide data-notes="" -->
+
+##### 主元化
+
+---
+
+<div class="left4 righta top-2 bottom-2 row1-border-top-solid row4-border-top-dashed column1-border-right-solid column6-border-right-dashed">
+
+| &ensp; | $x_1$ | $\class{blue}{x_2}$ | $x_3$ | $x_4$ | $x_5$ | &ensp; |
+| :----: | :---: | :-----------------: | :---: | ----- | ----- | ------ |
+| $x_3$  |  $1$  |         $3$         |  $1$  | $0$   | $0$   | $2$    |
+| $x_4$  |  $1$  |         $0$         |  $0$  | $1$   | $0$   | $1$    |
+| $x_5$  |  $0$  |         $1$         |  $0$  | $0$   | $1$   | $1$    |
+| &ensp; | $-3$  | $\class{blue}{-6}$  |  $0$  | $0$   | $0$   | $0$    |
+
+</div>
+
+如何确定{==输入变量==}？目标行中{==绝对值最大的负元素==}指示的变量
+
+如何确定{==分离变量==}？
+
+1. 对主元列上每个正元素，计算$\theta$比值：$\theta_3 = 2/3$、$\theta_5 = 1/1$，$\theta_4$无需计算
+2. $\theta_i$的物理意义：保证$x_i$非负的前提下，输入变量的最大变化量
+2. 若$\theta_i$最小，则$x_i$为分离变量(瓶颈所在)，对应行为{==主元行==}，主元行和主元列的交叉元素为{==主元==}
+3. 主元行的所有元素处以主元，将主元变成$1$
+
+<!-- slide vertical=true data-notes="" --> 
+
+##### 单步改进
+
+---
+
+<div class="left4 righta top-2 bottom-2 row1-border-top-solid row4-border-top-dashed column1-border-right-solid column6-border-right-dashed">
+
+| &ensp; | $x_1$ | $\class{blue}{x_2}$ | $x_3$ | $x_4$ | $x_5$ | &ensp; |
+| :----: | :---: | :-----------------: | :---: | ----- | ----- | ------ |
+| $x_3$  | $1/3$ |         $1$         | $1/3$ | $0$   | $0$   | $2/3$  |
+| $x_4$  |  $1$  |         $0$         |  $0$  | $1$   | $0$   | $1$    |
+| $x_5$  |  $0$  |         $1$         |  $0$  | $0$   | $1$   | $1$    |
+| &ensp; | $-3$  | $\class{blue}{-6}$  |  $0$  | $0$   | $0$   | $0$    |
+
+</div>
