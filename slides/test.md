@@ -25,76 +25,113 @@ presentation:
 
 <!-- slide data-notes="" -->
 
-##### <span style="font-weight:900">0/1</span>背包问题
+##### 分数背包问题
 
 ---
 
-设背包承重量为 10，各物品价值如下，求可装包最大价值子集
+设背包承重量为$2$，允许物品按比例取走部分，求最大装包方案
 
 <div class="left6 righta top-2 threelines">
 
-| &ensp; | 物品 1 | 物品 2 | 物品 3 | 物品 4 |
-| :----: | :----: | :----: | :----: | :----: |
-|  重量  |   4    |   7    |   5    |   3    |
-|  价值  |   40   |   42   |   25   |   12   |
-|  单价  |   10   |   6    |   5    |   4    |
+| &ensp; | 物品$1$ | 物品$2$ |
+| :----: | :-----: | :-----: |
+|  重量  |   $1$   |   $3$   |
+|  价值  |   $3$   |   $6$   |
 
 </div>
 
-解的形式：$(x_1, x_2, x_3, x_4)$，其中$x_i$表示是否选择该物品
+设物品$1$和物品$2$取走的比例分别为$x_1$和$x_2$
 
-显式条件：$x_i \in \{1,0\}$
+$$
+\begin{align*}
+    \quad \max & \quad 3 x_1 + 6 x_2 \\
+    \st        & \quad x_1 + 3 x_2 \le 2 \\
+               & \quad 0 \le x_1 \le 1 \\
+               & \quad 0 \le x_2 \le 1
+\end{align*}
+$$
 
-隐式条件：$4 x_1 + 7 x_2 + 5 x_3 + 3 x_4 \le 10$
+这是一个线性规划问题
 
 <!-- slide vertical=true data-notes="" -->
 
-##### <span style="font-weight:900">0/1</span>背包问题
+##### 线性规划标准形式
 
 ---
 
-<div class="left6 righta top-2 threelines">
+所有线性规划问题都可等价变形成标准形式
 
-| &ensp; | 物品 1 | 物品 2 | 物品 3 | 物品 4 |
-| :----: | :----: | :----: | :----: | :----: |
-|  重量  |   4    |   7    |   5    |   3    |
-|  价值  |   40   |   42   |   25   |   12   |
-|  单价  |   10   |   6    |   5    |   4    |
-
-</div>
-
-对任一确定了部分分量的解
-
-- 上界：已选物品总价值 + 剩余承重量采用单价最大的物品的总价值
-- 下界：已选物品总价值
+- 目标必须是最大化一个线性函数
+- 所有约束都是等式约束
+- 所有变量非负
 
 <div class="top2"></div>
 
-例如：若选了物品 1
+引入非负变量$x_3,x_4,x_5$
 
-- 价值上界 = 40 + 6 × 6 = 76
-- 价值下界 = 40
+$$
+\begin{align*}
+    \quad \max & \quad 3 x_1 + 6 x_2 \\
+    \st        & \quad x_1 + 3 x_2 + x_3 = 2 \\
+               & \quad x_1 + x_4 = 1 \\
+               & \quad x_2 + x_5 = 1 \\
+               & \quad 0 \le x_1, x_2, x_3, x_4, x_5
+\end{align*}
+$$
 
-<!-- slide vertical=true data-notes="" -->
+<!-- slide data-notes="" -->
 
-##### <span style="font-weight:900">0/1</span>背包问题
+##### 单纯形法
 
 ---
 
-<div class="left4 righta top-2 threelines">
+根据问题画出{==单纯形表==} (simplex tableau)
 
-| &ensp; | 物品 1 | 物品 2 | 物品 3 | 物品 4 |
-| :----: | :----: | :----: | :----: | :----: |
-|  重量  |   4    |   7    |   5    |   3    |
-|  价值  |   40   |   42   |   25   |   12   |
-|  单价  |   10   |   6    |   5    |   4    |
+<div class="left4 righta top-2 row1-border-top-solid row4-border-top-dashed column1-border-right-solid column6-border-right-dashed">
+
+| &ensp; | $x_1$ | $x_2$ | $x_3$ | $x_4$ | $x_5$ | &ensp; |
+| :----: | :---: | :---: | :---: | ----- | ----- | ------ |
+| $x_3$  |  $1$  |  $3$  |  $1$  | $0$   | $0$   | $2$    |
+| $x_4$  |  $1$  |  $0$  |  $0$  | $1$   | $0$   | $1$    |
+| $x_5$  |  $0$  |  $1$  |  $0$  | $0$   | $1$   | $1$    |
+| &ensp; | $-3$  | $-6$  |  $0$  | $0$   | $0$   | $0$    |
 
 </div>
 
-@import "../dot/bag.dot" {.right4 .lefta .top-28per}
+- $5$个变量，$3$个等式约束，有$2$个变量是自由的，称为{==非基本变量==}
+- 对{==非基本变量==}赋值，剩下的{==基本变量==}(单纯形表最左列)有唯一解
+- 令$x_{\{1,2\}} = 0$，求解$x_{\{3,4,5\}}$得{==基本可行解==}$[0,0,2,1,1]$
+- 单纯形表最后一行称为{==目标行==}，初始为目标函数的系数，符号取反，最后一格为当前{==基本可行解==}$[0,0,2,1,1]$对应的目标函数值$0$
 
-<div class="top-4"></div>
+<div class="top-42per"></div>
 
-部分解 (1, 0, 1, -) 下界 65，可剪枝上界为 60、64 的两个活结点
+$$
+\begin{align*}
+    \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \max & \quad 3 x_1 + 6 x_2 \\
+    \st        & \quad x_1 + 3 x_2 + x_3 = 2 \\
+               & \quad x_1 + x_4 = 1 \\
+               & \quad x_2 + x_5 = 1 \\
+               & \quad 0 \le x_1, x_2, x_3, x_4, x_5
+\end{align*}
+$$
 
+<!-- slide vertical=true data-notes="" -->
 
+##### 迭代改进
+
+---
+
+根据问题画出{==单纯形表==} (simplex tableau)
+
+<div class="left4 righta top-2 row1-border-top-solid row4-border-top-dashed column1-border-right-solid column6-border-right-dashed">
+
+| &ensp; | $x_1$ | $x_2$ | $x_3$ | $x_4$ | $x_5$ | &ensp; |
+| :----: | :---: | :---: | :---: | ----- | ----- | ------ |
+| $x_3$  |  $1$  |  $3$  |  $1$  | $0$   | $0$   | $2$    |
+| $x_4$  |  $1$  |  $0$  |  $0$  | $1$   | $0$   | $1$    |
+| $x_5$  |  $0$  |  $1$  |  $0$  | $0$   | $1$   | $1$    |
+| &ensp; | $-3$  | $-6$  |  $0$  | $0$   | $0$   | $0$    |
+
+</div>
+
+基本可行解$[0,0,2,1,1]$不是最优的，适当增加$x_1$可以增大目标函数值
