@@ -11,18 +11,17 @@
 \tikzset{arrow/.style={->, -{Stealth[scale=0.8]}, base}}
 
 \begin{document}
-\title{\bf{用线性规划单纯形法求解最大流问题}}
+\title{\bf{最大流、线性规划、单纯形法}}
 \author{张腾}
-\date{}
+\date{\today}
 \maketitle
 
-本讲义给出用单纯形法求解如下流网络最大流的详细过程。
-
+本文给出用单纯形法求解如下流网络最大流的详细过程。
 \begin{figure}[h]
     \centering
     \begin{tikzpicture}
 
-        \pgfmathsetmacro{\l}{3};
+        \pgfmathsetmacro{\l}{3.5};
 
         \node [point] (s) at (0,0) {$\sv$};
         \path (s) ++(30:\l)  node[point] (v1) {$\vv_1$};
@@ -42,12 +41,309 @@
         \draw [arrow] (v4) -- (t) node [below=0pt, sloped, pos=0.5] {$4$};
 
     \end{tikzpicture}
-    \label{fig: city}
 \end{figure}
 
-先将其转化成线性规划问题，根据容量限制有
+先将其转化成线性规划问题，根据容量限制和流量守恒分别有
 \begin{align*}
-    0 \le x_1 \le 16
+    \begin{cases}
+        0 \le x_1 \le 16 \\
+        0 \le x_2 \le 13 \\
+        0 \le x_3 \le 4  \\
+        0 \le x_4 \le 12 \\
+        0 \le x_5 \le 9  \\
+        0 \le x_6 \le 14 \\
+        0 \le x_7 \le 7  \\
+        0 \le x_8 \le 20 \\
+        0 \le x_9 \le 4
+    \end{cases} \qquad \qquad
+    \begin{cases}
+        v_1: ~ x_1 + x_3 - x_4 = 0       \\
+        v_2: ~ x_2 + x_5 - x_3 - x_6 = 0 \\
+        v_3: ~ x_4 + x_7 - x_5 - x_8 = 0 \\
+        v_4: ~ x_6 - x_7 - x_9 = 0
+    \end{cases}
 \end{align*}
+其标准形式的线性规划为
+\begin{align*}
+    \max \quad & x_1 + x_2                   \\
+    \st \quad  & x_1 + x_3 - x_4 = 0         \\
+               & x_2 + x_5 - x_3 - x_6 = 0   \\
+               & x_4 + x_7 - x_5 - x_8 = 0   \\
+               & x_6 - x_7 - x_9 = 0         \\
+               & x_1 + y_1 = 16              \\
+               & x_2 + y_2 = 13              \\
+               & x_3 + y_3 = 4               \\
+               & x_4 + y_4 = 12              \\
+               & x_5 + y_5 = 9               \\
+               & x_6 + y_6 = 14              \\
+               & x_7 + y_7 = 7               \\
+               & x_8 + y_8 = 20              \\
+               & x_9 + y_9 = 4               \\
+               & x_i, y_i \ge 0, ~ i \in [9]
+\end{align*}
+共有$18$个变量、$13$个等式约束，因此基本变量有$13$个，非基本变量有$5$个。
+
+不妨取$x_{\{1, 2, 4, 5, 7\}}$为非基本变量，将基本变量由非基本变量表出：
+\begin{align*}
+    x_1 + x_3 - x_4 = 0       & \Longrightarrow x_3 = -x_1 + x_4                              \\
+    x_4 + x_7 - x_5 - x_8 = 0 & \Longrightarrow x_8 = x_4 - x_5 + x_7                         \\
+    x_2 + x_5 - x_3 - x_6 = 0 & \Longrightarrow x_6 = x_2 + x_5 - x_3 = x_1 + x_2 - x_4 + x_5 \\
+    x_6 - x_7 - x_9 = 0       & \Longrightarrow x_9 = x_6 - x_7 = x_1 + x_2 - x_4 + x_5 - x_7
+\end{align*}
+易知初始单纯形表为
+\begin{align*}
+    \begin{array}{c|cccccccccccccccccc:c}
+            & x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & x_9 & y_1 & y_2 & y_3 & y_4 & y_5 & y_6 & y_7 & y_8 & y_9      \\ \hline
+        x_3 & 1   &     & 1   & -1  &     &     &     &     &     &     &     &     &     &     &     &     &     &     & 0  \\
+        x_6 & -1  & -1  &     & 1   & -1  & 1   &     &     &     &     &     &     &     &     &     &     &     &     & 0  \\
+        x_8 &     &     &     & -1  & 1   &     & -1  & 1   &     &     &     &     &     &     &     &     &     &     & 0  \\
+        x_9 & -1  & -1  &     & 1   & -1  &     & 1   &     & 1   &     &     &     &     &     &     &     &     &     & 0  \\
+        y_1 & 1   &     &     &     &     &     &     &     &     & 1   &     &     &     &     &     &     &     &     & 16 \\
+        y_2 &     & 1   &     &     &     &     &     &     &     &     & 1   &     &     &     &     &     &     &     & 13 \\
+        y_3 & -1  &     &     & 1   &     &     &     &     &     &     &     & 1   &     &     &     &     &     &     & 4  \\
+        y_4 &     &     &     & 1   &     &     &     &     &     &     &     &     & 1   &     &     &     &     &     & 12 \\
+        y_5 &     &     &     &     & 1   &     &     &     &     &     &     &     &     & 1   &     &     &     &     & 9  \\
+        y_6 & 1   & 1   &     & -1  & 1   &     &     &     &     &     &     &     &     &     & 1   &     &     &     & 14 \\
+        y_7 &     &     &     &     &     &     & 1   &     &     &     &     &     &     &     &     & 1   &     &     & 7  \\
+        y_8 &     &     &     & 1   & -1  &     & 1   &     &     &     &     &     &     &     &     &     & 1   &     & 20 \\
+        y_9 & 1   & 1   &     & -1  & 1   &     & -1  &     &     &     &     &     &     &     &     &     &     & 1   & 4  \\ \hdashline
+            & -1  & -1  &     &     &     &     &     &     &     &     &     &     &     &     &     &     &     &     & 0
+    \end{array}
+\end{align*}
+注意基本变量对应的列构成单位阵，因此令$x_{\{1, 2, 4, 5, 7\}} = 0$可得基本可行解
+\begin{align*}
+    \left[
+        \begin{array}{cccccccccccccccccc:c}
+            x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & x_9 & y_1 & y_2 & y_3 & y_4 & y_5 & y_6 & y_7 & y_8 & y_9 & o \\
+            0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 16  & 13  & 4   & 12  & 9   & 14  & 7   & 20  & 4   & 0
+        \end{array} \right]
+\end{align*}
+取$x_2$为输入变量，$\theta_{y_2} = 13$、$\theta_{y_6} = 14$、$\theta_{y_9} = 4$，因此$y_9$为分离变量，做初等行变换更新单纯形表
+\begin{align*}
+    \begin{array}{c|cccccccccccccccccc:c}
+            & x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & x_9 & y_1 & y_2 & y_3 & y_4 & y_5 & y_6 & y_7 & y_8 & y_9      \\ \hline
+        x_3 & 1   &     & 1   & -1  &     &     &     &     &     &     &     &     &     &     &     &     &     &     & 0  \\
+        x_6 &     &     &     &     &     & 1   & -1  &     &     &     &     &     &     &     &     &     &     &     & 4  \\
+        x_8 &     &     &     & -1  & 1   &     & -1  & 1   &     &     &     &     &     &     &     &     &     &     & 0  \\
+        x_9 &     &     &     &     &     &     &     &     & 1   &     &     &     &     &     &     &     &     & 1   & 4  \\
+        y_1 & 1   &     &     &     &     &     &     &     &     & 1   &     &     &     &     &     &     &     &     & 16 \\
+        y_2 & -1  &     &     & 1   & -1  &     & 1   &     &     &     & 1   &     &     &     &     &     &     & -1  & 9  \\
+        y_3 & -1  &     &     & 1   &     &     &     &     &     &     &     & 1   &     &     &     &     &     &     & 4  \\
+        y_4 &     &     &     & 1   &     &     &     &     &     &     &     &     & 1   &     &     &     &     &     & 12 \\
+        y_5 &     &     &     &     & 1   &     &     &     &     &     &     &     &     & 1   &     &     &     &     & 9  \\
+        y_6 &     &     &     &     &     &     & 1   &     &     &     &     &     &     &     & 1   &     &     & -1  & 10 \\
+        y_7 &     &     &     &     &     &     & 1   &     &     &     &     &     &     &     &     & 1   &     &     & 7  \\
+        y_8 &     &     &     & 1   & -1  &     & 1   &     &     &     &     &     &     &     &     &     & 1   &     & 20 \\
+        x_2 & 1   & 1   &     & -1  & 1   &     & -1  &     &     &     &     &     &     &     &     &     &     & 1   & 4  \\ \hdashline
+            &     &     &     & -1  & 1   &     & -1  &     &     &     &     &     &     &     &     &     &     & 1   & 4
+    \end{array}
+\end{align*}
+当前基本可行解为
+\begin{align*}
+    \left[
+        \begin{array}{cccccccccccccccccc:c}
+            x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & x_9 & y_1 & y_2 & y_3 & y_4 & y_5 & y_6 & y_7 & y_8 & y_9 & o \\
+            0   & 4   & 0   & 0   & 0   & 4   & 0   & 0   & 4   & 16  & 9   & 4   & 12  & 9   & 10  & 7   & 20  & 0   & 4
+        \end{array} \right]
+\end{align*}
+对应的流网络为
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+
+        \pgfmathsetmacro{\l}{3.5};
+
+        \node [point] (s) at (0,0) {$\sv$};
+        \path (s) ++(30:\l)  node[point] (v1) {$\vv_1$};
+        \path (s) ++(330:\l)  node[point] (v2) {$\vv_2$};
+        \path (v1) ++(\l,0)  node[point] (v3) {$\vv_3$};
+        \path (v2) ++(\l,0)  node[point] (v4) {$\vv_4$};
+        \path (v4) ++(30:\l)  node[point] (t) {$\tv$};
+
+        \draw [arrow] (s) -- (v1) node [above=0pt, sloped, pos=0.5] {$16$};
+        \draw [arrow] (s) -- (v2) node [below=0pt, sloped, pos=0.4] {$4/13$};
+        \draw [arrow] (v2) -- (v1) node [above=0pt, sloped, pos=0.5] {$4$};
+        \draw [arrow] (v1) -- (v3) node [above=0pt, pos=0.5] {$12$};
+        \draw [arrow] (v2) -- (v4) node [below=0pt, pos=0.5] {$4/14$};
+        \draw [arrow] (v4) -- (v3) node [above=0pt, sloped, pos=0.5] {$7$};
+        \draw [arrow] (v3) -- (v2) node [above=0pt, sloped, pos=0.5] {$9$};
+        \draw [arrow] (v3) -- (t) node [above=0pt, sloped, pos=0.5] {$20$};
+        \draw [arrow] (v4) -- (t) node [below=0pt, sloped, pos=0.5] {$4/4$};
+
+    \end{tikzpicture}
+\end{figure}
+
+\newpage
+
+第$2$轮，取$x_7$为输入变量，$\theta_{y_2} = 9$、$\theta_{y_6} = 10$、$\theta_{y_7} = 7$、$\theta_{y_8} = 20$，因此$y_7$为分离变量，做初等行变换更新单纯形表
+\begin{align*}
+    \begin{array}{c|cccccccccccccccccc:c}
+            & x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & x_9 & y_1 & y_2 & y_3 & y_4 & y_5 & y_6 & y_7 & y_8 & y_9      \\ \hline
+        x_3 & 1   &     & 1   & -1  &     &     &     &     &     &     &     &     &     &     &     &     &     &     & 0  \\
+        x_6 &     &     &     &     &     & 1   &     &     &     &     &     &     &     &     &     & 1   &     &     & 11 \\
+        x_8 &     &     &     & -1  & 1   &     &     & 1   &     &     &     &     &     &     &     & 1   &     &     & 7  \\
+        x_9 &     &     &     &     &     &     &     &     & 1   &     &     &     &     &     &     &     &     & 1   & 4  \\
+        y_1 & 1   &     &     &     &     &     &     &     &     & 1   &     &     &     &     &     &     &     &     & 16 \\
+        y_2 & -1  &     &     & 1   & -1  &     &     &     &     &     & 1   &     &     &     &     & -1  &     & -1  & 2  \\
+        y_3 & -1  &     &     & 1   &     &     &     &     &     &     &     & 1   &     &     &     &     &     &     & 4  \\
+        y_4 &     &     &     & 1   &     &     &     &     &     &     &     &     & 1   &     &     &     &     &     & 12 \\
+        y_5 &     &     &     &     & 1   &     &     &     &     &     &     &     &     & 1   &     &     &     &     & 9  \\
+        y_6 &     &     &     &     &     &     &     &     &     &     &     &     &     &     & 1   & -1  &     & -1  & 3  \\
+        x_7 &     &     &     &     &     &     & 1   &     &     &     &     &     &     &     &     & 1   &     &     & 7  \\
+        y_8 &     &     &     & 1   & -1  &     &     &     &     &     &     &     &     &     &     & -1  & 1   &     & 13 \\
+        x_2 & 1   & 1   &     & -1  & 1   &     &     &     &     &     &     &     &     &     &     & 1   &     & 1   & 11 \\ \hdashline
+            &     &     &     & -1  & 1   &     &     &     &     &     &     &     &     &     &     & 1   &     & 1   & 11
+    \end{array}
+\end{align*}
+当前基本可行解为
+\begin{align*}
+    \left[
+        \begin{array}{cccccccccccccccccc:c}
+            x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & x_9 & y_1 & y_2 & y_3 & y_4 & y_5 & y_6 & y_7 & y_8 & y_9 & o  \\
+            0   & 11  & 0   & 0   & 0   & 11  & 7   & 7   & 4   & 16  & 2   & 4   & 12  & 9   & 3   & 0   & 13  & 0   & 11
+        \end{array} \right]
+\end{align*}
+对应的流网络为
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+
+        \pgfmathsetmacro{\l}{3.5};
+
+        \node [point] (s) at (0,0) {$\sv$};
+        \path (s) ++(30:\l)  node[point] (v1) {$\vv_1$};
+        \path (s) ++(330:\l)  node[point] (v2) {$\vv_2$};
+        \path (v1) ++(\l,0)  node[point] (v3) {$\vv_3$};
+        \path (v2) ++(\l,0)  node[point] (v4) {$\vv_4$};
+        \path (v4) ++(30:\l)  node[point] (t) {$\tv$};
+
+        \draw [arrow] (s) -- (v1) node [above=0pt, sloped, pos=0.5] {$16$};
+        \draw [arrow] (s) -- (v2) node [below=0pt, sloped, pos=0.4] {$11/13$};
+        \draw [arrow] (v2) -- (v1) node [above=0pt, sloped, pos=0.5] {$4$};
+        \draw [arrow] (v1) -- (v3) node [above=0pt, pos=0.5] {$12$};
+        \draw [arrow] (v2) -- (v4) node [below=0pt, pos=0.5] {$11/14$};
+        \draw [arrow] (v4) -- (v3) node [above=0pt, sloped, pos=0.5] {$7/7$};
+        \draw [arrow] (v3) -- (v2) node [above=0pt, sloped, pos=0.5] {$9$};
+        \draw [arrow] (v3) -- (t) node [above=0pt, sloped, pos=0.5] {$7/20$};
+        \draw [arrow] (v4) -- (t) node [below=0pt, sloped, pos=0.5] {$4/4$};
+
+    \end{tikzpicture}
+\end{figure}
+
+\newpage
+
+第$3$轮，取$x_4$为输入变量，$\theta_{y_2} = 2$、$\theta_{y_3} = 4$、$\theta_{y_4} = 12$、$\theta_{y_8} = 13$，因此$y_2$为分离变量，做初等行变换更新单纯形表
+\begin{align*}
+    \begin{array}{c|cccccccccccccccccc:c}
+            & x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & x_9 & y_1 & y_2 & y_3 & y_4 & y_5 & y_6 & y_7 & y_8 & y_9      \\ \hline
+        x_3 &     &     & 1   &     & -1  &     &     &     &     &     & 1   &     &     &     &     & -1  &     & -1  & 2  \\
+        x_6 &     &     &     &     &     & 1   &     &     &     &     &     &     &     &     &     & 1   &     &     & 11 \\
+        x_8 & -1  &     &     &     &     &     &     & 1   &     &     & 1   &     &     &     &     &     &     & -1  & 9  \\
+        x_9 &     &     &     &     &     &     &     &     & 1   &     &     &     &     &     &     &     &     & 1   & 4  \\
+        y_1 & 1   &     &     &     &     &     &     &     &     & 1   &     &     &     &     &     &     &     &     & 16 \\
+        x_4 & -1  &     &     & 1   & -1  &     &     &     &     &     & 1   &     &     &     &     & -1  &     & -1  & 2  \\
+        y_3 &     &     &     &     & 1   &     &     &     &     &     & -1  & 1   &     &     &     & 1   &     & 1   & 2  \\
+        y_4 & 1   &     &     &     & 1   &     &     &     &     &     & -1  &     & 1   &     &     & 1   &     & 1   & 10 \\
+        y_5 &     &     &     &     & 1   &     &     &     &     &     &     &     &     & 1   &     &     &     &     & 9  \\
+        y_6 &     &     &     &     &     &     &     &     &     &     &     &     &     &     & 1   & -1  &     & -1  & 3  \\
+        x_7 &     &     &     &     &     &     & 1   &     &     &     &     &     &     &     &     & 1   &     &     & 7  \\
+        y_8 & 1   &     &     &     &     &     &     &     &     &     & -1  &     &     &     &     &     & 1   & 1   & 11 \\
+        x_2 &     & 1   &     &     &     &     &     &     &     &     & 1   &     &     &     &     &     &     &     & 13 \\ \hdashline
+            & -1  &     &     &     &     &     &     &     &     &     & 1   &     &     &     &     &     &     &     & 13
+    \end{array}
+\end{align*}
+当前基本可行解为
+\begin{align*}
+    \left[
+        \begin{array}{cccccccccccccccccc:c}
+            x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & x_9 & y_1 & y_2 & y_3 & y_4 & y_5 & y_6 & y_7 & y_8 & y_9 & o  \\
+            0   & 13  & 2   & 2   & 0   & 11  & 7   & 9   & 4   & 16  & 0   & 2   & 10  & 9   & 3   & 0   & 11  & 0   & 13
+        \end{array} \right]
+\end{align*}
+对应的流网络为
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+
+        \pgfmathsetmacro{\l}{3.5};
+
+        \node [point] (s) at (0,0) {$\sv$};
+        \path (s) ++(30:\l)  node[point] (v1) {$\vv_1$};
+        \path (s) ++(330:\l)  node[point] (v2) {$\vv_2$};
+        \path (v1) ++(\l,0)  node[point] (v3) {$\vv_3$};
+        \path (v2) ++(\l,0)  node[point] (v4) {$\vv_4$};
+        \path (v4) ++(30:\l)  node[point] (t) {$\tv$};
+
+        \draw [arrow] (s) -- (v1) node [above=0pt, sloped, pos=0.5] {$16$};
+        \draw [arrow] (s) -- (v2) node [below=0pt, sloped, pos=0.4] {$13/13$};
+        \draw [arrow] (v2) -- (v1) node [above=0pt, sloped, pos=0.5] {$2/4$};
+        \draw [arrow] (v1) -- (v3) node [above=0pt, pos=0.5] {$2/12$};
+        \draw [arrow] (v2) -- (v4) node [below=0pt, pos=0.5] {$11/14$};
+        \draw [arrow] (v4) -- (v3) node [above=0pt, sloped, pos=0.5] {$7/7$};
+        \draw [arrow] (v3) -- (v2) node [above=0pt, sloped, pos=0.5] {$9$};
+        \draw [arrow] (v3) -- (t) node [above=0pt, sloped, pos=0.5] {$9/20$};
+        \draw [arrow] (v4) -- (t) node [below=0pt, sloped, pos=0.5] {$4/4$};
+
+    \end{tikzpicture}
+\end{figure}
+
+\newpage
+
+第$4$轮，取$x_1$为输入变量，$\theta_{y_1} = 16$、$\theta_{y_4} = 10$、$\theta_{y_8} = 11$，因此$y_4$为分离变量，做初等行变换更新单纯形表
+\begin{align*}
+    \begin{array}{c|cccccccccccccccccc:c}
+            & x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & x_9 & y_1 & y_2 & y_3 & y_4 & y_5 & y_6 & y_7 & y_8 & y_9      \\ \hline
+        x_3 &     &     & 1   &     & -1  &     &     &     &     &     & 1   &     &     &     &     & -1  &     & -1  & 2  \\
+        x_6 &     &     &     &     &     & 1   &     &     &     &     &     &     &     &     &     & 1   &     &     & 11 \\
+        x_8 &     &     &     &     & 1   &     &     & 1   &     &     &     &     & 1   &     &     & 1   &     &     & 19 \\
+        x_9 &     &     &     &     &     &     &     &     & 1   &     &     &     &     &     &     &     &     & 1   & 4  \\
+        y_1 &     &     &     &     & -1  &     &     &     &     & 1   & 1   &     & -1  &     &     & -1  &     & -1  & 6  \\
+        x_4 &     &     &     & 1   &     &     &     &     &     &     &     &     & 1   &     &     &     &     &     & 12 \\
+        y_3 &     &     &     &     & 1   &     &     &     &     &     & -1  & 1   &     &     &     & 1   &     & 1   & 2  \\
+        x_1 & 1   &     &     &     & 1   &     &     &     &     &     & -1  &     & 1   &     &     & 1   &     & 1   & 10 \\
+        y_5 &     &     &     &     & 1   &     &     &     &     &     &     &     &     & 1   &     &     &     &     & 9  \\
+        y_6 &     &     &     &     &     &     &     &     &     &     &     &     &     &     & 1   & -1  &     & -1  & 3  \\
+        x_7 &     &     &     &     &     &     & 1   &     &     &     &     &     &     &     &     & 1   &     &     & 7  \\
+        y_8 &     &     &     &     & -1  &     &     &     &     &     &     &     & -1  &     &     & -1  & 1   &     & 1  \\
+        x_2 &     & 1   &     &     &     &     &     &     &     &     & 1   &     &     &     &     &     &     &     & 13 \\ \hdashline
+            &     &     &     &     & 1   &     &     &     &     &     &     &     & 1   &     &     & 1   &     & 1   & 23
+    \end{array}
+\end{align*}
+当前基本可行解为
+\begin{align*}
+    \left[
+        \begin{array}{cccccccccccccccccc:c}
+            x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & x_9 & y_1 & y_2 & y_3 & y_4 & y_5 & y_6 & y_7 & y_8 & y_9 & o  \\
+            10  & 13  & 2   & 12  & 0   & 11  & 7   & 19  & 4   & 6   & 0   & 2   & 0   & 9   & 3   & 0   & 1   & 0   & 23
+        \end{array} \right]
+\end{align*}
+目标行所有元素均非负，因此这就是最优解，对应的流网络达到最大流
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+
+        \pgfmathsetmacro{\l}{3.5};
+
+        \node [point] (s) at (0,0) {$\sv$};
+        \path (s) ++(30:\l)  node[point] (v1) {$\vv_1$};
+        \path (s) ++(330:\l)  node[point] (v2) {$\vv_2$};
+        \path (v1) ++(\l,0)  node[point] (v3) {$\vv_3$};
+        \path (v2) ++(\l,0)  node[point] (v4) {$\vv_4$};
+        \path (v4) ++(30:\l)  node[point] (t) {$\tv$};
+
+        \draw [arrow] (s) -- (v1) node [above=0pt, sloped, pos=0.5] {$10/16$};
+        \draw [arrow] (s) -- (v2) node [below=0pt, sloped, pos=0.4] {$13/13$};
+        \draw [arrow] (v2) -- (v1) node [above=0pt, sloped, pos=0.5] {$2/4$};
+        \draw [arrow] (v1) -- (v3) node [above=0pt, pos=0.5] {$12/12$};
+        \draw [arrow] (v2) -- (v4) node [below=0pt, pos=0.5] {$11/14$};
+        \draw [arrow] (v4) -- (v3) node [above=0pt, sloped, pos=0.5] {$7/7$};
+        \draw [arrow] (v3) -- (v2) node [above=0pt, sloped, pos=0.5] {$9$};
+        \draw [arrow] (v3) -- (t) node [above=0pt, sloped, pos=0.5] {$19/20$};
+        \draw [arrow] (v4) -- (t) node [below=0pt, sloped, pos=0.5] {$4/4$};
+
+    \end{tikzpicture}
+\end{figure}
+
+
 
 \end{document}

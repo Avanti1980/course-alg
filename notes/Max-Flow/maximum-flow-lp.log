@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Arch Linux) (preloaded format=xelatex 2023.10.16)  7 DEC 2023 21:41
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Arch Linux) (preloaded format=xelatex 2023.10.16)  8 DEC 2023 18:04
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1096,28 +1096,36 @@ LaTeX Font Info:    Trying to load font information for U+stmry on input line 18
  (/usr/share/texmf-dist/tex/latex/stmaryrd/Ustmry.fd)
 Missing character: There is no ; ("3B) in font nullfont!
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 10.98209pt on input line 49.
+(Font)              scaled to size 10.98209pt on input line 47.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 49.
+(Font)              scaled to size 7.29405pt on input line 47.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 5.21004pt on input line 49.
+(Font)              scaled to size 5.21004pt on input line 47.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 10.98209pt on input line 49.
+(Font)              scaled to size 10.98209pt on input line 47.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 49.
+(Font)              scaled to size 7.29405pt on input line 47.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 5.21004pt on input line 49.
+(Font)              scaled to size 5.21004pt on input line 47.
 
 LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <10.53937> not available
-(Font)              size <10.95> substituted on input line 49.
+(Font)              size <10.95> substituted on input line 47.
 
 
 LaTeX Font Warning: Font shape `U/stmry/m/n' in size <10.53937> not available
-(Font)              size <10.95> substituted on input line 49.
+(Font)              size <10.95> substituted on input line 47.
 
 [1
 
-] (./maximum-flow-lp.aux)
+] [2]
+Missing character: There is no ; ("3B) in font nullfont!
+[3]
+Missing character: There is no ; ("3B) in font nullfont!
+[4]
+Missing character: There is no ; ("3B) in font nullfont!
+[5]
+Missing character: There is no ; ("3B) in font nullfont!
+[6] (./maximum-flow-lp.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.41063pt have occurred.
@@ -1129,12 +1137,12 @@ Package rerunfilecheck Info: File `maximum-flow-lp.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 45118 strings out of 476683
- 1090806 string characters out of 5809789
- 1856018 words of memory out of 5000000
- 64520 multiletter control sequences out of 15000+600000
+ 45153 strings out of 476683
+ 1093341 string characters out of 5809789
+ 1898018 words of memory out of 5000000
+ 64555 multiletter control sequences out of 15000+600000
  541391 words of font info for 151 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 103i,8n,105p,947b,780s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 103i,16n,105p,947b,784s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on maximum-flow-lp.pdf (1 page).
+Output written on maximum-flow-lp.pdf (6 pages).
