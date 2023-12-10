@@ -55,6 +55,16 @@ $$
 
 <!-- slide vertical=true data-notes="" -->
 
+##### 几何示意图
+
+---
+
+@import "../tikz/lp.svg" {.center .top4 .width70}
+
+极点定理：线性规划的最优解总是能够在可行域的极点上找到
+
+<!-- slide vertical=true data-notes="" -->
+
 ##### 线性规划标准形式
 
 ---
