@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Arch Linux) (preloaded format=xelatex 2023.10.25)  11 DEC 2023 02:48
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Arch Linux) (preloaded format=xelatex 2023.10.25)  13 DEC 2023 00:57
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1019,34 +1019,34 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 ))
 \symCJKmath=\mathgroup255
 LaTeX Font Info:    Overwriting symbol font `CJKmath' in version `bold'
-(Font)                  TU/LXGWBright(0)/m/n --> TU/LXGWBright(0)/b/n on input line 13.
+(Font)                  TU/LXGWBright(0)/m/n --> TU/LXGWBright(0)/b/n on input line 15.
  (./maximum-flow-lp.aux)
 \openout1 = `maximum-flow-lp.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
 
 Package pgfplots notification 'compat/show suggested version=true': document has been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
-Package hyperref Info: Link coloring ON on input line 13.
+Package hyperref Info: Link coloring ON on input line 15.
 (./maximum-flow-lp.out) (./maximum-flow-lp.out)
 \@outlinefile=\write6
 \openout6 = `maximum-flow-lp.out'.
@@ -1054,66 +1054,66 @@ Package hyperref Info: Link coloring ON on input line 13.
 
 
 LaTeX Font Warning: Font shape `TU/antp/b/n' undefined
-(Font)              using `TU/antp/m/n' instead on input line 18.
+(Font)              using `TU/antp/m/n' instead on input line 20.
 
-LaTeX Font Info:    Trying to load font information for OT1+ppl on input line 18.
+LaTeX Font Info:    Trying to load font information for OT1+ppl on input line 20.
 (/usr/share/texmf-dist/tex/latex/psnfss/ot1ppl.fd
 File: ot1ppl.fd 2001/06/04 font definitions for OT1/ppl.
 )
-LaTeX Font Info:    Trying to load font information for OML+zplm on input line 18.
+LaTeX Font Info:    Trying to load font information for OML+zplm on input line 20.
  (/usr/share/texmf-dist/tex/latex/psnfss/omlzplm.fd
 File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
 )
-LaTeX Font Info:    Trying to load font information for OMS+zplm on input line 18.
+LaTeX Font Info:    Trying to load font information for OMS+zplm on input line 20.
  (/usr/share/texmf-dist/tex/latex/psnfss/omszplm.fd
 File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
 )
-LaTeX Font Info:    Trying to load font information for OMX+zplm on input line 18.
+LaTeX Font Info:    Trying to load font information for OMX+zplm on input line 20.
  (/usr/share/texmf-dist/tex/latex/psnfss/omxzplm.fd
 File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
 )
-LaTeX Font Info:    Trying to load font information for OT1+zplm on input line 18.
+LaTeX Font Info:    Trying to load font information for OT1+zplm on input line 20.
  (/usr/share/texmf-dist/tex/latex/psnfss/ot1zplm.fd
 File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
 )
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 12.55096pt on input line 18.
+(Font)              scaled to size 12.55096pt on input line 20.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 8.33606pt on input line 18.
+(Font)              scaled to size 8.33606pt on input line 20.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 6.25204pt on input line 18.
+(Font)              scaled to size 6.25204pt on input line 20.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 12.55096pt on input line 18.
+(Font)              scaled to size 12.55096pt on input line 20.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 8.33606pt on input line 18.
+(Font)              scaled to size 8.33606pt on input line 20.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 6.25204pt on input line 18.
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 18.
+(Font)              scaled to size 6.25204pt on input line 20.
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 20.
  (/usr/share/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Font Info:    Trying to load font information for U+stmry on input line 18.
+LaTeX Font Info:    Trying to load font information for U+stmry on input line 20.
  (/usr/share/texmf-dist/tex/latex/stmaryrd/Ustmry.fd)
 Missing character: There is no ; ("3B) in font nullfont!
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 10.98209pt on input line 47.
+(Font)              scaled to size 10.98209pt on input line 49.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 47.
+(Font)              scaled to size 7.29405pt on input line 49.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 5.21004pt on input line 47.
+(Font)              scaled to size 5.21004pt on input line 49.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 10.98209pt on input line 47.
+(Font)              scaled to size 10.98209pt on input line 49.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 47.
+(Font)              scaled to size 7.29405pt on input line 49.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 5.21004pt on input line 47.
+(Font)              scaled to size 5.21004pt on input line 49.
 
 LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <10.53937> not available
-(Font)              size <10.95> substituted on input line 47.
+(Font)              size <10.95> substituted on input line 49.
 
 
 LaTeX Font Warning: Font shape `U/stmry/m/n' in size <10.53937> not available
-(Font)              size <10.95> substituted on input line 47.
+(Font)              size <10.95> substituted on input line 49.
 
 [1
 

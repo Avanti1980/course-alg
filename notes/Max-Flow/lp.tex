@@ -5,9 +5,6 @@
 \usepackage{avanti-theorem}
 \usepackage{avanti-others}
 
-\everymath{\color{Solarized-magenta}}
-\pagestyle{empty} % 没有页眉和页脚
-
 \tikzset{font=\tiny}
 \tikzset{base/.style = {smooth, draw=Solarized-base01, text=Solarized-magenta}}
 \tikzset{arrow/.style={->, -{Stealth[scale=0.8]}, base}}
@@ -18,7 +15,90 @@
 \date{}
 \maketitle
 
-本文给出用单纯形法求解如下流网络最大流的详细过程。
+线性规划(linear programming)是在一组线性等式或不等式的约束下，求线性目标函数最值的问题，许多现实问题都可以形式化为线性规划问题。
+
+\begin{example} [分数背包问题]
+    设背包承重量为$10$，各物品价值如下：
+    \begin{align*}
+        \begin{array}{r|cccc} \hline
+               & 物品$1$ & 物品$2$ & 物品$3$ & 物品$4$ \\ \hline
+            重量 & 4     & 7     & 5     & 3     \\
+            价值 & 40    & 42    & 25    & 12    \\ \hline
+        \end{array}
+    \end{align*}
+    现允许物品按比例取走部分，求最大装包方案。
+
+    对$i \in [4]$，设物品$i$取走的比例为$x_i$，则分数背包问题可形式化为
+    \begin{align*}
+        \quad \max \quad & 40 x_1 + 42 x_2 + 25 x_3 + 12 x_4    \\
+        \st       \quad  & 4 x_1 + 7 x_2 + 5 x_3 + 3 x_4 \le 10 \\
+                         & 0 \le x_1, x_2, x_3, x_4 \le 1
+    \end{align*}
+\end{example}
+
+\begin{example} [最大流]
+    单点
+\end{example}
+
+其标准形式为
+\begin{align*}
+    \max_\xv \quad & \cv^\top \xv                    \\
+    \st      \quad & \Av \xv = \bv, ~ \xv \ge \zerov
+\end{align*}
+其中
+\begin{align*}
+    \cv = \begin{bmatrix}
+              c_1 \\ \vdots \\ c_n
+          \end{bmatrix}, \quad
+    \xv = \begin{bmatrix}
+              x_1 \\ \vdots \\ x_n
+          \end{bmatrix}, \quad
+    \Av= \begin{bmatrix}
+             a_{11} & \ldots & a_{1n} \\
+             \vdots & \ddots & \vdots \\
+             a_{m1} & \ldots & a_{mn}
+         \end{bmatrix} = \begin{bmatrix}
+                             \av_1 & \ldots & \av_n
+                         \end{bmatrix}, \quad
+    \bv = \begin{bmatrix}
+              b_1 \\ \vdots \\ b_m
+          \end{bmatrix}
+\end{align*}
+集合$\Omega = \{\xv \mid \Av \xv = \bv, ~ \xv \ge \zerov \}$称为可行域，其中的点称为可行解。不失一般性设$\rank(\Av) = m < n$，否则可行域为单点集或空集。
+
+\begin{example} [非标准形式的线性规划都可等价转化为标准形式]
+    考虑线性规划
+    \begin{align*}
+        \max \quad & x_2 - x_1                                   \\
+        \st  \quad & 3 x_1 = x_2 - 5, ~ |x_2| \le 2, ~ x_1 \le 0
+    \end{align*}
+    为使不等式只约束变量非负，其余都是等式约束
+    \begin{enumerate}
+        \item 记$y_1 = -x_1$，则$x_1 \le 0$变成非负约束$y_1 \ge 0$
+        \item 由于$x_2$本身没有非负约束，只能记$x_2 = y_2 - y_3$，其中$y_2 \ge 0 $、$y_3 \ge 0$
+        \item 注意$|x_2| \le 2$等价于$-2 \le y_2 - y_3 \le 2$，引入松弛变量$y_4 \ge 0$、$y_5 \ge 0$有$y_2 - y_3 + y_4 = 2$、$-y_2 + y_3 + y_5 = 2$
+    \end{enumerate}
+    综上有
+    \begin{align*}
+        \max \quad & y_1 + y_2 - y_3         \\
+        \st  \quad & 3 y_1 + y_2 - y_3 = 5   \\
+                   & y_2 - y_3 + y_4 = 2     \\
+                   & -y_2 + y_3 + y_5 = 2    \\
+                   & y_{\{1,2,3,4,5\}} \ge 0
+    \end{align*}
+\end{example}
+
+
+
+
+
+
+
+
+$\Av \in \Rbb^{m \times n}$，$\bv \ge \zerov$。的$a$的
+
+
+
 
 
 
