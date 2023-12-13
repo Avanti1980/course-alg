@@ -28,18 +28,18 @@
 
 <div class="threelines outline head-highlight">
 
-|        |                讲义                |                                                                                   补充                                                                                   |
-| :----: | :--------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------: | --- |
-| 第一讲 |       [绪论](slides/01.html)       |                                                                                    -                                                                                     |
-| 第二讲 |    [函数的增长](slides/02.html)    |                                                                                    -                                                                                     |
-| 第三讲 |      [分治法](slides/03.html)      |                                                           [Strassen 矩阵乘法加速](notes/Strassen/Strassen.pdf)                                                           |
-| 第四讲 |     [动态规划](slides/04.html)     |                                                                                    -                                                                                     |
-| 第五讲 |      [贪心法](slides/05.html)      |                                                                                    -                                                                                     |
-| 第六讲 |   [单源最短路径](slides/06.html)   |                                                                                    -                                                                                     |
-| 第七讲 | [全结点对最短路径](slides/07.html) |                                                                                    -                                                                                     |
-| 第八讲 |      [回溯法](slides/08.html)      |                                                                                    -                                                                                     |
-| 第九讲 |    [分支限界法](slides/09.html)    |                                                                                    -                                                                                     |
-| 第十讲 |     [迭代改进](slides/10.html)     | [特殊情况](notes/Max-Flow/maximum-flow-supp.pdf)、[单纯形法求最大流](notes/Max-Flow/maximum-flow-lp.pdf)、[匹配、覆盖、流、割](notes/MCFC/MCFC.pdf) | -   |
+|        |                讲义                |                                                                     补充                                                                      |
+| :----: | :--------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: | --- |
+| 第一讲 |       [绪论](slides/01.html)       |                                                                       -                                                                       |
+| 第二讲 |    [函数的增长](slides/02.html)    |                                                                       -                                                                       |
+| 第三讲 |      [分治法](slides/03.html)      |                                             [Strassen 矩阵乘法加速](notes/Strassen/Strassen.pdf)                                              |
+| 第四讲 |     [动态规划](slides/04.html)     |                                                                       -                                                                       |
+| 第五讲 |      [贪心法](slides/05.html)      |                                                                       -                                                                       |
+| 第六讲 |   [单源最短路径](slides/06.html)   |                                                                       -                                                                       |
+| 第七讲 | [全结点对最短路径](slides/07.html) |                                                                       -                                                                       |
+| 第八讲 |      [回溯法](slides/08.html)      |                                                                       -                                                                       |
+| 第九讲 |    [分支限界法](slides/09.html)    |                                                                       -                                                                       |
+| 第十讲 |     [迭代改进](slides/10.html)     | [Ford-Fulkerson 最坏情况](notes/Max-Flow/maximum-flow-supp.pdf)、[单纯形法](notes/Max-Flow/lp.pdf)、[匹配、覆盖、流、割](notes/MCFC/MCFC.pdf) | -   |
 
 </div>
 

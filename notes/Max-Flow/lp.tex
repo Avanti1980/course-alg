@@ -11,7 +11,7 @@
 \tikzset{arrow/.style={->, -{Stealth[scale=0.8]}, base}}
 
 \begin{document}
-\title{\bf{线性规划、单纯形法、对偶}}
+\title{\bf{用单纯形法求解线性规划}}
 \author{张腾\thanks{tengzhang@hust.edu.cn}}
 %\affil{华中科技大学~计算机学院}
 \date{\today}
@@ -19,7 +19,7 @@
 
 线性规划是在一组线性等式或不等式的约束下，求线性目标函数最值的问题，现实中的许多问题都可化为线性规划问题。
 
-\begin{example} [分数背包问题]
+\begin{example} [分数背包问题] \label{exam: bag}
     设背包承重量为$10$，各物品价值如下：
     \begin{align*}\arraycolsep=10.0pt
         \begin{array}{r|cccc} \hline
@@ -42,13 +42,13 @@
     如果不允许物品按比例取走部分，约束$0 \le x_1, x_2, x_3, x_4 \le 1$将变成$x_1, x_2, x_3, x_4 \in \{0, 1\}$，此时问题就变成了整数线性规划，比线性规划要难得多。
 \end{remark}
 
-\begin{example} [最大流]
+\begin{example} [最大流] \label{exam: flow}
     给定如下的流网络，求最大流。
     \begin{figure}[h]
         \centering
         \begin{tikzpicture}
 
-            \pgfmathsetmacro{\l}{3};
+            \pgfmathsetmacro{\l}{3.5};
 
             \node [point] (s) at (0,0) {$\sv$};
             \path (s) ++(30:\l)  node[point] (v1) {$\vv_1$};
@@ -373,29 +373,52 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性等式约束是一条直线
 
 \section{单纯形法}
 
-例\ref{exam: simplex}的每轮迭代中，首先选择一个列向量入基(如何选尚不明确)，但出基的基向量是确定的，迭代
-
-将$\Av, \cv, \bv$都写成分块的形式(基与非基)：
+设当前基向量为$\av_1, \ldots, \av_m$，待入基向量为$\av_q$，例\ref{exam: simplex}中每轮迭代都要将$\bv$和$\av_q$用当前基线性表出
+\begin{align}
+    \label{eq: coef1}
+    \bv   & = y_{10} \av_1 + \cdots + y_{m0} \av_m \\
+    \label{eq: coef2}
+    \av_q & = y_{1q} \av_1 + \cdots + y_{mq} \av_m
+\end{align}
+令$\eqref{eq: coef1} - \epsilon \times \eqref{eq: coef2}$可得关于$\epsilon$的恒等式
 \begin{align*}
-    \Av = \begin{bmatrix} \Bv & \Dv \end{bmatrix}, \quad \cv = \begin{bmatrix} \cv_\Bv \\ \cv_\Dv \end{bmatrix}, \quad \xv = \begin{bmatrix} \xv_\Bv \\ \xv_\Dv \end{bmatrix}
+    (y_{10} - \epsilon y_{1q}) \av_1 + \cdots + (y_{m0} - \epsilon y_{mq}) \av_m + \epsilon \av_q = \bv
 \end{align*}
-于是线性规划的标准型可写为
+让$\epsilon$从$0$增大直到某个$\av_p$出基，其中$p = \argmin_i \{ y_{i0} / y_{iq} : y_{iq} > 0 \}$。
+
+式\eqref{eq: coef1}和式\eqref{eq: coef2}中的系数如何得到呢？根据线性方程组理论，对$\Av \xv = \bv$的增广矩阵做初等行变换
+\begin{align*}
+    \begin{bmatrix}
+        \Bv & \av_{m+1} & \cdots & \av_n & \bv
+    \end{bmatrix} \longrightarrow
+    \begin{bmatrix}
+        \Iv_m & \Bv^{-1} \av_{m+1} & \cdots & \Bv^{-1} \av_n & \Bv^{-1} \bv
+    \end{bmatrix}
+\end{align*}
+当基$\Bv$变成单位阵时，第$q$列和最后一列就是$\av_q$和$\bv$的线性表出系数。至此还剩两个问题：
+\begin{enumerate}
+    \item 如何确定入基向量$\av_q$；
+    \item 如何确定当前解是否为最优解。
+\end{enumerate}
+
+下面考察基本可行解变化时目标函数值的变化，将标准型根据对$\Av$的分块重写为
 \begin{align*}
     \max \quad & \cv_\Bv^\top \xv_\Bv + \cv_\Dv^\top \xv_\Dv \\
     \st  \quad & \Bv \xv_\Bv + \Dv \xv_\Dv = \bv             \\
                & \xv_\Bv, \xv_\Dv \ge \zerov
 \end{align*}
 \begin{itemize}
-    \item 若$\xv_\Dv = \zerov$，则$\xv_\Bv = \Bv^{-1} \bv$，这样就得到了关于基$\Bv$的基本可行解
+    \item 若$\xv_\Dv = \zerov$，则$\xv_\Bv = \Bv^{-1} \bv$，此时$\xv$就是关于基$\Bv$的基本可行解，对应的目标函数值为
           \begin{align*}
-              \xvhat = \begin{bmatrix} \Bv^{-1} \bv \\ \zerov \end{bmatrix}
+              \zhat = \cv_\Bv^\top \xv_\Bv = \cv_\Bv^\top \Bv^{-1} \bv
           \end{align*}
-          对应的目标函数值为$\zhat = \cv_\Bv^\top \xv_\Bv = \cv_\Bv^\top \Bv^{-1} \bv$。
     \item 若$\xv_\Dv \ne \zerov$，则$\xv_\Bv = \Bv^{-1} \bv - \Bv^{-1} \Dv \xv_\Dv$，对应的目标函数值为
           \begin{align*}
               z = \cv_\Bv^\top \xv_\Bv + \cv_\Dv^\top \xv_\Dv = \cv_\Bv^\top (\Bv^{-1} \bv - \Bv^{-1} \Dv \xv_\Dv) + \cv_\Dv^\top \xv_\Dv = \cv_\Bv^\top \Bv^{-1} \bv - (\cv_\Bv^\top \Bv^{-1} \Dv - \cv_\Dv^\top) \xv_\Dv = \zhat - \rv_\Dv^\top \xv_\Dv
           \end{align*}
-          其中$\rv_\Dv^\top = \cv_\Bv^\top \Bv^{-1} \Dv - \cv_\Dv^\top$。注意$\xv_\Dv \ge \zerov$，若$\rv_\Dv \ge \zerov$，则$z \ge \zhat$，即关于基$\Bv$的基本可行解就是最优解；若$\rv_\Dv$中某个分量为负，则可将$\xv_\Dv$中对应的非基变量从$0$变为正数，从而使目标函数值变大。
+          其中$\rv_\Dv^\top = \cv_\Bv^\top \Bv^{-1} \Dv - \cv_\Dv^\top$称为\blue{检验数}。
+
+          注意$\xv_\Dv \ge \zerov$，若$\rv_\Dv \ge \zerov$，则$z \ge \zhat$，即关于基$\Bv$的基本可行解就是最优解，这就回答了前面的问题2。若$\rv_\Dv$中某个分量为负，则将$\xv_\Dv$中对应的非基变量从$0$变为正数可使目标函数值变大，也即该非基变量对应的列入基，这就回答了前面的问题1。
 \end{itemize}
 
 基于此，构造单纯形表
@@ -431,38 +454,545 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性等式约束是一条直线
         \Iv_m & \Bv^{-1} \Dv & \Bv^{-1} \bv \\ \zerov^\top & \cv_\Bv^\top \Bv^{-1} \Dv - \cv_\Dv^\top & \cv_\Bv^\top \Bv^{-1} \bv
     \end{bmatrix}
 \end{align*}
-注意最右列中的$\Bv^{-1} \bv$就是关于基$\Bv$的基变量，最后一行的$\cv_\Bv^\top \Bv^{-1} \Dv - \cv_\Dv^\top = \rv_\Dv^\top$就是检验数，右下角的$\cv_\Bv^\top \Bv^{-1} \bv$就是当前基本可行解对应的目标函数值。
+这张表里包含了一切我们需要的信息
+\begin{itemize}
+    \item $\Bv^{-1} \Dv$里的每列就是该列向量在当前基下的线性表示系数；
+    \item $\Bv^{-1} \bv$是当前基对应的基本可行解中的基变量值；
+    \item $\cv_\Bv^\top \Bv^{-1} \Dv - \cv_\Dv^\top$就是检验数，可以指示下一个入基向量和是否已达最优解；
+    \item $\cv_\Bv^\top \Bv^{-1} \bv$就是当前基本可行解对应的目标函数值
+\end{itemize}
 
+\begin{example}
+    用单纯形法再求例\ref{exam: illustration}中的线性规划，先转化为标准型：
+    \begin{align*}
+        \max \quad & 3 x_1 + 5 x_2                      \\
+        \st  \quad & \begin{bmatrix}
+                         1 & 5 & 1 &       \\
+                         2 & 1 &   & 1 &   \\
+                         1 & 1 &   &   & 1
+                     \end{bmatrix} \xv = \begin{bmatrix}
+                                             40 \\ 20 \\ 12
+                                         \end{bmatrix} \\
+                   & \xv \ge 0
+    \end{align*}
 
+    初始单纯形表为
+    \begin{align*}
+        \begin{array}{c|ccccc:c}
+                & x_1 & x_2 & x_3 & x_4 & x_5      \\ \hline
+            x_3 & 1   & 5   & 1   &     &     & 40 \\
+            x_4 & 2   & 1   &     & 1   &     & 20 \\
+            x_5 & 1   & 1   &     &     & 1   & 12 \\ \hdashline
+                & -3  & -5  &     &     &     & 0
+        \end{array}
+    \end{align*}
+    此时$x_3$、$x_4$、$x_5$是基变量，基本可行解为
+    \begin{align*}
+        \left[ \begin{array}{ccccc:c}
+                       x_1 & x_2 & x_3 & x_4 & x_5 & o \\
+                       0   & 0   & 40  & 20  & 12  & 0
+                   \end{array} \right]
+    \end{align*}
+    对应$\Rbb^2$中可行域的极点$[0,0]$，由于检验数还有负值，因此还不是最优解。
 
+    取检验数绝对值最大的负数对应的列入基，即$\av_2$入基。注意
+    \begin{align*}
+        \bv = 40 \av_3 + 20 \av_4 + 12 \av_5, \quad \av_2 = 5 \av_3 + 1 \av_4 + 1 \av_5
+    \end{align*}
+    计算$\argmin\{\nicefrac{40}{5}, \nicefrac{20}{1}, \nicefrac{12}{1}\}$可知$\av_3$出基。做初等行变换
+    \begin{align*}
+        \begin{array}{c|ccccc:c}
+                & x_1 & x_2 & x_3 & x_4 & x_5      \\ \hline
+            x_2 & 0.2 & 1   & 0.2 &     &     & 8  \\
+            x_4 & 2   & 1   &     & 1   &     & 20 \\
+            x_5 & 1   & 1   &     &     & 1   & 12 \\ \hdashline
+                & -3  & -5  &     &     &     & 0
+        \end{array} \Longrightarrow
+        \begin{array}{c|ccccc:c}
+                & x_1 & x_2 & x_3  & x_4 & x_5      \\ \hline
+            x_2 & 0.2 & 1   & 0.2  &     &     & 8  \\
+            x_4 & 1.8 &     & -0.2 & 1   &     & 12 \\
+            x_5 & 0.8 &     & -0.2 &     & 1   & 4  \\ \hdashline
+                & -2  &     & 1    &     &     & 40
+        \end{array}
+    \end{align*}
+    此时$x_2$、$x_4$、$x_5$是基变量，基本可行解为
+    \begin{align*}
+        \left[ \begin{array}{ccccc:c}
+                       x_1 & x_2 & x_3 & x_4 & x_5 & o  \\
+                       0   & 8   & 0   & 12  & 4   & 40
+                   \end{array} \right]
+    \end{align*}
+    对应$\Rbb^2$中可行域的极点$[0,8]$，由于检验数还有负值，因此还不是最优解。
 
+    根据检验数$\av_1$入基，计算$\argmin\{\nicefrac{8}{0.2}, \nicefrac{12}{1.8}, \nicefrac{4}{0.8}\}$可知$\av_5$出基。做初等行变换
+    \begin{align*}
+        \begin{array}{c|ccccc:c}
+                & x_1 & x_2 & x_3   & x_4 & x_5       \\ \hline
+            x_2 & 0.2 & 1   & 0.2   &     &      & 8  \\
+            x_4 & 1.8 &     & -0.2  & 1   &      & 12 \\
+            x_1 & 1   &     & -0.25 &     & 1.25 & 5  \\ \hdashline
+                & -2  &     & 1     &     &      & 40
+        \end{array} \Longrightarrow
+        \begin{array}{c|ccccc:c}
+                & x_1 & x_2 & x_3   & x_4 & x_5        \\ \hline
+            x_2 &     & 1   & 0.25  &     & -0.25 & 7  \\
+            x_4 &     &     & 0.25  & 1   & -2.25 & 3  \\
+            x_1 & 1   &     & -0.25 &     & 1.25  & 5  \\ \hdashline
+                &     &     & 0.5   &     & 2.5   & 50
+        \end{array}
+    \end{align*}
+    此时$x_1$、$x_2$、$x_4$是基变量，基本可行解为
+    \begin{align*}
+        \left[ \begin{array}{ccccc:c}
+                       x_1 & x_2 & x_3 & x_4 & x_5 & o  \\
+                       5   & 7   & 0   & 3   & 0   & 50
+                   \end{array} \right]
+    \end{align*}
+    对应$\Rbb^2$中可行域的极点$[5,7]$，由于检验数均非负，已达最优解。
+\end{example}
 
+\begin{example}
+    用单纯形法求例\ref{exam: bag}中的分数背包问题，先转化为标准型：
+    \begin{align*}
+        \max \quad & 40 x_1 + 42 x_2 + 25 x_3 + 12 x_4 \\
+        \st \quad  & \begin{bmatrix}
+                         4 & 7 & 5 & 3 & 1                 \\
+                         1 &   &   &   &   & 1             \\
+                           & 1 &   &   &   &   & 1         \\
+                           &   & 1 &   &   &   &   & 1     \\
+                           &   &   & 1 &   &   &   &   & 1 \\
+                     \end{bmatrix} \xv =
+        \begin{bmatrix}
+            10 \\ 1 \\ 1 \\ 1 \\ 1
+        \end{bmatrix}                          \\
+                   & \xv \ge 0
+    \end{align*}
 
+    初始单纯形表为
+    \begin{align*}
+        \begin{array}{c|ccccccccc:c}
+                & x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & x_9      \\ \hline
+            x_5 & 4   & 7   & 5   & 3   & 1   &     &     &     &     & 10 \\
+            x_6 & 1   &     &     &     &     & 1   &     &     &     & 1  \\
+            x_7 &     & 1   &     &     &     &     & 1   &     &     & 1  \\
+            x_8 &     &     & 1   &     &     &     &     & 1   &     & 1  \\
+            x_9 &     &     &     & 1   &     &     &     &     & 1   & 1  \\ \hdashline
+                & -40 & -42 & -25 & -12 &     &     &     &     &     & 0
+        \end{array}
+    \end{align*}
+    此时$x_5$、$x_6$、$x_7$、$x_8$、$x_9$是基变量，基本可行解为
+    \begin{align*}
+        \left[ \begin{array}{ccccccccc:c}
+                       x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & x_9 & o \\
+                       0   & 0   & 0   & 0   & 10  & 1   & 1   & 1   & 1   & 0
+                   \end{array} \right]
+    \end{align*}
 
+    根据检验数$\av_2$入基，计算$\argmin\{\nicefrac{10}{7}, \nicefrac{1}{1}\}$可知$\av_7$出基。做初等行变换
+    \begin{align*}
+        \begin{array}{c|ccccccccc:c}
+                & x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & x_9      \\ \hline
+            x_5 & 4   &     & 5   & 3   & 1   &     & -7  &     &     & 3  \\
+            x_6 & 1   &     &     &     &     & 1   &     &     &     & 1  \\
+            x_2 &     & 1   &     &     &     &     & 1   &     &     & 1  \\
+            x_8 &     &     & 1   &     &     &     &     & 1   &     & 1  \\
+            x_9 &     &     &     & 1   &     &     &     &     & 1   & 1  \\ \hdashline
+                & -40 &     & -25 & -12 &     &     & 42  &     &     & 42
+        \end{array}
+    \end{align*}
+    此时$x_2$、$x_5$、$x_6$、$x_8$、$x_9$是基变量，基本可行解为
+    \begin{align*}
+        \left[ \begin{array}{ccccccccc:c}
+                       x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & x_9 & o  \\
+                       0   & 1   & 0   & 0   & 3   & 1   & 0   & 1   & 1   & 42
+                   \end{array} \right]
+    \end{align*}
 
+    根据检验数$\av_1$入基，计算$\argmin\{\nicefrac{3}{4}, \nicefrac{1}{1}\}$可知$\av_5$出基。做初等行变换
+    \begin{align*}\arraycolsep=3pt
+        \begin{array}{c|ccccccccc:c}
+                & x_1 & x_2 & x_3             & x_4             & x_5             & x_6 & x_7              & x_8 & x_9                   \\ \hline
+            x_1 & 1   &     & \nicefrac{5}{4} & \nicefrac{3}{4} & \nicefrac{1}{4} &     & \nicefrac{-7}{4} &     &     & \nicefrac{3}{4} \\
+            x_6 & 1   &     &                 &                 &                 & 1   &                  &     &     & 1               \\
+            x_2 &     & 1   &                 &                 &                 &     & 1                &     &     & 1               \\
+            x_8 &     &     & 1               &                 &                 &     &                  & 1   &     & 1               \\
+            x_9 &     &     &                 & 1               &                 &     &                  &     & 1   & 1               \\ \hdashline
+                & -40 &     & -25             & -12             &                 &     & 42               &     &     & 42
+        \end{array} \Longrightarrow
+        \begin{array}{c|ccccccccc:c}
+                & x_1 & x_2 & x_3              & x_4              & x_5              & x_6 & x_7              & x_8 & x_9                   \\ \hline
+            x_1 & 1   &     & \nicefrac{5}{4}  & \nicefrac{3}{4}  & \nicefrac{1}{4}  &     & \nicefrac{-7}{4} &     &     & \nicefrac{3}{4} \\
+            x_6 &     &     & \nicefrac{-5}{4} & \nicefrac{-3}{4} & \nicefrac{-1}{4} & 1   & \nicefrac{7}{4}  &     &     & \nicefrac{1}{4} \\
+            x_2 &     & 1   &                  &                  &                  &     & 1                &     &     & 1               \\
+            x_8 &     &     & 1                &                  &                  &     &                  & 1   &     & 1               \\
+            x_9 &     &     &                  & 1                &                  &     &                  &     & 1   & 1               \\ \hdashline
+                &     &     & 25               & 18               & 10               & 40  & -28              &     &     & 72
+        \end{array}
+    \end{align*}
+    此时$x_1$、$x_2$、$x_6$、$x_8$、$x_9$是基变量，基本可行解为
+    \begin{align*}
+        \left[ \begin{array}{ccccccccc:c}
+                       x_1             & x_2 & x_3 & x_4 & x_5 & x_6             & x_7 & x_8 & x_9 & o  \\
+                       \nicefrac{3}{4} & 1   & 0   & 0   & 0   & \nicefrac{1}{4} & 0   & 1   & 1   & 72
+                   \end{array} \right]
+    \end{align*}
 
+    根据检验数$\av_7$入基，计算$\argmin\{\nicefrac{1}{7}, \nicefrac{1}{1}\}$可知$\av_6$出基。做初等行变换
+    \begin{align*}\arraycolsep=3pt
+        \begin{array}{c|ccccccccc:c}
+                & x_1 & x_2 & x_3              & x_4              & x_5              & x_6 & x_7              & x_8 & x_9                   \\ \hline
+            x_1 & 1   &     & \nicefrac{5}{4}  & \nicefrac{3}{4}  & \nicefrac{1}{4}  &     & \nicefrac{-7}{4} &     &     & \nicefrac{3}{4} \\
+            x_7 &     &     & \nicefrac{-5}{7} & \nicefrac{-3}{7} & \nicefrac{-1}{7} & 1   & 1                &     &     & \nicefrac{1}{7} \\
+            x_2 &     & 1   &                  &                  &                  &     & 1                &     &     & 1               \\
+            x_8 &     &     & 1                &                  &                  &     &                  & 1   &     & 1               \\
+            x_9 &     &     &                  & 1                &                  &     &                  &     & 1   & 1               \\ \hdashline
+                &     &     & 25               & 18               & 10               & 40  & -28              &     &     & 72
+        \end{array} \Longrightarrow
+        \begin{array}{c|ccccccccc:c}
+                & x_1 & x_2 & x_3              & x_4              & x_5              & x_6             & x_7 & x_8 & x_9                   \\ \hline
+            x_1 & 1   &     &                  &                  &                  & \nicefrac{7}{4} &     &     &     & 1               \\
+            x_7 &     &     & \nicefrac{-5}{7} & \nicefrac{-3}{7} & \nicefrac{-1}{7} & 1               & 1   &     &     & \nicefrac{1}{7} \\
+            x_2 &     & 1   & \nicefrac{5}{7}  & \nicefrac{3}{7}  & \nicefrac{1}{7}  & -1              &     &     &     & \nicefrac{6}{7} \\
+            x_8 &     &     & 1                &                  &                  &                 &     & 1   &     & 1               \\
+            x_9 &     &     &                  & 1                &                  &                 &     &     & 1   & 1               \\ \hdashline
+                &     &     & 5                & 6                & 6                & 68              &     &     &     & 76
+        \end{array}
+    \end{align*}
+    此时$x_1$、$x_2$、$x_7$、$x_8$、$x_9$是基变量，基本可行解为
+    \begin{align*}
+        \left[ \begin{array}{ccccccccc:c}
+                       x_1 & x_2             & x_3 & x_4 & x_5 & x_6 & x_7             & x_8 & x_9 & o  \\
+                       1   & \nicefrac{6}{7} & 0   & 0   & 0   & 0   & \nicefrac{1}{7} & 1   & 1   & 76
+                   \end{array} \right]
+    \end{align*}
+    由于检验数均非负，已达最优解。
 
+\end{example}
 
+\begin{remark}
+    分数背包问题也可采用贪心法来做。
+\end{remark}
 
+\begin{example}
+    用单纯形法求例\ref{exam: flow}中的最大流问题，先转化为标准型：
+    \begin{align*}
+        \max \quad & x_1 + x_2                 \\
+        \st \quad  & x_1 + y_1 = 16            \\
+                   & x_2 + y_2 =  13           \\
+                   & x_3 + y_3 =  4            \\
+                   & x_4 + y_4 =  12           \\
+                   & x_5 + y_5 =  9            \\
+                   & x_6 + y_6 =  14           \\
+                   & x_7 + y_7 =  7            \\
+                   & x_8 + y_8 =  20           \\
+                   & x_9 + y_9 =  4            \\
+                   & x_1 + x_3 - x_4 = 0       \\
+                   & x_2 + x_5 - x_3 - x_6 = 0 \\
+                   & x_4 + x_7 - x_5 - x_8 = 0 \\
+                   & x_6 - x_7 - x_9 = 0       \\
+                   & \xv, \yv \ge \zerov
+    \end{align*}
+    共有$18$个变量、$13$个等式约束，因此基变量有$13$个，非基变量有$5$个。初始不妨取$x_1$、$x_2$、$x_4$、$x_5$、$x_7$为非基变量，将基变量由$x_1$、$x_2$、$x_4$、$x_5$、$x_7$表出：
+    \begin{align*}
+        \begin{array}{rclcl}
+            x_3 = -x_1 + x_4      & \Rightarrow & x_1 + x_3 - x_4 = 0                    & \Rightarrow & -x_1 + x_4 + y_3 = 4                  \\
+            x_8 = x_4 - x_5 + x_7 & \Rightarrow & -x_4 + x_5 - x_7 + x_8 = 0             & \Rightarrow & x_4 - x_5 + x_7 + y_8 = 20            \\
+            x_6 = x_2 + x_5 - x_3 & \Rightarrow & -x_1 - x_2 + x_4 - x_5 + x_6 = 0       & \Rightarrow & x_1 + x_2 - x_4 + x_5 + y_6 = 14      \\
+            x_9 = x_6 - x_7       & \Rightarrow & -x_1 - x_2 + x_4 - x_5 + x_7 + x_9 = 0 & \Rightarrow & x_1 + x_2 - x_4 + x_5 - x_7 + y_9 = 4 \\
+        \end{array}
+    \end{align*}
 
+    初始单纯形表为
+    \begin{align*}
+        \begin{array}{c|cccccccccccccccccc:c}
+                & x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & x_9 & y_1 & y_2 & y_3 & y_4 & y_5 & y_6 & y_7 & y_8 & y_9      \\ \hline
+            x_3 & 1   &     & 1   & -1  &     &     &     &     &     &     &     &     &     &     &     &     &     &     & 0  \\
+            x_6 & -1  & -1  &     & 1   & -1  & 1   &     &     &     &     &     &     &     &     &     &     &     &     & 0  \\
+            x_8 &     &     &     & -1  & 1   &     & -1  & 1   &     &     &     &     &     &     &     &     &     &     & 0  \\
+            x_9 & -1  & -1  &     & 1   & -1  &     & 1   &     & 1   &     &     &     &     &     &     &     &     &     & 0  \\
+            y_1 & 1   &     &     &     &     &     &     &     &     & 1   &     &     &     &     &     &     &     &     & 16 \\
+            y_2 &     & 1   &     &     &     &     &     &     &     &     & 1   &     &     &     &     &     &     &     & 13 \\
+            y_3 & -1  &     &     & 1   &     &     &     &     &     &     &     & 1   &     &     &     &     &     &     & 4  \\
+            y_4 &     &     &     & 1   &     &     &     &     &     &     &     &     & 1   &     &     &     &     &     & 12 \\
+            y_5 &     &     &     &     & 1   &     &     &     &     &     &     &     &     & 1   &     &     &     &     & 9  \\
+            y_6 & 1   & 1   &     & -1  & 1   &     &     &     &     &     &     &     &     &     & 1   &     &     &     & 14 \\
+            y_7 &     &     &     &     &     &     & 1   &     &     &     &     &     &     &     &     & 1   &     &     & 7  \\
+            y_8 &     &     &     & 1   & -1  &     & 1   &     &     &     &     &     &     &     &     &     & 1   &     & 20 \\
+            y_9 & 1   & 1   &     & -1  & 1   &     & -1  &     &     &     &     &     &     &     &     &     &     & 1   & 4  \\ \hdashline
+                & -1  & -1  &     &     &     &     &     &     &     &     &     &     &     &     &     &     &     &     & 0
+        \end{array}
+    \end{align*}
+    基本可行解为
+    \begin{align*}
+        \left[
+            \begin{array}{cccccccccccccccccc:c}
+                x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & x_9 & y_1 & y_2 & y_3 & y_4 & y_5 & y_6 & y_7 & y_8 & y_9 & o \\
+                0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 16  & 13  & 4   & 12  & 9   & 14  & 7   & 20  & 4   & 0
+            \end{array} \right]
+    \end{align*}
+    对应的流网络为
+    \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}
 
+            \pgfmathsetmacro{\l}{3.5};
 
+            \node [point] (s) at (0,0) {$\sv$};
+            \path (s) ++(30:\l)  node[point] (v1) {$\vv_1$};
+            \path (s) ++(330:\l)  node[point] (v2) {$\vv_2$};
+            \path (v1) ++(\l,0)  node[point] (v3) {$\vv_3$};
+            \path (v2) ++(\l,0)  node[point] (v4) {$\vv_4$};
+            \path (v4) ++(30:\l)  node[point] (t) {$\tv$};
 
+            \draw [arrow] (s) -- (v1) node [above=0pt, sloped, pos=0.5] {$16$};
+            \draw [arrow] (s) -- (v2) node [below=0pt, sloped, pos=0.4] {$13$};
+            \draw [arrow] (v2) -- (v1) node [above=0pt, sloped, pos=0.5] {$4$};
+            \draw [arrow] (v1) -- (v3) node [above=0pt, pos=0.5] {$12$};
+            \draw [arrow] (v2) -- (v4) node [below=0pt, pos=0.5] {$14$};
+            \draw [arrow] (v4) -- (v3) node [above=0pt, sloped, pos=0.5] {$7$};
+            \draw [arrow] (v3) -- (v2) node [above=0pt, sloped, pos=0.5] {$9$};
+            \draw [arrow] (v3) -- (t) node [above=0pt, sloped, pos=0.5] {$20$};
+            \draw [arrow] (v4) -- (t) node [below=0pt, sloped, pos=0.5] {$4$};
 
+        \end{tikzpicture}
+    \end{figure}
 
+    \newpage
 
+    $\av_1$、$\av_2$的检验数均为$-1$，不妨让$\av_2$入基，计算$\argmin\{\nicefrac{13}{1}, \nicefrac{14}{1}, \nicefrac{4}{1}\}$可知$\av_{18}$出基。做初等行变换
+    \begin{align*}
+        \begin{array}{c|cccccccccccccccccc:c}
+                & x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & x_9 & y_1 & y_2 & y_3 & y_4 & y_5 & y_6 & y_7 & y_8 & y_9      \\ \hline
+            x_3 & 1   &     & 1   & -1  &     &     &     &     &     &     &     &     &     &     &     &     &     &     & 0  \\
+            x_6 &     &     &     &     &     & 1   & -1  &     &     &     &     &     &     &     &     &     &     & -1  & 4  \\
+            x_8 &     &     &     & -1  & 1   &     & -1  & 1   &     &     &     &     &     &     &     &     &     &     & 0  \\
+            x_9 &     &     &     &     &     &     &     &     & 1   &     &     &     &     &     &     &     &     & 1   & 4  \\
+            y_1 & 1   &     &     &     &     &     &     &     &     & 1   &     &     &     &     &     &     &     &     & 16 \\
+            y_2 & -1  &     &     & 1   & -1  &     & 1   &     &     &     & 1   &     &     &     &     &     &     & -1  & 9  \\
+            y_3 & -1  &     &     & 1   &     &     &     &     &     &     &     & 1   &     &     &     &     &     &     & 4  \\
+            y_4 &     &     &     & 1   &     &     &     &     &     &     &     &     & 1   &     &     &     &     &     & 12 \\
+            y_5 &     &     &     &     & 1   &     &     &     &     &     &     &     &     & 1   &     &     &     &     & 9  \\
+            y_6 &     &     &     &     &     &     & 1   &     &     &     &     &     &     &     & 1   &     &     & -1  & 10 \\
+            y_7 &     &     &     &     &     &     & 1   &     &     &     &     &     &     &     &     & 1   &     &     & 7  \\
+            y_8 &     &     &     & 1   & -1  &     & 1   &     &     &     &     &     &     &     &     &     & 1   &     & 20 \\
+            x_2 & 1   & 1   &     & -1  & 1   &     & -1  &     &     &     &     &     &     &     &     &     &     & 1   & 4  \\ \hdashline
+                &     &     &     & -1  & 1   &     & -1  &     &     &     &     &     &     &     &     &     &     & 1   & 4
+        \end{array}
+    \end{align*}
+    当前基本可行解为
+    \begin{align*}
+        \left[
+            \begin{array}{cccccccccccccccccc:c}
+                x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & x_9 & y_1 & y_2 & y_3 & y_4 & y_5 & y_6 & y_7 & y_8 & y_9 & o \\
+                0   & 4   & 0   & 0   & 0   & 4   & 0   & 0   & 4   & 16  & 9   & 4   & 12  & 9   & 10  & 7   & 20  & 0   & 4
+            \end{array} \right]
+    \end{align*}
+    对应的流网络为
+    \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}
 
+            \pgfmathsetmacro{\l}{3.5};
 
+            \node [point] (s) at (0,0) {$\sv$};
+            \path (s) ++(30:\l)  node[point] (v1) {$\vv_1$};
+            \path (s) ++(330:\l)  node[point] (v2) {$\vv_2$};
+            \path (v1) ++(\l,0)  node[point] (v3) {$\vv_3$};
+            \path (v2) ++(\l,0)  node[point] (v4) {$\vv_4$};
+            \path (v4) ++(30:\l)  node[point] (t) {$\tv$};
 
+            \draw [arrow] (s) -- (v1) node [above=0pt, sloped, pos=0.5] {$16$};
+            \draw [arrow] (s) -- (v2) node [below=0pt, sloped, pos=0.4] {$4/13$};
+            \draw [arrow] (v2) -- (v1) node [above=0pt, sloped, pos=0.5] {$4$};
+            \draw [arrow] (v1) -- (v3) node [above=0pt, pos=0.5] {$12$};
+            \draw [arrow] (v2) -- (v4) node [below=0pt, pos=0.5] {$4/14$};
+            \draw [arrow] (v4) -- (v3) node [above=0pt, sloped, pos=0.5] {$7$};
+            \draw [arrow] (v3) -- (v2) node [above=0pt, sloped, pos=0.5] {$9$};
+            \draw [arrow] (v3) -- (t) node [above=0pt, sloped, pos=0.5] {$20$};
+            \draw [arrow] (v4) -- (t) node [below=0pt, sloped, pos=0.5] {$4/4$};
 
+        \end{tikzpicture}
+    \end{figure}
 
+    \newpage
 
+    $\av_4$、$\av_7$的检验数均为$-1$，不妨让$\av_7$入基，计算$\argmin\{\nicefrac{9}{1}, \nicefrac{10}{1}, \nicefrac{7}{1}, \nicefrac{20}{1}\}$可知$\av_{16}$出基。做初等行变换
+    \begin{align*}
+        \begin{array}{c|cccccccccccccccccc:c}
+                & x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & x_9 & y_1 & y_2 & y_3 & y_4 & y_5 & y_6 & y_7 & y_8 & y_9      \\ \hline
+            x_3 & 1   &     & 1   & -1  &     &     &     &     &     &     &     &     &     &     &     &     &     &     & 0  \\
+            x_6 &     &     &     &     &     & 1   &     &     &     &     &     &     &     &     &     & 1   &     & -1  & 11 \\
+            x_8 &     &     &     & -1  & 1   &     &     & 1   &     &     &     &     &     &     &     & 1   &     &     & 7  \\
+            x_9 &     &     &     &     &     &     &     &     & 1   &     &     &     &     &     &     &     &     & 1   & 4  \\
+            y_1 & 1   &     &     &     &     &     &     &     &     & 1   &     &     &     &     &     &     &     &     & 16 \\
+            y_2 & -1  &     &     & 1   & -1  &     &     &     &     &     & 1   &     &     &     &     & -1  &     & -1  & 2  \\
+            y_3 & -1  &     &     & 1   &     &     &     &     &     &     &     & 1   &     &     &     &     &     &     & 4  \\
+            y_4 &     &     &     & 1   &     &     &     &     &     &     &     &     & 1   &     &     &     &     &     & 12 \\
+            y_5 &     &     &     &     & 1   &     &     &     &     &     &     &     &     & 1   &     &     &     &     & 9  \\
+            y_6 &     &     &     &     &     &     &     &     &     &     &     &     &     &     & 1   & -1  &     & -1  & 3  \\
+            x_7 &     &     &     &     &     &     & 1   &     &     &     &     &     &     &     &     & 1   &     &     & 7  \\
+            y_8 &     &     &     & 1   & -1  &     &     &     &     &     &     &     &     &     &     & -1  & 1   &     & 13 \\
+            x_2 & 1   & 1   &     & -1  & 1   &     &     &     &     &     &     &     &     &     &     & 1   &     & 1   & 11 \\ \hdashline
+                &     &     &     & -1  & 1   &     &     &     &     &     &     &     &     &     &     & 1   &     & 1   & 11
+        \end{array}
+    \end{align*}
+    当前基本可行解为
+    \begin{align*}
+        \left[
+            \begin{array}{cccccccccccccccccc:c}
+                x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & x_9 & y_1 & y_2 & y_3 & y_4 & y_5 & y_6 & y_7 & y_8 & y_9 & o  \\
+                0   & 11  & 0   & 0   & 0   & 11  & 7   & 7   & 4   & 16  & 2   & 4   & 12  & 9   & 3   & 0   & 13  & 0   & 11
+            \end{array} \right]
+    \end{align*}
+    对应的流网络为
+    \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}
 
+            \pgfmathsetmacro{\l}{3.5};
 
+            \node [point] (s) at (0,0) {$\sv$};
+            \path (s) ++(30:\l)  node[point] (v1) {$\vv_1$};
+            \path (s) ++(330:\l)  node[point] (v2) {$\vv_2$};
+            \path (v1) ++(\l,0)  node[point] (v3) {$\vv_3$};
+            \path (v2) ++(\l,0)  node[point] (v4) {$\vv_4$};
+            \path (v4) ++(30:\l)  node[point] (t) {$\tv$};
 
+            \draw [arrow] (s) -- (v1) node [above=0pt, sloped, pos=0.5] {$16$};
+            \draw [arrow] (s) -- (v2) node [below=0pt, sloped, pos=0.4] {$11/13$};
+            \draw [arrow] (v2) -- (v1) node [above=0pt, sloped, pos=0.5] {$4$};
+            \draw [arrow] (v1) -- (v3) node [above=0pt, pos=0.5] {$12$};
+            \draw [arrow] (v2) -- (v4) node [below=0pt, pos=0.5] {$11/14$};
+            \draw [arrow] (v4) -- (v3) node [above=0pt, sloped, pos=0.5] {$7/7$};
+            \draw [arrow] (v3) -- (v2) node [above=0pt, sloped, pos=0.5] {$9$};
+            \draw [arrow] (v3) -- (t) node [above=0pt, sloped, pos=0.5] {$7/20$};
+            \draw [arrow] (v4) -- (t) node [below=0pt, sloped, pos=0.5] {$4/4$};
 
+        \end{tikzpicture}
+    \end{figure}
 
-，单纯形法正是这么做的
+    \newpage
+
+    根据检验数$\av_4$入基，计算$\argmin\{\nicefrac{2}{1}, \nicefrac{4}{1}, \nicefrac{12}{1}, \nicefrac{13}{1}\}$可知$\av_{11}$出基。做初等行变换
+    \begin{align*}
+        \begin{array}{c|cccccccccccccccccc:c}
+                & x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & x_9 & y_1 & y_2 & y_3 & y_4 & y_5 & y_6 & y_7 & y_8 & y_9      \\ \hline
+            x_3 &     &     & 1   &     & -1  &     &     &     &     &     & 1   &     &     &     &     & -1  &     & -1  & 2  \\
+            x_6 &     &     &     &     &     & 1   &     &     &     &     &     &     &     &     &     & 1   &     & -1  & 11 \\
+            x_8 & -1  &     &     &     &     &     &     & 1   &     &     & 1   &     &     &     &     &     &     & -1  & 9  \\
+            x_9 &     &     &     &     &     &     &     &     & 1   &     &     &     &     &     &     &     &     & 1   & 4  \\
+            y_1 & 1   &     &     &     &     &     &     &     &     & 1   &     &     &     &     &     &     &     &     & 16 \\
+            x_4 & -1  &     &     & 1   & -1  &     &     &     &     &     & 1   &     &     &     &     & -1  &     & -1  & 2  \\
+            y_3 &     &     &     &     & 1   &     &     &     &     &     & -1  & 1   &     &     &     & 1   &     & 1   & 2  \\
+            y_4 & 1   &     &     &     & 1   &     &     &     &     &     & -1  &     & 1   &     &     & 1   &     & 1   & 10 \\
+            y_5 &     &     &     &     & 1   &     &     &     &     &     &     &     &     & 1   &     &     &     &     & 9  \\
+            y_6 &     &     &     &     &     &     &     &     &     &     &     &     &     &     & 1   & -1  &     & -1  & 3  \\
+            x_7 &     &     &     &     &     &     & 1   &     &     &     &     &     &     &     &     & 1   &     &     & 7  \\
+            y_8 & 1   &     &     &     &     &     &     &     &     &     & -1  &     &     &     &     &     & 1   & 1   & 11 \\
+            x_2 &     & 1   &     &     &     &     &     &     &     &     & 1   &     &     &     &     &     &     &     & 13 \\ \hdashline
+                & -1  &     &     &     &     &     &     &     &     &     & 1   &     &     &     &     &     &     &     & 13
+        \end{array}
+    \end{align*}
+    当前基本可行解为
+    \begin{align*}
+        \left[
+            \begin{array}{cccccccccccccccccc:c}
+                x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & x_9 & y_1 & y_2 & y_3 & y_4 & y_5 & y_6 & y_7 & y_8 & y_9 & o  \\
+                0   & 13  & 2   & 2   & 0   & 11  & 7   & 9   & 4   & 16  & 0   & 2   & 10  & 9   & 3   & 0   & 11  & 0   & 13
+            \end{array} \right]
+    \end{align*}
+    对应的流网络为
+    \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}
+
+            \pgfmathsetmacro{\l}{3.5};
+
+            \node [point] (s) at (0,0) {$\sv$};
+            \path (s) ++(30:\l)  node[point] (v1) {$\vv_1$};
+            \path (s) ++(330:\l)  node[point] (v2) {$\vv_2$};
+            \path (v1) ++(\l,0)  node[point] (v3) {$\vv_3$};
+            \path (v2) ++(\l,0)  node[point] (v4) {$\vv_4$};
+            \path (v4) ++(30:\l)  node[point] (t) {$\tv$};
+
+            \draw [arrow] (s) -- (v1) node [above=0pt, sloped, pos=0.5] {$16$};
+            \draw [arrow] (s) -- (v2) node [below=0pt, sloped, pos=0.4] {$13/13$};
+            \draw [arrow] (v2) -- (v1) node [above=0pt, sloped, pos=0.5] {$2/4$};
+            \draw [arrow] (v1) -- (v3) node [above=0pt, pos=0.5] {$2/12$};
+            \draw [arrow] (v2) -- (v4) node [below=0pt, pos=0.5] {$11/14$};
+            \draw [arrow] (v4) -- (v3) node [above=0pt, sloped, pos=0.5] {$7/7$};
+            \draw [arrow] (v3) -- (v2) node [above=0pt, sloped, pos=0.5] {$9$};
+            \draw [arrow] (v3) -- (t) node [above=0pt, sloped, pos=0.5] {$9/20$};
+            \draw [arrow] (v4) -- (t) node [below=0pt, sloped, pos=0.5] {$4/4$};
+
+        \end{tikzpicture}
+    \end{figure}
+
+    \newpage
+
+    根据检验数$\av_1$入基，计算$\argmin\{\nicefrac{16}{1}, \nicefrac{10}{1}, \nicefrac{11}{1}\}$可知$\av_{13}$出基。做初等行变换
+    \begin{align*}
+        \begin{array}{c|cccccccccccccccccc:c}
+                & x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & x_9 & y_1 & y_2 & y_3 & y_4 & y_5 & y_6 & y_7 & y_8 & y_9      \\ \hline
+            x_3 &     &     & 1   &     & -1  &     &     &     &     &     & 1   &     &     &     &     & -1  &     & -1  & 2  \\
+            x_6 &     &     &     &     &     & 1   &     &     &     &     &     &     &     &     &     & 1   &     & -1  & 11 \\
+            x_8 &     &     &     &     & 1   &     &     & 1   &     &     &     &     & 1   &     &     & 1   &     &     & 19 \\
+            x_9 &     &     &     &     &     &     &     &     & 1   &     &     &     &     &     &     &     &     & 1   & 4  \\
+            y_1 &     &     &     &     & -1  &     &     &     &     & 1   & 1   &     & -1  &     &     & -1  &     & -1  & 6  \\
+            x_4 &     &     &     & 1   &     &     &     &     &     &     &     &     & 1   &     &     &     &     &     & 12 \\
+            y_3 &     &     &     &     & 1   &     &     &     &     &     & -1  & 1   &     &     &     & 1   &     & 1   & 2  \\
+            x_1 & 1   &     &     &     & 1   &     &     &     &     &     & -1  &     & 1   &     &     & 1   &     & 1   & 10 \\
+            y_5 &     &     &     &     & 1   &     &     &     &     &     &     &     &     & 1   &     &     &     &     & 9  \\
+            y_6 &     &     &     &     &     &     &     &     &     &     &     &     &     &     & 1   & -1  &     & -1  & 3  \\
+            x_7 &     &     &     &     &     &     & 1   &     &     &     &     &     &     &     &     & 1   &     &     & 7  \\
+            y_8 &     &     &     &     & -1  &     &     &     &     &     &     &     & -1  &     &     & -1  & 1   &     & 1  \\
+            x_2 &     & 1   &     &     &     &     &     &     &     &     & 1   &     &     &     &     &     &     &     & 13 \\ \hdashline
+                &     &     &     &     & 1   &     &     &     &     &     &     &     & 1   &     &     & 1   &     & 1   & 23
+        \end{array}
+    \end{align*}
+    当前基本可行解为
+    \begin{align*}
+        \left[
+            \begin{array}{cccccccccccccccccc:c}
+                x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & x_9 & y_1 & y_2 & y_3 & y_4 & y_5 & y_6 & y_7 & y_8 & y_9 & o  \\
+                10  & 13  & 2   & 12  & 0   & 11  & 7   & 19  & 4   & 6   & 0   & 2   & 0   & 9   & 3   & 0   & 1   & 0   & 23
+            \end{array} \right]
+    \end{align*}
+    对应的流网络为
+    \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}
+
+            \pgfmathsetmacro{\l}{3.5};
+
+            \node [point] (s) at (0,0) {$\sv$};
+            \path (s) ++(30:\l)  node[point] (v1) {$\vv_1$};
+            \path (s) ++(330:\l)  node[point] (v2) {$\vv_2$};
+            \path (v1) ++(\l,0)  node[point] (v3) {$\vv_3$};
+            \path (v2) ++(\l,0)  node[point] (v4) {$\vv_4$};
+            \path (v4) ++(30:\l)  node[point] (t) {$\tv$};
+
+            \draw [arrow] (s) -- (v1) node [above=0pt, sloped, pos=0.5] {$10/16$};
+            \draw [arrow] (s) -- (v2) node [below=0pt, sloped, pos=0.4] {$13/13$};
+            \draw [arrow] (v2) -- (v1) node [above=0pt, sloped, pos=0.5] {$2/4$};
+            \draw [arrow] (v1) -- (v3) node [above=0pt, pos=0.5] {$12/12$};
+            \draw [arrow] (v2) -- (v4) node [below=0pt, pos=0.5] {$11/14$};
+            \draw [arrow] (v4) -- (v3) node [above=0pt, sloped, pos=0.5] {$7/7$};
+            \draw [arrow] (v3) -- (v2) node [above=0pt, sloped, pos=0.5] {$9$};
+            \draw [arrow] (v3) -- (t) node [above=0pt, sloped, pos=0.5] {$19/20$};
+            \draw [arrow] (v4) -- (t) node [below=0pt, sloped, pos=0.5] {$4/4$};
+
+        \end{tikzpicture}
+    \end{figure}
+
+    由于检验数均非负，已达最优解。
+
+\end{example}
+
+\begin{remark}
+    在最大流的例子中，初始单纯形表中不存在单位阵，需先做一步初等行变换，也可采用两阶段单纯形法。
+\end{remark}
 
 \end{document}
 
