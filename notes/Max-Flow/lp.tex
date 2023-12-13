@@ -266,7 +266,7 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性等式约束是一条直线
     略。
 \end{proof}
 
-\begin{example}
+\begin{example} \label{exam: simplex}
     再看例\ref{exam: illustration}中的线性规划：
     \begin{align*}
         \max \quad & 3 x_1 + 5 x_2      \\
@@ -314,7 +314,7 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性等式约束是一条直线
     \end{align*}
     对应$\Rbb^2$中可行域的极点$[0,0]$，目标函数值$0 < 50$，因此还不是最优解。
 
-    根据迭代改进的思路，需要从当前极点移动到邻近的可使目标函数值增大的极点。现选择$\av_1$作为新的基向量并移除原来的某个基向量，先将$\av_1$表示成当前基的线性组合$\av_1 = \av_3 + 2 \av_4 + \av_5$，于是
+    根据迭代改进的思路，需要从当前极点移动到邻近的可使目标函数值增大的极点。现选择$\av_1$作为新的基向量(入基)并移除原来的某个基向量(出基)，注意$\av_1 = \av_3 + 2 \av_4 + \av_5$，于是
     \begin{align*}
         \epsilon \av_1 + (40 - \epsilon) \av_3 + (20 - 2 \epsilon) \av_4 + (12 - \epsilon) \av_5 = \bv, \quad
         \left[ \begin{array}{ccccc}
@@ -322,7 +322,7 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性等式约束是一条直线
                        \epsilon & 0   & 40 - \epsilon & 20 - 2 \epsilon & 12 - \epsilon
                    \end{array} \right]
     \end{align*}
-    让$\epsilon$从$0$增大，$x_1$变成正数，$x_3$、$x_4$、$x_5$逐渐变小，当$\epsilon$增大到$10$时，$x_4$减小到$0$，得到一个新的基本可行解
+    让$\epsilon$从$0$增大，$x_1$变成正数，$x_3$、$x_4$、$x_5$逐渐变小，当$\epsilon$增大到$10$时，$x_4$减小到$0$，即$\av_4$出基，得到一个新的基本可行解
     \begin{align*}
         10 \av_1 + 30 \av_3 + 2 \av_5 = \bv, \quad
         \left[ \begin{array}{ccccc}
@@ -340,7 +340,7 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性等式约束是一条直线
                        10 - \frac{1}{2} \epsilon & \epsilon & 30 - \frac{9}{2} \epsilon & 0   & 2 - \frac{1}{2} \epsilon
                    \end{array} \right]
     \end{align*}
-    让$\epsilon$从$0$增大，$x_2$变成正数，$x_1$、$x_3$、$x_5$逐渐变小，当$\epsilon$增大到$4$时，$x_5$减小到$0$，得到一个新的基本可行解
+    让$\epsilon$从$0$增大，$x_2$变成正数，$x_1$、$x_3$、$x_5$逐渐变小，当$\epsilon$增大到$4$时，$x_5$减小到$0$，即$\av_5$出基，得到一个新的基本可行解
     \begin{align*}
         10 \av_1 + 30 \av_3 + 2 \av_5 = \bv, \quad
         \left[ \begin{array}{ccccc}
@@ -358,7 +358,7 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性等式约束是一条直线
                        8 - \epsilon & 4 + \epsilon & 12 - 4 \epsilon & \epsilon & 0
                    \end{array} \right]
     \end{align*}
-    让$\epsilon$从$0$增大，$x_4$变成正数，$x_1$、$x_3$逐渐变小($x_2$也变大所以不用管，不会破坏非负约束)，当$\epsilon$增大到$3$时，$x_3$减小到$0$，得到一个新的基本可行解
+    让$\epsilon$从$0$增大，$x_4$变成正数，$x_1$、$x_3$逐渐变小($x_2$变大不用管，不会破坏非负约束)，当$\epsilon$增大到$3$时，$x_3$减小到$0$，即$\av_3$出基，得到一个新的基本可行解
     \begin{align*}
         5 \av_1 + 7 \av_2 + 3 \av_4 = \bv, \quad
         \left[ \begin{array}{ccccc}
@@ -369,7 +369,11 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性等式约束是一条直线
     对应$\Rbb^2$中可行域的极点$[5,7]$，目标函数值$50$，这就是最优解。
 \end{example}
 
+这种从一个极点转移到另一个极点，迭代改进的操作方式就是单纯形法求线性规划的基本思路。
+
 \section{单纯形法}
+
+例\ref{exam: simplex}的每轮迭代中，首先选择一个列向量入基(如何选尚不明确)，但出基的基向量是确定的，迭代
 
 将$\Av, \cv, \bv$都写成分块的形式(基与非基)：
 \begin{align*}
