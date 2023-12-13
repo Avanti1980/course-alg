@@ -1,10 +1,10 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Arch Linux) (preloaded format=xelatex 2023.10.25)  13 DEC 2023 03:30
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Arch Linux) (preloaded format=xelatex 2023.10.16)  13 DEC 2023 21:44
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/home/avanti/Slides/Courses/Alg/notes/Max-Flow/lp
-(/home/avanti/Slides/Courses/Alg/notes/Max-Flow/lp.tex
+**/home/avanti/Slides/Courses/Algorithms/notes/Max-Flow/lp
+(/home/avanti/Slides/Courses/Algorithms/notes/Max-Flow/lp.tex
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2023-02-22> (/usr/share/texmf-dist/tex/latex/ctex/ctexart.cls (/usr/share/texmf-dist/tex/latex/ctex/config/ctexbackend.cfg
 File: ctexbackend.cfg 2022/07/14 v2.5.10 Backend configuration file (CTEX)
@@ -1016,37 +1016,44 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 285.
 )
 \Hy@SectionHShift=\skip99
+) (/usr/share/texmf-dist/tex/latex/preprint/authblk.sty
+Package: authblk 2001/02/27 1.3 (PWD)
+\affilsep=\skip100
+\@affilsep=\skip101
+\c@Maxaffil=\count377
+\c@authors=\count378
+\c@affil=\count379
 ))
 \symCJKmath=\mathgroup255
 LaTeX Font Info:    Overwriting symbol font `CJKmath' in version `bold'
-(Font)                  TU/LXGWBright(0)/m/n --> TU/LXGWBright(0)/b/n on input line 12.
+(Font)                  TU/LXGWBright(0)/m/n --> TU/LXGWBright(0)/b/n on input line 13.
  (./lp.aux)
 \openout1 = `lp.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
 
 Package pgfplots notification 'compat/show suggested version=true': document has been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
-Package hyperref Info: Link coloring ON on input line 12.
+Package hyperref Info: Link coloring ON on input line 13.
 (./lp.out) (./lp.out)
 \@outlinefile=\write6
 \openout6 = `lp.out'.
@@ -1054,105 +1061,122 @@ Package hyperref Info: Link coloring ON on input line 12.
 
 
 LaTeX Font Warning: Font shape `TU/antp/b/n' undefined
-(Font)              using `TU/antp/m/n' instead on input line 17.
+(Font)              using `TU/antp/m/n' instead on input line 18.
 
-LaTeX Font Info:    Trying to load font information for OT1+ppl on input line 17.
+LaTeX Font Info:    Trying to load font information for OT1+ppl on input line 18.
 (/usr/share/texmf-dist/tex/latex/psnfss/ot1ppl.fd
 File: ot1ppl.fd 2001/06/04 font definitions for OT1/ppl.
 )
-LaTeX Font Info:    Trying to load font information for OML+zplm on input line 17.
+LaTeX Font Info:    Trying to load font information for OML+zplm on input line 18.
  (/usr/share/texmf-dist/tex/latex/psnfss/omlzplm.fd
 File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
 )
-LaTeX Font Info:    Trying to load font information for OMS+zplm on input line 17.
+LaTeX Font Info:    Trying to load font information for OMS+zplm on input line 18.
  (/usr/share/texmf-dist/tex/latex/psnfss/omszplm.fd
 File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
 )
-LaTeX Font Info:    Trying to load font information for OMX+zplm on input line 17.
+LaTeX Font Info:    Trying to load font information for OMX+zplm on input line 18.
  (/usr/share/texmf-dist/tex/latex/psnfss/omxzplm.fd
 File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
 )
-LaTeX Font Info:    Trying to load font information for OT1+zplm on input line 17.
+LaTeX Font Info:    Trying to load font information for OT1+zplm on input line 18.
  (/usr/share/texmf-dist/tex/latex/psnfss/ot1zplm.fd
 File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
 )
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 12.55096pt on input line 17.
+(Font)              scaled to size 12.55096pt on input line 18.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 8.33606pt on input line 17.
+(Font)              scaled to size 8.33606pt on input line 18.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 6.25204pt on input line 17.
+(Font)              scaled to size 6.25204pt on input line 18.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 12.55096pt on input line 17.
+(Font)              scaled to size 12.55096pt on input line 18.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 8.33606pt on input line 17.
+(Font)              scaled to size 8.33606pt on input line 18.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 6.25204pt on input line 17.
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 17.
+(Font)              scaled to size 6.25204pt on input line 18.
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 18.
  (/usr/share/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Font Info:    Trying to load font information for U+stmry on input line 17.
+LaTeX Font Info:    Trying to load font information for U+stmry on input line 18.
  (/usr/share/texmf-dist/tex/latex/stmaryrd/Ustmry.fd)
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 10.98209pt on input line 21.
+(Font)              scaled to size 7.84435pt on input line 18.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 21.
-LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 5.21004pt on input line 21.
+(Font)              scaled to size 5.21004pt on input line 18.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 10.98209pt on input line 21.
+(Font)              scaled to size 7.84435pt on input line 18.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 21.
-LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 5.21004pt on input line 21.
+(Font)              scaled to size 5.21004pt on input line 18.
 
+
+LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <7.52812> not available
+(Font)              size <8> substituted on input line 18.
+
+
+LaTeX Font Warning: Font shape `U/stmry/m/n' in size <7.52812> not available
+(Font)              size <8> substituted on input line 18.
+
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 10.98209pt on input line 23.
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 7.29405pt on input line 23.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 10.98209pt on input line 23.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 7.29405pt on input line 23.
 
 LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <10.53937> not available
-(Font)              size <10.95> substituted on input line 21.
+(Font)              size <10.95> substituted on input line 23.
 
 
 LaTeX Font Warning: Font shape `U/stmry/m/n' in size <10.53937> not available
-(Font)              size <10.95> substituted on input line 21.
+(Font)              size <10.95> substituted on input line 23.
 
+Missing character: There is no ; ("3B) in font nullfont!
 [1
 
 ]
-LaTeX Font Info:    Trying to load font information for U+fplmbb on input line 98.
+LaTeX Font Info:    Trying to load font information for U+fplmbb on input line 93.
  (/usr/share/texmf-dist/tex/latex/psnfss/ufplmbb.fd
 File: ufplmbb.fd 2003/10/30 Fontinst v1.914 font definitions for U/fplmbb.
 )
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 5.75252pt on input line 107.
+(Font)              scaled to size 9.41321pt on input line 113.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 5.75252pt on input line 107.
+(Font)              scaled to size 9.41321pt on input line 113.
 
 
-LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <5.52061> not available
-(Font)              size <6> substituted on input line 107.
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[2] [3]
+
+LaTeX Font Warning: Font shape `TU/antp/m/it' undefined
+(Font)              using `TU/antp/m/n' instead on input line 228.
 
 
-LaTeX Font Warning: Font shape `U/stmry/m/n' in size <5.52061> not available
-(Font)              size <6> substituted on input line 107.
+LaTeX Font Warning: Font shape `TU/antp/b/it' undefined
+(Font)              using `TU/antp/b/n' instead on input line 228.
 
-[2] (./lp.aux)
+[4] [5] [6] [7] [8] (./lp.aux)
 
 LaTeX Font Warning: Size substitutions with differences
-(Font)              up to 0.47939pt have occurred.
+(Font)              up to 0.47188pt have occurred.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `lp.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+(rerunfilecheck)             Checksum: 040D6448BA13998040E96334C1DD6E4C;380.
  ) 
 Here is how much of TeX's memory you used:
- 45140 strings out of 476683
- 1092523 string characters out of 5809789
- 1878018 words of memory out of 5000000
- 64534 multiletter control sequences out of 15000+600000
- 545751 words of font info for 169 fonts, out of 8000000 for 9000
+ 45349 strings out of 476683
+ 1097267 string characters out of 5809789
+ 1888018 words of memory out of 5000000
+ 64730 multiletter control sequences out of 15000+600000
+ 550161 words of font info for 190 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 103i,17n,105p,927b,642s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 103i,21n,105p,934b,932s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on lp.pdf (2 pages).
+Output written on lp.pdf (8 pages).

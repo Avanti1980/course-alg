@@ -5,21 +5,23 @@
 \usepackage{avanti-theorem}
 \usepackage{avanti-others}
 
-\tikzset{font=\tiny}
-\tikzset{base/.style = {smooth, draw=Solarized-base01, text=Solarized-magenta}}
+\tikzset{font=\large}
+\tikzset{base/.style={smooth, very thick, Solarized-base03}}
+\tikzset{point/.style={circle, minimum height=0.8cm, base, draw=Solarized-base03, fill=Solarized-base2}}
 \tikzset{arrow/.style={->, -{Stealth[scale=0.8]}, base}}
 
 \begin{document}
-\title{\bf{线性规划}}
-\author{张腾}
-\date{}
+\title{\bf{线性规划、单纯形法、对偶}}
+\author{张腾\thanks{tengzhang@hust.edu.cn}}
+%\affil{华中科技大学~计算机学院}
+\date{\today}
 \maketitle
 
-线性规划(linear programming)是在一组线性等式或不等式的约束下，求线性目标函数最值的问题，许多现实问题都可以形式化为线性规划问题。
+线性规划是在一组线性等式或不等式的约束下，求线性目标函数最值的问题，现实中的许多问题都可化为线性规划问题。
 
 \begin{example} [分数背包问题]
     设背包承重量为$10$，各物品价值如下：
-    \begin{align*}
+    \begin{align*}\arraycolsep=10.0pt
         \begin{array}{r|cccc} \hline
                & 物品$1$ & 物品$2$ & 物品$3$ & 物品$4$ \\ \hline
             重量 & 4     & 7     & 5     & 3     \\
@@ -28,22 +30,117 @@
     \end{align*}
     现允许物品按比例取走部分，求最大装包方案。
 
-    对$i \in [4]$，设物品$i$取走的比例为$x_i$，则分数背包问题可形式化为
+    对$i \in [4]$，设物品$i$取走的比例为$x_i$，可得如下线性规划
     \begin{align*}
-        \quad \max \quad & 40 x_1 + 42 x_2 + 25 x_3 + 12 x_4    \\
-        \st       \quad  & 4 x_1 + 7 x_2 + 5 x_3 + 3 x_4 \le 10 \\
-                         & 0 \le x_1, x_2, x_3, x_4 \le 1
+        \max \quad & 40 x_1 + 42 x_2 + 25 x_3 + 12 x_4    \\
+        \st \quad  & 4 x_1 + 7 x_2 + 5 x_3 + 3 x_4 \le 10 \\
+                   & 0 \le x_1, x_2, x_3, x_4 \le 1
     \end{align*}
 \end{example}
 
+\begin{remark}
+    如果不允许物品按比例取走部分，约束$0 \le x_1, x_2, x_3, x_4 \le 1$将变成$x_1, x_2, x_3, x_4 \in \{0, 1\}$，此时问题就变成了整数线性规划，比线性规划要难得多。
+\end{remark}
+
 \begin{example} [最大流]
-    单点
+    给定如下的流网络，求最大流。
+    \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}
+
+            \pgfmathsetmacro{\l}{3};
+
+            \node [point] (s) at (0,0) {$\sv$};
+            \path (s) ++(30:\l)  node[point] (v1) {$\vv_1$};
+            \path (s) ++(330:\l)  node[point] (v2) {$\vv_2$};
+            \path (v1) ++(\l,0)  node[point] (v3) {$\vv_3$};
+            \path (v2) ++(\l,0)  node[point] (v4) {$\vv_4$};
+            \path (v4) ++(30:\l)  node[point] (t) {$\tv$};
+
+            \draw [arrow] (s) -- (v1) node [above=0pt, sloped, pos=0.5] {$16$};
+            \draw [arrow] (s) -- (v2) node [below=0pt, sloped, pos=0.4] {$13$};
+            \draw [arrow] (v2) -- (v1) node [above=0pt, sloped, pos=0.5] {$4$};
+            \draw [arrow] (v1) -- (v3) node [above=0pt, pos=0.5] {$12$};
+            \draw [arrow] (v2) -- (v4) node [below=0pt, pos=0.5] {$14$};
+            \draw [arrow] (v4) -- (v3) node [above=0pt, sloped, pos=0.5] {$7$};
+            \draw [arrow] (v3) -- (v2) node [above=0pt, sloped, pos=0.5] {$9$};
+            \draw [arrow] (v3) -- (t) node [above=0pt, sloped, pos=0.5] {$20$};
+            \draw [arrow] (v4) -- (t) node [below=0pt, sloped, pos=0.5] {$4$};
+
+        \end{tikzpicture}
+    \end{figure}
+
+    设$9$条边上的流量分别为$x_1, \ldots, x_9$，可得如下线性规划
+    \begin{align*}
+        \max \quad & x_1 + x_2                 \\
+        \st \quad  & 0 \le x_1 \le 16          \\
+                   & 0 \le x_2 \le 13          \\
+                   & 0 \le x_3 \le 4           \\
+                   & 0 \le x_4 \le 12          \\
+                   & 0 \le x_5 \le 9           \\
+                   & 0 \le x_6 \le 14          \\
+                   & 0 \le x_7 \le 7           \\
+                   & 0 \le x_8 \le 20          \\
+                   & 0 \le x_9 \le 4           \\
+                   & x_1 + x_3 - x_4 = 0       \\
+                   & x_2 + x_5 - x_3 - x_6 = 0 \\
+                   & x_4 + x_7 - x_5 - x_8 = 0 \\
+                   & x_6 - x_7 - x_9 = 0
+    \end{align*}
+    其中前$9$个不等式约束对应容量限制，后$4$个等式约束对应流量守恒。
 \end{example}
 
-其标准形式为
+$\Rbb^2$中的线性规划只有$2$个变量，线性等式约束是一条直线，线性不等式约束是一个半平面，可采用图解法。
+
+\begin{example} \label{exam: illustration}
+    考虑如下线性规划
+    \begin{align*}
+        \max \quad & 3 x_1 + 5 x_2      \\
+        \st  \quad & x_1 + 5 x_2 \le 40 \\
+                   & 2 x_1 + x_2 \le 20 \\
+                   & x_1 + x_2 \le 12   \\
+                   & x_1,x_2 \ge 0
+    \end{align*}
+
+    先确定\blue{可行域}，即满足所有约束的\blue{可行解}构成的集合。该例中共有$5$个线性不等式约束，每个对应一个半平面，因此可行域为$5$个半平面相交出的凸五边形(图\ref{fig: lp}中红色部分)。
+
+    引入直线簇$y = 3 x_1 + 5 x_2$，其中不同的$y$对应不同的直线，这些直线都是平行的。先将$y$取为一个较大的值使直线与凸五边形不相交，然后逐渐减小$y$，这相当于从上向下平移直线$y = 3 x_1 + 5 x_2$使其逐渐靠近凸五边形，当其与凸五边形相切时，切点就是\blue{最优解}，
+    \begin{figure}[h]
+        \centering
+        \tikzset{font=\small}
+        \begin{tikzpicture}[scale=0.7]
+
+            \draw [arrow] (-0.5,0) -- (14,0) node[above] {$x_1$};
+            \draw [arrow] (0,-0.5) -- (0,9.5) node[right] {$x_2$};
+
+            \draw [base,thin,dashed] (-0.5,8.1) -- (10,6) node [above=0pt, sloped, pos=0.2] {$x_1 + 5 x_2 \le 40$};
+            \draw [base,thin,dashed] (10.2,-0.4) -- (5,10) node [above=0pt, sloped, pos=0.85] {$2 x_1 + x_2 \le 20$};
+            \draw [base,thin,dashed] (12.2,-0.2) -- (2,10) node [above=0pt, sloped, pos=0.12] {$x_1 + x_2 \le 12$};
+
+            \draw [base] (1,9.4) -- (13,2.2) node [above=0pt, sloped, pos=0.85] {$3 x_1 + 5 x_2 = 50$};
+
+            \draw [base] (0,0) -- (10,0) -- (8,4) -- (5,7) -- (0,8) -- cycle;
+            \fill [Solarized-red,opacity=0.5] (0,0) -- (10,0) -- (8,4) -- (5,7) -- (0,8) -- cycle;
+
+            \path (0, -0.4) node[draw=none,left] () {$(0,0)$};
+            \path (9.6, 0) node[draw=none,below] () {$(10,0)$};
+            \path (0, 7.6) node[draw=none,left] () {$(0,8)$};
+            \path (8,4) node[draw=none,right] () {$(8,4)$};
+            \path (5.3,7) node[draw=none,above] () {$(5,7)$};
+
+        \end{tikzpicture}
+        \caption{直线簇与可行域相切于最优解$(5,7)$处，目标函数最优值为$50$。}
+        \label{fig: lp}
+    \end{figure}
+\end{example}
+
+\section{标准型}
+
+当变量多于$2$个时，图解法就不再适用了，需要更一般性的方法。对此，要先将问题转化为如下的标准型(不等式只约束变量非负，其余都是等式约束)：
 \begin{align*}
-    \max_\xv \quad & \cv^\top \xv                    \\
-    \st      \quad & \Av \xv = \bv, ~ \xv \ge \zerov
+    \max \quad & \cv^\top \xv   \\
+    \st  \quad & \Av \xv = \bv  \\
+               & \xv \ge \zerov
 \end{align*}
 其中
 \begin{align*}
@@ -64,30 +161,273 @@
               b_1 \\ \vdots \\ b_m
           \end{bmatrix}
 \end{align*}
-集合$\Omega = \{\xv \mid \Av \xv = \bv, ~ \xv \ge \zerov \}$称为可行域，其中的点称为可行解。不失一般性设$\rank(\Av) = m < n$，否则可行域为单点集或空集。
+不失一般性可设$\bv \ge \zerov$，若某个$b_i < 0$，对该约束两边取反即可。对一般形式的线性规划，可按以下步骤将其转化成标准型：
+\begin{itemize}
+    \item 对非正变量$x \le 0$，令$y = -x$作为替代；
+    \item 对无约束变量$x$，将其表示成两个非负变量的差$x = u - v$；
+    \item 对$\av^\top \xv \le b$型不等式约束，引入松弛变量$y \ge 0$将其转化为等式约束$\av^\top \xv + y = b$；
+    \item 对$\av^\top \xv \ge b$型不等式约束，引入剩余变量$y \ge 0$将其转化为等式约束$\av^\top \xv - y = b$。
+\end{itemize}
 
-\begin{example} [非标准形式的线性规划都可等价转化为标准形式]
-    考虑线性规划
+\begin{example}
+    将如下线性规划转化为标准型
     \begin{align*}
-        \max \quad & x_2 - x_1                                   \\
-        \st  \quad & 3 x_1 = x_2 - 5, ~ |x_2| \le 2, ~ x_1 \le 0
+        \max \quad & x_2 - x_1       \\
+        \st  \quad & 3 x_1 = x_2 - 5 \\
+                   & |x_2| \le 2     \\
+                   & x_1 \le 0
     \end{align*}
-    为使不等式只约束变量非负，其余都是等式约束
-    \begin{enumerate}
-        \item 记$y_1 = -x_1$，则$x_1 \le 0$变成非负约束$y_1 \ge 0$
-        \item 由于$x_2$本身没有非负约束，只能记$x_2 = y_2 - y_3$，其中$y_2 \ge 0 $、$y_3 \ge 0$
-        \item 注意$|x_2| \le 2$等价于$-2 \le y_2 - y_3 \le 2$，引入松弛变量$y_4 \ge 0$、$y_5 \ge 0$有$y_2 - y_3 + y_4 = 2$、$-y_2 + y_3 + y_5 = 2$
-    \end{enumerate}
-    综上有
+
+    $x_1$非正，令$y_1 = -x_1 \ge 0$作为替代，$x_2$无约束，令$x_2 = y_2 - y_3$，其中$y_2 \ge 0 $、$y_3 \ge 0$，注意
     \begin{align*}
-        \max \quad & y_1 + y_2 - y_3         \\
-        \st  \quad & 3 y_1 + y_2 - y_3 = 5   \\
-                   & y_2 - y_3 + y_4 = 2     \\
-                   & -y_2 + y_3 + y_5 = 2    \\
-                   & y_{\{1,2,3,4,5\}} \ge 0
+        |x_2| \le 2 \Longleftrightarrow
+        \begin{cases}
+            y_2 - y_3 \le 2 \Longleftrightarrow y_2 - y_3 + y_4 = 2, ~ y_4 \ge 0 \\
+            -y_2 + y_3 \le 2 \Longleftrightarrow -y_2 + y_3 + y_5 = 2, ~ y_5 \ge 0
+        \end{cases}
+    \end{align*}
+    于是可得标准型
+    \begin{align*}
+        \max \quad & y_1 + y_2 - y_3           \\
+        \st  \quad & 3 y_1 + y_2 - y_3 = 5     \\
+                   & y_2 - y_3 + y_4 = 2       \\
+                   & -y_2 + y_3 + y_5 = 2      \\
+                   & y_1,y_2,y_3,y_4,y_5 \ge 0
     \end{align*}
 \end{example}
 
+\section{基本解}
+
+所有可行解都是线性方程组$\Av \xv = \av_1 x_1 + \cdots + \av_n x_n = \bv$的解，不失一般性可设$\rank(\Av) = m$，即$\Av$是行满秩矩阵，否则存在冗余约束。此外设$m < n$，即线性等式约束个数严格小于变量个数，否则可行域为单点集或空集。
+
+从$\Av$的列中挑选$m$个线性无关的列作为\blue{基向量}，不妨就取$\Av$的前$m$列，否则做列交换使前$m$列线性无关(列对应的$x$分量也要跟着交换)，这样$\Av$可写成分块矩阵
+\begin{align*}
+    \Av = \begin{bmatrix} \Bv & \Dv \end{bmatrix}, \quad \Bv =
+    \begin{bmatrix}
+        \av_1 & \cdots & \av_m
+    \end{bmatrix}, \quad \Dv =
+    \begin{bmatrix}
+        \av_{m+1} & \cdots & \av_n
+    \end{bmatrix} \in \Rbb^{m \times (n-m)}
+\end{align*}
+其中$\Bv$是$m$阶可逆方阵。求解$\Bv \xv_\Bv = \bv$可得$\xv_\Bv = \Bv^{-1} \bv$，显然
+\begin{align*}
+    \xvhat \triangleq \begin{bmatrix} \xv_\Bv \\ \zerov \end{bmatrix}, \quad \Av \xvhat = \begin{bmatrix} \Bv & \Dv \end{bmatrix} \begin{bmatrix} \xv_\Bv \\ \zerov \end{bmatrix} = \Bv \xv_\Bv = \bv
+\end{align*}
+如此构造的$\xvhat$称为$\Av \xv = \bv$在基$\Bv$下的\blue{基本解}，$\xv_\Bv$中的元素称为\blue{基变量}，即基本解中的非基变量都是$0$。如果基本解也是线性规划的可行解(所有变量非负)，则称为\blue{基本可行解}。
+
+\begin{theorem} [线性规划基本定理]
+    对于线性规划的标准型，有如下两个命题：
+    \begin{enumerate}
+        \item 如果存在可行解，则一定存在基本可行解；
+        \item 如果存在最优可行解，则一定存在最优基本可行解。
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    1. 设$\xv$是一个可行解并有$p$个正元素，不失一般性，可设前$p$个元素为正，于是
+    \begin{align*}
+        \Av \xv = \av_1 x_1 + \cdots + \av_p x_p = \bv
+    \end{align*}
+    此时分两种情况：
+    \begin{itemize}
+        \item $\av_1, \ldots, \av_p$线性无关，则$p \le m$。若$p = m$，$\xv$就是基本可行解；若$p < m$，从$\Av$的剩余列中挑选$m-p$个列与$\av_1, \ldots, \av_p$构成基，此时$\xv$就是对应该基的基本可行解。
+        \item $\av_1, \ldots, \av_p$线性相关，可以去掉一些冗余列使其线性无关，从而转化为前一种情况。设不全为零的实数$y_1, \ldots, y_p$使得$\av_1 y_1 + \cdots + \av_p y_p = \zerov$且至少某个$y_i > 0$，否则对所有$y_i$取反即可，于是对任意$\epsilon$有
+              \begin{align*}
+                  \bv = \av_1 (x_1 - \epsilon y_1) + \cdots + \av_p (x_p - \epsilon y_p) = \Av (\xv - \epsilon \yv), \quad
+                  \yv \triangleq \begin{bmatrix}
+                                     y_1 \\ \vdots \\ y_p \\ \zerov
+                                 \end{bmatrix}
+              \end{align*}
+              让$\epsilon$从$0$增大直到$\xv - \epsilon \yv$的前$p$个正分量出现$0$，即取$\epsilonhat = \min\{ x_i / y_i: y_i > 0, i \in [p] \}$，这样就得到了只有$p-1$个正分量的可行解，重复该操作直到正分量对应的列线性无关。
+    \end{itemize}
+
+    2. 设$\xv$是一个最优可行解且前$p$个元素为正，若$\av_1, \ldots, \av_p$线性无关，证明同命题1；若$\av_1, \ldots, \av_p$线性相关，可继续沿用命题1中去冗余列的方式，但还需证明对任意$\epsilon$，$\xv - \epsilon \yv$都是最优解，这只需证明$\cv^\top \yv = 0$。注意只要$|\epsilon| \le \min\{ | x_i / y_i |: y_i \ne 0, i \in [p] \}$，$\xv - \epsilon \yv$都是可行解，因此若$\cv^\top \yv \ne 0$，根据其符号总能取某个充分小的$\epsilon$使得$\cv^\top (\xv - \epsilon \yv) = \cv^\top \xv - \epsilon \cv^\top \yv > \cv^\top \xv$，这与$\xv$是最优解矛盾。
+\end{proof}
+
+根据该定理，线性规划的求解可转化为对基本可行解的搜索问题，依次对基本可行解的最优性进行检查即可。
+
+\section{几何视角下的线性规划}
+
+线性规划属于凸优化的范畴，线性目标函数显然是凸函数，可行域$\Omega = \{ \xv \mid \Av \xv = \bv, \xv \ge \zerov \}$是凸集，因为对$\forall \xv_1, \xv_2 \in \Omega$和$\forall \alpha \in (0,1)$有
+\begin{align*}
+    \Av (\alpha \xv_1 + (1 - \alpha) \xv_2) = \alpha \Av \xv_1 + (1 - \alpha) \Av \xv_2 = \alpha \bv + (1 - \alpha) \bv = \bv, \quad \alpha \xv_1 + (1 - \alpha) \xv_2 \ge \zerov
+\end{align*}
+即连接$\Omega$内任意两点的线段依然属于$\Omega$。对凸集$\Omega$中的点$\xv$，若它无法表示成$\Omega$中另外两点的凸组合，则称$\xv$为$\Omega$的\blue{极点}，即
+\begin{align*}
+    \xv\text{是极点}, ~ \xv = \alpha \xv_1 + (1 - \alpha) \xv_2, ~ \alpha \in (0,1) \Longrightarrow \xv_1 = \xv_2 = \xv
+\end{align*}
+
+\begin{theorem}
+    $\xv$是$\Omega = \{ \xv \mid \Av \xv = \bv, \xv \ge \zerov \}$的极点当且仅当$\xv$是$\Av \xv = \bv, \xv \ge \zerov$的基本可行解。
+\end{theorem}
+
+\begin{proof}
+    略。
+\end{proof}
+
+\begin{example}
+    再看例\ref{exam: illustration}中的线性规划：
+    \begin{align*}
+        \max \quad & 3 x_1 + 5 x_2      \\
+        \st  \quad & x_1 + 5 x_2 \le 40 \\
+                   & 2 x_1 + x_2 \le 20 \\
+                   & x_1 + x_2 \le 12   \\
+                   & x_1,x_2 \ge 0
+    \end{align*}
+    先转化为标准型，为$3$个线性不等式约束分别引入松弛变量$x_3$、$x_4$、$x_5$可得线性方程组
+    \begin{align*}
+        \begin{bmatrix}
+            1 & 5 & 1 & 0 & 0 \\
+            2 & 1 & 0 & 1 & 0 \\
+            1 & 1 & 0 & 0 & 1
+        \end{bmatrix}
+        \begin{bmatrix}
+            x_1 \\ x_2 \\ x_3 \\ x_4 \\ x_5
+        \end{bmatrix} =
+        \underbrace{\begin{bmatrix}
+                            1 \\ 2 \\ 1
+                        \end{bmatrix}}_{\av_1} x_1 +
+        \underbrace{\begin{bmatrix}
+                            5 \\ 1 \\ 1
+                        \end{bmatrix}}_{\av_2} x_2 +
+        \underbrace{\begin{bmatrix}
+                            1 \\ 0 \\ 0
+                        \end{bmatrix}}_{\av_3} x_3 +
+        \underbrace{\begin{bmatrix}
+                            0 \\ 1 \\ 0
+                        \end{bmatrix}}_{\av_4} x_4 +
+        \underbrace{\begin{bmatrix}
+                            0 \\ 0 \\ 1
+                        \end{bmatrix}}_{\av_5} x_5 =
+        \underbrace{\begin{bmatrix}
+                            40 \\ 20 \\ 12
+                        \end{bmatrix}}_{\bv}
+    \end{align*}
+    显然取$\av_3$、$\av_4$、$\av_5$作为基向量，即令$x_3$、$x_4$、$x_5$作为基变量，可得基本可行解
+    \begin{align*}
+        40 \av_3 + 20 \av_4 + 12 \av_5 = \bv, \quad
+        \left[ \begin{array}{ccccc}
+                       x_1 & x_2 & x_3 & x_4 & x_5 \\
+                       0   & 0   & 40  & 20  & 12
+                   \end{array} \right]
+    \end{align*}
+    对应$\Rbb^2$中可行域的极点$[0,0]$，目标函数值$0 < 50$，因此还不是最优解。
+
+    根据迭代改进的思路，需要从当前极点移动到邻近的可使目标函数值增大的极点。现选择$\av_1$作为新的基向量并移除原来的某个基向量，先将$\av_1$表示成当前基的线性组合$\av_1 = \av_3 + 2 \av_4 + \av_5$，于是
+    \begin{align*}
+        \epsilon \av_1 + (40 - \epsilon) \av_3 + (20 - 2 \epsilon) \av_4 + (12 - \epsilon) \av_5 = \bv, \quad
+        \left[ \begin{array}{ccccc}
+                       x_1      & x_2 & x_3           & x_4             & x_5           \\
+                       \epsilon & 0   & 40 - \epsilon & 20 - 2 \epsilon & 12 - \epsilon
+                   \end{array} \right]
+    \end{align*}
+    让$\epsilon$从$0$增大，$x_1$变成正数，$x_3$、$x_4$、$x_5$逐渐变小，当$\epsilon$增大到$10$时，$x_4$减小到$0$，得到一个新的基本可行解
+    \begin{align*}
+        10 \av_1 + 30 \av_3 + 2 \av_5 = \bv, \quad
+        \left[ \begin{array}{ccccc}
+                       x_1 & x_2 & x_3 & x_4 & x_5 \\
+                       10  & 0   & 30  & 0   & 2
+                   \end{array} \right]
+    \end{align*}
+    对应$\Rbb^2$中可行域的极点$[10,0]$，目标函数值$30 < 50$，依然不是最优解。
+
+    重复前面的操作，现选择$\av_2$作为新的基向量，注意$\av_2 = \frac{1}{2} \av_1 + \frac{9}{2} \av_3 + \frac{1}{2} \av_5$，于是
+    \begin{align*}
+        \left( 10 - \frac{1}{2} \epsilon \right) \av_1 + \epsilon \av_2 + \left( 30 - \frac{9}{2} \epsilon \right) \av_3 + \left( 2 - \frac{1}{2} \epsilon \right) \av_5 = \bv, \quad
+        \left[ \begin{array}{ccccc}
+                       x_1                       & x_2      & x_3                       & x_4 & x_5                      \\
+                       10 - \frac{1}{2} \epsilon & \epsilon & 30 - \frac{9}{2} \epsilon & 0   & 2 - \frac{1}{2} \epsilon
+                   \end{array} \right]
+    \end{align*}
+    让$\epsilon$从$0$增大，$x_2$变成正数，$x_1$、$x_3$、$x_5$逐渐变小，当$\epsilon$增大到$4$时，$x_5$减小到$0$，得到一个新的基本可行解
+    \begin{align*}
+        10 \av_1 + 30 \av_3 + 2 \av_5 = \bv, \quad
+        \left[ \begin{array}{ccccc}
+                       x_1 & x_2 & x_3 & x_4 & x_5 \\
+                       8   & 4   & 12  & 0   & 0
+                   \end{array} \right]
+    \end{align*}
+    对应$\Rbb^2$中可行域的极点$[8,4]$，目标函数值$44 < 50$，依然不是最优解。
+
+    重复前面的操作，现选择$\av_4$作为新的基向量，注意$\av_4 = \av_1 - \av_2 + 4 \av_3$，于是
+    \begin{align*}
+        (8 - \epsilon) \av_1 + (4 + \epsilon) \av_2 + (12 - 4 \epsilon) \av_3 + \epsilon \av_4 = \bv, \quad
+        \left[ \begin{array}{ccccc}
+                       x_1          & x_2          & x_3             & x_4      & x_5 \\
+                       8 - \epsilon & 4 + \epsilon & 12 - 4 \epsilon & \epsilon & 0
+                   \end{array} \right]
+    \end{align*}
+    让$\epsilon$从$0$增大，$x_4$变成正数，$x_1$、$x_3$逐渐变小($x_2$也变大所以不用管，不会破坏非负约束)，当$\epsilon$增大到$3$时，$x_3$减小到$0$，得到一个新的基本可行解
+    \begin{align*}
+        5 \av_1 + 7 \av_2 + 3 \av_4 = \bv, \quad
+        \left[ \begin{array}{ccccc}
+                       x_1 & x_2 & x_3 & x_4 & x_5 \\
+                       5   & 7   & 0   & 3   & 0
+                   \end{array} \right]
+    \end{align*}
+    对应$\Rbb^2$中可行域的极点$[5,7]$，目标函数值$50$，这就是最优解。
+\end{example}
+
+\section{单纯形法}
+
+将$\Av, \cv, \bv$都写成分块的形式(基与非基)：
+\begin{align*}
+    \Av = \begin{bmatrix} \Bv & \Dv \end{bmatrix}, \quad \cv = \begin{bmatrix} \cv_\Bv \\ \cv_\Dv \end{bmatrix}, \quad \xv = \begin{bmatrix} \xv_\Bv \\ \xv_\Dv \end{bmatrix}
+\end{align*}
+于是线性规划的标准型可写为
+\begin{align*}
+    \max \quad & \cv_\Bv^\top \xv_\Bv + \cv_\Dv^\top \xv_\Dv \\
+    \st  \quad & \Bv \xv_\Bv + \Dv \xv_\Dv = \bv             \\
+               & \xv_\Bv, \xv_\Dv \ge \zerov
+\end{align*}
+\begin{itemize}
+    \item 若$\xv_\Dv = \zerov$，则$\xv_\Bv = \Bv^{-1} \bv$，这样就得到了关于基$\Bv$的基本可行解
+          \begin{align*}
+              \xvhat = \begin{bmatrix} \Bv^{-1} \bv \\ \zerov \end{bmatrix}
+          \end{align*}
+          对应的目标函数值为$\zhat = \cv_\Bv^\top \xv_\Bv = \cv_\Bv^\top \Bv^{-1} \bv$。
+    \item 若$\xv_\Dv \ne \zerov$，则$\xv_\Bv = \Bv^{-1} \bv - \Bv^{-1} \Dv \xv_\Dv$，对应的目标函数值为
+          \begin{align*}
+              z = \cv_\Bv^\top \xv_\Bv + \cv_\Dv^\top \xv_\Dv = \cv_\Bv^\top (\Bv^{-1} \bv - \Bv^{-1} \Dv \xv_\Dv) + \cv_\Dv^\top \xv_\Dv = \cv_\Bv^\top \Bv^{-1} \bv - (\cv_\Bv^\top \Bv^{-1} \Dv - \cv_\Dv^\top) \xv_\Dv = \zhat - \rv_\Dv^\top \xv_\Dv
+          \end{align*}
+          其中$\rv_\Dv^\top = \cv_\Bv^\top \Bv^{-1} \Dv - \cv_\Dv^\top$。注意$\xv_\Dv \ge \zerov$，若$\rv_\Dv \ge \zerov$，则$z \ge \zhat$，即关于基$\Bv$的基本可行解就是最优解；若$\rv_\Dv$中某个分量为负，则可将$\xv_\Dv$中对应的非基变量从$0$变为正数，从而使目标函数值变大。
+\end{itemize}
+
+基于此，构造单纯形表
+\begin{align*}
+    \begin{bmatrix}
+        \Av & \bv \\ -\cv^\top & 0
+    \end{bmatrix} =
+    \begin{bmatrix}
+        \Bv & \Dv & \bv \\ -\cv_\Bv^\top & -\cv_\Dv^\top & 0
+    \end{bmatrix}
+\end{align*}
+先做初等行变换将基$\Bv$变成单位阵
+\begin{align*}
+    \begin{bmatrix}
+        \Bv^{-1} & \zerov \\ \zerov^\top & 1
+    \end{bmatrix}
+    \begin{bmatrix}
+        \Bv & \Dv & \bv \\ -\cv_\Bv^\top & -\cv_\Dv^\top & 0
+    \end{bmatrix} =
+    \begin{bmatrix}
+        \Iv_m & \Bv^{-1} \Dv & \Bv^{-1} \bv \\ -\cv_\Bv^\top & -\cv_\Dv^\top & 0
+    \end{bmatrix}
+\end{align*}
+再做初等行变换将最后一行基变量对应的$-\cv_\Bv^\top$变成$\zerov^\top$
+\begin{align*}
+    \begin{bmatrix}
+        \Iv_m & \zerov \\ \cv_\Bv^\top & 1
+    \end{bmatrix}
+    \begin{bmatrix}
+        \Iv_m & \Bv^{-1} \Dv & \Bv^{-1} \bv \\ -\cv_\Bv^\top & -\cv_\Dv^\top & 0
+    \end{bmatrix} =
+    \begin{bmatrix}
+        \Iv_m & \Bv^{-1} \Dv & \Bv^{-1} \bv \\ \zerov^\top & \cv_\Bv^\top \Bv^{-1} \Dv - \cv_\Dv^\top & \cv_\Bv^\top \Bv^{-1} \bv
+    \end{bmatrix}
+\end{align*}
+注意最右列中的$\Bv^{-1} \bv$就是关于基$\Bv$的基变量，最后一行的$\cv_\Bv^\top \Bv^{-1} \Dv - \cv_\Dv^\top = \rv_\Dv^\top$就是检验数，右下角的$\cv_\Bv^\top \Bv^{-1} \bv$就是当前基本可行解对应的目标函数值。
 
 
 
@@ -95,36 +435,38 @@
 
 
 
-$\Av \in \Rbb^{m \times n}$，$\bv \ge \zerov$。的$a$的
 
 
 
 
 
 
-\begin{tikzpicture}[scale=1.5]
-
-    \draw [arrow] (-0.2,0) -- (2.3,0) node[above] {$x_1$};
-    \draw [arrow] (0,-0.2) -- (0,1.2) node[right] {$x_2$};
-
-    %\draw [base,dashed] (0,0) -- (1,0) -- (1,1) -- (0,1) -- cycle;
-    \draw [base] (0,0) -- (1,0) -- (1,1/3) -- (0,2/3) -- cycle;
-    \fill [Solarized-red,opacity=0.5] (0,0) -- (1,0) -- (1,1/3) -- (0,2/3) -- cycle;
 
 
-    \draw [base] (2,-1/6) -- (-1/6,11/12);
 
-    \draw [base] (2.2,-0.1) -- (-0.2,1.1);
-    \path (1.8,-0.15) node[draw=none,left] () {$3x_1+6x_2=5$};
-    \path (1.3,0.4) node[draw=none,right] () {$3x_1+6x_2=6$};
 
-    %\draw [base,Solarized-blue,domain=-2:2] plot(\x,{1*(\x)^3+1*(\x)^2-2*\x+2});
 
-    % \path (6.3, 0.8) node[draw=none,left,Solarized-yellow] () {偏差};
-    % \path (6.3, 1.9) node[draw=none,left,Solarized-blue] () {方差};
-    % \path (6.3, 4.5) node[draw=none,left,Solarized-red] () {泛化风险};
-    % \path (3.5, 0) node[draw=none,below,Solarized-base01] () {训练程度};
 
-\end{tikzpicture}
+
+
+
+
+
+
+
+
+
+
+
+，单纯形法正是这么做的
 
 \end{document}
+
+
+
+
+
+
+
+
+
