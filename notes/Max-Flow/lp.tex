@@ -11,7 +11,7 @@
 \tikzset{arrow/.style={->, -{Stealth[scale=0.8]}, base}}
 
 \begin{document}
-\title{\bf{用单纯形法求解线性规划}}
+\title{\bf{线性规划、单纯形法}}
 \author{张腾\thanks{tengzhang@hust.edu.cn}}
 %\affil{华中科技大学~计算机学院}
 \date{\today}
@@ -39,7 +39,7 @@
 \end{example}
 
 \begin{remark}
-    如果不允许物品按比例取走部分，约束$0 \le x_1, x_2, x_3, x_4 \le 1$将变成$x_1, x_2, x_3, x_4 \in \{0, 1\}$，此时问题就变成了整数线性规划，比线性规划要难得多。
+    如果不允许只取部分(0/1背包问题)，约束$0 \le x_1, x_2, x_3, x_4 \le 1$将变成$x_1, x_2, x_3, x_4 \in \{0, 1\}$，此时问题就变成了整数线性规划，比线性规划要难得多。
 \end{remark}
 
 \begin{example} [最大流] \label{exam: flow}
@@ -200,7 +200,7 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性等式约束是一条直线
 
 所有可行解都是线性方程组$\Av \xv = \av_1 x_1 + \cdots + \av_n x_n = \bv$的解，不失一般性可设$\rank(\Av) = m$，即$\Av$是行满秩矩阵，否则存在冗余约束。此外设$m < n$，即线性等式约束个数严格小于变量个数，否则可行域为单点集或空集。
 
-从$\Av$的列中挑选$m$个线性无关的列作为\blue{基向量}，不妨就取$\Av$的前$m$列，否则做列交换使前$m$列线性无关(列对应的$x$分量也要跟着交换)，这样$\Av$可写成分块矩阵
+从$\Av$的$n$个列中挑选$m$个线性无关的列作为\blue{基向量}，不妨就取$\Av$的前$m$列，否则做列交换使前$m$列线性无关(列对应的$x$分量也要跟着交换)，这样$\Av$可写成分块矩阵
 \begin{align*}
     \Av = \begin{bmatrix} \Bv & \Dv \end{bmatrix}, \quad \Bv =
     \begin{bmatrix}
@@ -210,11 +210,16 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性等式约束是一条直线
         \av_{m+1} & \cdots & \av_n
     \end{bmatrix} \in \Rbb^{m \times (n-m)}
 \end{align*}
-其中$\Bv$是$m$阶可逆方阵。求解$\Bv \xv_\Bv = \bv$可得$\xv_\Bv = \Bv^{-1} \bv$，显然
+其中$\Bv$是$m$阶可逆方阵。于是
 \begin{align*}
-    \xvhat \triangleq \begin{bmatrix} \xv_\Bv \\ \zerov \end{bmatrix}, \quad \Av \xvhat = \begin{bmatrix} \Bv & \Dv \end{bmatrix} \begin{bmatrix} \xv_\Bv \\ \zerov \end{bmatrix} = \Bv \xv_\Bv = \bv
+    \bv = \Av \xv = \begin{bmatrix} \Bv & \Dv \end{bmatrix} 
+    \begin{bmatrix} \xv_\Bv \\ \xv_\Dv \end{bmatrix} = \Bv \xv_\Bv + \Dv \xv_\Dv
 \end{align*}
-如此构造的$\xvhat$称为$\Av \xv = \bv$在基$\Bv$下的\blue{基本解}，$\xv_\Bv$中的元素称为\blue{基变量}，即基本解中的非基变量都是$0$。如果基本解也是线性规划的可行解(所有变量非负)，则称为\blue{基本可行解}。
+其中$\xv_\Bv$称为\blue{基变量}，$\xv_\Dv$为\blue{非基变量}。令非基变量为零可得$\xv_\Bv = \Bv^{-1} \bv$，这就得到了$\Av \xv = \bv$在基$\Bv$下的\blue{基本解}：
+\begin{align*}
+    \xvhat_\Bv = \begin{bmatrix} \xv_\Bv \\ \xv_\Dv \end{bmatrix} = \begin{bmatrix} \Bv^{-1} \bv \\ \zerov \end{bmatrix}, \quad \Av \xvhat = \begin{bmatrix} \Bv & \Dv \end{bmatrix} \begin{bmatrix} \xv_\Bv \\ \zerov \end{bmatrix} = \Bv \xv_\Bv = \bv
+\end{align*}
+如果基本解还是线性规划的可行解(所有变量非负)，则称为\blue{基本可行解}。
 
 \begin{theorem} [线性规划基本定理]
     对于线性规划的标准型，有如下两个命题：

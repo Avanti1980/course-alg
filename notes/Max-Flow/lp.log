@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Arch Linux) (preloaded format=xelatex 2023.10.16)  14 DEC 2023 09:39
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Arch Linux) (preloaded format=xelatex 2023.10.16)  14 DEC 2023 14:05
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1153,11 +1153,11 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [2] [3]
 
 LaTeX Font Warning: Font shape `TU/antp/m/it' undefined
-(Font)              using `TU/antp/m/n' instead on input line 228.
+(Font)              using `TU/antp/m/n' instead on input line 233.
 
 
 LaTeX Font Warning: Font shape `TU/antp/b/it' undefined
-(Font)              using `TU/antp/b/n' instead on input line 228.
+(Font)              using `TU/antp/b/n' instead on input line 233.
 
 [4] [5] [6] [7] [8] [9] [10] [11]
 Missing character: There is no ; ("3B) in font nullfont!
@@ -1181,10 +1181,10 @@ Package rerunfilecheck Info: File `lp.out' has not changed.
 (rerunfilecheck)             Checksum: 040D6448BA13998040E96334C1DD6E4C;380.
  ) 
 Here is how much of TeX's memory you used:
- 45356 strings out of 476683
- 1097362 string characters out of 5809789
+ 45368 strings out of 476683
+ 1098210 string characters out of 5809789
  1914018 words of memory out of 5000000
- 64737 multiletter control sequences out of 15000+600000
+ 64749 multiletter control sequences out of 15000+600000
  550395 words of font info for 192 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  103i,21n,105p,934b,932s stack positions out of 10000i,1000n,20000p,200000b,200000s
