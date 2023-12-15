@@ -32,9 +32,11 @@
 
     对$i \in [4]$，设物品$i$取走的比例为$x_i$，可得如下线性规划
     \begin{align*}
-        \max \quad & 40 x_1 + 42 x_2 + 25 x_3 + 12 x_4    \\
-        \st \quad  & 4 x_1 + 7 x_2 + 5 x_3 + 3 x_4 \le 10 \\
-                   & 0 \le x_1, x_2, x_3, x_4 \le 1
+        \begin{array}{rl}
+            \max & 40 x_1 + 42 x_2 + 25 x_3 + 12 x_4    \\
+            \st  & 4 x_1 + 7 x_2 + 5 x_3 + 3 x_4 \le 10 \\
+                 & 0 \le x_i \le 1, ~ i \in [4]
+        \end{array}
     \end{align*}
 \end{example}
 
@@ -72,34 +74,38 @@
 
     设$9$条边上的流量分别为$x_1, \ldots, x_9$，可得如下线性规划
     \begin{align*}
-        \max \quad & x_1 + x_2                 \\
-        \st \quad  & 0 \le x_1 \le 16          \\
-                   & 0 \le x_2 \le 13          \\
-                   & 0 \le x_3 \le 4           \\
-                   & 0 \le x_4 \le 12          \\
-                   & 0 \le x_5 \le 9           \\
-                   & 0 \le x_6 \le 14          \\
-                   & 0 \le x_7 \le 7           \\
-                   & 0 \le x_8 \le 20          \\
-                   & 0 \le x_9 \le 4           \\
-                   & x_1 + x_3 - x_4 = 0       \\
-                   & x_2 + x_5 - x_3 - x_6 = 0 \\
-                   & x_4 + x_7 - x_5 - x_8 = 0 \\
-                   & x_6 - x_7 - x_9 = 0
+        \begin{array}{rl}
+            \max & x_1 + x_2                 \\
+            \st  & 0 \le x_1 \le 16          \\
+                 & 0 \le x_2 \le 13          \\
+                 & 0 \le x_3 \le 4           \\
+                 & 0 \le x_4 \le 12          \\
+                 & 0 \le x_5 \le 9           \\
+                 & 0 \le x_6 \le 14          \\
+                 & 0 \le x_7 \le 7           \\
+                 & 0 \le x_8 \le 20          \\
+                 & 0 \le x_9 \le 4           \\
+                 & x_1 + x_3 - x_4 = 0       \\
+                 & x_2 + x_5 - x_3 - x_6 = 0 \\
+                 & x_4 + x_7 - x_5 - x_8 = 0 \\
+                 & x_6 - x_7 - x_9 = 0
+        \end{array}
     \end{align*}
     其中前$9$个不等式约束对应容量限制，后$4$个等式约束对应流量守恒。
 \end{example}
 
-$\Rbb^2$中的线性规划只有$2$个变量，线性等式约束是一条直线，线性不等式约束是一个半平面，可采用图解法。
+$\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式约束是一条直线，线性不等式约束是一个半平面，可采用图解法。
 
-\begin{example} \label{exam: illustration}
+\begin{example} [图解法示例] \label{exam: illustration}
     考虑如下线性规划
     \begin{align*}
-        \max \quad & 3 x_1 + 5 x_2      \\
-        \st  \quad & x_1 + 5 x_2 \le 40 \\
-                   & 2 x_1 + x_2 \le 20 \\
-                   & x_1 + x_2 \le 12   \\
-                   & x_1,x_2 \ge 0
+        \begin{array}{rl}
+            \max & 3 x_1 + 5 x_2      \\
+            \st  & x_1 + 5 x_2 \le 40 \\
+                 & 2 x_1 + x_2 \le 20 \\
+                 & x_1 + x_2 \le 12   \\
+                 & x_1,x_2 \ge 0
+        \end{array}
     \end{align*}
 
     先确定\blue{可行域}，即满足所有约束的\blue{可行解}构成的集合。该例中共有$5$个线性不等式约束，每个对应一个半平面，因此可行域为$5$个半平面相交出的凸五边形(图\ref{fig: lp}中红色部分)。
@@ -136,11 +142,15 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性等式约束是一条直线
 
 \section{标准型}
 
-当变量多于$2$个时，图解法就不再适用了，需要更一般性的方法。对此，要先将问题转化为如下的标准型(不等式只约束变量非负，其余都是等式约束)：
+当变量多于$2$个时，图解法就不再适用了，需要更一般性的方法。线性规划的常用求解算法有单纯形法和内点法。前者在最坏情况下是指数复杂度，后者是多项式复杂度，但实际使用中两者几乎没有差别，单纯形法的最坏情况实际中很难遇到。
+
+要想使用单纯形法，需要先将问题转化为标准型(不等式只约束变量非负，其余都是等式约束)：
 \begin{align*}
-    \max \quad & \cv^\top \xv   \\
-    \st  \quad & \Av \xv = \bv  \\
-               & \xv \ge \zerov
+    \begin{array}{rl}
+        \max & \cv^\top \xv   \\
+        \st  & \Av \xv = \bv  \\
+             & \xv \ge \zerov
+    \end{array}
 \end{align*}
 其中
 \begin{align*}
@@ -154,43 +164,83 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性等式约束是一条直线
              a_{11} & \ldots & a_{1n} \\
              \vdots & \ddots & \vdots \\
              a_{m1} & \ldots & a_{mn}
-         \end{bmatrix} = \begin{bmatrix}
-                             \av_1 & \ldots & \av_n
-                         \end{bmatrix}, \quad
+         \end{bmatrix}, \quad
     \bv = \begin{bmatrix}
               b_1 \\ \vdots \\ b_m
           \end{bmatrix}
 \end{align*}
-不失一般性可设$\bv \ge \zerov$，若某个$b_i < 0$，对该约束两边取反即可。对一般形式的线性规划，可按以下步骤将其转化成标准型：
+这里为了简化表达，将所有线性等式约束合并写成了线性方程组$\Av \xv = \bv$的形式，不失一般性可设
+\begin{itemize}
+    \item 共有$m$个线性等式约束、$n$个变量，其中$m < n$，否则可行域为单点集或空集；
+    \item $\Av$是行满秩矩阵，即$\rank(\Av) = m$，否则存在冗余约束；
+    \item $\bv \ge \zerov$，若某个$b_i < 0$，对该约束两边取反即可。
+\end{itemize}
+
+对于任何形式的线性规划，都可按以下步骤将其转化成标准型，且两者是等价的：
 \begin{itemize}
     \item 对非正变量$x \le 0$，令$y = -x$作为替代；
     \item 对无约束变量$x$，将其表示成两个非负变量的差$x = u - v$；
     \item 对$\av^\top \xv \le b$型不等式约束，引入松弛变量$y \ge 0$将其转化为等式约束$\av^\top \xv + y = b$；
-    \item 对$\av^\top \xv \ge b$型不等式约束，引入剩余变量$y \ge 0$将其转化为等式约束$\av^\top \xv - y = b$。
+    \item 对$\av^\top \xv \ge b$型不等式约束，引入剩余变量$y \ge 0$将其转化为等式约束$\av^\top \xv - y = b$；
+    \item 对$|\av^\top \xv| \le b$型带绝对值符号的不等式约束，将其转化成$-b \le \av^\top \xv \le b$再引入松弛变量或剩余变量。
 \end{itemize}
 
-\begin{example} [将例\ref{exam: bag}、例\ref{exam: flow}、例\ref{exam: illustration}中的问题转化为标准型] \label{exam: bag-standard}
-    分数背包问题有$5$个$\av^\top \xv \le b$型约束，分别引入松弛变量$x_5, \ldots, x_9$：
-    \begin{align*}
-        \max \quad & 40 x_1 + 42 x_2 + 25 x_3 + 12 x_4                 \\
-        \st \quad  & 4 x_1 + 7 x_2 + 5 x_3 + 3 x_4 + x_5 = 10          \\
-                   & x_1 + x_6 = 1                                     \\
-                   & x_2 + x_7 = 1                                     \\
-                   & x_3 + x_8 = 1                                     \\
-                   & x_4 + x_9 = 1                                     \\
-                   & x_1, x_2, x_3, x_4, x_5, x_6, x_7, x_8, x_9 \ge 0
-    \end{align*}
+下面将例\ref{exam: bag}、例\ref{exam: flow}、例\ref{exam: illustration}中的问题转化为标准型。
 
-    最大流问题有$9$个$\av^\top \xv \le b$型约束，分别引入松弛变量$x_{10}, \ldots, x_{18}$：
-\end{example}
+\begin{itemize}
+    \item 分数背包问题有$5$个$\av^\top \xv \le b$型约束，分别引入松弛变量$x_5, \ldots, x_9$：
+          \begin{align}
+              \begin{array}{rlcrl} \label{eq: bag-standard}
+                  \max & 40 x_1 + 42 x_2 + 25 x_3 + 12 x_4    &                 & \max & 40 x_1 + 42 x_2 + 25 x_3 + 12 x_4        \\
+                  \st  & 4 x_1 + 7 x_2 + 5 x_3 + 3 x_4 \le 10 &                 & \st  & 4 x_1 + 7 x_2 + 5 x_3 + 3 x_4 + x_5 = 10 \\
+                       & x_1 \le 1                            &                 &      & x_1 + x_6 = 1                            \\
+                       & x_2 \le 1                            & \Longrightarrow &      & x_2 + x_7 = 1                            \\
+                       & x_3 \le 1                            &                 &      & x_3 + x_8 = 1                            \\
+                       & x_4 \le 1                            &                 &      & x_4 + x_9 = 1                            \\
+                       & x_i \ge 0, ~ i \in [4]               &                 &      & x_i \ge 0, ~ i \in [9]
+              \end{array}
+          \end{align}
+    \item 最大流问题有$9$个$\av^\top \xv \le b$型约束，分别引入松弛变量$x_{10}, \ldots, x_{18}$：
+          \begin{align}
+              \begin{array}{rlcrl} \label{eq: flow-standard}
+                  \max & x_1 + x_2                 &                 & \max & x_1 + x_2                 \\
+                  \st  & x_1 \le 16                &                 & \st  & x_1 + x_{10} = 16         \\
+                       & x_2 \le 13                &                 &      & x_2 + x_{11} =  13        \\
+                       & x_3 \le 4                 &                 &      & x_3 + x_{12} =  4         \\
+                       & x_4 \le 12                &                 &      & x_4 + x_{13} =  12        \\
+                       & x_5 \le 9                 &                 &      & x_5 + x_{14} =  9         \\
+                       & x_6 \le 14                &                 &      & x_6 + x_{15} =  14        \\
+                       & x_7 \le 7                 & \Longrightarrow &      & x_7 + x_{16} =  7         \\
+                       & x_8 \le 20                &                 &      & x_8 + x_{17} =  20        \\
+                       & x_9 \le 4                 &                 &      & x_9 + x_{18} =  4         \\
+                       & x_1 + x_3 - x_4 = 0       &                 &      & x_1 + x_3 - x_4 = 0       \\
+                       & x_2 + x_5 - x_3 - x_6 = 0 &                 &      & x_2 + x_5 - x_3 - x_6 = 0 \\
+                       & x_4 + x_7 - x_5 - x_8 = 0 &                 &      & x_4 + x_7 - x_5 - x_8 = 0 \\
+                       & x_6 - x_7 - x_9 = 0       &                 &      & x_6 - x_7 - x_9 = 0       \\
+                       & x_i \ge 0, ~ i \in [9]    &                 &      & x_i \ge 0, ~ i \in [18]
+              \end{array}
+          \end{align}
+    \item 例\ref{exam: illustration}中的线性规划有$3$个$\av^\top \xv \le b$型约束，分别引入松弛变量$x_3, x_4, x_5$：
+          \begin{align}
+              \begin{array}{rlcrl} \label{eq: illustration-standard}
+                  \max \quad & 3 x_1 + 5 x_2          \\
+                  \st  \quad & x_1 + 5 x_2 + x_3 = 40 \\
+                             & 2 x_1 + x_2 + x_4 = 20 \\
+                             & x_1 + x_2 + x_5 = 12   \\
+                             & x_i \ge 0, ~ i \in [5]
+              \end{array}
+          \end{align}
+\end{itemize}
 
 \begin{example}
     将如下线性规划转化为标准型
     \begin{align*}
-        \max \quad & x_2 - x_1       \\
-        \st  \quad & 3 x_1 = x_2 - 5 \\
-                   & |x_2| \le 2     \\
-                   & x_1 \le 0
+        \begin{array}{rlcrl}
+            \max & x_2 - x_1       \\
+            \st  & 3 x_1 = x_2 - 5 \\
+                 & |x_2| \le 2     \\
+                 & x_1 \le 0
+        \end{array}
     \end{align*}
 
     $x_1$非正，令$y_1 = -x_1 \ge 0$作为替代，$x_2$无约束，令$x_2 = y_2 - y_3$，其中$y_2 \ge 0 $、$y_3 \ge 0$，注意
@@ -211,45 +261,15 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性等式约束是一条直线
     \end{align*}
 \end{example}
 
-\begin{example} \label{exam: simplex}
-    将例\ref{exam: illustration}中的线性规划转化为标准型
-    \begin{align*}
-        \max \quad & 3 x_1 + 5 x_2      \\
-        \st  \quad & x_1 + 5 x_2 \le 40 \\
-                   & 2 x_1 + x_2 \le 20 \\
-                   & x_1 + x_2 \le 12   \\
-                   & x_1,x_2 \ge 0
-    \end{align*}
-    先转化为标准型，为$3$个线性不等式约束分别引入松弛变量$x_3$、$x_4$、$x_5$可得线性方程组
-    \begin{align*}
-        \begin{bmatrix}
-            1 & 5 & 1 & 0 & 0 \\
-            2 & 1 & 0 & 1 & 0 \\
-            1 & 1 & 0 & 0 & 1
-        \end{bmatrix}
-        \begin{bmatrix}
-            x_1 \\ x_2 \\ x_3 \\ x_4 \\ x_5
-        \end{bmatrix} =
-        \underbrace{\begin{bmatrix}
-                            1 \\ 2 \\ 1
-                        \end{bmatrix}}_{\av_1} x_1 +
-        \underbrace{\begin{bmatrix}
-                            5 \\ 1 \\ 1
-                        \end{bmatrix}}_{\av_2} x_2 +
-        \underbrace{\begin{bmatrix}
-                            1 \\ 0 \\ 0
-                        \end{bmatrix}}_{\av_3} x_3 +
-        \underbrace{\begin{bmatrix}
-                            0 \\ 1 \\ 0
-                        \end{bmatrix}}_{\av_4} x_4 +
-        \underbrace{\begin{bmatrix}
-                            0 \\ 0 \\ 1
-                        \end{bmatrix}}_{\av_5} x_5 =
-        \underbrace{\begin{bmatrix}
-                            40 \\ 20 \\ 12
-                        \end{bmatrix}}_{\bv}
-    \end{align*}
-\end{example}
+\begin{align*}
+    \Av= \begin{bmatrix}
+             a_{11} & \ldots & a_{1n} \\
+             \vdots & \ddots & \vdots \\
+             a_{m1} & \ldots & a_{mn}
+         \end{bmatrix} = \begin{bmatrix}
+                             \av_1 & \ldots & \av_n
+                         \end{bmatrix}
+\end{align*}
 
 \section{基本解}
 
