@@ -219,7 +219,10 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性等式约束是一条直线
 \begin{align*}
     \xvhat_\Bv = \begin{bmatrix} \xv_\Bv \\ \xv_\Dv \end{bmatrix} = \begin{bmatrix} \Bv^{-1} \bv \\ \zerov \end{bmatrix}, \quad \Av \xvhat = \begin{bmatrix} \Bv & \Dv \end{bmatrix} \begin{bmatrix} \xv_\Bv \\ \zerov \end{bmatrix} = \Bv \xv_\Bv = \bv
 \end{align*}
-如果基本解还是线性规划的可行解(所有变量非负)，则称为\blue{基本可行解}。
+\begin{itemize}
+    \item 如果基本解中某些基变量为零，则称为\blue{退化的基本解}；
+    \item 如果基本解还是线性规划的可行解(所有变量非负)，则称为\blue{基本可行解}。
+\end{itemize}
 
 \begin{theorem} [线性规划基本定理]
     对于线性规划的标准型，有如下两个命题：
