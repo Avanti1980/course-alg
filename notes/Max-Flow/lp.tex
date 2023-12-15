@@ -181,8 +181,7 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
     \item 对非正变量$x \le 0$，令$y = -x$作为替代；
     \item 对无约束变量$x$，将其表示成两个非负变量的差$x = u - v$；
     \item 对$\av^\top \xv \le b$型不等式约束，引入松弛变量$y \ge 0$将其转化为等式约束$\av^\top \xv + y = b$；
-    \item 对$\av^\top \xv \ge b$型不等式约束，引入剩余变量$y \ge 0$将其转化为等式约束$\av^\top \xv - y = b$；
-    \item 对$|\av^\top \xv| \le b$型带绝对值符号的不等式约束，将其转化成$-b \le \av^\top \xv \le b$再引入松弛变量或剩余变量。
+    \item 对$\av^\top \xv \ge b$型不等式约束，引入剩余变量$y \ge 0$将其转化为等式约束$\av^\top \xv - y = b$。
 \end{itemize}
 
 下面将例\ref{exam: bag}、例\ref{exam: flow}、例\ref{exam: illustration}中的问题转化为标准型。
@@ -223,11 +222,11 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
     \item 例\ref{exam: illustration}中的线性规划有$3$个$\av^\top \xv \le b$型约束，分别引入松弛变量$x_3, x_4, x_5$：
           \begin{align}
               \begin{array}{rlcrl} \label{eq: illustration-standard}
-                  \max \quad & 3 x_1 + 5 x_2          \\
-                  \st  \quad & x_1 + 5 x_2 + x_3 = 40 \\
-                             & 2 x_1 + x_2 + x_4 = 20 \\
-                             & x_1 + x_2 + x_5 = 12   \\
-                             & x_i \ge 0, ~ i \in [5]
+                  \max & 3 x_1 + 5 x_2          &                 & \max & 3 x_1 + 5 x_2          \\
+                  \st  & x_1 + 5 x_2 \le 40     &                 & \st  & x_1 + 5 x_2 + x_3 = 40 \\
+                       & 2 x_1 + x_2 \le 20     & \Longrightarrow &      & 2 x_1 + x_2 + x_4 = 20 \\
+                       & x_1 + x_2 \le 12       &                 &      & x_1 + x_2 + x_5 = 12   \\
+                       & x_i \ge 0, ~ i \in [2] &                 &      & x_i \ge 0, ~ i \in [5]
               \end{array}
           \end{align}
 \end{itemize}
@@ -242,40 +241,33 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
                  & x_1 \le 0
         \end{array}
     \end{align*}
-
-    $x_1$非正，令$y_1 = -x_1 \ge 0$作为替代，$x_2$无约束，令$x_2 = y_2 - y_3$，其中$y_2 \ge 0 $、$y_3 \ge 0$，注意
+    \begin{itemize}
+        \item $x_1$非正，令$y_1 = -x_1 \ge 0$作为替代；
+        \item $x_2$无约束，令$x_2 = y_2 - y_3$，其中$y_2 \ge 0 $、$y_3 \ge 0$
+    \end{itemize}
+    于是
     \begin{align*}
-        |x_2| \le 2 \Longleftrightarrow
-        \begin{cases}
-            y_2 - y_3 \le 2 \Longleftrightarrow y_2 - y_3 + y_4 = 2, ~ y_4 \ge 0 \\
-            -y_2 + y_3 \le 2 \Longleftrightarrow -y_2 + y_3 + y_5 = 2, ~ y_5 \ge 0
-        \end{cases}
-    \end{align*}
-    于是可得标准型
-    \begin{align*}
-        \max \quad & y_1 + y_2 - y_3           \\
-        \st  \quad & 3 y_1 + y_2 - y_3 = 5     \\
-                   & y_2 - y_3 + y_4 = 2       \\
-                   & -y_2 + y_3 + y_5 = 2      \\
-                   & y_1,y_2,y_3,y_4,y_5 \ge 0
+        \begin{array}{rlcrl}
+            \max & y_2 - y_3 + y_1          &                 & \max & y_1 + y_2 - y_3          \\
+            \st  & -3 y_1 = y_2 - y_3 - 5   &                 & \st  & 3 y_1 + y_2 - y_3 = 5    \\
+                 & y_2 - y_3 \le 2          & \Longrightarrow &      & y_2 - y_3 + y_4 = 2      \\
+                 & -y_2 + y_3 \le 2         &                 &      & -y_2 + y_3 + y_5 = 2     \\
+                 & y_i \ge 0, ~ [i] \in [3] &                 &      & y_i \ge 0, ~ [i] \in [5]
+        \end{array}
     \end{align*}
 \end{example}
 
-\begin{align*}
-    \Av= \begin{bmatrix}
-             a_{11} & \ldots & a_{1n} \\
-             \vdots & \ddots & \vdots \\
-             a_{m1} & \ldots & a_{mn}
-         \end{bmatrix} = \begin{bmatrix}
-                             \av_1 & \ldots & \av_n
-                         \end{bmatrix}
-\end{align*}
-
 \section{基本解}
 
-所有可行解都是线性方程组$\Av \xv = \av_1 x_1 + \cdots + \av_n x_n = \bv$的解，不失一般性可设$\rank(\Av) = m$，即$\Av$是行满秩矩阵，否则存在冗余约束。此外设$m < n$，即线性等式约束个数严格小于变量个数，否则可行域为单点集或空集。
+对于线性规划的标准型，所有可行解是线性方程组$\Av \xv = \bv$的解与第一象限的交集。根据之前的约定矩阵$\Av \in \Rbb^{m \times n}$行满秩且$m < n$，因此它有无穷多个解。下面说明求解线性规划只需要关注其中一类称为\blue{基本解}的解。
 
-从$\Av$的$n$个列中挑选$m$个线性无关的列作为\blue{基向量}，不妨就取$\Av$的前$m$列，否则做列交换使前$m$列线性无关(列对应的$x$分量也要跟着交换)，这样$\Av$可写成分块矩阵
+记矩阵$\Av$的$n$个列分别为$\av_1, \ldots, \av_n$，由于$\rank(\Av) = m$，因此可以从中挑出$m$个线性无关的列。不妨就取$\Av$的前$m$列，否则做列交换使前$m$列线性无关(列对应的$x$分量也要跟着交换)，这样$\Av$可写成分块矩阵
+
+作为\blue{基向量}，
+
+$\Av \xv = \av_1 x_1 + \cdots + \av_n x_n = \bv$
+
+从$\Av$的$n$个列中
 \begin{align*}
     \Av = \begin{bmatrix} \Bv & \Dv \end{bmatrix}, \quad \Bv =
     \begin{bmatrix}
@@ -333,6 +325,17 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
 \end{proof}
 
 根据该定理，线性规划的求解可转化为对基本可行解的搜索问题，依次对基本可行解的最优性进行检查即可。
+
+\begin{align*}
+    \Av= \begin{bmatrix}
+             a_{11} & \ldots & a_{1n} \\
+             \vdots & \ddots & \vdots \\
+             a_{m1} & \ldots & a_{mn}
+         \end{bmatrix} = \begin{bmatrix}
+                             \av_1 & \ldots & \av_n
+                         \end{bmatrix}
+\end{align*}
+
 
 \section{几何视角下的线性规划}
 
