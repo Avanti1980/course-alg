@@ -169,6 +169,21 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性等式约束是一条直线
     \item 对$\av^\top \xv \ge b$型不等式约束，引入剩余变量$y \ge 0$将其转化为等式约束$\av^\top \xv - y = b$。
 \end{itemize}
 
+\begin{example} [将例\ref{exam: bag}、例\ref{exam: flow}、例\ref{exam: illustration}中的问题转化为标准型] \label{exam: bag-standard}
+    分数背包问题有$5$个$\av^\top \xv \le b$型约束，分别引入松弛变量$x_5, \ldots, x_9$：
+    \begin{align*}
+        \max \quad & 40 x_1 + 42 x_2 + 25 x_3 + 12 x_4                 \\
+        \st \quad  & 4 x_1 + 7 x_2 + 5 x_3 + 3 x_4 + x_5 = 10          \\
+                   & x_1 + x_6 = 1                                     \\
+                   & x_2 + x_7 = 1                                     \\
+                   & x_3 + x_8 = 1                                     \\
+                   & x_4 + x_9 = 1                                     \\
+                   & x_1, x_2, x_3, x_4, x_5, x_6, x_7, x_8, x_9 \ge 0
+    \end{align*}
+
+    最大流问题有$9$个$\av^\top \xv \le b$型约束，分别引入松弛变量$x_{10}, \ldots, x_{18}$：
+\end{example}
+
 \begin{example}
     将如下线性规划转化为标准型
     \begin{align*}
@@ -196,6 +211,46 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性等式约束是一条直线
     \end{align*}
 \end{example}
 
+\begin{example} \label{exam: simplex}
+    将例\ref{exam: illustration}中的线性规划转化为标准型
+    \begin{align*}
+        \max \quad & 3 x_1 + 5 x_2      \\
+        \st  \quad & x_1 + 5 x_2 \le 40 \\
+                   & 2 x_1 + x_2 \le 20 \\
+                   & x_1 + x_2 \le 12   \\
+                   & x_1,x_2 \ge 0
+    \end{align*}
+    先转化为标准型，为$3$个线性不等式约束分别引入松弛变量$x_3$、$x_4$、$x_5$可得线性方程组
+    \begin{align*}
+        \begin{bmatrix}
+            1 & 5 & 1 & 0 & 0 \\
+            2 & 1 & 0 & 1 & 0 \\
+            1 & 1 & 0 & 0 & 1
+        \end{bmatrix}
+        \begin{bmatrix}
+            x_1 \\ x_2 \\ x_3 \\ x_4 \\ x_5
+        \end{bmatrix} =
+        \underbrace{\begin{bmatrix}
+                            1 \\ 2 \\ 1
+                        \end{bmatrix}}_{\av_1} x_1 +
+        \underbrace{\begin{bmatrix}
+                            5 \\ 1 \\ 1
+                        \end{bmatrix}}_{\av_2} x_2 +
+        \underbrace{\begin{bmatrix}
+                            1 \\ 0 \\ 0
+                        \end{bmatrix}}_{\av_3} x_3 +
+        \underbrace{\begin{bmatrix}
+                            0 \\ 1 \\ 0
+                        \end{bmatrix}}_{\av_4} x_4 +
+        \underbrace{\begin{bmatrix}
+                            0 \\ 0 \\ 1
+                        \end{bmatrix}}_{\av_5} x_5 =
+        \underbrace{\begin{bmatrix}
+                            40 \\ 20 \\ 12
+                        \end{bmatrix}}_{\bv}
+    \end{align*}
+\end{example}
+
 \section{基本解}
 
 所有可行解都是线性方程组$\Av \xv = \av_1 x_1 + \cdots + \av_n x_n = \bv$的解，不失一般性可设$\rank(\Av) = m$，即$\Av$是行满秩矩阵，否则存在冗余约束。此外设$m < n$，即线性等式约束个数严格小于变量个数，否则可行域为单点集或空集。
@@ -212,7 +267,7 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性等式约束是一条直线
 \end{align*}
 其中$\Bv$是$m$阶可逆方阵。于是
 \begin{align*}
-    \bv = \Av \xv = \begin{bmatrix} \Bv & \Dv \end{bmatrix} 
+    \bv = \Av \xv = \begin{bmatrix} \Bv & \Dv \end{bmatrix}
     \begin{bmatrix} \xv_\Bv \\ \xv_\Dv \end{bmatrix} = \Bv \xv_\Bv + \Dv \xv_\Dv
 \end{align*}
 其中$\xv_\Bv$称为\blue{基变量}，$\xv_\Dv$为\blue{非基变量}。令非基变量为零可得$\xv_\Bv = \Bv^{-1} \bv$，这就得到了$\Av \xv = \bv$在基$\Bv$下的\blue{基本解}：
@@ -223,6 +278,10 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性等式约束是一条直线
     \item 如果基本解中某些基变量为零，则称为\blue{退化的基本解}；
     \item 如果基本解还是线性规划的可行解(所有变量非负)，则称为\blue{基本可行解}。
 \end{itemize}
+
+\begin{example}
+    sss
+\end{example}
 
 \begin{theorem} [线性规划基本定理]
     对于线性规划的标准型，有如下两个命题：

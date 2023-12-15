@@ -39,7 +39,7 @@
 | 第七讲 | [全结点对最短路径](slides/07.html) |                                                                       -                                                                       |
 | 第八讲 |      [回溯法](slides/08.html)      |                                                                       -                                                                       |
 | 第九讲 |    [分支限界法](slides/09.html)    |                                                                       -                                                                       |
-| 第十讲 |     [迭代改进](slides/10.html)     | [Ford-Fulkerson 最坏情况](notes/Max-Flow/maximum-flow-supp.pdf)、[单纯形法](notes/Max-Flow/lp.pdf)、[匹配、覆盖、流、割](notes/MCFC/MCFC.pdf) | -   |
+| 第十讲 |     [迭代改进](slides/10.html)     | [Ford-Fulkerson 异常情况](notes/Max-Flow/maximum-flow-supp.pdf)、[线性规划](notes/Max-Flow/linear-programming.pdf)、[匹配、覆盖、流、割](notes/MCFC/MCFC.pdf) | 
 
 </div>
 
