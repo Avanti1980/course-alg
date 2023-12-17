@@ -243,9 +243,8 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
     \end{align*}
     \begin{itemize}
         \item $x_1$非正，令$y_1 = -x_1 \ge 0$作为替代；
-        \item $x_2$无约束，令$x_2 = y_2 - y_3$，其中$y_2 \ge 0 $、$y_3 \ge 0$
+        \item $x_2$无约束，令$x_2 = y_2 - y_3$，其中$y_2 \ge 0 $、$y_3 \ge 0$；
     \end{itemize}
-    于是
     \begin{align*}
         \begin{array}{rlcrl}
             \max & y_2 - y_3 + y_1          &                 & \max & y_1 + y_2 - y_3          \\
@@ -259,40 +258,93 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
 
 \section{基本解}
 
-对于线性规划的标准型，所有可行解是线性方程组$\Av \xv = \bv$的解与第一象限的交集。根据之前的约定矩阵$\Av \in \Rbb^{m \times n}$行满秩且$m < n$，因此它有无穷多个解。下面说明求解线性规划只需要关注其中一类称为\blue{基本解}的解。
+对于线性规划的标准型，所有可行解是线性方程组$\Av \xv = \bv$的解与第一象限的交集。根据之前的约定矩阵$\Av \in \Rbb^{m \times n}$行满秩且$m < n$，因此它有无穷多个解，但求解线性规划只需要关注其中一类称为\blue{基本解}的解。
 
-记矩阵$\Av$的$n$个列分别为$\av_1, \ldots, \av_n$，由于$\rank(\Av) = m$，因此可以从中挑出$m$个线性无关的列。不妨就取$\Av$的前$m$列，否则做列交换使前$m$列线性无关(列对应的$x$分量也要跟着交换)，这样$\Av$可写成分块矩阵
-
-作为\blue{基向量}，
-
-$\Av \xv = \av_1 x_1 + \cdots + \av_n x_n = \bv$
-
-从$\Av$的$n$个列中
+记矩阵$\Av$的$n$个列分别为$\av_1, \ldots, \av_n$，由于$\rank(\Av) = m$，因此可以从中挑出$m$个\blue{线性无关}的列$\av_{i_1}, \ldots, \av_{i_m}$构成基$\Bv$，这些列也称为\blue{基向量}。为表述方便，引入矩阵的切片表示$\Av_{\Rcal,\Ccal}$，其中$\Rcal$、$\Ccal$为索引集合，例如记$\Bcal = \{i_1, \ldots, i_m\}$、$\Dcal = [n] \setminus \Bcal$，则
 \begin{align*}
-    \Av = \begin{bmatrix} \Bv & \Dv \end{bmatrix}, \quad \Bv =
+    \Bv = \Av_{:,\Bcal} =
     \begin{bmatrix}
-        \av_1 & \cdots & \av_m
-    \end{bmatrix}, \quad \Dv =
-    \begin{bmatrix}
-        \av_{m+1} & \cdots & \av_n
-    \end{bmatrix} \in \Rbb^{m \times (n-m)}
+        \av_{i_1} & \cdots & \av_{i_m}
+    \end{bmatrix}
 \end{align*}
-其中$\Bv$是$m$阶可逆方阵。于是
+同理$\Dv = \Av_{:,\Dcal} \in \Rbb^{m \times (n-m)}$是\blue{非基向量}构成的矩阵，进一步有
 \begin{align*}
-    \bv = \Av \xv = \begin{bmatrix} \Bv & \Dv \end{bmatrix}
-    \begin{bmatrix} \xv_\Bv \\ \xv_\Dv \end{bmatrix} = \Bv \xv_\Bv + \Dv \xv_\Dv
+    \bv = \Av \xv = \Bv \xv_\Bcal + \Dv \xv_\Dcal
 \end{align*}
-其中$\xv_\Bv$称为\blue{基变量}，$\xv_\Dv$为\blue{非基变量}。令非基变量为零可得$\xv_\Bv = \Bv^{-1} \bv$，这就得到了$\Av \xv = \bv$在基$\Bv$下的\blue{基本解}：
-\begin{align*}
-    \xvhat_\Bv = \begin{bmatrix} \xv_\Bv \\ \xv_\Dv \end{bmatrix} = \begin{bmatrix} \Bv^{-1} \bv \\ \zerov \end{bmatrix}, \quad \Av \xvhat = \begin{bmatrix} \Bv & \Dv \end{bmatrix} \begin{bmatrix} \xv_\Bv \\ \zerov \end{bmatrix} = \Bv \xv_\Bv = \bv
-\end{align*}
+其中$\xv_\Bcal$称为\blue{基变量}，$\xv_\Dcal$称为\blue{非基变量}。令$\xv_\Dcal = \zerov$可得$\xv_\Bcal = \Bv^{-1} \bv$，这就得到了$\Av \xv = \bv$在基$\Bv$下的\blue{基本解}。
 \begin{itemize}
-    \item 如果基本解中某些基变量为零，则称为\blue{退化的基本解}；
-    \item 如果基本解还是线性规划的可行解(所有变量非负)，则称为\blue{基本可行解}。
+    \item 如果基本解中某些基变量为零，则称其为\blue{退化的基本解}；
+    \item 如果基本解还是线性规划的可行解(所有变量非负)，则称其为\blue{基本可行解}。
 \end{itemize}
 
 \begin{example}
-    sss
+    设线性规划的等式约束为线性方程组$\Av \xv = \bv$，其中
+    \begin{align*}
+        \Av = \begin{bmatrix}
+                  \av_1 & \av_2 & \av_3 & \av_4
+              \end{bmatrix} = \begin{bmatrix}
+                                  1 & 1 & -1 & 4 \\ 1 & -2 & -1 & 1
+                              \end{bmatrix}, \quad \bv = \begin{bmatrix}
+                                                             8 \\ 2
+                                                         \end{bmatrix}
+    \end{align*}
+
+    $n=4$、$m=2$，故基本解最多不超过$\binom{4}{2}=6$个，对线性方程组的增广矩阵做初等行变换：
+    \begin{align*}
+        \begin{bmatrix}
+            1 & 1 & -1 & 4 & 8 \\ 1 & -2 & -1 & 1 & 2
+        \end{bmatrix} \longrightarrow
+        \begin{bmatrix}
+            1 & 1 & -1 & 4 & 8 \\ 0 & -3 & 0 & -3 & -6
+        \end{bmatrix} \longrightarrow
+        \begin{bmatrix}
+            1 & 0 & -1 & 3 & 6 \\ 0 & 1 & 0 & 1 & 2
+        \end{bmatrix}
+    \end{align*}
+    因此
+    \begin{align*}
+        \begin{cases}
+            x_1 = x_3 - 3 x_4 + 6 \\
+            x_2 = - x_4 + 2
+        \end{cases} \Longrightarrow
+        \begin{bmatrix}
+            x_1 \\ x_2 \\ x_3 \\ x_4
+        \end{bmatrix} =
+        \begin{bmatrix}
+            6 \\ 2 \\ 0 \\ 0
+        \end{bmatrix} + s
+        \begin{bmatrix}
+            1 \\ 0 \\ 1 \\ 0
+        \end{bmatrix} + t
+        \begin{bmatrix}
+            -3 \\ -1 \\ 0 \\ 1
+        \end{bmatrix}
+    \end{align*}
+    \begin{itemize}
+        \item 令$s=t=0$，$\xv = \begin{bmatrix}
+                      6 & 2 & 0 & 0
+                  \end{bmatrix}^\top$，这是关于基$\begin{bmatrix}
+                      \av_1 & \av_2
+                  \end{bmatrix}$的基本可行解；
+        \item 令$s=-6$、$t=0$，$\xv = \begin{bmatrix}
+                      0 & 2 & -6 & 0
+                  \end{bmatrix}^\top$，这是关于基$\begin{bmatrix}
+                      \av_2 & \av_3
+                  \end{bmatrix}$的基本解，但不可行；
+        \item 令$s=0$、$t=2$，$\xv = \begin{bmatrix}
+                      0 & 0 & 0 & 2
+                  \end{bmatrix}^\top$，这是同时关于基$\begin{bmatrix}
+                      \av_1 & \av_4
+                  \end{bmatrix}$、$\begin{bmatrix}
+                      \av_2 & \av_4
+                  \end{bmatrix}$、$\begin{bmatrix}
+                      \av_3 & \av_4
+                  \end{bmatrix}$的退化基本可行解；
+        \item 令$s=1$、$t=1$，$\xv = \begin{bmatrix}
+                      4 & 1 & 1 & 1
+                  \end{bmatrix}^\top$，这是可行解，但不是基本解。
+    \end{itemize}
+    注意$a_1$、$a_3$线性相关，因此前三种情况已经找到所有的基本解了。
 \end{example}
 
 \begin{theorem} [线性规划基本定理]
@@ -304,42 +356,46 @@ $\Av \xv = \av_1 x_1 + \cdots + \av_n x_n = \bv$
 \end{theorem}
 
 \begin{proof}
-    1. 设$\xv$是一个可行解并有$p$个正元素，不失一般性，可设前$p$个元素为正，于是
-    \begin{align*}
-        \Av \xv = \av_1 x_1 + \cdots + \av_p x_p = \bv
-    \end{align*}
+    1. 设$\xv$是一个可行解，其中$\{ i \mid x_i > 0, ~ i \in [n] \} = \{ i_1, \ldots, i_l \} \triangleq \Lcal$，即$\xv$有$l$个正分量，则
+    \begin{align} \label{eq: b-coef}
+        \bv = \Av \xv = \Av_{:, \Lcal} \xv_\Lcal = \av_{i_1} x_{i_1} + \cdots + \av_{i_l} x_{i_l}
+    \end{align}
     此时分两种情况：
     \begin{itemize}
-        \item $\av_1, \ldots, \av_p$线性无关，则$p \le m$。若$p = m$，$\xv$就是基本可行解；若$p < m$，从$\Av$的剩余列中挑选$m-p$个列与$\av_1, \ldots, \av_p$构成基，此时$\xv$就是对应该基的基本可行解。
-        \item $\av_1, \ldots, \av_p$线性相关，可以去掉一些冗余列使其线性无关，从而转化为前一种情况。设不全为零的实数$y_1, \ldots, y_p$使得$\av_1 y_1 + \cdots + \av_p y_p = \zerov$且至少某个$y_i > 0$，否则对所有$y_i$取反即可，于是对任意$\epsilon$有
+        \item $\av_{i_1}, \ldots, \av_{i_l}$线性无关，则$l \le m$。若$l = m$，$\xv$就是基本可行解；若$l < m$，从$\Av$的剩余列中挑选$m-l$个列与$\av_{i_1}, \ldots, \av_{i_l}$构成基，此时$\xv$就是对应该基的基本可行解。
+        \item $\av_{i_1}, \ldots, \av_{i_l}$线性相关，可以去掉一些冗余列使其线性无关，从而转化为前一种情况。设不全为零的实数$y_{i_1}, \ldots, y_{i_l}$使得
+              \begin{align} \label{eq: 0-coef}
+                  \zerov = \av_{i_1} y_{i_1} + \cdots + \av_{i_l} y_{i_l}
+              \end{align}
+              且至少某个$y_{i_k} > 0$，否则对所有$y_{i_k}$取反即可，于是对任意$\epsilon$，令$\eqref{eq: b-coef} - \epsilon \times \eqref{eq: 0-coef}$有
               \begin{align*}
-                  \bv = \av_1 (x_1 - \epsilon y_1) + \cdots + \av_p (x_p - \epsilon y_p) = \Av (\xv - \epsilon \yv), \quad
-                  \yv \triangleq \begin{bmatrix}
-                                     y_1 \\ \vdots \\ y_p \\ \zerov
-                                 \end{bmatrix}
+                  \bv = \av_{i_1} (x_{i_1} - \epsilon y_{i_1}) + \cdots + \av_{i_l} (x_{i_l} - \epsilon y_{i_l}) = \Av_{:, \Lcal} (\xv_\Lcal - \epsilon \yv_\Lcal), \quad
+                  \yv_\Lcal^\top \triangleq \begin{bmatrix}
+                                                y_{i_1} & \cdots & y_{i_l}
+                                            \end{bmatrix}
               \end{align*}
-              让$\epsilon$从$0$增大直到$\xv - \epsilon \yv$的前$p$个正分量出现$0$，即取$\epsilonhat = \min\{ x_i / y_i: y_i > 0, i \in [p] \}$，这样就得到了只有$p-1$个正分量的可行解，重复该操作直到正分量对应的列线性无关。
+              让$\epsilon$从$0$增大，对所有$\yv_\Lcal$为正的分量，$\xv_\Lcal - \epsilon \yv_\Lcal$在这些分量上单调减。取$\epsilon$使得$\xv_\Lcal - \epsilon \yv_\Lcal$第一次出现某个分量变成$0$，即取
+              \begin{align*}
+                \epsilon = \min \{ x_{i_k} / y_{i_k} : y_{i_k} > 0, ~ k \in [l] \}
+              \end{align*}
+              这样就得到了只有$l-1$个正分量的可行解$\xv - \epsilon \yv$，重复该操作直到正分量对应的列线性无关。
     \end{itemize}
 
-    2. 设$\xv$是一个最优可行解且前$p$个元素为正，若$\av_1, \ldots, \av_p$线性无关，证明同命题1；若$\av_1, \ldots, \av_p$线性相关，可继续沿用命题1中去冗余列的方式，但还需证明对任意$\epsilon$，$\xv - \epsilon \yv$都是最优解，这只需证明$\cv^\top \yv = 0$。注意只要$|\epsilon| \le \min\{ | x_i / y_i |: y_i \ne 0, i \in [p] \}$，$\xv - \epsilon \yv$都是可行解，因此若$\cv^\top \yv \ne 0$，根据其符号总能取某个充分小的$\epsilon$使得$\cv^\top (\xv - \epsilon \yv) = \cv^\top \xv - \epsilon \cv^\top \yv > \cv^\top \xv$，这与$\xv$是最优解矛盾。
+    2. 设$\xv$是一个最优可行解且有$l$个正分量：$\{ i \mid x_i > 0, ~ i \in [n] \} = \{ i_1, \ldots, i_l \} \triangleq \Lcal$。
+    
+    若$\av_{i_1}, \ldots, \av_{i_l}$线性无关，证明同命题1。若$\av_{i_1}, \ldots, \av_{i_l}$线性相关，可继续沿用命题1中去冗余列的方式，但还需证明对任意$\epsilon$，$\xv - \epsilon \yv$都是最优解，这只需证明$\cv^\top \yv = 0$。注意只要
+    \begin{align*}
+        |\epsilon| \le \min\{ | x_{i_k} / y_{i_k} | : y_{i_k} \ne 0, ~ k \in [l] \}
+    \end{align*}
+    $\xv - \epsilon \yv$都是可行解，因此若$\cv^\top \yv \ne 0$，根据其符号总能取某个充分小的$\epsilon$使得$\cv^\top (\xv - \epsilon \yv) > \cv^\top \xv$，这与$\xv$是最优可行解矛盾。
+
 \end{proof}
 
 根据该定理，线性规划的求解可转化为对基本可行解的搜索问题，依次对基本可行解的最优性进行检查即可。
 
-\begin{align*}
-    \Av= \begin{bmatrix}
-             a_{11} & \ldots & a_{1n} \\
-             \vdots & \ddots & \vdots \\
-             a_{m1} & \ldots & a_{mn}
-         \end{bmatrix} = \begin{bmatrix}
-                             \av_1 & \ldots & \av_n
-                         \end{bmatrix}
-\end{align*}
-
-
 \section{几何视角下的线性规划}
 
-线性规划属于凸优化的范畴，线性目标函数显然是凸函数，可行域$\Omega = \{ \xv \mid \Av \xv = \bv, \xv \ge \zerov \}$是凸集，因为对$\forall \xv_1, \xv_2 \in \Omega$和$\forall \alpha \in (0,1)$有
+线性规划的可行域$\Omega = \{ \xv \mid \Av \xv = \bv, ~ \xv \ge \zerov \}$是凸集，因为对$\forall \xv_1, \xv_2 \in \Omega$和$\forall \alpha \in (0,1)$有
 \begin{align*}
     \Av (\alpha \xv_1 + (1 - \alpha) \xv_2) = \alpha \Av \xv_1 + (1 - \alpha) \Av \xv_2 = \alpha \bv + (1 - \alpha) \bv = \bv, \quad \alpha \xv_1 + (1 - \alpha) \xv_2 \ge \zerov
 \end{align*}
@@ -348,12 +404,12 @@ $\Av \xv = \av_1 x_1 + \cdots + \av_n x_n = \bv$
     \xv\text{是极点}, ~ \xv = \alpha \xv_1 + (1 - \alpha) \xv_2, ~ \alpha \in (0,1) \Longrightarrow \xv_1 = \xv_2 = \xv
 \end{align*}
 
-\begin{theorem}
-    $\xv$是$\Omega = \{ \xv \mid \Av \xv = \bv, \xv \ge \zerov \}$的极点当且仅当$\xv$是$\Av \xv = \bv, \xv \ge \zerov$的基本可行解。
+\begin{theorem} [等价性]
+    $\xv$是$\Omega = \{ \xv \mid \Av \xv = \bv, ~ \xv \ge \zerov \}$的极点当且仅当$\xv$是$\Av \xv = \bv, ~ \xv \ge \zerov$的基本可行解。
 \end{theorem}
 
 \begin{proof}
-    待补充。
+    ******
 \end{proof}
 
 \begin{example} \label{exam: simplex}
@@ -493,22 +549,22 @@ $\Av \xv = \av_1 x_1 + \cdots + \av_n x_n = \bv$
 
 下面考察基本可行解变化时目标函数值的变化，将标准型根据对$\Av$的分块重写为
 \begin{align*}
-    \max \quad & \cv_\Bv^\top \xv_\Bv + \cv_\Dv^\top \xv_\Dv \\
-    \st  \quad & \Bv \xv_\Bv + \Dv \xv_\Dv = \bv             \\
-               & \xv_\Bv, \xv_\Dv \ge \zerov
+    \max \quad & \cv_\Bcal^\top \xv_\Bcal + \cv_\Dcal^\top \xv_\Dcal \\
+    \st  \quad & \Bv \xv_\Bcal + \Dv \xv_\Dcal = \bv                 \\
+               & \xv_\Bcal, \xv_\Dcal \ge \zerov
 \end{align*}
 \begin{itemize}
-    \item 若$\xv_\Dv = \zerov$，则$\xv_\Bv = \Bv^{-1} \bv$，此时$\xv$就是关于基$\Bv$的基本可行解，对应的目标函数值为
+    \item 若$\xv_\Dcal = \zerov$，则$\xv_\Bcal = \Bv^{-1} \bv$，此时$\xv$就是关于基$\Bv$的基本可行解，对应的目标函数值为
           \begin{align*}
-              \zhat = \cv_\Bv^\top \xv_\Bv = \cv_\Bv^\top \Bv^{-1} \bv
+              \zhat = \cv_\Bcal^\top \xv_\Bcal = \cv_\Bcal^\top \Bv^{-1} \bv
           \end{align*}
-    \item 若$\xv_\Dv \ne \zerov$，则$\xv_\Bv = \Bv^{-1} \bv - \Bv^{-1} \Dv \xv_\Dv$，对应的目标函数值为
+    \item 若$\xv_\Dcal \ne \zerov$，则$\xv_\Bcal = \Bv^{-1} \bv - \Bv^{-1} \Dv \xv_\Dcal$，对应的目标函数值为
           \begin{align*}
-              z = \cv_\Bv^\top \xv_\Bv + \cv_\Dv^\top \xv_\Dv = \cv_\Bv^\top (\Bv^{-1} \bv - \Bv^{-1} \Dv \xv_\Dv) + \cv_\Dv^\top \xv_\Dv = \cv_\Bv^\top \Bv^{-1} \bv - (\cv_\Bv^\top \Bv^{-1} \Dv - \cv_\Dv^\top) \xv_\Dv = \zhat - \rv_\Dv^\top \xv_\Dv
+              z = \cv_\Bcal^\top \xv_\Bcal + \cv_\Dcal^\top \xv_\Dcal = \cv_\Bcal^\top (\Bv^{-1} \bv - \Bv^{-1} \Dv \xv_\Dcal) + \cv_\Dcal^\top \xv_\Dcal = \cv_\Bcal^\top \Bv^{-1} \bv - (\cv_\Bcal^\top \Bv^{-1} \Dv - \cv_\Dcal^\top) \xv_\Dcal = \zhat - \rv_\Dcal^\top \xv_\Dcal
           \end{align*}
-          其中$\rv_\Dv^\top = \cv_\Bv^\top \Bv^{-1} \Dv - \cv_\Dv^\top$称为\blue{检验数}。
+          其中$\rv_\Dcal^\top = \cv_\Bcal^\top \Bv^{-1} \Dv - \cv_\Dcal^\top$称为\blue{检验数}。
 
-          注意$\xv_\Dv \ge \zerov$，若$\rv_\Dv \ge \zerov$，则$z \ge \zhat$，即关于基$\Bv$的基本可行解就是最优解，这就回答了前面的问题2。若$\rv_\Dv$中某个分量为负，则将$\xv_\Dv$中对应的非基变量从$0$变为正数可使目标函数值变大，也即该非基变量对应的列入基，这就回答了前面的问题1。
+          注意$\xv_\Dcal \ge \zerov$，若$\rv_\Dcal \ge \zerov$，则$z \ge \zhat$，即关于基$\Bv$的基本可行解就是最优解，这就回答了前面的问题2。若$\rv_\Dcal$中某个分量为负，则将$\xv_\Dcal$中对应的非基变量从$0$变为正数可使目标函数值变大，也即该非基变量对应的列入基，这就回答了前面的问题1。
 \end{itemize}
 
 基于此，构造单纯形表
@@ -517,7 +573,7 @@ $\Av \xv = \av_1 x_1 + \cdots + \av_n x_n = \bv$
         \Av & \bv \\ -\cv^\top & 0
     \end{bmatrix} =
     \begin{bmatrix}
-        \Bv & \Dv & \bv \\ -\cv_\Bv^\top & -\cv_\Dv^\top & 0
+        \Bv & \Dv & \bv \\ -\cv_\Bcal^\top & -\cv_\Dcal^\top & 0
     \end{bmatrix}
 \end{align*}
 先做初等行变换将基$\Bv$变成单位阵
@@ -526,30 +582,30 @@ $\Av \xv = \av_1 x_1 + \cdots + \av_n x_n = \bv$
         \Bv^{-1} & \zerov \\ \zerov^\top & 1
     \end{bmatrix}
     \begin{bmatrix}
-        \Bv & \Dv & \bv \\ -\cv_\Bv^\top & -\cv_\Dv^\top & 0
+        \Bv & \Dv & \bv \\ -\cv_\Bcal^\top & -\cv_\Dcal^\top & 0
     \end{bmatrix} =
     \begin{bmatrix}
-        \Iv_m & \Bv^{-1} \Dv & \Bv^{-1} \bv \\ -\cv_\Bv^\top & -\cv_\Dv^\top & 0
+        \Iv_m & \Bv^{-1} \Dv & \Bv^{-1} \bv \\ -\cv_\Bcal^\top & -\cv_\Dcal^\top & 0
     \end{bmatrix}
 \end{align*}
-再做初等行变换将最后一行基变量对应的$-\cv_\Bv^\top$变成$\zerov^\top$
+再做初等行变换将最后一行基变量对应的$-\cv_\Bcal^\top$变成$\zerov^\top$
 \begin{align*}
     \begin{bmatrix}
-        \Iv_m & \zerov \\ \cv_\Bv^\top & 1
+        \Iv_m & \zerov \\ \cv_\Bcal^\top & 1
     \end{bmatrix}
     \begin{bmatrix}
-        \Iv_m & \Bv^{-1} \Dv & \Bv^{-1} \bv \\ -\cv_\Bv^\top & -\cv_\Dv^\top & 0
+        \Iv_m & \Bv^{-1} \Dv & \Bv^{-1} \bv \\ -\cv_\Bcal^\top & -\cv_\Dcal^\top & 0
     \end{bmatrix} =
     \begin{bmatrix}
-        \Iv_m & \Bv^{-1} \Dv & \Bv^{-1} \bv \\ \zerov^\top & \cv_\Bv^\top \Bv^{-1} \Dv - \cv_\Dv^\top & \cv_\Bv^\top \Bv^{-1} \bv
+        \Iv_m & \Bv^{-1} \Dv & \Bv^{-1} \bv \\ \zerov^\top & \cv_\Bcal^\top \Bv^{-1} \Dv - \cv_\Dcal^\top & \cv_\Bcal^\top \Bv^{-1} \bv
     \end{bmatrix}
 \end{align*}
 这张表里包含了一切我们需要的信息
 \begin{itemize}
     \item $\Bv^{-1} \Dv$里的每列就是该列向量在当前基下的线性表示系数；
     \item $\Bv^{-1} \bv$是当前基对应的基本可行解中的基变量值；
-    \item $\cv_\Bv^\top \Bv^{-1} \Dv - \cv_\Dv^\top$就是检验数，可以指示下一个入基向量和是否已达最优解；
-    \item $\cv_\Bv^\top \Bv^{-1} \bv$就是当前基本可行解对应的目标函数值
+    \item $\cv_\Bcal^\top \Bv^{-1} \Dv - \cv_\Dcal^\top$就是检验数，可以指示下一个入基向量和是否已达最优解；
+    \item $\cv_\Bcal^\top \Bv^{-1} \bv$就是当前基本可行解对应的目标函数值
 \end{itemize}
 
 \begin{example}
