@@ -376,13 +376,13 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
               \end{align*}
               让$\epsilon$从$0$增大，对所有$\yv_\Lcal$为正的分量，$\xv_\Lcal - \epsilon \yv_\Lcal$在这些分量上单调减。取$\epsilon$使得$\xv_\Lcal - \epsilon \yv_\Lcal$第一次出现某个分量变成$0$，即取
               \begin{align*}
-                \epsilon = \min \{ x_{i_k} / y_{i_k} : y_{i_k} > 0, ~ k \in [l] \}
+                  \epsilon = \min \{ x_{i_k} / y_{i_k} : y_{i_k} > 0, ~ k \in [l] \}
               \end{align*}
               这样就得到了只有$l-1$个正分量的可行解$\xv - \epsilon \yv$，重复该操作直到正分量对应的列线性无关。
     \end{itemize}
 
     2. 设$\xv$是一个最优可行解且有$l$个正分量：$\{ i \mid x_i > 0, ~ i \in [n] \} = \{ i_1, \ldots, i_l \} \triangleq \Lcal$。
-    
+
     若$\av_{i_1}, \ldots, \av_{i_l}$线性无关，证明同命题1。若$\av_{i_1}, \ldots, \av_{i_l}$线性相关，可继续沿用命题1中去冗余列的方式，但还需证明对任意$\epsilon$，$\xv - \epsilon \yv$都是最优解，这只需证明$\cv^\top \yv = 0$。注意只要
     \begin{align*}
         |\epsilon| \le \min\{ | x_{i_k} / y_{i_k} | : y_{i_k} \ne 0, ~ k \in [l] \}
@@ -393,7 +393,7 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
 
 根据该定理，线性规划的求解可转化为对基本可行解的搜索问题，依次对基本可行解的最优性进行检查即可。
 
-\section{几何视角下的线性规划}
+\section{几何视角}
 
 线性规划的可行域$\Omega = \{ \xv \mid \Av \xv = \bv, ~ \xv \ge \zerov \}$是凸集，因为对$\forall \xv_1, \xv_2 \in \Omega$和$\forall \alpha \in (0,1)$有
 \begin{align*}
@@ -409,28 +409,43 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
 \end{theorem}
 
 \begin{proof}
-    ******
+    $\Rightarrow$：设$\xv$满足$\Av \xv = \bv, ~ \xv \ge \zerov$且$\{ i \mid x_i > 0, ~ i \in [n] \} = \{ i_1, \ldots, i_l \}$，则
+    \begin{align*}
+        \av_{i_1} x_{i_1} + \cdots + \av_{i_l} x_{i_l} = \bv
+    \end{align*}
+    设向量$\yv$满足$\av_{i_1} y_{i_1} + \cdots + \av_{i_l} y_{i_l} = \zerov$，于是对任意$\epsilon$有
+    \begin{align*}
+        \av_{i_1} (x_{i_1} + \epsilon y_{i_1}) + \cdots + \av_{i_l} (x_{i_l} + \epsilon y_{i_l}) & = \bv \\
+        \av_{i_1} (x_{i_1} - \epsilon y_{i_1}) + \cdots + \av_{i_l} (x_{i_l} - \epsilon y_{i_l}) & = \bv
+    \end{align*}
+    注意所有的$x_{i_k}>0$，于是存在$\epsilon \in (0, \min\{ | x_{i_k} / y_{i_k} | : y_{i_k} \ne 0, ~ k \in [l] \}]$使得
+    \begin{align*}
+        \zv_1 = \xv + \epsilon \yv \in \Omega, \quad \zv_2 = \xv - \epsilon \yv \in \Omega, \quad \xv = \frac{1}{2} \zv_1 + \frac{1}{2} \zv_2
+    \end{align*}
+    由于$\xv$是极点，因此$\zv_1 = \zv_2 = \xv$，而$\epsilon > 0$，故$\yv = \zerov$。这意味着$\av_{i_1}, \ldots, \av_{i_l}$线性无关，于是$\xv$是基本可行解。
+
+    $\Leftarrow$：设$\xv$是基本可行解，对应基向量为$\av_{i_1}, \ldots, \av_{i_m}$，记$\Bcal = \{i_1, \ldots, i_m\}$、$\Dcal = [n] \setminus \Bcal$，则
+    \begin{align*}
+        \av_{i_1} x_{i_1} + \cdots + \av_{i_m} x_{i_m} = \bv, \quad \xv_\Dcal = \zerov
+    \end{align*}
+    假设存在$\yv, \zv \in \Omega$、$\alpha \in (0,1)$使得$\xv = \alpha \yv + (1 - \alpha)\zv$，注意$\alpha > 0$、$(1- \alpha) > 0$，于是
+    \begin{align*}
+        \yv_\Dcal = \zerov, \quad & \av_{i_1} y_{i_1} + \cdots + \av_{i_m} y_{i_m} = \bv \\
+        \zv_\Dcal = \zerov, \quad & \av_{i_1} z_{i_1} + \cdots + \av_{i_m} z_{i_m} = \bv
+    \end{align*}
+    两式相减$\av_{i_1} (y_{i_1} - z_{i_1}) + \cdots + \av_{i_m} (y_{i_m} - z_{i_m}) = \zerov$，由于$\av_{i_1}, \ldots, \av_{i_m}$线性无关，故$\yv = \zv$，$\xv$是极点。
 \end{proof}
 
 \begin{example} \label{exam: simplex}
-    再看例\ref{exam: illustration}中的线性规划：
+    再看例\ref{exam: illustration}中的线性规划，根据式\eqref{eq: illustration-standard}，其标准型为：
     \begin{align*}
-        \max \quad & 3 x_1 + 5 x_2      \\
-        \st  \quad & x_1 + 5 x_2 \le 40 \\
-                   & 2 x_1 + x_2 \le 20 \\
-                   & x_1 + x_2 \le 12   \\
-                   & x_1,x_2 \ge 0
-    \end{align*}
-    先转化为标准型，为$3$个线性不等式约束分别引入松弛变量$x_3$、$x_4$、$x_5$可得线性方程组
-    \begin{align*}
-        \begin{bmatrix}
-            1 & 5 & 1 & 0 & 0 \\
-            2 & 1 & 0 & 1 & 0 \\
-            1 & 1 & 0 & 0 & 1
-        \end{bmatrix}
-        \begin{bmatrix}
-            x_1 \\ x_2 \\ x_3 \\ x_4 \\ x_5
-        \end{bmatrix} =
+        \begin{array}{rl}
+            \max & 3 x_1 + 5 x_2          \\
+            \st  & x_1 + 5 x_2 + x_3 = 40 \\
+                 & 2 x_1 + x_2 + x_4 = 20 \\
+                 & x_1 + x_2 + x_5 = 12   \\
+                 & x_i \ge 0, ~ i \in [5]
+        \end{array}, \quad \Av \xv =
         \underbrace{\begin{bmatrix}
                             1 \\ 2 \\ 1
                         \end{bmatrix}}_{\av_1} x_1 +
@@ -450,7 +465,8 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
                             40 \\ 20 \\ 12
                         \end{bmatrix}}_{\bv}
     \end{align*}
-    显然取$\av_3$、$\av_4$、$\av_5$作为基向量，即令$x_3$、$x_4$、$x_5$作为基变量，可得基本可行解
+
+    显然取$\av_3$、$\av_4$、$\av_5$作为基向量，基本可行解是一目了然的(基为单位阵)：
     \begin{align*}
         40 \av_3 + 20 \av_4 + 12 \av_5 = \bv, \quad
         \left[ \begin{array}{ccccc}
@@ -458,9 +474,9 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
                        0   & 0   & 40  & 20  & 12
                    \end{array} \right]
     \end{align*}
-    对应$\Rbb^2$中可行域的极点$[0,0]$，目标函数值$0 < 50$，因此还不是最优解。
+    对应原问题$\Rbb^2$中可行域的极点$[0,0]$，目标函数值$0 < 50$，因此还不是最优解。
 
-    根据迭代改进的思路，需要从当前极点移动到邻近的可使目标函数值增大的极点。现选择$\av_1$作为新的基向量(入基)并移除原来的某个基向量(出基)，注意$\av_1 = \av_3 + 2 \av_4 + \av_5$，于是
+    根据\blue{迭代改进}的思路，需要从当前极点移动到邻近极点，同时使目标函数值增大。现选择$\av_1$作为新的基向量(\blue{入基})并移除原来的某个基向量(\blue{出基})，注意$\av_1 = \av_3 + 2 \av_4 + \av_5$，于是
     \begin{align*}
         \epsilon \av_1 + (40 - \epsilon) \av_3 + (20 - 2 \epsilon) \av_4 + (12 - \epsilon) \av_5 = \bv, \quad
         \left[ \begin{array}{ccccc}
@@ -468,7 +484,7 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
                        \epsilon & 0   & 40 - \epsilon & 20 - 2 \epsilon & 12 - \epsilon
                    \end{array} \right]
     \end{align*}
-    让$\epsilon$从$0$增大，$x_1$变成正数，$x_3$、$x_4$、$x_5$逐渐变小，当$\epsilon$增大到$10$时，$x_4$减小到$0$，即$\av_4$出基，得到一个新的基本可行解
+    让$\epsilon$从$0$增大，$x_1$变成正数，$x_3$、$x_4$、$x_5$逐渐变小，当$\epsilon$增大到$10$时，$x_4$率先减小到$0$，即$\av_4$出基，得到一个新的基本可行解
     \begin{align*}
         10 \av_1 + 30 \av_3 + 2 \av_5 = \bv, \quad
         \left[ \begin{array}{ccccc}
@@ -476,7 +492,7 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
                        10  & 0   & 30  & 0   & 2
                    \end{array} \right]
     \end{align*}
-    对应$\Rbb^2$中可行域的极点$[10,0]$，目标函数值$30 < 50$，依然不是最优解。
+    对应原问题$\Rbb^2$中可行域的极点$[10,0]$，目标函数值$30 < 50$，依然不是最优解。
 
     重复前面的操作，现选择$\av_2$作为新的基向量，注意$\av_2 = \frac{1}{2} \av_1 + \frac{9}{2} \av_3 + \frac{1}{2} \av_5$，于是
     \begin{align*}
@@ -486,15 +502,15 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
                        10 - \frac{1}{2} \epsilon & \epsilon & 30 - \frac{9}{2} \epsilon & 0   & 2 - \frac{1}{2} \epsilon
                    \end{array} \right]
     \end{align*}
-    让$\epsilon$从$0$增大，$x_2$变成正数，$x_1$、$x_3$、$x_5$逐渐变小，当$\epsilon$增大到$4$时，$x_5$减小到$0$，即$\av_5$出基，得到一个新的基本可行解
+    让$\epsilon$从$0$增大，$x_2$变成正数，$x_1$、$x_3$、$x_5$逐渐变小，当$\epsilon$增大到$4$时，$x_5$率先减小到$0$，即$\av_5$出基，得到一个新的基本可行解
     \begin{align*}
-        10 \av_1 + 30 \av_3 + 2 \av_5 = \bv, \quad
+        8 \av_1 + 4 \av_2 + 12 \av_3 = \bv, \quad
         \left[ \begin{array}{ccccc}
                        x_1 & x_2 & x_3 & x_4 & x_5 \\
                        8   & 4   & 12  & 0   & 0
                    \end{array} \right]
     \end{align*}
-    对应$\Rbb^2$中可行域的极点$[8,4]$，目标函数值$44 < 50$，依然不是最优解。
+    对应原问题$\Rbb^2$中可行域的极点$[8,4]$，目标函数值$44 < 50$，依然不是最优解。
 
     重复前面的操作，现选择$\av_4$作为新的基向量，注意$\av_4 = \av_1 - \av_2 + 4 \av_3$，于是
     \begin{align*}
@@ -504,7 +520,7 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
                        8 - \epsilon & 4 + \epsilon & 12 - 4 \epsilon & \epsilon & 0
                    \end{array} \right]
     \end{align*}
-    让$\epsilon$从$0$增大，$x_4$变成正数，$x_1$、$x_3$逐渐变小($x_2$变大不用管，不会破坏非负约束)，当$\epsilon$增大到$3$时，$x_3$减小到$0$，即$\av_3$出基，得到一个新的基本可行解
+    让$\epsilon$从$0$增大，$x_4$变成正数，$x_1$、$x_3$逐渐变小，当$\epsilon$增大到$3$时，$x_3$率先减小到$0$，即$\av_3$出基，得到一个新的基本可行解
     \begin{align*}
         5 \av_1 + 7 \av_2 + 3 \av_4 = \bv, \quad
         \left[ \begin{array}{ccccc}
@@ -512,10 +528,18 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
                        5   & 7   & 0   & 3   & 0
                    \end{array} \right]
     \end{align*}
-    对应$\Rbb^2$中可行域的极点$[5,7]$，目标函数值$50$，这就是最优解。
+    对应原问题$\Rbb^2$中可行域的极点$[5,7]$，目标函数值$50$，这就是最优解。
 \end{example}
 
-这种从一个极点转移到另一个极点，迭代改进的操作方式就是单纯形法求线性规划的基本思路。
+\begin{remark}
+    这种从一个极点转移到另一个极点，迭代改进的操作方式就是单纯形法求线性规划的基本思路，但
+    \begin{enumerate}
+        \item 如何确定初始的基和解？
+        \item 如何确定每轮的入基向量以改进当前解？
+        \item 如何确定当前解为最优解以停止算法？
+    \end{enumerate}
+\end{remark}
+
 
 \section{单纯形法}
 

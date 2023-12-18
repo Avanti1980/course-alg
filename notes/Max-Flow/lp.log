@@ -1,10 +1,10 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Arch Linux) (preloaded format=xelatex 2023.10.25)  18 DEC 2023 02:23
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Arch Linux) (preloaded format=xelatex 2023.12.18)  18 DEC 2023 18:23
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/home/avanti/Slides/Courses/Alg/notes/Max-Flow/lp
-(/home/avanti/Slides/Courses/Alg/notes/Max-Flow/lp.tex
+**/home/avanti/Slides/Courses/Algorithms/notes/Max-Flow/lp
+(/home/avanti/Slides/Courses/Algorithms/notes/Max-Flow/lp.tex
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2023-02-22> (/usr/share/texmf-dist/tex/latex/ctex/ctexart.cls (/usr/share/texmf-dist/tex/latex/ctex/config/ctexbackend.cfg
 File: ctexbackend.cfg 2022/07/14 v2.5.10 Backend configuration file (CTEX)
@@ -1170,16 +1170,22 @@ LaTeX Font Warning: Size substitutions with differences
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package rerunfilecheck Info: File `lp.out' has not changed.
-(rerunfilecheck)             Checksum: 040D6448BA13998040E96334C1DD6E4C;380.
+
+Package rerunfilecheck Warning: File `lp.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `lp.out':
+(rerunfilecheck)             Before: 040D6448BA13998040E96334C1DD6E4C;380
+(rerunfilecheck)             After:  345DE6CEF52718D8E723924F0E242D81;332.
  ) 
 Here is how much of TeX's memory you used:
  45287 strings out of 476683
- 1097078 string characters out of 5809789
+ 1097099 string characters out of 5809789
  1918018 words of memory out of 5000000
  64671 multiletter control sequences out of 15000+600000
  550395 words of font info for 192 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 103i,21n,105p,927b,932s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 103i,21n,105p,934b,932s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on lp.pdf (18 pages).
