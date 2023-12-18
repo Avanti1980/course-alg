@@ -260,20 +260,20 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
 
 对于线性规划的标准型，所有可行解是线性方程组$\Av \xv = \bv$的解与第一象限的交集。根据之前的约定矩阵$\Av \in \Rbb^{m \times n}$行满秩且$m < n$，因此它有无穷多个解，但求解线性规划只需要关注其中一类称为\blue{基本解}的解。
 
-记矩阵$\Av$的$n$个列分别为$\av_1, \ldots, \av_n$，由于$\rank(\Av) = m$，因此可以从中挑出$m$个\blue{线性无关}的列$\av_{i_1}, \ldots, \av_{i_m}$构成基$\Bv$，这些列也称为\blue{基向量}。为表述方便，引入矩阵的切片表示$\Av_{\Rcal,\Ccal}$，其中$\Rcal$、$\Ccal$为索引集合，例如记$\Bcal = \{i_1, \ldots, i_m\}$、$\Dcal = [n] \setminus \Bcal$，则
+记矩阵$\Av$的$n$个列分别为$\av_1, \ldots, \av_n$，由于$\rank(\Av) = m$，因此可以从中挑出$m$个\blue{线性无关}的列$\av_{i_1}, \ldots, \av_{i_m}$构成基$\Bv$，这些列也称为\blue{基向量}，未被选择的$\av_{i_{m+1}}, \ldots, \av_{i_n}$称为\blue{非基向量}。为表述方便，引入矩阵的切片表示$\Av_{\Rcal,\Ccal}$，其中$\Rcal$、$\Ccal$为索引元组，例如记$\Bcal = (i_1, \ldots, i_m)$、$\Dcal = (i_{m+1}, \ldots, i_n)$，则
 \begin{align*}
     \Bv = \Av_{:,\Bcal} =
     \begin{bmatrix}
         \av_{i_1} & \cdots & \av_{i_m}
-    \end{bmatrix}
-\end{align*}
-同理$\Dv = \Av_{:,\Dcal} \in \Rbb^{m \times (n-m)}$是\blue{非基向量}构成的矩阵，进一步有
-\begin{align*}
-    \bv = \Av \xv = \Bv \xv_\Bcal + \Dv \xv_\Dcal
+    \end{bmatrix}, \quad
+    \Dv = \Av_{:,\Dcal} =
+    \begin{bmatrix}
+        \av_{i_{m+1}} & \cdots & \av_{i_n}
+    \end{bmatrix}, \quad \bv = \Av \xv = \Bv \xv_\Bcal + \Dv \xv_\Dcal
 \end{align*}
 其中$\xv_\Bcal$称为\blue{基变量}，$\xv_\Dcal$称为\blue{非基变量}。令$\xv_\Dcal = \zerov$可得$\xv_\Bcal = \Bv^{-1} \bv$，这就得到了$\Av \xv = \bv$在基$\Bv$下的\blue{基本解}。
 \begin{itemize}
-    \item 如果基本解中某些基变量为零，则称其为\blue{退化的基本解}；
+    \item 如果基本解中某些基变量为零，则称其为\blue{退化}的基本解；
     \item 如果基本解还是线性规划的可行解(所有变量非负)，则称其为\blue{基本可行解}。
 \end{itemize}
 
@@ -356,7 +356,7 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
 \end{theorem}
 
 \begin{proof}
-    1. 设$\xv$是一个可行解，其中$\{ i \mid x_i > 0, ~ i \in [n] \} = \{ i_1, \ldots, i_l \} \triangleq \Lcal$，即$\xv$有$l$个正分量，则
+    1. 设$\xv$是一个可行解，其中$\{ i \mid x_i > 0, ~ i \in [n] \} = \{ i_1, \ldots, i_l \}$，即$\xv$有$l$个正分量，则**********
     \begin{align} \label{eq: b-coef}
         \bv = \Av \xv = \Av_{:, \Lcal} \xv_\Lcal = \av_{i_1} x_{i_1} + \cdots + \av_{i_l} x_{i_l}
     \end{align}
@@ -540,19 +540,15 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
     \end{enumerate}
 \end{remark}
 
-
 \section{单纯形法}
 
-设当前基向量为$\av_1, \ldots, \av_m$，待入基向量为$\av_q$，例\ref{exam: simplex}中每轮迭代都要将$\bv$和$\av_q$用当前基线性表出
-\begin{align}
-    \label{eq: coef1}
-    \bv   & = y_{10} \av_1 + \cdots + y_{m0} \av_m \\
-    \label{eq: coef2}
-    \av_q & = y_{1q} \av_1 + \cdots + y_{mq} \av_m
-\end{align}
-令$\eqref{eq: coef1} - \epsilon \times \eqref{eq: coef2}$可得关于$\epsilon$的恒等式
+例\ref{exam: simplex}中每轮迭代都要将$\bv$和入基向量$\qv$用当前基向量$\av_{i_1}, \ldots, \av_{i_m}$线性表出：
 \begin{align*}
-    (y_{10} - \epsilon y_{1q}) \av_1 + \cdots + (y_{m0} - \epsilon y_{mq}) \av_m + \epsilon \av_q = \bv
+    \bv = x_{i_1} \av_{i_1} + \cdots + x_{i_m} \av_{i_m}, \quad \qv = y_{i_1} \av_{i_1} + \cdots + y_{i_m} \av_{i_m}
+\end{align*}
+由此得到关于$\epsilon$的恒等式
+\begin{align*}
+    (x_{i_1,0} - \epsilon y_{i_1,q}) \av_{i_1} + \cdots + (x_{i_m,0} - \epsilon y_{i_m,q}) \av_{i_m} + \epsilon \av_q = \bv
 \end{align*}
 让$\epsilon$从$0$增大直到某个$\av_p$出基，其中$p = \argmin_i \{ y_{i0} / y_{iq} : y_{iq} > 0 \}$。
 
