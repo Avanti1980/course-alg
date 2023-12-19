@@ -271,10 +271,10 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
         \av_{i_{m+1}} & \cdots & \av_{i_n}
     \end{bmatrix}, \quad \bv = \Av \xv = \Bv \xv_\Bcal + \Dv \xv_\Dcal
 \end{align*}
-其中$\xv_\Bcal$称为\blue{基变量}，$\xv_\Dcal$称为\blue{非基变量}。令$\xv_\Dcal = \zerov$可得$\xv_\Bcal = \Bv^{-1} \bv$，这就得到了$\Av \xv = \bv$在基$\Bv$下的\blue{基本解}。
+其中$\xv_\Bcal$称为\blue{基变量}，$\xv_\Dcal$称为\blue{非基变量}。令非基变量$\xv_\Dcal = \zerov$可得$\xv_\Bcal = \Bv^{-1} \bv$，这就得到了$\Av \xv = \bv$在基$\Bv$下的\blue{基本解}。
 \begin{itemize}
     \item 如果基本解中某些基变量为零，则称其为\blue{退化}的基本解；
-    \item 如果基本解还是线性规划的可行解(所有变量非负)，则称其为\blue{基本可行解}。
+    \item 如果基本解还是线性规划的可行解(满足所有变量非负)，则称其为\blue{基本可行解}。
 \end{itemize}
 
 \begin{example}
@@ -282,11 +282,13 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
     \begin{align*}
         \Av = \begin{bmatrix}
                   \av_1 & \av_2 & \av_3 & \av_4
-              \end{bmatrix} = \begin{bmatrix}
-                                  1 & 1 & -1 & 4 \\ 1 & -2 & -1 & 1
-                              \end{bmatrix}, \quad \bv = \begin{bmatrix}
-                                                             8 \\ 2
-                                                         \end{bmatrix}
+              \end{bmatrix} =
+        \begin{bmatrix}
+            1 & 1 & -1 & 4 \\ 1 & -2 & -1 & 1
+        \end{bmatrix}, \quad \bv =
+        \begin{bmatrix}
+            8 \\ 2
+        \end{bmatrix}
     \end{align*}
 
     $n=4$、$m=2$，故基本解最多不超过$\binom{4}{2}=6$个，对线性方程组的增广矩阵做初等行变换：
@@ -356,9 +358,9 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
 \end{theorem}
 
 \begin{proof}
-    1. 设$\xv$是一个可行解，其中$\{ i \mid x_i > 0, ~ i \in [n] \} = \{ i_1, \ldots, i_l \}$，即$\xv$有$l$个正分量，则**
+    1. 设$\xv$是一个可行解且有$l$个正分量：$\{ i \mid x_i > 0, ~ i \in [n] \} = \{ i_1, \ldots, i_l \} \triangleq \Lcal$，则
     \begin{align} \label{eq: b-coef}
-        \bv = \Av \xv = \Av_{:, \Lcal} \xv_\Lcal = \av_{i_1} x_{i_1} + \cdots + \av_{i_l} x_{i_l}
+        \bv = \Av \xv = \av_{i_1} x_{i_1} + \cdots + \av_{i_l} x_{i_l}
     \end{align}
     此时分两种情况：
     \begin{itemize}
@@ -367,14 +369,15 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
               \begin{align} \label{eq: 0-coef}
                   \zerov = \av_{i_1} y_{i_1} + \cdots + \av_{i_l} y_{i_l}
               \end{align}
-              且至少某个$y_{i_k} > 0$，否则对所有$y_{i_k}$取反即可，于是对任意$\epsilon$，令$\eqref{eq: b-coef} - \epsilon \times \eqref{eq: 0-coef}$有
+              且至少某个$y_{i_k} > 0$，否则对所有的$y_{i_1}, \ldots, y_{i_l}$取反即可，于是对任意$\epsilon$，令$\eqref{eq: b-coef} - \epsilon \times \eqref{eq: 0-coef}$有
               \begin{align*}
-                  \bv = \av_{i_1} (x_{i_1} - \epsilon y_{i_1}) + \cdots + \av_{i_l} (x_{i_l} - \epsilon y_{i_l}) = \Av_{:, \Lcal} (\xv_\Lcal - \epsilon \yv_\Lcal), \quad
-                  \yv_\Lcal^\top \triangleq \begin{bmatrix}
-                                                y_{i_1} & \cdots & y_{i_l}
-                                            \end{bmatrix}
+                  \bv = \av_{i_1} (x_{i_1} - \epsilon y_{i_1}) + \cdots + \av_{i_l} (x_{i_l} - \epsilon y_{i_l}) = \Av (\xv - \epsilon \yv), \quad
+                  \yv_\Lcal^\top \triangleq
+                  \begin{bmatrix}
+                      y_{i_1} & \cdots & y_{i_l}
+                  \end{bmatrix}, \quad \yv_{[n] \setminus \Lcal} = \zerov
               \end{align*}
-              让$\epsilon$从$0$增大，对所有$\yv_\Lcal$为正的分量，$\xv_\Lcal - \epsilon \yv_\Lcal$在这些分量上单调减。取$\epsilon$使得$\xv_\Lcal - \epsilon \yv_\Lcal$第一次出现某个分量变成$0$，即取
+              让$\epsilon$从$0$增大，对$\yv_\Lcal$的所有正分量，$\xv_\Lcal - \epsilon \yv_\Lcal$在这些分量上单调减。取$\epsilon$使得$\xv_\Lcal - \epsilon \yv_\Lcal$第一次出现某个分量变成$0$，即
               \begin{align*}
                   \epsilon = \min \{ x_{i_k} / y_{i_k} : y_{i_k} > 0, ~ k \in [l] \}
               \end{align*}
@@ -383,11 +386,11 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
 
     2. 设$\xv$是一个最优可行解且有$l$个正分量：$\{ i \mid x_i > 0, ~ i \in [n] \} = \{ i_1, \ldots, i_l \} \triangleq \Lcal$。
 
-    若$\av_{i_1}, \ldots, \av_{i_l}$线性无关，证明同命题1。若$\av_{i_1}, \ldots, \av_{i_l}$线性相关，可继续沿用命题1中去冗余列的方式，但还需证明对任意$\epsilon$，$\xv - \epsilon \yv$都是最优解，这只需证明$\cv^\top \yv = 0$。注意只要
+    若$\av_{i_1}, \ldots, \av_{i_l}$线性无关，证明同命题1。若$\av_{i_1}, \ldots, \av_{i_l}$线性相关，可继续沿用命题1中去冗余列的方式，但还需证明对任意$\epsilon$，$\xv - \epsilon \yv$都是最优解，这只需证明$\cv^\top \yv = 0$。注意$\xv_\Lcal > \zerov$，只要
     \begin{align*}
-        |\epsilon| \le \min\{ | x_{i_k} / y_{i_k} | : y_{i_k} \ne 0, ~ k \in [l] \}
+        |\epsilon| \le \min\{ | x_{i_k} / y_{i_k} | : y_{i_k} \ne 0, ~ k \in [l] \} \Longrightarrow \epsilon y_{i_k} \le x_{i_k}, ~ \forall k \in [l]
     \end{align*}
-    $\xv - \epsilon \yv$都是可行解，因此若$\cv^\top \yv \ne 0$，根据其符号总能取某个充分小的$\epsilon$使得$\cv^\top (\xv - \epsilon \yv) > \cv^\top \xv$，这与$\xv$是最优可行解矛盾。
+    $\xv - \epsilon \yv$都是可行解，因此若$\cv^\top \yv \ne 0$，根据其符号总能取某个适当的$\epsilon$使得$\cv^\top (\xv - \epsilon \yv) > \cv^\top \xv$，这与$\xv$是最优可行解矛盾。
 
 \end{proof}
 
@@ -413,7 +416,7 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
     \begin{align*}
         \av_{i_1} x_{i_1} + \cdots + \av_{i_l} x_{i_l} = \bv
     \end{align*}
-    设向量$\yv$满足$\av_{i_1} y_{i_1} + \cdots + \av_{i_l} y_{i_l} = \zerov$，于是对任意$\epsilon$有
+    设向量$\yv$满足$\av_{i_1} y_{i_1} + \cdots + \av_{i_l} y_{i_l} = \zerov$且$\yv_{[n]\setminus \Lcal} = \zerov$，于是对任意$\epsilon$有
     \begin{align*}
         \av_{i_1} (x_{i_1} + \epsilon y_{i_1}) + \cdots + \av_{i_l} (x_{i_l} + \epsilon y_{i_l}) & = \bv \\
         \av_{i_1} (x_{i_1} - \epsilon y_{i_1}) + \cdots + \av_{i_l} (x_{i_l} - \epsilon y_{i_l}) & = \bv
@@ -428,12 +431,11 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
     \begin{align*}
         \av_{i_1} x_{i_1} + \cdots + \av_{i_m} x_{i_m} = \bv, \quad \xv_\Dcal = \zerov
     \end{align*}
-    假设存在$\yv, \zv \in \Omega$、$\alpha \in (0,1)$使得$\xv = \alpha \yv + (1 - \alpha)\zv$，注意$\alpha > 0$、$(1- \alpha) > 0$，于是
+    若存在$\yv, \zv \in \Omega$、$\alpha \in (0,1)$使得$\xv = \alpha \yv + (1 - \alpha)\zv$，注意$\alpha > 0$、$(1- \alpha) > 0$，故$\yv_\Dcal = \zv_\Dcal = \zerov$且
     \begin{align*}
-        \yv_\Dcal = \zerov, \quad & \av_{i_1} y_{i_1} + \cdots + \av_{i_m} y_{i_m} = \bv \\
-        \zv_\Dcal = \zerov, \quad & \av_{i_1} z_{i_1} + \cdots + \av_{i_m} z_{i_m} = \bv
+        \av_{i_1} y_{i_1} + \cdots + \av_{i_m} y_{i_m} = \bv, \quad \av_{i_1} z_{i_1} + \cdots + \av_{i_m} z_{i_m} = \bv
     \end{align*}
-    两式相减$\av_{i_1} (y_{i_1} - z_{i_1}) + \cdots + \av_{i_m} (y_{i_m} - z_{i_m}) = \zerov$，由于$\av_{i_1}, \ldots, \av_{i_m}$线性无关，故$\yv = \zv$，$\xv$是极点。
+    两式相减可得$\av_{i_1} (y_{i_1} - z_{i_1}) + \cdots + \av_{i_m} (y_{i_m} - z_{i_m}) = \zerov$，由于$\av_{i_1}, \ldots, \av_{i_m}$线性无关，故$\yv_\Bcal = \zv_\Bcal$，从而$\yv = \zv$，即$\xv$是极点。
 \end{proof}
 
 \begin{example} \label{exam: simplex}
@@ -469,64 +471,64 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
     显然取$\av_3$、$\av_4$、$\av_5$作为基向量，基本可行解是一目了然的(基为单位阵)：
     \begin{align*}
         40 \av_3 + 20 \av_4 + 12 \av_5 = \bv, \quad
-        \left[ \begin{array}{ccccc}
-                       x_1 & x_2 & x_3 & x_4 & x_5 \\
-                       0   & 0   & 40  & 20  & 12
-                   \end{array} \right]
+        \begin{bmatrix}
+            x_1 & x_2 & x_3 & x_4 & x_5 \\
+            0   & 0   & 40  & 20  & 12
+        \end{bmatrix}
     \end{align*}
     对应原问题$\Rbb^2$中可行域的极点$[0,0]$，目标函数值$0 < 50$，因此还不是最优解。
 
     根据\blue{迭代改进}的思路，需要从当前极点移动到邻近极点，同时使目标函数值增大。现选择$\av_1$作为新的基向量(\blue{入基})并移除原来的某个基向量(\blue{出基})，注意$\av_1 = \av_3 + 2 \av_4 + \av_5$，于是
     \begin{align*}
         \epsilon \av_1 + (40 - \epsilon) \av_3 + (20 - 2 \epsilon) \av_4 + (12 - \epsilon) \av_5 = \bv, \quad
-        \left[ \begin{array}{ccccc}
-                       x_1      & x_2 & x_3           & x_4             & x_5           \\
-                       \epsilon & 0   & 40 - \epsilon & 20 - 2 \epsilon & 12 - \epsilon
-                   \end{array} \right]
+        \begin{bmatrix}
+            x_1      & x_2 & x_3           & x_4             & x_5           \\
+            \epsilon & 0   & 40 - \epsilon & 20 - 2 \epsilon & 12 - \epsilon
+        \end{bmatrix}
     \end{align*}
     让$\epsilon$从$0$增大，$x_1$变成正数，$x_3$、$x_4$、$x_5$逐渐变小，当$\epsilon$增大到$10$时，$x_4$率先减小到$0$，即$\av_4$出基，得到一个新的基本可行解
     \begin{align*}
         10 \av_1 + 30 \av_3 + 2 \av_5 = \bv, \quad
-        \left[ \begin{array}{ccccc}
-                       x_1 & x_2 & x_3 & x_4 & x_5 \\
-                       10  & 0   & 30  & 0   & 2
-                   \end{array} \right]
+        \begin{bmatrix}
+            x_1 & x_2 & x_3 & x_4 & x_5 \\
+            10  & 0   & 30  & 0   & 2
+        \end{bmatrix}
     \end{align*}
     对应原问题$\Rbb^2$中可行域的极点$[10,0]$，目标函数值$30 < 50$，依然不是最优解。
 
     重复前面的操作，现选择$\av_2$作为新的基向量，注意$\av_2 = \frac{1}{2} \av_1 + \frac{9}{2} \av_3 + \frac{1}{2} \av_5$，于是
     \begin{align*}
         \left( 10 - \frac{1}{2} \epsilon \right) \av_1 + \epsilon \av_2 + \left( 30 - \frac{9}{2} \epsilon \right) \av_3 + \left( 2 - \frac{1}{2} \epsilon \right) \av_5 = \bv, \quad
-        \left[ \begin{array}{ccccc}
-                       x_1                       & x_2      & x_3                       & x_4 & x_5                      \\
-                       10 - \frac{1}{2} \epsilon & \epsilon & 30 - \frac{9}{2} \epsilon & 0   & 2 - \frac{1}{2} \epsilon
-                   \end{array} \right]
+        \begin{bmatrix}
+            x_1                       & x_2      & x_3                       & x_4 & x_5                      \\
+            10 - \frac{1}{2} \epsilon & \epsilon & 30 - \frac{9}{2} \epsilon & 0   & 2 - \frac{1}{2} \epsilon
+        \end{bmatrix}
     \end{align*}
     让$\epsilon$从$0$增大，$x_2$变成正数，$x_1$、$x_3$、$x_5$逐渐变小，当$\epsilon$增大到$4$时，$x_5$率先减小到$0$，即$\av_5$出基，得到一个新的基本可行解
     \begin{align*}
         8 \av_1 + 4 \av_2 + 12 \av_3 = \bv, \quad
-        \left[ \begin{array}{ccccc}
-                       x_1 & x_2 & x_3 & x_4 & x_5 \\
-                       8   & 4   & 12  & 0   & 0
-                   \end{array} \right]
+        \begin{bmatrix}
+            x_1 & x_2 & x_3 & x_4 & x_5 \\
+            8   & 4   & 12  & 0   & 0
+        \end{bmatrix}
     \end{align*}
     对应原问题$\Rbb^2$中可行域的极点$[8,4]$，目标函数值$44 < 50$，依然不是最优解。
 
     重复前面的操作，现选择$\av_4$作为新的基向量，注意$\av_4 = \av_1 - \av_2 + 4 \av_3$，于是
     \begin{align*}
         (8 - \epsilon) \av_1 + (4 + \epsilon) \av_2 + (12 - 4 \epsilon) \av_3 + \epsilon \av_4 = \bv, \quad
-        \left[ \begin{array}{ccccc}
-                       x_1          & x_2          & x_3             & x_4      & x_5 \\
-                       8 - \epsilon & 4 + \epsilon & 12 - 4 \epsilon & \epsilon & 0
-                   \end{array} \right]
+        \begin{bmatrix}
+            x_1          & x_2          & x_3             & x_4      & x_5 \\
+            8 - \epsilon & 4 + \epsilon & 12 - 4 \epsilon & \epsilon & 0
+        \end{bmatrix}
     \end{align*}
     让$\epsilon$从$0$增大，$x_4$变成正数，$x_1$、$x_3$逐渐变小，当$\epsilon$增大到$3$时，$x_3$率先减小到$0$，即$\av_3$出基，得到一个新的基本可行解
     \begin{align*}
         5 \av_1 + 7 \av_2 + 3 \av_4 = \bv, \quad
-        \left[ \begin{array}{ccccc}
-                       x_1 & x_2 & x_3 & x_4 & x_5 \\
-                       5   & 7   & 0   & 3   & 0
-                   \end{array} \right]
+        \begin{bmatrix}
+            x_1 & x_2 & x_3 & x_4 & x_5 \\
+            5   & 7   & 0   & 3   & 0
+        \end{bmatrix}
     \end{align*}
     对应原问题$\Rbb^2$中可行域的极点$[5,7]$，目标函数值$50$，这就是最优解。
 \end{example}
@@ -534,7 +536,7 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
 \begin{remark}
     这种从一个极点转移到另一个极点，迭代改进的操作方式就是单纯形法求线性规划的基本思路，但
     \begin{enumerate}
-        \item 如何确定初始的基和解？
+        \item 如何确定初始的基和基本可行解？
         \item 如何确定每轮的入基向量以改进当前解？
         \item 如何确定当前解为最优解以停止算法？
     \end{enumerate}
@@ -542,49 +544,47 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
 
 \section{单纯形法}
 
-例\ref{exam: simplex}中每轮迭代都要将$\bv$和入基向量$\qv$用当前基向量$\av_{i_1}, \ldots, \av_{i_m}$线性表出：
+例\ref{exam: simplex}中每轮迭代都要将$\bv$和入基向量$\av_q$用当前基向量$\av_{i_1}, \ldots, \av_{i_m}$线性表出：
 \begin{align*}
-    \bv = x_{i_1} \av_{i_1} + \cdots + x_{i_m} \av_{i_m}, \quad \qv = y_{i_1} \av_{i_1} + \cdots + y_{i_m} \av_{i_m}
+    \bv = x_{i_1} \av_{i_1} + \cdots + x_{i_m} \av_{i_m}, \quad \av_q = y_{i_1} \av_{i_1} + \cdots + y_{i_m} \av_{i_m}
 \end{align*}
 由此得到关于$\epsilon$的恒等式
 \begin{align*}
-    (x_{i_1,0} - \epsilon y_{i_1,q}) \av_{i_1} + \cdots + (x_{i_m,0} - \epsilon y_{i_m,q}) \av_{i_m} + \epsilon \av_q = \bv
+    (x_{i_1} - \epsilon y_{i_1}) \av_{i_1} + \cdots + (x_{i_m} - \epsilon y_{i_m}) \av_{i_m} + \epsilon \av_q = \bv
 \end{align*}
-让$\epsilon$从$0$增大直到某个$\av_p$出基，其中$p = \argmin_i \{ y_{i0} / y_{iq} : y_{iq} > 0 \}$。
+让$\epsilon$从$0$增大直到某个$\av_p$出基，其中$p = \argmin_{i_k} \{ x_{i_k} / y_{i_k} : y_{i_k} > 0, ~ k \in [m] \}$。
 
-式\eqref{eq: coef1}和式\eqref{eq: coef2}中的系数如何得到呢？根据线性方程组理论，对$\Av \xv = \bv$的增广矩阵做初等行变换
+$\bv$和$\av_q$的线性表出系数如何得到呢？根据线性方程组理论，对$\Av \xv = \bv$的增广矩阵做初等行变换
 \begin{align*}
     \begin{bmatrix}
-        \Bv & \av_{m+1} & \cdots & \av_n & \bv
+        \Bv & \av_{i_{m+1}} & \cdots & \av_{i_n} & \bv
     \end{bmatrix} \longrightarrow
     \begin{bmatrix}
-        \Iv_m & \Bv^{-1} \av_{m+1} & \cdots & \Bv^{-1} \av_n & \Bv^{-1} \bv
+        \Iv_m & \Bv^{-1} \av_{i_{m+1}} & \cdots & \Bv^{-1} \av_{i_n} & \Bv^{-1} \bv
     \end{bmatrix}
 \end{align*}
-当基$\Bv$变成单位阵时，第$q$列和最后一列就是$\av_q$和$\bv$的线性表出系数。至此还剩两个问题：
-\begin{enumerate}
-    \item 如何确定入基向量$\av_q$；
-    \item 如何确定当前解是否为最优解。
-\end{enumerate}
+当基$\Bv$变成单位阵时，$\Bv^{-1} \av_q$和$\Bv^{-1} \bv$就是$\av_q$和$\bv$的线性表出系数。
 
 下面考察基本可行解变化时目标函数值的变化，将标准型根据对$\Av$的分块重写为
 \begin{align*}
-    \max \quad & \cv_\Bcal^\top \xv_\Bcal + \cv_\Dcal^\top \xv_\Dcal \\
-    \st  \quad & \Bv \xv_\Bcal + \Dv \xv_\Dcal = \bv                 \\
-               & \xv_\Bcal, \xv_\Dcal \ge \zerov
+    \begin{array}{rl}
+        \max & \cv_\Bcal^\top \xv_\Bcal + \cv_\Dcal^\top \xv_\Dcal \\
+        \st  & \Bv \xv_\Bcal + \Dv \xv_\Dcal = \bv                 \\
+             & \xv_\Bcal, \xv_\Dcal \ge \zerov
+    \end{array}
 \end{align*}
 \begin{itemize}
-    \item 若$\xv_\Dcal = \zerov$，则$\xv_\Bcal = \Bv^{-1} \bv$，此时$\xv$就是关于基$\Bv$的基本可行解，对应的目标函数值为
+    \item 若$\xv_\Dcal = \zerov$，则$\xv_\Bcal = \Bv^{-1} \bv$，此时$\xv$就是关于基$\Bv$的基本可行解，对应目标函数值为
           \begin{align*}
               \zhat = \cv_\Bcal^\top \xv_\Bcal = \cv_\Bcal^\top \Bv^{-1} \bv
           \end{align*}
-    \item 若$\xv_\Dcal \ne \zerov$，则$\xv_\Bcal = \Bv^{-1} \bv - \Bv^{-1} \Dv \xv_\Dcal$，对应的目标函数值为
+    \item 若$\xv_\Dcal \ne \zerov$，则$\xv_\Bcal = \Bv^{-1} \bv - \Bv^{-1} \Dv \xv_\Dcal$，对应目标函数值为
           \begin{align*}
               z = \cv_\Bcal^\top \xv_\Bcal + \cv_\Dcal^\top \xv_\Dcal = \cv_\Bcal^\top (\Bv^{-1} \bv - \Bv^{-1} \Dv \xv_\Dcal) + \cv_\Dcal^\top \xv_\Dcal = \cv_\Bcal^\top \Bv^{-1} \bv - (\cv_\Bcal^\top \Bv^{-1} \Dv - \cv_\Dcal^\top) \xv_\Dcal = \zhat - \rv_\Dcal^\top \xv_\Dcal
           \end{align*}
           其中$\rv_\Dcal^\top = \cv_\Bcal^\top \Bv^{-1} \Dv - \cv_\Dcal^\top$称为\blue{检验数}。
 
-          注意$\xv_\Dcal \ge \zerov$，若$\rv_\Dcal \ge \zerov$，则$z \ge \zhat$，即关于基$\Bv$的基本可行解就是最优解，这就回答了前面的问题2。若$\rv_\Dcal$中某个分量为负，则将$\xv_\Dcal$中对应的非基变量从$0$变为正数可使目标函数值变大，也即该非基变量对应的列入基，这就回答了前面的问题1。
+          注意$\xv_\Dcal \ge \zerov$，若$\rv_\Dcal \ge \zerov$，则$z \le \zhat$，即关于基$\Bv$的基本可行解就是最优解，这就回答了前面的问题3。若$\rv_\Dcal$中某个分量为负，则将$\xv_\Dcal$中对应的非基变量从$0$变为正数可使目标函数值变大，因此可取该非基变量对应的列入基，这就回答了前面的问题2。
 \end{itemize}
 
 基于此，构造单纯形表
@@ -620,244 +620,275 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
         \Iv_m & \Bv^{-1} \Dv & \Bv^{-1} \bv \\ \zerov^\top & \cv_\Bcal^\top \Bv^{-1} \Dv - \cv_\Dcal^\top & \cv_\Bcal^\top \Bv^{-1} \bv
     \end{bmatrix}
 \end{align*}
-这张表里包含了一切我们需要的信息
+这张表里包含了一切我们需要的信息：
 \begin{itemize}
-    \item $\Bv^{-1} \Dv$里的每列就是该列向量在当前基下的线性表示系数；
+    \item $\Bv^{-1} \Dv$里的每列就是当前非基向量在当前基下的线性表出系数；
     \item $\Bv^{-1} \bv$是当前基对应的基本可行解中的基变量值；
     \item $\cv_\Bcal^\top \Bv^{-1} \Dv - \cv_\Dcal^\top$就是检验数，可以指示下一个入基向量和是否已达最优解；
-    \item $\cv_\Bcal^\top \Bv^{-1} \bv$就是当前基本可行解对应的目标函数值
+    \item $\cv_\Bcal^\top \Bv^{-1} \bv$就是当前基本可行解对应的目标函数值。
 \end{itemize}
 
 \begin{example}
-    用单纯形法再求例\ref{exam: illustration}中的线性规划，先转化为标准型：
-    \begin{align*}
-        \max \quad & 3 x_1 + 5 x_2                      \\
-        \st  \quad & \begin{bmatrix}
-                         1 & 5 & 1 &       \\
-                         2 & 1 &   & 1 &   \\
-                         1 & 1 &   &   & 1
-                     \end{bmatrix} \xv = \begin{bmatrix}
-                                             40 \\ 20 \\ 12
-                                         \end{bmatrix} \\
-                   & \xv \ge 0
-    \end{align*}
-
-    初始单纯形表为
+    用单纯形法再求例\ref{exam: illustration}中的线性规划，根据式\eqref{eq: illustration-standard}，初始单纯形表为
     \begin{align*}
         \begin{array}{c|ccccc:c}
-                & x_1 & x_2 & x_3 & x_4 & x_5      \\ \hline
-            x_3 & 1   & 5   & 1   &     &     & 40 \\
-            x_4 & 2   & 1   &     & 1   &     & 20 \\
-            x_5 & 1   & 1   &     &     & 1   & 12 \\ \hdashline
-                & -3  & -5  &     &     &     & 0
+                & \av_1 & \av_2 & \av_3 & \av_4 & \av_5      \\ \hline
+            x_3 & 1     & 5     & 1     &       &       & 40 \\
+            x_4 & 2     & 1     &       & 1     &       & 20 \\
+            x_5 & 1     & 1     &       &       & 1     & 12 \\ \hdashline
+                & -3    & -5    &       &       &       & 0
         \end{array}
     \end{align*}
-    此时$x_3$、$x_4$、$x_5$是基变量，基本可行解为
+    注意此时需要取$3$个线性无关的列组成初始的基，然后做初等行变换将其变成单位阵，因此直接取$\av_3$、$\av_4$、$\av_5$是最省事的，已经是单位阵了，可以少做一次初等行变换：
+    \begin{itemize}
+        \item 基变量$x_3$、$x_4$、$x_5$的名字在最左列，取值就是最右列的$\bv$
+        \item 非基变量$x_1$、$x_2$对应的检验数就是最后一行的$-\cv^\top$
+        \item 目标函数值就是右下角的$0$
+    \end{itemize}
+    基本可行解为
     \begin{align*}
-        \left[ \begin{array}{ccccc:c}
-                       x_1 & x_2 & x_3 & x_4 & x_5 & o \\
-                       0   & 0   & 40  & 20  & 12  & 0
-                   \end{array} \right]
+        \begin{bmatrix}
+            x_1 & x_2 & x_3 & x_4 & x_5 \\
+            0   & 0   & 40  & 20  & 12
+        \end{bmatrix}
     \end{align*}
     对应$\Rbb^2$中可行域的极点$[0,0]$，由于检验数还有负值，因此还不是最优解。
 
-    取检验数绝对值最大的负数对应的列入基，即$\av_2$入基。注意
+    取最小检验数对应的列入基(改进幅度最大)，即$\av_2$入基。注意
     \begin{align*}
         \bv = 40 \av_3 + 20 \av_4 + 12 \av_5, \quad \av_2 = 5 \av_3 + 1 \av_4 + 1 \av_5
     \end{align*}
-    计算$\argmin\{\nicefrac{40}{5}, \nicefrac{20}{1}, \nicefrac{12}{1}\}$可知$\av_3$出基。做初等行变换
+    计算$\min\{\nicefrac{40}{5}, \nicefrac{20}{1}, \nicefrac{12}{1}\}$可知$\av_3$出基。$\av_2$和$x_3$所在的行的交点$5$称为\blue{主元}，做初等行变换
     \begin{align*}
         \begin{array}{c|ccccc:c}
-                & x_1 & x_2 & x_3 & x_4 & x_5      \\ \hline
-            x_2 & 0.2 & 1   & 0.2 &     &     & 8  \\
-            x_4 & 2   & 1   &     & 1   &     & 20 \\
-            x_5 & 1   & 1   &     &     & 1   & 12 \\ \hdashline
-                & -3  & -5  &     &     &     & 0
+                & \av_1           & \av_2 & \av_3           & \av_4 & \av_5      \\ \hline
+            x_2 & \nicefrac{1}{5} & 1     & \nicefrac{1}{5} &       &       & 8  \\
+            x_4 & 2               & 1     &                 & 1     &       & 20 \\
+            x_5 & 1               & 1     &                 &       & 1     & 12 \\ \hdashline
+                & -3              & -5    &                 &       &       & 0
         \end{array} \Longrightarrow
         \begin{array}{c|ccccc:c}
-                & x_1 & x_2 & x_3  & x_4 & x_5      \\ \hline
-            x_2 & 0.2 & 1   & 0.2  &     &     & 8  \\
-            x_4 & 1.8 &     & -0.2 & 1   &     & 12 \\
-            x_5 & 0.8 &     & -0.2 &     & 1   & 4  \\ \hdashline
-                & -2  &     & 1    &     &     & 40
+                & \av_1           & \av_2 & \av_3            & \av_4 & \av_5      \\ \hline
+            x_2 & \nicefrac{1}{5} & 1     & \nicefrac{1}{5}  &       &       & 8  \\
+            x_4 & \nicefrac{9}{5} &       & \nicefrac{-1}{5} & 1     &       & 12 \\
+            x_5 & \nicefrac{4}{5} &       & \nicefrac{-1}{5} &       & 1     & 4  \\ \hdashline
+                & -2              &       & 1                &       &       & 40
         \end{array}
     \end{align*}
-    此时$x_2$、$x_4$、$x_5$是基变量，基本可行解为
+    基本可行解为
     \begin{align*}
-        \left[ \begin{array}{ccccc:c}
-                       x_1 & x_2 & x_3 & x_4 & x_5 & o  \\
-                       0   & 8   & 0   & 12  & 4   & 40
-                   \end{array} \right]
+        \begin{bmatrix}
+            x_1 & x_2 & x_3 & x_4 & x_5 \\
+            0   & 8   & 0   & 12  & 4
+        \end{bmatrix}
     \end{align*}
     对应$\Rbb^2$中可行域的极点$[0,8]$，由于检验数还有负值，因此还不是最优解。
 
-    根据检验数$\av_1$入基，计算$\argmin\{\nicefrac{8}{0.2}, \nicefrac{12}{1.8}, \nicefrac{4}{0.8}\}$可知$\av_5$出基。做初等行变换
+    根据检验数$\av_1$入基，计算$\min\{\nicefrac{8}{\nicefrac{1}{5}}, \nicefrac{12}{\nicefrac{9}{5}}, \nicefrac{4}{\nicefrac{4}{5}}\}$可知$\av_5$出基。做初等行变换
     \begin{align*}
         \begin{array}{c|ccccc:c}
-                & x_1 & x_2 & x_3   & x_4 & x_5       \\ \hline
-            x_2 & 0.2 & 1   & 0.2   &     &      & 8  \\
-            x_4 & 1.8 &     & -0.2  & 1   &      & 12 \\
-            x_1 & 1   &     & -0.25 &     & 1.25 & 5  \\ \hdashline
-                & -2  &     & 1     &     &      & 40
+                & \av_1           & \av_2 & \av_3            & \av_4 & \av_5                \\ \hline
+            x_2 & \nicefrac{1}{5} & 1     & \nicefrac{1}{5}  &       &                 & 8  \\
+            x_4 & \nicefrac{9}{5} &       & \nicefrac{-1}{5} & 1     &                 & 12 \\
+            x_1 & 1               &       & \nicefrac{-1}{4} &       & \nicefrac{5}{4} & 5  \\ \hdashline
+                & -2              &       & 1                &       &                 & 40
         \end{array} \Longrightarrow
         \begin{array}{c|ccccc:c}
-                & x_1 & x_2 & x_3   & x_4 & x_5        \\ \hline
-            x_2 &     & 1   & 0.25  &     & -0.25 & 7  \\
-            x_4 &     &     & 0.25  & 1   & -2.25 & 3  \\
-            x_1 & 1   &     & -0.25 &     & 1.25  & 5  \\ \hdashline
-                &     &     & 0.5   &     & 2.5   & 50
+                & \av_1 & \av_2 & \av_3            & \av_4 & \av_5                 \\ \hline
+            x_2 &       & 1     & \nicefrac{1}{4}  &       & \nicefrac{-1}{4} & 7  \\
+            x_4 &       &       & \nicefrac{1}{4}  & 1     & \nicefrac{-9}{4} & 3  \\
+            x_1 & 1     &       & \nicefrac{-1}{4} &       & \nicefrac{5}{4}  & 5  \\ \hdashline
+                &       &       & \nicefrac{1}{2}  &       & \nicefrac{5}{2}  & 50
         \end{array}
     \end{align*}
-    此时$x_1$、$x_2$、$x_4$是基变量，基本可行解为
+    基本可行解为
     \begin{align*}
-        \left[ \begin{array}{ccccc:c}
-                       x_1 & x_2 & x_3 & x_4 & x_5 & o  \\
-                       5   & 7   & 0   & 3   & 0   & 50
-                   \end{array} \right]
+        \begin{bmatrix}
+            x_1 & x_2 & x_3 & x_4 & x_5 \\
+            5   & 7   & 0   & 3   & 0
+        \end{bmatrix}
     \end{align*}
     对应$\Rbb^2$中可行域的极点$[5,7]$，由于检验数均非负，已达最优解。
 \end{example}
 
-\begin{example}
-    用单纯形法求例\ref{exam: bag}中的分数背包问题，先转化为标准型：
-    \begin{align*}
-        \max \quad & 40 x_1 + 42 x_2 + 25 x_3 + 12 x_4 \\
-        \st \quad  & \begin{bmatrix}
-                         4 & 7 & 5 & 3 & 1                 \\
-                         1 &   &   &   &   & 1             \\
-                           & 1 &   &   &   &   & 1         \\
-                           &   & 1 &   &   &   &   & 1     \\
-                           &   &   & 1 &   &   &   &   & 1 \\
-                     \end{bmatrix} \xv =
-        \begin{bmatrix}
-            10 \\ 1 \\ 1 \\ 1 \\ 1
-        \end{bmatrix}                          \\
-                   & \xv \ge 0
-    \end{align*}
-
-    初始单纯形表为
-    \begin{align*}
-        \begin{array}{c|ccccccccc:c}
-                & x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & x_9      \\ \hline
-            x_5 & 4   & 7   & 5   & 3   & 1   &     &     &     &     & 10 \\
-            x_6 & 1   &     &     &     &     & 1   &     &     &     & 1  \\
-            x_7 &     & 1   &     &     &     &     & 1   &     &     & 1  \\
-            x_8 &     &     & 1   &     &     &     &     & 1   &     & 1  \\
-            x_9 &     &     &     & 1   &     &     &     &     & 1   & 1  \\ \hdashline
-                & -40 & -42 & -25 & -12 &     &     &     &     &     & 0
-        \end{array}
-    \end{align*}
-    此时$x_5$、$x_6$、$x_7$、$x_8$、$x_9$是基变量，基本可行解为
-    \begin{align*}
-        \left[ \begin{array}{ccccccccc:c}
-                       x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & x_9 & o \\
-                       0   & 0   & 0   & 0   & 10  & 1   & 1   & 1   & 1   & 0
-                   \end{array} \right]
-    \end{align*}
-
-    根据检验数$\av_2$入基，计算$\argmin\{\nicefrac{10}{7}, \nicefrac{1}{1}\}$可知$\av_7$出基。做初等行变换
-    \begin{align*}
-        \begin{array}{c|ccccccccc:c}
-                & x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & x_9      \\ \hline
-            x_5 & 4   &     & 5   & 3   & 1   &     & -7  &     &     & 3  \\
-            x_6 & 1   &     &     &     &     & 1   &     &     &     & 1  \\
-            x_2 &     & 1   &     &     &     &     & 1   &     &     & 1  \\
-            x_8 &     &     & 1   &     &     &     &     & 1   &     & 1  \\
-            x_9 &     &     &     & 1   &     &     &     &     & 1   & 1  \\ \hdashline
-                & -40 &     & -25 & -12 &     &     & 42  &     &     & 42
-        \end{array}
-    \end{align*}
-    此时$x_2$、$x_5$、$x_6$、$x_8$、$x_9$是基变量，基本可行解为
-    \begin{align*}
-        \left[ \begin{array}{ccccccccc:c}
-                       x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & x_9 & o  \\
-                       0   & 1   & 0   & 0   & 3   & 1   & 0   & 1   & 1   & 42
-                   \end{array} \right]
-    \end{align*}
-
-    根据检验数$\av_1$入基，计算$\argmin\{\nicefrac{3}{4}, \nicefrac{1}{1}\}$可知$\av_5$出基。做初等行变换
-    \begin{align*}\arraycolsep=3pt
-        \begin{array}{c|ccccccccc:c}
-                & x_1 & x_2 & x_3             & x_4             & x_5             & x_6 & x_7              & x_8 & x_9                   \\ \hline
-            x_1 & 1   &     & \nicefrac{5}{4} & \nicefrac{3}{4} & \nicefrac{1}{4} &     & \nicefrac{-7}{4} &     &     & \nicefrac{3}{4} \\
-            x_6 & 1   &     &                 &                 &                 & 1   &                  &     &     & 1               \\
-            x_2 &     & 1   &                 &                 &                 &     & 1                &     &     & 1               \\
-            x_8 &     &     & 1               &                 &                 &     &                  & 1   &     & 1               \\
-            x_9 &     &     &                 & 1               &                 &     &                  &     & 1   & 1               \\ \hdashline
-                & -40 &     & -25             & -12             &                 &     & 42               &     &     & 42
-        \end{array} \Longrightarrow
-        \begin{array}{c|ccccccccc:c}
-                & x_1 & x_2 & x_3              & x_4              & x_5              & x_6 & x_7              & x_8 & x_9                   \\ \hline
-            x_1 & 1   &     & \nicefrac{5}{4}  & \nicefrac{3}{4}  & \nicefrac{1}{4}  &     & \nicefrac{-7}{4} &     &     & \nicefrac{3}{4} \\
-            x_6 &     &     & \nicefrac{-5}{4} & \nicefrac{-3}{4} & \nicefrac{-1}{4} & 1   & \nicefrac{7}{4}  &     &     & \nicefrac{1}{4} \\
-            x_2 &     & 1   &                  &                  &                  &     & 1                &     &     & 1               \\
-            x_8 &     &     & 1                &                  &                  &     &                  & 1   &     & 1               \\
-            x_9 &     &     &                  & 1                &                  &     &                  &     & 1   & 1               \\ \hdashline
-                &     &     & 25               & 18               & 10               & 40  & -28              &     &     & 72
-        \end{array}
-    \end{align*}
-    此时$x_1$、$x_2$、$x_6$、$x_8$、$x_9$是基变量，基本可行解为
-    \begin{align*}
-        \left[ \begin{array}{ccccccccc:c}
-                       x_1             & x_2 & x_3 & x_4 & x_5 & x_6             & x_7 & x_8 & x_9 & o  \\
-                       \nicefrac{3}{4} & 1   & 0   & 0   & 0   & \nicefrac{1}{4} & 0   & 1   & 1   & 72
-                   \end{array} \right]
-    \end{align*}
-
-    根据检验数$\av_7$入基，计算$\argmin\{\nicefrac{1}{7}, \nicefrac{1}{1}\}$可知$\av_6$出基。做初等行变换
-    \begin{align*}\arraycolsep=3pt
-        \begin{array}{c|ccccccccc:c}
-                & x_1 & x_2 & x_3              & x_4              & x_5              & x_6 & x_7              & x_8 & x_9                   \\ \hline
-            x_1 & 1   &     & \nicefrac{5}{4}  & \nicefrac{3}{4}  & \nicefrac{1}{4}  &     & \nicefrac{-7}{4} &     &     & \nicefrac{3}{4} \\
-            x_7 &     &     & \nicefrac{-5}{7} & \nicefrac{-3}{7} & \nicefrac{-1}{7} & 1   & 1                &     &     & \nicefrac{1}{7} \\
-            x_2 &     & 1   &                  &                  &                  &     & 1                &     &     & 1               \\
-            x_8 &     &     & 1                &                  &                  &     &                  & 1   &     & 1               \\
-            x_9 &     &     &                  & 1                &                  &     &                  &     & 1   & 1               \\ \hdashline
-                &     &     & 25               & 18               & 10               & 40  & -28              &     &     & 72
-        \end{array} \Longrightarrow
-        \begin{array}{c|ccccccccc:c}
-                & x_1 & x_2 & x_3              & x_4              & x_5              & x_6             & x_7 & x_8 & x_9                   \\ \hline
-            x_1 & 1   &     &                  &                  &                  & \nicefrac{7}{4} &     &     &     & 1               \\
-            x_7 &     &     & \nicefrac{-5}{7} & \nicefrac{-3}{7} & \nicefrac{-1}{7} & 1               & 1   &     &     & \nicefrac{1}{7} \\
-            x_2 &     & 1   & \nicefrac{5}{7}  & \nicefrac{3}{7}  & \nicefrac{1}{7}  & -1              &     &     &     & \nicefrac{6}{7} \\
-            x_8 &     &     & 1                &                  &                  &                 &     & 1   &     & 1               \\
-            x_9 &     &     &                  & 1                &                  &                 &     &     & 1   & 1               \\ \hdashline
-                &     &     & 5                & 6                & 6                & 68              &     &     &     & 76
-        \end{array}
-    \end{align*}
-    此时$x_1$、$x_2$、$x_7$、$x_8$、$x_9$是基变量，基本可行解为
-    \begin{align*}
-        \left[ \begin{array}{ccccccccc:c}
-                       x_1 & x_2             & x_3 & x_4 & x_5 & x_6 & x_7             & x_8 & x_9 & o  \\
-                       1   & \nicefrac{6}{7} & 0   & 0   & 0   & 0   & \nicefrac{1}{7} & 1   & 1   & 76
-                   \end{array} \right]
-    \end{align*}
-    由于检验数均非负，已达最优解。
-
-\end{example}
-
 \begin{remark}
-    分数背包问题也可采用贪心法来做。
+    注意与例\ref{exam: simplex}中经过的基本可行解的顺序不一样，本例中为
+    \begin{align*}
+        \begin{bmatrix}
+            x_1 & x_2 & x_3 & x_4 & x_5 \\
+            0   & 0   & 40  & 20  & 12
+        \end{bmatrix} \longrightarrow
+        \begin{bmatrix}
+            x_1 & x_2 & x_3 & x_4 & x_5 \\
+            0   & 8   & 0   & 12  & 4
+        \end{bmatrix} \longrightarrow
+        \begin{bmatrix}
+            x_1 & x_2 & x_3 & x_4 & x_5 \\
+            5   & 7   & 0   & 3   & 0
+        \end{bmatrix}
+    \end{align*}
 \end{remark}
 
 \begin{example}
-    用单纯形法求例\ref{exam: flow}中的最大流问题，先转化为标准型：
+    用单纯形法求例\ref{exam: bag}中的分数背包问题，根据式\eqref{eq: bag-standard}，初始单纯形表为
     \begin{align*}
-        \max \quad & x_1 + x_2                 \\
-        \st \quad  & x_1 + y_1 = 16            \\
-                   & x_2 + y_2 =  13           \\
-                   & x_3 + y_3 =  4            \\
-                   & x_4 + y_4 =  12           \\
-                   & x_5 + y_5 =  9            \\
-                   & x_6 + y_6 =  14           \\
-                   & x_7 + y_7 =  7            \\
-                   & x_8 + y_8 =  20           \\
-                   & x_9 + y_9 =  4            \\
-                   & x_1 + x_3 - x_4 = 0       \\
-                   & x_2 + x_5 - x_3 - x_6 = 0 \\
-                   & x_4 + x_7 - x_5 - x_8 = 0 \\
-                   & x_6 - x_7 - x_9 = 0       \\
-                   & \xv, \yv \ge \zerov
+        \begin{array}{c|ccccccccc:c}
+                & \av_1 & \av_2 & \av_3 & \av_4 & \av_5 & \av_6 & \av_7 & \av_8 & \av_9      \\ \hline
+            x_5 & 4     & 7     & 5     & 3     & 1     &       &       &       &       & 10 \\
+            x_6 & 1     &       &       &       &       & 1     &       &       &       & 1  \\
+            x_7 &       & 1     &       &       &       &       & 1     &       &       & 1  \\
+            x_8 &       &       & 1     &       &       &       &       & 1     &       & 1  \\
+            x_9 &       &       &       & 1     &       &       &       &       & 1     & 1  \\ \hdashline
+                & -40   & -42   & -25   & -12   &       &       &       &       &       & 0
+        \end{array}
+    \end{align*}
+    由于$\av_5$、$\av_6$、$\av_7$、$\av_8$、$\av_9$构成单位阵，取其做基，基本可行解为
+    \begin{align*}
+        \begin{bmatrix}
+            x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & x_9 \\
+            0   & 0   & 0   & 0   & 10  & 1   & 1   & 1   & 1
+        \end{bmatrix}
+    \end{align*}
+
+    根据检验数$\av_2$入基，计算$\min\{\nicefrac{10}{7}, \nicefrac{1}{1}\}$可知$\av_7$出基。做初等行变换
+    \begin{align*}
+        \begin{array}{c|ccccccccc:c}
+                & \av_1 & \av_2 & \av_3 & \av_4 & \av_5 & \av_6 & \av_7 & \av_8 & \av_9      \\ \hline
+            x_5 & 4     &       & 5     & 3     & 1     &       & -7    &       &       & 3  \\
+            x_6 & 1     &       &       &       &       & 1     &       &       &       & 1  \\
+            x_2 &       & 1     &       &       &       &       & 1     &       &       & 1  \\
+            x_8 &       &       & 1     &       &       &       &       & 1     &       & 1  \\
+            x_9 &       &       &       & 1     &       &       &       &       & 1     & 1  \\ \hdashline
+                & -40   &       & -25   & -12   &       &       & 42    &       &       & 42
+        \end{array}
+    \end{align*}
+    基本可行解为
+    \begin{align*}
+        \begin{bmatrix}
+            x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & x_9 \\
+            0   & 1   & 0   & 0   & 3   & 1   & 0   & 1   & 1
+        \end{bmatrix}
+    \end{align*}
+
+    根据检验数$\av_1$入基，计算$\min\{\nicefrac{3}{4}, \nicefrac{1}{1}\}$可知$\av_5$出基。做初等行变换
+    \begin{align*}\arraycolsep=3.2pt
+        \begin{array}{c|ccccccccc:c}
+                & \av_1 & \av_2 & \av_3           & \av_4           & \av_5           & \av_6 & \av_7            & \av_8 & \av_9                   \\ \hline
+            x_1 & 1     &       & \nicefrac{5}{4} & \nicefrac{3}{4} & \nicefrac{1}{4} &       & \nicefrac{-7}{4} &       &       & \nicefrac{3}{4} \\
+            x_6 & 1     &       &                 &                 &                 & 1     &                  &       &       & 1               \\
+            x_2 &       & 1     &                 &                 &                 &       & 1                &       &       & 1               \\
+            x_8 &       &       & 1               &                 &                 &       &                  & 1     &       & 1               \\
+            x_9 &       &       &                 & 1               &                 &       &                  &       & 1     & 1               \\ \hdashline
+                & -40   &       & -25             & -12             &                 &       & 42               &       &       & 42
+        \end{array} \Longrightarrow
+        \begin{array}{c|ccccccccc:c}
+                & \av_1 & \av_2 & \av_3            & \av_4            & \av_5            & \av_6 & \av_7            & \av_8 & \av_9                   \\ \hline
+            x_1 & 1     &       & \nicefrac{5}{4}  & \nicefrac{3}{4}  & \nicefrac{1}{4}  &       & \nicefrac{-7}{4} &       &       & \nicefrac{3}{4} \\
+            x_6 &       &       & \nicefrac{-5}{4} & \nicefrac{-3}{4} & \nicefrac{-1}{4} & 1     & \nicefrac{7}{4}  &       &       & \nicefrac{1}{4} \\
+            x_2 &       & 1     &                  &                  &                  &       & 1                &       &       & 1               \\
+            x_8 &       &       & 1                &                  &                  &       &                  & 1     &       & 1               \\
+            x_9 &       &       &                  & 1                &                  &       &                  &       & 1     & 1               \\ \hdashline
+                &       &       & 25               & 18               & 10               & 40    & -28              &       &       & 72
+        \end{array}
+    \end{align*}
+    基本可行解为
+    \begin{align*}
+        \begin{bmatrix}
+            x_1             & x_2 & x_3 & x_4 & x_5 & x_6             & x_7 & x_8 & x_9 \\
+            \nicefrac{3}{4} & 1   & 0   & 0   & 0   & \nicefrac{1}{4} & 0   & 1   & 1
+        \end{bmatrix}
+    \end{align*}
+
+    根据检验数$\av_7$入基，计算$\min\{\nicefrac{\nicefrac{1}{4}}{\nicefrac{7}{4}}, \nicefrac{1}{1}\}$可知$\av_6$出基。做初等行变换
+    \begin{align*}\arraycolsep=3.2pt
+        \begin{array}{c|ccccccccc:c}
+                & \av_1 & \av_2 & \av_3            & \av_4            & \av_5            & \av_6 & \av_7            & \av_8 & \av_9                   \\ \hline
+            x_1 & 1     &       & \nicefrac{5}{4}  & \nicefrac{3}{4}  & \nicefrac{1}{4}  &       & \nicefrac{-7}{4} &       &       & \nicefrac{3}{4} \\
+            x_7 &       &       & \nicefrac{-5}{7} & \nicefrac{-3}{7} & \nicefrac{-1}{7} & 1     & 1                &       &       & \nicefrac{1}{7} \\
+            x_2 &       & 1     &                  &                  &                  &       & 1                &       &       & 1               \\
+            x_8 &       &       & 1                &                  &                  &       &                  & 1     &       & 1               \\
+            x_9 &       &       &                  & 1                &                  &       &                  &       & 1     & 1               \\ \hdashline
+                &       &       & 25               & 18               & 10               & 40    & -28              &       &       & 72
+        \end{array} \Longrightarrow
+        \begin{array}{c|ccccccccc:c}
+                & \av_1 & \av_2 & \av_3            & \av_4            & \av_5            & \av_6           & \av_7 & \av_8 & \av_9                   \\ \hline
+            x_1 & 1     &       &                  &                  &                  & \nicefrac{7}{4} &       &       &       & 1               \\
+            x_7 &       &       & \nicefrac{-5}{7} & \nicefrac{-3}{7} & \nicefrac{-1}{7} & 1               & 1     &       &       & \nicefrac{1}{7} \\
+            x_2 &       & 1     & \nicefrac{5}{7}  & \nicefrac{3}{7}  & \nicefrac{1}{7}  & -1              &       &       &       & \nicefrac{6}{7} \\
+            x_8 &       &       & 1                &                  &                  &                 &       & 1     &       & 1               \\
+            x_9 &       &       &                  & 1                &                  &                 &       &       & 1     & 1               \\ \hdashline
+                &       &       & 5                & 6                & 6                & 68              &       &       &       & 76
+        \end{array}
+    \end{align*}
+    基本可行解为
+    \begin{align*}
+        \begin{bmatrix}
+            x_1 & x_2             & x_3 & x_4 & x_5 & x_6 & x_7             & x_8 & x_9 \\
+            1   & \nicefrac{6}{7} & 0   & 0   & 0   & 0   & \nicefrac{1}{7} & 1   & 1
+        \end{bmatrix}
+    \end{align*}
+    由于检验数均非负，已达最优解。
+\end{example}
+
+\begin{remark}
+    四个物品是按单价从高到低排好序的，根据最优解，先装单价最高的物品$1$，用掉$4$个单位重量，剩下$6$个单位重量全部用于装单价次高的物品$2$，事实上分数背包问题是可以用贪心法来做的。
+\end{remark}
+
+最后还剩问题1没有回答，前面两个例子只有$\av^\top \xv \le b$型约束，每个约束引入一个松弛变量，天然产生一个单位阵，直接取这个单位阵作为初始基，最右的$\bv$就是基本解中基变量的取值，而我们开始假定了$\bv \ge \zerov$，因此这个基本解也是可行解，从而单纯形法可以由此迭代下去。
+
+当存在其他约束时，初始单纯形表里就没有现成的单位阵了，如果随便取$m$列作为基，如何确保它们线性无关？此外做初等行变换将基变成单位阵，如何确保得到的基本解是可行解？对此可采用下节的两阶段单纯形法。
+
+\section{两阶段单纯形法}
+
+针对线性规划的标准型，构造如下的辅助问题：
+\begin{align*}
+    \begin{array}{rl}
+        \min & \onev^\top \yv      \\
+        \st  & \begin{bmatrix}
+                   \Av & \Iv_m
+               \end{bmatrix}
+        \begin{bmatrix}
+            \xv \\ \yv
+        \end{bmatrix} = \bv        \\
+             & \xv, \yv \ge \zerov
+    \end{array}
+\end{align*}
+辅助问题依然是个线性规划标准型，辅助变量$\yv$引入了一个单位阵，因此有一个天然的基本可行解。
+
+\begin{theorem}
+    原线性规划问题存在基本可行解当且仅当辅助问题存在一个使目标函数值为$0$的最优解。
+\end{theorem}
+
+\begin{proof}
+    $\Rightarrow$：
+
+    $\Leftarrow$：
+\end{proof}
+
+$\begin{bmatrix}
+    \zerov \\ \bv
+\end{bmatrix}$
+
+\begin{example}
+    用单纯形法求例\ref{exam: flow}中的最大流问题，根据式\eqref{eq: flow-standard}，标准型为：
+    \begin{align*}
+        \begin{array}{rlcrl}
+            \max & x_1 + x_2                 \\
+            \st  & x_1 + x_{10} = 16         \\
+                 & x_2 + x_{11} =  13        \\
+                 & x_3 + x_{12} =  4         \\
+                 & x_4 + x_{13} =  12        \\
+                 & x_5 + x_{14} =  9         \\
+                 & x_6 + x_{15} =  14        \\
+                 & x_7 + x_{16} =  7         \\
+                 & x_8 + x_{17} =  20        \\
+                 & x_9 + x_{18} =  4         \\
+                 & x_1 + x_3 - x_4 = 0       \\
+                 & x_2 + x_5 - x_3 - x_6 = 0 \\
+                 & x_4 + x_7 - x_5 - x_8 = 0 \\
+                 & x_6 - x_7 - x_9 = 0       \\
+                 & x_i \ge 0, ~ i \in [18]
+        \end{array}
     \end{align*}
     共有$18$个变量、$13$个等式约束，因此基变量有$13$个，非基变量有$5$个。初始不妨取$x_1$、$x_2$、$x_4$、$x_5$、$x_7$为非基变量，将基变量由$x_1$、$x_2$、$x_4$、$x_5$、$x_7$表出：
     \begin{align*}
