@@ -142,7 +142,7 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
 
 \section{标准型}
 
-当变量多于$2$个时，图解法就不再适用了，需要更一般性的方法。线性规划的常用求解算法有单纯形法和内点法。前者在最坏情况下是指数复杂度，后者是多项式复杂度，但实际使用中两者几乎没有差别，单纯形法的最坏情况实际中很难遇到。
+当变量多于$2$个时，图解法就不适用了，需要更一般性的方法。线性规划的一般性求解算法有单纯形法和内点法。前者在最坏情况下是指数复杂度，后者是多项式复杂度，但实际使用中两者几乎没有差别，单纯形法的最坏情况实际中很难遇到。
 
 要想使用单纯形法，需要先将问题转化为标准型(不等式只约束变量非负，其余都是等式约束)：
 \begin{align*}
@@ -204,17 +204,17 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
               \begin{array}{rlcrl} \label{eq: flow-standard}
                   \max & x_1 + x_2                 &                 & \max & x_1 + x_2                 \\
                   \st  & x_1 \le 16                &                 & \st  & x_1 + x_{10} = 16         \\
-                       & x_2 \le 13                &                 &      & x_2 + x_{11} =  13        \\
-                       & x_3 \le 4                 &                 &      & x_3 + x_{12} =  4         \\
-                       & x_4 \le 12                &                 &      & x_4 + x_{13} =  12        \\
-                       & x_5 \le 9                 &                 &      & x_5 + x_{14} =  9         \\
-                       & x_6 \le 14                &                 &      & x_6 + x_{15} =  14        \\
-                       & x_7 \le 7                 & \Longrightarrow &      & x_7 + x_{16} =  7         \\
-                       & x_8 \le 20                &                 &      & x_8 + x_{17} =  20        \\
-                       & x_9 \le 4                 &                 &      & x_9 + x_{18} =  4         \\
+                       & x_2 \le 13                &                 &      & x_2 + x_{11} = 13         \\
+                       & x_3 \le 4                 &                 &      & x_3 + x_{12} = 4          \\
+                       & x_4 \le 12                &                 &      & x_4 + x_{13} = 12         \\
+                       & x_5 \le 9                 &                 &      & x_5 + x_{14} = 9          \\
+                       & x_6 \le 14                &                 &      & x_6 + x_{15} = 14         \\
+                       & x_7 \le 7                 & \Longrightarrow &      & x_7 + x_{16} = 7          \\
+                       & x_8 \le 20                &                 &      & x_8 + x_{17} = 20         \\
+                       & x_9 \le 4                 &                 &      & x_9 + x_{18} = 4          \\
                        & x_1 + x_3 - x_4 = 0       &                 &      & x_1 + x_3 - x_4 = 0       \\
-                       & x_2 + x_5 - x_3 - x_6 = 0 &                 &      & x_2 + x_5 - x_3 - x_6 = 0 \\
-                       & x_4 + x_7 - x_5 - x_8 = 0 &                 &      & x_4 + x_7 - x_5 - x_8 = 0 \\
+                       & x_2 + x_5 - x_3 - x_6 = 0 &                 &      & x_2 - x_3 + x_5 - x_6 = 0 \\
+                       & x_4 + x_7 - x_5 - x_8 = 0 &                 &      & x_4 - x_5 + x_7 - x_8 = 0 \\
                        & x_6 - x_7 - x_9 = 0       &                 &      & x_6 - x_7 - x_9 = 0       \\
                        & x_i \ge 0, ~ i \in [9]    &                 &      & x_i \ge 0, ~ i \in [18]
               \end{array}
@@ -242,8 +242,8 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
         \end{array}
     \end{align*}
     \begin{itemize}
-        \item $x_1$非正，令$y_1 = -x_1 \ge 0$作为替代；
-        \item $x_2$无约束，令$x_2 = y_2 - y_3$，其中$y_2 \ge 0 $、$y_3 \ge 0$；
+        \item $x_1$非正，令$y_1 = -x_1 \ge 0$；
+        \item $x_2$无约束，令$x_2 = y_2 - y_3$；
     \end{itemize}
     \begin{align*}
         \begin{array}{rlcrl}
@@ -294,13 +294,16 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
     $n=4$、$m=2$，故基本解最多不超过$\binom{4}{2}=6$个，对线性方程组的增广矩阵做初等行变换：
     \begin{align*}
         \begin{bmatrix}
-            1 & 1 & -1 & 4 & 8 \\ 1 & -2 & -1 & 1 & 2
+            1 & 1  & -1 & 4 & 8 \\
+            1 & -2 & -1 & 1 & 2
         \end{bmatrix} \longrightarrow
         \begin{bmatrix}
-            1 & 1 & -1 & 4 & 8 \\ 0 & -3 & 0 & -3 & -6
+            1 & 1  & -1 & 4  & 8  \\
+            0 & -3 & 0  & -3 & -6
         \end{bmatrix} \longrightarrow
         \begin{bmatrix}
-            1 & 0 & -1 & 3 & 6 \\ 0 & 1 & 0 & 1 & 2
+            1 & 0 & -1 & 3 & 6 \\
+            0 & 1 & 0  & 1 & 2
         \end{bmatrix}
     \end{align*}
     因此
@@ -377,7 +380,7 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
                       y_{i_1} & \cdots & y_{i_l}
                   \end{bmatrix}, \quad \yv_{[n] \setminus \Lcal} = \zerov
               \end{align*}
-              让$\epsilon$从$0$增大，对$\yv_\Lcal$的所有正分量，$\xv_\Lcal - \epsilon \yv_\Lcal$在这些分量上单调减。取$\epsilon$使得$\xv_\Lcal - \epsilon \yv_\Lcal$第一次出现某个分量变成$0$，即
+              让$\epsilon$从$0$增大，对$\yv_\Lcal$的所有正分量，$\xv_\Lcal - \epsilon \yv_\Lcal$在这些分量上单调减。取$\epsilon$使得$\xv_\Lcal - \epsilon \yv_\Lcal$某个分量率先变成$0$，即
               \begin{align*}
                   \epsilon = \min \{ x_{i_k} / y_{i_k} : y_{i_k} > 0, ~ k \in [l] \}
               \end{align*}
@@ -398,34 +401,31 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
 
 \section{几何视角}
 
-线性规划的可行域$\Omega = \{ \xv \mid \Av \xv = \bv, ~ \xv \ge \zerov \}$是凸集，因为对$\forall \xv_1, \xv_2 \in \Omega$和$\forall \alpha \in (0,1)$有
+线性规划的可行域$\Omega = \{ \xv \mid \Av \xv = \bv, ~ \xv \ge \zerov \}$是\blue{凸集}，因为对$\forall \xv_1, \xv_2 \in \Omega$和$\forall \alpha \in (0,1)$有
 \begin{align*}
     \Av (\alpha \xv_1 + (1 - \alpha) \xv_2) = \alpha \Av \xv_1 + (1 - \alpha) \Av \xv_2 = \alpha \bv + (1 - \alpha) \bv = \bv, \quad \alpha \xv_1 + (1 - \alpha) \xv_2 \ge \zerov
 \end{align*}
-即连接$\Omega$内任意两点的线段依然属于$\Omega$。对凸集$\Omega$中的点$\xv$，若它无法表示成$\Omega$中另外两点的凸组合，则称$\xv$为$\Omega$的\blue{极点}，即
-\begin{align*}
-    \xv\text{是极点}, ~ \xv = \alpha \xv_1 + (1 - \alpha) \xv_2, ~ \alpha \in (0,1) \Longrightarrow \xv_1 = \xv_2 = \xv
-\end{align*}
+即连接$\Omega$内任意两点的线段依然属于$\Omega$。对凸集$\Omega$中的点$\xv$，若它无法表示成$\Omega$中另外两点的凸组合，则称$\xv$为$\Omega$的\blue{极点}。
 
 \begin{theorem} [等价性]
     $\xv$是$\Omega = \{ \xv \mid \Av \xv = \bv, ~ \xv \ge \zerov \}$的极点当且仅当$\xv$是$\Av \xv = \bv, ~ \xv \ge \zerov$的基本可行解。
 \end{theorem}
 
 \begin{proof}
-    $\Rightarrow$：设$\xv$满足$\Av \xv = \bv, ~ \xv \ge \zerov$且$\{ i \mid x_i > 0, ~ i \in [n] \} = \{ i_1, \ldots, i_l \}$，则
+    $\Rightarrow$：设$\xv$满足$\Av \xv = \bv, ~ \xv \ge \zerov$且$\{ i \mid x_i > 0, ~ i \in [n] \} = \{ i_1, \ldots, i_l \} \triangleq \Lcal$，则
     \begin{align*}
         \av_{i_1} x_{i_1} + \cdots + \av_{i_l} x_{i_l} = \bv
     \end{align*}
-    设向量$\yv$满足$\av_{i_1} y_{i_1} + \cdots + \av_{i_l} y_{i_l} = \zerov$且$\yv_{[n]\setminus \Lcal} = \zerov$，于是对任意$\epsilon$有
+    令向量$\yv$满足$\av_{i_1} y_{i_1} + \cdots + \av_{i_l} y_{i_l} = \zerov$且$\yv_{[n]\setminus \Lcal} = \zerov$，于是对任意$\epsilon$有
     \begin{align*}
         \av_{i_1} (x_{i_1} + \epsilon y_{i_1}) + \cdots + \av_{i_l} (x_{i_l} + \epsilon y_{i_l}) & = \bv \\
         \av_{i_1} (x_{i_1} - \epsilon y_{i_1}) + \cdots + \av_{i_l} (x_{i_l} - \epsilon y_{i_l}) & = \bv
     \end{align*}
-    注意所有的$x_{i_k}>0$，于是存在$\epsilon \in (0, \min\{ | x_{i_k} / y_{i_k} | : y_{i_k} \ne 0, ~ k \in [l] \}]$使得
+    注意$x_{i_1}, \ldots, x_{i_l}$均大于$0$，于是存在不超过$\min\{ | x_{i_k} / y_{i_k} | : y_{i_k} \ne 0, ~ k \in [l] \}$的正数$\epsilon$，使得
     \begin{align*}
         \zv_1 = \xv + \epsilon \yv \in \Omega, \quad \zv_2 = \xv - \epsilon \yv \in \Omega, \quad \xv = \frac{1}{2} \zv_1 + \frac{1}{2} \zv_2
     \end{align*}
-    由于$\xv$是极点，因此$\zv_1 = \zv_2 = \xv$，而$\epsilon > 0$，故$\yv = \zerov$。这意味着$\av_{i_1}, \ldots, \av_{i_l}$线性无关，于是$\xv$是基本可行解。
+    由于$\xv$是极点，因此$\zv_1 = \zv_2 = \xv$，而$\epsilon > 0$，故$\yv = \zerov$，从而$\yv_\Lcal = \zerov$，这意味着$\av_{i_1}, \ldots, \av_{i_l}$线性无关。若$l = m$，则$\xv$是基本可行解；若$l < m$，则$\xv$是退化的基本可行解。
 
     $\Leftarrow$：设$\xv$是基本可行解，对应基向量为$\av_{i_1}, \ldots, \av_{i_m}$，记$\Bcal = \{i_1, \ldots, i_m\}$、$\Dcal = [n] \setminus \Bcal$，则
     \begin{align*}
@@ -468,7 +468,7 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
                         \end{bmatrix}}_{\bv}
     \end{align*}
 
-    显然取$\av_3$、$\av_4$、$\av_5$作为基向量，基本可行解是一目了然的(基为单位阵)：
+    注意$\av_3$、$\av_4$、$\av_5$构成单位阵，取其作基，基本可行解是一目了然的：
     \begin{align*}
         40 \av_3 + 20 \av_4 + 12 \av_5 = \bv, \quad
         \begin{bmatrix}
@@ -565,7 +565,7 @@ $\bv$和$\av_q$的线性表出系数如何得到呢？根据线性方程组理�
 \end{align*}
 当基$\Bv$变成单位阵时，$\Bv^{-1} \av_q$和$\Bv^{-1} \bv$就是$\av_q$和$\bv$的线性表出系数。
 
-下面考察基本可行解变化时目标函数值的变化，将标准型根据对$\Av$的分块重写为
+下面考察基本可行解变化时目标函数值的变化，将标准型写成分块的形式
 \begin{align*}
     \begin{array}{rl}
         \max & \cv_\Bcal^\top \xv_\Bcal + \cv_\Dcal^\top \xv_\Dcal \\
@@ -582,9 +582,7 @@ $\bv$和$\av_q$的线性表出系数如何得到呢？根据线性方程组理�
           \begin{align*}
               z = \cv_\Bcal^\top \xv_\Bcal + \cv_\Dcal^\top \xv_\Dcal = \cv_\Bcal^\top (\Bv^{-1} \bv - \Bv^{-1} \Dv \xv_\Dcal) + \cv_\Dcal^\top \xv_\Dcal = \cv_\Bcal^\top \Bv^{-1} \bv - (\cv_\Bcal^\top \Bv^{-1} \Dv - \cv_\Dcal^\top) \xv_\Dcal = \zhat - \rv_\Dcal^\top \xv_\Dcal
           \end{align*}
-          其中$\rv_\Dcal^\top = \cv_\Bcal^\top \Bv^{-1} \Dv - \cv_\Dcal^\top$称为\blue{检验数}。
-
-          注意$\xv_\Dcal \ge \zerov$，若$\rv_\Dcal \ge \zerov$，则$z \le \zhat$，即关于基$\Bv$的基本可行解就是最优解，这就回答了前面的问题3。若$\rv_\Dcal$中某个分量为负，则将$\xv_\Dcal$中对应的非基变量从$0$变为正数可使目标函数值变大，因此可取该非基变量对应的列入基，这就回答了前面的问题2。
+          其中$\rv_\Dcal^\top = \cv_\Bcal^\top \Bv^{-1} \Dv - \cv_\Dcal^\top$称为\blue{检验数}。注意$\xv_\Dcal \ge \zerov$，若$\rv_\Dcal \ge \zerov$，则$z \le \zhat$，即关于基$\Bv$的基本可行解就是最优解，这就回答了前面的问题3。若$\rv_\Dcal$某个分量为负，则将$\xv_\Dcal$对应的非基变量从$0$变为正数可使目标函数值变大，因此可选该非基变量对应的列入基，这就回答了前面的问题2。
 \end{itemize}
 
 基于此，构造单纯形表
@@ -622,7 +620,7 @@ $\bv$和$\av_q$的线性表出系数如何得到呢？根据线性方程组理�
 \end{align*}
 这张表里包含了一切我们需要的信息：
 \begin{itemize}
-    \item $\Bv^{-1} \Dv$里的每列就是当前非基向量在当前基下的线性表出系数；
+    \item $\Bv^{-1} \Dv$里的每列就是当前非基向量(候选入基向量)在当前基下的线性表出系数；
     \item $\Bv^{-1} \bv$是当前基对应的基本可行解中的基变量值；
     \item $\cv_\Bcal^\top \Bv^{-1} \Dv - \cv_\Dcal^\top$就是检验数，可以指示下一个入基向量和是否已达最优解；
     \item $\cv_\Bcal^\top \Bv^{-1} \bv$就是当前基本可行解对应的目标函数值。
@@ -641,9 +639,9 @@ $\bv$和$\av_q$的线性表出系数如何得到呢？根据线性方程组理�
     \end{align*}
     注意此时需要取$3$个线性无关的列组成初始的基，然后做初等行变换将其变成单位阵，因此直接取$\av_3$、$\av_4$、$\av_5$是最省事的，已经是单位阵了，可以少做一次初等行变换：
     \begin{itemize}
-        \item 基变量$x_3$、$x_4$、$x_5$的名字在最左列，取值就是最右列的$\bv$
-        \item 非基变量$x_1$、$x_2$对应的检验数就是最后一行的$-\cv^\top$
-        \item 目标函数值就是右下角的$0$
+        \item 基变量的名字在最左列，取值就是最右列的$\bv$；
+        \item 基变量对应的$\cv_\Bcal = \zerov$，故非基变量的检验数就是最后一行的$-\cv_\Dcal^\top$；
+        \item 目标函数值就是右下角的$0$；
     \end{itemize}
     基本可行解为
     \begin{align*}
@@ -914,21 +912,21 @@ $\bv$和$\av_q$的线性表出系数如何得到呢？根据线性方程组理�
     做初等行变换更新最后一行
     \begin{align*} \arraycolsep=2.0pt \footnotesize
         \begin{array}{c|ccccccccccccccccccccccccccccccc:c}
-                   & \av_1 & \av_2 & \av_3 & \av_4 & \av_5 & \av_6 & \av_7 & \av_8 & \av_9 & \av_{10} & \av_{11} & \av_{12} & \av_{13} & \av_{14} & \av_{15} & \av_{16} & \av_{17} & \av_{18} & \av_{19} & \av_{20} & \av_{21} & \av_{22} & \av_{23} & \av_{24} & \av_{25} & \av_{26} & \av_{27} & \av_{28} & \av_{29} & \av_{30} & \av_{31}      \\ \hline
-            y_1    & 1     &       &       &       &       &       &       &       &       & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          &          &          &          &          & 16 \\
-            y_2    &       & 1     &       &       &       &       &       &       &       &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          &          &          &          & 13 \\
-            y_3    &       &       & 1     &       &       &       &       &       &       &          &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          &          &          & 4  \\
-            y_4    &       &       &       & 1     &       &       &       &       &       &          &          &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          &          & 12 \\
-            y_5    &       &       &       &       & 1     &       &       &       &       &          &          &          &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          & 9  \\
-            y_6    &       &       &       &       &       & 1     &       &       &       &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          & 14 \\
-            y_7    &       &       &       &       &       &       & 1     &       &       &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          & 7  \\
-            y_8    &       &       &       &       &       &       &       & 1     &       &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          & 20 \\
-            y_9    &       &       &       &       &       &       &       &       & 1     &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          & 4  \\
-            y_{10} & 1     &       & 1     & -1    &       &       &       &       &       &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          & 1        &          &          &          & 0  \\
-            y_{11} &       & 1     & -1    &       & 1     & -1    &       &       &       &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          & 1        &          &          & 0  \\
-            y_{12} &       &       &       & 1     & -1    &       & 1     & -1    &       &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          & 1        &          & 0  \\
-            y_{13} &       &       &       &       &       & 1     & -1    &       & -1    &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          & 1        & 0  \\ \hdashline
-                   &   -2    & -2      & -1      &  -1     &  -1     &   -1    &  -1     &       &       &  -1        &   -1       &  -1        &   -1       & -1         &   -1       &   -1       &  -1        &  -1        &         &         &         &         &         &         &         &         &         &         &         &         &         & -99
+                   & \av_1 & \av_2 & \av_3 & \av_4 & \av_5 & \av_6 & \av_7 & \av_8 & \av_9 & \av_{10} & \av_{11} & \av_{12} & \av_{13} & \av_{14} & \av_{15} & \av_{16} & \av_{17} & \av_{18} & \av_{19} & \av_{20} & \av_{21} & \av_{22} & \av_{23} & \av_{24} & \av_{25} & \av_{26} & \av_{27} & \av_{28} & \av_{29} & \av_{30} & \av_{31}       \\ \hline
+            y_1    & 1     &       &       &       &       &       &       &       &       & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          &          &          &          &          & 16  \\
+            y_2    &       & 1     &       &       &       &       &       &       &       &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          &          &          &          & 13  \\
+            y_3    &       &       & 1     &       &       &       &       &       &       &          &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          &          &          & 4   \\
+            y_4    &       &       &       & 1     &       &       &       &       &       &          &          &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          &          & 12  \\
+            y_5    &       &       &       &       & 1     &       &       &       &       &          &          &          &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          & 9   \\
+            y_6    &       &       &       &       &       & 1     &       &       &       &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          & 14  \\
+            y_7    &       &       &       &       &       &       & 1     &       &       &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          & 7   \\
+            y_8    &       &       &       &       &       &       &       & 1     &       &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          & 20  \\
+            y_9    &       &       &       &       &       &       &       &       & 1     &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          & 4   \\
+            y_{10} & 1     &       & 1     & -1    &       &       &       &       &       &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          & 1        &          &          &          & 0   \\
+            y_{11} &       & 1     & -1    &       & 1     & -1    &       &       &       &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          & 1        &          &          & 0   \\
+            y_{12} &       &       &       & 1     & -1    &       & 1     & -1    &       &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          & 1        &          & 0   \\
+            y_{13} &       &       &       &       &       & 1     & -1    &       & -1    &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          & 1        & 0   \\ \hdashline
+                   & -2    & -2    & -1    & -1    & -1    & -1    & -1    &       &       & -1       & -1       & -1       & -1       & -1       & -1       & -1       & -1       & -1       &          &          &          &          &          &          &          &          &          &          &          &          &          & -99
         \end{array}
     \end{align*}
     基本可行解为
