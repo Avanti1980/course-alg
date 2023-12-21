@@ -1,10 +1,10 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Arch Linux) (preloaded format=xelatex 2023.12.18)  21 DEC 2023 21:44
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Arch Linux) (preloaded format=xelatex 2023.12.18)  22 DEC 2023 03:03
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/home/avanti/Slides/Courses/Algorithms/notes/Max-Flow/lp
-(/home/avanti/Slides/Courses/Algorithms/notes/Max-Flow/lp.tex
+**/home/avanti/Slides/Courses/Alg/notes/Max-Flow/lp
+(/home/avanti/Slides/Courses/Alg/notes/Max-Flow/lp.tex
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2023-02-22> (/usr/share/texmf-dist/tex/latex/ctex/ctexart.cls (/usr/share/texmf-dist/tex/latex/ctex/config/ctexbackend.cfg
 File: ctexbackend.cfg 2022/07/14 v2.5.10 Backend configuration file (CTEX)
@@ -1154,29 +1154,29 @@ LaTeX Font Warning: Font shape `TU/antp/b/it' undefined
 
 [6] [7] [8] [9] [10] [11] [12] [13] [14] [15]
 
-LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 1094.
+LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 1130.
 
 
-LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 1094.
-
-
-LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 1114.
-
-
-LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 1114.
+LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 1130.
 
 [16]
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 1122.
+LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 1150.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 1122.
+LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 1150.
 
 
-LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 1143.
+LaTeX Font Warning: Command \small invalid in math mode on input line 1158.
 
 
-LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 1143.
+LaTeX Font Warning: Command \small invalid in math mode on input line 1158.
+
+
+LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 1179.
+
+
+LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 1179.
 
 [17] [18]
 Missing character: There is no ; ("3B) in font nullfont!
@@ -1201,11 +1201,11 @@ Package rerunfilecheck Info: File `lp.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  45291 strings out of 476683
- 1097219 string characters out of 5809789
- 1970018 words of memory out of 5000000
+ 1097198 string characters out of 5809789
+ 1995018 words of memory out of 5000000
  64674 multiletter control sequences out of 15000+600000
  550520 words of font info for 194 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 103i,22n,105p,934b,932s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 103i,22n,105p,927b,932s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on lp.pdf (23 pages).

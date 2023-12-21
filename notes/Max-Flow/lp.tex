@@ -836,37 +836,73 @@ $\bv$和$\av_q$的线性表出系数如何得到呢？根据线性方程组理�
 
 单纯形法每轮迭代做初等行变换都要更新所有列，但若有些列从没入过基(例\ref{exam: bag-simplex}中的$\av_3$、$\av_4$)，那对它们的更新都是多余的，去掉这些无用的计算，可以进一步提升算法效率。
 
-考虑单纯形法的某一轮迭代，设当前的基和基本可行解分别为
+设当前轮的基为$\Bv = \begin{bmatrix}
+        \av_{i_1} & \cdots & \av_p & \cdots & \av_{i_m}
+    \end{bmatrix}$，将$\bv$和入基向量$\av_q$用当前基向量线性表出：
 \begin{align*}
-    \Bv = \begin{bmatrix}
-        \av_{i_1}, \ldots, \av_p, \ldots, \av_{i_m}
-    \end{bmatrix}, \quad \yv_0 \triangleq \Bv^{-1} \bv
+    \bv = \Bv \Bv^{-1} \bv = \Bv \xv = x_{i_1} \av_{i_1} + \cdots + x_{i_m} \av_{i_m}, \quad \av_q = \Bv \Bv^{-1} \av_q = \Bv \yv = y_{i_1} \av_{i_1} + \cdots + y_{i_m} \av_{i_m}
 \end{align*}
-因此$\Bv^{-1} \Dv$是不必计算的，单纯形表只需要保存$\Bv^{-1}$和$\Bv^{-1} \bv$即可。
+由此得到出基向量$\av_p$，其中$p = \argmin_{i_k} \{ x_{i_k} / y_{i_k} : y_{i_k} > 0, ~ k \in [m] \}$。不难看出整个过程并不需要完整的$\Bv^{-1} \Dv$，要的只是其中一列，对此修正单纯形法只维护$\Bv^{-1}$和$\Bv^{-1} \bv$。
 
-修正单纯形法只保存$\begin{bmatrix} \Bv^{-1} & \bv \end{bmatrix}$，不保存$\Bv^{-1} \Dv$。设当前入基向量为$\av_q$，构造增广修正单纯形表
+下面推导更新方法，$\av_q$入基、$\av_p$出基，新的基为
+\begin{align*}
+    \Bv_{\text{new}} = \begin{bmatrix}
+                           \av_{i_1} & \cdots & \av_q & \cdots & \av_{i_m}
+                       \end{bmatrix}
+    = \Bv \begin{bmatrix}
+              \ev_1 & \cdots & \Bv^{-1} \av_q & \cdots & \ev_n
+          \end{bmatrix} = \Bv \begin{bmatrix}
+                                  \ev_1 & \cdots & \yv & \cdots & \ev_n
+                              \end{bmatrix}
+\end{align*}
+于是
+\begin{align*}
+    \Bv_{\text{new}}^{-1} = \begin{bmatrix}
+                                1 &        & y_{i_1}              \\
+                                  & \ddots & \vdots               \\
+                                  &        & y_{p}                \\
+                                  &        & \vdots  & \ddots     \\
+                                  &        & y_{i_m} &        & 1
+                            \end{bmatrix}^{-1} \Bv^{-1} = \begin{bmatrix}
+                                                              1 &        & \nicefrac{-y_{i_1}}{y_{p}}              \\
+                                                                & \ddots & \vdots                                  \\
+                                                                &        & \nicefrac{1}{y_{p}}                     \\
+                                                                &        & \vdots                     & \ddots     \\
+                                                                &        & \nicefrac{-y_{i_m}}{y_{p}} &        & 1
+                                                          \end{bmatrix} \Bv^{-1} \triangleq \Ev \Bv^{-1}
+\end{align*}
+注意$\Ev \Bv^{-1} \av_q = \Ev \yv = \ev_p$，于是
+\begin{align*}
+    \Ev \begin{bmatrix}
+            \Bv^{-1} & \Bv^{-1} \bv & \Bv^{-1} \av_q
+        \end{bmatrix} = \begin{bmatrix}
+                            \Bv_{\text{new}}^{-1} & \Bv_{\text{new}}^{-1} \bv & \ev_p
+                        \end{bmatrix}
+\end{align*}
+
+综上，整个流程如下：
 \begin{align*}
     \begin{bmatrix}
-        \Bv^{-1} & \bv & \av_q
+        \Bv^{-1} & \Bv^{-1} \bv
+    \end{bmatrix} \xlongrightarrow{添加最右列}
+    \begin{bmatrix}
+        \Bv^{-1} & \Bv^{-1} \bv & \Bv^{-1} \av_q
+    \end{bmatrix} \xlongrightarrow{初等行变换}
+    \begin{bmatrix}
+        \Bv_{\text{new}}^{-1} & \Bv_{\text{new}}^{-1} \bv & \ev_p
+    \end{bmatrix} \xlongrightarrow{删除最右列}
+    \begin{bmatrix}
+        \Bv_{\text{new}}^{-1} & \Bv_{\text{new}}^{-1} \bv
     \end{bmatrix}
 \end{align*}
-设$\av_q$的第$p$个元素$a_{pq}$为主元，做初等行变换将$\av_q$变成$\ev_p$：
-\begin{align*}
-    \Ev = \begin{bmatrix}
-              1 &        & \nicefrac{-a_{1q}}{a_{pq}}              \\
-                & \ddots & \vdots                                  \\
-                &        & \nicefrac{1}{a_{pq}}              \\
-                &        & \vdots                     & \ddots     \\
-                &        & \nicefrac{-a_{mq}}{a_{pq}} &        & 1
-          \end{bmatrix}, \quad \Ev
-    \begin{bmatrix}
-        \Bv^{-1} & \bv & \av_q
-    \end{bmatrix} =
-    \begin{bmatrix}
-        \Ev \Bv^{-1} & \Ev \bv & \ev_p
-    \end{bmatrix}
-\end{align*}
-丢弃最后一列即为更新后的修正单纯形表$\begin{bmatrix} \Ev \Bv^{-1} & \Ev \bv \end{bmatrix}$。
+\begin{enumerate}
+    \item 根据当前检验数确定入基向量$\av_q$；
+    \item 计算$\Bv^{-1} \av_q$，将其添加到修正单纯形表最右侧得到增广修正单纯形表；
+    \item 确定出基向量$\av_p$；
+    \item 对增广修正单纯形表做初等行变换使最右列变成$\ev_p$，并将其删除；
+    \item 更新检验数。
+\end{enumerate}
+
 
 \begin{example} [用修正单纯形法求分数背包问题] \label{exam: bag-simplex-modified}
     初始单纯形表为
@@ -924,10 +960,10 @@ $\bv$和$\av_q$的线性表出系数如何得到呢？根据线性方程组理�
     检验数
     \begin{align*}
         \rv_\Dcal^\top = \cv_\Bcal^\top \Bv^{-1} \Dv - \cv_\Dcal^\top = \zerov^\top - \begin{bmatrix}
-            40 & 42 & 25 & 12
-        \end{bmatrix} = \begin{bmatrix}
-            -40 & -42 & -25 & -12
-        \end{bmatrix}
+                                                                                          40 & 42 & 25 & 12
+                                                                                      \end{bmatrix} = \begin{bmatrix}
+                                                                                                          -40 & -42 & -25 & -12
+                                                                                                      \end{bmatrix}
     \end{align*}
 
 
