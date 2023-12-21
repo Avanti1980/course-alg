@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Arch Linux) (preloaded format=xelatex 2023.12.18)  21 DEC 2023 14:00
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Arch Linux) (preloaded format=xelatex 2023.12.18)  21 DEC 2023 21:44
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1152,43 +1152,43 @@ LaTeX Font Warning: Font shape `TU/antp/m/it' undefined
 LaTeX Font Warning: Font shape `TU/antp/b/it' undefined
 (Font)              using `TU/antp/b/n' instead on input line 364.
 
-[6] [7] [8] [9] [10] [11] [12] [13]
+[6] [7] [8] [9] [10] [11] [12] [13] [14] [15]
 
-LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 919.
-
-
-LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 919.
+LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 1094.
 
 
-LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 939.
+LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 1094.
 
 
-LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 939.
-
-[14]
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 947.
+LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 1114.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 947.
+LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 1114.
+
+[16]
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 1122.
 
 
-LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 968.
+LaTeX Font Warning: Command \small invalid in math mode on input line 1122.
 
 
-LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 968.
+LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 1143.
 
-[15] [16]
-Missing character: There is no ; ("3B) in font nullfont!
-[17]
-Missing character: There is no ; ("3B) in font nullfont!
-[18]
+
+LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 1143.
+
+[17] [18]
 Missing character: There is no ; ("3B) in font nullfont!
 [19]
 Missing character: There is no ; ("3B) in font nullfont!
 [20]
 Missing character: There is no ; ("3B) in font nullfont!
-[21] (./lp.aux)
+[21]
+Missing character: There is no ; ("3B) in font nullfont!
+[22]
+Missing character: There is no ; ("3B) in font nullfont!
+[23] (./lp.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.47188pt have occurred.
@@ -1200,12 +1200,12 @@ Package rerunfilecheck Info: File `lp.out' has not changed.
 (rerunfilecheck)             Checksum: BC516D8BF8EF8D8DA7456A625DC0F9A2;570.
  ) 
 Here is how much of TeX's memory you used:
- 45290 strings out of 476683
- 1097191 string characters out of 5809789
+ 45291 strings out of 476683
+ 1097219 string characters out of 5809789
  1970018 words of memory out of 5000000
- 64673 multiletter control sequences out of 15000+600000
+ 64674 multiletter control sequences out of 15000+600000
  550520 words of font info for 194 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  103i,22n,105p,934b,932s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on lp.pdf (21 pages).
+Output written on lp.pdf (23 pages).
