@@ -55,46 +55,34 @@
             \node [point] (s) at (0,0) {$\sv$};
             \path (s) ++(30:\l)  node[point] (v1) {$\vv_1$};
             \path (s) ++(330:\l)  node[point] (v2) {$\vv_2$};
-            \path (v1) ++(\l,0)  node[point] (v3) {$\vv_3$};
-            \path (v2) ++(\l,0)  node[point] (v4) {$\vv_4$};
-            \path (v4) ++(30:\l)  node[point] (t) {$\tv$};
+            \path (v2) ++(30:\l)  node[point] (t) {$\tv$};
 
-            \draw [arrow] (s) -- (v1) node [above=0pt, sloped, pos=0.5] {$16$};
-            \draw [arrow] (s) -- (v2) node [below=0pt, sloped, pos=0.4] {$13$};
-            \draw [arrow] (v2) -- (v1) node [above=0pt, sloped, pos=0.5] {$4$};
-            \draw [arrow] (v1) -- (v3) node [above=0pt, pos=0.5] {$12$};
-            \draw [arrow] (v2) -- (v4) node [below=0pt, pos=0.5] {$14$};
-            \draw [arrow] (v4) -- (v3) node [above=0pt, sloped, pos=0.5] {$7$};
-            \draw [arrow] (v3) -- (v2) node [above=0pt, sloped, pos=0.5] {$9$};
-            \draw [arrow] (v3) -- (t) node [above=0pt, sloped, pos=0.5] {$20$};
-            \draw [arrow] (v4) -- (t) node [below=0pt, sloped, pos=0.5] {$4$};
+            \draw [arrow] (s) -- (v1) node [above=0pt, sloped, pos=0.5] {$10$};
+            \draw [arrow] (s) -- (v2) node [below=0pt, sloped, pos=0.4] {$10$};
+            \draw [arrow] (v2) -- (v1) node [above=0pt, sloped, pos=0.5] {$1$};
+            \draw [arrow] (v1) -- (t) node [above=0pt, sloped, pos=0.5] {$10$};
+            \draw [arrow] (v2) -- (t) node [below=0pt, sloped, pos=0.5] {$10$};
 
         \end{tikzpicture}
     \end{figure}
 
-    设$9$条边上的流量分别为$x_1, \ldots, x_9$，可得如下线性规划
+    设$5$条边上的流量分别为$x_1, \ldots, x_5$，可得如下线性规划
     \begin{align*}
         \begin{array}{rl}
-            \max & x_1 + x_2                 \\
-            \st  & 0 \le x_1 \le 16          \\
-                 & 0 \le x_2 \le 13          \\
-                 & 0 \le x_3 \le 4           \\
-                 & 0 \le x_4 \le 12          \\
-                 & 0 \le x_5 \le 9           \\
-                 & 0 \le x_6 \le 14          \\
-                 & 0 \le x_7 \le 7           \\
-                 & 0 \le x_8 \le 20          \\
-                 & 0 \le x_9 \le 4           \\
-                 & x_1 + x_3 - x_4 = 0       \\
-                 & x_2 + x_5 - x_3 - x_6 = 0 \\
-                 & x_4 + x_7 - x_5 - x_8 = 0 \\
-                 & x_6 - x_7 - x_9 = 0
+            \max & x_1 + x_2           \\
+            \st  & 0 \le x_1 \le 10    \\
+                 & 0 \le x_2 \le 10    \\
+                 & 0 \le x_3 \le 1     \\
+                 & 0 \le x_4 \le 10    \\
+                 & 0 \le x_5 \le 10    \\
+                 & x_1 + x_3 - x_4 = 0 \\
+                 & x_2 - x_3 - x_5 = 0
         \end{array}
     \end{align*}
-    其中前$9$个不等式约束对应容量限制，后$4$个等式约束对应流量守恒。
+    其中前$5$个不等式约束对应容量限制，后$2$个等式约束对应流量守恒。
 \end{example}
 
-$\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式约束是一条直线，线性不等式约束是一个半平面，可采用图解法。
+$\Rbb^2$中的线性规划只有$2$个变量，线性等式和不等式分别对应直线和半平面，可采用图解法。
 
 \begin{example} [图解法示例] \label{exam: illustration}
     考虑如下线性规划
@@ -110,7 +98,6 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
 
     先确定\blue{可行域}，即满足所有约束的\blue{可行解}构成的集合。该例中共有$5$个线性不等式约束，每个对应一个半平面，因此可行域为$5$个半平面相交出的凸五边形(图\ref{fig: lp}中红色部分)。
 
-    引入直线簇$y = 3 x_1 + 5 x_2$，其中不同的$y$对应不同的直线，这些直线都是平行的。先将$y$取为一个较大的值使直线与凸五边形不相交，然后逐渐减小$y$，这相当于从上向下平移直线$y = 3 x_1 + 5 x_2$使其逐渐靠近凸五边形，当其与凸五边形相切时，切点就是\blue{最优解}，
     \begin{figure}[h]
         \centering
         \tikzset{font=\small}
@@ -138,6 +125,8 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
         \caption{直线簇与可行域相切于最优解$(5,7)$处，目标函数最优值为$50$。}
         \label{fig: lp}
     \end{figure}
+
+    引入直线簇$y = 3 x_1 + 5 x_2$，其中不同的$y$对应不同的直线，这些直线都是平行的。先将$y$取为一个较大的值使直线与凸五边形不相交，然后逐渐减小$y$，这相当于从上向下平移直线$y = 3 x_1 + 5 x_2$使其逐渐靠近凸五边形，当其与凸五边形相切时，切点就是\blue{最优解}，
 \end{example}
 
 \section{标准型}
@@ -199,24 +188,18 @@ $\Rbb^2$中的线性规划只有$2$个变量，线性目标函数和线性等式
                        & x_i \ge 0, ~ i \in [4]               &                 &      & x_i \ge 0, ~ i \in [9]
               \end{array}
           \end{align}
-    \item 最大流问题有$9$个$\av^\top \xv \le b$型约束，分别引入松弛变量$x_{10}, \ldots, x_{18}$：
+    \item 最大流问题有$5$个$\av^\top \xv \le b$型约束，分别引入松弛变量$x_6, \ldots, x_{10}$：
           \begin{align}
               \begin{array}{rlcrl} \label{eq: flow-standard}
-                  \max & x_1 + x_2                 &                 & \max & x_1 + x_2                 \\
-                  \st  & x_1 \le 16                &                 & \st  & x_1 + x_{10} = 16         \\
-                       & x_2 \le 13                &                 &      & x_2 + x_{11} = 13         \\
-                       & x_3 \le 4                 &                 &      & x_3 + x_{12} = 4          \\
-                       & x_4 \le 12                &                 &      & x_4 + x_{13} = 12         \\
-                       & x_5 \le 9                 &                 &      & x_5 + x_{14} = 9          \\
-                       & x_6 \le 14                &                 &      & x_6 + x_{15} = 14         \\
-                       & x_7 \le 7                 & \Longrightarrow &      & x_7 + x_{16} = 7          \\
-                       & x_8 \le 20                &                 &      & x_8 + x_{17} = 20         \\
-                       & x_9 \le 4                 &                 &      & x_9 + x_{18} = 4          \\
-                       & x_1 + x_3 - x_4 = 0       &                 &      & x_1 + x_3 - x_4 = 0       \\
-                       & x_2 + x_5 - x_3 - x_6 = 0 &                 &      & x_2 - x_3 + x_5 - x_6 = 0 \\
-                       & x_4 + x_7 - x_5 - x_8 = 0 &                 &      & x_4 - x_5 + x_7 - x_8 = 0 \\
-                       & x_6 - x_7 - x_9 = 0       &                 &      & x_6 - x_7 - x_9 = 0       \\
-                       & x_i \ge 0, ~ i \in [9]    &                 &      & x_i \ge 0, ~ i \in [18]
+                  \max & x_1 + x_2              &                 & \max & x_1 + x_2               \\
+                  \st  & x_1 \le 10             &                 & \st  & x_1 + x_6 = 10          \\
+                       & x_2 \le 10             &                 &      & x_2 + x_7 = 10          \\
+                       & x_3 \le 1              &                 &      & x_3 + x_8 = 1           \\
+                       & x_4 \le 10             & \Longrightarrow &      & x_4 + x_9 = 10          \\
+                       & x_5 \le 10             &                 &      & x_5 + x_{10} = 10       \\
+                       & x_1 + x_3 - x_4 = 0    &                 &      & x_1 + x_3 - x_4 = 0     \\
+                       & x_2 - x_3 - x_5 = 0    &                 &      & x_2 - x_3 - x_5 = 0     \\
+                       & x_i \ge 0, ~ i \in [5] &                 &      & x_i \ge 0, ~ i \in [10]
               \end{array}
           \end{align}
     \item 例\ref{exam: illustration}中的线性规划有$3$个$\av^\top \xv \le b$型约束，分别引入松弛变量$x_3, x_4, x_5$：
@@ -838,40 +821,45 @@ $\bv$和$\av_q$的线性表出系数如何得到呢？根据线性方程组理�
 
 设当前轮的基为$\Bv = \begin{bmatrix}
         \av_{i_1} & \cdots & \av_p & \cdots & \av_{i_m}
-    \end{bmatrix}$，将$\bv$和入基向量$\av_q$用当前基向量线性表出：
+    \end{bmatrix}$，将$\bv$和入基向量$\av_q$用基向量线性表出：
 \begin{align*}
-    \bv = \Bv \Bv^{-1} \bv = \Bv \xv = x_{i_1} \av_{i_1} + \cdots + x_{i_m} \av_{i_m}, \quad \av_q = \Bv \Bv^{-1} \av_q = \Bv \yv = y_{i_1} \av_{i_1} + \cdots + y_{i_m} \av_{i_m}
+    \bv = \Bv \Bv^{-1} \bv = \Bv \xv = x_{i_1} \av_{i_1} + \cdots + x_{i_m} \av_{i_m},     & \quad \xv = \Bv^{-1} \bv \in \Rbb^m   \\
+    \av_q = \Bv \Bv^{-1} \av_q = \Bv \yv = y_{i_1} \av_{i_1} + \cdots + y_{i_m} \av_{i_m}, & \quad \yv = \Bv^{-1} \av_q \in \Rbb^m
 \end{align*}
-由此得到出基向量$\av_p$，其中$p = \argmin_{i_k} \{ x_{i_k} / y_{i_k} : y_{i_k} > 0, ~ k \in [m] \}$。不难看出整个过程并不需要完整的$\Bv^{-1} \Dv$，要的只是其中一列，对此修正单纯形法只维护$\Bv^{-1}$和$\Bv^{-1} \bv$。
+由此得到出基向量$\av_p$，其中$p = \argmin_{i_k} \{ x_{i_k} / y_{i_k} : y_{i_k} > 0, ~ k \in [m] \}$。不难看出整个过程并不需要完整的$\Bv^{-1} \Dv$，要的只是其中一列$\Bv^{-1} \av_q$，对此修正单纯形法只维护$\Bv^{-1}$和$\Bv^{-1} \bv$。
 
-下面推导更新方法，$\av_q$入基、$\av_p$出基，新的基为
+下面推导修正单纯形表的更新方法，$\av_q$入基、$\av_p$出基，新的基为
 \begin{align*}
-    \Bv_{\text{new}} = \begin{bmatrix}
-                           \av_{i_1} & \cdots & \av_q & \cdots & \av_{i_m}
-                       \end{bmatrix}
+    \Bv_{\text{new}} =
+    \begin{bmatrix}
+        \av_{i_1} & \cdots & \av_q & \cdots & \av_{i_m}
+    \end{bmatrix}
     = \Bv \begin{bmatrix}
               \ev_1 & \cdots & \Bv^{-1} \av_q & \cdots & \ev_n
-          \end{bmatrix} = \Bv \begin{bmatrix}
-                                  \ev_1 & \cdots & \yv & \cdots & \ev_n
-                              \end{bmatrix}
+          \end{bmatrix} = \Bv
+    \begin{bmatrix}
+        \ev_1 & \cdots & \yv & \cdots & \ev_n
+    \end{bmatrix}
 \end{align*}
 于是
 \begin{align*}
-    \Bv_{\text{new}}^{-1} = \begin{bmatrix}
-                                1 &        & y_{i_1}              \\
-                                  & \ddots & \vdots               \\
-                                  &        & y_{p}                \\
-                                  &        & \vdots  & \ddots     \\
-                                  &        & y_{i_m} &        & 1
-                            \end{bmatrix}^{-1} \Bv^{-1} = \begin{bmatrix}
-                                                              1 &        & \nicefrac{-y_{i_1}}{y_{p}}              \\
-                                                                & \ddots & \vdots                                  \\
-                                                                &        & \nicefrac{1}{y_{p}}                     \\
-                                                                &        & \vdots                     & \ddots     \\
-                                                                &        & \nicefrac{-y_{i_m}}{y_{p}} &        & 1
-                                                          \end{bmatrix} \Bv^{-1} \triangleq \Ev \Bv^{-1}
+    \Bv_{\text{new}}^{-1} =
+    \begin{bmatrix}
+        1 &        & y_{i_1}              \\
+          & \ddots & \vdots               \\
+          &        & y_{p}                \\
+          &        & \vdots  & \ddots     \\
+          &        & y_{i_m} &        & 1
+    \end{bmatrix}^{-1} \Bv^{-1} =
+    \begin{bmatrix}
+        1 &        & \nicefrac{-y_{i_1}}{y_{p}}              \\
+          & \ddots & \vdots                                  \\
+          &        & \nicefrac{1}{y_{p}}                     \\
+          &        & \vdots                     & \ddots     \\
+          &        & \nicefrac{-y_{i_m}}{y_{p}} &        & 1
+    \end{bmatrix} \Bv^{-1} \triangleq \Ev \Bv^{-1}
 \end{align*}
-注意$\Ev \Bv^{-1} \av_q = \Ev \yv = \ev_p$，于是
+注意$\Ev \Bv^{-1} \av_q = \Ev \yv = \ev_p$，即$\Ev$是将$\yv$变成$\ev_p$的初等行变换，于是
 \begin{align*}
     \Ev \begin{bmatrix}
             \Bv^{-1} & \Bv^{-1} \bv & \Bv^{-1} \av_q
@@ -897,12 +885,11 @@ $\bv$和$\av_q$的线性表出系数如何得到呢？根据线性方程组理�
 \end{align*}
 \begin{enumerate}
     \item 根据当前检验数确定入基向量$\av_q$；
-    \item 计算$\Bv^{-1} \av_q$，将其添加到修正单纯形表最右侧得到增广修正单纯形表；
-    \item 确定出基向量$\av_p$；
-    \item 对增广修正单纯形表做初等行变换使最右列变成$\ev_p$，并将其删除；
+    \item 计算$\yv = \Bv^{-1} \av_q$，将其添加到修正单纯形表最右侧得到增广修正单纯形表；
+    \item 根据$p = \argmin_{i_k} \{ x_{i_k} / y_{i_k} : y_{i_k} > 0, ~ k \in [m] \}$确定出基向量$\av_p$；
+    \item 对增广修正单纯形表做初等行变换，使最右列变成$\ev_p$后将其删除；
     \item 更新检验数。
 \end{enumerate}
-
 
 \begin{example} [用修正单纯形法求分数背包问题] \label{exam: bag-simplex-modified}
     初始单纯形表为
@@ -937,8 +924,21 @@ $\bv$和$\av_q$的线性表出系数如何得到呢？根据线性方程组理�
                         \end{bmatrix}
     \end{align*}
 
-    根据检验数，$\av_2$入基，增广修正单纯形表为
+    根据检验数$\av_2$入基，于是
     \begin{align*}
+        \yv = \begin{bmatrix}
+                  1                \\
+                   & 1             \\
+                   &   & 1         \\
+                   &   &   & 1     \\
+                   &   &   &   & 1
+              \end{bmatrix}
+        \begin{bmatrix}
+            7 \\ 0 \\ 1 \\ 0 \\ 0
+        \end{bmatrix} =
+        \begin{bmatrix}
+            7 \\ 0 \\ 1 \\ 0 \\ 0
+        \end{bmatrix}, \quad
         \begin{array}{c|ccccc:cc}
             x_5 & 1 &   &   &   &   & 10 & 7 \\
             x_6 &   & 1 &   &   &   & 1  &   \\
@@ -959,103 +959,267 @@ $\bv$和$\av_q$的线性表出系数如何得到呢？根据线性方程组理�
     \end{align*}
     检验数
     \begin{align*}
-        \rv_\Dcal^\top = \cv_\Bcal^\top \Bv^{-1} \Dv - \cv_\Dcal^\top = \zerov^\top - \begin{bmatrix}
-                                                                                          40 & 42 & 25 & 12
-                                                                                      \end{bmatrix} = \begin{bmatrix}
-                                                                                                          -40 & -42 & -25 & -12
-                                                                                                      \end{bmatrix}
-    \end{align*}
-
-
-
-
-
-    \begin{align*}
-        \begin{array}{c|ccccccccc:c}
-                & \av_1 & \av_2 & \av_3 & \av_4 & \av_5 & \av_6 & \av_7 & \av_8 & \av_9      \\ \hline
-            x_5 & 4     &       & 5     & 3     & 1     &       & -7    &       &       & 3  \\
-            x_6 & 1     &       &       &       &       & 1     &       &       &       & 1  \\
-            x_2 &       & 1     &       &       &       &       & 1     &       &       & 1  \\
-            x_8 &       &       & 1     &       &       &       &       & 1     &       & 1  \\
-            x_9 &       &       &       & 1     &       &       &       &       & 1     & 1  \\ \hdashline
-                & -40   &       & -25   & -12   &       &       & 42    &       &       & 42
-        \end{array}
-    \end{align*}
-    基本可行解为
-    \begin{align*}
+        \rv_\Dcal^\top & = \cv_\Bcal^\top \Bv^{-1} \Dv - \cv_\Dcal^\top \\
+                       & =
         \begin{bmatrix}
-            x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & x_9 \\
-            0   & 1   & 0   & 0   & 3   & 1   & 0   & 1   & 1
+            0 & 0 & 42 & 0 & 0
+        \end{bmatrix}
+        \begin{bmatrix}
+            1 &   & -7         \\
+              & 1              \\
+              &   & 1          \\
+              &   &    & 1     \\
+              &   &    &   & 1
+        \end{bmatrix}
+        \begin{bmatrix}
+            4 & 5 & 3     \\
+            1             \\
+              &   &   & 1 \\
+              & 1         \\
+              &   & 1     \\
+        \end{bmatrix} -
+        \begin{bmatrix}
+            40 & 25 & 12 & 0
+        \end{bmatrix}                                                \\
+                       & =
+        \begin{bmatrix}
+            0 & 0 & 0 & 42
+        \end{bmatrix} -
+        \begin{bmatrix}
+            40 & 25 & 12 & 0
+        \end{bmatrix} =
+        \begin{bmatrix}
+            -40 & -25 & -12 & 42
         \end{bmatrix}
     \end{align*}
 
-    根据检验数$\av_1$入基，计算$\min\{\nicefrac{3}{4}, \nicefrac{1}{1}\}$可知$\av_5$出基。做初等行变换
-    \begin{align*} \arraycolsep=3.2pt
-        \begin{array}{c|ccccccccc:c}
-                & \av_1 & \av_2 & \av_3           & \av_4           & \av_5           & \av_6 & \av_7            & \av_8 & \av_9                   \\ \hline
-            x_1 & 1     &       & \nicefrac{5}{4} & \nicefrac{3}{4} & \nicefrac{1}{4} &       & \nicefrac{-7}{4} &       &       & \nicefrac{3}{4} \\
-            x_6 & 1     &       &                 &                 &                 & 1     &                  &       &       & 1               \\
-            x_2 &       & 1     &                 &                 &                 &       & 1                &       &       & 1               \\
-            x_8 &       &       & 1               &                 &                 &       &                  & 1     &       & 1               \\
-            x_9 &       &       &                 & 1               &                 &       &                  &       & 1     & 1               \\ \hdashline
-                & -40   &       & -25             & -12             &                 &       & 42               &       &       & 42
-        \end{array} \Longrightarrow
-        \begin{array}{c|ccccccccc:c}
-                & \av_1 & \av_2 & \av_3            & \av_4            & \av_5            & \av_6 & \av_7            & \av_8 & \av_9                   \\ \hline
-            x_1 & 1     &       & \nicefrac{5}{4}  & \nicefrac{3}{4}  & \nicefrac{1}{4}  &       & \nicefrac{-7}{4} &       &       & \nicefrac{3}{4} \\
-            x_6 &       &       & \nicefrac{-5}{4} & \nicefrac{-3}{4} & \nicefrac{-1}{4} & 1     & \nicefrac{7}{4}  &       &       & \nicefrac{1}{4} \\
-            x_2 &       & 1     &                  &                  &                  &       & 1                &       &       & 1               \\
-            x_8 &       &       & 1                &                  &                  &       &                  & 1     &       & 1               \\
-            x_9 &       &       &                  & 1                &                  &       &                  &       & 1     & 1               \\ \hdashline
-                &       &       & 25               & 18               & 10               & 40    & -28              &       &       & 72
+    根据检验数$\av_1$入基，于是
+    \begin{align*}
+        \yv = \begin{bmatrix}
+                  1 &   & -7         \\
+                    & 1              \\
+                    &   & 1          \\
+                    &   &    & 1     \\
+                    &   &    &   & 1
+              \end{bmatrix} \begin{bmatrix}
+                                4 \\ 1 \\ 0 \\ 0 \\ 0
+                            \end{bmatrix} = \begin{bmatrix}
+                                                4 \\ 1 \\ 0 \\ 0 \\ 0
+                                            \end{bmatrix}, \quad
+        \begin{array}{c|ccccc:cc}
+            x_5 & 1 &   & -7 &   &   & 3 & 4 \\
+            x_6 &   & 1 &    &   &   & 1 & 1 \\
+            x_2 &   &   & 1  &   &   & 1 &   \\
+            x_8 &   &   &    & 1 &   & 1 &   \\
+            x_9 &   &   &    &   & 1 & 1 &
         \end{array}
     \end{align*}
-    基本可行解为
+    计算$\min\{\nicefrac{3}{4}, \nicefrac{1}{1}\}$可知最后一列第$1$个元素为主元，做初等行变换更新修正单纯形表
     \begin{align*}
+        \begin{array}{c|ccccc:cc}
+            x_1 & \nicefrac{1}{4} &   & \nicefrac{-7}{4} &   &   & \nicefrac{3}{4} & 1 \\
+            x_6 &                 & 1 &                  &   &   & 1               & 1 \\
+            x_2 &                 &   & 1                &   &   & 1               &   \\
+            x_8 &                 &   &                  & 1 &   & 1               &   \\
+            x_9 &                 &   &                  &   & 1 & 1               &
+        \end{array} \Longrightarrow
+        \begin{array}{c|ccccc:cc}
+            x_1 & \nicefrac{1}{4}  &   & \nicefrac{-7}{4} &   &   & \nicefrac{3}{4} & 1 \\
+            x_6 & \nicefrac{-1}{4} & 1 & \nicefrac{7}{4}  &   &   & \nicefrac{1}{4} &   \\
+            x_2 &                  &   & 1                &   &   & 1               &   \\
+            x_8 &                  &   &                  & 1 &   & 1               &   \\
+            x_9 &                  &   &                  &   & 1 & 1               &
+        \end{array}
+    \end{align*}
+    检验数
+    \begin{align*}
+        \rv_\Dcal^\top & = \cv_\Bcal^\top \Bv^{-1} \Dv - \cv_\Dcal^\top \\
+                       & =
         \begin{bmatrix}
-            x_1             & x_2 & x_3 & x_4 & x_5 & x_6             & x_7 & x_8 & x_9 \\
-            \nicefrac{3}{4} & 1   & 0   & 0   & 0   & \nicefrac{1}{4} & 0   & 1   & 1
+            40 & 0 & 42 & 0 & 0
+        \end{bmatrix}
+        \begin{bmatrix}
+            \nicefrac{1}{4}  &   & \nicefrac{-7}{4}         \\
+            \nicefrac{-1}{4} & 1 & \nicefrac{7}{4}          \\
+                             &   & 1                        \\
+                             &   &                  & 1     \\
+                             &   &                  &   & 1
+        \end{bmatrix}
+        \begin{bmatrix}
+            5 & 3 & 1     \\
+              &           \\
+              &   &   & 1 \\
+            1             \\
+              & 1         \\
+        \end{bmatrix} -
+        \begin{bmatrix}
+            25 & 12 & 0 & 0
+        \end{bmatrix}                                                 \\
+                       & =
+        \begin{bmatrix}
+            50 & 30 & 10 & -28
+        \end{bmatrix} -
+        \begin{bmatrix}
+            25 & 12 & 0 & 0
+        \end{bmatrix} =
+        \begin{bmatrix}
+            25 & 18 & 10 & -28
         \end{bmatrix}
     \end{align*}
 
-    根据检验数$\av_7$入基，计算$\min\{\nicefrac{\nicefrac{1}{4}}{\nicefrac{7}{4}}, \nicefrac{1}{1}\}$可知$\av_6$出基。做初等行变换
-    \begin{align*} \arraycolsep=3.2pt
-        \begin{array}{c|ccccccccc:c}
-                & \av_1 & \av_2 & \av_3            & \av_4            & \av_5            & \av_6 & \av_7            & \av_8 & \av_9                   \\ \hline
-            x_1 & 1     &       & \nicefrac{5}{4}  & \nicefrac{3}{4}  & \nicefrac{1}{4}  &       & \nicefrac{-7}{4} &       &       & \nicefrac{3}{4} \\
-            x_7 &       &       & \nicefrac{-5}{7} & \nicefrac{-3}{7} & \nicefrac{-1}{7} & 1     & 1                &       &       & \nicefrac{1}{7} \\
-            x_2 &       & 1     &                  &                  &                  &       & 1                &       &       & 1               \\
-            x_8 &       &       & 1                &                  &                  &       &                  & 1     &       & 1               \\
-            x_9 &       &       &                  & 1                &                  &       &                  &       & 1     & 1               \\ \hdashline
-                &       &       & 25               & 18               & 10               & 40    & -28              &       &       & 72
-        \end{array} \Longrightarrow
-        \begin{array}{c|ccccccccc:c}
-                & \av_1 & \av_2 & \av_3            & \av_4            & \av_5            & \av_6           & \av_7 & \av_8 & \av_9                   \\ \hline
-            x_1 & 1     &       &                  &                  &                  & \nicefrac{7}{4} &       &       &       & 1               \\
-            x_7 &       &       & \nicefrac{-5}{7} & \nicefrac{-3}{7} & \nicefrac{-1}{7} & 1               & 1     &       &       & \nicefrac{1}{7} \\
-            x_2 &       & 1     & \nicefrac{5}{7}  & \nicefrac{3}{7}  & \nicefrac{1}{7}  & -1              &       &       &       & \nicefrac{6}{7} \\
-            x_8 &       &       & 1                &                  &                  &                 &       & 1     &       & 1               \\
-            x_9 &       &       &                  & 1                &                  &                 &       &       & 1     & 1               \\ \hdashline
-                &       &       & 5                & 6                & 6                & 68              &       &       &       & 76
+    根据检验数$\av_7$入基，于是
+    \begin{align*}
+        \yv = \begin{bmatrix}
+                  \nicefrac{1}{4}  &   & \nicefrac{-7}{4}         \\
+                  \nicefrac{-1}{4} & 1 & \nicefrac{7}{4}          \\
+                                   &   & 1                        \\
+                                   &   &                  & 1     \\
+                                   &   &                  &   & 1
+              \end{bmatrix} \begin{bmatrix}
+                                0 \\ 0 \\ 1 \\ 0 \\ 0
+                            \end{bmatrix} = \begin{bmatrix}
+                                                \nicefrac{-7}{4} \\ \nicefrac{7}{4} \\ 1 \\ 0 \\ 0
+                                            \end{bmatrix}, \quad
+        \begin{array}{c|ccccc:cc}
+            x_1 & \nicefrac{1}{4}  &   & \nicefrac{-7}{4} &   &   & \nicefrac{3}{4} & \nicefrac{-7}{4} \\
+            x_6 & \nicefrac{-1}{4} & 1 & \nicefrac{7}{4}  &   &   & \nicefrac{1}{4} & \nicefrac{7}{4}  \\
+            x_2 &                  &   & 1                &   &   & 1               & 1                \\
+            x_8 &                  &   &                  & 1 &   & 1               &                  \\
+            x_9 &                  &   &                  &   & 1 & 1               &
         \end{array}
     \end{align*}
-    基本可行解为
+    计算$\min\{\nicefrac{\nicefrac{1}{4}}{\nicefrac{7}{4}}, \nicefrac{1}{1}\}$可知最后一列第$2$个元素为主元，做初等行变换更新修正单纯形表
     \begin{align*}
+        \begin{array}{c|ccccc:cc}
+            x_1 & \nicefrac{1}{4}  &                 & \nicefrac{-7}{4} &   &   & \nicefrac{3}{4} & \nicefrac{-7}{4} \\
+            x_7 & \nicefrac{-1}{7} & \nicefrac{4}{7} & 1                &   &   & \nicefrac{1}{7} & 1                \\
+            x_2 &                  &                 & 1                &   &   & 1               & 1                \\
+            x_8 &                  &                 &                  & 1 &   & 1               &                  \\
+            x_9 &                  &                 &                  &   & 1 & 1               &
+        \end{array} \Longrightarrow
+        \begin{array}{c|ccccc:cc}
+            x_1 &                  & 1                &   &   &   & 1                   \\
+            x_7 & \nicefrac{-1}{7} & \nicefrac{4}{7}  & 1 &   &   & \nicefrac{1}{7} & 1 \\
+            x_2 & \nicefrac{1}{7}  & \nicefrac{-4}{7} &   &   &   & \nicefrac{6}{7} &   \\
+            x_8 &                  &                  &   & 1 &   & 1               &   \\
+            x_9 &                  &                  &   &   & 1 & 1               &
+        \end{array}
+    \end{align*}
+    检验数
+    \begin{align*}
+        \rv_\Dcal^\top & = \cv_\Bcal^\top \Bv^{-1} \Dv - \cv_\Dcal^\top \\
+                       & =
         \begin{bmatrix}
+            40 & 0 & 42 & 0 & 0
+        \end{bmatrix}
+        \begin{bmatrix}
+                             & 1                            \\
+            \nicefrac{-1}{7} & \nicefrac{4}{7}  & 1         \\
+            \nicefrac{1}{7}  & \nicefrac{-4}{7}             \\
+                             &                  &   & 1     \\
+                             &                  &   &   & 1
+        \end{bmatrix}
+        \begin{bmatrix}
+            5 & 3 & 1     \\
+              &   &   & 1 \\
+              &           \\
+            1             \\
+              & 1         \\
+        \end{bmatrix} -
+        \begin{bmatrix}
+            25 & 12 & 0 & 0
+        \end{bmatrix}                                                 \\
+                       & =
+        \begin{bmatrix}
+            30 & 18 & 6 & 16
+        \end{bmatrix} -
+        \begin{bmatrix}
+            25 & 12 & 0 & 0
+        \end{bmatrix} =
+        \begin{bmatrix}
+            5 & 6 & 6 & 16
+        \end{bmatrix}
+    \end{align*}
+
+    由于检验数均非负，当前基本可行解$\begin{bmatrix}
             x_1 & x_2             & x_3 & x_4 & x_5 & x_6 & x_7             & x_8 & x_9 \\
             1   & \nicefrac{6}{7} & 0   & 0   & 0   & 0   & \nicefrac{1}{7} & 1   & 1
-        \end{bmatrix}
-    \end{align*}
-    由于检验数均非负，已达最优解。
+        \end{bmatrix}$即为最优解。
 \end{example}
 
-最后还剩问题1没有回答，前面两个例子只有$\av^\top \xv \le b$型约束，每个约束引入一个松弛变量，$\Av$中天然有一个单位阵，直接取这个单位阵作为初始基，最右的$\bv$就是基本解中基变量的取值，而我们开始假定了$\bv \ge \zerov$，因此这个基本解也是可行解，从而单纯形法可以由此迭代下去。
+\begin{example}[用修正单纯形法求最大流问题] \label{exam: flow-simplex-modified}
+
+    *********************
+
+    共有$18$个变量、$13$个等式约束，因此基变量有$13$个，非基变量有$5$个。初始不妨取$x_1$、$x_2$、$x_4$、$x_5$、$x_7$为非基变量，将基变量由$x_1$、$x_2$、$x_4$、$x_5$、$x_7$表出：
+    \begin{align*}
+        \begin{array}{rclcl}
+            x_3 = -x_1 + x_4      & \Rightarrow & x_1 + x_3 - x_4 = 0                    & \Rightarrow & -x_1 + x_4 + y_3 = 4                  \\
+            x_8 = x_4 - x_5 + x_7 & \Rightarrow & -x_4 + x_5 - x_7 + x_8 = 0             & \Rightarrow & x_4 - x_5 + x_7 + y_8 = 20            \\
+            x_6 = x_2 + x_5 - x_3 & \Rightarrow & -x_1 - x_2 + x_4 - x_5 + x_6 = 0       & \Rightarrow & x_1 + x_2 - x_4 + x_5 + y_6 = 14      \\
+            x_9 = x_6 - x_7       & \Rightarrow & -x_1 - x_2 + x_4 - x_5 + x_7 + x_9 = 0 & \Rightarrow & x_1 + x_2 - x_4 + x_5 - x_7 + y_9 = 4 \\
+        \end{array}
+    \end{align*}
+
+
+    初始单纯形表为
+    \begin{align*}
+        \begin{array}{c|cccccccccc:c}
+                      & \av_1 & \av_2 & \av_3 & \av_4 & \av_5 & \av_6 & \av_7 & \av_8 & \av_9 & \av_{10}      \\ \hline
+                      & 1     &       &       &       &       & 1     &       &       &       &          & 10 \\
+                      &       & 1     &       &       &       &       & 1     &       &       &          & 10 \\
+                      &       &       & 1     &       &       &       &       & 1     &       &          & 1  \\
+                      &       &       &       & 1     &       &       &       &       & 1     &          & 10 \\
+                      &       &       &       &       & 1     &       &       &       &       & 1        & 10 \\
+                      & 1     &       & 1     & -1    &       &       &       &       &       &          & 0  \\
+                      &       & 1     & -1    &       & -1    &       &       &       &       &          & 0  \\ \hdashline
+            -\cv^\top & -1    & -1    &       &       &       &       &       &       &       &          & 0
+        \end{array}
+    \end{align*}
+    取$\av_5$、$\av_6$、$\av_7$、$\av_8$、$\av_9$作基，修正单纯形表为
+    \begin{align*}
+        \begin{array}{c|ccccc:c}
+            x_5 & 1 &   &   &   &   & 10 \\
+            x_6 &   & 1 &   &   &   & 1  \\
+            x_7 &   &   & 1 &   &   & 1  \\
+            x_8 &   &   &   & 1 &   & 1  \\
+            x_9 &   &   &   &   & 1 & 1
+        \end{array}
+    \end{align*}
+    检验数
+    \begin{align*}
+        \rv_\Dcal^\top = \cv_\Bcal^\top \Bv^{-1} \Dv - \cv_\Dcal^\top = \zerov^\top \Bv^{-1} \Dv -
+        \begin{bmatrix}
+            40 & 42 & 25 & 12
+        \end{bmatrix} = \begin{bmatrix}
+                            -40 & -42 & -25 & -12
+                        \end{bmatrix}
+    \end{align*}
+
+    根据检验数$\av_2$入基，于是
+    \begin{align}
+        \begin{array}{rlcrl} \label{eq: flow-standard}
+            \max & x_1 + x_2              &                 & \max & x_1 + x_2               \\
+            \st  & x_1 \le 10             &                 & \st  & x_1 + x_6 = 10          \\
+                 & x_2 \le 10             &                 &      & x_2 + x_7 = 10          \\
+                 & x_3 \le 1              &                 &      & x_3 + x_8 = 1           \\
+                 & x_4 \le 10             & \Longrightarrow &      & x_4 + x_9 = 10          \\
+                 & x_5 \le 10             &                 &      & x_5 + x_{10} = 10       \\
+                 & x_1 + x_3 - x_4 = 0    &                 &      & x_1 + x_3 - x_4 = 0     \\
+                 & x_2 - x_3 - x_5 = 0    &                 &      & x_2 - x_3 - x_5 = 0     \\
+                 & x_i \ge 0, ~ i \in [5] &                 &      & x_i \ge 0, ~ i \in [10]
+        \end{array}
+    \end{align}
+\end{example}
+
+
+最后还剩问题1：如何确定初始的基和基本可行解？前面两个例子只有$\av^\top \xv \le b$型约束，每个约束引入一个松弛变量，$\Av$中天然有一个单位阵，直接取这个单位阵作为初始基，最右的$\bv$就是基本解中基变量的取值，而我们开始假定了$\bv \ge \zerov$，因此这个基本解也是可行解，从而单纯形法可以迭代下去。
 
 当存在其他类型的约束时，$\Av$中就没有现成的单位阵了，如果随便取$m$列作为基，如何确保它们线性无关？此外做初等行变换将基变成单位阵，如何确保得到的基本解是可行解？对此可采用下节的两阶段单纯形法。
 
 \section{两阶段单纯形法}
 
-针对线性规划的标准型，构造如下的辅助问题：
+针对线性规划的标准型，构造如下的辅助问题��
 \begin{align*}
     \begin{array}{rl}
         \min & \onev^\top \yv      \\
@@ -1087,94 +1251,229 @@ $\bv$和$\av_q$的线性表出系数如何得到呢？根据线性方程组理�
 根据该定理，一阶段用单纯形法求解辅助问题，得到的最优基本可行解中的$\xv$就是原问题的基本可行解。
 
 \begin{example} [用两阶段单纯形法求例\ref{exam: flow}中的最大流问题]
-    由于原问题有四个由流量守恒产生的等式约束，因此转化成式\eqref{eq: flow-standard}的标准型后，$\Av$中没有单位阵，为$13$个等式约束引入辅助标量$y_1, \ldots, y_{13}$，构造辅助问题
+    原问题有$9$个由容量限制产生的$\av^\top \xv \le b$型约束和$4$个由流量守恒产生的等式约束。转化成式\eqref{eq: flow-standard}的标准型后，$\Av$中没有单位阵，但有一个$9 \times 9$的子单位阵来自于前者，因此为后者引入辅助标量$y_1, \ldots, y_4$，注意
+    \begin{align*}
+        \argmin \{ y_1 + y_2 + y_3 + y_4 \} = \argmax \{ -y_1 - y_2 - y_3 - y_4 \}
+    \end{align*}
+    构造辅助问题：
     \begin{align*}
         \begin{array}{rlcrl}
-            \max & x_1 + x_2                 &                 & \max & -y_1 - \cdots - y_{13}             \\
-            \st  & x_1 + x_{10} = 16         &                 & \st  & x_1 + x_{10} + y_1= 16             \\
-                 & x_2 + x_{11} = 13         &                 &      & x_2 + x_{11} + y_2 = 13            \\
-                 & x_3 + x_{12} = 4          &                 &      & x_3 + x_{12} + y_3 = 4             \\
-                 & x_4 + x_{13} = 12         &                 &      & x_4 + x_{13} + y_4 = 12            \\
-                 & x_5 + x_{14} = 9          &                 &      & x_5 + x_{14} + y_5 = 9             \\
-                 & x_6 + x_{15} = 14         &                 &      & x_6 + x_{15} + y_6 = 14            \\
-                 & x_7 + x_{16} = 7          & \Longrightarrow &      & x_7 + x_{16} + y_7 = 7             \\
-                 & x_8 + x_{17} = 20         &                 &      & x_8 + x_{17} + y_8 = 20            \\
-                 & x_9 + x_{18} = 4          &                 &      & x_9 + x_{18} + y_9 = 4             \\
-                 & x_1 + x_3 - x_4 = 0       &                 &      & x_1 + x_3 - x_4 + y_{10} = 0       \\
-                 & x_2 + x_5 - x_3 - x_6 = 0 &                 &      & x_2 + x_5 - x_3 - x_6 + y_{11} = 0 \\
-                 & x_4 + x_7 - x_5 - x_8 = 0 &                 &      & x_4 + x_7 - x_5 - x_8 + y_{12} = 0 \\
-                 & x_6 - x_7 - x_9 = 0       &                 &      & x_6 - x_7 - x_9 + y_{13} = 0       \\
-                 & x_i \ge 0, ~ i \in [18]   &                 &      & x_i \ge 0, ~ i \in [18]            \\
-                 &                           &                 &      & y_j \ge 0, ~ j \in [13]
+            \max & x_1 + x_2                 &                 & \max & -y_1 - y_2 - y_3 - y_4          \\
+            \st  & x_1 \le 16                &                 & \st  & x_1 + x_{10} = 16               \\
+                 & x_2 \le 13                &                 &      & x_2 + x_{11} = 13               \\
+                 & x_3 \le 4                 &                 &      & x_3 + x_{12} = 4                \\
+                 & x_4 \le 12                &                 &      & x_4 + x_{13} = 12               \\
+                 & x_5 \le 9                 &                 &      & x_5 + x_{14} = 9                \\
+                 & x_6 \le 14                &                 &      & x_6 + x_{15} = 14               \\
+                 & x_7 \le 7                 & \Longrightarrow &      & x_7 + x_{16} = 7                \\
+                 & x_8 \le 20                &                 &      & x_8 + x_{17} = 20               \\
+                 & x_9 \le 4                 &                 &      & x_9 + x_{18} = 4                \\
+                 & x_1 + x_3 - x_4 = 0       &                 &      & x_1 + x_3 - x_4 + y_1 = 0       \\
+                 & x_2 + x_5 - x_3 - x_6 = 0 &                 &      & x_2 + x_5 - x_3 - x_6 + y_2 = 0 \\
+                 & x_4 + x_7 - x_5 - x_8 = 0 &                 &      & x_4 + x_7 - x_5 - x_8 + y_3 = 0 \\
+                 & x_6 - x_7 - x_9 = 0       &                 &      & x_6 - x_7 - x_9 + y_4 = 0       \\
+                 & x_i \ge 0, ~ i \in [9]    &                 &      & x_i \ge 0, ~ i \in [18]         \\
+                 &                           &                 &      & y_j \ge 0, ~ j \in [4]
         \end{array}
     \end{align*}
     初始单纯形表为
-    \begin{align*} \arraycolsep=2.0pt \footnotesize
-        \begin{array}{c|ccccccccccccccccccccccccccccccc:c}
-                   & \av_1 & \av_2 & \av_3 & \av_4 & \av_5 & \av_6 & \av_7 & \av_8 & \av_9 & \av_{10} & \av_{11} & \av_{12} & \av_{13} & \av_{14} & \av_{15} & \av_{16} & \av_{17} & \av_{18} & \av_{19} & \av_{20} & \av_{21} & \av_{22} & \av_{23} & \av_{24} & \av_{25} & \av_{26} & \av_{27} & \av_{28} & \av_{29} & \av_{30} & \av_{31}      \\ \hline
-            y_1    & 1     &       &       &       &       &       &       &       &       & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          &          &          &          &          & 16 \\
-            y_2    &       & 1     &       &       &       &       &       &       &       &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          &          &          &          & 13 \\
-            y_3    &       &       & 1     &       &       &       &       &       &       &          &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          &          &          & 4  \\
-            y_4    &       &       &       & 1     &       &       &       &       &       &          &          &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          &          & 12 \\
-            y_5    &       &       &       &       & 1     &       &       &       &       &          &          &          &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          & 9  \\
-            y_6    &       &       &       &       &       & 1     &       &       &       &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          & 14 \\
-            y_7    &       &       &       &       &       &       & 1     &       &       &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          & 7  \\
-            y_8    &       &       &       &       &       &       &       & 1     &       &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          & 20 \\
-            y_9    &       &       &       &       &       &       &       &       & 1     &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          & 4  \\
-            y_{10} & 1     &       & 1     & -1    &       &       &       &       &       &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          & 1        &          &          &          & 0  \\
-            y_{11} &       & 1     & -1    &       & 1     & -1    &       &       &       &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          & 1        &          &          & 0  \\
-            y_{12} &       &       &       & 1     & -1    &       & 1     & -1    &       &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          & 1        &          & 0  \\
-            y_{13} &       &       &       &       &       & 1     & -1    &       & -1    &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          & 1        & 0  \\ \hdashline
-                   &       &       &       &       &       &       &       &       &       &          &          &          &          &          &          &          &          &          & 1        & 1        & 1        & 1        & 1        & 1        & 1        & 1        & 1        & 1        & 1        & 1        & 1        & 0
+    \begin{align*} \arraycolsep=2.9pt
+        \begin{array}{c|cccccccccccccccccccccc:c}
+                   & \av_1 & \av_2 & \av_3 & \av_4 & \av_5 & \av_6 & \av_7 & \av_8 & \av_9 & \av_{10} & \av_{11} & \av_{12} & \av_{13} & \av_{14} & \av_{15} & \av_{16} & \av_{17} & \av_{18} & \av_{19} & \av_{20} & \av_{21} & \av_{22}      \\ \hline
+            x_{10} & 1     &       &       &       &       &       &       &       &       & 1        &          &          &          &          &          &          &          &          &          &          &          &          & 16 \\
+            x_{11} &       & 1     &       &       &       &       &       &       &       &          & 1        &          &          &          &          &          &          &          &          &          &          &          & 13 \\
+            x_{12} &       &       & 1     &       &       &       &       &       &       &          &          & 1        &          &          &          &          &          &          &          &          &          &          & 4  \\
+            x_{13} &       &       &       & 1     &       &       &       &       &       &          &          &          & 1        &          &          &          &          &          &          &          &          &          & 12 \\
+            x_{14} &       &       &       &       & 1     &       &       &       &       &          &          &          &          & 1        &          &          &          &          &          &          &          &          & 9  \\
+            x_{15} &       &       &       &       &       & 1     &       &       &       &          &          &          &          &          & 1        &          &          &          &          &          &          &          & 14 \\
+            x_{16} &       &       &       &       &       &       & 1     &       &       &          &          &          &          &          &          & 1        &          &          &          &          &          &          & 7  \\
+            x_{17} &       &       &       &       &       &       &       & 1     &       &          &          &          &          &          &          &          & 1        &          &          &          &          &          & 20 \\
+            x_{18} &       &       &       &       &       &       &       &       & 1     &          &          &          &          &          &          &          &          & 1        &          &          &          &          & 4  \\
+            y_1    & 1     &       & 1     & -1    &       &       &       &       &       &          &          &          &          &          &          &          &          &          & 1        &          &          &          & 0  \\
+            y_2    &       & 1     & -1    &       & 1     & -1    &       &       &       &          &          &          &          &          &          &          &          &          &          & 1        &          &          & 0  \\
+            y_3    &       &       &       & 1     & -1    &       & 1     & -1    &       &          &          &          &          &          &          &          &          &          &          &          & 1        &          & 0  \\
+            y_4    &       &       &       &       &       & 1     & -1    &       & -1    &          &          &          &          &          &          &          &          &          &          &          &          & 1        & 0  \\ \hdashline
+                   &       &       &       &       &       &       &       &       &       &          &          &          &          &          &          &          &          &          & 1        & 1        & 1        & 1        & 0
         \end{array}
     \end{align*}
-    做初等行变换更新最后一行
-    \begin{align*} \arraycolsep=2.0pt \footnotesize
-        \begin{array}{c|ccccccccccccccccccccccccccccccc:c}
-                   & \av_1 & \av_2 & \av_3 & \av_4 & \av_5 & \av_6 & \av_7 & \av_8 & \av_9 & \av_{10} & \av_{11} & \av_{12} & \av_{13} & \av_{14} & \av_{15} & \av_{16} & \av_{17} & \av_{18} & \av_{19} & \av_{20} & \av_{21} & \av_{22} & \av_{23} & \av_{24} & \av_{25} & \av_{26} & \av_{27} & \av_{28} & \av_{29} & \av_{30} & \av_{31}       \\ \hline
-            y_1    & 1     &       &       &       &       &       &       &       &       & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          &          &          &          &          & 16  \\
-            y_2    &       & 1     &       &       &       &       &       &       &       &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          &          &          &          & 13  \\
-            y_3    &       &       & 1     &       &       &       &       &       &       &          &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          &          &          & 4   \\
-            y_4    &       &       &       & 1     &       &       &       &       &       &          &          &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          &          & 12  \\
-            y_5    &       &       &       &       & 1     &       &       &       &       &          &          &          &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          & 9   \\
-            y_6    &       &       &       &       &       & 1     &       &       &       &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          & 14  \\
-            y_7    &       &       &       &       &       &       & 1     &       &       &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          & 7   \\
-            y_8    &       &       &       &       &       &       &       & 1     &       &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          & 20  \\
-            y_9    &       &       &       &       &       &       &       &       & 1     &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          & 4   \\
-            y_{10} & 1     &       & 1     & -1    &       &       &       &       &       &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          & 1        &          &          &          & 0   \\
-            y_{11} &       & 1     & -1    &       & 1     & -1    &       &       &       &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          & 1        &          &          & 0   \\
-            y_{12} &       &       &       & 1     & -1    &       & 1     & -1    &       &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          & 1        &          & 0   \\
-            y_{13} &       &       &       &       &       & 1     & -1    &       & -1    &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          & 1        & 0   \\ \hdashline
-                   & -2    & -2    & -1    & -1    & -1    & -1    & -1    &       &       & -1       & -1       & -1       & -1       & -1       & -1       & -1       & -1       & -1       &          &          &          &          &          &          &          &          &          &          &          &          &          & -99
+    取后$13$列作基，修正单纯形表为
+    \begin{align*}
+        \begin{array}{c|ccccccccccccc:c}
+            x_{10} & 1 &   &   &   &   &   &   &   &   &   &   &   &   & 16 \\
+            x_{11} &   & 1 &   &   &   &   &   &   &   &   &   &   &   & 13 \\
+            x_{12} &   &   & 1 &   &   &   &   &   &   &   &   &   &   & 4  \\
+            x_{13} &   &   &   & 1 &   &   &   &   &   &   &   &   &   & 12 \\
+            x_{14} &   &   &   &   & 1 &   &   &   &   &   &   &   &   & 9  \\
+            x_{15} &   &   &   &   &   & 1 &   &   &   &   &   &   &   & 14 \\
+            x_{16} &   &   &   &   &   &   & 1 &   &   &   &   &   &   & 7  \\
+            x_{17} &   &   &   &   &   &   &   & 1 &   &   &   &   &   & 20 \\
+            x_{18} &   &   &   &   &   &   &   &   & 1 &   &   &   &   & 4  \\
+            y_1    &   &   &   &   &   &   &   &   &   & 1 &   &   &   & 0  \\
+            y_2    &   &   &   &   &   &   &   &   &   &   & 1 &   &   & 0  \\
+            y_3    &   &   &   &   &   &   &   &   &   &   &   & 1 &   & 0  \\
+            y_4    &   &   &   &   &   &   &   &   &   &   &   &   & 1 & 0  \\
         \end{array}
     \end{align*}
-    基本可行解为
-    \begin{align*} \arraycolsep=2.0pt \small
-        \left[
-            \begin{array}{ccccccccccccccccccccccccccccccc}
-                x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & x_9 & x_{10} & x_{11} & x_{12} & x_{13} & x_{14} & x_{15} & x_{16} & x_{17} & x_{18} & y_1 & y_2 & y_3 & y_4 & y_5 & y_6 & y_7 & y_8 & y_9 & y_{10} & y_{11} & y_{12} & y_{13} \\
-                0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0      & 0      & 0      & 0      & 0      & 0      & 0      & 0      & 0      & 16  & 13  & 4   & 12  & 9   & 14  & 7   & 20  & 4   & 0      & 0      & 0      & 0
-            \end{array} \right]
+    检验数
+    \begin{align*}
+        \rv_\Dcal^\top & = \cv_\Bcal^\top \Bv^{-1} \Dv - \cv_\Dcal^\top \\
+                       & = \begin{bmatrix}
+                               \zerov_9^\top & -1 & -1 & -1 & -1
+                           \end{bmatrix} \Bv^{-1} \Dv - \zerov^\top     \\
+                       & = \begin{bmatrix}
+                               -1 & -1 & 0 & 0 & 0 & 0 & 0 & 1 & 1
+                           \end{bmatrix}
     \end{align*}
 
-    根据检验数$\av_1$入基，计算$\min\{\nicefrac{16}{1}, \nicefrac{0}{1}\}$可知$\av_{28}$出基。做初等行变换
-    \begin{align*} \arraycolsep=2.0pt \footnotesize
-        \begin{array}{c|ccccccccccccccccccccccccccccccc:c}
-                   & \av_1 & \av_2 & \av_3 & \av_4 & \av_5 & \av_6 & \av_7 & \av_8 & \av_9 & \av_{10} & \av_{11} & \av_{12} & \av_{13} & \av_{14} & \av_{15} & \av_{16} & \av_{17} & \av_{18} & \av_{19} & \av_{20} & \av_{21} & \av_{22} & \av_{23} & \av_{24} & \av_{25} & \av_{26} & \av_{27} & \av_{28} & \av_{29} & \av_{30} & \av_{31}       \\ \hline
-            y_1    & 1     &       &       &       &       &       &       &       &       & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          &          &          &          &          & 16  \\
-            y_2    &       & 1     &       &       &       &       &       &       &       &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          &          &          &          & 13  \\
-            y_3    &       &       & 1     &       &       &       &       &       &       &          &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          &          &          & 4   \\
-            y_4    &       &       &       & 1     &       &       &       &       &       &          &          &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          &          & 12  \\
-            y_5    &       &       &       &       & 1     &       &       &       &       &          &          &          &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          & 9   \\
-            y_6    &       &       &       &       &       & 1     &       &       &       &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          & 14  \\
-            y_7    &       &       &       &       &       &       & 1     &       &       &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          & 7   \\
-            y_8    &       &       &       &       &       &       &       & 1     &       &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          & 20  \\
-            y_9    &       &       &       &       &       &       &       &       & 1     &          &          &          &          &          &          &          &          & 1        &          &          &          &          &          &          &          &          & 1        &          &          &          &          & 4   \\
-            y_{10} & 1     &       & 1     & -1    &       &       &       &       &       &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          & 1        &          &          &          & 0   \\
-            y_{11} &       & 1     & -1    &       & 1     & -1    &       &       &       &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          & 1        &          &          & 0   \\
-            y_{12} &       &       &       & 1     & -1    &       & 1     & -1    &       &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          & 1        &          & 0   \\
-            y_{13} &       &       &       &       &       & 1     & -1    &       & -1    &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          &          & 1        & 0   \\ \hdashline
-                   & -2    & -2    & -1    & -1    & -1    & -1    & -1    &       &       & -1       & -1       & -1       & -1       & -1       & -1       & -1       & -1       & -1       &          &          &          &          &          &          &          &          &          &          &          &          &          & -99
+    根据检验数$\av_1$入基，于是
+    \begin{align*}
+        \yv = \Bv^{-1} \av_1 = \begin{bmatrix}
+                                   1 \\ 0 \\ 0\\ 0 \\ 0\\ 0 \\ 0\\ 0 \\ 0 \\1 \\ 0 \\ 0 \\ 0
+                               \end{bmatrix}, \quad
+        \begin{array}{c|ccccccccccccc:cc}
+            x_{10} & 1 &   &   &   &   &   &   &   &   &   &   &   &   & 16 & 1 \\
+            x_{11} &   & 1 &   &   &   &   &   &   &   &   &   &   &   & 13 &   \\
+            x_{12} &   &   & 1 &   &   &   &   &   &   &   &   &   &   & 4  &   \\
+            x_{13} &   &   &   & 1 &   &   &   &   &   &   &   &   &   & 12 &   \\
+            x_{14} &   &   &   &   & 1 &   &   &   &   &   &   &   &   & 9  &   \\
+            x_{15} &   &   &   &   &   & 1 &   &   &   &   &   &   &   & 14 &   \\
+            x_{16} &   &   &   &   &   &   & 1 &   &   &   &   &   &   & 7  &   \\
+            x_{17} &   &   &   &   &   &   &   & 1 &   &   &   &   &   & 20 &   \\
+            x_{18} &   &   &   &   &   &   &   &   & 1 &   &   &   &   & 4  &   \\
+            y_1    &   &   &   &   &   &   &   &   &   & 1 &   &   &   & 0  & 1 \\
+            y_2    &   &   &   &   &   &   &   &   &   &   & 1 &   &   & 0  &   \\
+            y_3    &   &   &   &   &   &   &   &   &   &   &   & 1 &   & 0  &   \\
+            y_4    &   &   &   &   &   &   &   &   &   &   &   &   & 1 & 0  &   \\
+        \end{array}
+    \end{align*}
+    计算$\min\{\nicefrac{16}{1}, \nicefrac{0}{1}\}$可知最后一列第$10$个元素为主元，做初等行变换更新修正单纯形表
+    \begin{align*}
+        \begin{array}{c|ccccccccccccc:cc}
+            x_{10} & 1 &   &   &   &   &   &   &   &   & -1 &   &   &   & 16 &   \\
+            x_{11} &   & 1 &   &   &   &   &   &   &   &    &   &   &   & 13 &   \\
+            x_{12} &   &   & 1 &   &   &   &   &   &   &    &   &   &   & 4  &   \\
+            x_{13} &   &   &   & 1 &   &   &   &   &   &    &   &   &   & 12 &   \\
+            x_{14} &   &   &   &   & 1 &   &   &   &   &    &   &   &   & 9  &   \\
+            x_{15} &   &   &   &   &   & 1 &   &   &   &    &   &   &   & 14 &   \\
+            x_{16} &   &   &   &   &   &   & 1 &   &   &    &   &   &   & 7  &   \\
+            x_{17} &   &   &   &   &   &   &   & 1 &   &    &   &   &   & 20 &   \\
+            x_{18} &   &   &   &   &   &   &   &   & 1 &    &   &   &   & 4  &   \\
+            x_1    &   &   &   &   &   &   &   &   &   & 1  &   &   &   & 0  & 1 \\
+            y_2    &   &   &   &   &   &   &   &   &   &    & 1 &   &   & 0  &   \\
+            y_3    &   &   &   &   &   &   &   &   &   &    &   & 1 &   & 0  &   \\
+            y_4    &   &   &   &   &   &   &   &   &   &    &   &   & 1 & 0  &   \\
+        \end{array}
+    \end{align*}
+    检验数
+    \begin{align*}
+        \rv_\Dcal^\top & = \cv_\Bcal^\top \Bv^{-1} \Dv - \cv_\Dcal^\top                   \\
+                       & = \begin{bmatrix}
+                               \zerov_{10}^\top & -1 & -1 & -1
+                           \end{bmatrix} \Bv^{-1} \Dv - \begin{bmatrix}
+                                                            0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1
+                                                        \end{bmatrix} \\
+                       & = \begin{bmatrix}
+                               -1 & 1 & -1 & 0 & 0 & 0 & 1 & 1 & -1
+                           \end{bmatrix}
+    \end{align*}
+
+    根据检验数$\av_2$入基，于是
+    \begin{align*}
+        \yv = \Bv^{-1} \av_2 = \begin{bmatrix}
+                                   0 \\ 1 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 1 \\ 0 \\ 0
+                               \end{bmatrix}, \quad
+        \begin{array}{c|ccccccccccccc:cc}
+            x_{10} & 1 &   &   &   &   &   &   &   &   & -1 &   &   &   & 16 &   \\
+            x_{11} &   & 1 &   &   &   &   &   &   &   &    &   &   &   & 13 & 1 \\
+            x_{12} &   &   & 1 &   &   &   &   &   &   &    &   &   &   & 4  &   \\
+            x_{13} &   &   &   & 1 &   &   &   &   &   &    &   &   &   & 12 &   \\
+            x_{14} &   &   &   &   & 1 &   &   &   &   &    &   &   &   & 9  &   \\
+            x_{15} &   &   &   &   &   & 1 &   &   &   &    &   &   &   & 14 &   \\
+            x_{16} &   &   &   &   &   &   & 1 &   &   &    &   &   &   & 7  &   \\
+            x_{17} &   &   &   &   &   &   &   & 1 &   &    &   &   &   & 20 &   \\
+            x_{18} &   &   &   &   &   &   &   &   & 1 &    &   &   &   & 4  &   \\
+            x_1    &   &   &   &   &   &   &   &   &   & 1  &   &   &   & 0  &   \\
+            y_2    &   &   &   &   &   &   &   &   &   &    & 1 &   &   & 0  & 1 \\
+            y_3    &   &   &   &   &   &   &   &   &   &    &   & 1 &   & 0  &   \\
+            y_4    &   &   &   &   &   &   &   &   &   &    &   &   & 1 & 0  &   \\
+        \end{array}
+    \end{align*}
+    计算$\min\{\nicefrac{13}{1}, \nicefrac{0}{1}\}$可知最后一列第$11$个元素为主元，做初等行变换更新修正单纯形表
+    \begin{align*}
+        \yv = \Bv^{-1} \av_2 = \begin{bmatrix}
+                                   0 \\ 1 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 1 \\ 0 \\ 0
+                               \end{bmatrix}, \quad
+        \begin{array}{c|ccccccccccccc:cc}
+            x_{10} & 1 &   &   &   &   &   &   &   &   & -1 &    &   &   & 16 &   \\
+            x_{11} &   & 1 &   &   &   &   &   &   &   &    & -1 &   &   & 13 &   \\
+            x_{12} &   &   & 1 &   &   &   &   &   &   &    &    &   &   & 4  &   \\
+            x_{13} &   &   &   & 1 &   &   &   &   &   &    &    &   &   & 12 &   \\
+            x_{14} &   &   &   &   & 1 &   &   &   &   &    &    &   &   & 9  &   \\
+            x_{15} &   &   &   &   &   & 1 &   &   &   &    &    &   &   & 14 &   \\
+            x_{16} &   &   &   &   &   &   & 1 &   &   &    &    &   &   & 7  &   \\
+            x_{17} &   &   &   &   &   &   &   & 1 &   &    &    &   &   & 20 &   \\
+            x_{18} &   &   &   &   &   &   &   &   & 1 &    &    &   &   & 4  &   \\
+            x_1    &   &   &   &   &   &   &   &   &   & 1  &    &   &   & 0  &   \\
+            x_2    &   &   &   &   &   &   &   &   &   &    & 1  &   &   & 0  & 1 \\
+            y_3    &   &   &   &   &   &   &   &   &   &    &    & 1 &   & 0  &   \\
+            y_4    &   &   &   &   &   &   &   &   &   &    &    &   & 1 & 0  &   \\
+        \end{array}
+    \end{align*}
+    检验数
+    \begin{align*}
+        \rv_\Dcal^\top & = \cv_\Bcal^\top \Bv^{-1} \Dv - \cv_\Dcal^\top                   \\
+                       & = \begin{bmatrix}
+                               \zerov_{11}^\top & -1 & -1
+                           \end{bmatrix} \Bv^{-1} \Dv - \begin{bmatrix}
+                                                            0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1
+                                                        \end{bmatrix} \\
+                       & = \begin{bmatrix}
+                               0 & -1 & 1 & -1 & 0 & 1 & 1 & -1 & -1
+                           \end{bmatrix}
+    \end{align*}
+
+    根据检验数$\av_4$入基，于是
+    \begin{align*}
+        \yv = \Bv^{-1} \av_4 = \begin{bmatrix}
+                                   1 \\ 0 \\ 0 \\ 1 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ -1 \\ 0 \\ 1 \\ 0
+                               \end{bmatrix}, \quad
+        \begin{array}{c|ccccccccccccc:cc}
+            x_{10} & 1 &   &   &   &   &   &   &   &   & -1 &    &   &   & 16 & 1  \\
+            x_{11} &   & 1 &   &   &   &   &   &   &   &    & -1 &   &   & 13 &    \\
+            x_{12} &   &   & 1 &   &   &   &   &   &   &    &    &   &   & 4  &    \\
+            x_{13} &   &   &   & 1 &   &   &   &   &   &    &    &   &   & 12 & 1  \\
+            x_{14} &   &   &   &   & 1 &   &   &   &   &    &    &   &   & 9  &    \\
+            x_{15} &   &   &   &   &   & 1 &   &   &   &    &    &   &   & 14 &    \\
+            x_{16} &   &   &   &   &   &   & 1 &   &   &    &    &   &   & 7  &    \\
+            x_{17} &   &   &   &   &   &   &   & 1 &   &    &    &   &   & 20 &    \\
+            x_{18} &   &   &   &   &   &   &   &   & 1 &    &    &   &   & 4  &    \\
+            x_1    &   &   &   &   &   &   &   &   &   & 1  &    &   &   & 0  & -1 \\
+            x_2    &   &   &   &   &   &   &   &   &   &    & 1  &   &   & 0  &    \\
+            y_3    &   &   &   &   &   &   &   &   &   &    &    & 1 &   & 0  & 1  \\
+            y_4    &   &   &   &   &   &   &   &   &   &    &    &   & 1 & 0  &    \\
+        \end{array}
+    \end{align*}
+    计算$\min\{\nicefrac{13}{1}, \nicefrac{0}{1}\}$可知最后一列第$11$个元素为主元，做初等行变换更新修正单纯形表
+
+
+    做初等行变换更新最后一行
+    \begin{align*} \arraycolsep=2.9pt
+        \begin{array}{c|cccccccccccccccccccccc:c}
+                   & \av_1 & \av_2 & \av_3 & \av_4 & \av_5 & \av_6 & \av_7 & \av_8 & \av_9 & \av_{10} & \av_{11} & \av_{12} & \av_{13} & \av_{14} & \av_{15} & \av_{16} & \av_{17} & \av_{18} & \av_{19} & \av_{20} & \av_{21} & \av_{22}      \\ \hline
+            x_{10} & 1     &       &       &       &       &       &       &       &       & 1        &          &          &          &          &          &          &          &          &          &          &          &          & 16 \\
+            x_{11} &       & 1     &       &       &       &       &       &       &       &          & 1        &          &          &          &          &          &          &          &          &          &          &          & 13 \\
+            x_{12} &       &       & 1     &       &       &       &       &       &       &          &          & 1        &          &          &          &          &          &          &          &          &          &          & 4  \\
+            x_{13} &       &       &       & 1     &       &       &       &       &       &          &          &          & 1        &          &          &          &          &          &          &          &          &          & 12 \\
+            x_{14} &       &       &       &       & 1     &       &       &       &       &          &          &          &          & 1        &          &          &          &          &          &          &          &          & 9  \\
+            x_{15} &       &       &       &       &       & 1     &       &       &       &          &          &          &          &          & 1        &          &          &          &          &          &          &          & 14 \\
+            x_{16} &       &       &       &       &       &       & 1     &       &       &          &          &          &          &          &          & 1        &          &          &          &          &          &          & 7  \\
+            x_{17} &       &       &       &       &       &       &       & 1     &       &          &          &          &          &          &          &          & 1        &          &          &          &          &          & 20 \\
+            x_{18} &       &       &       &       &       &       &       &       & 1     &          &          &          &          &          &          &          &          & 1        &          &          &          &          & 4  \\
+            y_1    & 1     &       & 1     & -1    &       &       &       &       &       &          &          &          &          &          &          &          &          &          & 1        &          &          &          & 0  \\
+            y_2    &       & 1     & -1    &       & 1     & -1    &       &       &       &          &          &          &          &          &          &          &          &          &          & 1        &          &          & 0  \\
+            y_3    &       &       &       & 1     & -1    &       & 1     & -1    &       &          &          &          &          &          &          &          &          &          &          &          & 1        &          & 0  \\
+            y_4    &       &       &       &       &       & 1     & -1    &       & -1    &          &          &          &          &          &          &          &          &          &          &          &          & 1        & 0  \\ \hdashline
+                   &       &       &       &       &       &       &       &       &       &          &          &          &          &          &          &          &          &          & 1        & 1        & 1        & 1        & 0
         \end{array}
     \end{align*}
 \end{example}
