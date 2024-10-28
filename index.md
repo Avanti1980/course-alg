@@ -9,12 +9,12 @@
 
 授课：张腾 _tengzhang@hust.edu.cn_
 
-地点：西十二楼 S308
+地点：西十二楼 N504
 
 32 学时
 
-- 周二 3 ~ 4 节课 (第 9 ~ 10 周)，周一 3 ~ 4 节课 (第 11 ~ 16 周)
-- 周四 3 ~ 4 节课 (第 9 ~ 16 周)
+- 第 9 ~ 12 周：周一 7 ~ 8 节课、周三 7 ~ 8 节课
+- 第 13 ~ 16 周：周一 3 ~ 4 节课、周三 5 ~ 6 节课
 
 <div class="top-2"></div>
 
@@ -24,22 +24,22 @@
 
 #### 课件
 
-建议用 Firefox 在线浏览，Space 翻页，Esc 导航，可能需要{==科学上网==}
+在线浏览，Space 翻页，Esc 导航，可能需要{==科学上网==}
 
 <div class="threelines outline head-highlight">
 
-|        |                讲义                |                                                                     补充                                                                      |
-| :----: | :--------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: | --- |
-| 第一讲 |       [绪论](slides/01.html)       |                                                                       -                                                                       |
-| 第二讲 |    [函数的增长](slides/02.html)    |                                                                       -                                                                       |
-| 第三讲 |      [分治法](slides/03.html)      |                                             [Strassen 矩阵乘法加速](notes/Strassen/Strassen.pdf)                                              |
-| 第四讲 |     [动态规划](slides/04.html)     |                                                                       -                                                                       |
-| 第五讲 |      [贪心法](slides/05.html)      |                                                                       -                                                                       |
-| 第六讲 |   [单源最短路径](slides/06.html)   |                                                                       -                                                                       |
-| 第七讲 | [全结点对最短路径](slides/07.html) |                                                                       -                                                                       |
-| 第八讲 |      [回溯法](slides/08.html)      |                                                                       -                                                                       |
-| 第九讲 |    [分支限界法](slides/09.html)    |                                                                       -                                                                       |
-| 第十讲 |     [迭代改进](slides/10.html)     | [Ford-Fulkerson 异常情况](notes/Max-Flow/maximum-flow-supp.pdf)、[线性规划](notes/Max-Flow/linear-programming.pdf)、[匹配、覆盖、流、割](notes/MCFC/MCFC.pdf) | 
+|        |                讲义                |                                                                             补充                                                                              |
+| :----: | :--------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| 第一讲 |       [绪论](slides/01.html)       |                                                                               -                                                                               |
+| 第二讲 |    [函数的增长](slides/02.html)    |                                                                               -                                                                               |
+| 第三讲 |      [分治法](slides/03.html)      |                                                     [Strassen 矩阵乘法加速](notes/Strassen/Strassen.pdf)                                                      |
+| 第四讲 |     [动态规划](slides/04.html)     |                                                                               -                                                                               |
+| 第五讲 |      [贪心法](slides/05.html)      |                                                                               -                                                                               |
+| 第六讲 |   [单源最短路径](slides/06.html)   |                                                                               -                                                                               |
+| 第七讲 | [全结点对最短路径](slides/07.html) |                                                                               -                                                                               |
+| 第八讲 |      [回溯法](slides/08.html)      |                                                                               -                                                                               |
+| 第九讲 |    [分支限界法](slides/09.html)    |                                                                               -                                                                               |
+| 第十讲 |     [迭代改进](slides/10.html)     | [Ford-Fulkerson 异常情况](notes/Max-Flow/maximum-flow-supp.pdf)、[线性规划](notes/Max-Flow/linear-programming.pdf)、[匹配、覆盖、流、割](notes/MCFC/MCFC.pdf) |
 
 </div>
 
