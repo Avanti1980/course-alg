@@ -1,7 +1,7 @@
 @import "css/theme/solarized.css"
 @import "css/index.css"
 
-## 算法设计与分析 <span style="font-weight:900">2023</span> 秋
+## 算法设计与分析 <span style="font-weight:900">2024</span> 秋
 
 ---
 
