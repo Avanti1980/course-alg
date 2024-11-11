@@ -3301,7 +3301,7 @@ $$
 $$
 \begin{align*}
     \quad T(n) &amp; = \Theta \left( n \left(  1 + \int_1^n \frac{x}{x^2 \lg x} \diff x \right) \right) = \Theta \left( n \left(  1 + \int_1^n \frac{1}{x \lg x} \diff x \right) \right) \\[2px]
-    &amp; = \Theta \left( n \left(  1 + \int_1^n \frac{1}{\lg x} \diff \lg x \right) \right) = \Theta ( n (  1 + \ln \ln n ) ) \\[2px]
+    &amp; = \Theta \left( n \left(  1 + \int_1^n \frac{\ln 2}{\ln x} \diff \ln x \right) \right) = \Theta ( n (  1 + \ln \ln n ) ) \\[2px]
     &amp; = \Theta ( n \lg \lg n )
 \end{align*}
 $$
