@@ -16,7 +16,9 @@ def fibo_dp_memoized_aux(n, F):
     else:
         if F[n] >= 0:
             return F[n]
-        return fibo_dp_memoized_aux(n - 1, F) + fibo_dp_memoized_aux(n - 2, F)
+        else:
+            F[n] = fibo_dp_memoized_aux(n - 1, F) + fibo_dp_memoized_aux(n - 2, F)
+            return F[n]
 
 
 def fibo_dp_iter(n):
