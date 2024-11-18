@@ -51,7 +51,7 @@ def fibo_rec_faster(n):
         return prev, curr
 
 
-n = 30
+n = 32
 print(fibo_rec(n))
 print(fibo_dp_memoized(n))
 print(fibo_dp_iter(n))

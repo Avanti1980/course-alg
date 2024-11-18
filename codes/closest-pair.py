@@ -11,29 +11,29 @@ def dist(u, v):  # 计算距离
 def closest_pair(low, high, sort_y):
     if high - low <= 2:  # 如果不超过3个点 不再递归 直接求最小距离
         closest = float("inf")
-        for i in range(low, high+1):
-            for j in range(i+1, high+1):
+        for i in range(low, high + 1):
+            for j in range(i + 1, high + 1):
                 closest = min(closest, dist(v[i], v[j]))
         return closest
 
-    mid = int((low+high)/2)
-    xmid = (v[mid, 0] + v[mid+1, 0]) / 2  # 中线位置
+    mid = int((low + high) / 2)
+    xmid = (v[mid, 0] + v[mid + 1, 0]) / 2  # 中线位置
 
     index = [i for i in sort_y if low <= i and i <= mid]  # 左半元素按y升序后的索引
     dl = closest_pair(low, mid, index)
 
-    index = [i for i in sort_y if mid+1 <= i and i <= high]  # 右半元素按y升序后的索引
-    dr = closest_pair(mid+1, high, index)
+    index = [i for i in sort_y if mid + 1 <= i and i <= high]  # 右半元素按y升序后的索引
+    dr = closest_pair(mid + 1, high, index)
 
     d = min(dl, dr)
 
-    for i in range(len(sort_y)-1, -1, -1):  # 删除所有不在中间带状区域中的点
+    for i in range(len(sort_y) - 1, -1, -1):  # 删除所有不在中间带状区域中的点
         if v[sort_y[i], 0] - xmid >= d or v[sort_y[i], 0] - xmid <= -d:
             sort_y = np.delete(sort_y, i)
 
     closest = float("inf")
     l = len(sort_y)
-    for i in range(l-1):  # 计算带状区域中的最近点对
+    for i in range(l - 1):  # 计算带状区域中的最近点对
         j = i + 1
         while j < l and v[sort_y[j], 1] - v[sort_y[i], 1] <= d:  # 最多考虑7个点
             closest = min(closest, dist(v[sort_y[i]], v[sort_y[j]]))
@@ -49,13 +49,13 @@ time_cost = np.zeros([2, trial])
 
 for t in range(trial):
 
-    n = 2**(t+4)
+    n = 2**(t + 4)
     v = np.random.rand(n, 2)     # 随机生成n个点
 
     start = time.time()
     closest = float("inf")
     for i in range(n):
-        for j in range(i+1, n):
+        for j in range(i + 1, n):
             closest = min(closest, dist(v[i], v[j]))  # 暴力穷举
     time_cost[0, t] = time.time() - start
     print(closest)
@@ -63,7 +63,7 @@ for t in range(trial):
     start = time.time()
     v = v[v[:, 0].argsort()]    # 对v按x升序
     sort_y = v[:, 1].argsort()  # 对v按y升序 sort_y记录升序后元素在原来v中的索引
-    closest = closest_pair(0, n-1, sort_y)
+    closest = closest_pair(0, n - 1, sort_y)
     time_cost[1, t] = time.time() - start
     print(closest)
 
@@ -71,7 +71,7 @@ np.set_printoptions(precision=6, suppress=True)
 print(time_cost)
 
 with plt.style.context('Solarize_Light2'):
-    x = [v for v in range(4, 4+trial)]
+    x = [v for v in range(4, 4 + trial)]
     plt.plot(x, np.log2(time_cost[0, :]), label="BF")  # 对数坐标轴
     plt.plot(x, np.log2(time_cost[1, :]), label="DC")  # 对数坐标轴
     plt.xlabel('n: power of 2')

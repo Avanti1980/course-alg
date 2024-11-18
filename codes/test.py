@@ -1,15 +1,15 @@
-from queue import Queue 
+import numpy as np
 
-q = Queue(maxsize=0)
 
-#写入队列数据
-q.put(0)
-q.put(1)
-q.put(2)
+def modify(c):
+    c[1, 1] = 1
 
-#输出当前队列所有数据
-print(q.queue)
-#删除队列数据，并返回该数据
-q.get()
-#输也所有队列数据
-print(q.queue)
+
+a = np.zeros((4, 4))
+b = a[1:3, 1:3]
+
+print(a)
+modify(b)
+print(a)
+
+

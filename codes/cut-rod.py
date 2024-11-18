@@ -44,8 +44,8 @@ def cut_rod_dp_bottom_up(n, p):
     r = [0] * (n + 1)
     for j in range(1, n + 1):  # 依次求解 r[1], r[2], ...
         v = -float("inf")
-        for i in range(1, min(j + 1, len(p))):  # 求解 r[j] 时遍历 i = 1, 2, ..., j
-            v = max(v, p[i] + r[j - i])  # 此时 r[1], r[2], ..., r[j-1] 均已求好
+        for i in range(1, min(j + 1, len(p))):  # 求解 r[j] 时遍历 i = 1, 2, ...
+            v = max(v, p[i] + r[j - i])  # 此时 r[j-1], r[j-2], ... 均已求好
         r[j] = v
     return r[n]
 
