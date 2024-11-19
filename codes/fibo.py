@@ -1,4 +1,4 @@
-def fibo_rec(n):  # 分治法
+def fibo_rec(n):
     if n <= 1:
         return n
     else:  # 递归求解两个子问题
