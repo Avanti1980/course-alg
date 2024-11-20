@@ -51,7 +51,8 @@ def cut_rod_dp_bottom_up(n, p):
 
 
 def cut_rod_dp_bottom_up_print_sol(n, p):
-    r, s = [0] * (n + 1), [0] * (n + 1)  # s[i]是长度为i的钢条的第一刀最优切割位置
+    r = [0] * (n + 1)
+    s = [0] * (n + 1)  # s[i]是长度为i的钢条的第一刀最优切割位置
     for j in range(1, n + 1):
         v = -float("inf")
         for i in range(1, min(j + 1, len(p))):
