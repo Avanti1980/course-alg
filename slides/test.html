@@ -59,7 +59,7 @@
     <div class="reveal">
       <div class="slides">
         <section><section data-notes lineno="25" class="slide " data-line="25" data-h="0" data-v="0">
-<h5 class="mume-header" id="%E7%A3%81%E5%B8%A6%E4%BF%9D%E5%AD%98%E6%96%87%E4%BB%B6">&#x78C1;&#x5E26;&#x4FDD;&#x5B58;&#x6587;&#x4EF6;</h5>
+<h5 class="mume-header" id="%E7%A3%81%E5%B8%A6%E5%AD%98%E5%82%A8">&#x78C1;&#x5E26;&#x5B58;&#x50A8;</h5>
 
 <hr>
 <p>&#x78C1;&#x5E26;&#x7279;&#x70B9;&#xFF1A;&#x8BFB;&#x53D6;&#x6587;&#x4EF6;&#x65F6;&#x9700;&#x5C06;&#x76EE;&#x6807;&#x6587;&#x4EF6;&#x4E4B;&#x524D;&#x7684;&#x6587;&#x4EF6;&#x987A;&#x5E8F;&#x8BFB;&#x4E00;&#x904D;</p>
@@ -67,40 +67,72 @@
     <img src="../img/tape.jpg" width="640px" height="360px">
 </div>
 </section><section vertical="true" data-notes lineno="37" class="slide " data-line="37" data-h="0" data-v="1">
-<h5 class="mume-header" id="%E7%A3%81%E5%B8%A6%E4%BF%9D%E5%AD%98%E6%96%87%E4%BB%B6-1">&#x78C1;&#x5E26;&#x4FDD;&#x5B58;&#x6587;&#x4EF6;</h5>
+<h5 class="mume-header" id="%E7%A3%81%E5%B8%A6%E5%AD%98%E5%82%A8-1">&#x78C1;&#x5E26;&#x5B58;&#x50A8;</h5>
 
 <hr>
-<p>&#x8BBE;&#x78C1;&#x5E26;&#x4E0A;&#x5B58;&#x50A8;&#x7740;<span class="mathjax-exps">$n$</span>&#x4E2A;&#x6587;&#x4EF6;&#xFF0C;&#x957F;&#x5EA6;&#x5206;&#x522B;&#x4E3A;<span class="mathjax-exps">$L[1, \ldots, n]$</span>&#xFF0C;&#x8BFB;&#x53D6;&#x7B2C;<span class="mathjax-exps">$k$</span>&#x4E2A;&#x6587;&#x4EF6;&#x7684;&#x5F00;&#x9500;&#x4E3A;</p>
+<p>&#x8BBE;&#x78C1;&#x5E26;&#x4E0A;&#x5B58;&#x50A8;&#x7740;<span class="mathjax-exps">$n$</span>&#x4E2A;&#x6587;&#x4EF6;&#xFF0C;&#x957F;&#x5EA6;&#x5206;&#x522B;&#x4E3A;<span class="mathjax-exps">$L[1, \ldots, n]$</span>&#xFF0C;&#x8BFB;&#x53D6;&#x7B2C;<span class="mathjax-exps">$k$</span>&#x4E2A;&#x6587;&#x4EF6;&#x7684;&#x5F00;&#x9500;&#x4E3A;<span class="mathjax-exps">$c(k) = \sum_{i=1}^k L[i]$</span></p>
+<div class="top2"></div>
+<p class="fragment" data-fragment-index="1">&#x968F;&#x673A;&#x8BFB;&#x53D6;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x7684;&#x671F;&#x671B;&#x5F00;&#x9500;&#x4E3A;$\Ebb[c] = \frac{1}{n} \sum_{k=1}^n \sum_{i=1}^k L[i]$</p>
+<div class="top2"></div>
+<p class="fragment" data-fragment-index="2">&#x8BBE;$\pi$&#x662F;&#x4E00;&#x4E2A;&#x6392;&#x5217;&#xFF0C;$\pi(i)$&#x8868;&#x793A;&#x78C1;&#x5E26;&#x4E0A;&#x7B2C;$i$&#x4E2A;&#x6587;&#x4EF6;&#x7684;&#x5B9E;&#x9645;&#x6587;&#x4EF6;&#x7F16;&#x53F7;&#xFF0C;&#x968F;&#x673A;&#x8BFB;&#x53D6;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x7684;&#x671F;&#x671B;&#x5F00;&#x9500;&#x4E3A;$\Ebb[c(\pi)] = \frac{1}{n} \sum_{k=1}^n \sum_{i=1}^k L[\pi(i)]$</p>
+<div class="top2"></div>
+<p class="fragment" data-fragment-index="3">&#x95EE;&#x9898;&#xFF1A;&#x6587;&#x4EF6;&#x5982;&#x4F55;&#x6392;&#x5217;&#x53EF;&#x4F7F;&#x671F;&#x671B;&#x5F00;&#x9500;&#x6700;&#x4F4E;&#xFF1F;</p>
+</section><section vertical="true" data-notes lineno="57" class="slide " data-line="57" data-h="0" data-v="2">
+<h5 class="mume-header" id="%E7%A3%81%E5%B8%A6%E5%AD%98%E5%82%A8-2">&#x78C1;&#x5E26;&#x5B58;&#x50A8;</h5>
+
+<hr>
+<p>&#x66B4;&#x529B;&#x7A77;&#x4E3E;&#xFF1A;<span class="mathjax-exps">$\Omega(2^n)$</span></p>
+<p>&#x52A8;&#x6001;&#x89C4;&#x5212;&#xFF1F;</p>
+<p class="fragment">&#x6700;&#x4F18;&#x5B50;&#x7ED3;&#x6784;&#x6027;&#xFF1A;&#x8BBE;$\pi(1), \ldots, \pi(n)$&#x662F;$\{ \text{&#x6587;&#x4EF6;}1,\ldots, \text{&#x6587;&#x4EF6;}n \}$&#x7684;&#x6700;&#x4F18;&#x5B58;&#x50A8;&#x987A;&#x5E8F;&#xFF0C;&#x5219;$\pi(2), \ldots, \pi(n)$&#x662F;$\{ \text{&#x6587;&#x4EF6;}1,\ldots, \text{&#x6587;&#x4EF6;}n \}\setminus \{\text{&#x6587;&#x4EF6;}\pi(1)\}$&#x7684;&#x6700;&#x4F18;&#x5B58;&#x50A8;&#x987A;&#x5E8F;</p>
+</section></section><section><section data-notes lineno="69" class="slide " data-line="69" data-h="1" data-v="0">
+<h5 class="mume-header" id="%E7%A3%81%E5%B8%A6%E5%AD%98%E5%82%A8-%E8%B4%AA%E5%BF%83">&#x78C1;&#x5E26;&#x5B58;&#x50A8; &#x8D2A;&#x5FC3;</h5>
+
+<hr>
+<p>&#x5F15;&#x7406;&#xFF1A;&#x4F7F;<span class="mathjax-exps">$\Ebb[c(\pi)]$</span>&#x6700;&#x5C0F;&#x7684;&#x6392;&#x5217;&#x5C31;&#x662F;<span class="mathjax-exps">$L[1, \ldots, n]$</span>&#x7684;&#x589E;&#x5E8F;</p>
+<p class="fragment">&#x8BC1;&#x660E;&#xFF1A;&#x5047;&#x8BBE;&#x5B58;&#x5728;$i$&#x4F7F;&#x5F97;$L[\pi(i)] \ge L[\pi(i+1)]$</p>
+<p class="fragment">&#x8BB0;$a = \pi(i)$&#x3001;$b = \pi(i+1)$&#xFF0C;&#x4EA4;&#x6362;$a$&#x3001;$b$&#x5F97;&#x5230;&#x65B0;&#x7684;&#x6392;&#x5217;$\pi&apos;$</p>
+<ul class="fragment">
+  <li>&#x5176;&#x5B83;$n-2$&#x4E2A;&#x6587;&#x4EF6;&#x7684;&#x8BFB;&#x53D6;&#x4E0D;&#x53D7;&#x5F71;&#x54CD;</li>
+  <li>&#x8BFB;&#x53D6;&#x6587;&#x4EF6;$a$&#x7684;&#x5F00;&#x9500;&#x589E;&#x52A0;$L[b]$</li>
+  <li>&#x8BFB;&#x53D6;&#x6587;&#x4EF6;$b$&#x7684;&#x5F00;&#x9500;&#x51CF;&#x5C11;$L[a]$</li>
+  <li>&#x7531;&#x4E8E;$L[a] \ge L[b]$&#xFF0C;&#x56E0;&#x6B64;$\Ebb[c(\pi&apos;)] \le \Ebb[c(\pi)]$</li>
+</ul>
+<div class="top2"></div>
+<p class="fragment">&#x7B97;&#x6CD5;&#x7684;&#x6B63;&#x786E;&#x6027;&#xFF1A;&#x5047;&#x8BBE;&#x6700;&#x4F18;&#x6392;&#x5217;$\pi^\star$&#x4E0E;&#x589E;&#x5E8F;&#x4E0D;&#x540C;&#xFF0C;&#x5219;&#x5176;&#x5FC5;&#x7136;&#x5B58;&#x5728;&#x9006;&#x5E8F;&#xFF0C;&#x4EA4;&#x6362;&#x53EF;&#x5F97;&#x65B0;&#x7684;&#x6392;&#x5217;$\pi&apos;$&#xFF0C;&#x7531;&#x5F15;&#x7406;$\Ebb[c(\pi&apos;)] \le \Ebb[c(\pi^\star)]$</p>
+</section><section vertical="true" data-notes lineno="92" class="slide " data-line="92" data-h="1" data-v="1">
+<h5 class="mume-header" id="%E7%A3%81%E5%B8%A6%E5%AD%98%E5%82%A8-%E8%B4%AA%E5%BF%83-1">&#x78C1;&#x5E26;&#x5B58;&#x50A8; &#x8D2A;&#x5FC3;</h5>
+
+<hr>
+<p>&#x5047;&#x8BBE;&#x9664;&#x957F;&#x5EA6;&#x5916;&#xFF0C;&#x8FD8;&#x6709;&#x9891;&#x7387;<span class="mathjax-exps">$F[1, \ldots, n]$</span></p>
+<p>&#x968F;&#x673A;&#x8BFB;&#x53D6;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x7684;&#x671F;&#x671B;&#x5F00;&#x9500;&#x4E3A;</p>
 <p>
 
 $$
 \begin{align*}
-    \quad c(k) = \sum_{i=1}^k L[i]
+    \quad \Ebb[c(\pi)] = \frac{1}{n} \sum_{k=1}^n \sum_{i=1}^k L[\pi(i)] F[\pi(i)]
 \end{align*}
 $$
 </p>
 
-<div class="top2"></div>
-<p class="fragment" data-fragment-index="1">&#x968F;&#x673A;&#x8BFB;&#x53D6;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x7684;&#x671F;&#x671B;&#x65F6;&#x95F4;&#x5F00;&#x9500;&#x4E3A;</p>
-<p class="fragment" data-fragment-index="1">
+</section><section vertical="true" data-notes lineno="112" class="slide " data-line="112" data-h="1" data-v="2">
+<h5 class="mume-header" id="%E7%A3%81%E5%B8%A6%E5%AD%98%E5%82%A8-%E8%B4%AA%E5%BF%83-2">&#x78C1;&#x5E26;&#x5B58;&#x50A8; &#x8D2A;&#x5FC3;</h5>
+
+<hr>
+<p>&#x5F15;&#x7406;&#xFF1A;&#x4F7F;<span class="mathjax-exps">$\Ebb[c(\pi)]$</span>&#x6700;&#x5C0F;&#x7684;&#x6392;&#x5217;&#x5C31;&#x662F;<span class="mathjax-exps">$L[\pi(i)]/F[\pi(i)]$</span>&#x7684;&#x589E;&#x5E8F;</p>
+<p class="fragment">&#x8BC1;&#x660E;&#xFF1A;&#x5047;&#x8BBE;&#x5B58;&#x5728;$i$&#x4F7F;&#x5F97;$L[\pi(i)]/F[\pi(i)] \ge L[\pi(i+1)]/F[\pi(i+1)]$</p>
+<p class="fragment">&#x8BB0;$a = \pi(i)$&#x3001;$b = \pi(i+1)$&#xFF0C;&#x4EA4;&#x6362;$a$&#x3001;$b$&#x5F97;&#x5230;&#x65B0;&#x7684;&#x6392;&#x5217;$\pi&apos;$</p>
+<ul class="fragment">
+  <li>&#x5176;&#x5B83;$n-2$&#x4E2A;&#x6587;&#x4EF6;&#x7684;&#x8BFB;&#x53D6;&#x4E0D;&#x53D7;&#x5F71;&#x54CD;</li>
+  <li>&#x8BFB;&#x53D6;&#x6587;&#x4EF6;$a$&#x7684;&#x5F00;&#x9500;&#x589E;&#x52A0;$L[b] F[a]$</li>
+  <li>&#x8BFB;&#x53D6;&#x6587;&#x4EF6;$b$&#x7684;&#x5F00;&#x9500;&#x51CF;&#x5C11;$L[a] F[b]$</li>
+</ul>
+<div class="top4"></div>
+<p class="fragment">
 
 
 $$
 \begin{align*}
-    \quad \Ebb[c] = \frac{1}{n} \sum_{k=1}^n \sum_{i=1}^k L[i]
-\end{align*}
-$$
-</p>
-
-
-<div class="top2"></div>
-<p class="fragment" data-fragment-index="1">&#x8BBE;$\pi$&#x662F;&#x4E00;&#x4E2A;&#x6392;&#x5217;&#xFF0C;$\pi(i)$&#x8868;&#x793A;&#x6587;&#x4EF6;$i$&#x5728;&#x78C1;&#x5E26;&#x4E0A;&#x7684;&#x5E8F;&#x53F7;&#xFF0C;&#x968F;&#x673A;&#x8BFB;&#x53D6;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x7684;&#x671F;&#x671B;&#x65F6;&#x95F4;&#x5F00;&#x9500;&#x4E3A;</p>
-<p class="fragment" data-fragment-index="1">
-
-
-$$
-\begin{align*}
-    \quad \Ebb[c] = \frac{1}{n} \sum_{k=1}^n \sum_{i=1}^k L[\pi(i)]
+    \quad \frac{L[a]}{F[a]} \ge \frac{L[b]}{F[b]} \Longleftrightarrow L[a] F[b] \ge L[b] F[a]
 \end{align*}
 $$
 </p>
