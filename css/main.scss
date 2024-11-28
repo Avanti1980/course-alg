@@ -144,37 +144,27 @@
 }
 
 .reveal .comments::before {
-  content:"\f086";
+  content: "\f086";
   font-family: FontAwesome;
   color: var(--solarized-yellow);
 }
 
 .reveal .book::before {
-  content:"\f02d";
+  content: "\f02d";
   font-family: FontAwesome;
   color: var(--solarized-red);
 }
 
 .reveal .conclusion::before {
-  content:"\f044";
+  content: "\f044";
   font-family: FontAwesome;
   color: var(--solarized-blue);
 }
- 
-.reveal .question1::before {
-  content:"\f059";
-  font-family: FontAwesome;
-  color: var(--solarized-yellow);
-}
 
-.reveal .question2::before {
-  content:"\f128";
-  font-family: FontAwesome;
-  color: var(--solarized-yellow);
-}
-
-.reveal .question3::before {
-  content:"\f29c";
-  font-family: FontAwesome;
-  color: var(--solarized-yellow);
+.reveal .rotate-text {
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
 }

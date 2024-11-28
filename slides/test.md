@@ -29,10 +29,11 @@ presentation:
 
 ---
 
-设贪心法得到的兼容活动集合为
+<div class="tighttable top-2">
 
-$$
-\begin{align*}
-    \quad g_1, ~ ,g_2, ~ , \ldots, g_{i-1}, ~ g_i, ~, g_{i+1}, \ldots, \ldots  
-\end{align*}
-$$
+| $\pi^{\text{ins}}[1]$ | $\cdots$ | $\pi^{\text{ins}}[k-1]$ | $\pi^{\text{ins}}[k]$ | $\cdots$ |                &nbsp;                |
+| :-------------------: | :------: | :---------------------: | :-------------------: | :------: | :----------------------------------: |
+|          $=$          |   $=$    |           $=$           |         $\ne$         |  &nbsp;  |
+|    $\pi^\star[1]$     | $\cdots$ |    $\pi^\star[k-1]$     |    $\pi^\star[k]$     | $\cdots$ | $\pi^\star[t] = \pi^{\text{ins}}[k]$ |
+
+</div>
