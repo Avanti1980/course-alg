@@ -1,70 +1,66 @@
+import numpy as np
+
+
 def init_p():  # 初始化前驱矩阵
-    p = [[None for _ in range(n)] for _ in range(n)]
+    p = np.full((n, n), None)
     for i in range(n):
         for j in range(n):
-            if j != i and w[i][j] < float("inf"):
-                p[i][j] = i + 1
+            if j != i and not np.isinf(w[i, j]):
+                p[i, j] = i + 1
     return p
 
 
 def sp_all_dp():
-    l = [[w[i][j] for j in range(n)] for i in range(n)]
+    l = np.array(w, copy=True)
     p = init_p()  # 初始化前驱矩阵
-    for m in range(n-2):
-        sp_all_dp_extend(l, p)
+    for _ in range(n):
+        for i in range(n):
+            for j in range(n):
+                for k in range(n):
+                    if l[i, k] + w[k, j] < l[i, j]:
+                        l[i, j] = l[i, k] + w[k, j]  # 更新L
+                        p[i, j] = k + 1  # 更新前驱
     return l, p
 
 
-def sp_all_dp_extend(l, p):
-    ll = [[l[i][j] for j in range(n)] for i in range(n)]  # 备份上一轮的L
-    for i in range(n):
-        for j in range(n):
-            for k in range(n):
-                if ll[i][k] + w[k][j] < l[i][j]:
-                    l[i][j] = ll[i][k] + w[k][j]  # 更新L
-                    p[i][j] = k + 1               # 更新前驱
-
-
 def sp_all_dp_plus():
-    l = [[w[i][j] for j in range(n)] for i in range(n)]
+    l = np.array(w, copy=True)
     p = init_p()  # 初始化前驱矩阵
     m = 1
-    while m < n-1:
-        sp_all_dp_plus_extend(l, p)
+    while m < 2 * n:
+        for i in range(n):
+            for j in range(n):
+                for k in range(n):
+                    if l[i, k] + l[k, j] < l[i, j]:
+                        l[i, j] = l[i, k] + l[k, j]  # 更新L
+                        p[i, j] = p[k, j]  # 更新前驱
         m *= 2
     return l, p
 
 
-def sp_all_dp_plus_extend(l, p):
-    ll = [[l[i][j] for j in range(n)] for i in range(n)]  # 备份上一轮的L
-    for i in range(n):
-        for j in range(n):
-            for k in range(n):
-                if ll[i][k] + ll[k][j] < l[i][j]:
-                    l[i][j] = ll[i][k] + ll[k][j]  # 更新L
-                    p[i][j] = p[k][j]              # 更新前驱
-
-
 def floyd_warshall():
-    d = [[w[i][j] for j in range(n)] for i in range(n)]
+    d = np.array(w, copy=True)
     p = init_p()  # 初始化前驱矩阵
     for k in range(n):
-        dd = [[d[i][j] for j in range(n)] for i in range(n)]  # 备份上一轮的d
         for i in range(n):
             for j in range(n):
-                if dd[i][k] + dd[k][j] < d[i][j]:
-                    d[i][j] = dd[i][k] + dd[k][j]  # 更新d
-                    p[i][j] = p[k][j]              # 更新前驱
+                if d[i, k] + d[k, j] < d[i, j]:
+                    d[i, j] = d[i, k] + d[k, j]  # 更新d
+                    p[i, j] = p[k, j]  # 更新前驱
     return d, p
 
 
 # 邻接矩阵
-w = [[0, 3, 8, float('inf'), -4],
-     [float('inf'), 0, float('inf'), 1, 7],
-     [float('inf'), 4, 0, float('inf'), float('inf')],
-     [2, float('inf'), -5, 0, float('inf')],
-     [float('inf'), float('inf'), float('inf'), 6, 0]
-     ]
+I = float("inf")
+w = np.array(
+    [
+        [0, 3, 8, I, -4],
+        [I, 0, I, 1, 7],
+        [I, 4, 0, I, I],
+        [2, I, -5, 0, I],
+        [I, I, I, 6, 0],
+    ]
+)
 n = len(w)
 
 print(sp_all_dp())

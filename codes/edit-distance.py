@@ -3,7 +3,7 @@ import numpy as np
 
 def edit_dis(X, Y):
     m, n = len(X), len(Y)
-    c, b = np.empty((m + 1, n + 1)), np.empty((m, n), dtype='str')
+    c, b = np.empty((m + 1, n + 1), dtype='int'), np.empty((m, n), dtype='str')
     for i in range(m + 1):
         c[i, 0] = i
     for j in range(n + 1):
@@ -19,7 +19,7 @@ def edit_dis(X, Y):
                 b[i - 1, j - 1] = '←'
             else:
                 b[i - 1, j - 1] = '↑'
-    return c.astype(int), b
+    return c, b
 
 
 def restore_sol(i, j, b, l):
@@ -47,7 +47,7 @@ Y = ['B', 'D', 'C', 'A', 'B', 'A']
 c, b = edit_dis(X, Y)
 l = []
 restore_sol(len(X) - 1, len(Y) - 1, b, l)
-l = np.array(l).T
+l = np.transpose(l)
 
 print(c)
 print(b)
