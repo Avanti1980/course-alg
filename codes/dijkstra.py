@@ -15,10 +15,10 @@ def dijkstra(s):
         in_q[u] = False  # 更新点u的在队状态
         for v in g[u]:  # 更新u指向的点的最短路径
             if d[v] > d[u] + g[u][v]:  # 边(u,v)可以松弛
-                if in_q[v]:
+                if in_q[v]:  # 如果点v已在队 让其出队
                     q.queue.remove([d[v], v])
                 d[v], p[v] = d[u] + g[u][v], u  # 更新最短距离和前驱
-                q.put([d[v], v])
+                q.put([d[v], v])  # 点v入队
                 in_q[v] = True
 
     return d, p
