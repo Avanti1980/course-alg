@@ -1,41 +1,55 @@
+from queue import PriorityQueue
+
+
 def dijkstra(s):
-    d, p, in_S = dict(), dict(), dict()
-    for v in g:  # 距离初始化为无穷大 前驱初始化为空 S为空集
-        d[v], p[v], in_S[v] = float("inf"), None, False
-    d[s] = 0  # 源点到自己的最短路径长度为零
+    q, in_q, d, p = PriorityQueue(), dict(), dict(), dict()
 
-    for _ in range(len(g)):
-        min_value = float('inf')
-        u = None
+    for v in g:  # 距离初始化为无穷大 前驱初始化为空
+        in_q[v], d[v], p[v] = False, float("inf"), None
 
-        # 遍历所有点 寻找不在S中且最短路径估计值最小的点 
-        # 我们这儿就是用个无序的字典实现d[] 遍历找最小时间复杂度O(V)
-        # d[]可以用二叉堆、斐波那契堆等数据结构实现 找最小的时间复杂度可以改进
-        for v in g:  
-            if not in_S[v] and d[v] < min_value:
-                min_value = d[v]  
-                u = v
+    in_q["s"], d["s"] = True, 0
+    q.put([0, "s"])  # 源点入队
 
-        if u != None:
-            in_S[u] = True  # 将u加入S
-            for v in g[u]:  # 更新u指向的点的最短路径的估计值
-                if d[v] > d[u] + g[u][v]:           # 松弛
-                    d[v], p[v] = d[u] + g[u][v], u  # 更新当前最短距离和前驱
+    while not q.empty():
+        _, u = q.get()  # 获取队首元素点u
+        in_q[u] = False  # 更新点u的在队状态
+        for v in g[u]:  # 更新u指向的点的最短路径
+            if d[v] > d[u] + g[u][v]:  # 边(u,v)可以松弛
+                if in_q[v]:
+                    q.queue.remove([d[v], v])
+                d[v], p[v] = d[u] + g[u][v], u  # 更新最短距离和前驱
+                q.put([d[v], v])
+                in_q[v] = True
 
-    return d, p, in_S
+    return d, p
 
 
 g = {
-    "s": {"t": 10, "y": 5},         # w(s,t) = 6, w(s,y) = 5
-    "t": {"x": 1, "y": 2},          # w(t,x) = 1, w(t,y) = 2
+    "s": {"t": 10, "y": 5},  # w(s,t) = 6, w(s,y) = 5
+    "t": {"x": 1, "y": 2},  # w(t,x) = 1, w(t,y) = 2
     "y": {"t": 3, "z": 2, "x": 9},  # w(y,t) = 3, w(y,z) = 2, w(y,x) = 9
-    "z": {"s": 7, "x": 6},          # w(z,s) = 7, w(z,x) = 6
-    "x": {"z": 4},                  # w(x,z) = 4
+    "z": {"s": 7, "x": 6},  # w(z,s) = 7, w(z,x) = 6
+    "x": {"z": 4},  # w(x,z) = 4
 }
 
-d, p, in_S = dijkstra("s")
+d, p = dijkstra("s")
 print(d)
 print(p)
 # ---------------------------------------------------
 # {'s': 0, 't': 8, 'y': 5, 'z': 7, 'x': 9}
 # {'s': None, 't': 'y', 'y': 's', 'z': 'y', 'x': 't'}
+
+g = {  # dijkstra也是可以处理带负边的图的
+    "s": {"t": 6, "y": 7},  # w(s,t) = 6, w(s,y) = 7
+    "t": {"x": 5, "z": -4, "y": 8},  # w(t,x) = 5, w(t,z) = -4, w(t,y) = 8
+    "y": {"z": 9, "x": -3},  # w(y,z) = 9, w(y,x) = -3
+    "z": {"x": 7, "s": 2},  # w(z,x) = 7, w(z,s) = 2
+    "x": {"t": -2},  # w(x,t) = -2
+}
+
+d, p = dijkstra("s")
+print(d)
+print(p)
+# ---------------------------------------------------
+# {'s': 0, 't': 2, 'y': 7, 'z': -2, 'x': 4}
+# {'s': None, 't': 'x', 'y': 's', 'z': 't', 'x': 'y'}
