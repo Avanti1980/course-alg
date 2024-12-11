@@ -23,9 +23,3 @@ presentation:
 @import "../plugin/chalkboard/style.css"
 @import "../plugin/menu/menu.js"
 
-<!-- slide data-notes="" -->
-
-##### 最短路径 最优子结构
-
----
-
