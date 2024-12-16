@@ -14,7 +14,7 @@
     width: 1% * $i;
   }
   .reveal .height#{$i} {
-    width: 1% * $i;
+    height: 1% * $i;
   }
   @each $direction in "left", "right", "top", "bottom" {
     .reveal .#{$direction}#{$i}per {
