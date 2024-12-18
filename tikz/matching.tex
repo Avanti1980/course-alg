@@ -5,8 +5,6 @@
 \usepackage{avanti-theorem}
 \usepackage{avanti-others}
 
-\geometry{a2paper, left=2mm}
-
 \RequirePackage{fontspec}
 \xeCJKsetup{CJKmath=true}
 \setCJKmainfont[BoldFont=FZHei-B01,ItalicFont=]{LXGW Bright}
@@ -38,7 +36,7 @@
         \path (u4) ++(345:\l) node[point] (v4) {};
         \path (v4) ++(195:\l) node[point] (u5) {};
 
-        \draw [highlight] (u1) -- (v1);
+        \draw [highlight] (u2) -- (v1);
         \draw [highlight] (u3) -- (v3);
 
         \draw [base] (u1) -- (v1);
@@ -60,9 +58,9 @@
         \path (u4) ++(345:\l) node[point] (v4) {};
         \path (v4) ++(195:\l) node[point] (u5) {};
 
-        \draw [highlight] (u2) -- (v1);
-        \draw [highlight] (u3) -- (v2);
-        \draw [highlight] (u5) -- (v3);
+        \draw [highlight] (u1) -- (v1);
+        \draw [highlight] (u2) -- (v3);
+        \draw [highlight] (u3) -- (v4);
 
         \draw [base] (u1) -- (v1);
         \draw [base] (u2) -- (v1);

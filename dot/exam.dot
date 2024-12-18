@@ -1,0 +1,77 @@
+digraph g {
+    bgcolor=transparent
+    graph [nodesep=0.2, ranksep=1.1]
+    rankdir=LR
+    node [shape=circle, color="#586e75", fontcolor="#586e75", fontsize=16, fontname="LXGWWenKai", label=""]
+    edge [arrowhead=vee, color="#586e75", fontcolor="#586e75", fontsize=12, fontname="LXGWWenKai", arrowsize=0.6]
+
+    s
+
+    subgraph cluster_1 {
+        style="dashed"
+        label="班级"
+        color="#839496"
+        fontname="LXGWWenKai"
+        fontcolor="#268bd2"
+
+        11, 12, 13, 14, 15
+    }
+
+    s -> 11 [label=1]
+    s -> {12, 13, 14, 15}
+
+    subgraph cluster_2 {
+        style="dashed"
+        label="教室"
+        color="#839496"
+        fontname="LXGWWenKai"
+        fontcolor="#268bd2"
+
+        21, 22, 23, 24
+    }
+
+    11 -> 21 [label=∞]
+    {12, 13} -> 21
+    {11, 12, 13, 14, 15} -> 22
+    {11, 12, 13, 14, 15} -> 23
+    {14, 15} -> 24
+
+    subgraph cluster_3 {
+        style="dashed"
+        label="时间"
+        color="#839496"
+        fontname="LXGWWenKai"
+        fontcolor="#268bd2"
+
+        31, 32, 33, 34
+
+    }
+
+    23 -> 31 [label=1]
+    {21, 22, 24} -> 31
+    {21, 22, 23, 24} -> 32
+    {21, 22, 23, 24} -> 33
+    {21, 22, 23, 24} -> 34
+
+    subgraph cluster_4 {
+        style="dashed"
+        label="监考员"
+        color="#839496"
+        fontname="LXGWWenKai"
+        fontcolor="#268bd2"
+
+        41, 42, 43, 44, 45
+
+    }
+
+    31 -> 41 [label=1]
+    {32, 33} -> 41
+    {31, 32, 33} -> 42
+    {31, 32, 33} -> 43
+    {32, 33, 34} -> 44
+    {32, 33, 34} -> 45
+
+    41 -> t [label=5]
+
+    {42, 43, 44, 45} -> t
+}

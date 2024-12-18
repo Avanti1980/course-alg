@@ -5,8 +5,6 @@
 \usepackage{avanti-theorem}
 \usepackage{avanti-others}
 
-\geometry{a2paper, left=2mm}
-
 \RequirePackage{fontspec}
 \xeCJKsetup{CJKmath=true}
 \setCJKmainfont[BoldFont=FZHei-B01,ItalicFont=]{LXGW Bright}
@@ -48,9 +46,9 @@
         \path (u4) ++(345:\l) node[point] (v4) {};
         \path (v4) ++(195:\l) node[point] (u5) {};
 
-        \draw [highlight] (u2) -- (v1);
-        \draw [highlight] (u3) -- (v2);
-        \draw [highlight] (u5) -- (v3);
+        \draw [highlight] (u1) -- (v1);
+        \draw [highlight] (u2) -- (v3);
+        \draw [highlight] (u3) -- (v4);
 
         \draw [base] (u1) -- (v1);
         \draw [base] (u2) -- (v1);
@@ -80,33 +78,33 @@
 
         \tikzset{font=\large}
 
+        \draw [highlight] (s) -- (u1);
         \draw [highlight] (s) -- (u2);
         \draw [highlight] (s) -- (u3);
-        \draw [highlight] (s) -- (u5);
-        \draw [highlight] (u2) -- (v1);
-        \draw [highlight] (u3) -- (v2);
-        \draw [highlight] (u5) -- (v3);
+        \draw [highlight] (u1) -- (v1);
+        \draw [highlight] (u2) -- (v3);
+        \draw [highlight] (u3) -- (v4);
         \draw [highlight] (v1) -- (t);
-        \draw [highlight] (v2) -- (t);
         \draw [highlight] (v3) -- (t);
+        \draw [highlight] (v4) -- (t);
 
-        \draw [arrow] (s) -- (u1) node [label-above6] {$0/1$};
+        \draw [arrow] (s) -- (u1) node [label-above6] {$1/1$};
         \draw [arrow] (s) -- (u2) node [label-above7] {$1/1$};
         \draw [arrow] (s) -- (u3) node [label-above7] {$1/1$};
         \draw [arrow] (s) -- (u4) node [label-above6] {$0/1$};
-        \draw [arrow] (s) -- (u5) node [label-above5] {$1/1$};
-        \draw [arrow] (u1) -- (v1) node [label-above5] {$0/1$};
-        \draw [arrow] (u2) -- (v1) node [label-above5] {$1/1$};
-        \draw [arrow] (u2) -- (v3) node [label-above2] {$0/1$};
-        \draw [arrow] (u3) -- (v2) node [label-above8] {$1/1$};
+        \draw [arrow] (s) -- (u5) node [label-above5] {$0/1$};
+        \draw [arrow] (u1) -- (v1) node [label-above5] {$1/1$};
+        \draw [arrow] (u2) -- (v1) node [label-above5] {$0/1$};
+        \draw [arrow] (u2) -- (v3) node [label-above2] {$1/1$};
+        \draw [arrow] (u3) -- (v2) node [label-above8] {$0/1$};
         \draw [arrow] (u3) -- (v3) node [label-above5] {$0/1$};
-        \draw [arrow] (u3) -- (v4) node [below, sloped, pos=0.2] {$0/1$};
+        \draw [arrow] (u3) -- (v4) node [below, sloped, pos=0.2] {$1/1$};
         \draw [arrow] (u4) -- (v3) node [below, sloped, pos=0.2] {$0/1$};
-        \draw [arrow] (u5) -- (v3) node [below, sloped, pos=0.3] {$1/1$};
+        \draw [arrow] (u5) -- (v3) node [below, sloped, pos=0.3] {$0/1$};
         \draw [arrow] (v1) -- (t) node [label-above4] {$1/1$};
-        \draw [arrow] (v2) -- (t) node [label-above3] {$1/1$};
+        \draw [arrow] (v2) -- (t) node [label-above3] {$0/1$};
         \draw [arrow] (v3) -- (t) node [label-above3] {$1/1$};
-        \draw [arrow] (v4) -- (t) node [label-above4] {$0/1$};
+        \draw [arrow] (v4) -- (t) node [label-above4] {$1/1$};
 
     \end{tikzpicture}
 \end{center}
