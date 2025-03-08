@@ -6,7 +6,7 @@ def gcd(a, b):
 
 
 def coef(a, b):
-    for x in range(1, b):     # 0 a 2a ... (b-1)a构成一个模b的剩余系
+    for x in range(1, b):         # 0 a 2a ... (b-1)a构成一个模b的剩余系
         if (1 - a * x) % b == 0:  # 若y也为整数
             y = int((1 - a * x) / b)
             return x, y
@@ -37,7 +37,7 @@ def gxjs(a, b):  # 更相减损
 
 
 def gxjs_coef(a, b):  # 更相减损
-    if a == b:         # 递归停止条件：a = b
+    if a == b:        # 递归停止条件：a = b
         return b, 1, 0
     elif a > b:
         d, x, y = gxjs_coef(a - b, b)
