@@ -6,9 +6,9 @@ def gcd(a, b):
 
 
 def coef(a, b):
-    for x in range(1, b):     # a 2a 3a ... ba构成一个模b的剩余系
-        if (1-a*x) % b == 0:  # 若y也为整数
-            y = int((1-a*x)/b)
+    for x in range(1, b):     # 0 a 2a ... (b-1)a构成一个模b的剩余系
+        if (1 - a * x) % b == 0:  # 若y也为整数
+            y = int((1 - a * x) / b)
             return x, y
 
 
@@ -20,10 +20,10 @@ def Euclidean(a, b):  # 辗转相除
 
 def Euclidean_coef(a, b):  # 辗转相除
     if a % b == 0:         # 递归停止条件：若b可以整除a
-        return b, 1, 1-int(a/b)
+        return b, 1, 1 - int(a / b)
     else:
         d, x, y = Euclidean_coef(b, a % b)
-        return d, y, x - int(a/b)*y
+        return d, y, x - int(a / b) * y
 
 
 def gxjs(a, b):  # 更相减损
@@ -41,10 +41,10 @@ def gxjs_coef(a, b):  # 更相减损
         return b, 1, 0
     elif a > b:
         d, x, y = gxjs_coef(a - b, b)
-        return d, x, y-x
+        return d, x, y - x
     else:
-        d, x, y = gxjs_coef(a, b-a)
-        return d, x-y, y
+        d, x, y = gxjs_coef(a, b - a)
+        return d, x - y, y
 
 
 def gxjs2(a, b):  # 改进的更相减损
@@ -59,9 +59,9 @@ def gxjs2(a, b):  # 改进的更相减损
             return gxjs2(a, b >> 1)
         else:                            # 均为奇 更相减损 gcd(a,b) = gcd(a-b, b)
             if a > b:
-                return gxjs2(a-b, b)
+                return gxjs2(a - b, b)
             else:
-                return gxjs2(a, b-a)
+                return gxjs2(a, b - a)
 
 
 print(gcd(2023, 1024))
