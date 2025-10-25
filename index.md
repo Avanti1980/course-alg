@@ -1,7 +1,7 @@
 @import "css/theme/solarized.css"
 @import "css/index.css"
 
-## 算法设计与分析 <span style="font-weight:900">2024</span> 秋
+## 算法设计与分析 <span style="font-weight:900">2025</span> 秋
 
 ---
 
@@ -9,12 +9,12 @@
 
 授课：张腾 _tengzhang@hust.edu.cn_
 
-地点：西十二楼 N504
+地点：西十二楼 S308、西十二楼 S204
 
 32 学时
 
-- 第 9 ~ 12 周：周一 7 ~ 8 节课、周三 7 ~ 8 节课
-- 第 13 ~ 16 周：周一 3 ~ 4 节课、周三 5 ~ 6 节课
+- 第 9 ~ 10 周：周一 5 ~ 6 节课、周三 1 ~ 2 节课 (西十二楼 S308)
+- 第 11 ~ 16 周：周一 3 ~ 4 节课 (西十二楼 S204)、周三 3 ~ 4 节课 (西十二楼 S308)
 
 <div class="top-2"></div>
 
