@@ -50,7 +50,7 @@ Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein
 
 #### 代码
 
-[最大公约数](codes/gcd.ipynb)、[排序](codes/sorting.ipynb)
+[$n$位整数乘法](codes/integer-multiplication.ipynb)、[最大公约数](codes/gcd.ipynb)、[排序](codes/sorting.ipynb)
 [最大子数组](codes/max-subarray.ipynb)、[最近点对](codes/closest-pair.ipynb)、[矩阵加法](codes/matrix-addition.ipynb)、[矩阵乘法](codes/matrix-multiply.ipynb)
 [斐波那契数](codes/fibo.ipynb)、[钢条切割](codes/cut-rod.ipynb)、[子集和数](codes/subset-sum-dp.ipynb)、[矩阵连乘](codes/matrix-chain.ipynb)、[最长公共子序列](codes/lcs.ipynb)、[编辑距离](codes/edit-distance.ipynb)、[最长递增子序列](codes/lis.ipynb)、[最优二叉搜索树](codes/optiaml-bst.ipynb)
 [最大兼容活动集合](codes/activity-selector.ipynb)
