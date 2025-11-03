@@ -25,106 +25,66 @@ presentation:
 
 <!-- slide data-notes="" -->
 
-##### 整数乘法
+##### 逆序对计数
 
 ---
 
-输入：两个$n$位整数$x$和$y$
+输入：长度为$n$的数组$A$
 
 <div class="top-2"></div>
 
-输出：$x \cdot y$
+输出：$A$中逆序对数目
 
-小学算法：$x$和$y$的每一位相乘再相加
+推荐系统中的协同过滤：甲在电影网站上列出了自己最喜爱电影 Top 10，网站如何根据其他用户的电影喜爱列表向甲推荐好友？
 
-@import "../img/multiplication.svg" {.right20 .lefta .width15 .top-20}
+构造数组$A[i]$：甲最喜欢的第$i$部电影在乙的列表中的位置
 
-<!-- slide vertical=true data-notes="" -->
-
-##### 小学算法 实现
-
----
-
-@import "../codes/integer-multiplication.py" {line_begin=9 line_end=35 .left4 .line-numbers .top0 highlight=[4,7]}
-
-<!-- slide vertical=true data-notes="" -->
-
-##### 整数乘法 小学算法
-
----
-
-$x$和$y$的每一位相乘再相加
-
-- $x$和$y$的一位相乘最多需$n$次乘法、$n$次加法
-- $y$有$n$位，最多需$n^2$次乘法、$n^2$次加法
-- $n$个$2n$位数相加，最多需$2 n^2$次加法
+- 若出现$i < j$、$A[i] > A[j]$，则甲、乙在这两部电影的喜好上有分歧
+- 逆序对越多，说明甲、乙的电影审美差异越大，不宜推荐
 
 <div class="top2"></div>
 
-综上共需$n^2$次乘法、$3 n^2$次加法，对应代码中的二重 for 循环
-
-<p class="fragment top2">若$n$翻倍，计算量翻$4$倍，更好的算法？</p>
-
-<!-- slide data-notes="" -->
-
-##### <span style="font-weight:900">Karatsuba</span>算法
-
----
-
-将$x$和$y$的数位二等分，分别相乘
-
-$$
-\begin{align*}
-    \quad x & = ab = a \cdot 10^{n/2} + b \\
-    y & = cd = c \cdot 10^{n/2} + d
-\end{align*}
-$$
-
-<div class="top-4"></div>
-
-其中$a$、$b$、$c$、$d$均是$n/2$位数
-
-$$
-\begin{align*}
-    \quad x \cdot y & = a \cdot c \cdot 10^n + (a \cdot d + b \cdot c) 10^{n/2} + b \cdot d \\
-    & = a \cdot c \cdot 10^n + ((a+b) \cdot (c+d) - a \cdot c - b \cdot d) 10^{n/2} + b \cdot d
-\end{align*}
-$$
-
-<p class="fragment">$n$位数相乘 => $3$个$n/2$位数相乘：$a \cdot c$、$b \cdot d$、$(a+b) \cdot (c+d)$</p>
-
-<p class="fragment">原问题：$n$位数相乘 => $3$个$n/2$位数相乘的子问题，递归实现</p>
+暴力求解：二重 for 循环遍历$(i,j)$，$T(n) = \Omega(n^2)$
 
 <!-- slide vertical=true data-notes="" -->
 
-##### <span style="font-weight:900">Karatsuba</span>算法 实现
+##### 逆序对计数 分治
 
 ---
 
-@import "../codes/integer-multiplication.py" {line_begin=37 .left4 .line-numbers .top0 highlight=[17-19,36]}
+设当前要统计子数组$A[low, \ldots, high]$的逆序对数目
+
+分：$A[low, \ldots, high] = A[low, \ldots, mid] + A[mid+1, \ldots, high]$
+
+治：递归求$A[low, \ldots, mid]$和$A[mid+1, \ldots, high]$的逆序对数目
+
+合：跨越中点的逆序对$low \le i \le mid < j \le high$且$A[i] > A[j]$，与两个递归问题的返回值相加求和
+
+<div class="top2"></div>
+
+<p class="fragment">问题：跨越中点的逆序对可能有$\Theta(n^2)$个，若一个个数，复杂度就是$\Omega(n^2)$，如何加速？</p>
 
 <!-- slide vertical=true data-notes="" -->
 
-##### <span style="font-weight:900">Karatsuba</span>算法 时间
+##### 跨越中点
 
 ---
 
-原问题：$n$位数相乘 => $3$个$n/2$位数相乘的子问题，递归实现
+合并已经排好序的子数组可以自然地发现逆序对
 
-设$n$位数相乘的时间为$T(n)$，则有递推式
+@import "../codes/count-inverse-pair.py" {line_begin=12 line_end=56 .left4 .line-numbers .top0 .bottom1 highlight=[11,20,33,39-42,44]}
+
+<!-- slide vertical=true data-notes="" -->
+
+##### 时间分析
+
+---
+
+处理跨越中点的情况只需一重循环，$f(n) = \Theta(n)$
 
 $$
 \begin{align*}
-    \quad T(n) = 3 \cdot T \left( \frac{n}{2} \right) + \underbrace{\Theta(n)}_{\text{加法}}
+    \quad T(n) = \begin{cases} 1, & n = 1 \\ 2 \cdot T (n/2) + \Theta(n), & n > 1 \end{cases} = \Theta(n \lg n)
 \end{align*}
 $$
 
-根据{==主方法==}可得$T(n) \in \Theta(n^{\log_2 3})$
-
-<!-- slide vertical=true data-notes="" -->
-
-##### 整数乘法 时间对比
-
----
-
-@import "../codes/integer-multiplication.svg" {.center .width70 .top2 .bottom-4}
