@@ -25,66 +25,51 @@ presentation:
 
 <!-- slide data-notes="" -->
 
-##### 逆序对计数
+##### 主方法 证明思路
 
 ---
 
-输入：长度为$n$的数组$A$
-
-<div class="top-2"></div>
-
-输出：$A$中逆序对数目
-
-推荐系统中的协同过滤：甲在电影网站上列出了自己最喜爱电影 Top 10，网站如何根据其他用户的电影喜爱列表向甲推荐好友？
-
-构造数组$A[i]$：甲最喜欢的第$i$部电影在乙的列表中的位置
-
-- 若出现$i < j$、$A[i] > A[j]$，则甲、乙在这两部电影的喜好上有分歧
-- 逆序对越多，说明甲、乙的电影审美差异越大，不宜推荐
-
-<div class="top2"></div>
-
-暴力求解：二重 for 循环遍历$(i,j)$，$T(n) = \Omega(n^2)$
-
-<!-- slide vertical=true data-notes="" -->
-
-##### 逆序对计数 分治
-
----
-
-设当前要统计子数组$A[low, \ldots, high]$的逆序对数目
-
-分：$A[low, \ldots, high] = A[low, \ldots, mid] + A[mid+1, \ldots, high]$
-
-治：递归求$A[low, \ldots, mid]$和$A[mid+1, \ldots, high]$的逆序对数目
-
-合：跨越中点的逆序对$low \le i \le mid < j \le high$且$A[i] > A[j]$，与两个递归问题的返回值相加求和
-
-<div class="top2"></div>
-
-<p class="fragment">问题：跨越中点的逆序对可能有$\Theta(n^2)$个，若一个个数，复杂度就是$\Omega(n^2)$，如何加速？</p>
-
-<!-- slide vertical=true data-notes="" -->
-
-##### 跨越中点
-
----
-
-合并已经排好序的子数组可以自然地发现逆序对
-
-@import "../codes/count-inverse-pair.py" {line_begin=12 line_end=56 .left4 .line-numbers .top0 .bottom1 highlight=[11,20,33,39-42,44]}
-
-<!-- slide vertical=true data-notes="" -->
-
-##### 时间分析
-
----
-
-处理跨越中点的情况只需一重循环，$f(n) = \Theta(n)$
+设$n = b^t$(不等时需证明$T(\lfloor n/b \rfloor)$和$T(\lceil n/b \rceil)$不影响结果)，则
 
 $$
 \begin{align*}
-    \quad T(n) = \begin{cases} 1, & n = 1 \\ 2 \cdot T (n/2) + \Theta(n), & n > 1 \end{cases} = \Theta(n \lg n)
+    \quad & \spadesuit \qquad T(n/b^0) = a \cdot T(n/b^1) + f(n/b^0) \\
+    & \heartsuit \qquad T(n/b^1) = a \cdot T(n/b^2) + f(n/b^1) \\
+    & \qquad \qquad \vdots \\
+    & \clubsuit \qquad T(n/b^{t-1}) = a \cdot T(n/b^t) + f(n/b^{t-1})
 \end{align*}
 $$
+
+<div class="top-2"></div>
+
+令$\spadesuit + \heartsuit \cdot a + \cdots + \clubsuit \cdot a^{t-1}$可得
+
+$$
+\begin{align*}
+    \quad T(n) & = a^t \cdot T(1) + \sum_{i=0}^{t-1} a^i f(n/b^i) = \Theta(n^{\log_b a}) + \sum_{i=0}^{t-1} a^i f(n/b^i)
+\end{align*}
+$$
+
+需要比较$n^{\log_b a}$和$g(n) = \sum_{i=0}^{t-1} a^i f(n/b^i)$
+
+<!-- slide vertical=true data-notes="" -->
+
+##### 主方法 证明思路
+
+---
+
+以$f(n) = n^d$为例
+
+$$
+\begin{align*}
+    \quad g(n) = \sum_{i=0}^{t-1} a^i f \left( \frac{n}{b^i} \right) = \sum_{i=0}^{t-1} a^i \left( \frac{n}{b^i} \right)^d = n^d \sum_{i=0}^{t-1} \left( \frac{a}{b^d} \right)^i 
+\end{align*}
+$$
+
+- 若$a > b^d$，则$\log_b a > d$，即情形1，等比数列公比$q>1$，和为最后一项$(a/b^d)^{t-1} = a^{t-1} b^d / n^d < a^t / n^d = a^{\log_b n}/ n^d = n^{\log_b a} / n^d$的常数倍，故$g(n) = \Theta(n^{\log_b a})$
+- 若$a = b^d$，则$\log_b a = d$，即情形2，等比数列公比$q=1$，和为$t$，故$g(n) = \Theta(n^{\log_b a} \log_b n)$
+- 若$a < b^d$，则$\log_b a < d$，即情形3，等比数列公比$q<1$，和为常数，故$g(n) = \Theta(n^d) = \Theta(f(n))$
+
+
+
 

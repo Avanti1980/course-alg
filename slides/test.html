@@ -2196,243 +2196,53 @@ html.print-pdf .aria-status {
     <div class="reveal">
       <div class="slides">
         <section><section data-notes lineno="25" class="slide " data-line="25" data-h="0" data-v="0">
-<h5 class="mume-header" id="%E9%80%86%E5%BA%8F%E5%AF%B9%E8%AE%A1%E6%95%B0">&#x9006;&#x5E8F;&#x5BF9;&#x8BA1;&#x6570;</h5>
+<h5 class="mume-header" id="%E4%B8%BB%E6%96%B9%E6%B3%95-%E8%AF%81%E6%98%8E%E6%80%9D%E8%B7%AF">&#x4E3B;&#x65B9;&#x6CD5; &#x8BC1;&#x660E;&#x601D;&#x8DEF;</h5>
 
 <hr>
-<p>&#x8F93;&#x5165;&#xFF1A;&#x957F;&#x5EA6;&#x4E3A;<span class="mathjax-exps">$n$</span>&#x7684;&#x6570;&#x7EC4;<span class="mathjax-exps">$A$</span></p>
-<div class="top-2"></div>
-<p>&#x8F93;&#x51FA;&#xFF1A;<span class="mathjax-exps">$A$</span>&#x4E2D;&#x9006;&#x5E8F;&#x5BF9;&#x6570;&#x76EE;</p>
-<p>&#x63A8;&#x8350;&#x7CFB;&#x7EDF;&#x4E2D;&#x7684;&#x534F;&#x540C;&#x8FC7;&#x6EE4;&#xFF1A;&#x7532;&#x5728;&#x7535;&#x5F71;&#x7F51;&#x7AD9;&#x4E0A;&#x5217;&#x51FA;&#x4E86;&#x81EA;&#x5DF1;&#x6700;&#x559C;&#x7231;&#x7535;&#x5F71; Top 10&#xFF0C;&#x7F51;&#x7AD9;&#x5982;&#x4F55;&#x6839;&#x636E;&#x5176;&#x4ED6;&#x7528;&#x6237;&#x7684;&#x7535;&#x5F71;&#x559C;&#x7231;&#x5217;&#x8868;&#x5411;&#x7532;&#x63A8;&#x8350;&#x597D;&#x53CB;&#xFF1F;</p>
-<p>&#x6784;&#x9020;&#x6570;&#x7EC4;<span class="mathjax-exps">$A[i]$</span>&#xFF1A;&#x7532;&#x6700;&#x559C;&#x6B22;&#x7684;&#x7B2C;<span class="mathjax-exps">$i$</span>&#x90E8;&#x7535;&#x5F71;&#x5728;&#x4E59;&#x7684;&#x5217;&#x8868;&#x4E2D;&#x7684;&#x4F4D;&#x7F6E;</p>
-<ul>
-<li>&#x82E5;&#x51FA;&#x73B0;<span class="mathjax-exps">$i &lt; j$</span>&#x3001;<span class="mathjax-exps">$A[i] &gt; A[j]$</span>&#xFF0C;&#x5219;&#x7532;&#x3001;&#x4E59;&#x5728;&#x8FD9;&#x4E24;&#x90E8;&#x7535;&#x5F71;&#x7684;&#x559C;&#x597D;&#x4E0A;&#x6709;&#x5206;&#x6B67;</li>
-<li>&#x9006;&#x5E8F;&#x5BF9;&#x8D8A;&#x591A;&#xFF0C;&#x8BF4;&#x660E;&#x7532;&#x3001;&#x4E59;&#x7684;&#x7535;&#x5F71;&#x5BA1;&#x7F8E;&#x5DEE;&#x5F02;&#x8D8A;&#x5927;&#xFF0C;&#x4E0D;&#x5B9C;&#x63A8;&#x8350;</li>
-</ul>
-<div class="top2"></div>
-<p>&#x66B4;&#x529B;&#x6C42;&#x89E3;&#xFF1A;&#x4E8C;&#x91CD; for &#x5FAA;&#x73AF;&#x904D;&#x5386;<span class="mathjax-exps">$(i,j)$</span>&#xFF0C;<span class="mathjax-exps">$T(n) = \Omega(n^2)$</span></p>
-</section><section vertical="true" data-notes lineno="48" class="slide " data-line="48" data-h="0" data-v="1">
-<h5 class="mume-header" id="%E9%80%86%E5%BA%8F%E5%AF%B9%E8%AE%A1%E6%95%B0-%E5%88%86%E6%B2%BB">&#x9006;&#x5E8F;&#x5BF9;&#x8BA1;&#x6570; &#x5206;&#x6CBB;</h5>
-
-<hr>
-<p>&#x8BBE;&#x5F53;&#x524D;&#x8981;&#x7EDF;&#x8BA1;&#x5B50;&#x6570;&#x7EC4;<span class="mathjax-exps">$A[low, \ldots, high]$</span>&#x7684;&#x9006;&#x5E8F;&#x5BF9;&#x6570;&#x76EE;</p>
-<p>&#x5206;&#xFF1A;<span class="mathjax-exps">$A[low, \ldots, high] = A[low, \ldots, mid] + A[mid+1, \ldots, high]$</span></p>
-<p>&#x6CBB;&#xFF1A;&#x9012;&#x5F52;&#x6C42;<span class="mathjax-exps">$A[low, \ldots, mid]$</span>&#x548C;<span class="mathjax-exps">$A[mid+1, \ldots, high]$</span>&#x7684;&#x9006;&#x5E8F;&#x5BF9;&#x6570;&#x76EE;</p>
-<p>&#x5408;&#xFF1A;&#x8DE8;&#x8D8A;&#x4E2D;&#x70B9;&#x7684;&#x9006;&#x5E8F;&#x5BF9;<span class="mathjax-exps">$low \le i \le mid &lt; j \le high$</span>&#x4E14;<span class="mathjax-exps">$A[i] &gt; A[j]$</span>&#xFF0C;&#x4E0E;&#x4E24;&#x4E2A;&#x9012;&#x5F52;&#x95EE;&#x9898;&#x7684;&#x8FD4;&#x56DE;&#x503C;&#x76F8;&#x52A0;&#x6C42;&#x548C;</p>
-<div class="top2"></div>
-<p class="fragment">&#x95EE;&#x9898;&#xFF1A;&#x8DE8;&#x8D8A;&#x4E2D;&#x70B9;&#x7684;&#x9006;&#x5E8F;&#x5BF9;&#x53EF;&#x80FD;&#x6709;$\Theta(n^2)$&#x4E2A;&#xFF0C;&#x82E5;&#x4E00;&#x4E2A;&#x4E2A;&#x6570;&#xFF0C;&#x590D;&#x6742;&#x5EA6;&#x5C31;&#x662F;$\Omega(n^2)$&#xFF0C;&#x5982;&#x4F55;&#x52A0;&#x901F;&#xFF1F;</p>
-</section><section vertical="true" data-notes lineno="66" class="slide " data-line="66" data-h="0" data-v="2">
-<h5 class="mume-header" id="%E9%80%86%E5%BA%8F%E5%AF%B9%E8%AE%A1%E6%95%B0-%E5%88%86%E6%B2%BB-1">&#x9006;&#x5E8F;&#x5BF9;&#x8BA1;&#x6570; &#x5206;&#x6CBB;</h5>
-
-<hr>
-<p>&#x5408;&#x5E76;&#x5DF2;&#x7ECF;&#x6392;&#x597D;&#x5E8F;&#x7684;&#x5B50;&#x6570;&#x7EC4;&#x53EF;&#x4EE5;&#x81EA;&#x7136;&#x5730;&#x53D1;&#x73B0;&#x9006;&#x5E8F;&#x5BF9;</p>
-<pre data-role="codeBlock" data-info="py line_begin=12 line_end=56 class=&quot;left4 line-numbers top0 bottom1&quot; highlight=[11, 20, 33, &quot;39-42&quot;, 44]" class="language-python left4 line-numbers top0 bottom1" data-line="11,20,33,39-42,44"><span class="token keyword keyword-def">def</span> <span class="token function">count_cross_inv</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> l<span class="token punctuation">,</span> m<span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    n1<span class="token punctuation">,</span> n2 <span class="token operator">=</span> m <span class="token operator">-</span> l <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> r <span class="token operator">-</span> m  <span class="token comment"># &#x5B50;&#x6570;&#x7EC4;&#x7684;&#x957F;&#x5EA6;</span>
-    L<span class="token punctuation">,</span> R <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">*</span> n1<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">*</span> n2  <span class="token comment"># &#x521B;&#x5EFA;&#x4E34;&#x65F6;&#x6570;&#x7EC4;</span>
-
-    <span class="token keyword keyword-for">for</span> i <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> n1<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># &#x62F7;&#x8D1D;&#x6570;&#x636E;&#x5230;&#x4E34;&#x65F6;&#x6570;&#x7EC4;L</span>
-        L<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> a<span class="token punctuation">[</span>l <span class="token operator">+</span> i<span class="token punctuation">]</span>
-
-    <span class="token keyword keyword-for">for</span> j <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> n2<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># &#x62F7;&#x8D1D;&#x6570;&#x636E;&#x5230;&#x4E34;&#x65F6;&#x6570;&#x7EC4;R</span>
-        R<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> a<span class="token punctuation">[</span>m <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">+</span> j<span class="token punctuation">]</span>
-
-    count <span class="token operator">=</span> <span class="token number">0</span>
-    i<span class="token punctuation">,</span> j<span class="token punctuation">,</span> k <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> l
-    <span class="token keyword keyword-while">while</span> i <span class="token operator">&lt;</span> n1 <span class="token keyword keyword-and">and</span> j <span class="token operator">&lt;</span> n2<span class="token punctuation">:</span>  <span class="token comment"># &#x5F52;&#x5E76;L&#x548C;R&#x5230;a[l..r]</span>
-        <span class="token keyword keyword-if">if</span> L<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;=</span> R<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">:</span>
-            a<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">=</span> L<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
-            i <span class="token operator">+=</span> <span class="token number">1</span>
-        <span class="token keyword keyword-else">else</span><span class="token punctuation">:</span>
-            a<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">=</span> R<span class="token punctuation">[</span>j<span class="token punctuation">]</span>
-            j <span class="token operator">+=</span> <span class="token number">1</span>
-            count <span class="token operator">+=</span> <span class="token punctuation">(</span>n1 <span class="token operator">-</span> i<span class="token punctuation">)</span>
-        k <span class="token operator">+=</span> <span class="token number">1</span>
-
-    <span class="token keyword keyword-while">while</span> i <span class="token operator">&lt;</span> n1<span class="token punctuation">:</span>  <span class="token comment"># &#x62F7;&#x8D1D;L&#x7684;&#x5269;&#x4F59;&#x5143;&#x7D20;</span>
-        a<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">=</span> L<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
-        i <span class="token operator">+=</span> <span class="token number">1</span>
-        k <span class="token operator">+=</span> <span class="token number">1</span>
-
-    <span class="token keyword keyword-while">while</span> j <span class="token operator">&lt;</span> n2<span class="token punctuation">:</span>  <span class="token comment"># &#x62F7;&#x8D1D;R&#x7684;&#x5269;&#x4F59;&#x5143;&#x7D20;</span>
-        a<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">=</span> R<span class="token punctuation">[</span>j<span class="token punctuation">]</span>
-        j <span class="token operator">+=</span> <span class="token number">1</span>
-        k <span class="token operator">+=</span> <span class="token number">1</span>
-
-    <span class="token keyword keyword-return">return</span> count
-
-
-<span class="token keyword keyword-def">def</span> <span class="token function">sort_and_count</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> l<span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword keyword-if">if</span> l <span class="token operator">&lt;</span> r<span class="token punctuation">:</span>
-        m <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span><span class="token punctuation">(</span>l <span class="token operator">+</span> r<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">)</span>  <span class="token comment"># &#x53D6;&#x4E2D;&#x95F4;&#x70B9;&#x5206;&#x5F00;</span>
-        left_inv <span class="token operator">=</span> sort_and_count<span class="token punctuation">(</span>a<span class="token punctuation">,</span> l<span class="token punctuation">,</span> m<span class="token punctuation">)</span>
-        right_inv <span class="token operator">=</span> sort_and_count<span class="token punctuation">(</span>a<span class="token punctuation">,</span> m <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> r<span class="token punctuation">)</span>
-        cross_inv <span class="token operator">=</span> count_cross_inv<span class="token punctuation">(</span>a<span class="token punctuation">,</span> l<span class="token punctuation">,</span> m<span class="token punctuation">,</span> r<span class="token punctuation">)</span>
-        <span class="token keyword keyword-return">return</span> left_inv <span class="token operator">+</span> right_inv <span class="token operator">+</span> cross_inv
-    <span class="token keyword keyword-else">else</span><span class="token punctuation">:</span>
-        <span class="token keyword keyword-return">return</span> <span class="token number">0</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span><div class="line-highlight-wrapper">
-
-
-
-
-
-
-
-
-
-<div aria-hidden="true" class="line-highlight" data-range="11" data-start="11">
-</div></div><div class="line-highlight-wrapper">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div aria-hidden="true" class="line-highlight" data-range="20" data-start="20">
-</div></div><div class="line-highlight-wrapper">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div aria-hidden="true" class="line-highlight" data-range="33" data-start="33">
-</div></div><div class="line-highlight-wrapper">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div aria-hidden="true" class="line-highlight" data-range="39-42" data-start="39" data-end="42">
-
-
-
-</div></div><div class="line-highlight-wrapper">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div aria-hidden="true" class="line-highlight" data-range="44" data-start="44">
-</div></div></pre></section><section vertical="true" data-notes lineno="76" class="slide " data-line="76" data-h="0" data-v="3">
-<h5 class="mume-header" id="%E9%80%86%E5%BA%8F%E5%AF%B9%E8%AE%A1%E6%95%B0-%E5%88%86%E6%B2%BB-2">&#x9006;&#x5E8F;&#x5BF9;&#x8BA1;&#x6570; &#x5206;&#x6CBB;</h5>
-
-<hr>
-<p>&#x5904;&#x7406;&#x8DE8;&#x8D8A;&#x4E2D;&#x70B9;&#x7684;&#x60C5;&#x51B5;&#x53EA;&#x9700;&#x4E00;&#x91CD;&#x5FAA;&#x73AF;&#xFF0C;<span class="mathjax-exps">$f(n) = \Theta(n)$</span></p>
+<p>&#x8BBE;<span class="mathjax-exps">$n = b^t$</span>(&#x4E0D;&#x7B49;&#x65F6;&#x9700;&#x8BC1;&#x660E;<span class="mathjax-exps">$T(\lfloor n/b \rfloor)$</span>&#x548C;<span class="mathjax-exps">$T(\lceil n/b \rceil)$</span>&#x4E0D;&#x5F71;&#x54CD;&#x7ED3;&#x679C;)&#xFF0C;&#x5219;</p>
 <p>
 
 $$
 \begin{align*}
-    \quad T(n) = \begin{cases} 1, &amp; n = 1 \\ 2 \cdot T (n/2) + \Theta(n), &amp; n &gt; 1 \end{cases} = \Theta(n \lg n)
+    \quad &amp; \spadesuit \qquad T(n/b^0) = a \cdot T(n/b^1) + f(n/b^0) \\
+    &amp; \heartsuit \qquad T(n/b^1) = a \cdot T(n/b^2) + f(n/b^1) \\
+    &amp; \qquad \qquad \vdots \\
+    &amp; \clubsuit \qquad T(n/b^{t-1}) = a \cdot T(n/b^t) + f(n/b^{t-1})
 \end{align*}
 $$
 </p>
 
+<div class="top-2"></div>
+<p>&#x4EE4;<span class="mathjax-exps">$\spadesuit + \heartsuit \cdot a + \cdots + \clubsuit \cdot a^{t-1}$</span>&#x53EF;&#x5F97;</p>
+<p>
+
+$$
+\begin{align*}
+    \quad T(n) &amp; = a^t \cdot T(1) + \sum_{i=0}^{t-1} a^i f(n/b^i) = \Theta(n^{\log_b a}) + \sum_{i=0}^{t-1} a^i f(n/b^i)
+\end{align*}
+$$
+</p>
+
+<p>&#x9700;&#x8981;&#x6BD4;&#x8F83;<span class="mathjax-exps">$n^{\log_b a}$</span>&#x548C;<span class="mathjax-exps">$g(n) = \sum_{i=0}^{t-1} a^i f(n/b^i)$</span></p>
+</section><section vertical="true" data-notes lineno="62" class="slide " data-line="62" data-h="0" data-v="1">
+<h5 class="mume-header" id="%E4%B8%BB%E6%96%B9%E6%B3%95-%E8%AF%81%E6%98%8E%E6%80%9D%E8%B7%AF-1">&#x4E3B;&#x65B9;&#x6CD5; &#x8BC1;&#x660E;&#x601D;&#x8DEF;</h5>
+
+<hr>
+<p>&#x4EE5;<span class="mathjax-exps">$f(n) = n^d$</span>&#x4E3A;&#x4F8B;</p>
+<p>
+
+$$
+\begin{align*}
+    \quad g(n) = \sum_{i=0}^{t-1} a^i f \left( \frac{n}{b^i} \right) = \sum_{i=0}^{t-1} a^i \left( \frac{n}{b^i} \right)^d = n^d \sum_{i=0}^{t-1} \left( \frac{a}{b^d} \right)^i 
+\end{align*}
+$$
+</p>
+
+<ul>
+<li>&#x82E5;<span class="mathjax-exps">$a &gt; b^d$</span>&#xFF0C;&#x5219;<span class="mathjax-exps">$\log_b a &gt; d$</span>&#xFF0C;&#x5373;&#x60C5;&#x5F62;1&#xFF0C;&#x7B49;&#x6BD4;&#x6570;&#x5217;&#x516C;&#x6BD4;<span class="mathjax-exps">$q&gt;1$</span>&#xFF0C;&#x548C;&#x4E3A;&#x6700;&#x540E;&#x4E00;&#x9879;<span class="mathjax-exps">$(a/b^d)^{t-1} = a^{t-1} b^d / n^d &lt; a^t / n^d = a^{\log_b n}/ n^d = n^{\log_b a} / n^d$</span>&#x7684;&#x5E38;&#x6570;&#x500D;&#xFF0C;&#x6545;<span class="mathjax-exps">$g(n) = \Theta(n^{\log_b a})$</span></li>
+<li>&#x82E5;<span class="mathjax-exps">$a = b^d$</span>&#xFF0C;&#x5219;<span class="mathjax-exps">$\log_b a = d$</span>&#xFF0C;&#x5373;&#x60C5;&#x5F62;2&#xFF0C;&#x7B49;&#x6BD4;&#x6570;&#x5217;&#x516C;&#x6BD4;<span class="mathjax-exps">$q=1$</span>&#xFF0C;&#x548C;&#x4E3A;<span class="mathjax-exps">$t$</span>&#xFF0C;&#x6545;<span class="mathjax-exps">$g(n) = \Theta(n^{\log_b a} \log_b n)$</span></li>
+<li>&#x82E5;<span class="mathjax-exps">$a &lt; b^d$</span>&#xFF0C;&#x5219;<span class="mathjax-exps">$\log_b a &lt; d$</span>&#xFF0C;&#x5373;&#x60C5;&#x5F62;3&#xFF0C;&#x7B49;&#x6BD4;&#x6570;&#x5217;&#x516C;&#x6BD4;<span class="mathjax-exps">$q&lt;1$</span>&#xFF0C;&#x548C;&#x4E3A;&#x5E38;&#x6570;&#xFF0C;&#x6545;<span class="mathjax-exps">$g(n) = \Theta(n^d) = \Theta(f(n))$</span></li>
+</ul>
 </section></section>
       </div>
     </div>

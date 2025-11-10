@@ -4541,7 +4541,7 @@ $$
 <p>&#x76F4;&#x89C2;&#x4F8B;&#x5B50;</p>
 <ol>
 <li><span class="mathjax-exps">$x^2 - y^2 = (x+y)(x-y)$</span>&#xFF0C;&#x524D;&#x8005; 2 &#x4E58; 1 &#x52A0;&#xFF0C;&#x540E;&#x8005; 1 &#x4E58; 2 &#x52A0;</li>
-<li><span class="mathjax-exps">$(a + b \text{i})(c + d \text{i}) = ac - bd + (ad + bc) \text{i} = ac - bd + ((a+b)(c+d) - ac - bd) \text{i}$</span>&#xFF0C;&#x524D;&#x8005; 4 &#x4E58; 2 &#x52A0;&#xFF0C;&#x540E;&#x8005; 3 &#x4E58; 5 &#x52A0;</li>
+<li><span class="mathjax-exps">$(a + b \text{i})(c + d \text{i}) = ac - bd + (ad + bc) \text{i} = ac - bd + ((a+b)(c+d) - ac - bd) \text{i}$</span>&#xFF0C;&#x524D;&#x8005; 4 &#x4E58; 2 &#x52A0;&#xFF0C;&#x540E;&#x8005; 3 &#x4E58; 5 &#x52A0;&#xFF0C;Karatsuba &#x4E58;&#x6CD5;&#x5C31;&#x5229;&#x7528;&#x4E86;&#x8BE5;&#x6280;&#x5DE7;</li>
 </ol>
 </section><section vertical="true" data-notes lineno="1083" class="slide " data-line="1083" data-h="14" data-v="1">
 <h5 class="mume-header" id="span-stylefont-weight900strassenspan%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95-1"><span style="font-weight:900">Strassen</span>&#x77E9;&#x9635;&#x4E58;&#x6CD5;</h5>
@@ -5464,7 +5464,7 @@ $$
 
 <hr>
 <p>&#x4F8B;&#xFF1A;<span class="mathjax-exps">$T(n) = T(n/3) + T(2n/3) + c n$</span>&#xFF0C;&#x731C;&#x6D4B;<span class="mathjax-exps">$T(n) = \Theta(n \lg n)$</span></p>
-<p>&#x8BBE;<span class="mathjax-exps">$d_1 n \lg n \le T(n) \le d_2 n \lg n$</span>&#xFF0C;&#x6CE8;&#x610F;</p>
+<p>&#x6CE8;&#x610F;</p>
 <p>
 
 $$
@@ -5476,7 +5476,7 @@ $$
 </p>
 
 <div class="top-3"></div>
-<p>&#x5373;&#x53EA;&#x9700;&#x53D6;<span class="mathjax-exps">$d_1$</span>&#x3001;<span class="mathjax-exps">$d_2$</span>&#x6EE1;&#x8DB3;&#x4E0B;&#x5F0F;&#x5373;&#x53EF;</p>
+<p>&#x6B32;&#x8BC1;<span class="mathjax-exps">$d_1 n \lg n \le T(n) \le d_2 n \lg n$</span>&#xFF0C;&#x53EA;&#x9700;&#x53D6;<span class="mathjax-exps">$d_1$</span>&#x3001;<span class="mathjax-exps">$d_2$</span>&#x6EE1;&#x8DB3;</p>
 <p>
 
 $$
@@ -5520,13 +5520,14 @@ $$
 <li>&#x82E5;<span class="mathjax-exps">$\exists k \ge 0$</span>&#x4F7F;&#x5F97;<span class="mathjax-exps">$f(n) = \Theta(n^{\log_b a} \lg^k n)$</span>&#xFF0C;&#x5219;<span class="mathjax-exps">$T(n) = \Theta(n^{\log_b a} \lg^{k+1} n)$</span></li>
 <li>&#x82E5;<span class="mathjax-exps">$\exists \epsilon &gt; 0$</span>&#x4F7F;&#x5F97;<span class="mathjax-exps">$f(n) = \Omega(n^{\log_b a + \epsilon})$</span>&#x4E14;<span class="mathjax-exps">$f$</span>&#x6EE1;&#x8DB3;<mark>&#x6B63;&#x5219;&#x6761;&#x4EF6;</mark>&#xFF1A;&#x5BF9;<span class="mathjax-exps">$c &lt; 1$</span>&#x548C;&#x5145;&#x5206;&#x5927;&#x7684;<span class="mathjax-exps">$x$</span>&#x6709;<span class="mathjax-exps">$a f(x/b) \le c f(x)$</span>&#xFF0C;&#x5219;<span class="mathjax-exps">$T(n) = \Theta(f(n))$</span></li>
 </ol>
-<div class="top2"></div>
-<p>&#x4F8B;&#xFF1A;<span class="mathjax-exps">$T(n) = 2 \cdot T(n/2) + \Theta(n)$</span>&#xFF0C;<span class="mathjax-exps">$a = 2$</span>&#x3001;<span class="mathjax-exps">$b = 2$</span>&#x3001;<span class="mathjax-exps">$f(n) = \Theta(n)$</span></p>
-<p><span class="mathjax-exps">$n^{\log_b a} = n$</span>&#xFF0C;&#x5BF9;&#x5E94;&#x4E8E;&#x60C5;&#x5F62; 2 &#x4E2D;&#x7684;<span class="mathjax-exps">$k=0$</span>&#xFF0C;&#x6545;<span class="mathjax-exps">$T(n) = \Theta(n \lg n)$</span></p>
-<div class="top2"></div>
-<p>&#x4F8B;&#xFF1A;<span class="mathjax-exps">$T(n) = T(n/2) + \Theta(1)$</span>&#xFF0C;<span class="mathjax-exps">$a = 1$</span>&#x3001;<span class="mathjax-exps">$b = 2$</span>&#x3001;<span class="mathjax-exps">$f(n) = \Theta(1)$</span></p>
-<p><span class="mathjax-exps">$n^{\log_b a} = 1$</span>&#xFF0C;&#x5BF9;&#x5E94;&#x4E8E;&#x60C5;&#x5F62; 2 &#x4E2D;&#x7684;<span class="mathjax-exps">$k=0$</span>&#xFF0C;&#x6545;<span class="mathjax-exps">$T(n) = \Theta(\lg n)$</span></p>
-</section><section vertical="true" data-notes lineno="2212" class="slide " data-line="2212" data-h="28" data-v="1">
+<div class="top1"></div>
+<p>&#x4F8B;&#xFF1A;</p>
+<ul>
+<li>&#x5F52;&#x5E76;&#x6392;&#x5E8F;&#xFF1A;<span class="mathjax-exps">$T(n) = 2 \cdot T(n/2) + \Theta(n)$</span>&#xFF0C;<span class="mathjax-exps">$n^{\log_b a} = n$</span>&#xFF0C;&#x5BF9;&#x5E94;&#x4E8E;&#x60C5;&#x5F62; 2 &#x4E2D;&#x7684;<span class="mathjax-exps">$k=0$</span>&#xFF0C;&#x6545;<span class="mathjax-exps">$T(n) = \Theta(n \lg n)$</span></li>
+<li>Karatsuba &#x7B97;&#x6CD5;&#xFF1A;<span class="mathjax-exps">$T(n) = 3 \cdot T(n/2) + \Theta(n)$</span>&#xFF0C;<span class="mathjax-exps">$n^{\log_b a} = n^{\lg 3}$</span>&#xFF0C;&#x5BF9;&#x5E94;&#x4E8E;&#x60C5;&#x5F62; 1&#xFF0C;&#x6545;<span class="mathjax-exps">$T(n) = \Theta(n^{\lg 3})$</span></li>
+<li>&#x4E8C;&#x5206;&#x67E5;&#x627E;&#xFF1A;<span class="mathjax-exps">$T(n) = T(n/2) + \Theta(1)$</span>&#xFF0C;<span class="mathjax-exps">$n^{\log_b a} = 1$</span>&#xFF0C;&#x5BF9;&#x5E94;&#x4E8E;&#x60C5;&#x5F62; 2 &#x4E2D;&#x7684;<span class="mathjax-exps">$k=0$</span>&#xFF0C;&#x6545;<span class="mathjax-exps">$T(n) = \Theta(\lg n)$</span></li>
+</ul>
+</section><section vertical="true" data-notes lineno="2208" class="slide " data-line="2208" data-h="28" data-v="1">
 <h5 class="mume-header" id="%E4%B8%BB%E6%96%B9%E6%B3%95-2">&#x4E3B;&#x65B9;&#x6CD5;</h5>
 
 <hr>
@@ -5536,13 +5537,15 @@ $$
 <li>&#x82E5;<span class="mathjax-exps">$\exists k \ge 0$</span>&#x4F7F;&#x5F97;<span class="mathjax-exps">$f(n) = \Theta(n^{\log_b a} \lg^k n)$</span>&#xFF0C;&#x5219;<span class="mathjax-exps">$T(n) = \Theta(n^{\log_b a} \lg^{k+1} n)$</span></li>
 <li>&#x82E5;<span class="mathjax-exps">$\exists \epsilon &gt; 0$</span>&#x4F7F;&#x5F97;<span class="mathjax-exps">$f(n) = \Omega(n^{\log_b a + \epsilon})$</span>&#x4E14;<span class="mathjax-exps">$f$</span>&#x6EE1;&#x8DB3;<mark>&#x6B63;&#x5219;&#x6761;&#x4EF6;</mark>&#xFF1A;&#x5BF9;<span class="mathjax-exps">$c &lt; 1$</span>&#x548C;&#x5145;&#x5206;&#x5927;&#x7684;<span class="mathjax-exps">$x$</span>&#x6709;<span class="mathjax-exps">$a f(x/b) \le c f(x)$</span>&#xFF0C;&#x5219;<span class="mathjax-exps">$T(n) = \Theta(f(n))$</span></li>
 </ol>
-<div class="top2"></div>
-<p>&#x4F8B;&#xFF1A;<span class="mathjax-exps">$T(n) = 4 \cdot T(n/2) + \Theta(1)$</span>&#xFF0C;<span class="mathjax-exps">$a = 4$</span>&#x3001;<span class="mathjax-exps">$b = 2$</span>&#x3001;<span class="mathjax-exps">$f(n) = \Theta(1)$</span></p>
-<p><span class="mathjax-exps">$n^{\log_b a} = n^2$</span>&#xFF0C;&#x5BF9;&#x5E94;&#x4E8E;&#x60C5;&#x5F62; 1&#xFF0C;&#x6545;<span class="mathjax-exps">$T(n) = \Theta(n^2)$</span></p>
-<div class="top2"></div>
-<p>&#x4F8B;&#xFF1A;<span class="mathjax-exps">$T(n) = 4 \cdot T(n/2) + \Theta(n^2)$</span>&#xFF0C;<span class="mathjax-exps">$a = 4$</span>&#x3001;<span class="mathjax-exps">$b = 2$</span>&#x3001;<span class="mathjax-exps">$f(n) = \Theta(n^2)$</span></p>
-<p><span class="mathjax-exps">$n^{\log_b a} = n^2$</span>&#xFF0C;&#x5BF9;&#x5E94;&#x4E8E;&#x60C5;&#x5F62; 2 &#x4E2D;&#x7684;<span class="mathjax-exps">$k=0$</span>&#xFF0C;&#x6545;<span class="mathjax-exps">$T(n) = \Theta(n^2 \lg n)$</span></p>
-</section><section vertical="true" data-notes lineno="2236" class="slide " data-line="2236" data-h="28" data-v="2">
+<div class="top1"></div>
+<p>&#x4F8B;&#xFF1A;</p>
+<ul>
+<li>&#x77E9;&#x9635;&#x52A0;&#x6CD5;&#x65E0;&#x590D;&#x5236;&#xFF1A;<span class="mathjax-exps">$T(n) = 4 \cdot T(n/2) + \Theta(1)$</span>&#xFF0C;<span class="mathjax-exps">$n^{\log_b a} = n^2$</span>&#xFF0C;&#x5BF9;&#x5E94;&#x4E8E;&#x60C5;&#x5F62; 1&#xFF0C;&#x6545;<span class="mathjax-exps">$T(n) = \Theta(n^2)$</span></li>
+<li>&#x77E9;&#x9635;&#x52A0;&#x6CD5;&#x6709;&#x590D;&#x5236;&#xFF1A;<span class="mathjax-exps">$T(n) = 4 \cdot T(n/2) + \Theta(n^2)$</span>&#xFF0C;<span class="mathjax-exps">$n^{\log_b a} = n^2$</span>&#xFF0C;&#x5BF9;&#x5E94;&#x4E8E;&#x60C5;&#x5F62; 2 &#x4E2D;&#x7684;<span class="mathjax-exps">$k=0$</span>&#xFF0C;&#x6545;<span class="mathjax-exps">$T(n) = \Theta(n^2 \lg n)$</span></li>
+<li>&#x6734;&#x7D20;&#x7684;&#x77E9;&#x9635;&#x4E58;&#x6CD5;&#xFF1A;<span class="mathjax-exps">$T(n) = 8 \cdot T(n/2) + O(n^2)$</span>&#xFF0C;<span class="mathjax-exps">$n^{\log_b a} = n^3$</span>&#xFF0C;&#x5BF9;&#x5E94;&#x4E8E;&#x60C5;&#x5F62; 1&#xFF0C;&#x6545;<span class="mathjax-exps">$T(n) = \Theta(n^3)$</span></li>
+<li>Strassen &#x77E9;&#x9635;&#x4E58;&#x6CD5;&#xFF1A;<span class="mathjax-exps">$T(n) = 7 \cdot T(n/2) + \Theta(n^2)$</span>&#xFF0C;<span class="mathjax-exps">$n^{\log_b a} = n^{\lg 7}$</span>&#xFF0C;&#x5BF9;&#x5E94;&#x4E8E;&#x60C5;&#x5F62; 1&#xFF0C;&#x6545;<span class="mathjax-exps">$T(n) = \Theta(n^{\lg 7})$</span></li>
+</ul>
+</section><section vertical="true" data-notes lineno="2229" class="slide " data-line="2229" data-h="28" data-v="2">
 <h5 class="mume-header" id="%E4%B8%BB%E6%96%B9%E6%B3%95-3">&#x4E3B;&#x65B9;&#x6CD5;</h5>
 
 <hr>
@@ -5552,29 +5555,13 @@ $$
 <li>&#x82E5;<span class="mathjax-exps">$\exists k \ge 0$</span>&#x4F7F;&#x5F97;<span class="mathjax-exps">$f(n) = \Theta(n^{\log_b a} \lg^k n)$</span>&#xFF0C;&#x5219;<span class="mathjax-exps">$T(n) = \Theta(n^{\log_b a} \lg^{k+1} n)$</span></li>
 <li>&#x82E5;<span class="mathjax-exps">$\exists \epsilon &gt; 0$</span>&#x4F7F;&#x5F97;<span class="mathjax-exps">$f(n) = \Omega(n^{\log_b a + \epsilon})$</span>&#x4E14;<span class="mathjax-exps">$f$</span>&#x6EE1;&#x8DB3;<mark>&#x6B63;&#x5219;&#x6761;&#x4EF6;</mark>&#xFF1A;&#x5BF9;<span class="mathjax-exps">$c &lt; 1$</span>&#x548C;&#x5145;&#x5206;&#x5927;&#x7684;<span class="mathjax-exps">$x$</span>&#x6709;<span class="mathjax-exps">$a f(x/b) \le c f(x)$</span>&#xFF0C;&#x5219;<span class="mathjax-exps">$T(n) = \Theta(f(n))$</span></li>
 </ol>
-<div class="top2"></div>
-<p>&#x4F8B;&#xFF1A;<span class="mathjax-exps">$T(n) = 8 \cdot T(n/2) + O(n^2)$</span>&#xFF0C;<span class="mathjax-exps">$a = 8$</span>&#x3001;<span class="mathjax-exps">$b = 2$</span>&#x3001;<span class="mathjax-exps">$f(n) = O(n^2)$</span></p>
-<p><span class="mathjax-exps">$n^{\log_b a} = n^3$</span>&#xFF0C;&#x5BF9;&#x5E94;&#x4E8E;&#x60C5;&#x5F62; 1&#xFF0C;&#x6545;<span class="mathjax-exps">$T(n) = \Theta(n^3)$</span></p>
-<div class="top2"></div>
-<p>&#x4F8B;&#xFF1A;<span class="mathjax-exps">$T(n) = 7 \cdot T(n/2) + \Theta(n^2)$</span>&#xFF0C;<span class="mathjax-exps">$a = 7$</span>&#x3001;<span class="mathjax-exps">$b = 2$</span>&#x3001;<span class="mathjax-exps">$f(n) = \Theta(n^2)$</span></p>
-<p><span class="mathjax-exps">$n^{\log_b a} = n^{\lg 7} \approx n^{2.81}$</span>&#xFF0C;&#x5BF9;&#x5E94;&#x4E8E;&#x60C5;&#x5F62; 1&#xFF0C;&#x6545;<span class="mathjax-exps">$T(n) = \Theta(n^{\lg 7})$</span></p>
-</section><section vertical="true" data-notes lineno="2260" class="slide " data-line="2260" data-h="28" data-v="3">
-<h5 class="mume-header" id="%E4%B8%BB%E6%96%B9%E6%B3%95-4">&#x4E3B;&#x65B9;&#x6CD5;</h5>
-
-<hr>
-<p>&#x4E3B;&#x5B9A;&#x7406;&#xFF1A;&#x8BBE;<span class="mathjax-exps">$T(n) = a \cdot T(n/b) + f(n)$</span>&#xFF0C;&#x5176;&#x4E2D;<span class="mathjax-exps">$a&gt;0$</span>&#x3001;<span class="mathjax-exps">$b&gt;1$</span>&#xFF0C;</p>
-<ol>
-<li>&#x82E5;<span class="mathjax-exps">$\exists \epsilon &gt; 0$</span>&#x4F7F;&#x5F97;<span class="mathjax-exps">$f(n) = O(n^{\log_b a - \epsilon})$</span>&#xFF0C;&#x5219;<span class="mathjax-exps">$T(n) = \Theta(n^{\log_b a})$</span></li>
-<li>&#x82E5;<span class="mathjax-exps">$\exists k \ge 0$</span>&#x4F7F;&#x5F97;<span class="mathjax-exps">$f(n) = \Theta(n^{\log_b a} \lg^k n)$</span>&#xFF0C;&#x5219;<span class="mathjax-exps">$T(n) = \Theta(n^{\log_b a} \lg^{k+1} n)$</span></li>
-<li>&#x82E5;<span class="mathjax-exps">$\exists \epsilon &gt; 0$</span>&#x4F7F;&#x5F97;<span class="mathjax-exps">$f(n) = \Omega(n^{\log_b a + \epsilon})$</span>&#x4E14;<span class="mathjax-exps">$f$</span>&#x6EE1;&#x8DB3;<mark>&#x6B63;&#x5219;&#x6761;&#x4EF6;</mark>&#xFF1A;&#x5BF9;<span class="mathjax-exps">$c &lt; 1$</span>&#x548C;&#x5145;&#x5206;&#x5927;&#x7684;<span class="mathjax-exps">$x$</span>&#x6709;<span class="mathjax-exps">$a f(x/b) \le c f(x)$</span>&#xFF0C;&#x5219;<span class="mathjax-exps">$T(n) = \Theta(f(n))$</span></li>
-</ol>
-<div class="top2"></div>
-<p>&#x4F8B;&#xFF1A;<span class="mathjax-exps">$T(n) = 3 \cdot T(n/4) + n \lg n$</span>&#xFF0C;<span class="mathjax-exps">$a = 3$</span>&#x3001;<span class="mathjax-exps">$b = 4$</span>&#x3001;<span class="mathjax-exps">$f(n) = n \lg n$</span></p>
-<p><span class="mathjax-exps">$n^{\log_b a} = n^{\log_4 3} \approx n^{0.793}$</span>&#xFF0C;&#x82E5;&#x5C5E;&#x4E8E;&#x60C5;&#x5F62; 3&#xFF0C;&#x5219;<span class="mathjax-exps">$T(n) = \Theta(n \lg n)$</span></p>
-<p>&#x6B63;&#x5219;&#x6761;&#x4EF6;&#xFF1A;<span class="mathjax-exps">$3 (x/4) \lg (x/4) \le c x \lg x$</span>&#xFF0C;&#x53D6;<span class="mathjax-exps">$c = 3/4$</span>&#x5373;&#x53EF;</p>
-<p>&#x4F8B;&#xFF1A;<span class="mathjax-exps">$T(n) = 2 \cdot T(n/2) + n / \lg n$</span>&#xFF0C;<span class="mathjax-exps">$a = 2$</span>&#x3001;<span class="mathjax-exps">$b = 2$</span>&#x3001;<span class="mathjax-exps">$f(n) = n / \lg n$</span></p>
-<p><span class="mathjax-exps">$n^{\log_b a} = n$</span>&#xFF0C;&#x4F46;<span class="mathjax-exps">$f(n) = n / \lg n \ne O(n^{1 - \epsilon})$</span>&#xFF0C;&#x4E3B;&#x5B9A;&#x7406;&#x60C5;&#x51B5; 1 &#x4E0D;&#x9002;&#x7528;</p>
-</section></section><section><section data-notes lineno="2284" class="slide " data-line="2284" data-h="29" data-v="0">
+<div class="top1"></div>
+<p>&#x4F8B;&#xFF1A;</p>
+<ul>
+<li><span class="mathjax-exps">$T(n) = 3 \cdot T(n/4) + n \lg n$</span>&#xFF0C;<span class="mathjax-exps">$n^{\log_b a} = n^{\log_4 3} \approx n^{0.793}$</span>&#xFF0C;&#x82E5;&#x5C5E;&#x4E8E;&#x60C5;&#x5F62; 3&#xFF0C;&#x5219;<span class="mathjax-exps">$T(n) = \Theta(n \lg n)$</span><br>&#x68C0;&#x67E5;&#x6B63;&#x5219;&#x6761;&#x4EF6;&#xFF1A;<span class="mathjax-exps">$3 (x/4) \lg (x/4) \le c x \lg x$</span>&#xFF0C;&#x53D6;<span class="mathjax-exps">$c = 3/4$</span>&#x5373;&#x53EF;</li>
+<li><span class="mathjax-exps">$T(n) = 2 \cdot T(n/2) + n / \lg n$</span>&#xFF0C;<span class="mathjax-exps">$n^{\log_b a} = n$</span>&#xFF0C;&#x4F46;<span class="mathjax-exps">$n / \lg n \ne O(n^{1 - \epsilon})$</span>&#xFF0C;&#x4E3B;&#x5B9A;&#x7406;&#x60C5;&#x51B5; 1 &#x4E0D;&#x9002;&#x7528;</li>
+</ul>
+</section></section><section><section data-notes lineno="2248" class="slide " data-line="2248" data-h="29" data-v="0">
 <h5 class="mume-header" id="%E4%B8%BB%E6%96%B9%E6%B3%95-%E8%AF%81%E6%98%8E%E6%80%9D%E8%B7%AF">&#x4E3B;&#x65B9;&#x6CD5; &#x8BC1;&#x660E;&#x601D;&#x8DEF;</h5>
 
 <hr>
@@ -5603,8 +5590,27 @@ $$
 </p>
 
 <p>&#x9700;&#x8981;&#x6BD4;&#x8F83;<span class="mathjax-exps">$n^{\log_b a}$</span>&#x548C;<span class="mathjax-exps">$g(n) = \sum_{i=0}^{t-1} a^i f(n/b^i)$</span></p>
-</section><section vertical="true" data-notes lineno="2321" class="slide " data-line="2321" data-h="29" data-v="1">
+</section><section vertical="true" data-notes lineno="2285" class="slide " data-line="2285" data-h="29" data-v="1">
 <h5 class="mume-header" id="%E4%B8%BB%E6%96%B9%E6%B3%95-%E8%AF%81%E6%98%8E%E6%80%9D%E8%B7%AF-1">&#x4E3B;&#x65B9;&#x6CD5; &#x8BC1;&#x660E;&#x601D;&#x8DEF;</h5>
+
+<hr>
+<p>&#x4EE5;<span class="mathjax-exps">$f(n) = n^d$</span>&#x4E3A;&#x4F8B;</p>
+<p>
+
+$$
+\begin{align*}
+    \quad g(n) = \sum_{i=0}^{t-1} a^i f \left( \frac{n}{b^i} \right) = \sum_{i=0}^{t-1} a^i \left( \frac{n}{b^i} \right)^d = n^d \sum_{i=0}^{t-1} \left( \frac{a}{b^d} \right)^i
+\end{align*}
+$$
+</p>
+
+<ul>
+<li>&#x82E5;<span class="mathjax-exps">$a &gt; b^d$</span>&#xFF0C;&#x5219;<span class="mathjax-exps">$\log_b a &gt; d$</span>&#xFF0C;&#x5373;&#x60C5;&#x5F62; 1&#xFF0C;&#x7B49;&#x6BD4;&#x6570;&#x5217;&#x516C;&#x6BD4;<span class="mathjax-exps">$q&gt;1$</span>&#xFF0C;&#x548C;&#x4E3A;&#x6700;&#x540E;&#x4E00;&#x9879;<span class="mathjax-exps">$(a/b^d)^{t-1} = a^{t-1} b^d / n^d &lt; a^t / n^d = a^{\log_b n}/ n^d = n^{\log_b a} / n^d$</span>&#x7684;&#x5E38;&#x6570;&#x500D;&#xFF0C;&#x6545;<span class="mathjax-exps">$g(n) = \Theta(n^{\log_b a})$</span></li>
+<li>&#x82E5;<span class="mathjax-exps">$a = b^d$</span>&#xFF0C;&#x5219;<span class="mathjax-exps">$\log_b a = d$</span>&#xFF0C;&#x5373;&#x60C5;&#x5F62; 2&#xFF0C;&#x7B49;&#x6BD4;&#x6570;&#x5217;&#x516C;&#x6BD4;<span class="mathjax-exps">$q=1$</span>&#xFF0C;&#x548C;&#x4E3A;<span class="mathjax-exps">$t$</span>&#xFF0C;&#x6545;<span class="mathjax-exps">$g(n) = \Theta(n^{\log_b a} \log_b n)$</span></li>
+<li>&#x82E5;<span class="mathjax-exps">$a &lt; b^d$</span>&#xFF0C;&#x5219;<span class="mathjax-exps">$\log_b a &lt; d$</span>&#xFF0C;&#x5373;&#x60C5;&#x5F62; 3&#xFF0C;&#x7B49;&#x6BD4;&#x6570;&#x5217;&#x516C;&#x6BD4;<span class="mathjax-exps">$q&lt;1$</span>&#xFF0C;&#x548C;&#x4E0D;&#x8D85;&#x8FC7;<span class="mathjax-exps">$1/(1-q)$</span>&#xFF0C;&#x82E5;<span class="mathjax-exps">$q$</span>&#x4E0D;&#x975E;&#x5E38;&#x63A5;&#x8FD1;<span class="mathjax-exps">$1$</span>&#xFF0C;&#x53EF;&#x4EE5;&#x89C6;&#x4E3A;&#x5E38;&#x6570; (&#x6B63;&#x5219;&#x6761;&#x4EF6;)&#xFF0C;&#x6545;<span class="mathjax-exps">$g(n) = \Theta(n^d) = \Theta(f(n))$</span></li>
+</ul>
+</section><section vertical="true" data-notes lineno="2307" class="slide " data-line="2307" data-h="29" data-v="2">
+<h5 class="mume-header" id="%E4%B8%BB%E6%96%B9%E6%B3%95-%E8%AF%81%E6%98%8E%E6%80%9D%E8%B7%AF-2">&#x4E3B;&#x65B9;&#x6CD5; &#x8BC1;&#x660E;&#x601D;&#x8DEF;</h5>
 
 <hr>
 <p>&#x9700;&#x8981;&#x6BD4;&#x8F83;<span class="mathjax-exps">$n^{\log_b a}$</span>&#x548C;<span class="mathjax-exps">$g(n) = \sum_{i=0}^{t-1} a^i f(n/b^i)$</span>&#xFF0C;&#x5176;&#x4E2D;<span class="mathjax-exps">$a&gt;0$</span>&#x3001;<span class="mathjax-exps">$b&gt;1$</span></p>
@@ -5622,8 +5628,8 @@ $$
 
 <div class="top-3"></div>
 <p>&#x56E0;&#x6B64;<span class="mathjax-exps">$n^{\log_b a}$</span>&#x4E3B;&#x5BFC;&#x6700;&#x7EC8;&#x7684;&#x754C;</p>
-</section><section vertical="true" data-notes lineno="2347" class="slide " data-line="2347" data-h="29" data-v="2">
-<h5 class="mume-header" id="%E4%B8%BB%E6%96%B9%E6%B3%95-%E8%AF%81%E6%98%8E%E6%80%9D%E8%B7%AF-2">&#x4E3B;&#x65B9;&#x6CD5; &#x8BC1;&#x660E;&#x601D;&#x8DEF;</h5>
+</section><section vertical="true" data-notes lineno="2333" class="slide " data-line="2333" data-h="29" data-v="3">
+<h5 class="mume-header" id="%E4%B8%BB%E6%96%B9%E6%B3%95-%E8%AF%81%E6%98%8E%E6%80%9D%E8%B7%AF-3">&#x4E3B;&#x65B9;&#x6CD5; &#x8BC1;&#x660E;&#x601D;&#x8DEF;</h5>
 
 <hr>
 <p>&#x9700;&#x8981;&#x6BD4;&#x8F83;<span class="mathjax-exps">$n^{\log_b a}$</span>&#x548C;<span class="mathjax-exps">$g(n) = \sum_{i=0}^{t-1} a^i f(n/b^i)$</span>&#xFF0C;&#x5176;&#x4E2D;<span class="mathjax-exps">$a&gt;0$</span>&#x3001;<span class="mathjax-exps">$b&gt;1$</span></p>
@@ -5642,8 +5648,8 @@ $$
 <div class="top-3"></div>
 <p><span class="mathjax-exps">$\sum_{i=1}^t i^k \le \sum_{i=1}^t t^k = t^{k+1} \Longrightarrow \sum_{i=1}^t i^k = O(\log_b^{k+1} n) = O(\lg^{k+1} n)$</span></p>
 <p>&#x6700;&#x540E;&#x53EA;&#x9700;&#x8BC1;<span class="mathjax-exps">$\sum_{i=1}^t i^k = \Omega(\lg^{k+1} n)$</span></p>
-</section><section vertical="true" data-notes lineno="2375" class="slide " data-line="2375" data-h="29" data-v="3">
-<h5 class="mume-header" id="%E4%B8%BB%E6%96%B9%E6%B3%95-%E8%AF%81%E6%98%8E%E6%80%9D%E8%B7%AF-3">&#x4E3B;&#x65B9;&#x6CD5; &#x8BC1;&#x660E;&#x601D;&#x8DEF;</h5>
+</section><section vertical="true" data-notes lineno="2361" class="slide " data-line="2361" data-h="29" data-v="4">
+<h5 class="mume-header" id="%E4%B8%BB%E6%96%B9%E6%B3%95-%E8%AF%81%E6%98%8E%E6%80%9D%E8%B7%AF-4">&#x4E3B;&#x65B9;&#x6CD5; &#x8BC1;&#x660E;&#x601D;&#x8DEF;</h5>
 
 <hr>
 <p>&#x9700;&#x8981;&#x6BD4;&#x8F83;<span class="mathjax-exps">$n^{\log_b a}$</span>&#x548C;<span class="mathjax-exps">$g(n) = \sum_{i=0}^{t-1} a^i f(n/b^i)$</span>&#xFF0C;&#x5176;&#x4E2D;<span class="mathjax-exps">$a&gt;0$</span>&#x3001;<span class="mathjax-exps">$b&gt;1$</span></p>
@@ -5671,8 +5677,8 @@ $$
 
 <div class="top-3"></div>
 <p>&#x7684;&#x4E0A;&#x65B9;&#x548C;&#xFF0C;&#x5373;<span class="mathjax-exps">$\sum_{i=1}^t i^k = \Omega(\lg^{k+1} n)$</span></p>
-</section><section vertical="true" data-notes lineno="2415" class="slide " data-line="2415" data-h="29" data-v="4">
-<h5 class="mume-header" id="%E4%B8%BB%E6%96%B9%E6%B3%95-%E8%AF%81%E6%98%8E%E6%80%9D%E8%B7%AF-4">&#x4E3B;&#x65B9;&#x6CD5; &#x8BC1;&#x660E;&#x601D;&#x8DEF;</h5>
+</section><section vertical="true" data-notes lineno="2401" class="slide " data-line="2401" data-h="29" data-v="5">
+<h5 class="mume-header" id="%E4%B8%BB%E6%96%B9%E6%B3%95-%E8%AF%81%E6%98%8E%E6%80%9D%E8%B7%AF-5">&#x4E3B;&#x65B9;&#x6CD5; &#x8BC1;&#x660E;&#x601D;&#x8DEF;</h5>
 
 <hr>
 <p>&#x9700;&#x8981;&#x6BD4;&#x8F83;<span class="mathjax-exps">$n^{\log_b a}$</span>&#x548C;<span class="mathjax-exps">$g(n) = \sum_{i=0}^{t-1} a^i f(n/b^i)$</span>&#xFF0C;&#x5176;&#x4E2D;<span class="mathjax-exps">$a&gt;0$</span>&#x3001;<span class="mathjax-exps">$b&gt;1$</span></p>
@@ -5690,7 +5696,7 @@ $$
 
 <div class="top-3"></div>
 <p>&#x7531;&#x4E8E;<span class="mathjax-exps">$f(n)$</span>&#x662F;<span class="mathjax-exps">$g(n)$</span>&#x6C42;&#x548C;&#x5F0F;&#x4E2D;&#x7684;&#x4E00;&#x9879;&#xFF0C;&#x56E0;&#x6B64;<span class="mathjax-exps">$g(n) = \Omega(f(n))$</span>&#x662F;&#x663E;&#x7136;&#x7684;</p>
-</section></section><section data-notes lineno="2442" class="slide " data-line="2442" data-h="30" data-v="0">
+</section></section><section data-notes lineno="2428" class="slide " data-line="2428" data-h="30" data-v="0">
 <h5 class="mume-header" id="%E5%86%8D%E7%9C%8B%E4%B8%BB%E6%96%B9%E6%B3%95%E4%B8%8D%E9%80%82%E7%94%A8%E4%BE%8B">&#x518D;&#x770B;&#x4E3B;&#x65B9;&#x6CD5;&#x4E0D;&#x9002;&#x7528;&#x4F8B;</h5>
 
 <hr>
@@ -5719,7 +5725,7 @@ $$
 
 <div class="top-3"></div>
 <p>&#x6545;<span class="mathjax-exps">$g(n) = \Theta (n^{\log_b a} \lg \lg n)$</span>&#x5360;&#x4E3B;&#x5BFC;&#xFF0C;&#x4ECE;&#x800C;<span class="mathjax-exps">$T(n) = \Theta (n^{\log_b a} \lg \lg n)$</span></p>
-</section><section><section data-notes lineno="2480" class="slide " data-line="2480" data-h="31" data-v="0">
+</section><section><section data-notes lineno="2466" class="slide " data-line="2466" data-h="31" data-v="0">
 <h5 class="mume-header" id="span-stylefont-weight900akra-bazzispan%E6%B3%95"><span style="font-weight:900">Akra-Bazzi</span>&#x6CD5;</h5>
 
 <hr>
@@ -5748,7 +5754,7 @@ $$
 </p>
 
 <p>&#x6CE8;&#x610F;<span class="mathjax-exps">$\sum_{i=1}^k a_i / b_i^p \rightarrow \begin{cases} 0, &amp; p \rightarrow \infty \\ \infty, &amp; p \rightarrow -\infty \end{cases}$</span>&#xFF0C;&#x6EE1;&#x8DB3;&#x8981;&#x6C42;&#x7684;<span class="mathjax-exps">$p$</span>&#x603B;&#x662F;&#x5B58;&#x5728;&#x7684;</p>
-</section><section vertical="true" data-notes lineno="2520" class="slide " data-line="2520" data-h="31" data-v="1">
+</section><section vertical="true" data-notes lineno="2506" class="slide " data-line="2506" data-h="31" data-v="1">
 <h5 class="mume-header" id="span-stylefont-weight900akra-bazzispan%E6%B3%95-1"><span style="font-weight:900">Akra-Bazzi</span>&#x6CD5;</h5>
 
 <hr>
@@ -5778,7 +5784,7 @@ $$
 $$
 </p>
 
-</section><section vertical="true" data-notes lineno="2559" class="slide " data-line="2559" data-h="31" data-v="2">
+</section><section vertical="true" data-notes lineno="2545" class="slide " data-line="2545" data-h="31" data-v="2">
 <h5 class="mume-header" id="span-stylefont-weight900akra-bazzispan%E6%B3%95-2"><span style="font-weight:900">Akra-Bazzi</span>&#x6CD5;</h5>
 
 <hr>
@@ -5807,7 +5813,7 @@ $$
 $$
 </p>
 
-</section></section><section data-notes lineno="2597" class="slide " data-line="2597" data-h="32" data-v="0">
+</section></section><section data-notes lineno="2583" class="slide " data-line="2583" data-h="32" data-v="0">
 <h5 class="mume-header" id="%E4%BD%9C%E4%B8%9A">&#x4F5C;&#x4E1A;</h5>
 
 <hr>
