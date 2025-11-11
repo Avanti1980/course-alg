@@ -1,0 +1,81 @@
+\documentclass{ctexart}
+\usepackage{avanti-color}
+%\usepackage{avanti-font}
+\usepackage{avanti-math}
+\usepackage{avanti-theorem}
+\usepackage{avanti-others}
+
+\RequirePackage{fontspec}
+\xeCJKsetup{CJKmath=true}
+\setCJKmainfont[BoldFont=FZHei-B01,ItalicFont=]{LXGW Bright}
+
+\everymath{\color{Solarized-magenta}}
+\pagestyle{empty} % 没有页眉和页脚
+
+% define the plot style and the axis style
+% \tikzset{font=\large}
+
+\begin{document}
+
+\begin{tikzpicture}
+	\Tree
+	[.$F(6)$
+		[.$F(5)$
+				[.$F(4)$
+						[.$F(3)$
+								[.$F(2)$
+										[.$\red{F(1)}$ ]
+											[.$\red{F(0)}$ ]
+									]
+									[.$\red{F(1)}$ ]
+							]
+							[.$F(2)$
+								[.$\red{F(1)}$ ]
+									[.$\red{F(0)}$ ]
+							]
+					]
+					[.$F(3)$
+						[.$F(2)$
+								[.$\red{F(1)}$ ]
+									[.$\red{F(0)}$ ]
+							]
+							[.$\red{F(1)}$ ]
+					]
+			]
+			[.$F(4)$
+				[.$F(3)$
+						[.$F(2)$
+								[.$\red{F(1)}$ ]
+									[.$\red{F(0)}$ ]
+							]
+							[.$\red{F(1)}$ ]
+					]
+					[.$F(2)$
+						[.$\red{F(1)}$ ]
+							[.$\red{F(0)}$ ]
+					]
+			]
+	]
+\end{tikzpicture}
+
+\begin{tikzpicture}
+	\Tree
+	[.$F(6)$
+		[.$F(5)$
+				[.$F(4)$
+						[.$F(3)$
+								[.$F(2)$
+										[.$\red{F(1)}$ ]
+											[.$\red{F(0)}$ ]
+									]
+									[.$\red{F(1)}$ ]
+							]
+							[.$\blue{F(2)}$ ]
+					]
+					[.$\blue{F(3)}$ ]
+			]
+			[.$\blue{F(4)}$ ]
+	]
+\end{tikzpicture}
+
+\end{document}
