@@ -1,0 +1,110 @@
+\documentclass{ctexart}
+\usepackage{avanti-color}
+%\usepackage{avanti-font}
+\usepackage{avanti-math}
+\usepackage{avanti-theorem}
+\usepackage{avanti-others}
+
+\RequirePackage{fontspec}
+\xeCJKsetup{CJKmath=true}
+\setmainfont[BoldFont=FZHei-B01,ItalicFont=]{Ysabeau}
+
+\everymath{\color{Solarized-magenta}}
+\pagestyle{empty} % 没有页眉和页脚
+
+% define the plot style and the axis style
+\tikzset{font=\small}
+
+\tikzset{base/.style={smooth, Solarized-base01}}
+\tikzset{point/.style={ellipse, base, draw=Solarized-base01, text centered}}
+\tikzset{point2/.style={point, minimum width=32pt, minimum height=20pt}}
+
+\begin{document}
+
+\begin{tikzpicture}
+	\Tree
+	[.\node [point2] {or};
+	[.\node [point2] {is};
+	[.\node [point2] {game};
+	[.\node [point2] {die}; ]
+	[.\node [point2] {ground}; ]
+	]
+	[.\node [point2] {no};
+	[.\node [point2] {middle}; ]
+	[.\node [point2] {of}; ]
+	]
+	]
+	[.\node [point2] {thrones};
+	[.\node [point2] {the};
+	[.\node [point2] {play}; ]
+	[.\node [point2] {there}; ]
+	]
+	[.\node [point2] {win};
+	[.\node [point2] {when}; ]
+	[.\node [point2] {you}; ]
+	]
+	]
+	]
+\end{tikzpicture}
+
+\begin{figure}[!ht]
+	\centering
+	\subcaptionsetup{skip=1pt}
+	\adjustbox{valign=t}{\begin{subfigure}[t]{.4\textwidth}
+			\centering
+			\begin{tikzpicture}
+				\Tree
+				[.\node [point] {$k_2$};
+				[.\node [point] {$k_1$};
+				[.\node [point] {$\blue{d_0}$}; ]
+				[.\node [point] {$\blue{d_1}$}; ]
+				]
+				[.\node [point] {$k_4$};
+				[.\node [point] {$k_3$};
+				[.\node [point] {$\blue{d_2}$}; ]
+				[.\node [point] {$\blue{d_3}$}; ]
+				]
+				[.\node [point] {$k_5$};
+				[.\node [point] {$\blue{d_4}$}; ]
+				[.\node [point] {$\blue{d_5}$}; ]
+				]
+				]
+				]
+			\end{tikzpicture}
+		\end{subfigure}}%
+	\adjustbox{valign=t}{\begin{subfigure}[t]{.4\textwidth}
+			\centering
+			\begin{tikzpicture}
+				\Tree
+				[.\node [point] {$k_2$};
+				[.\node [point] {$k_1$};
+				[.\node [point] {$\blue{d_0}$}; ]
+				[.\node [point] {$\blue{d_1}$}; ]
+				]
+				[.\node [point] {$k_5$};
+				[.\node [point] {$k_4$};
+				[.\node [point] {$k_3$};
+				[.\node [point] {$\blue{d_2}$}; ]
+				[.\node [point] {$\blue{d_3}$}; ]
+				]
+				[.\node [point] {$\blue{d_4}$}; ]
+				]
+				[.\node [point] {$\blue{d_5}$}; ]
+				]
+				]
+			\end{tikzpicture}
+		\end{subfigure}}
+\end{figure}
+
+\begin{tikzpicture}
+	\Tree
+	[.\node [point] {$k_r$};
+	[.\node [point] {$k_i,\ldots,k_{r-1}$}; ]
+	[.\node [point] {$k_{r+1},\ldots,k_j$}; ]
+	]
+\end{tikzpicture}
+
+
+
+
+\end{document}
