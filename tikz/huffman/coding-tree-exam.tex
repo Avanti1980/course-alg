@@ -1,0 +1,326 @@
+\documentclass{ctexart}
+\usepackage{avanti-color}
+%\usepackage{avanti-font}
+\usepackage{avanti-math}
+\usepackage{avanti-theorem}
+\usepackage{avanti-others}
+
+\RequirePackage{fontspec}
+\xeCJKsetup{CJKmath=true}
+\setmainfont[BoldFont=FZHei-B01,ItalicFont=]{Ysabeau}
+
+\usepackage[a4paper, landscape,margin=1cm]{geometry}
+
+\everymath{\color{Solarized-magenta}}
+\pagestyle{empty} % 没有页眉和页脚
+
+% define the plot style and the axis style
+\tikzset{font=\small}
+
+\tikzset{base/.style={smooth, thick, Solarized-base01}}
+\tikzset{point/.style={base, draw=Solarized-base01, text centered}}
+\tikzset{point2/.style={point, minimum width=32pt, minimum height=20pt}}
+\tikzset{level distance = 1.5cm}
+\tikzset{internal/.style = {base, point, circle, minimum width=12pt}}
+\tikzset{leaf/.style = {base, point, rectangle}}
+\tikzset{lbl/.style = {rectangle, draw=none, #1, font=\footnotesize}}
+		
+
+\begin{document}
+
+\begin{figure}[!ht]
+	\centering
+	\subcaptionsetup{skip=1pt}
+	\adjustbox{valign=t}{\begin{subfigure}[t]{.2\textwidth}
+			\centering
+			\begin{tikzpicture}[
+					base,
+					level 1/.style = {sibling distance=1.8cm},
+				]
+				\node (Root) [internal] {}
+				child {node [leaf] {$\av$}
+						child {node [leaf] {$\bv$}
+								edge from parent node [lbl=left] {$\zerov$}
+							}
+						edge from parent node [lbl=left] {$\zerov$}
+					}
+				child { node [leaf] {$\cv$}
+						child { node [leaf] {$\dv$}
+								edge from parent node [lbl=right] {$\onev$}
+							}
+						edge from parent node [lbl=right] {$\onev$}
+					};
+			\end{tikzpicture}
+		\end{subfigure}}%
+	\adjustbox{valign=t}{\begin{subfigure}[t]{.36\textwidth}
+			\centering
+			\begin{tikzpicture}[
+					base,
+					level 1/.style = {sibling distance=2.4cm},
+					level 2/.style = {sibling distance=1.2cm}
+				]
+				\node (Root) [internal] {}
+				child {node [internal] {}
+						child {node [leaf] {$\av$}
+								edge from parent node [lbl=left] {$\zerov$}
+							}
+						child {node [leaf] {$\bv$}
+								edge from parent node [lbl=right] {$\onev$}
+							}
+						edge from parent node[lbl=left] {$\zerov$}
+					}
+				child { node [internal] {}
+						child {node [leaf] {$\cv$}
+								edge from parent node[lbl=left] {$\zerov$}
+							}
+						child {node [leaf] {$\dv$}
+								edge from parent node[lbl=right] {$\onev$}
+							}
+						edge from parent node[lbl=right] {$\onev$}
+					};
+			\end{tikzpicture}
+		\end{subfigure}}%
+	\adjustbox{valign=t}{\begin{subfigure}[t]{.2\textwidth}
+			\centering
+			\begin{tikzpicture}[
+					base,
+					level 1/.style = {sibling distance=1.5cm},
+					level 2/.style = {sibling distance=1.5cm},
+					level 3/.style = {sibling distance=1.5cm}
+				]
+				\node (Root) [internal] {}
+				child {node [leaf] {$\av$}
+						edge from parent node[lbl=left] {$\zerov$}
+					}
+				child { node [internal] {}
+						child {node [leaf] {$\bv$}
+								edge from parent node[lbl=left] {$\zerov$}
+							}
+						child {node [internal] {}
+								child {node [leaf] {$\cv$}
+										edge from parent node[lbl=left] {$\zerov$}
+									}
+								child {node [leaf] {$\dv$}
+										edge from parent node[lbl=right] {$\onev$}
+									}
+								edge from parent node[lbl=right] {$\onev$}
+							}
+						edge from parent node[lbl=right] {$\onev$}
+					};
+			\end{tikzpicture}
+		\end{subfigure}}
+\end{figure}
+
+\begin{figure}[!ht]
+	\centering
+	\subcaptionsetup{skip=1pt}
+	\centering
+	\begin{tikzpicture}[
+			base,
+			level 1/.style = {sibling distance=1.8cm},
+			level 2/.style = {sibling distance=1.2cm}
+		]
+		\node (Root) [internal] {}
+		child {node [internal] {}
+				child {node [leaf] {$\av$}
+						edge from parent node[lbl=left] {$\zerov$}
+					}
+				child {node [leaf] {$\bv$}
+						edge from parent node[lbl=right] {$\onev$}
+					}
+				edge from parent node[lbl=left] {$\zerov$}
+			}
+		child { node [internal] {}
+				child {node [leaf] {$\cv$}
+						edge from parent node[lbl=left] {$\zerov$}
+					}
+				edge from parent node[lbl=right] {$\zerov$}
+			};
+	\end{tikzpicture}
+\end{figure}
+
+\begin{figure}[!ht]
+	\centering
+	\subcaptionsetup{skip=1pt}
+	\adjustbox{valign=t}{\begin{subfigure}[t]{.1\textwidth}
+			\centering
+			\begin{tikzpicture}[
+					base
+				]
+				\pgfmathsetmacro{\l}{0.8};
+				\node at (0,5*\l) [leaf] {$\av:45$};
+				\node at (0,4*\l) [leaf] {$\dv:16$};
+				\node at (0,3*\l) [leaf] {$\bv:13$};
+				\node at (0,2*\l) [leaf] {$\cv:12$};
+				\node at (0,1*\l) [leaf] {$\ev:9$};
+				\node at (0,0) [leaf] {$\fv:5$};
+			\end{tikzpicture}
+			\caption{}
+		\end{subfigure}}%
+	\adjustbox{valign=t}{\begin{subfigure}[t]{.1\textwidth}
+			\centering
+			\begin{tikzpicture}[
+					base,
+					level 1/.style = {sibling distance=1.2cm}
+				]
+				\pgfmathsetmacro{\l}{0.8};
+				\node at (0,5*\l) [leaf] {$\av:45$};
+				\node at (0,4*\l) [leaf] {$\dv:16$};
+				\node at (0,0*\l) [leaf] {$\bv:13$};
+				\node at (0,-\l) [leaf] {$\cv:12$};
+				\node (Root) at (0,2.9*\l) [internal] {$14$}
+				child {node [leaf] {$\fv:5$}
+						edge from parent node[lbl=left] {$\zerov$}
+					}
+				child {node [leaf] {$\ev:9$}
+						edge from parent node[lbl=right] {$\onev$}
+					};
+			\end{tikzpicture}
+			\caption{}
+		\end{subfigure}}%
+	\adjustbox{valign=t}{\begin{subfigure}[t]{.14\textwidth}
+			\centering
+			\begin{tikzpicture}[
+					base,
+					level 1/.style = {sibling distance=1.2cm}
+				]
+				\pgfmathsetmacro{\l}{0.8};
+				\node at (0,5*\l) [leaf] {$\av:45$};
+				\node at (0,1.2*\l) [leaf] {$\dv:16$};
+				\node (Root) at (0,4*\l) [internal] {$25$}
+				child {node [leaf] {$\cv:12$}
+						edge from parent node[lbl=left] {$\zerov$}
+					}
+				child {node [leaf] {$\bv:13$}
+						edge from parent node[lbl=right] {$\onev$}
+					};
+				\node (Root) at (0,0.1*\l) [internal] {$14$}
+				child {node [leaf] {$\fv:5$}
+						edge from parent node[lbl=left] {$\zerov$}
+					}
+				child {node [leaf] {$\ev:9$}
+						edge from parent node[lbl=right] {$\onev$}
+					};
+			\end{tikzpicture}
+			\caption{}
+		\end{subfigure}}%
+	\adjustbox{valign=t}{\begin{subfigure}[t]{.14\textwidth}
+			\centering
+			\begin{tikzpicture}[
+					base,
+					level 1/.style = {sibling distance=1.2cm}
+				]
+				\pgfmathsetmacro{\l}{0.8};
+				\node at (0,5*\l) [leaf] {$\av:45$};
+				\node (Root) at (0,-0.8*\l) [internal] {$25$}
+				child {node [leaf] {$\cv:12$}
+						edge from parent node[lbl=left] {$\zerov$}
+					}
+				child {node [leaf] {$\bv:13$}
+						edge from parent node[lbl=right] {$\onev$}
+					};
+				\node (Root) at (0,4*\l) [internal] {$30$}
+				child {node [internal] {$14$}
+						child {node [leaf] {$\fv:5$}
+								edge from parent node[lbl=left] {$\zerov$}
+							}
+						child {node [leaf] {$\ev:9$}
+								edge from parent node[lbl=right] {$\onev$}
+							}
+						edge from parent node[lbl=left] {$\zerov$}
+					}
+				child {node [leaf] {$\dv:16$}
+						edge from parent node[lbl=right] {$\onev$}
+					};
+			\end{tikzpicture}
+			\caption{}
+		\end{subfigure}}%
+	\adjustbox{valign=t}{\begin{subfigure}[t]{.2\textwidth}
+			\centering
+			\begin{tikzpicture}[
+					base,
+					level 1/.style = {sibling distance=2.4cm},
+					level 2/.style = {sibling distance=1.2cm}
+				]
+				\pgfmathsetmacro{\l}{0.8};
+				\node at (0,-1.6*\l) [leaf] {$\av:45$};
+
+				\node (Root) at (0,5*\l) [internal] {$55$}
+				child {node [internal] {$25$}
+						child {node [leaf] {$\cv:12$}
+								edge from parent node[lbl=left] {$\zerov$}
+							}
+						child {node [leaf] {$\bv:13$}
+								edge from parent node[lbl=right] {$\onev$}
+							}
+						edge from parent node[lbl=left] {$\zerov$}
+					}
+				child {node [internal] {$30$}
+						child {node [internal] {$14$}
+								child {node [leaf] {$\fv:5$}
+										edge from parent node[lbl=left] {$\zerov$}
+									}
+								child {node [leaf] {$\ev:9$}
+										edge from parent node[lbl=right] {$\onev$}
+									}
+								edge from parent node[lbl=left] {$\zerov$}
+							}
+						child {node [leaf] {$\dv:16$}
+								edge from parent node[lbl=right] {$\onev$}
+							}
+						edge from parent node[lbl=right] {$\onev$}
+					};
+			\end{tikzpicture}
+			\caption{}
+		\end{subfigure}}%
+	\adjustbox{valign=t}{\begin{subfigure}[t]{.24\textwidth}
+			\centering
+			\begin{tikzpicture}[
+					base,
+					level 1/.style = {sibling distance=2.4cm},
+					level 2/.style = {sibling distance=2.4cm},
+					level 3/.style = {sibling distance=1.2cm},
+				]
+				\pgfmathsetmacro{\l}{0.8};
+				\node (Root) at (0,5*\l) [internal] {$100$}
+				child {node [leaf] {$\av:45$}
+						edge from parent node[lbl=left] {$\zerov$}
+					}
+				child {node [internal] {$55$}
+						child {node [internal] {$25$}
+								child {node [leaf] {$\cv:12$}
+										edge from parent node[lbl=left] {$\zerov$}
+									}
+								child {node [leaf] {$\bv:13$}
+										edge from parent node[lbl=right] {$\onev$}
+									}
+								edge from parent node[lbl=left] {$\zerov$}
+							}
+						child {node [internal] {$30$}
+								child {node [internal] {$14$}
+										child {node [leaf] {$\fv:5$}
+												edge from parent node[lbl=left] {$\zerov$}
+											}
+										child {node [leaf] {$\ev:9$}
+												edge from parent node[lbl=right] {$\onev$}
+											}
+										edge from parent node[lbl=left] {$\zerov$}
+									}
+								child {node [leaf] {$\dv:16$}
+										edge from parent node[lbl=right] {$\onev$}
+									}
+								edge from parent node[lbl=right] {$\onev$}
+							}
+						edge from parent node[lbl=right] {$\onev$}
+					};
+			\end{tikzpicture}
+			\caption{}
+		\end{subfigure}}
+\end{figure}
+
+
+
+
+
+
+\end{document}

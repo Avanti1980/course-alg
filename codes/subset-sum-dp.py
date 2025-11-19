@@ -19,8 +19,8 @@ def subset_sum_dp(w, M):
 def print_sol(ss, w, i, m, M, sol):
     if w[i] == m:  # 如果当前目标和等于w[i] 则找到一个解
         for j in sol:
-            print("%d + " % j, end="")
-        print("%d = %d" % (w[i], M))
+            print(f"{j} + ", end="")
+        print(f"{w[i]} = {M}")
     else:
         if ss[i + 1, m - w[i]]:  # 如果w[i]是加数之一
             sol.append(w[i])  # 入栈
