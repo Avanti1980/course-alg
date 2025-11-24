@@ -35,11 +35,13 @@ presentation:
 
 问题：求最优排列$\pi^\star$使最大延迟$\max_{k} \lambda_{\pi} (k)$最小</p>
 
-贪心选择：
+<p class="fragment" data-fragment-index="1">贪心选择：</p>
 
-- 按照时长$L[k]$的升序安排活动
-- 按照最后期限$D[k]$的升序安排活动
-- 按照$L[k] \cdot D[k]$的升序安排活动
+<ul>
+  <li class="fragment" data-fragment-index="2">按照时长$L[k]$的升序，优先安排不太耗时的活动</li>
+  <li class="fragment" data-fragment-index="3">按照最后期限$D[k]$的升序，优先安排时间紧的活动</li>
+  <li class="fragment" data-fragment-index="4">按照$L[k] \cdot D[k]$的升序安排活动</li>
+</ul>
 
 <!-- slide vertical=true data-notes="" -->
 
@@ -54,13 +56,13 @@ presentation:
 
 <div class="top2"></div>
 
-按照时长升序：$\lambda (1) = 0$、$\lambda (2) = 90$
+三种贪心选择：
 
-按照最后期限升序：$\lambda (1) = 80$、$\lambda (2) = 60$
+- 按$L[k]$升序：$\pi(1) = 1$、$\pi(2) = 2$，$\lambda_{\pi} (1) = 0$、$\lambda_{\pi} (2) = 90$
+- 按$D[k]$升序：$\pi(1) = 2$、$\pi(2) = 1$，$\lambda_{\pi} (1) = 80$、$\lambda_{\pi} (2) = 60$
+- 按$L[k] \cdot D[k]$升序：同按$L[k]$升序
 
-<div class="top2"></div>
-
-按照最后期限升序优于按照时长升序
+<p class="fragment top4" data-fragment-index="1">对最小化最大延迟问题：按照时长$L[k]$升序和按$L[k] \cdot D[k]$升序都不是正确的贪心选择</p>
 
 <!-- slide vertical=true data-notes="" -->
 
@@ -68,9 +70,9 @@ presentation:
 
 ---
 
-对任意不同于按最后期限$D[k]$升序排列的$\pi$，必存在$i$使得$D[\pi(i)] \ge D[\pi(i+1)]$，交换活动$\pi(i)$、$\pi(i+1)$后得到的新排列为$\pi'$
+按最后期限$D[k]$升序是正确的贪心选择，对任意排列$\pi$，若存在$i$使得$D[\pi(i)] \ge D[\pi(i+1)]$，交换活动$\pi(i)$、$\pi(i+1)$后得到的新排列为$\pi'$
 
-其余$n-2$个活动的延迟不受影响，记$M = \sum_{j=1}^{i-1} L[\pi(j)]$
+其余$n-2$个活动的延迟情况不变，记$M = \sum_{j=1}^{i-1} L[\pi(j)]$
 
 - $\lambda_\pi (i) = \max \{0, M + L[\pi(i)] - D[\pi(i)]\}$
 - $\lambda_\pi (i+1) = \max \{0, M + L[\pi(i)] + L[\pi(i+1)] - D[\pi(i+1)]\}$
@@ -79,4 +81,13 @@ presentation:
 
 <div class="top2"></div>
 
-显然$\lambda_{\pi'} (i) \le \lambda_\pi (i+1)$、$\lambda_{\pi'} (i+1) \le \lambda_\pi (i+1)$，故$\pi'$更优
+显然$\lambda_{\pi'} (i) \le \lambda_\pi (i+1)$、$\lambda_{\pi'} (i+1) \le \lambda_\pi (i+1)$，故
+
+$$
+\begin{align*}
+    \quad \max \{ \lambda_{\pi'} (i), \lambda_{\pi'} (i+1) \} \le \lambda_\pi (i+1) \le \max \{ \lambda_\pi (i), \lambda_\pi (i+1) \}
+\end{align*}
+$$
+
+
+
