@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2026/dev/Arch Linux) (preloaded format=xelatex 2025.11.10)  24 NOV 2025 17:24
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2026/dev/Arch Linux) (preloaded format=xelatex 2025.11.10)  24 NOV 2025 23:30
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1439,7 +1439,7 @@ Package rerunfilecheck Info: File `coding-tree-exam.out' has not changed.
 Here is how much of TeX's memory you used:
  51851 strings out of 473832
  1232783 string characters out of 5735457
- 1984997 words of memory out of 5000000
+ 1983997 words of memory out of 5000000
  73974 multiletter control sequences out of 15000+600000
  584332 words of font info for 175 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
