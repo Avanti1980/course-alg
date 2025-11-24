@@ -54,4 +54,29 @@ presentation:
 
 <div class="top2"></div>
 
-按照时长：
+按照时长升序：$\lambda (1) = 0$、$\lambda (2) = 90$
+
+按照最后期限升序：$\lambda (1) = 80$、$\lambda (2) = 60$
+
+<div class="top2"></div>
+
+按照最后期限升序优于按照时长升序
+
+<!-- slide vertical=true data-notes="" -->
+
+##### 活动安排 正确性证明
+
+---
+
+对任意不同于按最后期限$D[k]$升序排列的$\pi$，必存在$i$使得$D[\pi(i)] \ge D[\pi(i+1)]$，交换活动$\pi(i)$、$\pi(i+1)$后得到的新排列为$\pi'$
+
+其余$n-2$个活动的延迟不受影响，记$M = \sum_{j=1}^{i-1} L[\pi(j)]$
+
+- $\lambda_\pi (i) = \max \{0, M + L[\pi(i)] - D[\pi(i)]\}$
+- $\lambda_\pi (i+1) = \max \{0, M + L[\pi(i)] + L[\pi(i+1)] - D[\pi(i+1)]\}$
+- $\lambda_{\pi'} (i) = \max \{0, M + L[\pi(i+1)] - D[\pi(i+1)]\}$
+- $\lambda_{\pi'} (i+1) = \max \{0, M + L[\pi(i)] + L[\pi(i+1)] - D[\pi(i)]\}$
+
+<div class="top2"></div>
+
+显然$\lambda_{\pi'} (i) \le \lambda_\pi (i+1)$、$\lambda_{\pi'} (i+1) \le \lambda_\pi (i+1)$，故$\pi'$更优
