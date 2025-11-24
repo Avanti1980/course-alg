@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2026/dev/Arch Linux) (preloaded format=xelatex 2025.11.10)  19 NOV 2025 08:44
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2026/dev/Arch Linux) (preloaded format=xelatex 2025.11.10)  24 NOV 2025 07:48
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1180,24 +1180,7 @@ Package: rotating 2016/08/11 v2.16d rotated objects in LaTeX
 \rotFPbot=\skip101
 \rot@float@box=\box115
 \rot@mess@toks=\toks66
-)
-
-Package fontspec Info: 
-(fontspec)             Font family 'Ysabeau(0)' created for font 'Ysabeau'
-(fontspec)             with options
-(fontspec)             [Ligatures=TeX,BoldFont=FZHei-B01,ItalicFont=].
-(fontspec)              
-(fontspec)              This font family consists of the following NFSS
-(fontspec)             series/shapes:
-(fontspec)              
-(fontspec)             - 'normal' (m/n) with NFSS spec.:
-(fontspec)             <->"Ysabeau/OT:script=latn;language=dflt;mapping=tex-text;"
-(fontspec)             - 'small caps'  (m/sc) with NFSS spec.:
-(fontspec)             <->"Ysabeau/OT:script=latn;language=dflt;+smcp;mapping=tex-text;"
-(fontspec)             - 'bold' (b/n) with NFSS spec.:
-(fontspec)             <->"FZHei-B01/OT:script=latn;language=dflt;mapping=tex-text;"
-
- (/usr/share/texmf-dist/tex/latex/geometry/geometry.sty
+) (/usr/share/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
  (/usr/share/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
@@ -1275,25 +1258,25 @@ LaTeX Font Info:    Redeclaring symbol font `operators' on input line 29.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
 (Font)              `operators' in the math version `normal' on input line 29.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/Ysabeau(0)/m/n on input line 29.
+(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 29.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
 (Font)              `operators' in the math version `bold' on input line 29.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/Ysabeau(0)/m/n on input line 29.
+(Font)                  OT1/cmr/bx/n --> TU/lmr/m/n on input line 29.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  TU/Ysabeau(0)/m/n --> TU/Ysabeau(0)/m/n on input line 29.
+(Font)                  TU/lmr/m/n --> TU/lmr/m/n on input line 29.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> TU/Ysabeau(0)/m/it on input line 29.
+(Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 29.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> TU/Ysabeau(0)/b/n on input line 29.
+(Font)                  OT1/cmr/bx/n --> TU/lmr/b/n on input line 29.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
 (Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 29.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
 (Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 29.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  TU/Ysabeau(0)/m/n --> TU/Ysabeau(0)/b/n on input line 29.
+(Font)                  TU/lmr/m/n --> TU/lmr/b/n on input line 29.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> TU/Ysabeau(0)/b/it on input line 29.
+(Font)                  OT1/cmr/bx/it --> TU/lmr/b/it on input line 29.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
 (Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 29.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
@@ -1387,6 +1370,44 @@ LaTeX Font Info:    Font shape `U/lasy/b/n' in size <7.52812> not available
 (Font)              Font shape `U/lasy/m/n' tried instead on input line 52.
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <5> not available
 (Font)              Font shape `U/lasy/m/n' tried instead on input line 52.
+
+Overfull \hbox (2.639pt too wide) in paragraph at lines 140--141
+ [][] 
+ []
+
+
+LaTeX Font Warning: Font shape `U/stmry/m/n' in size <10.53937> not available
+(Font)              size <10.95> substituted on input line 141.
+
+
+LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <10.53937> not available
+(Font)              size <10.95> substituted on input line 141.
+
+
+LaTeX Font Warning: Font shape `U/stmry/b/n' in size <10.53937> not available
+(Font)              size <10.95> substituted on input line 141.
+
+
+LaTeX Font Warning: Font shape `U/stmry/m/n' in size <15.05624> not available
+(Font)              size <14.4> substituted on input line 149.
+
+
+LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <15.05624> not available
+(Font)              size <14.4> substituted on input line 149.
+
+
+LaTeX Font Warning: Font shape `U/stmry/b/n' in size <15.05624> not available
+(Font)              size <14.4> substituted on input line 149.
+
+
+Overfull \hbox (2.47081pt too wide) in paragraph at lines 172--173
+ [][] 
+ []
+
+LaTeX Font Info:    Font shape `U/lasy/b/n' in size <9.03374> not available
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 212.
+LaTeX Font Info:    Font shape `U/lasy/b/n' in size <6> not available
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 212.
 Missing character: There is no ; ("3B) in font nullfont!
 Missing character: There is no ; ("3B) in font nullfont!
 Missing character: There is no ; ("3B) in font nullfont!
@@ -1397,7 +1418,9 @@ Missing character: There is no ; ("3B) in font nullfont!
 
 [1
 
-] (./coding-tree-exam.aux)
+]
+
+[2] (./coding-tree-exam.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2022/08/05>
@@ -1405,7 +1428,7 @@ L3 programming layer <2022/08/05>
 
 
 LaTeX Font Warning: Size substitutions with differences
-(Font)              up to 0.47188pt have occurred.
+(Font)              up to 0.65625pt have occurred.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1414,12 +1437,12 @@ Package rerunfilecheck Info: File `coding-tree-exam.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 51758 strings out of 473832
- 1231054 string characters out of 5735457
- 1923141 words of memory out of 5000000
- 73902 multiletter control sequences out of 15000+600000
- 573402 words of font info for 122 fonts, out of 8000000 for 9000
+ 51851 strings out of 473832
+ 1232783 string characters out of 5735457
+ 1984996 words of memory out of 5000000
+ 73974 multiletter control sequences out of 15000+600000
+ 584332 words of font info for 175 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 102i,22n,145p,781b,1981s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 102i,22n,145p,781b,1983s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on coding-tree-exam.pdf (1 page).
+Output written on coding-tree-exam.pdf (2 pages).

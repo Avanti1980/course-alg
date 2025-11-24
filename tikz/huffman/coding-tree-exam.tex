@@ -7,7 +7,7 @@
 
 \RequirePackage{fontspec}
 \xeCJKsetup{CJKmath=true}
-\setmainfont[BoldFont=FZHei-B01,ItalicFont=]{Ysabeau}
+%\setmainfont[BoldFont=FZHei-B01,ItalicFont=]{Ysabeau}
 
 \usepackage[a4paper, landscape,margin=1cm]{geometry}
 
@@ -114,29 +114,193 @@
 \begin{figure}[!ht]
 	\centering
 	\subcaptionsetup{skip=1pt}
+	\adjustbox{valign=c}{\begin{subfigure}[t]{.1\textwidth}
+			\centering
+			\begin{tikzpicture}[
+					base,
+					level 1/.style = {sibling distance=1.8cm},
+					level 2/.style = {sibling distance=1.2cm}
+				]
+				\node (Root) [internal] {}
+				child {node [internal] {}
+						child {node [leaf] {$\av$}
+								edge from parent node[lbl=left] {$\zerov$}
+							}
+						child {node [leaf] {$\bv$}
+								edge from parent node[lbl=right] {$\onev$}
+							}
+						edge from parent node[lbl=left] {$\zerov$}
+					}
+				child { node [internal] {}
+						child {node [leaf] {$\cv$}
+								edge from parent node[lbl=left] {$\zerov$}
+							}
+						edge from parent node[lbl=right] {$\zerov$}
+					};
+			\end{tikzpicture}
+		\end{subfigure}}%
+	\adjustbox{valign=c}{\begin{subfigure}[t]{.08\textwidth}
+			\centering
+			\begin{tikzpicture}[
+					base,
+					level 1/.style = {sibling distance=1.8cm},
+					level 2/.style = {sibling distance=1.2cm}
+				]
+				\node (Root) [draw=none,font=\Large] {$\Longrightarrow$};
+			\end{tikzpicture}
+		\end{subfigure}}%
+	\adjustbox{valign=c}{\begin{subfigure}[t]{.1\textwidth}
+			\centering
+			\begin{tikzpicture}[
+					base,
+					level 1/.style = {sibling distance=1.8cm},
+					level 2/.style = {sibling distance=1.2cm}
+				]
+				\node (Root) [internal] {}
+				child {node [internal] {}
+						child {node [leaf] {$\av$}
+								edge from parent node[lbl=left] {$\zerov$}
+							}
+						child {node [leaf] {$\bv$}
+								edge from parent node[lbl=right] {$\onev$}
+							}
+						edge from parent node[lbl=left] {$\zerov$}
+					}
+				child { node [leaf] {$\cv$}
+						edge from parent node[lbl=right] {$\zerov$}
+					};
+			\end{tikzpicture}
+		\end{subfigure}}
+\end{figure}
+
+% 正确性证明中用到
+\begin{figure}[!ht]
 	\centering
-	\begin{tikzpicture}[
-			base,
-			level 1/.style = {sibling distance=1.8cm},
-			level 2/.style = {sibling distance=1.2cm}
-		]
-		\node (Root) [internal] {}
-		child {node [internal] {}
-				child {node [leaf] {$\av$}
+	\subcaptionsetup{skip=1pt}
+	\adjustbox{valign=c}{\begin{subfigure}[t]{.15\textwidth}
+			\centering
+			\begin{tikzpicture}[
+					base,
+					level 1/.style = {sibling distance=2.4cm},
+					level 2/.style = {sibling distance=1.2cm}
+				]
+				\node (Root) [internal] {}
+				child {node [internal] {}
+						child {node [leaf] {}
+								edge from parent node[lbl=left] {$\zerov$}
+							}
+						child {node [internal] {}
+								child {node [leaf] {$\av$}
+										edge from parent node[lbl=left] {$\zerov$}
+									}
+								child {node [leaf] {$\bv$}
+										edge from parent node[lbl=right] {$\onev$}
+									}
+								edge from parent node[lbl=right] {$\onev$}
+							}
 						edge from parent node[lbl=left] {$\zerov$}
 					}
-				child {node [leaf] {$\bv$}
-						edge from parent node[lbl=right] {$\onev$}
-					}
-				edge from parent node[lbl=left] {$\zerov$}
-			}
-		child { node [internal] {}
-				child {node [leaf] {$\cv$}
+				child { node [internal] {}
+						child {node [leaf] {$\xv$}
+								edge from parent node[lbl=left] {$\zerov$}
+							}
+						child {node [leaf] {$\yv$}
+								edge from parent node[lbl=right] {$\onev$}
+							}
+						edge from parent node[lbl=left] {$\zerov$}
+					};
+			\path (Root) ++(0.5,0) node[] () {$\bm{\tc}$};
+			\end{tikzpicture}
+		\end{subfigure}}%
+	\adjustbox{valign=c}{\begin{subfigure}[t]{.08\textwidth}
+			\centering
+			\begin{tikzpicture}[
+					base,
+					level 1/.style = {sibling distance=1.8cm},
+					level 2/.style = {sibling distance=1.2cm}
+				]
+				\node (Root) [draw=none,font=\Large] {$\Longrightarrow$};
+			\end{tikzpicture}
+		\end{subfigure}}%
+	\adjustbox{valign=c}{\begin{subfigure}[t]{.15\textwidth}
+			\centering
+			\begin{tikzpicture}[
+					base,
+					level 1/.style = {sibling distance=2.4cm},
+					level 2/.style = {sibling distance=1.2cm}
+				]
+				\node (Root) [internal] {}
+				child {node [internal] {}
+						child {node [leaf] {}
+								edge from parent node[lbl=left] {$\zerov$}
+							}
+						child {node [internal] {}
+								child {node [leaf] {$\xv$}
+										edge from parent node[lbl=left] {$\zerov$}
+									}
+								child {node [leaf] {$\bv$}
+										edge from parent node[lbl=right] {$\onev$}
+									}
+								edge from parent node[lbl=right] {$\onev$}
+							}
 						edge from parent node[lbl=left] {$\zerov$}
 					}
-				edge from parent node[lbl=right] {$\zerov$}
-			};
-	\end{tikzpicture}
+				child { node [internal] {}
+						child {node [leaf] {$\av$}
+								edge from parent node[lbl=left] {$\zerov$}
+							}
+						child {node [leaf] {$\yv$}
+								edge from parent node[lbl=right] {$\onev$}
+							}
+						edge from parent node[lbl=left] {$\zerov$}
+					};
+			\end{tikzpicture}
+		\end{subfigure}}%
+	\adjustbox{valign=c}{\begin{subfigure}[t]{.08\textwidth}
+			\centering
+			\begin{tikzpicture}[
+					base,
+					level 1/.style = {sibling distance=1.8cm},
+					level 2/.style = {sibling distance=1.2cm}
+				]
+				\node (Root) [draw=none,font=\Large] {$\Longrightarrow$};
+			\end{tikzpicture}
+		\end{subfigure}}%
+	\adjustbox{valign=c}{\begin{subfigure}[t]{.15\textwidth}
+			\centering
+			\begin{tikzpicture}[
+					base,
+					level 1/.style = {sibling distance=2.4cm},
+					level 2/.style = {sibling distance=1.2cm}
+				]
+				\node (Root) [internal] {}
+				child {node [internal] {}
+						child {node [leaf] {}
+								edge from parent node[lbl=left] {$\zerov$}
+							}
+						child {node [internal] {}
+								child {node [leaf] {$\xv$}
+										edge from parent node[lbl=left] {$\zerov$}
+									}
+								child {node [leaf] {$\yv$}
+										edge from parent node[lbl=right] {$\onev$}
+									}
+								edge from parent node[lbl=right] {$\onev$}
+							}
+						edge from parent node[lbl=left] {$\zerov$}
+					}
+				child { node [internal] {}
+						child {node [leaf] {$\av$}
+								edge from parent node[lbl=left] {$\zerov$}
+							}
+						child {node [leaf] {$\bv$}
+								edge from parent node[lbl=right] {$\onev$}
+							}
+						edge from parent node[lbl=left] {$\zerov$}
+					};
+				\path (Root) ++(0.9,0) node[] () {$\bm{\tc}^{\textbf{greedy}}$};
+			\end{tikzpicture}
+		\end{subfigure}}
 \end{figure}
 
 \begin{figure}[!ht]
