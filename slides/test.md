@@ -31,7 +31,7 @@ presentation:
 
 现有$n$个活动，编号分别为$1, \ldots, n$，时长分别为$L[1], \ldots, L[n]$，最后期限为$D[1], \ldots, D[n]$
 
-在安排方案$\pi$中，活动$k$的结束时间为$c_{\pi} (k) = \sum_{i=1}^k L[\pi(i)]$，记延迟$\lambda_{\pi} (k) = \max \{ 0, c_{\pi} (k) \}$
+在安排方案$\pi$中，活动$k$的结束时间为$c_{\pi} (k) = \sum_{i=1}^k L[\pi(i)]$，记延迟$\lambda_{\pi} (k) = \max \{ 0, c_{\pi} (k) - D[k] \}$
 
 问题：求最优排列$\pi^\star$使最大延迟$\max_{k} \lambda_{\pi} (k)$最小</p>
 
