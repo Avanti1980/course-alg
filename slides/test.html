@@ -2195,94 +2195,60 @@ html.print-pdf .aria-status {
 </div>
     <div class="reveal">
       <div class="slides">
-        <section><section data-notes lineno="25" class="slide " data-line="25" data-h="0" data-v="0">
-<h5 class="mume-header" id="%E6%B4%BB%E5%8A%A8%E5%AE%89%E6%8E%92-%E5%BB%B6%E8%BF%9F%E4%B9%8B%E5%92%8C">&#x6D3B;&#x52A8;&#x5B89;&#x6392; &#x5EF6;&#x8FDF;&#x4E4B;&#x548C;</h5>
+        <section vertical="true" data-notes lineno="25" class="slide " data-line="25" data-h="-1" data-v="1">
+<h5 class="mume-header" id="span-stylefont-weight900primspan-%E7%AE%97%E6%B3%95"><span style="font-weight:900">Prim</span> &#x7B97;&#x6CD5;</h5>
 
 <hr>
-<p>&#x73B0;&#x6709;<span class="mathjax-exps">$n$</span>&#x4E2A;&#x6D3B;&#x52A8;&#xFF0C;&#x7F16;&#x53F7;&#x5206;&#x522B;&#x4E3A;<span class="mathjax-exps">$1, \ldots, n$</span>&#xFF0C;&#x65F6;&#x957F;&#x5206;&#x522B;&#x4E3A;<span class="mathjax-exps">$L[1], \ldots, L[n]$</span>&#xFF0C;&#x6700;&#x540E;&#x671F;&#x9650;&#x4E3A;<span class="mathjax-exps">$D[1], \ldots, D[n]$</span></p>
-<p>&#x5728;&#x5B89;&#x6392;&#x65B9;&#x6848;<span class="mathjax-exps">$\pi$</span>&#x4E2D;&#xFF0C;&#x6D3B;&#x52A8;<span class="mathjax-exps">$k$</span>&#x7684;&#x7ED3;&#x675F;&#x65F6;&#x95F4;&#x4E3A;<span class="mathjax-exps">$c_{\pi} (k) = \sum_{i=1}^k L[\pi(i)]$</span>&#xFF0C;&#x8BB0;&#x5EF6;&#x8FDF;<span class="mathjax-exps">$\lambda_{\pi} (k) = \max \{ 0, c_{\pi} (k) - D[k] \}$</span></p>
-<p>&#x95EE;&#x9898;&#xFF1A;&#x6C42;&#x6700;&#x4F18;&#x6392;&#x5217;<span class="mathjax-exps">$\pi^\star$</span>&#x4F7F;&#x5EF6;&#x8FDF;&#x4E4B;&#x548C;<span class="mathjax-exps">$\sum_{k=1}^n \lambda_{\pi} (k)$</span>&#x6700;&#x5C0F;</p>
-<p class="fragment" data-fragment-index="1">&#x8D2A;&#x5FC3;&#x9009;&#x62E9;&#xFF1A;</p>
-<ul>
-  <li class="fragment" data-fragment-index="2">&#x6309;&#x7167;&#x65F6;&#x957F;$L[k]$&#x7684;&#x5347;&#x5E8F;&#xFF0C;&#x4F18;&#x5148;&#x5B89;&#x6392;&#x4E0D;&#x592A;&#x8017;&#x65F6;&#x7684;&#x6D3B;&#x52A8;</li>
-  <li class="fragment" data-fragment-index="3">&#x6309;&#x7167;&#x6700;&#x540E;&#x671F;&#x9650;$D[k]$&#x7684;&#x5347;&#x5E8F;&#xFF0C;&#x4F18;&#x5148;&#x5B89;&#x6392;&#x65F6;&#x95F4;&#x7D27;&#x7684;&#x6D3B;&#x52A8;</li>
-  <li class="fragment" data-fragment-index="4">&#x6309;&#x7167;$L[k] + D[k]$&#x7684;&#x5347;&#x5E8F;&#x5B89;&#x6392;&#x6D3B;&#x52A8;</li>
-  <li class="fragment" data-fragment-index="5">&#x6309;&#x7167;$L[k] \cdot D[k]$&#x7684;&#x5347;&#x5E8F;&#x5B89;&#x6392;&#x6D3B;&#x52A8;</li>
-</ul>
-</section><section vertical="true" data-notes lineno="46" class="slide " data-line="46" data-h="0" data-v="1">
-<h5 class="mume-header" id="%E6%B4%BB%E5%8A%A8%E5%AE%89%E6%8E%92-%E5%8F%8D%E4%BE%8B">&#x6D3B;&#x52A8;&#x5B89;&#x6392; &#x53CD;&#x4F8B;</h5>
+<p>&#x57FA;&#x4E8E;&#x4F18;&#x5148;&#x961F;&#x5217;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;<span class="mathjax-exps">$O((|\Vcal| + |\Ecal|) \lg |\Vcal|)$</span></p>
+<pre data-role="codeBlock" data-info="py line_begin=3 class=&quot;left4 line-numbers top1 bottom-10&quot;" class="language-python left4 line-numbers top1 bottom-10"><span class="token keyword keyword-def">def</span> <span class="token function">prim</span><span class="token punctuation">(</span>graph<span class="token punctuation">,</span> start<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    min_spanning_tree <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    in_mst <span class="token operator">=</span> <span class="token punctuation">{</span>start<span class="token punctuation">}</span>  <span class="token comment"># &#x5DF2;&#x5728;mst&#x4E2D;&#x7684;&#x7ED3;&#x70B9;</span>
+    q <span class="token operator">=</span> PriorityQueue<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword keyword-for">for</span> neighbor<span class="token punctuation">,</span> weight <span class="token keyword keyword-in">in</span> graph<span class="token punctuation">[</span>start<span class="token punctuation">]</span><span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        q<span class="token punctuation">.</span>put<span class="token punctuation">(</span><span class="token punctuation">(</span>weight<span class="token punctuation">,</span> start<span class="token punctuation">,</span> neighbor<span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># &#x521D;&#x59CB;&#x70B9;&#x76F8;&#x8FDE;&#x7684;&#x8FB9;&#x5165;&#x961F;</span>
 
-<hr>
-<p>&#x4E3E;&#x53CD;&#x4F8B;&#x53EF;&#x4EE5;&#x6392;&#x9664;&#x9519;&#x8BEF;&#x9009;&#x9879;&#xFF0C;&#x5047;&#x8BBE;&#x6709;&#x4E24;&#x4E2A;&#x6D3B;&#x52A8;&#xFF1A;</p>
-<ul>
-<li>&#x6D3B;&#x52A8;<span class="mathjax-exps">$1$</span>&#xFF1A;<span class="mathjax-exps">$L[1] = 10$</span>&#x3001;<span class="mathjax-exps">$D[1] = 25$</span></li>
-<li>&#x6D3B;&#x52A8;<span class="mathjax-exps">$2$</span>&#xFF1A;<span class="mathjax-exps">$L[2] = 20$</span>&#x3001;<span class="mathjax-exps">$D[2] = 20$</span></li>
-</ul>
-<div class="top2"></div>
-<ul>
-<li>&#x5148;&#x6D3B;&#x52A8;<span class="mathjax-exps">$1$</span>&#x3001;&#x540E;&#x6D3B;&#x52A8;<span class="mathjax-exps">$2$</span>&#xFF1A;<span class="mathjax-exps">$\lambda (1) = 0$</span>&#x3001;<span class="mathjax-exps">$\lambda (2) = 10$</span></li>
-<li>&#x5148;&#x6D3B;&#x52A8;<span class="mathjax-exps">$2$</span>&#x3001;&#x540E;&#x6D3B;&#x52A8;<span class="mathjax-exps">$1$</span>&#xFF1A;<span class="mathjax-exps">$\lambda (1) = 5$</span>&#x3001;<span class="mathjax-exps">$\lambda (2) = 0$</span></li>
-</ul>
-<div class="top2"></div>
-<p>&#x6309;<span class="mathjax-exps">$L[k]$</span>&#x5347;&#x5E8F;&#x3001;&#x6309;<span class="mathjax-exps">$L[k] + D[k]$</span>&#x5347;&#x5E8F;&#x3001;&#x6309;<span class="mathjax-exps">$L[k] \cdot D[k]$</span>&#x5347;&#x5E8F;&#x90FD;&#x662F;&#x5148;&#x6D3B;&#x52A8;<span class="mathjax-exps">$1$</span>&#x3001;&#x540E;&#x6D3B;&#x52A8;<span class="mathjax-exps">$2$</span>&#xFF0C;&#x56E0;&#x6B64;&#x90FD;&#x4E0D;&#x662F;&#x6B63;&#x786E;&#x7684;&#x8D2A;&#x5FC3;&#x9009;&#x62E9;</p>
-</section><section vertical="true" data-notes lineno="66" class="slide " data-line="66" data-h="0" data-v="2">
-<h5 class="mume-header" id="%E6%B4%BB%E5%8A%A8%E5%AE%89%E6%8E%92-%E5%8F%8D%E4%BE%8B-1">&#x6D3B;&#x52A8;&#x5B89;&#x6392; &#x53CD;&#x4F8B;</h5>
+    <span class="token keyword keyword-while">while</span> <span class="token keyword keyword-not">not</span> q<span class="token punctuation">.</span>empty<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        weight<span class="token punctuation">,</span> node1<span class="token punctuation">,</span> node2 <span class="token operator">=</span> q<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword keyword-if">if</span> node2 <span class="token keyword keyword-not">not</span> <span class="token keyword keyword-in">in</span> in_mst<span class="token punctuation">:</span>  <span class="token comment"># &#x662F;&#x6A2A;&#x8DE8;&#x5207;&#x5272;&#x7684;&#x8F7B;&#x91CF;&#x8FB9;</span>
+            in_mst<span class="token punctuation">.</span>add<span class="token punctuation">(</span>node2<span class="token punctuation">)</span>
+            min_spanning_tree<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span>weight<span class="token punctuation">,</span> <span class="token string-interpolation"><span class="token string">f&quot;</span><span class="token interpolation"><span class="token punctuation">{</span>node1<span class="token punctuation">}</span></span><span class="token string"> - </span><span class="token interpolation"><span class="token punctuation">{</span>node2<span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-<hr>
-<p>&#x4E3E;&#x53CD;&#x4F8B;&#x53EF;&#x4EE5;&#x6392;&#x9664;&#x9519;&#x8BEF;&#x9009;&#x9879;&#xFF0C;&#x5047;&#x8BBE;&#x6709;&#x4E24;&#x4E2A;&#x6D3B;&#x52A8;&#xFF1A;</p>
-<ul>
-<li>&#x6D3B;&#x52A8;<span class="mathjax-exps">$1$</span>&#xFF1A;<span class="mathjax-exps">$L[1] = 20$</span>&#x3001;<span class="mathjax-exps">$D[1] = 10$</span></li>
-<li>&#x6D3B;&#x52A8;<span class="mathjax-exps">$2$</span>&#xFF1A;<span class="mathjax-exps">$L[2] = 10$</span>&#x3001;<span class="mathjax-exps">$D[2] = 15$</span></li>
-</ul>
-<div class="top2"></div>
-<ul>
-<li>&#x5148;&#x6D3B;&#x52A8;<span class="mathjax-exps">$1$</span>&#x3001;&#x540E;&#x6D3B;&#x52A8;<span class="mathjax-exps">$2$</span>&#xFF1A;<span class="mathjax-exps">$\lambda (1) = 10$</span>&#x3001;<span class="mathjax-exps">$\lambda (2) = 15$</span></li>
-<li>&#x5148;&#x6D3B;&#x52A8;<span class="mathjax-exps">$2$</span>&#x3001;&#x540E;&#x6D3B;&#x52A8;<span class="mathjax-exps">$1$</span>&#xFF1A;<span class="mathjax-exps">$\lambda (1) = 20$</span>&#x3001;<span class="mathjax-exps">$\lambda (2) = 0$</span></li>
-</ul>
-<div class="top2"></div>
-<p>&#x6309;<span class="mathjax-exps">$D[k]$</span>&#x5347;&#x5E8F;&#x662F;&#x5148;&#x6D3B;&#x52A8;<span class="mathjax-exps">$1$</span>&#x3001;&#x540E;&#x6D3B;&#x52A8;<span class="mathjax-exps">$2$</span>&#xFF0C;&#x4E0D;&#x662F;&#x6B63;&#x786E;&#x7684;&#x8D2A;&#x5FC3;&#x9009;&#x62E9;</p>
-</section></section><section><section data-notes lineno="86" class="slide " data-line="86" data-h="1" data-v="0">
-<h5 class="mume-header" id="%E6%B4%BB%E5%8A%A8%E5%AE%89%E6%8E%92-%E6%9C%80%E5%A4%A7%E5%BB%B6%E8%BF%9F">&#x6D3B;&#x52A8;&#x5B89;&#x6392; &#x6700;&#x5927;&#x5EF6;&#x8FDF;</h5>
+            <span class="token keyword keyword-for">for</span> node2_neighbor<span class="token punctuation">,</span> weight <span class="token keyword keyword-in">in</span> graph<span class="token punctuation">[</span>node2<span class="token punctuation">]</span><span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token keyword keyword-if">if</span> node2_neighbor <span class="token keyword keyword-not">not</span> <span class="token keyword keyword-in">in</span> in_mst<span class="token punctuation">:</span>  <span class="token comment"># node2&#x76F8;&#x8FDE;&#x7684;&#x6A2A;&#x8DE8;&#x5207;&#x5272;&#x7684;&#x8FB9;</span>
+                    q<span class="token punctuation">.</span>put<span class="token punctuation">(</span><span class="token punctuation">(</span>weight<span class="token punctuation">,</span> node2<span class="token punctuation">,</span> node2_neighbor<span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-<hr>
-<p>&#x95EE;&#x9898;&#xFF1A;&#x5EF6;&#x8FDF;&#x4E4B;&#x548C;<span class="mathjax-exps">$\sum_{k=1}^n \lambda_{\pi} (k)$</span>&#x6700;&#x5C0F; =&gt; &#x6700;&#x5927;&#x5EF6;&#x8FDF;<span class="mathjax-exps">$\max_k \lambda_{\pi} (k)$</span>&#x6700;&#x5C0F;</p>
-<p>&#x5047;&#x8BBE;&#x6709;&#x4E24;&#x4E2A;&#x6D3B;&#x52A8;&#xFF1A;</p>
-<ul>
-<li>&#x6D3B;&#x52A8;<span class="mathjax-exps">$1$</span>&#xFF1A;<span class="mathjax-exps">$L[1] = 10$</span>&#x3001;<span class="mathjax-exps">$D[1] = 50$</span></li>
-<li>&#x6D3B;&#x52A8;<span class="mathjax-exps">$2$</span>&#xFF1A;<span class="mathjax-exps">$L[2] = 100$</span>&#x3001;<span class="mathjax-exps">$D[2] = 20$</span></li>
-</ul>
-<div class="top2"></div>
-<ul>
-<li>&#x5148;&#x6D3B;&#x52A8;<span class="mathjax-exps">$1$</span>&#x3001;&#x540E;&#x6D3B;&#x52A8;<span class="mathjax-exps">$2$</span>&#xFF1A;<span class="mathjax-exps">$\lambda (1) = 0$</span>&#x3001;<span class="mathjax-exps">$\lambda (2) = 90$</span></li>
-<li>&#x5148;&#x6D3B;&#x52A8;<span class="mathjax-exps">$2$</span>&#x3001;&#x540E;&#x6D3B;&#x52A8;<span class="mathjax-exps">$1$</span>&#xFF1A;<span class="mathjax-exps">$\lambda (1) = 80$</span>&#x3001;<span class="mathjax-exps">$\lambda (2) = 60$</span></li>
-</ul>
-<div class="top2"></div>
-<p>&#x9664;&#x6309;<span class="mathjax-exps">$D[k]$</span>&#x5347;&#x5E8F;&#x5916;&#xFF0C;&#x5176;&#x5B83;&#x90FD;&#x662F;&#x5148;&#x6D3B;&#x52A8;<span class="mathjax-exps">$1$</span>&#x3001;&#x540E;&#x6D3B;&#x52A8;<span class="mathjax-exps">$2$</span>&#xFF0C;&#x90FD;&#x4E0D;&#x662F;&#x6B63;&#x786E;&#x7684;&#x8D2A;&#x5FC3;&#x9009;&#x62E9;</p>
-<p>&#x6309;<span class="mathjax-exps">$D[k]$</span>&#x5347;&#x5E8F;&#x662F;&#x6B63;&#x786E;&#x7684;&#x8D2A;&#x5FC3;&#x9009;&#x62E9;</p>
-</section><section vertical="true" data-notes lineno="110" class="slide " data-line="110" data-h="1" data-v="1">
-<h5 class="mume-header" id="%E6%AD%A3%E7%A1%AE%E6%80%A7%E8%AF%81%E6%98%8E">&#x6B63;&#x786E;&#x6027;&#x8BC1;&#x660E;</h5>
+    <span class="token keyword keyword-return">return</span> min_spanning_tree
 
-<hr>
-<p>&#x5BF9;&#x4EFB;&#x610F;&#x6D3B;&#x52A8;&#x6392;&#x5217;<span class="mathjax-exps">$\pi$</span>&#xFF0C;&#x82E5;&#x5B58;&#x5728;<span class="mathjax-exps">$i$</span>&#x4F7F;&#x5F97;<span class="mathjax-exps">$D[\pi(i)] \ge D[\pi(i+1)]$</span>&#xFF0C;&#x4EA4;&#x6362;&#x6D3B;&#x52A8;<span class="mathjax-exps">$\pi(i)$</span>&#x3001;<span class="mathjax-exps">$\pi(i+1)$</span>&#x540E;&#x5F97;&#x5230;&#x65B0;&#x6392;&#x5217;<span class="mathjax-exps">$\pi&apos;$</span></p>
-<p>&#x5176;&#x4F59;<span class="mathjax-exps">$n-2$</span>&#x4E2A;&#x6D3B;&#x52A8;&#x7684;&#x5EF6;&#x8FDF;&#x60C5;&#x51B5;&#x4E0D;&#x53D8;&#xFF0C;&#x8BB0;<span class="mathjax-exps">$M = \sum_{j=1}^{i-1} L[\pi(j)]$</span></p>
-<ul>
-<li><span class="mathjax-exps">$\lambda_\pi (i) = \max \{0, M + L[\pi(i)] - D[\pi(i)]\}$</span></li>
-<li><span class="mathjax-exps">$\lambda_\pi (i+1) = \max \{0, M + L[\pi(i)] + L[\pi(i+1)] - D[\pi(i+1)]\}$</span></li>
-<li><span class="mathjax-exps">$\lambda_{\pi&apos;} (i) = \max \{0, M + L[\pi(i+1)] - D[\pi(i+1)]\}$</span></li>
-<li><span class="mathjax-exps">$\lambda_{\pi&apos;} (i+1) = \max \{0, M + L[\pi(i)] + L[\pi(i+1)] - D[\pi(i)]\}$</span></li>
-</ul>
-<div class="top2"></div>
-<p>&#x663E;&#x7136;<span class="mathjax-exps">$\lambda_{\pi&apos;} (i) \le \lambda_\pi (i+1)$</span>&#x3001;<span class="mathjax-exps">$\lambda_{\pi&apos;} (i+1) \le \lambda_\pi (i+1)$</span>&#xFF0C;&#x6545;</p>
-<p>
 
-$$
-\begin{align*}
-    \quad \max \{ \lambda_{\pi&apos;} (i), \lambda_{\pi&apos;} (i+1) \} \le \lambda_\pi (i+1) \le \max \{ \lambda_\pi (i), \lambda_\pi (i+1) \}
-\end{align*}
-$$
-</p>
+graph <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token string">&apos;a&apos;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token string">&apos;b&apos;</span><span class="token punctuation">:</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token string">&apos;h&apos;</span><span class="token punctuation">:</span> <span class="token number">8</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string">&apos;b&apos;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token string">&apos;a&apos;</span><span class="token punctuation">:</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token string">&apos;c&apos;</span><span class="token punctuation">:</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token string">&apos;h&apos;</span><span class="token punctuation">:</span> <span class="token number">11</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string">&apos;c&apos;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token string">&apos;b&apos;</span><span class="token punctuation">:</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token string">&apos;d&apos;</span><span class="token punctuation">:</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token string">&apos;i&apos;</span><span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">&apos;f&apos;</span><span class="token punctuation">:</span> <span class="token number">4</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string">&apos;d&apos;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token string">&apos;c&apos;</span><span class="token punctuation">:</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token string">&apos;e&apos;</span><span class="token punctuation">:</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token string">&apos;f&apos;</span><span class="token punctuation">:</span> <span class="token number">14</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string">&apos;e&apos;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token string">&apos;d&apos;</span><span class="token punctuation">:</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token string">&apos;f&apos;</span><span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string">&apos;f&apos;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token string">&apos;c&apos;</span><span class="token punctuation">:</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token string">&apos;d&apos;</span><span class="token punctuation">:</span> <span class="token number">14</span><span class="token punctuation">,</span> <span class="token string">&apos;e&apos;</span><span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token string">&apos;g&apos;</span><span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string">&apos;g&apos;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token string">&apos;f&apos;</span><span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">&apos;h&apos;</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">&apos;i&apos;</span><span class="token punctuation">:</span> <span class="token number">6</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string">&apos;h&apos;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token string">&apos;a&apos;</span><span class="token punctuation">:</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token string">&apos;b&apos;</span><span class="token punctuation">:</span> <span class="token number">11</span><span class="token punctuation">,</span> <span class="token string">&apos;g&apos;</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">&apos;i&apos;</span><span class="token punctuation">:</span> <span class="token number">7</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string">&apos;i&apos;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token string">&apos;c&apos;</span><span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">&apos;g&apos;</span><span class="token punctuation">:</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token string">&apos;h&apos;</span><span class="token punctuation">:</span> <span class="token number">7</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
-</section></section>
+mst_weight <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token keyword keyword-for">for</span> edge <span class="token keyword keyword-in">in</span> prim<span class="token punctuation">(</span>graph<span class="token punctuation">,</span> <span class="token string">&apos;a&apos;</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    mst_weight <span class="token operator">+=</span> edge<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+    <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>edge<span class="token punctuation">)</span>
+<span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f&quot;&#x6700;&#x5C0F;&#x751F;&#x6210;&#x6811;&#x6743;&#x91CD;&#x548C;&#x4E3A;</span><span class="token interpolation"><span class="token punctuation">{</span>mst_weight<span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span>
+<span class="token comment"># -------------------------------------------</span>
+<span class="token comment"># (4, &apos;a - b&apos;)</span>
+<span class="token comment"># (8, &apos;a - h&apos;)</span>
+<span class="token comment"># (1, &apos;h - g&apos;)</span>
+<span class="token comment"># (2, &apos;g - f&apos;)</span>
+<span class="token comment"># (4, &apos;f - c&apos;)</span>
+<span class="token comment"># (2, &apos;c - i&apos;)</span>
+<span class="token comment"># (7, &apos;c - d&apos;)</span>
+<span class="token comment"># (9, &apos;d - e&apos;)</span>
+<span class="token comment"># &#x6700;&#x5C0F;&#x751F;&#x6210;&#x6811;&#x6743;&#x91CD;&#x548C;&#x4E3A;37</span>
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre></section>
       </div>
     </div>
     

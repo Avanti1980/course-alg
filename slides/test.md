@@ -23,4 +23,12 @@ presentation:
 @import "../plugin/chalkboard/style.css"
 @import "../plugin/menu/menu.js"
 
+<!-- slide vertical=true data-notes="" -->
 
+##### <span style="font-weight:900">Prim</span> 算法
+
+---
+
+基于优先队列的实现，时间复杂度$O((|\Vcal| + |\Ecal|) \lg |\Vcal|)$
+
+@import "../codes/mst-prim.py" {line_begin=3 .left4 .line-numbers .top1 .bottom-10}
