@@ -25,10 +25,34 @@ presentation:
 
 <!-- slide vertical=true data-notes="" -->
 
-##### <span style="font-weight:900">Prim</span> 算法
+##### 有向无环图 <span style="font-weight:900">DFS</span>
 
 ---
 
-基于优先队列的实现，时间复杂度$O((|\Vcal| + |\Ecal|) \lg |\Vcal|)$
+松弛
 
-@import "../codes/mst-prim.py" {line_begin=3 .left4 .line-numbers .top1 .bottom-10}
+$$
+\begin{align*}
+    \quad d_v = \begin{cases} 0, & v = s \\ \min_u \{ d_u + w(u,v) \}, & \text{其它} \end{cases}
+\end{align*}
+$$
+
+Ford 算法框架实现：
+
+- 若图上有边$(u,v)$，则$d_v$依赖$d_u$
+- 利用后序 (posrorder) 形式的深度优先搜索得到结点的拓扑序
+- 根据拓扑序依次松弛每个点的入边
+
+<div class="top4"></div>
+
+时间复杂度为$O(|\Vcal| + |\Ecal|)$
+
+<!-- slide vertical=true data-notes="" -->
+
+##### 无权图 <span style="font-weight:900">BFS</span>
+
+---
+
+@import "../codes/sssp/dfs-sssp.py" {.left4 .line-numbers highlight=[6] .top1 .bottom-10}
+
+
