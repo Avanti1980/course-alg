@@ -1,5 +1,6 @@
 // Ysabeau     100       200   300         400    500        600      700     800       900
-$weight-array: Hairline, Thin, ExtraLight, Light, SemiLight, Regular, Medium, SemiBold, Bold;
+$weight-array: Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold,
+  ExtraBold, "Black";
 @for $i from 1 through length($weight-array) {
   $weight: nth($weight-array, $i);
   @font-face {
@@ -33,20 +34,32 @@ $weight-array: XLight, Light, Book, Medium, Bold;
 }
 
 // LXGW        100        400      700
-$weight-array: SemiLight, Regular, Medium;
+$weight-array: Light, Regular, Medium;
 @for $i from 1 through length($weight-array) {
   $weight: nth($weight-array, $i);
   @font-face {
     font-family: LXGWWenKai;
-    src: url("../fonts/LxgwBright-4.158/LXGWBright-#{$weight}.woff2");
+    src: url("../fonts/LXGWBright-v5.527/LXGWBright-#{$weight}.ttf");
     font-weight: 100 * (3 * $i - 2);
   }
   @font-face {
     font-family: LXGWWenKai;
-    src: url("../fonts/LxgwBright-4.158/LXGWBright-#{$weight}Italic.woff2");
+    src: url("../fonts/LXGWBright-v5.527/LXGWBright-#{$weight}Italic.ttf");
     font-style: italic;
     font-weight: 100 * (3 * $i - 2);
   }
+}
+
+@font-face {
+  font-family: LXGWHei;
+  src: url("../fonts/LXGW/LXGWNeoXiHeiPlus.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: LXGWSong;
+  src: url("../fonts/LXGW/LXGWNeoZhiSongPlus.ttf");
+  font-weight: 400;
 }
 
 // NotoSansSC
@@ -68,7 +81,7 @@ $number-array: 100, 200, 400, 500, 700, 900;
 .reveal h4,
 .reveal h5,
 .reveal h6 {
-  font-family: LXGWWenKai, "Noto Sans SC", NotoSansSC;
+  font-family: LXGWHei, LXGWWenKai, "Noto Sans SC", NotoSansSC;
   font-weight: 700;
 }
 
@@ -90,76 +103,76 @@ $number-array: 100, 200, 400, 500, 700, 900;
 }
 
 .reveal h5 {
-  font-family: Ysabeau, "Noto Sans SC", NotoSansSC;
+  font-family: LXGWHei, Ysabeau, "Noto Sans SC", NotoSansSC;
   font-size: 1.2em;
   font-weight: 700;
 }
 
 .reveal p {
-  font-family: LXGWWenKai;
+  font-family: LXGWSong, LXGWWenKai;
   font-size: 0.8em;
   font-weight: 700;
 }
 
 .reveal ul > li {
-  font-family: LXGWWenKai;
+  font-family: LXGWSong, LXGWWenKai;
   font-size: 0.7em;
   font-weight: 700;
 }
 
 .reveal ul ul > li {
-  font-family: LXGWWenKai;
+  font-family: LXGWSong, LXGWWenKai;
   font-size: 0.55em;
   font-weight: 700;
 }
 
 .reveal ol > li {
-  font-family: LXGWWenKai;
+  font-family: LXGWSong, LXGWWenKai;
   font-size: 0.65em;
   font-weight: 700;
 }
 
 .reveal pre {
-  font-family: Operator, LXGWWenKai;
+  font-family: Operator, LXGWSong, LXGWWenKai;
   font-size: 1.2rem;
   font-weight: 500;
 }
 
 .reveal code {
-  font-family: Operator, LXGWWenKai;
+  font-family: Operator, LXGWSong, LXGWWenKai;
   font-size: 1em;
   font-weight: 500;
 }
 
 .reveal blockquote {
-  font-family: LXGWWenKai;
+  font-family: LXGWSong, LXGWWenKai;
   font-size: 0.75em;
   font-weight: 700;
 }
 
 .reveal .footnote {
-  font-family: LXGWWenKai;
+  font-family: LXGWSong, LXGWWenKai;
   font-size: 0.5em;
   font-weight: 700;
 }
 
 .MathJax .mtext span {
-  font-family: LXGWWenKai !important;
+  font-family: LXGWSong !important;
   font-weight: 700 !important;
 }
 
 .mermaid text {
-  font-family: LXGWWenKai !important;
+  font-family: LXGWSong !important;
   font-weight: 700 !important;
 }
 
 .reveal table,
 .reveal a {
-  font-family: LXGWWenKai;
+  font-family: LXGWSong, LXGWWenKai;
 }
 
 .reveal table {
-  font-family: LXGWWenKai;
+  font-family: LXGWSong, LXGWWenKai;
   th,
   td {
     font-size: 1.4rem;
