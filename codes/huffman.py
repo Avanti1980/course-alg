@@ -1,4 +1,4 @@
-from queue import PriorityQueue
+import heapq
 
 
 class HuffmanNode:  # 编码树结点类
@@ -21,7 +21,8 @@ def get_min_freq(l):  # 删除并返回结点列表中频率最小的结点
 
 
 def merge(left_node, right_node):  # 合并两个结点
-    merged_node = HuffmanNode(None, left_node.frequency + right_node.frequency)  # 合并两个结点
+    merged_node = HuffmanNode(
+        None, left_node.frequency + right_node.frequency)  # 合并两个结点
     merged_node.left, merged_node.right = left_node, right_node
     return merged_node
 
@@ -38,16 +39,15 @@ def build_huffman_tree_elementary(C):  # 用列表保存结点
 
 
 def build_huffman_tree_advanced(C):  # 用优先队列保存结点
-    q = PriorityQueue()
-    for symbol, frequency in C.items():
-        q.put(HuffmanNode(symbol, frequency))  # 初始化队列
+    l = [HuffmanNode(symbol, frequency) for symbol, frequency in C.items()]
+    heapq.heapify(l)  # 将列表l转换成二叉堆 原地 线性时间
 
-    while q.qsize() > 1:   # 最终q中只剩编码树的根结点
-        left_node = q.get()  # 寻找频率最小的结点
-        right_node = q.get()  # 寻找频率次小的结点
-        q.put(merge(left_node, right_node))  # 插入合并的结点
+    while len(l) > 1:   # 最终l中只剩编码树的根结点
+        left_node = heapq.heappop(l)  # 寻找频率最小的结点
+        right_node = heapq.heappop(l)  # 寻找频率次小的结点
+        heapq.heappush(l, merge(left_node, right_node))  # 插入合并的结点
 
-    return q.get()
+    return l[0]
 
 
 def huffman_codes(node, current_code="", code_map=None):  # 递归保存字符的编码
