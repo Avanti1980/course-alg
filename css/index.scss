@@ -1,6 +1,6 @@
 // Ysabeau     100       200   300         400    500        600      700     800       900
-$weight-array: Hairline, Thin, ExtraLight, Light, SemiLight, Regular, Medium,
-  SemiBold, Bold;
+$weight-array: Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold,
+  ExtraBold, "Black";
 @for $i from 1 through length($weight-array) {
   $weight: nth($weight-array, $i);
   @font-face {
@@ -34,20 +34,32 @@ $weight-array: XLight, Light, Book, Medium, Bold;
 }
 
 // LXGW        100        400      700
-$weight-array: SemiLight, Regular, Medium;
+$weight-array: Light, Regular, Medium;
 @for $i from 1 through length($weight-array) {
   $weight: nth($weight-array, $i);
   @font-face {
     font-family: LXGWWenKai;
-    src: url("../fonts/LxgwBright-4.158/LXGWBright-#{$weight}.woff2");
+    src: url("../fonts/LXGWBright-v5.527/LXGWBright-#{$weight}.ttf");
     font-weight: 100 * (3 * $i - 2);
   }
   @font-face {
     font-family: LXGWWenKai;
-    src: url("../fonts/LxgwBright-4.158/LXGWBright-#{$weight}Italic.woff2");
+    src: url("../fonts/LXGWBright-v5.527/LXGWBright-#{$weight}Italic.ttf");
     font-style: italic;
     font-weight: 100 * (3 * $i - 2);
   }
+}
+
+@font-face {
+  font-family: LXGWHei;
+  src: url("../fonts/LXGW/LXGWNeoXiHeiPlus.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: LXGWSong;
+  src: url("../fonts/LXGW/LXGWNeoZhiSongPlus.ttf");
+  font-weight: 400;
 }
 
 // NotoSansSC

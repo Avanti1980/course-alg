@@ -25,26 +25,56 @@ presentation:
 
 <!-- slide vertical=true data-notes="" -->
 
-##### 问题描述
+##### 动态规划 改进
 
 ---
 
-给定带权有向图$\Gcal = (\Vcal, \Ecal, w)$
-
-- 点集$\Vcal$对应城市
-- 边集$\Ecal$对应直接连接两城市的道路
-- 边上的权重由函数$w: \Ecal \mapsto \Rbb$给出，对应距离、时间、路费等
-
-<div class="top4"></div>
-
-路径$p = \langle v_0, v_1, \ldots, v_k \rangle$的长度$l(p) = \sum_{i=1}^k w(v_{i-1}, v_i)$是路径上所有边的权重之和
-
-问题目标：寻找源点$s$到目的点$t$的最短路径：
+将长度为$m$的路径拆分为长度为$m-1$的路径和边
 
 $$
 \begin{align*}
-    \quad \delta(s,t) = \begin{cases} \min_p \{ l(p) : s \overset{p}{\rightsquigarrow} t \}, & \text{如果存在 } s \text { 到 } t \text{ 的路径} \\ \infty, & \text{其它} \end{cases}
+    \quad \ell_{ij}^{(m)} = \begin{cases} \infty, & m = 0 \\ \min_k \{ \ell_{ik}^{(m-1)} + w_{kj} \}, & m \ge 1 \end{cases}
 \end{align*}
 $$
 
-<p class="footnote comments"> 权重函数$w: \Ecal \mapsto \Rbb$的值域为$\Rbb$表示边上权重可以为负，对应于走该边可以挣一些钱</p>
+将长度为$m$的路径拆分为$2$条长度为$m/2$的路径
+
+$$
+\begin{align*}
+    \quad \ell_{ij}^{(m)} = \begin{cases} w_{ij}, & m = 1 \\ \min_k \{ \ell_{ik}^{(m/2)} + \ell_{kj}^{(m/2)} \}, & m = 2,4,8, \ldots \end{cases}
+\end{align*}
+$$
+
+<!-- slide vertical=true data-notes="" -->
+
+##### 动态规划 改进
+
+---
+
+当$m \ge n-1$后$\Lv^{(m)}$不再变化，因此$m$不断乘$2$直至达到$n-1$，前驱矩阵的更新也有变化
+
+@import "../codes/sp-all-dp.py" {line_begin=26 line_end=40 .left4 .line-numbers .top1 highlight=[4-5,10-13]}
+
+<!-- slide vertical=true data-notes="" -->
+
+##### 动态规划 改进
+
+---
+
+与矩阵平方的联系
+
+```python {.left4 .line-numbers .top-1 .bottom2}
+for i in range(n):
+    for j in range(n):
+        a[i,j] = 0
+        for k in range(n):
+            a[i,j] = a[i,j] + aa[i,k] * aa[k,j]
+
+for i in range(n):
+    for j in range(n):
+        l[i,j] = float("inf")
+        for k in range(n):
+            l[i,j] = min(l[i,j], ll[i,k] + ll[k,j])
+```
+
+该改进算法本质上与计算矩阵幂次时不断平方相同
