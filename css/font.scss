@@ -63,7 +63,7 @@ $weight-array: Light, Regular, Medium;
 
 @font-face {
   font-family: LXGWHei;
-  src: url("../fonts/LXGW/LXGWNeoXiHeiPlus.ttf");
+  src: url("../fonts/LXGW/LXGWNeoXiHeiPlus-v1.234.ttf");
   font-weight: 400;
 }
 
@@ -98,11 +98,12 @@ $number-array: 100, 200, 400, 500, 700, 900;
 }
 
 .reveal h1 {
-  font-family: Ysabeau, "Noto Sans SC", NotoSansSC;
+  font-family: Ysabeau, LXGWHei, "Noto Sans SC", NotoSansSC;
   font-size: 2.2em;
 }
 
 .reveal h2 {
+  font-family: Ysabeau, LXGWHei, "Noto Sans SC", NotoSansSC;
   font-size: 1.6em;
 }
 
@@ -115,7 +116,7 @@ $number-array: 100, 200, 400, 500, 700, 900;
 }
 
 .reveal h5 {
-  font-family: Ysabeau, "Noto Sans SC", NotoSansSC;
+  font-family: Ysabeau, LXGWHei, "Noto Sans SC", NotoSansSC;
   font-size: 1.2em;
   font-weight: 700;
 }

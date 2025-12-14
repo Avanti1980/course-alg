@@ -63,7 +63,7 @@ $weight-array: Light, Regular, Medium;
 
 @font-face {
   font-family: LXGWHei;
-  src: url("../fonts/LXGW/LXGWNeoXiHeiPlus.ttf");
+  src: url("../fonts/LXGW/LXGWNeoXiHeiPlus-v1.234.ttf");
   font-weight: 400;
 }
 
@@ -162,7 +162,7 @@ body {
 
 h2,
 h4 {
-  font-family: Ysabeau, "Noto Sans SC", NotoSansSC;
+  font-family: Ysabeau, LXGWHei, "Noto Sans SC", NotoSansSC;
   margin-top: 2rem;
   margin-bottom: 1rem;
 }
