@@ -1,13 +1,18 @@
+@use "sass:list";
+
 // Ysabeau     100       200   300         400    500        600      700     800       900
-$weight-array: Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold,
-  ExtraBold, "Black";
-@for $i from 1 through length($weight-array) {
-  $weight: nth($weight-array, $i);
+$weight-array: ExtraThin, Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold,
+  ExtraBold;
+
+@for $i from 1 through list.length($weight-array) {
+  $weight: list.nth($weight-array, $i);
+
   @font-face {
     font-family: Ysabeau;
     src: url("../fonts/YsabeauOffice/YsabeauOffice-#{$weight}.otf");
     font-weight: 100 * $i;
   }
+
   @font-face {
     font-family: Ysabeau;
     src: url("../fonts/YsabeauOffice/YsabeauOffice-#{$weight}Italic.otf");
@@ -16,32 +21,38 @@ $weight-array: Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold,
   }
 }
 
-// Operator    100     300    500   700     900
-$weight-array: XLight, Light, Book, Medium, Bold;
-@for $i from 1 through length($weight-array) {
-  $weight: nth($weight-array, $i);
+// Operator    200     400    600   800    
+$weight-array: XLight, Light, Book, Medium;
+
+@for $i from 1 through list.length($weight-array) {
+  $weight: list.nth($weight-array, $i);
+
   @font-face {
     font-family: Operator;
     src: url("../fonts/Operator/OperatorMono-#{$weight}.otf");
-    font-weight: 100 * (2 * $i - 1);
+    font-weight: 100 * (2 * $i);
   }
+
   @font-face {
     font-family: Operator;
     src: url("../fonts/Operator/OperatorMono-#{$weight}Italic.otf");
     font-style: italic;
-    font-weight: 100 * (2 * $i - 1);
+    font-weight: 100 * (2 * $i);
   }
 }
 
 // LXGW        100        400      700
 $weight-array: Light, Regular, Medium;
-@for $i from 1 through length($weight-array) {
-  $weight: nth($weight-array, $i);
+
+@for $i from 1 through list.length($weight-array) {
+  $weight: list.nth($weight-array, $i);
+
   @font-face {
     font-family: LXGWWenKai;
     src: url("../fonts/LXGWBright-v5.527/LXGWBright-#{$weight}.ttf");
     font-weight: 100 * (3 * $i - 2);
   }
+
   @font-face {
     font-family: LXGWWenKai;
     src: url("../fonts/LXGWBright-v5.527/LXGWBright-#{$weight}Italic.ttf");
@@ -58,16 +69,18 @@ $weight-array: Light, Regular, Medium;
 
 @font-face {
   font-family: LXGWSong;
-  src: url("../fonts/LXGW/LXGWNeoZhiSongPlus.ttf");
+  src: url("../fonts/LXGW/LXGWNeoZhiSongPlus-v1.053.ttf");
   font-weight: 400;
 }
 
 // NotoSansSC
 $weight-array: Thin, Light, Regular, Medium, Bold, "Black";
 $number-array: 100, 200, 400, 500, 700, 900;
-@for $i from 1 through length($weight-array) {
-  $weight: nth($weight-array, $i);
-  $number: nth($number-array, $i);
+
+@for $i from 1 through list.length($weight-array) {
+  $weight: list.nth($weight-array, $i);
+  $number: list.nth($number-array, $i);
+
   @font-face {
     font-family: NotoSansSC;
     src: url("../fonts/NotoSansSC/NotoSansSC-#{$weight}.otf");
@@ -81,34 +94,52 @@ $number-array: 100, 200, 400, 500, 700, 900;
       margin-#{$direction}: 0.5rem * $i;
     }
   }
+
   .#{$direction}a {
     margin-#{$direction}: auto;
   }
 }
 
 :root {
-  --solarized-base03: #002b36; /* (  0,  43,  54) */
-  --solarized-base02: #073642; /* (  7,  54,  66) */
-  --solarized-base01: #586e75; /* ( 88, 110, 117) */
-  --solarized-base00: #657b83; /* (101, 123, 131) */
-  --solarized-base0: #839496; /* (131, 148, 150) */
-  --solarized-base1: #93a1a1; /* (147, 161, 161) */
-  --solarized-base2: #eee8d5; /* (238, 232, 213) */
-  --solarized-base3: #fdf6e3; /* (253, 246, 227) */
-  --solarized-yellow: #b58900; /* (181, 137,   0) */
-  --solarized-orange: #cb4b16; /* (203,  75,  22) */
-  --solarized-red: #dc322f; /* (220,  50,  47) */
-  --solarized-magenta: #d33682; /* (211,  54, 130) */
-  --solarized-violet: #6c71c4; /* (108, 113, 196) */
-  --solarized-blue: #268bd2; /* ( 38, 139, 210) */
-  --solarized-cyan: #2aa198; /* ( 42, 161, 152) */
-  --solarized-green: #859900; /* (133, 153,   0) */
+  --solarized-base03: #002b36;
+  /* (  0,  43,  54) */
+  --solarized-base02: #073642;
+  /* (  7,  54,  66) */
+  --solarized-base01: #586e75;
+  /* ( 88, 110, 117) */
+  --solarized-base00: #657b83;
+  /* (101, 123, 131) */
+  --solarized-base0: #839496;
+  /* (131, 148, 150) */
+  --solarized-base1: #93a1a1;
+  /* (147, 161, 161) */
+  --solarized-base2: #eee8d5;
+  /* (238, 232, 213) */
+  --solarized-base3: #fdf6e3;
+  /* (253, 246, 227) */
+  --solarized-yellow: #b58900;
+  /* (181, 137,   0) */
+  --solarized-orange: #cb4b16;
+  /* (203,  75,  22) */
+  --solarized-red: #dc322f;
+  /* (220,  50,  47) */
+  --solarized-magenta: #d33682;
+  /* (211,  54, 130) */
+  --solarized-violet: #6c71c4;
+  /* (108, 113, 196) */
+  --solarized-blue: #268bd2;
+  /* ( 38, 139, 210) */
+  --solarized-cyan: #2aa198;
+  /* ( 42, 161, 152) */
+  --solarized-green: #859900;
+  /* (133, 153,   0) */
 }
 
 @each $color in "base03", "base02", "base01", "base00", "base0", "base1",
-  "base2", "base3", "yellow", "orange", "red", "magenta", "violet", "blue",
-  "cyan", "green"
-{
+"base2", "base3", "yellow", "orange", "red", "magenta", "violet", "blue",
+"cyan", "green"
+
+  {
   .#{$color} {
     color: var(--solarized-#{$color});
   }
@@ -125,8 +156,8 @@ body {
   min-height: 100%;
   background-color: var(--solarized-base3);
   color: var(--solarized-base01);
-  font-family: LXGWWenKai;
-  font-weight: 700;
+  font-family: Ysabeau, LXGWSong;
+  font-weight: 600;
 }
 
 h2,
@@ -145,8 +176,8 @@ h4 {
 }
 
 p {
-  font-family: LXGWWenKai;
-  font-weight: 700;
+  font-family: Ysabeau, LXGWSong;
+  font-weight: 600;
   font-size: 1.5rem;
   background-color: var(--base3);
   color: var(--solarized-base01);
@@ -161,8 +192,9 @@ ul {
   margin-top: 0.5rem;
 }
 
-ul > li {
-  font-family: LXGWWenKai;
+ul>li {
+  font-family: Ysabeau, LXGWSong;
+  font-weight: 600;
   font-size: 1.3rem;
   margin: 0.4rem 0;
   margin-right: 2rem;
@@ -182,57 +214,64 @@ a:hover {
 }
 
 table {
-  font-family: LXGWWenKai;
-  font-weight: 700;
+  font-family: Ysabeau, LXGWSong;
+  font-weight: 600;
   font-size: 1.2rem;
   table-layout: fixed;
   border-collapse: collapse;
   border-spacing: 0;
   margin: 2rem auto;
+
   th,
   td {
     padding: 0.5rem 1rem 0.1rem 1rem;
   }
+
   td:nth-last-child(1) {
     padding-left: 2rem;
   }
+
   th:first-of-type {
     width: 4rem;
   }
+
   th:nth-of-type(2) {
     width: 11rem;
   }
+
   th:nth-of-type(3) {
     width: 33rem;
   }
 }
 
-.tr-hover > table {
+.tr-hover>table {
   tbody tr:hover {
     background-color: var(--solarized-base2);
   }
 }
 
-.head-highlight > table {
+.head-highlight>table {
   th:nth-child(n + 1) {
     background-color: var(--solarized-base2);
   }
 }
 
-.threelines > table {
+.threelines>table {
   th {
     border-top: 2px solid var(--solarized-base01);
     border-bottom: 1px solid var(--solarized-base01);
   }
+
   tbody tr:nth-last-child(1) {
     border-bottom: 2px solid var(--solarized-base01);
   }
 }
 
-.outline > table {
+.outline>table {
   th:nth-last-child(1) {
     text-align: center !important;
   }
+
   tbody tr:nth-child(14),
   tbody tr:nth-child(18),
   tbody tr:nth-child(22),
@@ -242,6 +281,7 @@ table {
   tbody tr:nth-child(38) {
     border-top: 1px dashed var(--solarized-base01);
   }
+
   tbody tr:nth-child(100) {
     td:nth-last-child(1) {
       text-align: center !important;

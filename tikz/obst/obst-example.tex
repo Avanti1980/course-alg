@@ -1,0 +1,79 @@
+\documentclass{ctexart}
+\usepackage{avanti-color}
+\usepackage{avanti-math}
+\usepackage{avanti-theorem}
+\usepackage{avanti-others}
+\usepackage[a4paper,landscape,margin=1cm]{geometry}
+
+\RequirePackage{fontspec}
+\xeCJKsetup{CJKmath=true}
+\setmainfont[BoldFont=FZHei-B01,ItalicFont=]{Ysabeau}
+
+\everymath{\color{Solarized-magenta}}
+\pagestyle{empty} % 没有页眉和页脚
+
+% define the plot style and the axis style
+\tikzset{font=\Large}
+\tikzset{base/.style = {smooth,very thick,draw=Solarized-base01,Solarized-base01}}
+
+\tikzset{point/.style={ellipse, base, draw=Solarized-base01, text centered}}
+\tikzset{point2/.style={point, minimum width=32pt, minimum height=20pt}}
+
+\tikzset{level distance=50}
+\tikzset{level 1/.style = {sibling distance=20}}
+\tikzset{level 2/.style = {sibling distance=20}}
+\tikzset{level 3/.style = {sibling distance=20}}
+\tikzset{level 4/.style = {sibling distance=20}}
+
+\begin{document}
+
+\begin{figure}[!ht]
+	\centering
+	\subcaptionsetup{skip=1pt}
+	\adjustbox{valign=t}{\begin{subfigure}[t]{.35\textwidth}
+			\centering
+			\begin{tikzpicture}[base]
+				\Tree
+				[.\node [] {$\bm{k_2}$};
+				[.\node [] {$\bm{k_1}$};
+				[.\node [] {$\bm{\blue{d_0}}$}; ]
+				[.\node [] {$\bm{\blue{d_1}}$}; ]
+				]
+				[.\node [] {$\bm{k_4}$};
+				[.\node [] {$\bm{k_3}$};
+				[.\node [] {$\bm{\blue{d_2}}$}; ]
+				[.\node [] {$\bm{\blue{d_3}}$}; ]
+				]
+				[.\node [] {$\bm{k_5}$};
+				[.\node [] {$\bm{\blue{d_4}}$}; ]
+				[.\node [] {$\bm{\blue{d_5}}$}; ]
+				]
+				]
+				]
+			\end{tikzpicture}
+		\end{subfigure}}%
+	\adjustbox{valign=t}{\begin{subfigure}[t]{.35\textwidth}
+			\centering
+			\begin{tikzpicture}[base]
+				\Tree
+				[.\node [] {$\bm{k_2}$};
+				[.\node [] {$\bm{k_1}$};
+				[.\node [] {$\bm{\blue{d_0}}$}; ]
+				[.\node [] {$\bm{\blue{d_1}}$}; ]
+				]
+				[.\node [] {$\bm{k_5}$};
+				[.\node [] {$\bm{k_4}$};
+				[.\node [] {$\bm{k_3}$};
+				[.\node [] {$\bm{\blue{d_2}}$}; ]
+				[.\node [] {$\bm{\blue{d_3}}$}; ]
+				]
+				[.\node [] {$\bm{\blue{d_4}}$}; ]
+				]
+				[.\node [] {$\bm{\blue{d_5}}$}; ]
+				]
+				]
+			\end{tikzpicture}
+		\end{subfigure}}
+\end{figure}
+
+\end{document}

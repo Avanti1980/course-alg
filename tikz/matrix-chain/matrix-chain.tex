@@ -1,0 +1,108 @@
+\documentclass{ctexart}
+\usepackage{avanti-color}
+\usepackage{avanti-math}
+\usepackage{avanti-theorem}
+\usepackage{avanti-others}
+\usepackage[a4paper,landscape,margin=1cm]{geometry}
+
+\RequirePackage{fontspec}
+\xeCJKsetup{CJKmath=true}
+\setCJKmainfont[BoldFont={LXGW Neo XiHei Plus},ItalicFont=]{LXGW Neo ZhiSong Plus}
+
+\everymath{\color{Solarized-magenta}}
+\pagestyle{empty} % 没有页眉和页脚
+
+\tikzset{font=\Large}
+\tikzset{base/.style = {smooth,thick,draw=Solarized-base01,Solarized-base01}}
+
+\begin{document}
+
+\begin{tikzpicture}[base]
+    %每格一半的大小
+    \pgfmathsetmacro{\hw}{1};
+    %右图相对于左图的偏移
+    \pgfmathsetmacro{\offx}{13*\hw};
+    \pgfmathsetmacro{\offy}{\hw};
+
+    \def \mtable {{"0", "0", "0", "0", "0","0", "0",
+                "0","15750","2625","750","1000","5000",
+                "0","0","7875","4375","2500","3500",
+                "0","0","0","9375","7125","5375",
+                "0","0","0","0","11875","10500",
+                "0","0","0","0","0","15125"}};
+
+    \def \stable {{"0", "1", "2", "3", "4","5",
+                "0","1","3","3","5",
+                "0","0","3","3","3",
+                "0","0","0","3","3",
+                "0","0","0","0","3"}};
+
+    % A_1 - A_6
+    \foreach \i in {1,...,6} {
+            \node [] (\i) at (\i*2*\hw,0) [below=2pt] {$\Av_{\i}$};
+        }
+
+    % 最后一行折线
+    \foreach \i in {1,...,6}{
+            %左图
+            \draw [] (\i*2*\hw-\hw,\hw) -- (\i*2*\hw,0) -- (\i*2*\hw+\hw,\hw);
+            %右图
+            \ifthenelse{\NOT \i = 6}{
+                \draw [] (\offx+\i*2*\hw-\hw,\offy+\hw) -- (\offx+\i*2*\hw,\offy) -- (\offx+\i*2*\hw+\hw,\offy+\hw);
+            }{;}
+        }
+
+    %其余折线
+    \foreach \i in {1,...,6}{
+            %左图
+            \foreach \j in {\i,...,6}{
+                    \draw [] (\j*2*\hw-\i*\hw,\i*\hw) -- (\j*2*\hw-\i*\hw+\hw,\i*\hw+\hw) -- (\j*2*\hw-\i*\hw+2*\hw,\i*\hw);
+                }
+            %右图
+            \ifthenelse{\NOT \i = 6}{
+                \foreach \j in {\i,...,5}{
+                        \draw [] (\offx+\j*2*\hw-\i*\hw,\offy+\i*\hw) -- (\offx+\j*2*\hw-\i*\hw+\hw,\offy+\i*\hw+\hw) -- (\offx+\j*2*\hw-\i*\hw+2*\hw,\offy+\i*\hw);
+                    }
+            }{;}
+        }
+
+    %填数
+    \foreach \i in {1,...,6}{
+            %左图
+            \foreach \j in {\i,...,6}{
+                    \node [] (\i\j) at (\j*2*\hw-\i*\hw+\hw,\i*\hw) {$\pgfmathparse{\mtable[(\i-1)*6+\j]}\bm{\pgfmathresult}$};
+                }
+            %右图
+            \ifthenelse{\NOT \i = 6}{
+                \foreach \j in {\i,...,5}{
+                        \node [] (\i\j) at (\offx+\j*2*\hw-\i*\hw+\hw,\offy+\i*\hw) {$\pgfmathparse{\stable[(\i-1)*5+\j]}\bm{\pgfmathresult}$};
+                    }
+            }{;}
+        }
+
+    %其余部分
+    \foreach \i in {1,...,6}{
+            %左图
+            \node [] (0) at (\i*\hw+0.25*\hw,\i*\hw+0.5*\hw) [above] {$\bm{\i}$};
+            \node [] (0) at (6.75*\hw+\i*\hw,7.5*\hw-\i*\hw) [above] {$\bm{\i}$};
+            %右图左侧
+            \ifthenelse{\NOT \i = 1}{
+                \node [] (0) at (\offx-\hw +\i*\hw+0.25*\hw,\i*\hw+0.5*\hw) [above] {$\bm{\i}$};
+            }{;}
+            %右图右侧
+            \ifthenelse{\NOT \i = 6}{
+                \node [] (0) at (\offx-\hw+6.75*\hw+\i*\hw,7.5*\hw-\i*\hw) [above] {$\bm{\i}$};
+            }
+        }
+
+    \node [] (M) at (7*\hw,8*\hw) {$\bm{m}$};
+    \node [] (S) at (\offx-\hw+7*\hw,8*\hw) {$\bm{s}$};
+    \node [] (j) at (3*\hw,5*\hw) {$\bm{j}$};
+    \node [] (j2) at (\offx-\hw+3*\hw,5*\hw) {$\bm{j}$};
+    \node [] (i) at (11*\hw,5*\hw) {$\bm{i}$};
+    \node [] (i2) at (\offx-\hw+11*\hw,5*\hw) {$\bm{i}$};
+
+
+\end{tikzpicture}
+
+\end{document}

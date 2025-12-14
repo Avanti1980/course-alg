@@ -1,0 +1,76 @@
+[
+  {
+    "id": 1,
+    "name": "算法"
+  },
+  {
+    "id": 2,
+    "name": "分治",
+    "parent": 1
+  },
+  {
+    "id": 3,
+    "name": "动态规划",
+    "parent": 1
+  },
+  {
+    "id": 4,
+    "name": "贪心",
+    "parent": 1
+  },
+  {
+    "id": 5,
+    "name": "回溯",
+    "parent": 1
+  },
+  {
+    "id": 6,
+    "name": "分支限界",
+    "parent": 1
+  },
+  {
+    "id": 7,
+    "name": "迭代改进",
+    "parent": 1
+  },
+  {
+    "id": 8,
+    "name": "Karatsuba算法",
+    "parent": 2
+  },
+  {
+    "id": 8,
+    "name": "归并排序、快速排序",
+    "parent": 2
+  },
+  {
+    "id": 8,
+    "name": "最大子数组",
+    "parent": 2
+  },
+  {
+    "id": 8,
+    "name": "逆序对计数",
+    "parent": 2
+  },
+  {
+    "id": 9,
+    "name": "最近点对",
+    "parent": 2
+  },
+  {
+    "id": 10,
+    "name": "矩阵加法、矩阵乘法",
+    "parent": 2
+  },
+  {
+    "id": 11,
+    "name": "Strassen矩阵乘法",
+    "parent": 2
+  },
+  {
+    "id": 12,
+    "name": "代入法、递归树、主方法",
+    "parent": 2
+  }
+]

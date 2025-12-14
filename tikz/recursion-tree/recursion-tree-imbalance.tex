@@ -1,0 +1,103 @@
+\documentclass{ctexart}
+\usepackage{avanti-color}
+\usepackage{avanti-math}
+\usepackage{avanti-theorem}
+\usepackage{avanti-others}
+\usepackage[a4paper,landscape,margin=1cm]{geometry}
+
+\RequirePackage{fontspec}
+\xeCJKsetup{CJKmath=true}
+\setCJKmainfont[BoldFont={LXGW Neo XiHei Plus},ItalicFont=]{LXGW Neo ZhiSong Plus}
+
+\everymath{\color{Solarized-magenta}}
+\pagestyle{empty} % 没有页眉和页脚
+
+% define the plot style and the axis style
+\tikzset{font=\Large}
+\tikzset{base/.style = {smooth,very thick,draw=Solarized-base01,Solarized-base01}}
+\tikzset{arrow/.style={->, -{Stealth[scale=1.0]}, base, draw=Solarized-blue}}
+\tikzset{arrow2/.style={<->, {Stealth[scale=1.0]}-{Stealth[scale=1.0]}, base, draw=Solarized-green}}
+
+\begin{document}
+
+\begin{tikzpicture}[
+    base,
+    level distance=60,
+    level 1/.style = {sibling distance=200},
+    level 2/.style = {sibling distance=100},
+    level 3/.style = {sibling distance=50},
+  ]
+  \node (Root) [] {$\bm{c n}$}
+  child {node (Root-1-1) [] {$\bm{c (\frac{n}{3})}$}
+      child {node (Root-2-1) [] {$\bm{c (\frac{n}{9})}$}
+          child {node (Root-3-1) [] {}}
+          child {node (Root-3-2) [] {}}
+        }
+      child {node (Root-2-2) [] {$\bm{c (\frac{2n}{9})}$}
+          child {node (Root-3-3) [] {}}
+          child {node (Root-3-4) [] {}}
+        }
+    }
+  child {node (Root-1-2) [] {$\bm{c (\frac{2n}{3})}$}
+      child {node (Root-2-3) [] {$\bm{c (\frac{2n}{9})}$}
+          child {node (Root-3-5) [] {}}
+          child {node (Root-3-6) [] {}}
+        }
+      child {node (Root-2-4) [] {$\bm{c (\frac{4n}{9})}$}
+          child {node (Root-3-7) [] {}}
+          child {node (Root-3-8) [] {}}
+        }
+    };
+
+  % 画每行的和
+  \pgfmathsetmacro{\shiftx}{1.2};
+  \pgfmathsetmacro{\shiftxx}{2};
+  \pgfmathsetmacro{\shiftxxx}{0.2};
+  \path (Root) ++(\shiftx,0) coordinate (tail);
+  \path (Root -| Root-3-8) ++(\shiftxx,0) coordinate (head);
+  \draw [arrow] (tail) -- (head);
+  \path (head) node [right=\shiftxxx] {$\bm{c n}$};
+
+  \path (Root-1-2) ++(\shiftx,0) coordinate (tail);
+  \path (Root-1-2 -| Root-3-8) ++(\shiftxx,0) coordinate (head);
+  \draw [arrow] (tail) -- (head);
+  \path (head) node [right=\shiftxxx] {$\bm{c n}$};
+
+  \path (Root-2-4) ++(\shiftx,0) coordinate (tail);
+  \path (Root-2-4 -| Root-3-8) ++(\shiftxx,0) coordinate (head);
+  \draw [arrow] (tail) -- (head);
+  \path (head) node [right=\shiftxxx] {$\bm{c n}$};
+
+  % 画叶结点
+  \pgfmathsetmacro{\shiftyy}{0.1};
+  \pgfmathsetmacro{\shifty}{0.1 * 1 + 0.2};
+  \path (Root-3-1) ++(0, -\shifty) coordinate (Root-4-1);
+  \draw [dashed] (Root-3-1) -- (Root-4-1);
+  \path [] (Root-4-1) node [below=\shiftyy] () {$\bm{\Theta(1)}$};
+
+  \pgfmathsetmacro{\shifty}{0.1 * 8 + 0.2};
+  \path (Root-3-8) ++(0, -\shifty) coordinate (Root-4-8);
+  \draw [dashed] (Root-3-8) -- (Root-4-8);
+  \path [] (Root-4-8) node [below=\shiftyy] () {$\bm{\Theta(1)}$};
+
+  \foreach \i in {2,3,...,7}
+    {
+      \pgfmathsetmacro{\shifty}{0.1 * \i + 0.2};
+      \path (Root-3-\i) ++(0, -\shifty) coordinate (c);
+      \draw [dashed] (Root-3-\i) -- (c);
+      \path [base] (c) node [below=\shiftyy] () {$\bm{\Theta(1)}$};
+    }
+
+  % 最下面的括号
+  \path (Root-3-1) ++(-0.5,0) coordinate (tail);
+  \path (Root-3-8) ++(0.5,0) coordinate (head);
+  \draw [base,Solarized-yellow,decorate,decoration={brace,amplitude=10pt,mirror,raise=25pt}] (Root-4-1) -- (Root-4-8) node[midway,sloped,yshift=-50] {$\bm{\Theta(n)}$};
+
+  % 最左面的双箭头
+  \path (Root -| Root-4-1) ++(-1.2,0) coordinate (head);
+  \path (Root-4-1) ++(-1.2,-1.5) coordinate (tail);
+  \draw [arrow2] (tail) -- (head) node [above=0pt, sloped, pos=0.5] {共$\bm{\lfloor \log_{3/2} n \rfloor + 1}$ 层};
+
+\end{tikzpicture}
+
+\end{document}

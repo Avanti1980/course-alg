@@ -1,80 +1,81 @@
 \documentclass{ctexart}
 \usepackage{avanti-color}
-%\usepackage{avanti-font}
 \usepackage{avanti-math}
 \usepackage{avanti-theorem}
 \usepackage{avanti-others}
+\usepackage[a4paper,landscape,margin=1cm]{geometry}
 
 \RequirePackage{fontspec}
 \xeCJKsetup{CJKmath=true}
-\setCJKmainfont[BoldFont=FZHei-B01,ItalicFont=]{LXGW Bright}
+\setCJKmainfont[BoldFont={LXGW Neo XiHei Plus},ItalicFont=]{LXGW Neo ZhiSong Plus}
 
 \everymath{\color{Solarized-magenta}}
 \pagestyle{empty} % 没有页眉和页脚
 
-% define the plot style and the axis style
-% \tikzset{font=\large}
+\tikzset{font=\Large}
+\tikzset{base/.style = {smooth,very thick,draw=Solarized-base01,Solarized-base01}}
+\tikzset{level distance=50}
 
 \begin{document}
 
-\begin{tikzpicture}
-	\Tree
-	[.$F(6)$
-		[.$F(5)$
-				[.$F(4)$
-						[.$F(3)$
-								[.$F(2)$
-										[.$\red{F(1)}$ ]
-											[.$\red{F(0)}$ ]
+\begin{tikzpicture}[base]
+	\Tree % 这个例子不需要复杂的控制 故直接调Tree包
+	[.$\bm{F(6)}$
+		[.$\bm{F(5)}$
+				[.$\bm{F(4)}$
+						[.$\bm{F(3)}$
+								[.$\bm{F(2)}$
+										[.$\bm{\red{F(1)}}$ ]
+											[.$\bm{\red{F(0)}}$ ]
 									]
-									[.$\red{F(1)}$ ]
+									[.$\bm{\red{F(1)}}$ ]
 							]
-							[.$F(2)$
-								[.$\red{F(1)}$ ]
-									[.$\red{F(0)}$ ]
+							[.$\bm{F(2)}$
+								[.$\bm{\red{F(1)}}$ ]
+									[.$\bm{\red{F(0)}}$ ]
 							]
 					]
-					[.$F(3)$
-						[.$F(2)$
-								[.$\red{F(1)}$ ]
-									[.$\red{F(0)}$ ]
+					[.$\bm{F(3)}$
+						[.$\bm{F(2)}$
+								[.$\bm{\red{F(1)}}$ ]
+									[.$\bm{\red{F(0)}}$ ]
 							]
-							[.$\red{F(1)}$ ]
-					]
-			]
-			[.$F(4)$
-				[.$F(3)$
-						[.$F(2)$
-								[.$\red{F(1)}$ ]
-									[.$\red{F(0)}$ ]
-							]
-							[.$\red{F(1)}$ ]
-					]
-					[.$F(2)$
-						[.$\red{F(1)}$ ]
-							[.$\red{F(0)}$ ]
+							[.$\bm{\red{F(1)}}$ ]
 					]
 			]
-	]
+			[.$\bm{F(4)}$
+				[.$\bm{F(3)}$
+						[.$\bm{F(2)}$
+								[.$\bm{\red{F(1)}}$ ]
+									[.$\bm{\red{F(0)}}$ ]
+							]
+							[.$\bm{\red{F(1)}}$ ]
+					]
+					[.$\bm{F(2)}$
+						[.$\bm{\red{F(1)}}$ ]
+							[.$\bm{\red{F(0)}}$ ]
+					]
+			]
+	];
 \end{tikzpicture}
 
-\begin{tikzpicture}
+\begin{tikzpicture}[base]
 	\Tree
-	[.$F(6)$
-		[.$F(5)$
-				[.$F(4)$
-						[.$F(3)$
-								[.$F(2)$
-										[.$\red{F(1)}$ ]
-											[.$\red{F(0)}$ ]
+	[.$\bm{F(6)}$
+		[.$\bm{F(5)}$
+				[.$\bm{F(4)}$
+						[.$\bm{F(3)}$
+								[.$\bm{F(2)}$
+										[.$\bm{\red{F(1)}}$ ]
+											[.$\bm{\red{F(0)}}$ ]
 									]
-									[.$\red{F(1)}$ ]
+									[.$\bm{\red{F(1)}}$ ]
 							]
-							[.$\blue{F(2)}$ ]
+							[.$\bm{\blue{F(2)}}$ ]
 					]
-					[.$\blue{F(3)}$ ]
+					[.$\bm{\blue{F(3)}}$ ]
 			]
-			[.$\blue{F(4)}$ ]
+			[.$\bm{\blue{F(4)}}$ ]
 	]
 \end{tikzpicture}
 

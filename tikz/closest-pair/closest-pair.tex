@@ -1,0 +1,67 @@
+\documentclass{ctexart}
+\usepackage{avanti-color}
+\usepackage{avanti-math}
+\usepackage{avanti-theorem}
+\usepackage{avanti-others}
+\usepackage[a4paper,landscape,margin=1cm]{geometry}
+
+\RequirePackage{fontspec}
+\xeCJKsetup{CJKmath=true}
+\setCJKmainfont[BoldFont={LXGW Neo XiHei Plus},ItalicFont=]{LXGW Neo ZhiSong Plus}
+
+\everymath{\color{Solarized-magenta}}
+\pagestyle{empty} % 没有页眉和页脚
+
+\tikzset{font=\Large}
+\tikzset{base/.style = {smooth,thick,draw=Solarized-base01,Solarized-base01}}
+\tikzset{point/.style={circle, fill, inner sep=1.5pt, Solarized-base01}}
+\tikzset{label-above/.style = {above, sloped, pos=0.5}}
+
+\begin{document}
+
+\begin{tikzpicture}
+
+    \pgfmathtruncatemacro{\d}{2}; % delta
+    \pgfmathtruncatemacro{\h}{6}; % 高度
+
+    \draw [base] (-\d,0) -- (\d,0);
+    \draw [base] (0,0) -- (0,\h);
+    \draw [base,dashed] (-\d,0) -- (-\d,\h);
+    \draw [base,dashed] (\d,0) -- (\d,\h);
+
+    \path [base] (-\d/2,0) node [above] () {$\bm{\delta}$};
+    \path [base] (\d/2,0) node [above] () {$\bm{\delta}$};
+    \path [base] (0,\h) node [above=4pt] () {$\bm{x = m}$};
+
+    \node [point] (l1) at (-0.4,1.1) {};
+    \node [point] (l2) at (-1.7,2.4) {};
+    \node [point] (l3) at (-3.8,2.7) {};
+    \node [point] (l4) at (-2.6,4.1) {};
+    \node [point] (l5) at (-1.3,5.8) {};
+    \draw [base] (l3) -- (l4) node [label-above] {$\bm{d_l}$};
+
+    \node [point] (m) at (0,4) {};
+
+    \node [point] (r1) at (0.8,1.4) {};
+    \node [point] (r2) at (2.9,2.8) {};
+    \node [point] (r3) at (1.5,5.8) {};
+    \node [point] (r4) at (3.3,5.2) {};
+    \draw [base] (r3) -- (r4) node [label-above] {$\bm{d_r}$};
+
+    \pgfmathtruncatemacro{\shift}{8};
+
+    \draw [base] (\shift,0) -- (\shift,\h);
+    \draw [base] (\shift-\d,2) -- (\shift+\d,2);
+    \draw [base,dashed] (\shift-\d,2) -- (\shift-\d,4) -- (\shift+\d,4) -- (\shift+\d,2);
+
+    \path [base] (\shift,\h) node [above=4pt] () {$\bm{x = m}$};
+    \path [base] (\shift-\d/2,2) node [below] () {$\bm{\delta}$};
+    \path [base] (\shift+\d/2,2) node [below] () {$\bm{\delta}$};
+    \path [base] (\shift-\d,3) node [left] () {$\bm{\delta}$};
+    \path [base] (\shift+\d,3) node [right] () {$\bm{\delta}$};
+
+    \node [point] () at (\shift+0.7,2) {};
+
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,36 @@
+digraph g {
+    bgcolor=transparent
+    graph [nodesep=0.8, ranksep=0.3]
+    node [shape=plain, color="#586e75", fontcolor="#b58900", fontsize=18, fontname="Ysabeau, LXGWSong"]
+    edge [arrowhead=none, color="#586e75", fontcolor="#268bd2", fontsize=16, fontname="Ysabeau, LXGWSong"]
+
+    cr31 [label="③"]
+
+    cr21 [label="②"]
+    cr22 [label="②"]
+    cr23 [label="②"]
+
+    cr11 [label="①"]
+    cr12 [label="①"]
+    cr13 [label="①"]
+    cr14 [label="①"]
+    cr15 [label="①"]
+    cr16 [label="①"]
+    cr17 [label="①"]
+
+    "⑤" -> {"④", "③", "②", "①"}
+
+    "②" -> cr11
+
+    "③" -> {cr12, cr21}
+
+    "④" -> {cr13, cr22, cr31}
+
+    cr21 -> cr14
+
+    cr22 -> cr15
+
+    cr31 -> {cr23, cr16}
+
+    cr23 -> cr17
+}

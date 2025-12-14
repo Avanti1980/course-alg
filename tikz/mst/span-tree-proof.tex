@@ -1,0 +1,46 @@
+\documentclass{ctexart}
+\usepackage{avanti-color}
+\usepackage{avanti-math}
+\usepackage{avanti-theorem}
+\usepackage{avanti-others}
+\usepackage[a4paper,landscape,margin=1cm]{geometry}
+
+\RequirePackage{fontspec}
+\xeCJKsetup{CJKmath=true}
+\setCJKmainfont[BoldFont={LXGW Neo XiHei Plus},ItalicFont=]{LXGW Neo ZhiSong Plus}
+
+\everymath{\color{Solarized-magenta}}
+\pagestyle{empty} % 没有页眉和页脚
+
+\tikzset{font=\Large}
+\tikzset{base/.style={smooth, very thick, draw=Solarized-base01,Solarized-base01}}
+\tikzset{point/.style={circle, minimum height=0.8cm, base, draw=Solarized-yellow}}
+\tikzset{point2/.style={circle, minimum height=0.8cm, base, draw=Solarized-blue}}
+\tikzset{xkcd/.style={decoration={name=random steps,segment length=2pt,amplitude=1.5pt},line join=round,line cap=round,decorate}} % 模仿手写体
+
+\begin{document}
+
+\begin{tikzpicture}[]
+    \pgfmathsetmacro{\l}{2};
+
+    \node [point] (u) at (0,0) {$\uv$};
+    \path (u) ++(\l,0) node[point] (w) {$\wv$};
+    \path (w) ++(\l,0) node[point] (x) {$\xv$};
+    \path (x) ++(\l,0) node[point] (y) {$\yv$};
+    \path (w) ++(0,\l) node[point] (g) {$\gv$};
+    \path (x) ++(0,-\l) node[point2] (b) {$\bv$};
+    \path (b) ++(\l,0) node[point2] (c) {$\cv$};
+    \path (b) ++(-\l,0) node[point2] (a) {$\av$};
+    \path (b) ++(0,-\l) node[point2] (d) {$\dv$};
+    \path (a) ++(-\l,0) node[point2] (v) {$\vv$};
+
+    \draw [base,Solarized-yellow,xkcd] (u) -- (w) -- (x) -- (y);
+    \draw [base,Solarized-yellow,xkcd] (w) -- (g);
+    \draw [base,Solarized-blue,xkcd] (v) -- (a) -- (b) -- (c);
+    \draw [base,Solarized-blue,xkcd] (b) -- (d);
+
+    \draw [base] (b) -- (x);
+    \draw [base,dashed] (u) -- (v);
+\end{tikzpicture}
+
+\end{document}

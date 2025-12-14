@@ -11,10 +11,10 @@ def bfs(g, s):
 
 
 def init_sssp(g, s):
-    dist, pred = {s: 0}, {s: None}
+    dist, pred = dict(), dict()
     for v in g:
-        if v != s:  # 距离初始化为无穷大 前驱初始化为空
-            dist[v], pred[v] = float("inf"), None
+        dist[v] = float("inf") if v != s else 0
+        pred[v] = None
     return dist, pred
 
 

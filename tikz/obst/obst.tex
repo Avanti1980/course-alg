@@ -1,110 +1,125 @@
 \documentclass{ctexart}
 \usepackage{avanti-color}
-%\usepackage{avanti-font}
 \usepackage{avanti-math}
 \usepackage{avanti-theorem}
 \usepackage{avanti-others}
+\usepackage[a4paper,landscape,margin=1cm]{geometry}
 
 \RequirePackage{fontspec}
 \xeCJKsetup{CJKmath=true}
-\setmainfont[BoldFont=FZHei-B01,ItalicFont=]{Ysabeau}
+\setCJKmainfont[BoldFont={LXGW Neo XiHei Plus},ItalicFont=]{LXGW Neo ZhiSong Plus}
 
 \everymath{\color{Solarized-magenta}}
 \pagestyle{empty} % 没有页眉和页脚
 
-% define the plot style and the axis style
-\tikzset{font=\small}
-
-\tikzset{base/.style={smooth, Solarized-base01}}
-\tikzset{point/.style={ellipse, base, draw=Solarized-base01, text centered}}
-\tikzset{point2/.style={point, minimum width=32pt, minimum height=20pt}}
+\tikzset{font=\Large}
+\tikzset{base/.style = {smooth,thick,draw=Solarized-base01,Solarized-base01}}
 
 \begin{document}
 
-\begin{tikzpicture}
-	\Tree
-	[.\node [point2] {or};
-	[.\node [point2] {is};
-	[.\node [point2] {game};
-	[.\node [point2] {die}; ]
-	[.\node [point2] {ground}; ]
-	]
-	[.\node [point2] {no};
-	[.\node [point2] {middle}; ]
-	[.\node [point2] {of}; ]
-	]
-	]
-	[.\node [point2] {thrones};
-	[.\node [point2] {the};
-	[.\node [point2] {play}; ]
-	[.\node [point2] {there}; ]
-	]
-	[.\node [point2] {win};
-	[.\node [point2] {when}; ]
-	[.\node [point2] {you}; ]
-	]
-	]
-	]
+\begin{tikzpicture}[base]
+    %每格一半的大小
+    \pgfmathsetmacro{\hw}{1};
+    %右图相对于左图的偏移
+    \pgfmathsetmacro{\offx}{13*\hw};
+    \pgfmathsetmacro{\offy}{0};
+    %下图相对于左图的偏移
+    \pgfmathsetmacro{\offxx}{7.5*\hw};
+    \pgfmathsetmacro{\offyy}{-7.5*\hw};
+
+    \def \mtable {{"0", "0.05", "0.10", "0.05", "0.05","0.05", "0.10",
+                "0","0.45","0.40","0.25","0.30","0.50",
+                "0","0","0.90","0.70","0.60","0.90",
+                "0","0","0","1.25","1.20","1.30",
+                "0","0","0","0","1.75","2.00",
+                "0","0","0","0","0","2.75"}};
+
+    \def \stable {{"0", "0.05", "0.10", "0.05", "0.05","0.05", "0.10",
+                "0","0.30","0.25","0.15","0.20","0.35",
+                "0","0","0.45","0.35","0.30","0.50",
+                "0","0","0","0.55","0.50","0.60",
+                "0","0","0","0","0.70","0.80",
+                "0","0","0","0","0","1.00"}};
+
+    \def \rtable {{"0", "1", "2", "3", "4","5",
+                "0","1","2","4","5",
+                "0","0","2","2","5",
+                "0","0","0","2","4",
+                "0","0","0","0","2"}};
+
+
+    % 最后一行折线
+    \foreach \i in {1,...,6}{
+            %左图
+            \draw [] (\i*2*\hw-\hw,\hw) -- (\i*2*\hw,0) -- (\i*2*\hw+\hw,\hw);
+            %右图
+            \draw [] (\offx+\i*2*\hw-\hw,\offy+\hw) -- (\offx+\i*2*\hw,\offy) -- (\offx+\i*2*\hw+\hw,\offy+\hw);
+            %下图
+            \ifthenelse {\NOT \i = 6}{
+                \draw [] (\offxx+\i*2*\hw-\hw,\offyy+\hw) -- (\offxx+\i*2*\hw,\offyy) -- (\offxx+\i*2*\hw+\hw,\offyy+\hw);
+            }{;}
+        }
+
+    %其余折线
+    \foreach \i in {1,...,6}{
+            \foreach \j in {\i,...,6}{
+                    %左图
+                    \draw [] (\j*2*\hw-\i*\hw,\i*\hw) -- (\j*2*\hw-\i*\hw+\hw,\i*\hw+\hw) -- (\j*2*\hw-\i*\hw+2*\hw,\i*\hw);
+                    %右图
+                    \draw [] (\offx+\j*2*\hw-\i*\hw,\offy+\i*\hw) -- (\offx+\j*2*\hw-\i*\hw+\hw,\offy+\i*\hw+\hw) -- (\offx+\j*2*\hw-\i*\hw+2*\hw,\offy+\i*\hw);
+                }
+            %下图
+            \ifthenelse {\NOT \i = 6}{
+                \foreach \j in {\i,...,5}{
+                        \draw [] (\offxx+\j*2*\hw-\i*\hw,\offyy+\i*\hw) -- (\offxx+\j*2*\hw-\i*\hw+\hw,\offyy+\i*\hw+\hw) -- (\offxx+\j*2*\hw-\i*\hw+2*\hw,\offyy+\i*\hw);
+                    }
+            }{;}
+
+        }
+
+    %填数
+    \foreach \i in {1,...,6}{
+            %左图
+            \foreach \j in {\i,...,6}{
+                    \node [] (\i\j) at (\j*2*\hw-\i*\hw+\hw,\i*\hw) {$\pgfmathparse{\mtable[(\i-1)*6+\j]}\bm{\pgfmathresult}$};
+                    \node [] (\i\j) at (\offx+\j*2*\hw-\i*\hw+\hw,\offy+\i*\hw) {$\pgfmathparse{\stable[(\i-1)*6+\j]}\bm{\pgfmathresult}$};
+                }
+            %下图
+            \ifthenelse {\NOT \i = 6}{
+                \foreach \j in {\i,...,5}{
+                        \node [] (\i\j) at (\offxx+\j*2*\hw-\i*\hw+\hw,\offyy+\i*\hw) {$\pgfmathparse{\rtable[(\i-1)*5+\j]}\bm{\pgfmathresult}$};
+                    }
+            }{;}
+        }
+
+    %其余部分
+    \foreach \i in {1,...,6}{
+            \tikzmath{int \j; \j = \i - 1;};
+            %左图
+            \node [] (0) at (\i*\hw+0.25*\hw,\i*\hw+0.5*\hw) [above] {$\bm{\j}$};
+            \node [] (0) at (6.75*\hw+\i*\hw,7.5*\hw-\i*\hw) [above] {$\bm{\i}$};
+            %右图
+            \node [] (0) at (\offx +\i*\hw+0.25*\hw,\i*\hw+0.5*\hw) [above] {$\bm{\j}$};
+            \node [] (0) at (\offx +6.75*\hw+\i*\hw,7.5*\hw-\i*\hw) [above] {$\bm{\i}$};
+            %下图左侧
+            \ifthenelse {\NOT \i = 1}{
+                \node [] (0) at (\offxx -\hw +\i*\hw+0.25*\hw,\offyy - \hw+\i*\hw+0.5*\hw) [above] {$\bm{\j}$};
+            }{;}
+            %下图右侧
+            \ifthenelse {\NOT \i = 6}{
+                \node [] (0) at (\offxx-\hw+6.75*\hw+\i*\hw,\offyy-\hw+7.5*\hw-\i*\hw) [above] {$\bm{\i}$};
+            }{;}
+        }
+
+    \node [] (e) at (7*\hw,7.6*\hw) {$\bm{e}$};
+    \node [] (w) at (\offx+7*\hw,7.6*\hw) {$\bm{w}$};
+    \node [] (r) at (\offxx-\hw+7*\hw,\offyy-\hw+7.6*\hw) {$\bm{root}$};
+    \node [] (j) at (3*\hw,5*\hw) {$\bm{j}$};
+    \node [] (j2) at (\offx+3*\hw,5*\hw) {$\bm{j}$};
+    \node [] (j3) at (\offxx+3*\hw,\offyy+5*\hw) {$\bm{j}$};
+    \node [] (i) at (11*\hw,5*\hw) {$\bm{i}$};
+    \node [] (i2) at (\offx+11*\hw,5*\hw) {$\bm{i}$};
+    \node [] (i3) at (\offxx-2*\hw+11*\hw,\offyy+5*\hw) {$\bm{i}$};
 \end{tikzpicture}
-
-\begin{figure}[!ht]
-	\centering
-	\subcaptionsetup{skip=1pt}
-	\adjustbox{valign=t}{\begin{subfigure}[t]{.4\textwidth}
-			\centering
-			\begin{tikzpicture}
-				\Tree
-				[.\node [point] {$k_2$};
-				[.\node [point] {$k_1$};
-				[.\node [point] {$\blue{d_0}$}; ]
-				[.\node [point] {$\blue{d_1}$}; ]
-				]
-				[.\node [point] {$k_4$};
-				[.\node [point] {$k_3$};
-				[.\node [point] {$\blue{d_2}$}; ]
-				[.\node [point] {$\blue{d_3}$}; ]
-				]
-				[.\node [point] {$k_5$};
-				[.\node [point] {$\blue{d_4}$}; ]
-				[.\node [point] {$\blue{d_5}$}; ]
-				]
-				]
-				]
-			\end{tikzpicture}
-		\end{subfigure}}%
-	\adjustbox{valign=t}{\begin{subfigure}[t]{.4\textwidth}
-			\centering
-			\begin{tikzpicture}
-				\Tree
-				[.\node [point] {$k_2$};
-				[.\node [point] {$k_1$};
-				[.\node [point] {$\blue{d_0}$}; ]
-				[.\node [point] {$\blue{d_1}$}; ]
-				]
-				[.\node [point] {$k_5$};
-				[.\node [point] {$k_4$};
-				[.\node [point] {$k_3$};
-				[.\node [point] {$\blue{d_2}$}; ]
-				[.\node [point] {$\blue{d_3}$}; ]
-				]
-				[.\node [point] {$\blue{d_4}$}; ]
-				]
-				[.\node [point] {$\blue{d_5}$}; ]
-				]
-				]
-			\end{tikzpicture}
-		\end{subfigure}}
-\end{figure}
-
-\begin{tikzpicture}
-	\Tree
-	[.\node [point] {$k_r$};
-	[.\node [point] {$k_i,\ldots,k_{r-1}$}; ]
-	[.\node [point] {$k_{r+1},\ldots,k_j$}; ]
-	]
-\end{tikzpicture}
-
-
-
 
 \end{document}

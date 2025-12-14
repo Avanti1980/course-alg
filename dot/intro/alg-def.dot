@@ -1,0 +1,15 @@
+digraph g {
+    bgcolor=transparent
+    graph [nodesep=0.5, ranksep=0.5]
+    rankdir=LR
+    node [shape=box, color="#586e75", fontcolor="#b58900", fontsize=16, fontname="LXGWSong"]
+    edge [arrowhead=vee, arrowsize=0.6, color="#586e75", fontcolor="#268bd2", fontsize=16]
+
+    输入, 输出
+
+    node [shape=ellipse, fontcolor="#268bd2", fontsize=24]
+
+    算法
+
+    输入 -> 算法 -> 输出
+}

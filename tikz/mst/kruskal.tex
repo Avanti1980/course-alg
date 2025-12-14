@@ -1,243 +1,299 @@
 \documentclass{ctexart}
 \usepackage{avanti-color}
-%\usepackage{avanti-font}
 \usepackage{avanti-math}
 \usepackage{avanti-theorem}
 \usepackage{avanti-others}
-
-\geometry{a2paper, left=2mm}
+\usepackage[a3paper,landscape,margin=1cm]{geometry}
 
 \RequirePackage{fontspec}
 \xeCJKsetup{CJKmath=true}
-\setCJKmainfont[BoldFont=FZHei-B01,ItalicFont=]{LXGW Bright}
+\setCJKmainfont[BoldFont={LXGW Neo ZhiSong Plus},ItalicFont=]{LXGW Neo ZhiSong Plus}
 
 \everymath{\color{Solarized-magenta}}
 \pagestyle{empty} % 没有页眉和页脚
 
-% define the plot style and the axis style
-\tikzset{font=\large}
-
+\tikzset{font=\Large}
 \tikzset{base/.style={smooth, very thick, Solarized-base01}}
 \tikzset{point/.style={circle, minimum height=0.8cm, base, draw=Solarized-base01, fill=Solarized-base2}}
 \tikzset{span/.style={base, line width=1.5mm, Solarized-blue}}
 
 \begin{document}
 
-\begin{center}
-    \begin{tikzpicture}
+\pgfmathsetmacro{\l}{1.8};
 
-        \pgfmathsetmacro{\l}{1.5};
+\begin{figure}[!ht]
+    \centering
+    \subcaptionsetup{font=Large,labelfont={bf},skip=1pt}
+    \begin{subfigure}[t]{.33\textwidth} % 1,1
+        \centering
+        \begin{tikzpicture}
+            \node [point] (a) at (0,0) {$\av$};
+            \path (a) ++(\l,\l)  node[point] (b) {$\bv$};
+            \path (a) ++(\l,-\l) node[point] (h) {$\hv$};
+            \path (a) ++(2*\l,0) node[point] (i) {$\iv$};
+            \path (b) ++(2*\l,0) node[point] (c) {$\cv$};
+            \path (h) ++(2*\l,0) node[point] (g) {$\gv$};
+            \path (c) ++(2*\l,0) node[point] (d) {$\dv$};
+            \path (g) ++(2*\l,0) node[point] (f) {$\fv$};
+            \path (d) ++(\l,-\l) node[point] (e) {$\ev$};
 
-        % 1, 1
-        \node [point] (a) at (0,0) {$\av$};
-        \path (a) ++(\l,\l)  node[point] (b) {$\bv$};
-        \path (a) ++(\l,-\l) node[point] (h) {$\hv$};
-        \path (a) ++(2*\l,0) node[point] (i) {$\iv$};
-        \path (b) ++(2*\l,0) node[point] (c) {$\cv$};
-        \path (h) ++(2*\l,0) node[point] (g) {$\gv$};
-        \path (c) ++(2*\l,0) node[point] (d) {$\dv$};
-        \path (g) ++(2*\l,0) node[point] (f) {$\fv$};
-        \path (d) ++(\l,-\l) node[point] (e) {$\ev$};
+            \draw [base] (a) -- (b) node [left=5pt, pos=0.7] {$4$};
+            \draw [base] (b) -- (c) node [above=0pt, pos=0.5] {$8$};
+            \draw [base] (c) -- (d) node [above=0pt, pos=0.5] {$7$};
+            \draw [base] (h) -- (g) node [below=0pt, pos=0.5] {$1$};
+            \draw [base] (g) -- (f) node [below=0pt, pos=0.5] {$2$};
+            \draw [base] (c) -- (i) node [below=5pt, pos=0.3] {$2$};
+            \draw [base] (c) -- (f) node [below=5pt, pos=0.4] {$4$};
+            \draw [base] (d) -- (e) node [right=5pt, pos=0.3] {$9$};
+            \draw [base] (a) -- (h) node [left=5pt, pos=0.7] {$8$};
+            \draw [base] (b) -- (h) node [left=0pt, pos=0.5] {$11$};
+            \draw [base] (d) -- (f) node [right=0pt, pos=0.5] {$14$};
+            \draw [base] (i) -- (h) node [below=5pt, pos=0.3] {$7$};
+            \draw [base] (i) -- (g) node [below=5pt, pos=0.3] {$6$};
+            \draw [base] (f) -- (e) node [right=5pt, pos=0.3] {$10$};
+        \end{tikzpicture}
+        \caption{初始}
+    \end{subfigure}%
+    \begin{subfigure}[t]{.33\textwidth} % 1,2
+        \centering
+        \begin{tikzpicture}
+            \node [point] (a) at (0,0) {$\av$};
+            \path (a) ++(\l,\l)  node[point] (b) {$\bv$};
+            \path (a) ++(\l,-\l) node[point] (h) {$\hv$};
+            \path (a) ++(2*\l,0) node[point] (i) {$\iv$};
+            \path (b) ++(2*\l,0) node[point] (c) {$\cv$};
+            \path (h) ++(2*\l,0) node[point] (g) {$\gv$};
+            \path (c) ++(2*\l,0) node[point] (d) {$\dv$};
+            \path (g) ++(2*\l,0) node[point] (f) {$\fv$};
+            \path (d) ++(\l,-\l) node[point] (e) {$\ev$};
 
-        \draw [base] (a) -- (b) node [left=5pt, pos=0.7] {$4$};
-        \draw [base] (b) -- (c) node [above=0pt, pos=0.5] {$8$};
-        \draw [base] (c) -- (d) node [above=0pt, pos=0.5] {$7$};
-        \draw [span] (h) -- (g) node [below=0pt, pos=0.5] {$1$};
-        \draw [base] (g) -- (f) node [below=0pt, pos=0.5] {$2$};
-        \draw [base] (c) -- (i) node [below=5pt, pos=0.3] {$2$};
-        \draw [base] (c) -- (f) node [below=5pt, pos=0.4] {$4$};
-        \draw [base] (d) -- (e) node [right=5pt, pos=0.3] {$9$};
-        \draw [base] (a) -- (h) node [left=5pt, pos=0.7] {$8$};
-        \draw [base] (b) -- (h) node [left=0pt, pos=0.5] {$11$};
-        \draw [base] (d) -- (f) node [right=0pt, pos=0.5] {$14$};
-        \draw [base] (i) -- (h) node [below=5pt, pos=0.3] {$7$};
-        \draw [base] (i) -- (g) node [below=5pt, pos=0.3] {$6$};
-        \draw [base] (f) -- (e) node [right=5pt, pos=0.3] {$10$};
+            \draw [base] (a) -- (b) node [left=5pt, pos=0.7] {$4$};
+            \draw [base] (b) -- (c) node [above=0pt, pos=0.5] {$8$};
+            \draw [base] (c) -- (d) node [above=0pt, pos=0.5] {$7$};
+            \draw [span] (h) -- (g) node [below=0pt, pos=0.5] {$1$};
+            \draw [base] (g) -- (f) node [below=0pt, pos=0.5] {$2$};
+            \draw [base] (c) -- (i) node [below=5pt, pos=0.3] {$2$};
+            \draw [base] (c) -- (f) node [below=5pt, pos=0.4] {$4$};
+            \draw [base] (d) -- (e) node [right=5pt, pos=0.3] {$9$};
+            \draw [base] (a) -- (h) node [left=5pt, pos=0.7] {$8$};
+            \draw [base] (b) -- (h) node [left=0pt, pos=0.5] {$11$};
+            \draw [base] (d) -- (f) node [right=0pt, pos=0.5] {$14$};
+            \draw [base] (i) -- (h) node [below=5pt, pos=0.3] {$7$};
+            \draw [base] (i) -- (g) node [below=5pt, pos=0.3] {$6$};
+            \draw [base] (f) -- (e) node [right=5pt, pos=0.3] {$10$};
+        \end{tikzpicture}
+        \caption{连接$\gv$、$\hv$}
+    \end{subfigure}%
+    \begin{subfigure}[t]{.33\textwidth} % 1,3
+        \centering
+        \begin{tikzpicture}
+            \node [point] (a) at (0,0) {$\av$};
+            \path (a) ++(\l,\l)  node[point] (b) {$\bv$};
+            \path (a) ++(\l,-\l) node[point] (h) {$\hv$};
+            \path (a) ++(2*\l,0) node[point] (i) {$\iv$};
+            \path (b) ++(2*\l,0) node[point] (c) {$\cv$};
+            \path (h) ++(2*\l,0) node[point] (g) {$\gv$};
+            \path (c) ++(2*\l,0) node[point] (d) {$\dv$};
+            \path (g) ++(2*\l,0) node[point] (f) {$\fv$};
+            \path (d) ++(\l,-\l) node[point] (e) {$\ev$};
 
-        % 1, 2
-        \node [point] (a2) at (7.2*\l,0) {$\av$};
-        \path (a2) ++(\l,\l)  node[point] (b2) {$\bv$};
-        \path (a2) ++(\l,-\l) node[point] (h2) {$\hv$};
-        \path (a2) ++(2*\l,0) node[point] (i2) {$\iv$};
-        \path (b2) ++(2*\l,0) node[point] (c2) {$\cv$};
-        \path (h2) ++(2*\l,0) node[point] (g2) {$\gv$};
-        \path (c2) ++(2*\l,0) node[point] (d2) {$\dv$};
-        \path (g2) ++(2*\l,0) node[point] (f2) {$\fv$};
-        \path (d2) ++(\l,-\l) node[point] (e2) {$\ev$};
+            \draw [base] (a) -- (b) node [left=5pt, pos=0.7] {$4$};
+            \draw [base] (b) -- (c) node [above=0pt, pos=0.5] {$8$};
+            \draw [base] (c) -- (d) node [above=0pt, pos=0.5] {$7$};
+            \draw [span] (h) -- (g) node [below=0pt, pos=0.5] {$1$};
+            \draw [base] (g) -- (f) node [below=0pt, pos=0.5] {$2$};
+            \draw [span] (c) -- (i) node [below=5pt, pos=0.3] {$2$};
+            \draw [base] (c) -- (f) node [below=5pt, pos=0.4] {$4$};
+            \draw [base] (d) -- (e) node [right=5pt, pos=0.3] {$9$};
+            \draw [base] (a) -- (h) node [left=5pt, pos=0.7] {$8$};
+            \draw [base] (b) -- (h) node [left=0pt, pos=0.5] {$11$};
+            \draw [base] (d) -- (f) node [right=0pt, pos=0.5] {$14$};
+            \draw [base] (i) -- (h) node [below=5pt, pos=0.3] {$7$};
+            \draw [base] (i) -- (g) node [below=5pt, pos=0.3] {$6$};
+            \draw [base] (f) -- (e) node [right=5pt, pos=0.3] {$10$};
+        \end{tikzpicture}
+        \caption{连接$\cv$、$\iv$}
+    \end{subfigure}\\[20pt]
+    \begin{subfigure}[t]{.33\textwidth} % 2,1
+        \centering
+        \begin{tikzpicture}
+            \node [point] (a) at (0,0) {$\av$};
+            \path (a) ++(\l,\l)  node[point] (b) {$\bv$};
+            \path (a) ++(\l,-\l) node[point] (h) {$\hv$};
+            \path (a) ++(2*\l,0) node[point] (i) {$\iv$};
+            \path (b) ++(2*\l,0) node[point] (c) {$\cv$};
+            \path (h) ++(2*\l,0) node[point] (g) {$\gv$};
+            \path (c) ++(2*\l,0) node[point] (d) {$\dv$};
+            \path (g) ++(2*\l,0) node[point] (f) {$\fv$};
+            \path (d) ++(\l,-\l) node[point] (e) {$\ev$};
 
-        \draw [base] (a2) -- (b2) node [left=5pt, pos=0.7] {$4$};
-        \draw [base] (b2) -- (c2) node [above=0pt, pos=0.5] {$8$};
-        \draw [base] (c2) -- (d2) node [above=0pt, pos=0.5] {$7$};
-        \draw [span] (h2) -- (g2) node [below=0pt, pos=0.5] {$1$};
-        \draw [base] (g2) -- (f2) node [below=0pt, pos=0.5] {$2$};
-        \draw [span] (c2) -- (i2) node [below=5pt, pos=0.3] {$2$};
-        \draw [base] (c2) -- (f2) node [below=5pt, pos=0.4] {$4$};
-        \draw [base] (d2) -- (e2) node [right=5pt, pos=0.3] {$9$};
-        \draw [base] (a2) -- (h2) node [left=5pt, pos=0.7] {$8$};
-        \draw [base] (b2) -- (h2) node [left=0pt, pos=0.5] {$11$};
-        \draw [base] (d2) -- (f2) node [right=0pt, pos=0.5] {$14$};
-        \draw [base] (i2) -- (h2) node [below=5pt, pos=0.3] {$7$};
-        \draw [base] (i2) -- (g2) node [below=5pt, pos=0.3] {$6$};
-        \draw [base] (f2) -- (e2) node [right=5pt, pos=0.3] {$10$};
+            \draw [base] (a) -- (b) node [left=5pt, pos=0.7] {$4$};
+            \draw [base] (b) -- (c) node [above=0pt, pos=0.5] {$8$};
+            \draw [base] (c) -- (d) node [above=0pt, pos=0.5] {$7$};
+            \draw [span] (h) -- (g) node [below=0pt, pos=0.5] {$1$};
+            \draw [span] (g) -- (f) node [below=0pt, pos=0.5] {$2$};
+            \draw [span] (c) -- (i) node [below=5pt, pos=0.3] {$2$};
+            \draw [base] (c) -- (f) node [below=5pt, pos=0.4] {$4$};
+            \draw [base] (d) -- (e) node [right=5pt, pos=0.3] {$9$};
+            \draw [base] (a) -- (h) node [left=5pt, pos=0.7] {$8$};
+            \draw [base] (b) -- (h) node [left=0pt, pos=0.5] {$11$};
+            \draw [base] (d) -- (f) node [right=0pt, pos=0.5] {$14$};
+            \draw [base] (i) -- (h) node [below=5pt, pos=0.3] {$7$};
+            \draw [base] (i) -- (g) node [below=5pt, pos=0.3] {$6$};
+            \draw [base] (f) -- (e) node [right=5pt, pos=0.3] {$10$};
+        \end{tikzpicture}
+        \caption{连接$\fv$、$\gv$}
+    \end{subfigure}%
+    \begin{subfigure}[t]{.33\textwidth} % 2,2
+        \centering
+        \begin{tikzpicture}
+            \node [point] (a) at (0,0) {$\av$};
+            \path (a) ++(\l,\l)  node[point] (b) {$\bv$};
+            \path (a) ++(\l,-\l) node[point] (h) {$\hv$};
+            \path (a) ++(2*\l,0) node[point] (i) {$\iv$};
+            \path (b) ++(2*\l,0) node[point] (c) {$\cv$};
+            \path (h) ++(2*\l,0) node[point] (g) {$\gv$};
+            \path (c) ++(2*\l,0) node[point] (d) {$\dv$};
+            \path (g) ++(2*\l,0) node[point] (f) {$\fv$};
+            \path (d) ++(\l,-\l) node[point] (e) {$\ev$};
 
-        % 1, 3
-        \node [point] (a3) at (14.4*\l,0) {$\av$};
-        \path (a3) ++(\l,\l)  node[point] (b3) {$\bv$};
-        \path (a3) ++(\l,-\l) node[point] (h3) {$\hv$};
-        \path (a3) ++(2*\l,0) node[point] (i3) {$\iv$};
-        \path (b3) ++(2*\l,0) node[point] (c3) {$\cv$};
-        \path (h3) ++(2*\l,0) node[point] (g3) {$\gv$};
-        \path (c3) ++(2*\l,0) node[point] (d3) {$\dv$};
-        \path (g3) ++(2*\l,0) node[point] (f3) {$\fv$};
-        \path (d3) ++(\l,-\l) node[point] (e3) {$\ev$};
+            \draw [span] (a) -- (b) node [left=5pt, pos=0.7] {$4$};
+            \draw [base] (b) -- (c) node [above=0pt, pos=0.5] {$8$};
+            \draw [base] (c) -- (d) node [above=0pt, pos=0.5] {$7$};
+            \draw [span] (h) -- (g) node [below=0pt, pos=0.5] {$1$};
+            \draw [span] (g) -- (f) node [below=0pt, pos=0.5] {$2$};
+            \draw [span] (c) -- (i) node [below=5pt, pos=0.3] {$2$};
+            \draw [base] (c) -- (f) node [below=5pt, pos=0.4] {$4$};
+            \draw [base] (d) -- (e) node [right=5pt, pos=0.3] {$9$};
+            \draw [base] (a) -- (h) node [left=5pt, pos=0.7] {$8$};
+            \draw [base] (b) -- (h) node [left=0pt, pos=0.5] {$11$};
+            \draw [base] (d) -- (f) node [right=0pt, pos=0.5] {$14$};
+            \draw [base] (i) -- (h) node [below=5pt, pos=0.3] {$7$};
+            \draw [base] (i) -- (g) node [below=5pt, pos=0.3] {$6$};
+            \draw [base] (f) -- (e) node [right=5pt, pos=0.3] {$10$};
+        \end{tikzpicture}
+        \caption{连接$\av$、$\bv$}
+    \end{subfigure}%
+    \begin{subfigure}[t]{.33\textwidth} % 2,3
+        \centering
+        \begin{tikzpicture}
+            \node [point] (a) at (0,0) {$\av$};
+            \path (a) ++(\l,\l)  node[point] (b) {$\bv$};
+            \path (a) ++(\l,-\l) node[point] (h) {$\hv$};
+            \path (a) ++(2*\l,0) node[point] (i) {$\iv$};
+            \path (b) ++(2*\l,0) node[point] (c) {$\cv$};
+            \path (h) ++(2*\l,0) node[point] (g) {$\gv$};
+            \path (c) ++(2*\l,0) node[point] (d) {$\dv$};
+            \path (g) ++(2*\l,0) node[point] (f) {$\fv$};
+            \path (d) ++(\l,-\l) node[point] (e) {$\ev$};
 
-        \draw [base] (a3) -- (b3) node [left=5pt, pos=0.7] {$4$};
-        \draw [base] (b3) -- (c3) node [above=0pt, pos=0.5] {$8$};
-        \draw [base] (c3) -- (d3) node [above=0pt, pos=0.5] {$7$};
-        \draw [span] (h3) -- (g3) node [below=0pt, pos=0.5] {$1$};
-        \draw [span] (g3) -- (f3) node [below=0pt, pos=0.5] {$2$};
-        \draw [span] (c3) -- (i3) node [below=5pt, pos=0.3] {$2$};
-        \draw [base] (c3) -- (f3) node [below=5pt, pos=0.4] {$4$};
-        \draw [base] (d3) -- (e3) node [right=5pt, pos=0.3] {$9$};
-        \draw [base] (a3) -- (h3) node [left=5pt, pos=0.7] {$8$};
-        \draw [base] (b3) -- (h3) node [left=0pt, pos=0.5] {$11$};
-        \draw [base] (d3) -- (f3) node [right=0pt, pos=0.5] {$14$};
-        \draw [base] (i3) -- (h3) node [below=5pt, pos=0.3] {$7$};
-        \draw [base] (i3) -- (g3) node [below=5pt, pos=0.3] {$6$};
-        \draw [base] (f3) -- (e3) node [right=5pt, pos=0.3] {$10$};
+            \draw [span] (a) -- (b) node [left=5pt, pos=0.7] {$4$};
+            \draw [base] (b) -- (c) node [above=0pt, pos=0.5] {$8$};
+            \draw [base] (c) -- (d) node [above=0pt, pos=0.5] {$7$};
+            \draw [span] (h) -- (g) node [below=0pt, pos=0.5] {$1$};
+            \draw [span] (g) -- (f) node [below=0pt, pos=0.5] {$2$};
+            \draw [span] (c) -- (i) node [below=5pt, pos=0.3] {$2$};
+            \draw [span] (c) -- (f) node [below=5pt, pos=0.4] {$4$};
+            \draw [base] (d) -- (e) node [right=5pt, pos=0.3] {$9$};
+            \draw [base] (a) -- (h) node [left=5pt, pos=0.7] {$8$};
+            \draw [base] (b) -- (h) node [left=0pt, pos=0.5] {$11$};
+            \draw [base] (d) -- (f) node [right=0pt, pos=0.5] {$14$};
+            \draw [base] (i) -- (h) node [below=5pt, pos=0.3] {$7$};
+            \draw [base] (i) -- (g) node [below=5pt, pos=0.3] {$6$};
+            \draw [base] (f) -- (e) node [right=5pt, pos=0.3] {$10$};
+        \end{tikzpicture}
+        \caption{连接$\cv$、$\fv$}
+    \end{subfigure}\\[20pt]
+    \begin{subfigure}[t]{.33\textwidth} % 3,1
+        \centering
+        \begin{tikzpicture}
+            \node [point] (a) at (0,0) {$\av$};
+            \path (a) ++(\l,\l)  node[point] (b) {$\bv$};
+            \path (a) ++(\l,-\l) node[point] (h) {$\hv$};
+            \path (a) ++(2*\l,0) node[point] (i) {$\iv$};
+            \path (b) ++(2*\l,0) node[point] (c) {$\cv$};
+            \path (h) ++(2*\l,0) node[point] (g) {$\gv$};
+            \path (c) ++(2*\l,0) node[point] (d) {$\dv$};
+            \path (g) ++(2*\l,0) node[point] (f) {$\fv$};
+            \path (d) ++(\l,-\l) node[point] (e) {$\ev$};
 
-        % 2, 1
-        \node [point] (a4) at (0,-3.5*\l) {$\av$};
-        \path (a4) ++(\l,\l)  node[point] (b4) {$\bv$};
-        \path (a4) ++(\l,-\l) node[point] (h4) {$\hv$};
-        \path (a4) ++(2*\l,0) node[point] (i4) {$\iv$};
-        \path (b4) ++(2*\l,0) node[point] (c4) {$\cv$};
-        \path (h4) ++(2*\l,0) node[point] (g4) {$\gv$};
-        \path (c4) ++(2*\l,0) node[point] (d4) {$\dv$};
-        \path (g4) ++(2*\l,0) node[point] (f4) {$\fv$};
-        \path (d4) ++(\l,-\l) node[point] (e4) {$\ev$};
+            \draw [span] (a) -- (b) node [left=5pt, pos=0.7] {$4$};
+            \draw [base] (b) -- (c) node [above=0pt, pos=0.5] {$8$};
+            \draw [span] (c) -- (d) node [above=0pt, pos=0.5] {$7$};
+            \draw [span] (h) -- (g) node [below=0pt, pos=0.5] {$1$};
+            \draw [span] (g) -- (f) node [below=0pt, pos=0.5] {$2$};
+            \draw [span] (c) -- (i) node [below=5pt, pos=0.3] {$2$};
+            \draw [span] (c) -- (f) node [below=5pt, pos=0.4] {$4$};
+            \draw [base] (d) -- (e) node [right=5pt, pos=0.3] {$9$};
+            \draw [base] (a) -- (h) node [left=5pt, pos=0.7] {$8$};
+            \draw [base] (b) -- (h) node [left=0pt, pos=0.5] {$11$};
+            \draw [base] (d) -- (f) node [right=0pt, pos=0.5] {$14$};
+            \draw [base] (i) -- (h) node [below=5pt, pos=0.3] {$7$};
+            \draw [base] (i) -- (g) node [below=5pt, pos=0.3] {$6$};
+            \draw [base] (f) -- (e) node [right=5pt, pos=0.3] {$10$};
+        \end{tikzpicture}
+        \caption{连接$\cv$、$\dv$}
+    \end{subfigure}%
+    \begin{subfigure}[t]{.33\textwidth} % 3,2
+        \centering
+        \begin{tikzpicture}
+            \node [point] (a) at (0,0) {$\av$};
+            \path (a) ++(\l,\l)  node[point] (b) {$\bv$};
+            \path (a) ++(\l,-\l) node[point] (h) {$\hv$};
+            \path (a) ++(2*\l,0) node[point] (i) {$\iv$};
+            \path (b) ++(2*\l,0) node[point] (c) {$\cv$};
+            \path (h) ++(2*\l,0) node[point] (g) {$\gv$};
+            \path (c) ++(2*\l,0) node[point] (d) {$\dv$};
+            \path (g) ++(2*\l,0) node[point] (f) {$\fv$};
+            \path (d) ++(\l,-\l) node[point] (e) {$\ev$};
 
-        \draw [span] (a4) -- (b4) node [left=5pt, pos=0.7] {$4$};
-        \draw [base] (b4) -- (c4) node [above=0pt, pos=0.5] {$8$};
-        \draw [base] (c4) -- (d4) node [above=0pt, pos=0.5] {$7$};
-        \draw [span] (h4) -- (g4) node [below=0pt, pos=0.5] {$1$};
-        \draw [span] (g4) -- (f4) node [below=0pt, pos=0.5] {$2$};
-        \draw [span] (c4) -- (i4) node [below=5pt, pos=0.3] {$2$};
-        \draw [base] (c4) -- (f4) node [below=5pt, pos=0.4] {$4$};
-        \draw [base] (d4) -- (e4) node [right=5pt, pos=0.3] {$9$};
-        \draw [base] (a4) -- (h4) node [left=5pt, pos=0.7] {$8$};
-        \draw [base] (b4) -- (h4) node [left=0pt, pos=0.5] {$11$};
-        \draw [base] (d4) -- (f4) node [right=0pt, pos=0.5] {$14$};
-        \draw [base] (i4) -- (h4) node [below=5pt, pos=0.3] {$7$};
-        \draw [base] (i4) -- (g4) node [below=5pt, pos=0.3] {$6$};
-        \draw [base] (f4) -- (e4) node [right=5pt, pos=0.3] {$10$};
+            \draw [span] (a) -- (b) node [left=5pt, pos=0.7] {$4$};
+            \draw [base] (b) -- (c) node [above=0pt, pos=0.5] {$8$};
+            \draw [span] (c) -- (d) node [above=0pt, pos=0.5] {$7$};
+            \draw [span] (h) -- (g) node [below=0pt, pos=0.5] {$1$};
+            \draw [span] (g) -- (f) node [below=0pt, pos=0.5] {$2$};
+            \draw [span] (c) -- (i) node [below=5pt, pos=0.3] {$2$};
+            \draw [span] (c) -- (f) node [below=5pt, pos=0.4] {$4$};
+            \draw [base] (d) -- (e) node [right=5pt, pos=0.3] {$9$};
+            \draw [span] (a) -- (h) node [left=5pt, pos=0.7] {$8$};
+            \draw [base] (b) -- (h) node [left=0pt, pos=0.5] {$11$};
+            \draw [base] (d) -- (f) node [right=0pt, pos=0.5] {$14$};
+            \draw [base] (i) -- (h) node [below=5pt, pos=0.3] {$7$};
+            \draw [base] (i) -- (g) node [below=5pt, pos=0.3] {$6$};
+            \draw [base] (f) -- (e) node [right=5pt, pos=0.3] {$10$};
+        \end{tikzpicture}
+        \caption{连接$\av$、$\hv$}
+    \end{subfigure}%
+    \begin{subfigure}[t]{.33\textwidth} % 3,3
+        \centering
+        \begin{tikzpicture}
+            \node [point] (a) at (0,0) {$\av$};
+            \path (a) ++(\l,\l)  node[point] (b) {$\bv$};
+            \path (a) ++(\l,-\l) node[point] (h) {$\hv$};
+            \path (a) ++(2*\l,0) node[point] (i) {$\iv$};
+            \path (b) ++(2*\l,0) node[point] (c) {$\cv$};
+            \path (h) ++(2*\l,0) node[point] (g) {$\gv$};
+            \path (c) ++(2*\l,0) node[point] (d) {$\dv$};
+            \path (g) ++(2*\l,0) node[point] (f) {$\fv$};
+            \path (d) ++(\l,-\l) node[point] (e) {$\ev$};
 
-        % 2, 2
-        \node [point] (a5) at (7.2*\l,-3.5*\l) {$\av$};
-        \path (a5) ++(\l,\l)  node[point] (b5) {$\bv$};
-        \path (a5) ++(\l,-\l) node[point] (h5) {$\hv$};
-        \path (a5) ++(2*\l,0) node[point] (i5) {$\iv$};
-        \path (b5) ++(2*\l,0) node[point] (c5) {$\cv$};
-        \path (h5) ++(2*\l,0) node[point] (g5) {$\gv$};
-        \path (c5) ++(2*\l,0) node[point] (d5) {$\dv$};
-        \path (g5) ++(2*\l,0) node[point] (f5) {$\fv$};
-        \path (d5) ++(\l,-\l) node[point] (e5) {$\ev$};
-
-        \draw [span] (a5) -- (b5) node [left=5pt, pos=0.7] {$4$};
-        \draw [base] (b5) -- (c5) node [above=0pt, pos=0.5] {$8$};
-        \draw [base] (c5) -- (d5) node [above=0pt, pos=0.5] {$7$};
-        \draw [span] (h5) -- (g5) node [below=0pt, pos=0.5] {$1$};
-        \draw [span] (g5) -- (f5) node [below=0pt, pos=0.5] {$2$};
-        \draw [span] (c5) -- (i5) node [below=5pt, pos=0.3] {$2$};
-        \draw [span] (c5) -- (f5) node [below=5pt, pos=0.4] {$4$};
-        \draw [base] (d5) -- (e5) node [right=5pt, pos=0.3] {$9$};
-        \draw [base] (a5) -- (h5) node [left=5pt, pos=0.7] {$8$};
-        \draw [base] (b5) -- (h5) node [left=0pt, pos=0.5] {$11$};
-        \draw [base] (d5) -- (f5) node [right=0pt, pos=0.5] {$14$};
-        \draw [base] (i5) -- (h5) node [below=5pt, pos=0.3] {$7$};
-        \draw [base] (i5) -- (g5) node [below=5pt, pos=0.3] {$6$};
-        \draw [base] (f5) -- (e5) node [right=5pt, pos=0.3] {$10$};
-
-        % 2, 3
-        \node [point] (a6) at (14.4*\l,-3.5*\l) {$\av$};
-        \path (a6) ++(\l,\l)  node[point] (b6) {$\bv$};
-        \path (a6) ++(\l,-\l) node[point] (h6) {$\hv$};
-        \path (a6) ++(2*\l,0) node[point] (i6) {$\iv$};
-        \path (b6) ++(2*\l,0) node[point] (c6) {$\cv$};
-        \path (h6) ++(2*\l,0) node[point] (g6) {$\gv$};
-        \path (c6) ++(2*\l,0) node[point] (d6) {$\dv$};
-        \path (g6) ++(2*\l,0) node[point] (f6) {$\fv$};
-        \path (d6) ++(\l,-\l) node[point] (e6) {$\ev$};
-
-        \draw [span] (a6) -- (b6) node [left=5pt, pos=0.7] {$4$};
-        \draw [base] (b6) -- (c6) node [above=0pt, pos=0.5] {$8$};
-        \draw [span] (c6) -- (d6) node [above=0pt, pos=0.5] {$7$};
-        \draw [span] (h6) -- (g6) node [below=0pt, pos=0.5] {$1$};
-        \draw [span] (g6) -- (f6) node [below=0pt, pos=0.5] {$2$};
-        \draw [span] (c6) -- (i6) node [below=5pt, pos=0.3] {$2$};
-        \draw [span] (c6) -- (f6) node [below=5pt, pos=0.4] {$4$};
-        \draw [base] (d6) -- (e6) node [right=5pt, pos=0.3] {$9$};
-        \draw [base] (a6) -- (h6) node [left=5pt, pos=0.7] {$8$};
-        \draw [base] (b6) -- (h6) node [left=0pt, pos=0.5] {$11$};
-        \draw [base] (d6) -- (f6) node [right=0pt, pos=0.5] {$14$};
-        \draw [base] (i6) -- (h6) node [below=5pt, pos=0.3] {$7$};
-        \draw [base] (i6) -- (g6) node [below=5pt, pos=0.3] {$6$};
-        \draw [base] (f6) -- (e6) node [right=5pt, pos=0.3] {$10$};
-
-        % 3, 1
-        \node [point] (a7) at (0,-7*\l) {$\av$};
-        \path (a7) ++(\l,\l)  node[point] (b7) {$\bv$};
-        \path (a7) ++(\l,-\l) node[point] (h7) {$\hv$};
-        \path (a7) ++(2*\l,0) node[point] (i7) {$\iv$};
-        \path (b7) ++(2*\l,0) node[point] (c7) {$\cv$};
-        \path (h7) ++(2*\l,0) node[point] (g7) {$\gv$};
-        \path (c7) ++(2*\l,0) node[point] (d7) {$\dv$};
-        \path (g7) ++(2*\l,0) node[point] (f7) {$\fv$};
-        \path (d7) ++(\l,-\l) node[point] (e7) {$\ev$};
-
-        \draw [span] (a7) -- (b7) node [left=5pt, pos=0.7] {$4$};
-        \draw [base] (b7) -- (c7) node [above=0pt, pos=0.5] {$8$};
-        \draw [span] (c7) -- (d7) node [above=0pt, pos=0.5] {$7$};
-        \draw [span] (h7) -- (g7) node [below=0pt, pos=0.5] {$1$};
-        \draw [span] (g7) -- (f7) node [below=0pt, pos=0.5] {$2$};
-        \draw [span] (c7) -- (i7) node [below=5pt, pos=0.3] {$2$};
-        \draw [span] (c7) -- (f7) node [below=5pt, pos=0.4] {$4$};
-        \draw [base] (d7) -- (e7) node [right=5pt, pos=0.3] {$9$};
-        \draw [span] (a7) -- (h7) node [left=5pt, pos=0.7] {$8$};
-        \draw [base] (b7) -- (h7) node [left=0pt, pos=0.5] {$11$};
-        \draw [base] (d7) -- (f7) node [right=0pt, pos=0.5] {$14$};
-        \draw [base] (i7) -- (h7) node [below=5pt, pos=0.3] {$7$};
-        \draw [base] (i7) -- (g7) node [below=5pt, pos=0.3] {$6$};
-        \draw [base] (f7) -- (e7) node [right=5pt, pos=0.3] {$10$};
-
-        % 4, 2
-        \node [point] (a8) at (7.2*\l,-7*\l) {$\av$};
-        \path (a8) ++(\l,\l)  node[point] (b8) {$\bv$};
-        \path (a8) ++(\l,-\l) node[point] (h8) {$\hv$};
-        \path (a8) ++(2*\l,0) node[point] (i8) {$\iv$};
-        \path (b8) ++(2*\l,0) node[point] (c8) {$\cv$};
-        \path (h8) ++(2*\l,0) node[point] (g8) {$\gv$};
-        \path (c8) ++(2*\l,0) node[point] (d8) {$\dv$};
-        \path (g8) ++(2*\l,0) node[point] (f8) {$\fv$};
-        \path (d8) ++(\l,-\l) node[point] (e8) {$\ev$};
-
-        \draw [span] (a8) -- (b8) node [left=5pt, pos=0.7] {$4$};
-        \draw [base] (b8) -- (c8) node [above=0pt, pos=0.5] {$8$};
-        \draw [span] (c8) -- (d8) node [above=0pt, pos=0.5] {$7$};
-        \draw [span] (h8) -- (g8) node [below=0pt, pos=0.5] {$1$};
-        \draw [span] (g8) -- (f8) node [below=0pt, pos=0.5] {$2$};
-        \draw [span] (c8) -- (i8) node [below=5pt, pos=0.3] {$2$};
-        \draw [span] (c8) -- (f8) node [below=5pt, pos=0.4] {$4$};
-        \draw [span] (d8) -- (e8) node [right=5pt, pos=0.3] {$9$};
-        \draw [span] (a8) -- (h8) node [left=5pt, pos=0.7] {$8$};
-        \draw [base] (b8) -- (h8) node [left=0pt, pos=0.5] {$11$};
-        \draw [base] (d8) -- (f8) node [right=0pt, pos=0.5] {$14$};
-        \draw [base] (i8) -- (h8) node [below=5pt, pos=0.3] {$7$};
-        \draw [base] (i8) -- (g8) node [below=5pt, pos=0.3] {$6$};
-        \draw [base] (f8) -- (e8) node [right=5pt, pos=0.3] {$10$};
-
-    \end{tikzpicture}
-\end{center}
-
+            \draw [span] (a) -- (b) node [left=5pt, pos=0.7] {$4$};
+            \draw [base] (b) -- (c) node [above=0pt, pos=0.5] {$8$};
+            \draw [span] (c) -- (d) node [above=0pt, pos=0.5] {$7$};
+            \draw [span] (h) -- (g) node [below=0pt, pos=0.5] {$1$};
+            \draw [span] (g) -- (f) node [below=0pt, pos=0.5] {$2$};
+            \draw [span] (c) -- (i) node [below=5pt, pos=0.3] {$2$};
+            \draw [span] (c) -- (f) node [below=5pt, pos=0.4] {$4$};
+            \draw [span] (d) -- (e) node [right=5pt, pos=0.3] {$9$};
+            \draw [span] (a) -- (h) node [left=5pt, pos=0.7] {$8$};
+            \draw [base] (b) -- (h) node [left=0pt, pos=0.5] {$11$};
+            \draw [base] (d) -- (f) node [right=0pt, pos=0.5] {$14$};
+            \draw [base] (i) -- (h) node [below=5pt, pos=0.3] {$7$};
+            \draw [base] (i) -- (g) node [below=5pt, pos=0.3] {$6$};
+            \draw [base] (f) -- (e) node [right=5pt, pos=0.3] {$10$};
+        \end{tikzpicture}
+        \caption{连接$\dv$、$\ev$}
+    \end{subfigure}
+\end{figure}
 
 \end{document}

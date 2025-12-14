@@ -1,0 +1,139 @@
+\documentclass{ctexart}
+\usepackage{avanti-color}
+\usepackage{avanti-math}
+\usepackage{avanti-theorem}
+\usepackage{avanti-others}
+\usepackage[a3paper,landscape,margin=1cm]{geometry}
+
+\RequirePackage{fontspec}
+\xeCJKsetup{CJKmath=true}
+\setCJKmainfont[BoldFont={LXGW Neo XiHei Plus},ItalicFont=]{LXGW Neo ZhiSong Plus}
+
+\everymath{\color{Solarized-magenta}}
+\pagestyle{empty} % 没有页眉和页脚
+
+% define the plot style and the axis style
+\tikzset{font=\LARGE}
+\tikzset{base/.style = {smooth,very thick,draw=Solarized-base01,Solarized-base01}}
+\tikzset{arrow/.style={->, -{Stealth[scale=1.0]}, base, draw=Solarized-blue}}
+\tikzset{arrow2/.style={<->, {Stealth[scale=1.0]}-{Stealth[scale=1.0]}, base, draw=Solarized-green}}
+
+\begin{document}
+
+\begin{tikzpicture}[
+    base,
+    level distance=80,
+    level 1/.style = {sibling distance=225},
+    level 2/.style = {sibling distance=75},
+    level 3/.style = {sibling distance=25},
+  ]
+  \node (Root) [] {$\bm{c n^2}$}
+  child {node (Root-1-1) [] {$\bm{c (\frac{n}{4})^2}$}
+      child {node (Root-2-1) [] {$\bm{c (\frac{n}{16})^2}$}
+          child {node (Root-3-1) [] {$\bm{\vdots}$}}
+          child {node (Root-3-2) [] {$\bm{\vdots}$}}
+          child {node (Root-3-3) [] {$\bm{\vdots}$}}
+        }
+      child {node (Root-2-2) [] {$\bm{c (\frac{n}{16})^2}$}
+          child {node (Root-3-4) [] {$\bm{\vdots}$}}
+          child {node (Root-3-5) [] {$\bm{\vdots}$}}
+          child {node (Root-3-6) [] {$\bm{\vdots}$}}
+        }
+      child {node (Root-2-3) [] {$\bm{c (\frac{n}{16})^2}$}
+          child {node (Root-3-7) [] {$\bm{\vdots}$}}
+          child {node (Root-3-8) [] {$\bm{\vdots}$}}
+          child {node (Root-3-9) [] {$\bm{\vdots}$}}
+        }
+    }
+  child {node (Root-1-2) [] {$\bm{c (\frac{n}{4})^2}$}
+      child {node (Root-2-4) [] {$\bm{c (\frac{n}{16})^2}$}
+          child {node (Root-3-10) [] {$\bm{\vdots}$}}
+          child {node (Root-3-11) [] {$\bm{\vdots}$}}
+          child {node (Root-3-12) [] {$\bm{\vdots}$}}
+        }
+      child {node (Root-2-5) [] {$\bm{c (\frac{n}{16})^2}$}
+          child {node (Root-3-13) [] {$\bm{\vdots}$}}
+          child {node (Root-3-14) [] {$\bm{\vdots}$}}
+          child {node (Root-3-15) [] {$\bm{\vdots}$}}
+        }
+      child {node (Root-2-6) [] {$\bm{c (\frac{n}{16})^2}$}
+          child {node (Root-3-16) [] {$\bm{\vdots}$}}
+          child {node (Root-3-17) [] {$\bm{\vdots}$}}
+          child {node (Root-3-18) [] {$\bm{\vdots}$}}
+        }
+    }
+  child {node (Root-1-3) [] {$\bm{c (\frac{n}{4})^2}$}
+      child {node (Root-2-7) [] {$\bm{c (\frac{n}{16})^2}$}
+          child {node (Root-3-19) [] {$\bm{\vdots}$}}
+          child {node (Root-3-20) [] {$\bm{\vdots}$}}
+          child {node (Root-3-21) [] {$\bm{\vdots}$}}
+        }
+      child {node (Root-2-8) [] {$\bm{c (\frac{n}{16})^2}$}
+          child {node (Root-3-22) [] {$\bm{\vdots}$}}
+          child {node (Root-3-23) [] {$\bm{\vdots}$}}
+          child {node (Root-3-24) [] {$\bm{\vdots}$}}
+        }
+      child {node (Root-2-9) [] {$\bm{c (\frac{n}{16})^2}$}
+          child {node (Root-3-25) [] {$\bm{\vdots}$}}
+          child {node (Root-3-26) [] {$\bm{\vdots}$}}
+          child {node (Root-3-27) [] {$\bm{\vdots}$}}
+        }
+    };
+
+  % 画叶结点
+  \pgfmathsetmacro{\shifty}{0.5};
+  \foreach \i in {3,5,7}
+    {
+      \pgfmathsetmacro{\j}{3 * \i - 2};
+      \path [base] (Root-3-\j) node [below=\shifty] () {$\bm{\Theta(1)}$};
+      \pgfmathsetmacro{\j}{3 * \i};
+      \path [base] (Root-3-\j) node [below=\shifty] () {$\bm{\Theta(1)}$};
+    }
+  \path [base] (Root-3-1) node [below=\shifty] (Root-4-1) {$\bm{\Theta(1)}$};
+  \path [base] (Root-3-3) node [below=\shifty] () {$\bm{\Theta(1)}$};
+  \path [base] (Root-3-25) node [below=\shifty] () {$\bm{\Theta(1)}$};
+  \path [base] (Root-3-27) node [below=\shifty] (Root-4-27) {$\bm{\Theta(1)}$};
+
+  \foreach \i in {2,4,6,8}
+    {
+      \pgfmathsetmacro{\j}{3 * \i - 1};
+      \path [base] (Root-3-\j) node [below=0.6cm] () {$\bm{\cdots}$};
+    }
+
+  % 画每行的和
+  \pgfmathsetmacro{\shiftx}{1.5};
+  \pgfmathsetmacro{\shiftxx}{3};
+  \pgfmathsetmacro{\shiftxxx}{0.2};
+  \path (Root) ++(\shiftx,0) coordinate (tail);
+  \path (Root -| Root-4-27) ++(\shiftxx,0) coordinate (head);
+  \draw [arrow] (tail) -- (head);
+  \path (head) node [right=\shiftxxx] {$\bm{c n^2}$};
+
+  \path (Root-1-3) ++(\shiftx,0) coordinate (tail);
+  \path (Root-1-3 -| Root-4-27) ++(\shiftxx,0) coordinate (head);
+  \draw [arrow] (tail) -- (head);
+  \path (head) node [right=\shiftxxx] {$\bm{\frac{3}{16} c n^2}$};
+
+  \path (Root-2-9) ++(\shiftx,0) coordinate (tail);
+  \path (Root-2-9 -| Root-4-27) ++(\shiftxx,0) coordinate (head);
+  \draw [arrow] (tail) -- (head);
+  \path (head) node [right=\shiftxxx] {$\bm{(\frac{3}{16})^2 c n^2}$};
+
+  \path (Root-4-27) ++(\shiftx,0) coordinate (tail);
+  \path (Root-4-27) ++(\shiftxx,0) coordinate (head);
+  \draw [arrow] (tail) -- (head);
+  \path (head) node [right=\shiftxxx] {$\bm{\Theta(n^{\log_4 3})}$};
+
+  % 最下面的括号
+  \path (Root-4-1) ++(-0.5,0) coordinate (tail);
+  \path (Root-4-27) ++(0.5,0) coordinate (head);
+  \draw [base,Solarized-yellow,decorate,decoration={brace,amplitude=12pt,mirror,raise=12pt}] (tail) -- (head) node[midway,yshift=-35] {$\bm{3^{\log_4 n} = n^{\log_4 3}}$};
+
+  % 最左面的双箭头
+  \path (Root -| Root-4-1) ++(-1.2,0) coordinate (head);
+  \path (Root-4-1) ++(-1.2,0) coordinate (tail);
+  \draw [arrow2] (tail) -- (head) node [above=0pt, sloped, pos=0.5] {共$\bm{\log_4 n + 1}$ 层};
+
+\end{tikzpicture}
+
+\end{document}

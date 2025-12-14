@@ -1,0 +1,59 @@
+\documentclass{ctexart}
+\usepackage{avanti-color}
+\usepackage{avanti-math}
+\usepackage{avanti-theorem}
+\usepackage{avanti-others}
+\usepackage[a4paper,landscape,margin=1cm]{geometry}
+
+\RequirePackage{fontspec}
+\xeCJKsetup{CJKmath=true}
+\setCJKmainfont[BoldFont={LXGW Neo ZhiSong Plus},ItalicFont=]{LXGW Neo ZhiSong Plus}
+
+\everymath{\color{Solarized-magenta}}
+\pagestyle{empty} % 没有页眉和页脚
+
+\tikzset{font=\Large}
+\tikzset{base/.style={smooth, very thick, Solarized-base01}}
+\tikzset{arrow/.style={->, -{Stealth[scale=1.0]}, base}}
+\tikzset{point/.style={circle, minimum height=0.8cm, base, draw=Solarized-base01}}
+\begin{document}
+
+\begin{tikzpicture}
+
+    \pgfmathsetmacro{\d}{2};
+    \pgfmathsetmacro{\h}{6};
+    \pgfmathsetmacro{\inc}{2.5};
+
+    \node [point] (c) at (0,0) {$c$};
+    \node [point] (d) at (\inc,0) {$d$};
+    \node [point] (a) at (0,\inc) {$a$};
+    \node [point] (e) at (0,-\inc) {$e$};
+    \node [point] (f) at (\inc,-\inc) {$f$};
+    \node [point] (b) at (\inc,\inc) {$b$};
+    \node [point] (s) at (-\inc,0) {$s$};
+    \node [point] (g) at (2*\inc,0) {$g$};
+
+    \draw [arrow] (s) -- (c) node [midway, draw=none, above=2pt] {$5$};
+    \draw [arrow] (s) -- (a) node [midway, draw=none, above=5pt] {$3$};
+    \draw [arrow] (s) -- (e) node [midway, draw=none, below=5pt] {$2$};
+    \draw [arrow] (a) -- (b) node [midway, draw=none, above=2pt] {$-4$};
+
+    \draw [arrow] (b) -- (g) node [midway, draw=none, above=5pt] {$4$};
+    \draw [arrow] (d) -- (g) node [midway, draw=none, above=2pt] {$8$};
+    \draw [arrow] (f) -- (g) node [midway, draw=none, below=5pt] {$7$};
+
+    \draw [arrow] (c) to [out=10, in=170] (d);
+    \node [] () at (\inc/2,0.6) {$6$};
+    \draw [arrow] (d) to [out=190, in=350] (c);
+    \node [] () at (\inc/2,-0.6) {$-3$};
+
+    \draw [arrow] (e) to [out=10, in=170] (f);
+    \node [] () at (\inc/2,-\inc+0.6) {$3$};
+    \draw [arrow] (f) to [out=190, in=350] (e);
+    \node [] () at (\inc/2,-\inc-0.6) {$-6$};
+
+    \draw [base, dashed, Solarized-red] (\inc/2,-\inc) ellipse (2.2cm and 1cm);
+    
+\end{tikzpicture}
+
+\end{document}

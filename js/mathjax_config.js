@@ -28,6 +28,7 @@ module.exports = {
       "enclose.js",
       "mhchem.js",
       "extpfeil.js",
+      "color.js",
     ],
     Macros: {
       zerov: "{\\boldsymbol 0}",

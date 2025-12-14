@@ -1,13 +1,13 @@
 \documentclass{ctexart}
 \usepackage{avanti-color}
-%\usepackage{avanti-font}
 \usepackage{avanti-math}
 \usepackage{avanti-theorem}
 \usepackage{avanti-others}
+\usepackage[a4paper,landscape,margin=1cm]{geometry}
 
 \RequirePackage{fontspec}
 \xeCJKsetup{CJKmath=true}
-\setCJKmainfont[BoldFont=FZHei-B01,ItalicFont=]{LXGW Bright}
+\setCJKmainfont[BoldFont={LXGW Neo XiHei Plus},ItalicFont=]{LXGW Neo ZhiSong Plus}
 
 \everymath{\color{Solarized-magenta}}
 \pagestyle{empty} % 没有页眉和页脚
@@ -15,14 +15,13 @@
  % define the plot style and the axis style
 \tikzset{font=\Large}
 
-\tikzset{base/.style={smooth, very thick, Solarized-base01}}
+\tikzset{base/.style={smooth, very thick, draw=Solarized-base01,Solarized-base01}}
 \tikzset{point/.style={circle, minimum height=0.8cm, base, draw=Solarized-base01, fill=Solarized-base2}}
 \tikzset{span/.style={base, line width=1.5mm, Solarized-blue}}
 
 \begin{document}
 
 \begin{tikzpicture}
-
     \pgfmathsetmacro{\l}{2};
 
     \node [point] (a) at (0,0) {$\av$};
@@ -43,14 +42,12 @@
     \draw [span] (c) -- (i) node [below=5pt, pos=0.3] {$2$};
     \draw [span] (c) -- (f) node [below=5pt, pos=0.4] {$4$};
     \draw [span] (d) -- (e) node [right=5pt, pos=0.3] {$9$};
-
     \draw [base] (a) -- (h) node [left=5pt, pos=0.7] {$8$};
     \draw [base] (b) -- (h) node [left=0pt, pos=0.5] {$11$};
     \draw [base] (d) -- (f) node [right=0pt, pos=0.5] {$14$};
     \draw [base] (i) -- (h) node [below=5pt, pos=0.3] {$7$};
     \draw [base] (i) -- (g) node [below=5pt, pos=0.3] {$6$};
     \draw [base] (f) -- (e) node [right=5pt, pos=0.3] {$10$};
-    
 \end{tikzpicture}
 
 \end{document}

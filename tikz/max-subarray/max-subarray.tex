@@ -1,0 +1,72 @@
+\documentclass{ctexart}
+\usepackage{avanti-color}
+\usepackage{avanti-math}
+\usepackage{avanti-theorem}
+\usepackage{avanti-others}
+\usepackage[a3paper,landscape,margin=1cm]{geometry}
+
+\RequirePackage{fontspec}
+\xeCJKsetup{CJKmath=true}
+\setCJKmainfont[BoldFont={LXGW Neo XiHei Plus},ItalicFont=]{LXGW Neo ZhiSong Plus}
+
+\everymath{\color{Solarized-magenta}}
+\pagestyle{empty} % 没有页眉和页脚
+
+\tikzset{font=\Large}
+\tikzset{base/.style = {smooth,thick,draw=Solarized-base01,Solarized-base01}}
+
+\begin{document}
+
+\begin{tikzpicture}
+
+  \pgfmathsetmacro{\l}{14}; % 数组A的长度
+  \pgfmathsetmacro{\margin}{2}; % 两个图中间距离
+
+  \foreach \i in {1,...,\l}
+    {
+      \ifthenelse{\i=8}{
+        \draw [base,line width=2pt,Solarized-base02] (\i,0.1) -- (\i,-1.1);
+        \draw [base,line width=2pt,Solarized-base02] (\i+\l+\margin,0.1) -- (\i+\l+\margin,-1.1);
+      }{
+        \draw [base] (\i,0) -- (\i,-1);
+        \draw [base] (\i+\l+\margin,0) -- (\i+\l+\margin,-1);
+      }
+      \draw [base] (\i,0) -- (\i+1,0);
+      \draw [base] (\i,-1) -- (\i+1,-1);
+
+      \draw [base] (\i+\l+\margin,0) -- (\i+\l+\margin+1,0);
+      \draw [base] (\i+\l+\margin,-1) -- (\i+\l+\margin+1,-1);
+    }
+  \draw [base] (\l+1,0) -- (\l+1,-1);
+  \draw [base] (2*\l+\margin+1,0) -- (2*\l+\margin+1,-1);
+
+  \path [base] (1.5,0) node [above] () {$\bm{low}$};
+  \path [base] (1.5+\l+\margin,0) node [above] () {$\bm{low}$};
+
+  \path [base] (5.5+\l+\margin,0) node [above] () {$\bm{i}$};
+  \path [base] (11.5+\l+\margin,-1) node [below] () {$\bm{j}$};
+
+  \path [base] (7.5,0) node [above] () {$\bm{mid}$};
+  \path [base] (7.5+\l+\margin,0) node [above] () {$\bm{mid}$};
+
+  \path [base] (9,-1) node [below] () {$\bm{mid+1}$};
+  \path [base] (9+\l+\margin,-1) node [below] () {$\bm{mid+1}$};
+
+  \path [base] (14.5,0) node [above] () {$\bm{high}$};
+  \path [base] (14.5+\l+\margin,0) node [above] () {$\bm{high}$};
+
+  \fill [Solarized-base00, opacity=0.6] (\l+\margin+5,0) -- (\l+\margin+12,0) -- (\l+\margin+12,-1) -- (\l+\margin+5,-1) -- cycle;
+
+  \draw [base,decorate,decoration={brace,amplitude=10pt,raise=4pt}]  (4,0.5) -- (12,0.5) node[midway,yshift=24pt] () {跨越中点};
+
+  \draw [base,decorate,decoration={brace,amplitude=10pt,mirror,raise=4pt}] (2,-1.5) -- (6,-1.5) node[midway,yshift=-24pt] () {位于$\bm{A[low, \ldots, mid]}$ 中};
+
+  \draw [base,decorate,decoration={brace,amplitude=10pt,mirror,raise=4pt}] (11,-1.5) -- (14,-1.5) node[midway,yshift=-24pt] () {位于$\bm{A[mid + 1, \ldots, high]}$ 中};
+
+  \draw [base,decorate,decoration={brace,amplitude=10pt,raise=4pt}] (8+\l+\margin,0.5) -- (12+\l+\margin,0.5) node[midway,yshift=24pt] ()  {$\bm{A[mid + 1, \ldots, j]}$};
+
+  \draw [base,decorate,decoration={brace,amplitude=10pt,mirror,raise=4pt}] (5+\l+\margin,-1.5) -- (8+\l+\margin,-1.5) node[midway,yshift=-24pt] () {$\bm{A[i, \ldots, mid]}$};
+
+\end{tikzpicture}
+
+\end{document}
