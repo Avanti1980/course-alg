@@ -90,7 +90,7 @@ def max_res_cap(c_f):    # 化用Dijkstra算法
 
     while h:
         u, d = h.popitem()  # 弹出最小元
-        bottleneck[u] = -d  # 此时u的值已经是s到其的瓶颈边残存容量
+        bottleneck[u] = -d  # 此时u的值已经是s到u的最大残存容量
         in_S[u] = True
         for v in c_f[u]:
             if not in_S[v] and h[v] > -min(bottleneck[u], c_f[u][v]):
