@@ -1,5 +1,5 @@
-from queue import PriorityQueue
 import itertools
+import heapdict
 
 
 def initialize_flow(c):  # 零初始化
@@ -81,21 +81,22 @@ def longest_path(c_f):  # 穷举检查 带环有向图中寻找最长简单路�
     return pre
 
 
-def max_res_cap(c_f):    # 类似于最小生成树的Prim算法
-    pre, weight, in_tree, pq = {}, {}, [], PriorityQueue()
+def max_res_cap(c_f):    # 化用Dijkstra算法
+    pre, bottleneck, in_S = dict(), dict(), dict()
+    h = heapdict.heapdict()
     for v in c_f:
-        weight[v] = -1   # 记录还没加入树中的点与树中结点的边的最大容量
+        h[v] = 0 if v != "s" else -float("inf")
+        in_S[v] = False
 
-    pq.put([None, "s"])
-    while not pq.empty():
-        _, u = pq.get()  # 获取队首元素点u
-        if u not in in_tree:
-            in_tree.append(u)
-            for v in c_f[u].keys():          # 残存网络中 u -> v
-                if v not in in_tree and weight[v] < c_f[u][v]:
-                    weight[v] = c_f[u][v]
-                    pq.put([-weight[v], v])  # 最小优先队列找最大容量 故取反加入
-                    pre[v] = u
+    while h:
+        u, d = h.popitem()  # 弹出最小元
+        bottleneck[u] = -d  # 此时u的值已经是s到其的瓶颈边残存容量
+        in_S[u] = True
+        for v in c_f[u]:
+            if not in_S[v] and h[v] > -min(bottleneck[u], c_f[u][v]):
+                h[v] = -min(bottleneck[u], c_f[u][v])
+                pre[v] = u
+
     return pre
 
 
