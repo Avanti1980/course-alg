@@ -1,0 +1,95 @@
+\documentclass{ctexart}
+\usepackage{avanti-color}
+%\usepackage{avanti-font}
+\usepackage{avanti-math}
+\usepackage{avanti-theorem}
+\usepackage{avanti-others}
+
+\geometry{a2paper, left=2mm}
+
+\RequirePackage{fontspec}
+\xeCJKsetup{CJKmath=true}
+\setCJKmainfont[BoldFont=FZHei-B01,ItalicFont=]{LXGW Bright}
+
+\everymath{\color{Solarized-magenta}}
+\pagestyle{empty} % 没有页眉和页脚
+
+% define the plot style and the axis style
+\tikzset{font=\large}
+
+\tikzset{base/.style={smooth, very thick, Solarized-base01}}
+\tikzset{point/.style={circle, minimum height=0.8cm, base, draw=Solarized-base01, fill=Solarized-base2}}
+\tikzset{arrow/.style={->, -{Stealth[scale=0.8]}, base}}
+\tikzset{shift-x-above/.style = {transform canvas={xshift=0.4ex}}}
+\tikzset{shift-x-below/.style = {transform canvas={xshift=-0.4ex}}}
+\tikzset{shift-y-above/.style = {transform canvas={yshift=0.4ex}}}
+\tikzset{shift-y-below/.style = {transform canvas={yshift=-0.4ex}}}
+\tikzset{shift-xy-above/.style = {transform canvas={xshift=-0.34641ex,yshift=0.2ex}}}
+\tikzset{shift-xy-below/.style = {transform canvas={xshift=0.34641ex,yshift=-0.2ex}}}
+\tikzset{shift-xy2-above/.style = {transform canvas={xshift=0.34641ex,yshift=0.2ex}}}
+\tikzset{shift-xy2-below/.style = {transform canvas={xshift=-0.34641ex,yshift=-0.2ex}}}
+\tikzset{label-above/.style = {midway, sloped, above}}
+\tikzset{label-below/.style = {midway, sloped, below}}
+
+\begin{document}
+
+\begin{center}
+    \begin{tikzpicture}
+
+        \pgfmathsetmacro{\l}{2.5};
+
+        \node [point] (s) at (0,0) {$\sv$};
+        \path (s) ++(30:\l) node[point] (v1) {$\vv_1$};
+        \path (s) ++(330:\l) node[point] (v2) {$\vv_2$};
+        \path (v1) ++(\l,0) node[point] (v3) {$\vv_3$};
+        \path (v2) ++(\l,0) node[point] (v4) {$\vv_4$};
+        \path (v4) ++(30:\l) node[point] (t) {$\tv$};
+
+        \draw [arrow] (s) -- (v1) node [above=0pt, sloped, pos=0.5] {$11/16$};
+        \draw [arrow] (s) -- (v2) node [below=0pt, sloped, pos=0.5] {$12/13$};
+        \draw [arrow] (v2) -- (v1) node [above=0pt, sloped, pos=0.5] {$1/4$};
+        \draw [arrow] (v1) -- (v3) node [above=0pt, pos=0.5] {$12/12$};
+        \draw [arrow] (v2) -- (v4) node [below=0pt, pos=0.5] {$11/14$};
+        \draw [arrow] (v4) -- (v3) node [above=0pt, sloped, pos=0.5] {$7/7$};
+        \draw [arrow] (v3) -- (v2) node [above=0pt, sloped, pos=0.5] {$9$};
+        \draw [arrow] (v3) -- (t) node [above=0pt, sloped, pos=0.5] {$19/20$};
+        \draw [arrow] (v4) -- (t) node [below=0pt, sloped, pos=0.5] {$4/4$};
+
+        \node [point] (s) at (9.5,0) {$\sv$};
+        \path (s) ++(30:\l) node[point] (v1) {$\vv_1$};
+        \path (s) ++(330:\l) node[point] (v2) {$\vv_2$};
+        \path (v1) ++(\l,0) node[point] (v3) {$\vv_3$};
+        \path (v2) ++(\l,0) node[point] (v4) {$\vv_4$};
+        \path (v4) ++(30:\l) node[point] (t) {$\tv$};
+
+        \tikzset{font=\LARGE}
+
+        \path (s) ++(180:0.5*\l) node[] () {$\Longrightarrow$};
+
+        \tikzset{font=\large}
+
+        \draw [arrow,shift-xy-above] (s) -- (v1) node [label-above] {$5$};
+        \draw [arrow,shift-xy-below] (v1) -- (s) node [label-below] {$11$};
+
+        \draw [arrow,shift-xy2-above] (s) -- (v2) node [label-above] {$1$};
+        \draw [arrow,shift-xy2-below] (v2) -- (s) node [label-below] {$12$};
+
+        \draw [arrow,shift-x-below] (v2) -- (v1) node [label-above] {$3$};
+        \draw [arrow,shift-x-above] (v1) -- (v2) node [label-above] {$1$};
+
+        \draw [arrow,shift-xy2-above] (v3) -- (t) node [label-above] {$1$};
+        \draw [arrow,shift-xy2-below] (t) -- (v3) node [label-below] {$19$};
+
+        \draw [arrow,shift-y-above] (v2) -- (v4) node [label-above] {$3$};
+        \draw [arrow,shift-y-below] (v4) -- (v2) node [label-below] {$11$};
+
+        \draw [arrow] (v3) -- (v2) node [above=0pt, sloped, pos=0.5] {$9$};
+        \draw [arrow] (v3) -- (v4) node [above=0pt, sloped, pos=0.5] {$7$};
+        \draw [arrow] (v3) -- (v1) node [above=0pt, pos=0.5] {$12$};
+        \draw [arrow] (t) -- (v4) node [below=0pt, sloped, pos=0.5] {$4$};
+
+    \end{tikzpicture}
+\end{center}
+
+
+\end{document}

@@ -1,0 +1,208 @@
+\documentclass{ctexart}
+\usepackage{avanti-color}
+%\usepackage{avanti-font}
+\usepackage{avanti-math}
+\usepackage{avanti-theorem}
+\usepackage{avanti-others}
+
+\usepackage{geometry}
+\geometry{a2paper, left=0mm}
+
+\RequirePackage{fontspec}
+\xeCJKsetup{CJKmath=true}
+\setCJKmainfont[BoldFont=FZHei-B01,ItalicFont=]{LXGW Bright}
+
+\everymath{\color{Solarized-magenta}}
+\pagestyle{empty} % 没有页眉和页脚
+
+% define the plot style and the axis style
+\tikzset{font=\large}
+
+\tikzset{base/.style={smooth, very thick, Solarized-base01}}
+\tikzset{point/.style={circle, minimum height=0.2cm, base, draw=Solarized-base01, fill=Solarized-base2}}
+\tikzset{arrow/.style={->, -{Stealth[scale=0.8]}, base}}
+\tikzset{arrow2/.style={arrow, ultra thick, Solarized-blue}}
+\tikzset{shift-x-above/.style = {transform canvas={xshift=0.4ex}}}
+\tikzset{shift-x-below/.style = {transform canvas={xshift=-0.4ex}}}
+\tikzset{shift-y-above/.style = {transform canvas={yshift=0.4ex}}}
+\tikzset{shift-y-below/.style = {transform canvas={yshift=-0.4ex}}}
+\tikzset{shift-xy-above/.style = {transform canvas={xshift=-0.34641ex, yshift=0.2ex}}}
+\tikzset{shift-xy-below/.style = {transform canvas={xshift=0.34641ex, yshift=-0.2ex}}}
+\tikzset{shift-xy2-above/.style = {transform canvas={xshift=0.34641ex, yshift=0.2ex}}}
+\tikzset{shift-xy2-below/.style = {transform canvas={xshift=-0.34641ex, yshift=-0.2ex}}}
+\tikzset{shift-xy3-above/.style = {transform canvas={xshift=-0.282842712474619ex, yshift=0.282842712474619ex}}}
+\tikzset{shift-xy3-below/.style = {transform canvas={xshift=0.282842712474619ex, yshift=-0.282842712474619ex}}}
+\tikzset{label-above/.style = {above, sloped, pos=0.5}}
+\tikzset{label-below/.style = {below, sloped, pos=0.5}}
+\tikzset{cut/.style = {base, dashed, thick, Solarized-yellow}}
+
+\begin{document}
+
+\begin{center}
+    \begin{tikzpicture}
+
+        \pgfmathsetmacro{\l}{2};
+
+        % 1, 1
+        \node [point] (s) at (0,0) {$\sv$};
+
+        \path (s) ++(30:\l) node[point] (v1) {};
+        \path (s) ++(330:\l) node[point] (v2) {};
+        \path (v1) ++(\l,0) node[point] (v3) {};
+        \path (v2) ++(\l,0) node[point] (v4) {};
+
+        \path (v4) ++(30:\l) node[point] (t) {$\tv$};
+
+        \draw [arrow] (s) -- (v1) node [label-above] {};
+        \draw [arrow] (s) -- (v2) node [label-below] {};
+        \draw [arrow] (v2) -- (v1) node [label-above] {};
+        \draw [arrow] (v1) -- (v3) node [label-above] {};
+        \draw [arrow] (v2) -- (v4) node [label-below] {};
+        \draw [arrow] (v4) -- (v3) node [label-above] {};
+        \draw [arrow] (v2) -- (v3) node [label-above] {};
+        \draw [arrow] (v3) -- (t) node [label-above] {};
+        \draw [arrow] (v4) -- (t) node [label-below] {};
+
+        % 1, 2
+
+        \pgfmathsetmacro{\r}{0.6};
+        \pgfmathsetmacro{\x}{8};
+        \pgfmathsetmacro{\l}{3};
+        \pgfmathsetmacro{\s}{2.3};
+        \pgfmathsetmacro{\a}{50};
+
+
+        \path (\x,0) coordinate (s);
+
+        \path (s) ++(120:\r) node[point] (s_i) {$s_i$};
+        \path (s) ++(300:\r) node[point] (s_o) {$s_o$};
+        \draw [arrow] (s_i) -- (s_o);
+        \draw [base, dashed, thick] (s) ++(\a:\s*\r) rectangle ++(\a+180:2*\s*\r);
+
+        \path (s) ++(30:\l) coordinate (v1) {};
+        \path (v1) ++(120:\r) node[point] (v1_i) {};
+        \path (v1) ++(300:\r) node[point] (v1_o) {};
+        \draw [arrow] (v1_i) -- (v1_o);
+        \draw [base, dashed, thick] (v1) ++(\a:\s*\r) rectangle ++(\a+180:2*\s*\r);
+
+        \path (s) ++(330:\l) coordinate (v2) {};
+        \path (v2) ++(120:\r) node[point] (v2_i) {};
+        \path (v2) ++(300:\r) node[point] (v2_o) {};
+        \draw [arrow] (v2_i) -- (v2_o);
+        \draw [base, dashed, thick] (v2) ++(\a:\s*\r) rectangle ++(\a+180:2*\s*\r);
+
+        \path (v1) ++(\l,0) coordinate (v3) {};
+        \path (v3) ++(120:\r) node[point] (v3_i) {};
+        \path (v3) ++(300:\r) node[point] (v3_o) {};
+        \draw [arrow] (v3_i) -- (v3_o);
+        \draw [base, dashed, thick] (v3) ++(\a:\s*\r) rectangle ++(\a+180:2*\s*\r);
+
+        \path (v2) ++(\l,0) coordinate (v4) {};
+        \path (v4) ++(120:\r) node[point] (v4_i) {};
+        \path (v4) ++(300:\r) node[point] (v4_o) {};
+        \draw [arrow] (v4_i) -- (v4_o);
+        \draw [base, dashed, thick] (v4) ++(\a:\s*\r) rectangle ++(\a+180:2*\s*\r);
+
+        \path (v4) ++(30:\l) coordinate (t) {};
+        \path (t) ++(120:\r) node[point] (t_i) {$t_i$};
+        \path (t) ++(300:\r) node[point] (t_o) {$t_o$};
+        \draw [arrow] (t_i) -- (t_o);
+        \draw [base, dashed, thick] (t) ++(\a:\s*\r) rectangle ++(\a+180:2*\s*\r);
+
+        \draw [arrow] (s_o) -- (v1_i);
+        \draw [arrow] (s_o) -- (v2_i) {};
+
+        \draw [arrow] (v2_o) -- (v1_i) {};
+        \draw [arrow] (v1_o) -- (v3_i) {};
+        \draw [arrow] (v2_o) -- (v4_i) {};
+        \draw [arrow] (v4_o) -- (v3_i) {};
+        \draw [arrow] (v2_o) -- (v3_i) {};
+        \draw [arrow] (v3_o) -- (t_i) {};
+        \draw [arrow] (v4_o) -- (t_i) {};
+
+
+        \pgfmathsetmacro{\l}{2};
+        \pgfmathsetmacro{\y}{-8};
+
+        % 1, 1
+        \node [point] (s) at (0,\y) {$\sv$};
+
+        \path (s) ++(30:\l) node[point] (v1) {};
+        \path (s) ++(330:\l) node[point] (v2) {};
+        \path (v1) ++(\l,0) node[point] (v3) {};
+        \path (v2) ++(\l,0) node[point] (v4) {};
+
+        \path (v4) ++(30:\l) node[point] (t) {$\tv$};
+
+        \draw [arrow2] (s) -- (v1) node [label-above] {};
+        \draw [arrow2] (s) -- (v2) node [label-below] {};
+        \draw [arrow] (v2) -- (v1) node [label-above] {};
+        \draw [arrow2] (v1) -- (v3) node [label-above] {};
+        \draw [arrow2] (v2) -- (v4) node [label-below] {};
+        \draw [arrow] (v4) -- (v3) node [label-above] {};
+        \draw [arrow] (v2) -- (v3) node [label-above] {};
+        \draw [arrow2] (v3) -- (t) node [label-above] {};
+        \draw [arrow2] (v4) -- (t) node [label-below] {};
+
+        % 1, 2
+
+        \pgfmathsetmacro{\r}{0.6};
+        \pgfmathsetmacro{\x}{8};
+        \pgfmathsetmacro{\l}{3};
+        \pgfmathsetmacro{\s}{2.3};
+        \pgfmathsetmacro{\a}{50};
+
+        \path (\x,\y) coordinate (s);
+
+        \path (s) ++(120:\r) node[point] (s_i) {$s_i$};
+        \path (s) ++(300:\r) node[point] (s_o) {$s_o$};
+        \draw [arrow] (s_i) -- (s_o);
+        \draw [base, dashed, thick] (s) ++(\a:\s*\r) rectangle ++(\a+180:2*\s*\r);
+
+        \path (s) ++(30:\l) coordinate (v1) {};
+        \path (v1) ++(120:\r) node[point] (v1_i) {};
+        \path (v1) ++(300:\r) node[point] (v1_o) {};
+        \draw [arrow2] (v1_i) -- (v1_o) node [above=0pt, sloped, pos=0.5] {$1$};
+        \draw [base, dashed, thick] (v1) ++(\a:\s*\r) rectangle ++(\a+180:2*\s*\r);
+
+        \path (s) ++(330:\l) coordinate (v2) {};
+        \path (v2) ++(120:\r) node[point] (v2_i) {};
+        \path (v2) ++(300:\r) node[point] (v2_o) {};
+        \draw [arrow2] (v2_i) -- (v2_o) node [below=0pt, sloped, pos=0.5] {$1$};
+        \draw [base, dashed, thick] (v2) ++(\a:\s*\r) rectangle ++(\a+180:2*\s*\r);
+
+        \path (v1) ++(\l,0) coordinate (v3) {};
+        \path (v3) ++(120:\r) node[point] (v3_i) {};
+        \path (v3) ++(300:\r) node[point] (v3_o) {};
+        \draw [arrow2] (v3_i) -- (v3_o) node [above=0pt, sloped, pos=0.5] {$1$};
+        \draw [base, dashed, thick] (v3) ++(\a:\s*\r) rectangle ++(\a+180:2*\s*\r);
+
+        \path (v2) ++(\l,0) coordinate (v4) {};
+        \path (v4) ++(120:\r) node[point] (v4_i) {};
+        \path (v4) ++(300:\r) node[point] (v4_o) {};
+        \draw [arrow2] (v4_i) -- (v4_o) node [below=0pt, sloped, pos=0.5] {$1$};
+        \draw [base, dashed, thick] (v4) ++(\a:\s*\r) rectangle ++(\a+180:2*\s*\r);
+
+        \path (v4) ++(30:\l) coordinate (t) {};
+        \path (t) ++(120:\r) node[point] (t_i) {$t_i$};
+        \path (t) ++(300:\r) node[point] (t_o) {$t_o$};
+        \draw [arrow] (t_i) -- (t_o);
+        \draw [base, dashed, thick] (t) ++(\a:\s*\r) rectangle ++(\a+180:2*\s*\r);
+
+        \draw [arrow2] (s_o) -- (v1_i);
+        \draw [arrow2] (s_o) -- (v2_i) {};
+
+        \draw [arrow] (v2_o) -- (v1_i) {};
+        \draw [arrow2] (v1_o) -- (v3_i) {};
+        \draw [arrow2] (v2_o) -- (v4_i) {};
+        \draw [arrow] (v4_o) -- (v3_i) {};
+        \draw [arrow] (v2_o) -- (v3_i) {};
+        \draw [arrow2] (v3_o) -- (t_i) {};
+        \draw [arrow2] (v4_o) -- (t_i) {};
+
+
+    \end{tikzpicture}
+\end{center}
+
+
+\end{document}
