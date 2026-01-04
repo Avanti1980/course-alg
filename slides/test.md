@@ -25,9 +25,31 @@ presentation:
 
 <!-- slide vertical=true data-notes="" -->
 
-##### <span style="font-weight:800">Dijkstra</span> 实现
+##### Toom 算法
 
 ---
 
-@import "../codes/sssp/dijkstra.py" {.left4 .line-numbers .top0}
+方程组涉及$5$个乘法子问题：
 
+$$
+\begin{align*}
+    \begin{array}{l}
+    s_4 \triangleq ad \\
+    s_3 \triangleq (4a+2b+c)(4d+2e+f) \\
+    s_2 \triangleq (a-b+c)(d-e+f) \\
+    s_1 \triangleq (a+b+c)(d+e+f) \\
+    s_0 \triangleq cf
+    \end{array} \Longrightarrow
+    \begin{array}{l}
+    w_4 = s_4                                                           \\
+    w_3 = (-12 s_4 + s_3 - s_2 - 3 s_1 + 3 s_0) / 6  \\
+    w_2 = (-2 s_4 + s_2 + s_1 - 2 s_0) / 2                   \\
+    w_1 = (12 s_4 - s_3 - 2 s_2 + 6 s_1 - 3 s_0) / 6 \\
+    w_0 = s_0
+    \end{array}
+\end{align*}
+$$
+
+<p class="fragment">由此可得$T(n) = 5 \cdot T (n/3) + \Theta(n) \Longrightarrow T(n) = \Theta(n^{\log_3 5})$</p>
+
+<p class="fragment">更一般的将$x$作$k$等分，此时$w(t)$是$2k-2$次多项式，共有$2k-1$个系数，线性方程组需包含$2k-1$个方程，由此产生$2k-1$个子问题，时间复杂度$\Theta(n^{\log_k (2k-1)})$</p>

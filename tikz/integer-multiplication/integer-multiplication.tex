@@ -1,0 +1,65 @@
+\documentclass{ctexart}
+\usepackage{avanti-color}
+\usepackage{avanti-base}
+\usepackage{avanti-math}
+\usepackage{avanti-tikz}
+\usepackage{avanti-alg}
+\usepackage[a4paper,landscape,margin=1cm]{geometry}
+
+\RequirePackage{fontspec}
+\xeCJKsetup{CJKmath=true}
+\setCJKmainfont[BoldFont={LXGW Neo XiHei Plus},ItalicFont={LXGW Bright}]{LXGW Neo ZhiSong Plus}
+\setmonofont{Operator Mono SSm Lig Book}
+
+\everymath{\color{SolarizedMagenta}}
+\pagestyle{empty} % 没有页眉和页脚
+
+\tikzset{font=\Large}
+\tikzset{base/.style = {smooth,thick,draw=SolarizedBase01,SolarizedBase01}}
+
+\begin{document}
+
+\begin{tikzpicture} []
+  \draw (0,0) grid (3,3);
+  \draw[dotted] (0,2) -- (1,3);
+  \draw[dotted] (0,1) -- (2,3);
+  \draw[dotted] (0,0) -- (3,3);
+  \draw[dotted] (1,0) -- (3,2);
+  \draw[dotted] (2,0) -- (3,1);
+  \node () at (0.5,3.5) {$1$};
+  \node () at (1.5,3.5) {$2$};
+  \node () at (2.5,3.5) {$3$};
+  \node () at (3.5,2.5) {$4$};
+  \node () at (3.5,1.5) {$5$};
+  \node () at (3.5,0.5) {$6$};
+
+  \node () at (2.75,0.25) {$8$};
+  \node () at (2.25,0.75) {$1$};
+  \node () at (2.75,1.25) {$5$};
+  \node () at (2.25,1.75) {$1$};
+  \node () at (2.75,2.25) {$2$};
+  \node () at (2.25,2.75) {$1$};
+
+  \node () at (1.75,0.25) {$2$};
+  \node () at (1.25,0.75) {$1$};
+  \node () at (1.75,1.25) {$0$};
+  \node () at (1.25,1.75) {$1$};
+  \node () at (1.75,2.25) {$8$};
+  \node () at (1.25,2.75) {$0$};
+
+  \node () at (0.75,0.25) {$6$};
+  \node () at (0.25,0.75) {$0$};
+  \node () at (0.75,1.25) {$5$};
+  \node () at (0.25,1.75) {$0$};
+  \node () at (0.75,2.25) {$4$};
+  \node () at (0.25,2.75) {$0$};
+
+  \node () at (0.5,-0.5) {$0^{+1}$};
+  \node () at (1.5,-0.5) {$8$};
+  \node () at (2.5,-0.5) {$8$};
+  \node () at (-0.5,2.5) {$0$};
+  \node () at (-0.5,1.5) {$5$};
+  \node () at (-0.5,0.5) {$6^{+1}$};
+\end{tikzpicture}
+
+\end{document}
