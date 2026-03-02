@@ -1,5 +1,4 @@
 import time
-
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -70,4 +69,4 @@ with plt.style.context('Solarize_Light2'):
     plt.ylabel('time: power of 2')
     plt.legend()
     plt.grid(color='#93a1a1', linestyle='-.', linewidth=0.7)
-    plt.savefig("closest-pair2.svg", transparent=True, bbox_inches="tight")
+    plt.savefig("closest-pair.svg", transparent=True, bbox_inches="tight")

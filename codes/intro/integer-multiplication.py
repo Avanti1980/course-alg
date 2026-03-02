@@ -28,7 +28,7 @@ def align(x, y, n_x, n_y):  # 若x和y长度不同 将短的左边补零
     return x, y, n
 
 
-def naive(x, y):
+def grade_school(x, y):
     n_x, n_y = len(x), len(y)
     x, y, n = align(x, y, n_x, n_y)  # 若x和y长度不同 将短的左边补零
     c = 0  # 初始进位为零
@@ -117,7 +117,7 @@ for t in range(trial):
     time_cost[0, t] = time.perf_counter() - start
 
     start = time.perf_counter()
-    z1 = naive(x, y)
+    z1 = grade_school(x, y)
     time_cost[1, t] = time.perf_counter() - start
 
     start = time.perf_counter()
@@ -151,7 +151,7 @@ with plt.style.context('Solarize_Light2'):
 
     _, ax = plt.subplots(figsize=(8, 6))
     x = [v + 4 for v in range(trial)]
-    ax.plot(x, np.log2(time_cost[1, :]), ls="dashed", label="Grade School")  # 对数坐标轴
+    ax.plot(x, np.log2(time_cost[1, :]), ls="dashed", label="grade school")  # 对数坐标轴
     ax.plot(x, np.log2(time_cost[2, :]), ls="dashdot", label="Karatsuba")
     ax.set_xlabel("n: power of 2", fontsize=18)
     ax.set_ylabel("time: power of 2", fontsize=18)

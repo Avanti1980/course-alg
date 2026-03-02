@@ -1,0 +1,44 @@
+\documentclass[tikz]{standalone}
+\usepackage{avanti-tikz4slides}
+
+\setmainfont[BoldFont=FZHei-B01,ItalicFont=]{Ysabeau}
+
+% define the plot style and the axis style
+\tikzset{font=\LARGE}
+\tikzset{base/.style = {smooth,very thick,draw=SolarizedBase01,SolarizedBase01}}
+
+\tikzset{level distance=50}
+\tikzset{level 1/.style = {sibling distance=15}}
+\tikzset{level 2/.style = {sibling distance=15}}
+\tikzset{level 3/.style = {sibling distance=15}}
+\tikzset{level 4/.style = {sibling distance=15}}
+
+\begin{document}
+
+\begin{tikzpicture}[base]
+	\Tree
+	[.\node [] {or};
+	[.\node [] {is};
+	[.\node [] {game};
+	[.\node [] {die}; ]
+	[.\node [] {ground}; ]
+	]
+	[.\node [] {no};
+	[.\node [] {middle}; ]
+	[.\node [] {of}; ]
+	]
+	]
+	[.\node [] {thrones};
+	[.\node [] {the};
+	[.\node [] {play}; ]
+	[.\node [] {there}; ]
+	]
+	[.\node [] {win};
+	[.\node [] {when}; ]
+	[.\node [] {you}; ]
+	]
+	]
+	]
+\end{tikzpicture}
+
+\end{document}

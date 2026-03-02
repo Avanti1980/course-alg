@@ -1,21 +1,10 @@
-\documentclass[tikz, convert, convert={svg, command=\unexpanded{pdf2svg \infile\space\outfile}}, multi=false]{standalone}
-\usepackage{ctex}
-\usepackage{avanti-color}
-\usepackage{avanti-math}
-\usepackage{avanti-tikz}
-
-\RequirePackage{fontspec}
-\xeCJKsetup{CJKmath=true}
-\setCJKmainfont[BoldFont={LXGW Neo ZhiSong Plus},ItalicFont=]{LXGW Neo ZhiSong Plus}
-
-\color{Solarized-base01}
-\everymath{\color{Solarized-magenta}}
-\pagestyle{empty} % 没有页眉和页脚
+\documentclass[tikz]{standalone}
+\usepackage{avanti-tikz4slides}
 
 \tikzset{font=\Large}
-\tikzset{base/.style={smooth, very thick, Solarized-base01}}
+\tikzset{base/.style={smooth, very thick, SolarizedBase01}}
 \tikzset{arrow/.style={->, -{Stealth[scale=1.0]}, base}}
-\tikzset{point/.style={circle, minimum height=0.8cm, base, draw=Solarized-base01}}
+\tikzset{point/.style={circle, minimum height=0.8cm, base, draw=SolarizedBase01}}
 
 \begin{document}
 
@@ -48,12 +37,12 @@
     \draw [arrow] (d) to [out=190, in=350] (c);
     \node [] () at (\inc/2,-0.6) {$-3$};
 
-    \draw [arrow] (e) to [out=30, in=150] (f);
+    \draw [arrow] (e) to [out=10, in=170] (f);
     \node [] () at (\inc/2,-\inc+0.6) {$3$};
     \draw [arrow] (f) to [out=190, in=350] (e);
     \node [] () at (\inc/2,-\inc-0.6) {$-6$};
 
-    \draw [base, dashed, Solarized-red] (\inc/2,-\inc) ellipse (2.2cm and 1cm);
+    \draw [base, dashed, SolarizedRed] (\inc/2,-\inc) ellipse (2.2cm and 1cm);
 
 \end{tikzpicture}
 

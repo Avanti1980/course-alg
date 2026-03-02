@@ -2,8 +2,8 @@ digraph g {
     bgcolor=transparent
     rankdir=TB
     graph [nodesep=0.25, ranksep=0.5]
-    node [shape=circle, fixedsize=true, width=0.28, color="#586e75", fontcolor="#b58900", fontsize=16, fontname="LXGWWenKai"]
-    edge [arrowhead=vee, color="#586e75", fontcolor="#268bd2", fontsize=12, fontname="LXGWWenKai" arrowsize=0.6]
+    node [shape=circle, fixedsize=true, width=0.28, color="#586e75", fontcolor="#b58900", fontsize=16, fontname="Ysabeau, LXGWSong"]
+    edge [arrowhead=vee, color="#586e75", fontcolor="#268bd2", fontsize=12, fontname="Ysabeau, LXGWSong" arrowsize=0.6]
 
     a -> {b,c,d}
     b -> c2

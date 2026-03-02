@@ -1,8 +1,7 @@
 @use "sass:list";
 
-// Ysabeau     100       200   300         400    500        600      700     800       900
-$weight-array: ExtraThin, Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold,
-  ExtraBold;
+// Ysabeau     100        200   300         400    500      600     700       800   900
+$weight-array: ExtraThin, Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold;
 
 @for $i from 1 through list.length($weight-array) {
   $weight: list.nth($weight-array, $i);
@@ -41,51 +40,18 @@ $weight-array: XLight, Light, Book, Medium;
   }
 }
 
-// LXGW        100        400      700
-$weight-array: Light, Regular, Medium;
-
-@for $i from 1 through list.length($weight-array) {
-  $weight: list.nth($weight-array, $i);
-
-  @font-face {
-    font-family: LXGWWenKai;
-    src: url("../fonts/LXGWBright-v5.527/LXGWBright-#{$weight}.ttf");
-    font-weight: 100 * (3 * $i - 2);
-  }
-
-  @font-face {
-    font-family: LXGWWenKai;
-    src: url("../fonts/LXGWBright-v5.527/LXGWBright-#{$weight}Italic.ttf");
-    font-style: italic;
-    font-weight: 100 * (3 * $i - 2);
-  }
-}
-
+// 霞鹜新晰黑 屏幕阅读版 26.02.27
 @font-face {
   font-family: LXGWHei;
-  src: url("../fonts/LXGW/LXGWNeoXiHeiPlus-v1.234.ttf");
+  src: url("../fonts/LXGW/LXGWNeoXiHeiScreenFull.ttf");
   font-weight: 400;
 }
 
+// 霞鹜新致宋 屏幕阅读版 26.02.09
 @font-face {
   font-family: LXGWSong;
-  src: url("../fonts/LXGW/LXGWNeoZhiSongPlus-v1.053.ttf");
-  font-weight: 400;
-}
-
-// NotoSansSC
-$weight-array: Thin, Light, Regular, Medium, Bold, "Black";
-$number-array: 100, 200, 400, 500, 700, 900;
-
-@for $i from 1 through list.length($weight-array) {
-  $weight: list.nth($weight-array, $i);
-  $number: list.nth($number-array, $i);
-
-  @font-face {
-    font-family: NotoSansSC;
-    src: url("../fonts/NotoSansSC/NotoSansSC-#{$weight}.otf");
-    font-weight: #{$number};
-  }
+  src: url("../fonts/LXGW/LXGWNeoZhiSongScreenFull.ttf");
+  font-weight: 600;
 }
 
 @each $direction in "left", "right", "top", "bottom" {
@@ -154,41 +120,47 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100%;
-  background-color: var(--solarized-base3);
+  background-color: var(--solarized-base3) !important;
   color: var(--solarized-base01);
   font-family: Ysabeau, LXGWSong;
   font-weight: 600;
 }
 
-h2,
-h4 {
-  font-family: Ysabeau, LXGWHei, "Noto Sans SC", NotoSansSC;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
+hr {
+  border: none;
+  height: 0.1rem !important;
+  background-color: var(--solarized-base01) !important;
+}
+
+h1,
+h2 {
+  font-family: Ysabeau, LXGWHei;
+  font-weight: 700 !important;
+  color: var(--solarized-base01) !important;
+}
+
+h1 {
+  font-size: 4.0rem !important;
 }
 
 h2 {
-  font-size: 3rem;
-}
-
-h4 {
-  font-size: 2rem;
+  font-size: 2.5rem !important;
 }
 
 p {
   font-family: Ysabeau, LXGWSong;
-  font-weight: 600;
   font-size: 1.5rem;
-  background-color: var(--base3);
   color: var(--solarized-base01);
   margin-top: 0.5rem;
   margin-bottom: 0rem;
+  text-align: justify;
+  word-wrap: break-word;
 }
 
 ul {
   display: inline-block;
   text-align: left;
-  list-style-type: "\266b  ";
+  list-style-type: "\266b  " !important;
   margin-top: 0.5rem;
 }
 
@@ -196,7 +168,6 @@ ul>li {
   font-family: Ysabeau, LXGWSong;
   font-weight: 600;
   font-size: 1.3rem;
-  margin: 0.4rem 0;
   margin-right: 2rem;
   color: var(--solarized-yellow);
 }
@@ -225,6 +196,7 @@ table {
   th,
   td {
     padding: 0.5rem 1rem 0.1rem 1rem;
+    color: var(--solarized-base01) !important;
   }
 
   td:nth-last-child(1) {
@@ -244,14 +216,16 @@ table {
   }
 }
 
-.tr-hover>table {
-  tbody tr:hover {
-    background-color: var(--solarized-base2);
+.noborder>table {
+
+  th,
+  td {
+    border: 0px solid var(--solarized-base01);
   }
 }
 
-.head-highlight>table {
-  th:nth-child(n + 1) {
+.tr-hover>table {
+  tbody tr:hover {
     background-color: var(--solarized-base2);
   }
 }
@@ -267,24 +241,8 @@ table {
   }
 }
 
-.outline>table {
-  th:nth-last-child(1) {
-    text-align: center !important;
-  }
-
-  tbody tr:nth-child(14),
-  tbody tr:nth-child(18),
-  tbody tr:nth-child(22),
-  tbody tr:nth-child(26),
-  tbody tr:nth-child(30),
-  tbody tr:nth-child(34),
-  tbody tr:nth-child(38) {
-    border-top: 1px dashed var(--solarized-base01);
-  }
-
-  tbody tr:nth-child(100) {
-    td:nth-last-child(1) {
-      text-align: center !important;
-    }
+.head-highlight>table {
+  th:nth-child(n + 1) {
+    background-color: var(--solarized-base2);
   }
 }

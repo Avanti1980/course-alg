@@ -1,6 +1,3 @@
-import numpy as np
-
-
 def find_max_subarray_dp(A, n):
     dp = [0] * n                    # dp[i]为以A[i]作结尾的最大子数组的和
     s = [0] * n                     # s[i]为以A[i]作结尾的最大子数组的起始索引
@@ -12,7 +9,7 @@ def find_max_subarray_dp(A, n):
         else:
             dp[i] = A[i]            # A[i]不接在A[j,...,i-1]后面 另起炉灶
             s[i] = i                # 起始索引就是当前位置
-    max_index = np.argmax(dp)       # 遍历dp获取最大元的索引
+    max_index = dp.index(max(dp))   # 遍历dp获取最大元的索引
     return s[max_index], max_index, dp[max_index]
 
 

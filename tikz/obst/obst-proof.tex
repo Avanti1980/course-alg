@@ -1,0 +1,20 @@
+\documentclass[tikz]{standalone}
+\usepackage{avanti-tikz4slides}
+
+% define the plot style and the axis style
+\tikzset{font=\Large}
+\tikzset{base/.style = {smooth,very thick,draw=SolarizedBase01,SolarizedBase01}}
+
+\tikzset{level distance=50}
+
+\begin{document}
+
+\begin{tikzpicture}[base, level 1/.style = {sibling distance=30}]
+	\Tree
+	[.\node [] {$k_r$};
+	[.\node [] {$k_i,\ldots,k_{r-1}$}; ]
+	[.\node [] {$k_{r+1},\ldots,k_j$}; ]
+	]
+\end{tikzpicture}
+
+\end{document}

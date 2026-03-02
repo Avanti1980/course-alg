@@ -2,8 +2,8 @@ digraph g {
     bgcolor=transparent
     rankdir=TB
     graph [nodesep=0.1,  ranksep=0.4]
-    node [shape=record,  color="#586e75",  fixedsize=true,  width=0.6,  height=0.3,  fontcolor="#b58900",  fontsize=14,  fontname="LXGWWenKai"]
-    edge [arrowhead=vee,  color="#586e75",  fontcolor="#268bd2",  fontsize=14,  fontname="LXGWWenKai",  arrowsize=0.4]
+    node [shape=record,  color="#586e75",  fixedsize=true,  width=0.6,  height=0.3,  fontcolor="#b58900",  fontsize=14,  fontname="Ysabeau, LXGWSong"]
+    edge [arrowhead=vee,  color="#586e75",  fontcolor="#268bd2",  fontsize=14,  fontname="Ysabeau, LXGWSong",  arrowsize=0.4]
 
     root
 

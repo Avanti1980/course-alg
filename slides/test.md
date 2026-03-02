@@ -11,45 +11,47 @@ presentation:
 @import "../css/font-awesome-4.7.0/css/font-awesome.css"
 @import "../css/theme/solarized.css"
 @import "../css/logo.css"
-@import "../css/font.css"
+@import "../css/font-song.css"
 @import "../css/color.css"
 @import "../css/margin.css"
 @import "../css/table.css"
 @import "../css/main.css"
 @import "../plugin/zoom/zoom.js"
+@import "../plugin/notes/notes.js"
 @import "../plugin/customcontrols/plugin.js"
 @import "../plugin/customcontrols/style.css"
 @import "../plugin/chalkboard/plugin.js"
 @import "../plugin/chalkboard/style.css"
-@import "../plugin/menu/menu.js"
+@import "../plugin/reveal.js-menu/menu.js"
 
-<!-- slide vertical=true data-notes="" -->
+<!-- slide data-notes="" -->
 
-##### Toom 算法
+##### 子集和数 定长元组
 
 ---
 
-方程组涉及$5$个乘法子问题：
+$n=6$，$(w_1, w_2, w_3, w_4, w_5, w_6) = (5, 10, 12, 13, 15, 18)$，$M = 30$
 
-$$
-\begin{align*}
-    \begin{array}{l}
-    s_4 \triangleq ad \\
-    s_3 \triangleq (4a+2b+c)(4d+2e+f) \\
-    s_2 \triangleq (a-b+c)(d-e+f) \\
-    s_1 \triangleq (a+b+c)(d+e+f) \\
-    s_0 \triangleq cf
-    \end{array} \Longrightarrow
-    \begin{array}{l}
-    w_4 = s_4                                                           \\
-    w_3 = (-12 s_4 + s_3 - s_2 - 3 s_1 + 3 s_0) / 6  \\
-    w_2 = (-2 s_4 + s_2 + s_1 - 2 s_0) / 2                   \\
-    w_1 = (12 s_4 - s_3 - 2 s_2 + 6 s_1 - 3 s_0) / 6 \\
-    w_0 = s_0
-    \end{array}
-\end{align*}
-$$
+@import "../dot/subset-sum/subset-sum-example-fix-len.dot" {.center .top1}
 
-<p class="fragment">由此可得$T(n) = 5 \cdot T (n/3) + \Theta(n) \Longrightarrow T(n) = \Theta(n^{\log_3 5})$</p>
+<div class="top-54per left46per">
 
-<p class="fragment">更一般的将$x$作$k$等分，此时$w(t)$是$2k-2$次多项式，共有$2k-1$个系数，线性方程组需包含$2k-1$个方程，由此产生$2k-1$个子问题，时间复杂度$\Theta(n^{\log_k (2k-1)})$</p>
+<span class="fs12">(待选数下标, 已选数之和, 剩余数之和)</span>
+
+</div>
+
+<!-- slide data-notes="" -->
+
+##### 子集和数 变长元组
+
+---
+
+$n=6$，$(w_1, w_2, w_3, w_4, w_5, w_6) = (5, 10, 12, 13, 15, 18)$，$M = 30$
+
+@import "../dot/subset-sum/subset-sum-example-var-len.dot" {.center .top1}
+
+<div class="top-43per left22per">
+
+<span class="fs12">(待选数最小下标, 已选数之和, 剩余数之和)</span>
+
+</div>

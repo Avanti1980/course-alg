@@ -1,11 +1,13 @@
 import numpy as np
 
 
-def mul(A, B, C, n):
+def mul(A, B, n):
+    C = np.zeros((n, n))
     for i in range(n):
         for j in range(n):
             for k in range(n):
                 C[i, j] += A[i, k] * B[k, j]
+    return C
 
 
 def mul_rec(A, B, C, n):
@@ -90,10 +92,8 @@ def mul_rec_strassen(A, B, C, n):
 
 m = n = 6
 
-A = np.random.rand(n, n)
-B = np.random.rand(n, n)
-C1 = np.zeros((n, n))
-mul(A, B, C1, n)
+A, B = np.random.rand(n, n), np.random.rand(n, n)
+C1 = mul(A, B, n)
 
 # 如果n不是2的幂次 将m置为最小的大于n的2的幂次
 if (n & (n - 1)) != 0:
@@ -119,6 +119,5 @@ C3 = C3[:n, :n]
 print("C1 = \n", C1)
 print("C2 = \n", C2)
 print("C3 = \n", C3)
-
 print((C1 - C2).max(), (C1 - C2).min())
 print((C1 - C3).max(), (C1 - C3).min())

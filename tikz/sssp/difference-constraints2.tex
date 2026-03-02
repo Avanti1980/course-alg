@@ -1,24 +1,11 @@
-\documentclass{ctexart}
-\usepackage{avanti-color}
-%\usepackage{avanti-font}
-\usepackage{avanti-math}
-\usepackage{avanti-theorem}
-\usepackage{avanti-others}
+\documentclass[tikz]{standalone}
+\usepackage{avanti-tikz4slides}
 
-\RequirePackage{fontspec}
-\xeCJKsetup{CJKmath=true}
-\setCJKmainfont[BoldFont=FZHei-B01,ItalicFont=]{LXGW Bright}
-
-\everymath{\color{Solarized-magenta}}
-\pagestyle{empty} % 没有页眉和页脚
-
- % define the plot style and the axis style
-\tikzset{font=\large}
-
-\tikzset{base/.style={smooth, very thick, Solarized-base01}}
+\tikzset{font=\Large}
+\tikzset{base/.style={smooth, very thick, SolarizedBase01}}
 \tikzset{arrow/.style={->, -{Stealth[scale=1.0]}, base}}
-\tikzset{arrow2/.style={->, -{Stealth[scale=1.0]}, base, ultra thick, Solarized-blue}}
-\tikzset{point/.style={circle, minimum height=1.0cm, base, draw=Solarized-base01, fill=Solarized-base2}}
+\tikzset{arrow2/.style={->, -{Stealth[scale=1.0]}, base, ultra thick, SolarizedBlue}}
+\tikzset{point/.style={circle, minimum height=1.0cm, base, draw=SolarizedBase01, fill=SolarizedBase2}}
 
 \begin{document}
 
@@ -33,8 +20,6 @@
     \path (v2) ++(252:\l) node[point] (v3) {$0$};
     \path (v5) ++(288:\l) node[point] (v4) {$-1$};
     \path (v5) ++(180:\l) node[point] (v0) {$0$};
-
-    \tikzset{font=\Large}
 
     \path (v1) ++(\s,0) node[] () {$v_1$};
     \path (v5) ++(0,\s) node[] () {$v_5$};

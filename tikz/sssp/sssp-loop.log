@@ -1,9 +1,12 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2026/dev/Arch Linux) (preloaded format=xelatex 2025.11.10)  19 DEC 2025 20:55
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2026/dev/Arch Linux) (preloaded format=xelatex 2026.1.5)  1 MAR 2026 12:59
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
-**\expandafter\def\csname sa@internal@run\endcsname{1}\input{sssp-loop}
-(./sssp-loop.tex (/usr/share/texmf-dist/tex/latex/standalone/standalone.cls
+**sssp-loop.tex
+(./sssp-loop.tex
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2025-01-18>
+(/usr/share/texmf-dist/tex/latex/standalone/standalone.cls
 Document Class: standalone 2025/02/22 v1.5a Class to compile TeX sub-files stan
 dalone
 (/usr/share/texmf-dist/tex/latex/tools/shellesc.sty
@@ -321,7 +324,6 @@ File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \tikz@tempbox=\box61
 \tikz@tempbox@bg=\box62
 \tikztreelevel=\count283
-el=\count283
 \tikznumberofchildren=\count284
 \tikznumberofcurrentchild=\count285
 \tikz@fig@count=\count286
@@ -338,16 +340,9 @@ topaths.code.tex
 File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )))
 \sa@box=\box63
-runsystem(xelatex  -shell-escape   -jobname "sssp-loop" "\expandafter\def\csnam
-e sa@internal@run\endcsname{1}\input{sssp-loop}")...executed.
-
-\sa@read=\read3
- Executing command:
-pdf2svg sssp-loop.pdf sssp-loop.svg
-
-runsystem(pdf2svg sssp-loop.pdf sssp-loop.svg)...executed.
-
-) (/usr/share/texmf-dist/tex/latex/ctex/ctex.sty
+)
+(/home/avanti/texmf/tex/latex/avanti/avanti-tikz4slides.sty
+(/usr/share/texmf-dist/tex/latex/ctex/ctex.sty
 (/usr/share/texmf-dist/tex/latex/l3kernel/expl3.sty
 Package: expl3 2025-01-18 L3 programming layer (loader) 
 
@@ -543,7 +538,6 @@ t;"
 (/usr/share/texmf-dist/tex/latex/ctex/config/ctex.cfg
 File: ctex.cfg 2022/07/14 v2.5.10 Configuration file (CTEX)
 )
-(/home/avanti/texmf/tex/latex/avanti/avanti-color.sty
 (/usr/share/texmf-dist/tex/latex/colortbl/colortbl.sty
 Package: colortbl 2024/07/06 v1.0i Color table columns (DPC)
 
@@ -561,305 +555,55 @@ Package: array 2024/10/17 v2.6g Tabular extension package (FMi)
 \minrowclearance=\skip61
 \rownum=\count322
 )
-(/usr/share/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count323
-\lst@gtempboxa=\box70
-\lst@token=\toks33
-\lst@length=\count324
-\lst@currlwidth=\dimen285
-\lst@column=\count325
-\lst@pos=\count326
-\lst@lostspace=\dimen286
-\lst@width=\dimen287
-\lst@newlines=\count327
-\lst@lineno=\count328
-\lst@maxwidth=\dimen288
-
-(/usr/share/texmf-dist/tex/latex/listings/lstpatch.sty
-File: lstpatch.sty 2024/09/23 1.10c (Carsten Heinz)
-)
-(/usr/share/texmf-dist/tex/latex/listings/lstmisc.sty
-File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
-\c@lstnumber=\count329
-\lst@skipnumbers=\count330
-\lst@framebox=\box71
-)
-(/usr/share/texmf-dist/tex/latex/listings/listings.cfg
-File: listings.cfg 2024/09/23 1.10c listings configuration
+(/usr/share/texmf-dist/tex/latex/tikz-qtree/tikz-qtree.sty
+(/usr/share/texmf-dist/tex/latex/tikz-qtree/pgftree.sty
+(/usr/share/texmf-dist/tex/latex/tikz-qtree/pgfsubpic.sty
+(/usr/share/texmf-dist/tex/latex/tikz-qtree/pgfsubpic.tex
+\pgf@subpicminx=\dimen285
+\pgf@subpicminy=\dimen286
+\pgf@subpicmaxx=\dimen287
+\pgf@subpicmaxy=\dimen288
 ))
-Package: listings 2024/09/23 1.10c (Carsten Heinz)
-
-(/usr/share/texmf-dist/tex/xelatex/xecjk/xeCJK-listings.sty
-Package: xeCJK-listings 2022/08/05 v3.9.1 xeCJK patch file for listings
-\l__xeCJK_listings_max_char_int=\count331
-\l__xeCJK_listings_flag_int=\count332
-)
-(/usr/share/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2024/09/23 1.10c listings language file
+(/usr/share/texmf-dist/tex/latex/tikz-qtree/pgftree.tex
+\levelsep=\dimen289
+\subtreesep=\dimen290
+\smuggle@levelsep=\dimen291
+\smuggle@subtreesep=\dimen292
+\this@levelsep=\dimen293
+\this@subtreesep=\dimen294
+\pgftree@childx=\dimen295
+\pgftree@savechildx=\dimen296
+\pgftree@childy=\dimen297
+\pgftree@savechildy=\dimen298
+\pgftree@childi=\count323
+\pgftree@savechildi=\count324
+\pgftree@level=\count325
+\pgftree@depth=\dimen299
+\pgf@subpic@hbox@children=\box70
+\pgf@subpic@minx@children=\dimen300
+\pgf@subpic@miny@children=\dimen301
+\pgf@subpic@maxx@children=\dimen302
+\pgf@subpic@maxy@children=\dimen303
+\pgftree@lastchildx=\dimen304
+\pgftree@lastchildy=\dimen305
 ))
-(/home/avanti/texmf/tex/latex/avanti/avanti-math.sty
-(/usr/share/texmf-dist/tex/latex/stmaryrd/stmaryrd.sty
-Package: stmaryrd 1994/03/03 St Mary's Road symbol package
-\symstmry=\mathgroup4
-LaTeX Font Info:    Overwriting symbol font `stmry' in version `bold'
-(Font)                  U/stmry/m/n --> U/stmry/b/n on input line 89.
-)
-(/usr/share/texmf-dist/tex/latex/base/latexsym.sty
-Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
-\symlasy=\mathgroup5
-LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
-(Font)                  U/lasy/m/n --> U/lasy/b/n on input line 52.
-)
-(/usr/share/texmf-dist/tex/latex/amsfonts/amsfonts.sty
-Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
-\@emptytoks=\toks34
-\symAMSa=\mathgroup6
-\symAMSb=\mathgroup7
-LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
-LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
-(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-)
-(/usr/share/texmf-dist/tex/latex/amsmath/amsmath.sty
-Package: amsmath 2024/11/05 v2.17t AMS math features
-\@mathmargin=\skip62
-
-For additional information on amsmath, use the `?' option.
-(/usr/share/texmf-dist/tex/latex/amsmath/amstext.sty
-Package: amstext 2021/08/26 v2.01 AMS text
-
-(/usr/share/texmf-dist/tex/latex/amsmath/amsgen.sty
-File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks35
-\ex@=\dimen289
+(/usr/share/texmf-dist/tex/latex/tikz-qtree/tikz-qtree.tex
+\@result=\toks33
+\child@list=\toks34
+\root@node=\toks35
 ))
-(/usr/share/texmf-dist/tex/latex/amsmath/amsbsy.sty
-Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen290
-)
-(/usr/share/texmf-dist/tex/latex/amsmath/amsopn.sty
-Package: amsopn 2022/04/08 v2.04 operator names
-)
-\inf@bad=\count333
-LaTeX Info: Redefining \frac on input line 233.
-\uproot@=\count334
-\leftroot@=\count335
-LaTeX Info: Redefining \overline on input line 398.
-LaTeX Info: Redefining \colon on input line 409.
-\classnum@=\count336
-\DOTSCASE@=\count337
-LaTeX Info: Redefining \ldots on input line 495.
-LaTeX Info: Redefining \dots on input line 498.
-LaTeX Info: Redefining \cdots on input line 619.
-\Mathstrutbox@=\box72
-\strutbox@=\box73
-LaTeX Info: Redefining \big on input line 721.
-LaTeX Info: Redefining \Big on input line 722.
-LaTeX Info: Redefining \bigg on input line 723.
-LaTeX Info: Redefining \Bigg on input line 724.
-\big@size=\dimen291
-LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
-LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
-\macc@depth=\count338
-LaTeX Info: Redefining \bmod on input line 904.
-LaTeX Info: Redefining \pmod on input line 909.
-LaTeX Info: Redefining \smash on input line 939.
-LaTeX Info: Redefining \relbar on input line 969.
-LaTeX Info: Redefining \Relbar on input line 970.
-\c@MaxMatrixCols=\count339
-\dotsspace@=\muskip17
-\c@parentequation=\count340
-\dspbrk@lvl=\count341
-\tag@help=\toks36
-\row@=\count342
-\column@=\count343
-\maxfields@=\count344
-\andhelp@=\toks37
-\eqnshift@=\dimen292
-\alignsep@=\dimen293
-\tagshift@=\dimen294
-\tagwidth@=\dimen295
-\totwidth@=\dimen296
-\lineht@=\dimen297
-\@envbody=\toks38
-\multlinegap=\skip63
-\multlinetaggap=\skip64
-\mathdisplay@stack=\toks39
-LaTeX Info: Redefining \[ on input line 2953.
-LaTeX Info: Redefining \] on input line 2954.
-)
-(/usr/share/texmf-dist/tex/latex/amsfonts/amssymb.sty
-Package: amssymb 2013/01/14 v3.01 AMS font symbols
-LaTeX Font Info:    Redeclaring math symbol \boxdot on input line 44.
-)
-(/usr/share/texmf-dist/tex/latex/jknapltx/mathrsfs.sty
-Package: mathrsfs 1996/01/01 Math RSFS package v1.0 (jk)
-\symrsfs=\mathgroup8
-)
-(/usr/share/texmf-dist/tex/latex/tools/bm.sty
-Package: bm 2023/12/19 v1.2f Bold Symbol Support (DPC/FMi)
-\symboldoperators=\mathgroup9
-\symboldletters=\mathgroup10
-\symboldsymbols=\mathgroup11
-Package bm Info: No bold for \OMX/cmex/m/n, using \pmb.
-\symboldstmry=\mathgroup12
-Package bm Info: No bold for \U/msa/m/n, using \pmb.
-Package bm Info: No bold for \U/msb/m/n, using \pmb.
-Package bm Info: No bold for \U/rsfs/m/n, using \pmb.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 149.
-)
-(/usr/share/texmf-dist/tex/latex/nicematrix/nicematrix.sty
-(/usr/share/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
-Package: l3keys2e 2024-08-16 LaTeX2e option processing using LaTeX3 keys
-)
-Package: nicematrix 2025/03/04 v7.1a Enhanced arrays with the help of PGF/TikZ
-\g__nicematrix_env_int=\count345
-\g__nicematrix_NiceMatrixBlock_int=\count346
-\g__nicematrix_notes_caption_int=\count347
-\l__nicematrix_columns_width_dim=\dimen298
-\l__nicematrix_col_width_dim=\dimen299
-\g__nicematrix_row_total_int=\count348
-\g__nicematrix_col_total_int=\count349
-\g__nicematrix_last_row_node_int=\count350
-\l__nicematrix_key_nb_rows_int=\count351
-\g__nicematrix_blocks_wd_dim=\dimen300
-\g__nicematrix_blocks_ht_dim=\dimen301
-\g__nicematrix_blocks_dp_dim=\dimen302
-\l__nicematrix_width_dim=\dimen303
-\l__nicematrix_tabular_width_dim=\dimen304
-\l__nicematrix_rule_width_dim=\dimen305
-\l__nicematrix_old_iRow_int=\count352
-\l__nicematrix_old_jCol_int=\count353
-\g__nicematrix_total_X_weight_int=\count354
-\l__nicematrix_X_columns_dim=\dimen306
-\l__nicematrix_x_initial_dim=\dimen307
-\l__nicematrix_y_initial_dim=\dimen308
-\l__nicematrix_x_final_dim=\dimen309
-\l__nicematrix_y_final_dim=\dimen310
-\l__nicematrix_tmpc_dim=\dimen311
-\l__nicematrix_tmpd_dim=\dimen312
-\l__nicematrix_tmpe_dim=\dimen313
-\l__nicematrix_tmpf_dim=\dimen314
-\g__nicematrix_dp_row_zero_dim=\dimen315
-\g__nicematrix_ht_row_zero_dim=\dimen316
-\g__nicematrix_ht_row_one_dim=\dimen317
-\g__nicematrix_dp_ante_last_row_dim=\dimen318
-\g__nicematrix_ht_last_row_dim=\dimen319
-\g__nicematrix_dp_last_row_dim=\dimen320
-\g__nicematrix_width_last_col_dim=\dimen321
-\g__nicematrix_width_first_col_dim=\dimen322
-\l__nicematrix_row_min_int=\count355
-\l__nicematrix_row_max_int=\count356
-\l__nicematrix_col_min_int=\count357
-\l__nicematrix_col_max_int=\count358
-\l__nicematrix_start_int=\count359
-\l__nicematrix_end_int=\count360
-\l__nicematrix_local_start_int=\count361
-\l__nicematrix_local_end_int=\count362
-\g__nicematrix_static_num_of_col_int=\count363
-\l__nicematrix_rounded_corners_dim=\dimen323
-\l__nicematrix_tab_rounded_corners_dim=\dimen324
-\l__nicematrix_offset_dim=\dimen325
-\l__nicematrix_line_width_dim=\dimen326
-\g__nicematrix_block_box_int=\count364
-\l__nicematrix_submatrix_extra_height_dim=\dimen327
-\l__nicematrix_submatrix_left_xshift_dim=\dimen328
-\l__nicematrix_submatrix_right_xshift_dim=\dimen329
-\l__nicematrix_first_row_int=\count365
-\l__nicematrix_first_col_int=\count366
-\l__nicematrix_last_row_int=\count367
-\l__nicematrix_last_col_int=\count368
-\c@tabularnote=\count369
-\g__nicematrix_tabularnote_int=\count370
-\c@nicematrix_draft=\count371
-\l__nicematrix_cell_space_top_limit_dim=\dimen330
-\l__nicematrix_cell_space_bottom_limit_dim=\dimen331
-\l__nicematrix_xdots_inter_dim=\dimen332
-\l__nicematrix_xdots_shorten_start_dim=\dimen333
-\l__nicematrix_xdots_shorten_end_dim=\dimen334
-\l__nicematrix_xdots_radius_dim=\dimen335
-\l__nicematrix_notes_above_space_dim=\dimen336
-\l__nicematrix_left_margin_dim=\dimen337
-\l__nicematrix_right_margin_dim=\dimen338
-\l__nicematrix_extra_left_margin_dim=\dimen339
-\l__nicematrix_extra_right_margin_dim=\dimen340
-\c__nicematrix_max_l_dim=\dimen341
-\l__nicematrix_position_int=\count372
-\l__nicematrix_multiplicity_int=\count373
-\l__nicematrix_brace_yshift_dim=\dimen342
-)
-(/usr/share/texmf-dist/tex/latex/units/nicefrac.sty
-Package: nicefrac 1998/08/04 v0.9b Nice fractions
-\L@UnitsRaiseDisplaystyle=\skip65
-\L@UnitsRaiseTextstyle=\skip66
-\L@UnitsRaiseScriptstyle=\skip67
-
-(/usr/share/texmf-dist/tex/latex/base/ifthen.sty
-Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
-))
-(/usr/share/texmf-dist/tex/latex/cases/cases.sty
-Package: cases 2020/03/29 ver 3.2
-\numc@numwid=\dimen343
-)
-(/usr/share/texmf-dist/tex/latex/mdwtools/mdwmath.sty
-Package: mdwmath 1996/04/11 1.1 Nice mathematical things
-\sq@sqrt=\count374
-LaTeX Info: Redefining \sqrt on input line 84.
-)
-(/usr/share/texmf-dist/tex/latex/extpfeil/extpfeil.sty
-Package: extpfeil 2009/10/31 v0.4 Extensible Pfeile (PE)
-
-(/usr/share/texmf-dist/tex/latex/mathtools/mathtools.sty
-Package: mathtools 2024/10/04 v1.31 mathematical typesetting tools
-
-(/usr/share/texmf-dist/tex/latex/tools/calc.sty
-Package: calc 2023/07/08 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count375
-\calc@Bcount=\count376
-\calc@Adimen=\dimen344
-\calc@Bdimen=\dimen345
-\calc@Askip=\skip68
-\calc@Bskip=\skip69
-LaTeX Info: Redefining \setlength on input line 80.
-LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count377
-\calc@Cskip=\skip70
-)
-(/usr/share/texmf-dist/tex/latex/mathtools/mhsetup.sty
-Package: mhsetup 2021/03/18 v1.4 programming setup (MH)
-)
-\g_MT_multlinerow_int=\count378
-\l_MT_multwidth_dim=\dimen346
-\origjot=\skip71
-\l_MT_shortvdotswithinadjustabove_dim=\dimen347
-\l_MT_shortvdotswithinadjustbelow_dim=\dimen348
-\l_MT_above_intertext_sep=\dimen349
-\l_MT_below_intertext_sep=\dimen350
-\l_MT_above_shortintertext_sep=\dimen351
-\l_MT_below_shortintertext_sep=\dimen352
-\xmathstrut@box=\box74
-\xmathstrut@dim=\dimen353
-))
-(/usr/share/texmf-dist/tex/latex/extarrows/extarrows.sty
-Package: extarrows 2020/03/12 v1.2.0 Some extensible arrows
-)
-(/usr/share/texmf-dist/tex/latex/harpoon/harpoon.sty
-Package: harpoon 1994/11/02 Harpoon drawing package by Tobias Kuipers
-\argwd=\skip72
-\arght=\skip73
-))
-(/home/avanti/texmf/tex/latex/avanti/avanti-tikz.sty
 (/usr/share/texmf-dist/tex/latex/pgfplots/pgfplots.sty
 (/usr/share/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
 Package: pgfplots 2021/05/15 v1.18.1 Data Visualization (1.18.1)
 
 (/usr/share/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex
 (/usr/share/texmf-dist/tex/generic/pgfplots/pgfplotscore.code.tex
-\t@pgfplots@toka=\toks40
-\t@pgfplots@tokb=\toks41
-\t@pgfplots@tokc=\toks42
-\pgfplots@tmpa=\dimen354
-\c@pgfplots@coordindex=\count379
-\c@pgfplots@scanlineindex=\count380
+\t@pgfplots@toka=\toks36
+\t@pgfplots@tokb=\toks37
+\t@pgfplots@tokc=\toks38
+\pgfplots@tmpa=\dimen306
+\c@pgfplots@coordindex=\count326
+\c@pgfplots@scanlineindex=\count327
 
 (/usr/share/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgeneric.code.tex))
 (/usr/share/texmf-dist/tex/generic/pgfplots/libs/pgfplotslibrary.code.tex)
@@ -867,9 +611,9 @@ Package: pgfplots 2021/05/15 v1.18.1 Data Visualization (1.18.1)
 oader.code.tex
 (/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.code.tex)
 Package pgfplots: loading complementary utilities for your pgf version...
-\t@pgf@toka=\toks43
-\t@pgf@tokb=\toks44
-\t@pgf@tokc=\toks45
+\t@pgf@toka=\toks39
+\t@pgf@tokb=\toks40
+\t@pgf@tokc=\toks41
 
 (/usr/share/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfsupp_p
 gfutil-common-lists.tex))
@@ -880,14 +624,14 @@ gfutil-common-lists.tex))
 ext.code.tex)
 (/usr/share/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsarray.code.te
 x
-\c@pgfplotsarray@tmp=\count381
+\c@pgfplotsarray@tmp=\count328
 )
 (/usr/share/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsmatrix.code.t
 ex)
 (/usr/share/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstableshared.code.t
 ex
-\c@pgfplotstable@counta=\count382
-\t@pgfplotstable@a=\toks46
+\c@pgfplotstable@counta=\count329
+\t@pgfplotstable@a=\toks42
 )
 (/usr/share/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsdeque.code.te
 x) (/usr/share/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.code.tex
@@ -895,13 +639,13 @@ x) (/usr/share/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.code.tex
 (/usr/share/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.verb.code.tex)
 (/usr/share/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplots.surfshading
 .code.tex
-\c@pgfplotslibrarysurf@no=\count383
+\c@pgfplotslibrarysurf@no=\count330
 
 (/usr/share/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.surfshading.
 pgfsys-xetex.def
 (/usr/share/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.surfshading.
 pgfsys-dvipdfmx.def
-\c@pgfplotslibrarysurf@streamlen=\count384
+\c@pgfplotslibrarysurf@streamlen=\count331
 ))))
 (/usr/share/texmf-dist/tex/generic/pgfplots/util/pgfplotscolormap.code.tex
 (/usr/share/texmf-dist/tex/generic/pgfplots/util/pgfplotscolor.code.tex))
@@ -918,16 +662,16 @@ pgfsys-dvipdfmx.def
 (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
 decorations.code.tex
 (/usr/share/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.code.tex
-\pgfdecoratedcompleteddistance=\dimen355
-\pgfdecoratedremainingdistance=\dimen356
-\pgfdecoratedinputsegmentcompleteddistance=\dimen357
-\pgfdecoratedinputsegmentremainingdistance=\dimen358
-\pgf@decorate@distancetomove=\dimen359
-\pgf@decorate@repeatstate=\count385
-\pgfdecorationsegmentamplitude=\dimen360
-\pgfdecorationsegmentlength=\dimen361
+\pgfdecoratedcompleteddistance=\dimen307
+\pgfdecoratedremainingdistance=\dimen308
+\pgfdecoratedinputsegmentcompleteddistance=\dimen309
+\pgfdecoratedinputsegmentremainingdistance=\dimen310
+\pgf@decorate@distancetomove=\dimen311
+\pgf@decorate@repeatstate=\count332
+\pgfdecorationsegmentamplitude=\dimen312
+\pgfdecorationsegmentlength=\dimen313
 )
-\tikz@lib@dec@box=\box75
+\tikz@lib@dec@box=\box71
 )
 (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
 decorations.pathmorphing.code.tex
@@ -939,13 +683,13 @@ decorations.pathreplacing.code.tex
 ons.pathreplacing.code.tex))
 (/usr/share/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypgfplots.contourlua
 .code.tex)
-\pgfplots@numplots=\count386
-\pgfplots@xmin@reg=\dimen362
-\pgfplots@xmax@reg=\dimen363
-\pgfplots@ymin@reg=\dimen364
-\pgfplots@ymax@reg=\dimen365
-\pgfplots@zmin@reg=\dimen366
-\pgfplots@zmax@reg=\dimen367
+\pgfplots@numplots=\count333
+\pgfplots@xmin@reg=\dimen314
+\pgfplots@xmax@reg=\dimen315
+\pgfplots@ymin@reg=\dimen316
+\pgfplots@ymax@reg=\dimen317
+\pgfplots@zmin@reg=\dimen318
+\pgfplots@zmax@reg=\dimen319
 )
 (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
 plotmarks.code.tex
@@ -953,43 +697,9 @@ File: tikzlibraryplotmarks.code.tex 2023-01-15 v3.1.10 (3.1.10)
 
 (/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmarks.code.tex
 File: pgflibraryplotmarks.code.tex 2023-01-15 v3.1.10 (3.1.10)
-))) (/usr/share/texmf-dist/tex/latex/tikz-qtree/tikz-qtree.sty
-(/usr/share/texmf-dist/tex/latex/tikz-qtree/pgftree.sty
-(/usr/share/texmf-dist/tex/latex/tikz-qtree/pgfsubpic.sty
-(/usr/share/texmf-dist/tex/latex/tikz-qtree/pgfsubpic.tex
-\pgf@subpicminx=\dimen368
-\pgf@subpicminy=\dimen369
-\pgf@subpicmaxx=\dimen370
-\pgf@subpicmaxy=\dimen371
-))
-(/usr/share/texmf-dist/tex/latex/tikz-qtree/pgftree.tex
-\levelsep=\dimen372
-\subtreesep=\dimen373
-\smuggle@levelsep=\dimen374
-\smuggle@subtreesep=\dimen375
-\this@levelsep=\dimen376
-\this@subtreesep=\dimen377
-\pgftree@childx=\dimen378
-\pgftree@savechildx=\dimen379
-\pgftree@childy=\dimen380
-\pgftree@savechildy=\dimen381
-\pgftree@childi=\count387
-\pgftree@savechildi=\count388
-\pgftree@level=\count389
-\pgftree@depth=\dimen382
-\pgf@subpic@hbox@children=\box76
-\pgf@subpic@minx@children=\dimen383
-\pgf@subpic@miny@children=\dimen384
-\pgf@subpic@maxx@children=\dimen385
-\pgf@subpic@maxy@children=\dimen386
-\pgftree@lastchildx=\dimen387
-\pgftree@lastchildy=\dimen388
-))
-(/usr/share/texmf-dist/tex/latex/tikz-qtree/tikz-qtree.tex
-\@result=\toks47
-\child@list=\toks48
-\root@node=\toks49
-))
+))) (/usr/share/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
+)
 (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
 matrix.code.tex
 File: tikzlibrarymatrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
@@ -997,8 +707,8 @@ File: tikzlibrarymatrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
 (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
 backgrounds.code.tex
 File: tikzlibrarybackgrounds.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@layerbox@background=\box77
-\pgf@layerboxsaved@background=\box78
+\pgf@layerbox@background=\box72
+\pgf@layerboxsaved@background=\box73
 )
 (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
 automata.code.tex
@@ -1011,26 +721,26 @@ File: tikzlibraryshapes.multipart.code.tex 2023-01-15 v3.1.10 (3.1.10)
 (/usr/share/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.multip
 art.code.tex
 File: pgflibraryshapes.multipart.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfnodepartlowerbox=\box79
-\pgfnodeparttwobox=\box80
-\pgfnodepartthreebox=\box81
-\pgfnodepartfourbox=\box82
-\pgfnodeparttwentybox=\box83
-\pgfnodepartnineteenbox=\box84
-\pgfnodeparteighteenbox=\box85
-\pgfnodepartseventeenbox=\box86
-\pgfnodepartsixteenbox=\box87
-\pgfnodepartfifteenbox=\box88
-\pgfnodepartfourteenbox=\box89
-\pgfnodepartthirteenbox=\box90
-\pgfnodeparttwelvebox=\box91
-\pgfnodepartelevenbox=\box92
-\pgfnodeparttenbox=\box93
-\pgfnodepartninebox=\box94
-\pgfnodeparteightbox=\box95
-\pgfnodepartsevenbox=\box96
-\pgfnodepartsixbox=\box97
-\pgfnodepartfivebox=\box98
+\pgfnodepartlowerbox=\box74
+\pgfnodeparttwobox=\box75
+\pgfnodepartthreebox=\box76
+\pgfnodepartfourbox=\box77
+\pgfnodeparttwentybox=\box78
+\pgfnodepartnineteenbox=\box79
+\pgfnodeparteighteenbox=\box80
+\pgfnodepartseventeenbox=\box81
+\pgfnodepartsixteenbox=\box82
+\pgfnodepartfifteenbox=\box83
+\pgfnodepartfourteenbox=\box84
+\pgfnodepartthirteenbox=\box85
+\pgfnodeparttwelvebox=\box86
+\pgfnodepartelevenbox=\box87
+\pgfnodeparttenbox=\box88
+\pgfnodepartninebox=\box89
+\pgfnodeparteightbox=\box90
+\pgfnodepartsevenbox=\box91
+\pgfnodepartsixbox=\box92
+\pgfnodepartfivebox=\box93
 )))
 (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
 shapes.code.tex
@@ -1086,14 +796,14 @@ File: tikzlibraryarrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
 
 (/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.code.tex
 File: pgflibraryarrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\arrowsize=\dimen389
+\arrowsize=\dimen320
 ))
 (/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta.code.tex
 File: pgflibraryarrows.meta.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfarrowinset=\dimen390
-\pgfarrowlength=\dimen391
-\pgfarrowwidth=\dimen392
-\pgfarrowlinewidth=\dimen393
+\pgfarrowinset=\dimen321
+\pgfarrowlength=\dimen322
+\pgfarrowwidth=\dimen323
+\pgfarrowlinewidth=\dimen324
 )
 (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
 chains.code.tex
@@ -1111,108 +821,341 @@ File: tikzlibrarycalc.code.tex 2023-01-15 v3.1.10 (3.1.10)
 math.code.tex
 (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
 fpu.code.tex)
-\tikz@math@for@depth=\count390
-\tikz@math@dimen=\dimen394
-\tikz@math@toks=\toks50
+\tikz@math@for@depth=\count334
+\tikz@math@dimen=\dimen325
+\tikz@math@toks=\toks43
+) (/usr/share/texmf-dist/tex/latex/adjustbox/adjustbox.sty
+Package: adjustbox 2025/02/26 v1.3c Adjusting TeX boxes (trim, clip, ...)
+
+(/usr/share/texmf-dist/tex/latex/adjustbox/adjcalc.sty
+Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
+-ends (calc, etex, pgfmath)
+)
+(/usr/share/texmf-dist/tex/latex/adjustbox/trimclip.sty
+Package: trimclip 2025/02/21 v1.2a Trim and clip general TeX material
+
+(/usr/share/texmf-dist/tex/latex/collectbox/collectbox.sty
+Package: collectbox 2022/10/17 v0.4c Collect macro arguments as boxes
+\collectedbox=\box94
+)
+\tc@llx=\dimen326
+\tc@lly=\dimen327
+\tc@urx=\dimen328
+\tc@ury=\dimen329
+Package trimclip Info: Using driver 'tc-xetex.def'.
+
+(/usr/share/texmf-dist/tex/latex/adjustbox/tc-xetex.def
+File: tc-xetex.def 2019/01/04 v2.2 Clipping driver for xetex
 ))
+\adjbox@Width=\dimen330
+\adjbox@Height=\dimen331
+\adjbox@Depth=\dimen332
+\adjbox@Totalheight=\dimen333
+\adjbox@pwidth=\dimen334
+\adjbox@pheight=\dimen335
+\adjbox@pdepth=\dimen336
+\adjbox@ptotalheight=\dimen337
+
+(/usr/share/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
+Package: ifoddpage 2022/10/18 v1.2 Conditionals for odd/even page detection
+\c@checkoddpage=\count335
+)
+(/usr/share/texmf-dist/tex/latex/varwidth/varwidth.sty
+Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
+\@vwid@box=\box95
+\sift@deathcycles=\count336
+\@vwid@loff=\dimen338
+\@vwid@roff=\dimen339
+))
+(/usr/share/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2023/07/28 v1.6b Sub-captions (AR)
+
+(/usr/share/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2023/08/05 v3.6o Customizing captions (AR)
+
+(/usr/share/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
+\caption@tempdima=\dimen340
+\captionmargin=\dimen341
+\caption@leftmargin=\dimen342
+\caption@rightmargin=\dimen343
+\caption@width=\dimen344
+\caption@indent=\dimen345
+\caption@parindent=\dimen346
+\caption@hangindent=\dimen347
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count337
+\c@continuedfloat=\count338
+)
+Package caption Info: New subtype `subfigure' on input line 238.
+\c@subfigure=\count339
+Package caption Info: New subtype `subtable' on input line 238.
+\c@subtable=\count340
+)
+(/usr/share/texmf-dist/tex/latex/unicode-math/unicode-math.sty
+Package: unicode-math 2023/08/13 v0.8r Unicode maths in XeLaTeX and LuaLaTeX
+
+(/usr/share/texmf-dist/tex/latex/unicode-math/unicode-math-xetex.sty
+Package: unicode-math-xetex 2023/08/13 v0.8r Unicode maths in XeLaTeX and LuaLa
+TeX
+
+(/usr/share/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+Package: l3keys2e 2024-08-16 LaTeX2e option processing using LaTeX3 keys
+)
+(/usr/share/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2024/11/05 v2.17t AMS math features
+\@mathmargin=\skip62
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2021/08/26 v2.01 AMS text
+
+(/usr/share/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks44
+\ex@=\dimen348
+))
+(/usr/share/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen349
+)
+(/usr/share/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2022/04/08 v2.04 operator names
+)
+\inf@bad=\count341
+LaTeX Info: Redefining \frac on input line 233.
+\uproot@=\count342
+\leftroot@=\count343
+LaTeX Info: Redefining \overline on input line 398.
+LaTeX Info: Redefining \colon on input line 409.
+\classnum@=\count344
+\DOTSCASE@=\count345
+LaTeX Info: Redefining \ldots on input line 495.
+LaTeX Info: Redefining \dots on input line 498.
+LaTeX Info: Redefining \cdots on input line 619.
+\Mathstrutbox@=\box96
+\strutbox@=\box97
+LaTeX Info: Redefining \big on input line 721.
+LaTeX Info: Redefining \Big on input line 722.
+LaTeX Info: Redefining \bigg on input line 723.
+LaTeX Info: Redefining \Bigg on input line 724.
+\big@size=\dimen350
+LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
+\macc@depth=\count346
+LaTeX Info: Redefining \bmod on input line 904.
+LaTeX Info: Redefining \pmod on input line 909.
+LaTeX Info: Redefining \smash on input line 939.
+LaTeX Info: Redefining \relbar on input line 969.
+LaTeX Info: Redefining \Relbar on input line 970.
+\c@MaxMatrixCols=\count347
+\dotsspace@=\muskip17
+\c@parentequation=\count348
+\dspbrk@lvl=\count349
+\tag@help=\toks45
+\row@=\count350
+\column@=\count351
+\maxfields@=\count352
+\andhelp@=\toks46
+\eqnshift@=\dimen351
+\alignsep@=\dimen352
+\tagshift@=\dimen353
+\tagwidth@=\dimen354
+\totwidth@=\dimen355
+\lineht@=\dimen356
+\@envbody=\toks47
+\multlinegap=\skip63
+\multlinetaggap=\skip64
+\mathdisplay@stack=\toks48
+LaTeX Info: Redefining \[ on input line 2953.
+LaTeX Info: Redefining \] on input line 2954.
+)
+\g__um_fam_int=\count353
+\g__um_fonts_used_int=\count354
+\l__um_primecount_int=\count355
+\g__um_primekern_muskip=\muskip18
+
+(/usr/share/texmf-dist/tex/latex/unicode-math/unicode-math-table.tex)))
 
 Package xeCJK Warning: Redefining CJKfamily `\CJKrmdefault'
 (xeCJK)                (FandolSong-Regular(0)).
 
 
 Package fontspec Info: 
-(fontspec)             Could not resolve font "LXGW Neo ZhiSong Plus/I" (it
+(fontspec)             Could not resolve font "LXGW Bright Medium/B" (it
 (fontspec)             probably doesn't exist).
 
 
 Package fontspec Info: 
-(fontspec)             Could not resolve font "LXGW Neo ZhiSong Plus/BI" (it
-(fontspec)             probably doesn't exist).
+(fontspec)             Could not resolve font "LXGW Neo XiHei Screen Full/I"
+(fontspec)             (it probably doesn't exist).
 
 
 Package fontspec Info: 
-(fontspec)             Could not resolve font "LXGW Neo ZhiSong Plus/I" (it
-(fontspec)             probably doesn't exist).
+(fontspec)             Could not resolve font "LXGW Neo ZhiSong Screen
+(fontspec)             Full/BI" (it probably doesn't exist).
 
 
 Package fontspec Info: 
-(fontspec)             Font family 'LXGWNeoZhiSongPlus(0)' created for font
-(fontspec)             'LXGW Neo ZhiSong Plus' with options
-(fontspec)             [Script={CJK},BoldFont={LXGW Neo ZhiSong Plus}].
+(fontspec)             Font family 'LXGWNeoZhiSongScreenFull(0)' created for
+(fontspec)             font 'LXGW Neo ZhiSong Screen Full' with options
+(fontspec)             [Script={CJK},BoldFont={LXGW Neo XiHei Screen
+(fontspec)             Full},ItalicFont={LXGW Bright Medium}].
 (fontspec)              
 (fontspec)              This font family consists of the following NFSS
 (fontspec)             series/shapes:
 (fontspec)              
 (fontspec)             - 'normal' (m/n) with NFSS spec.: <->"LXGW Neo ZhiSong
-(fontspec)             Plus/OT:script=hani;language=dflt;"
-(fontspec)             - 'bold' (b/n) with NFSS spec.: <->"LXGW Neo ZhiSong
-(fontspec)             Plus/OT:script=hani;language=dflt;"
+(fontspec)             Screen Full/OT:script=hani;language=dflt;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.: <->"LXGW Neo XiHei
+(fontspec)             Screen Full/OT:script=hani;language=dflt;"
+(fontspec)             - 'italic' (m/it) with NFSS spec.: <->"LXGW Bright
+(fontspec)             Medium/OT:script=hani;language=dflt;"
+(fontspec)             - 'italic small caps'  (m/scit) with NFSS spec.:
+(fontspec)             <->"LXGW Bright
+(fontspec)             Medium/OT:script=hani;language=dflt;+smcp;"
 
-\symCJKmath=\mathgroup255
-LaTeX Font Info:    Overwriting symbol font `CJKmath' in version `bold'
-(Font)                  TU/LXGWNeoZhiSongPlus(0)/m/n --> TU/LXGWNeoZhiSongPlus(
-0)/b/n on input line 20.
-(./sssp-loop.aux)
-\openout1 = `sssp-loop.aux'.
-
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
 
 Package fontspec Info: 
-(fontspec)             Adjusting the maths setup (use [no-math] to avoid
-(fontspec)             this).
+(fontspec)             Font family 'NewCMMath-Book.otf(0)' created for font
+(fontspec)             'NewCMMath-Book.otf' with options
+(fontspec)             [BoldItalicFont={},ItalicFont={},SmallCapsFont={},Script
+=Math].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->"[NewCMMath-Book.otf]/OT:script=math;language=dflt;"
 
-\symlegacymaths=\mathgroup13
-LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 20.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 20.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 20.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 20.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 20.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 20.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 20.
-LaTeX Font Info:    Redeclaring math accent \check on input line 20.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 20.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 20.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 20.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 20.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 20.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 20.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 20.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 20.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 20.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 20.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 20.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 20.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 20.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 20.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 20.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 20.
+
+Package fontspec Info: 
+(fontspec)             Font family 'NewCMMath-Book.otf(1)' created for font
+(fontspec)             'NewCMMath-Book.otf' with options
+(fontspec)             [BoldItalicFont={},ItalicFont={},SmallCapsFont={},Script
+=Math,SizeFeatures={{Size=8.9584645-},{Size=6.323622-8.9584645,Font=NewCMMath-B
+ook.otf,Style=MathScript},{Size=-6.323622,Font=NewCMMath-Book.otf,Style=MathScr
+iptScript}}].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <8.9584645->"[NewCMMath-Book.otf]/OT:script=math;languag
+e=dflt;"<6.323622-8.9584645>"[NewCMMath-Book.otf]/OT:script=math;language=dflt;
++ssty=0;"<-6.323622>"[NewCMMath-Book.otf]/OT:script=math;language=dflt;+ssty=1;
+"
+
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 20.
+(Font)              `operators' in the math version `normal' on input line 62.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 20.
+(Font)                  OT1/cmr/m/n --> TU/NewCMMath-Book.otf(1)/m/n on input l
+ine 62.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 20.
+(Font)              `operators' in the math version `bold' on input line 62.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/lmr/m/n on input line 20.
-LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  TU/lmr/m/n --> TU/lmr/m/n on input line 20.
-LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/bx/n --> TU/NewCMMath-Book.otf(1)/b/n on input 
+line 62.
+
+Package fontspec Info: 
+(fontspec)             NewCMMath-Book scale = 1.0001.
+
+
+Package fontspec Info: 
+(fontspec)             NewCMMath-Book scale = 1.0001.
+
+
+Package fontspec Info: 
+(fontspec)             NewCMMath-Book scale = 1.0001.
+
+
+Package fontspec Info: 
+(fontspec)             NewCMMath-Book scale = 1.0001.
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'NewCMMath-Book.otf(2)' created for font
+(fontspec)             'NewCMMath-Book.otf' with options
+(fontspec)             [BoldItalicFont={},ItalicFont={},SmallCapsFont={},Script
+=Math,SizeFeatures={{Size=8.9584645-},{Size=6.323622-8.9584645,Font=NewCMMath-B
+ook.otf,Style=MathScript},{Size=-6.323622,Font=NewCMMath-Book.otf,Style=MathScr
+iptScript}},ScaleAgain=1.0001,FontAdjustment={\fontdimen
+(fontspec)             8\font =7.13515pt\relax \fontdimen 9\font
+(fontspec)             =4.15251pt\relax \fontdimen 10\font =4.67947pt\relax
+(fontspec)             \fontdimen 11\font =7.23001pt\relax \fontdimen 12\font
+(fontspec)             =3.63608pt\relax \fontdimen 13\font =3.82579pt\relax
+(fontspec)             \fontdimen 14\font =3.82579pt\relax \fontdimen 15\font
+(fontspec)             =3.04588pt\relax \fontdimen 16\font =2.60323pt\relax
+(fontspec)             \fontdimen 17\font =2.60323pt\relax \fontdimen 18\font
+(fontspec)             =2.63484pt\relax \fontdimen 19\font =2.10788pt\relax
+(fontspec)             \fontdimen 22\font =2.63484pt\relax \fontdimen 20\font
+(fontspec)             =0pt\relax \fontdimen 21\font =0pt\relax }].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <8.9584645->s*[1.0001]"[NewCMMath-Book.otf]/OT:script=ma
+th;language=dflt;"<6.323622-8.9584645>s*[1.0001]"[NewCMMath-Book.otf]/OT:script
+=math;language=dflt;+ssty=0;"<-6.323622>s*[1.0001]"[NewCMMath-Book.otf]/OT:scri
+pt=math;language=dflt;+ssty=1;"
+
+LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
+(Font)              `symbols' in the math version `normal' on input line 62.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> TU/NewCMMath-Book.otf(2)/m/n on input 
+line 62.
+LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
+(Font)              `symbols' in the math version `bold' on input line 62.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> TU/NewCMMath-Book.otf(2)/b/n on input 
+line 62.
+
+Package fontspec Info: 
+(fontspec)             NewCMMath-Book scale = 0.9999.
+
+
+Package fontspec Info: 
+(fontspec)             NewCMMath-Book scale = 0.9999.
+
+
+Package fontspec Info: 
+(fontspec)             NewCMMath-Book scale = 0.9999.
+
+
+Package fontspec Info: 
+(fontspec)             NewCMMath-Book scale = 0.9999.
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'NewCMMath-Book.otf(3)' created for font
+(fontspec)             'NewCMMath-Book.otf' with options
+(fontspec)             [BoldItalicFont={},ItalicFont={},SmallCapsFont={},Script
+=Math,SizeFeatures={{Size=8.9584645-},{Size=6.323622-8.9584645,Font=NewCMMath-B
+ook.otf,Style=MathScript},{Size=-6.323622,Font=NewCMMath-Book.otf,Style=MathScr
+iptScript}},ScaleAgain=0.9999,FontAdjustment={\fontdimen
+(fontspec)             8\font =0.50589pt\relax \fontdimen 9\font
+(fontspec)             =2.10788pt\relax \fontdimen 10\font =1.76007pt\relax
+(fontspec)             \fontdimen 11\font =1.16988pt\relax \fontdimen 12\font
+(fontspec)             =6.32362pt\relax \fontdimen 13\font =0pt\relax }].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <8.9584645->s*[0.9999]"[NewCMMath-Book.otf]/OT:script=ma
+th;language=dflt;"<6.323622-8.9584645>s*[0.9999]"[NewCMMath-Book.otf]/OT:script
+=math;language=dflt;+ssty=0;"<-6.323622>s*[0.9999]"[NewCMMath-Book.otf]/OT:scri
+pt=math;language=dflt;+ssty=1;"
+
+LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
+(Font)              `largesymbols' in the math version `normal' on input line 6
+2.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> TU/NewCMMath-Book.otf(3)/m/n on input 
+line 62.
+LaTeX t Info:    Overwriting math alphabet `\mathit' in version `normal'
 (Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 20.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
 (Font)                  OT1/cmr/bx/n --> TU/lmr/b/n on input line 20.
@@ -1228,49 +1171,63 @@ LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
 (Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 20.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 20.
-\c@lstlisting=\count391
-\c__nicematrix_shift_Ldots_last_row_dim=\dimen395
-\c__nicematrix_shift_exterior_Vdots_dim=\dimen396
-\c__nicematrix_innersep_middle_dim=\dimen397
+\c__nicematrix_shift_Ldots_last_row_dim=\dimen391
+\c__nicematrix_shift_exterior_Vdots_dim=\dimen392
+\c__nicematrix_innersep_middle_dim=\dimen393
 
-Package pgfplots notification 'compat/show suggested version=true': document ha
-s been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
+
+Package pgfplots Warning: running in backwards compatibility mode (unsuitable tick labels; missing features). Consider writing \pgfplotsset{compat=1.18} into your preamble.
+ on input line 20.
 
 Missing character: There is no ; ("3B) in font nullfont!
 Missing character: There is no ; ("3B) in font nullfont!
 Missing character: There is no ; ("3B) in font nullfont!
-LaTeX Font Info:    Trying to load font information for U+stmry on input line 2
-8.
+LaTeX Font Info:    Trying to load font information for U+stmry on input line 28.
 (/usr/share/texmf-dist/tex/latex/stmaryrd/Ustmry.fd)
 
 LaTeX Font Warning: Font shape `U/stmry/m/n' in size <15.05624> not available
 (Font)              size <14.4> substituted on input line 28.
 
 LaTeX Font Info:    Trying to load font information for U+msa on input line 28.
-
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 28.
-
-
-(/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
+ (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 28
-.
 
-(/usr/share/texmf-dist/tex/latex/jknapltx/ursfs.fd
-File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
-)
+! Package xcolor Error: Undefined color `Solarized-magenta'.
 
-LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <15.05624> not available
-(Font)              size <14.4> substituted on input line 28.
+See the xcolor package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.28     \node [point] (c) at (0,0) {$c
+                                       $};
+? 
+! Emergency stop.
+ ...                                              
+                                                  
+l.28     \node [point] (c) at (0,0) {$c
+                                       $};
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
-
-LaTeX Font Warning: Font shape `U/stmry/b/n' undefined
-(Font)              using `U/stmry/m/n' instead on input line 28.
-
+ 
+Here is how much of TeX's memory you used:
+ 36041 strings out of 473832
+ 977273 string characters out of 5735459
+ 1459978 words of memory out of 5000000
+ 58473 multiletter control sequences out of 15000+600000
+ 565886 words of font info for 79 fonts, out of 8000000 for 9000
+ 1348 hyphenation exceptions out of 8191
+ 121i,6n,124p,789b,649s stack positions out of 10000i,1000n,20000p,200000b,200000s
+No pages of output.
+tf(3)/m/n' will be
+(Font)              scaled to size 12.0437pt on input line 17.
+LaTeX Font Info:    Font shape `TU/NewCMMath-Book.otf(3)/m/n' will be
+(Font)              scaled to size 9.03276pt on input line 17.
 
 
 [1
@@ -1278,24 +1235,16 @@ LaTeX Font Warning: Font shape `U/stmry/b/n' undefined
 ] (./sssp-loop.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
-L3 programming layer <2022/08/05>
+L3 programming layer <2022/07/14>
  ***********
-
-
-LaTeX Font Warning: Size substitutions with differences
-(Font)              up to 0.65625pt have occurred.
-
-
-LaTeX Font Warning: Some font shapes were not available, defaults substituted.
-
  ) 
 Here is how much of TeX's memory you used:
- 37702 strings out of 473832
- 1004193 string characters out of 5735457
- 1500872 words of memory out of 5000000
- 60095 multiletter control sequences out of 15000+600000
- 569460 words of font info for 94 fonts, out of 8000000 for 9000
+ 38069 strings out of 473832
+ 973896 string characters out of 5735459
+ 1637048 words of memory out of 5000000
+ 60514 multiletter control sequences out of 15000+600000
+ 562550 words of font info for 73 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 117i,6n,121p,733b,681s stack positions out of 30000i,1000n,32767p,200000b,200000s
+ 117i,6n,145p,896b,684s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on sssp-loop.pdf (1 page).

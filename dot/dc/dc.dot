@@ -16,7 +16,7 @@ digraph g {
         labelloc="l"
         fontcolor="#d33682"
 
-        "子问题2规模n/2", "子问题1规模n/2"
+        "子问题1规模n/2", "子问题2规模n/2"
     }
 
     原问题规模n -> {"子问题1规模n/2", "子问题2规模n/2"}
@@ -30,15 +30,15 @@ digraph g {
         labelloc="b"
         fontcolor="#d33682"
 
-        node [shape=box fontcolor="#268bd2"]
+        node [shape=box, width=1.8, fontcolor="#268bd2"]
 
-        子问题2的解, 子问题1的解
+        子问题1的解, 子问题2的解
     }
 
     "子问题1规模n/2" -> 子问题1的解
     "子问题2规模n/2" -> 子问题2的解
 
-    node [shape=box fontcolor="#268bd2"]
+    node [shape=box, width=1.8, fontcolor="#268bd2"]
     
     {子问题1的解, 子问题2的解} -> 原问题的解
 }

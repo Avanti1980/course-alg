@@ -2,8 +2,8 @@ digraph g {
     compound=true;
     graph [nodesep=0.12 ranksep=0.5]
     bgcolor=transparent
-    node [margin=0 shape=point height=0.06 color="#586e75" fontsize=10 label=""]
-    edge [color="#586e75" fontcolor="#586e75" fontsize=12 fontname="EBG,fzlz" arrowhead=vee arrowsize=0.3]
+    node [margin=0 shape=point height=0.1 color="#586e75" fontsize=10 label=""]
+    edge [color="#586e75" fontcolor="#586e75" fontsize=12 fontname="Ysabeau, LXGWSong" arrowhead=vee arrowsize=0.6]
 
     1 -> {2,3}
 

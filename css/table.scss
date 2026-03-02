@@ -2,6 +2,7 @@
   table-layout: fixed;
   border-collapse: collapse;
   border-spacing: 0;
+
   th,
   td {
     border: none;
@@ -19,9 +20,11 @@
 
 @for $i from 0 to 20 {
   @each $style in "solid", "dashed", "dotted" {
+
     // 每列左右边框
     @each $direction in "left", "right" {
       .reveal .column#{$i}-border-#{$direction}-#{$style} {
+
         th:nth-child(#{$i}),
         td:nth-child(#{$i}) {
           border-#{$direction}: 1px #{$style} var(--solarized-base01);
@@ -40,12 +43,14 @@
 
     @each $direction in "left", "right", "top", "bottom" {
       @each $thick in "1", "2" {
+
         // 表头每格边框
         .reveal .column#{$i}-border#{$thick}-#{$direction}-#{$style}-head {
           th:nth-child(#{$i}) {
             border-#{$direction}: #{$thick}px #{$style} var(--solarized-base01);
           }
         }
+
         // 表身每格边框
         @for $j from 0 to 10 {
           .reveal .row#{$i}-column#{$j}-border#{$thick}-#{$direction}-#{$style} {
@@ -59,23 +64,27 @@
       }
     }
   }
+
   // 列加粗
   .reveal .column#{$i}-bold {
     td:nth-child(#{$i}) {
       font-weight: 900;
     }
   }
+
   // 首行深色
   .reveal .head-highlight-#{$i} {
     th:nth-child(n + #{$i}) {
       background-color: var(--solarized-base2);
     }
   }
+
   // 单元格着色
   @for $j from 0 to 20 {
     @each $color in "base03", "base02", "base01", "base00", "base0", "base1", "base2", "base3", "yellow", "orange",
-      "red", "magenta", "violet", "blue", "cyan", "green"
-    {
+    "red", "magenta", "violet", "blue", "cyan", "green"
+
+      {
       .reveal .row#{$i}-column#{$j}-#{$color} {
         tr:nth-child(#{$i}) {
           td:nth-child(#{$j}) {
@@ -90,21 +99,25 @@
 
 // 棋盘着色
 @mixin chessboard($color, $parity: "even") {
-  @if $parity == "odd" {
+  @if $parity =="odd" {
     .reveal .chessboard-#{$color}-odd {
+
       // 首行奇数格着色
       th:nth-child(2n + 1),
-      tr:nth-child(2n + 1) > td:nth-child(2n),
-      tr:nth-child(2n) > td:nth-child(2n + 1) {
+      tr:nth-child(2n + 1)>td:nth-child(2n),
+      tr:nth-child(2n)>td:nth-child(2n + 1) {
         background-color: var(--solarized-#{$color});
       }
     }
-  } @else {
+  }
+
+  @else {
     .reveal .chessboard-#{$color}-even {
+
       // 首行偶数格着色
       th:nth-child(2n),
-      tr:nth-child(2n + 1) > td:nth-child(2n + 1),
-      tr:nth-child(2n) > td:nth-child(2n) {
+      tr:nth-child(2n + 1)>td:nth-child(2n + 1),
+      tr:nth-child(2n)>td:nth-child(2n) {
         background-color: var(--solarized-#{$color});
       }
     }
@@ -119,10 +132,11 @@
 
 @mixin queen8($color) {
   .reveal .queen8-#{$color} {
-    tr:nth-child(2n + 1) > td:nth-child(2n + 3):nth-child(-2n + 9),
-    tr:nth-child(2n + 1) > td:nth-child(2n + 14):nth-child(-2n + 20),
-    tr:nth-child(2n) > td:nth-child(2n + 2):nth-child(-2n + 8),
-    tr:nth-child(2n) > td:nth-child(2n + 13):nth-child(-2n + 19) {
+
+    tr:nth-child(2n + 1)>td:nth-child(2n + 3):nth-child(-2n + 9),
+    tr:nth-child(2n + 1)>td:nth-child(2n + 14):nth-child(-2n + 20),
+    tr:nth-child(2n)>td:nth-child(2n + 2):nth-child(-2n + 8),
+    tr:nth-child(2n)>td:nth-child(2n + 13):nth-child(-2n + 19) {
       background-color: var(--solarized-#{$color});
     }
   }
@@ -132,12 +146,13 @@
 
 @mixin queen4($color) {
   .reveal .queen4-#{$color} {
-    tr:nth-child(2n + 1) > td:nth-child(2n + 3):nth-child(-2n + 5),
-    tr:nth-child(2n + 1) > td:nth-child(2n + 9):nth-child(-2n + 11),
-    tr:nth-child(2n + 1) > td:nth-child(2n + 15):nth-child(-2n + 17),
-    tr:nth-child(2n) > td:nth-child(2n + 2):nth-child(-2n + 4),
-    tr:nth-child(2n) > td:nth-child(2n + 8):nth-child(-2n + 10),
-    tr:nth-child(2n) > td:nth-child(2n + 14):nth-child(-2n + 16) {
+
+    tr:nth-child(2n + 1)>td:nth-child(2n + 3):nth-child(-2n + 5),
+    tr:nth-child(2n + 1)>td:nth-child(2n + 9):nth-child(-2n + 11),
+    tr:nth-child(2n + 1)>td:nth-child(2n + 15):nth-child(-2n + 17),
+    tr:nth-child(2n)>td:nth-child(2n + 2):nth-child(-2n + 4),
+    tr:nth-child(2n)>td:nth-child(2n + 8):nth-child(-2n + 10),
+    tr:nth-child(2n)>td:nth-child(2n + 14):nth-child(-2n + 16) {
       background-color: var(--solarized-#{$color});
     }
   }
@@ -147,10 +162,11 @@
 
 @mixin klotski($color) {
   .reveal .klotski-#{$color} {
-    tr:nth-child(2n) > td:nth-child(2n + 1):nth-child(-2n + 3),
-    tr:nth-child(2n) > td:nth-child(2n + 7):nth-child(-2n + 9),
-    tr:nth-child(2n+1) > td:nth-child(2n + 2):nth-child(-2n + 4),
-    tr:nth-child(2n+1) > td:nth-child(2n + 8):nth-child(-2n + 10) {
+
+    tr:nth-child(2n)>td:nth-child(2n + 1):nth-child(-2n + 3),
+    tr:nth-child(2n)>td:nth-child(2n + 7):nth-child(-2n + 9),
+    tr:nth-child(2n+1)>td:nth-child(2n + 2):nth-child(-2n + 4),
+    tr:nth-child(2n+1)>td:nth-child(2n + 8):nth-child(-2n + 10) {
       background-color: var(--solarized-#{$color});
     }
   }
@@ -162,6 +178,7 @@
 
 // 全边框
 .reveal .fullborder {
+
   th,
   td {
     border: 1px solid var(--solarized-base01) !important;
@@ -172,12 +189,14 @@
 // 行从0开始 0代表表头行 列从1开始
 @mixin subtable-fullborder($i, $j, $k, $l) {
   .reveal .row#{$i}-#{$j}-column#{$k}-#{$l}-fullborder {
-    @if $i == 0 {
+    @if $i ==0 {
+
       // 包含表头行
       th:nth-child(n + #{$k}):nth-child(-n + #{$l}) {
         border: 1px solid var(--solarized-base01);
       }
     }
+
     tr:nth-child(n + #{$i}):nth-child(-n + #{$j}) {
       td:nth-child(n + #{$k}):nth-child(-n + #{$l}) {
         border: 1px solid var(--solarized-base01);
@@ -224,6 +243,7 @@
     border-top: 2px solid var(--solarized-base01); // 表头上边框
     border-bottom: 1px solid var(--solarized-base01); // 表头下边框
   }
+
   tbody tr:nth-last-child(1) {
     border-bottom: 2px solid var(--solarized-base01); // 最后一行下边框
   }
@@ -234,6 +254,7 @@
   th {
     border-top: 2px solid var(--solarized-base01); // 表头上边框
   }
+
   tbody tr:nth-last-child(1) {
     border-bottom: 2px solid var(--solarized-base01); // 最后一行下边框
   }
@@ -247,12 +268,14 @@
 
 @mixin tightcell($i, $j) {
   .reveal .tightcell-#{$i}-#{$j} {
-    @if $i == 0 {
+    @if $i ==0 {
       th:nth-child(#{$j}) {
         padding: 0.4rem 0.2rem 0.2rem 0.2rem;
       }
-    } @else {
-      tr:nth-child(#{$i}) > td:nth-child(#{$j}) {
+    }
+
+    @else {
+      tr:nth-child(#{$i})>td:nth-child(#{$j}) {
         padding: 0.4rem 0.2rem 0.2rem 0.2rem;
       }
     }

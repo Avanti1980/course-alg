@@ -1,10 +1,12 @@
 import numpy as np
 
 
-def add(A, B, C, m, n):
+def add(A, B, m, n):
+    C = np.empty((m, n))
     for i in range(m):
         for j in range(n):
             C[i, j] = A[i, j] + B[i, j]
+    return C
 
 
 def add_rec(A, B, C, shape):
@@ -28,11 +30,12 @@ def add_rec(A, B, C, shape):
 
 m, n = 5, 7
 A, B = np.random.rand(m, n), np.random.rand(m, n)
-C1, C2 = np.empty((m, n)), np.empty((m, n))
-add(A, B, C1, m, n)
+
+C1 = add(A, B, m, n)
+
+C2 = np.empty((m, n))
 add_rec(A, B, C2, [m, n])
 
-# print("C1 =\n", C1)
-# print("C2 =\n", C2)
-# print("C1 - C2 =\n", C1 - C2)
+print("C1 =\n", C1)
+print("C2 =\n", C2)
 print((C1 - C2).max(), (C1 - C2).min())

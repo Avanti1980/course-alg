@@ -1,19 +1,8 @@
-\documentclass{ctexart}
-\usepackage{avanti-color}
-\usepackage{avanti-math}
-\usepackage{avanti-theorem}
-\usepackage{avanti-others}
-\usepackage[a4paper,landscape,margin=1cm]{geometry}
-
-\RequirePackage{fontspec}
-\xeCJKsetup{CJKmath=true}
-\setCJKmainfont[BoldFont={LXGW Neo XiHei Plus},ItalicFont=]{LXGW Neo ZhiSong Plus}
-
-\everymath{\color{Solarized-magenta}}
-\pagestyle{empty} % 没有页眉和页脚
+\documentclass[tikz]{standalone}
+\usepackage{avanti-tikz4slides}
 
 \tikzset{font=\Large}
-\tikzset{base/.style = {smooth,thick,draw=Solarized-base01,Solarized-base01}}
+\tikzset{base/.style = {smooth,thick,draw=SolarizedBase01,SolarizedBase01}}
 
 \begin{document}
 
@@ -81,13 +70,13 @@
     \foreach \i in {1,...,6}{
             %左图
             \foreach \j in {\i,...,6}{
-                    \node [] (\i\j) at (\j*2*\hw-\i*\hw+\hw,\i*\hw) {$\pgfmathparse{\mtable[(\i-1)*6+\j]}\bm{\pgfmathresult}$};
-                    \node [] (\i\j) at (\offx+\j*2*\hw-\i*\hw+\hw,\offy+\i*\hw) {$\pgfmathparse{\stable[(\i-1)*6+\j]}\bm{\pgfmathresult}$};
+                    \node [] (\i\j) at (\j*2*\hw-\i*\hw+\hw,\i*\hw) {$\pgfmathparse{\mtable[(\i-1)*6+\j]}\pgfmathresult$};
+                    \node [] (\i\j) at (\offx+\j*2*\hw-\i*\hw+\hw,\offy+\i*\hw) {$\pgfmathparse{\stable[(\i-1)*6+\j]}\pgfmathresult$};
                 }
             %下图
             \ifthenelse {\NOT \i = 6}{
                 \foreach \j in {\i,...,5}{
-                        \node [] (\i\j) at (\offxx+\j*2*\hw-\i*\hw+\hw,\offyy+\i*\hw) {$\pgfmathparse{\rtable[(\i-1)*5+\j]}\bm{\pgfmathresult}$};
+                        \node [] (\i\j) at (\offxx+\j*2*\hw-\i*\hw+\hw,\offyy+\i*\hw) {$\pgfmathparse{\rtable[(\i-1)*5+\j]}\pgfmathresult$};
                     }
             }{;}
         }
@@ -96,30 +85,30 @@
     \foreach \i in {1,...,6}{
             \tikzmath{int \j; \j = \i - 1;};
             %左图
-            \node [] (0) at (\i*\hw+0.25*\hw,\i*\hw+0.5*\hw) [above] {$\bm{\j}$};
-            \node [] (0) at (6.75*\hw+\i*\hw,7.5*\hw-\i*\hw) [above] {$\bm{\i}$};
+            \node [] (0) at (\i*\hw+0.25*\hw,\i*\hw+0.5*\hw) [above] {$\j$};
+            \node [] (0) at (6.75*\hw+\i*\hw,7.5*\hw-\i*\hw) [above] {$\i$};
             %右图
-            \node [] (0) at (\offx +\i*\hw+0.25*\hw,\i*\hw+0.5*\hw) [above] {$\bm{\j}$};
-            \node [] (0) at (\offx +6.75*\hw+\i*\hw,7.5*\hw-\i*\hw) [above] {$\bm{\i}$};
+            \node [] (0) at (\offx +\i*\hw+0.25*\hw,\i*\hw+0.5*\hw) [above] {$\j$};
+            \node [] (0) at (\offx +6.75*\hw+\i*\hw,7.5*\hw-\i*\hw) [above] {$\i$};
             %下图左侧
             \ifthenelse {\NOT \i = 1}{
-                \node [] (0) at (\offxx -\hw +\i*\hw+0.25*\hw,\offyy - \hw+\i*\hw+0.5*\hw) [above] {$\bm{\j}$};
+                \node [] (0) at (\offxx -\hw +\i*\hw+0.25*\hw,\offyy - \hw+\i*\hw+0.5*\hw) [above] {$\j$};
             }{;}
             %下图右侧
             \ifthenelse {\NOT \i = 6}{
-                \node [] (0) at (\offxx-\hw+6.75*\hw+\i*\hw,\offyy-\hw+7.5*\hw-\i*\hw) [above] {$\bm{\i}$};
+                \node [] (0) at (\offxx-\hw+6.75*\hw+\i*\hw,\offyy-\hw+7.5*\hw-\i*\hw) [above] {$\i$};
             }{;}
         }
 
-    \node [] (e) at (7*\hw,7.6*\hw) {$\bm{e}$};
-    \node [] (w) at (\offx+7*\hw,7.6*\hw) {$\bm{w}$};
-    \node [] (r) at (\offxx-\hw+7*\hw,\offyy-\hw+7.6*\hw) {$\bm{root}$};
-    \node [] (j) at (3*\hw,5*\hw) {$\bm{j}$};
-    \node [] (j2) at (\offx+3*\hw,5*\hw) {$\bm{j}$};
-    \node [] (j3) at (\offxx+3*\hw,\offyy+5*\hw) {$\bm{j}$};
-    \node [] (i) at (11*\hw,5*\hw) {$\bm{i}$};
-    \node [] (i2) at (\offx+11*\hw,5*\hw) {$\bm{i}$};
-    \node [] (i3) at (\offxx-2*\hw+11*\hw,\offyy+5*\hw) {$\bm{i}$};
+    \node [] (e) at (7*\hw,7.6*\hw) {$e$};
+    \node [] (w) at (\offx+7*\hw,7.6*\hw) {$w$};
+    \node [] (r) at (\offxx-\hw+7*\hw,\offyy-\hw+7.6*\hw) {$root$};
+    \node [] (j) at (3*\hw,5*\hw) {$j$};
+    \node [] (j2) at (\offx+3*\hw,5*\hw) {$j$};
+    \node [] (j3) at (\offxx+3*\hw,\offyy+5*\hw) {$j$};
+    \node [] (i) at (11*\hw,5*\hw) {$i$};
+    \node [] (i2) at (\offx+11*\hw,5*\hw) {$i$};
+    \node [] (i3) at (\offxx-2*\hw+11*\hw,\offyy+5*\hw) {$i$};
 \end{tikzpicture}
 
 \end{document}

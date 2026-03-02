@@ -1,21 +1,10 @@
-\documentclass{ctexart}
-\usepackage{avanti-color}
-\usepackage{avanti-math}
-\usepackage{avanti-theorem}
-\usepackage{avanti-others}
-\usepackage[a3paper,landscape,margin=1cm]{geometry}
-
-\RequirePackage{fontspec}
-\xeCJKsetup{CJKmath=true}
-\setCJKmainfont[BoldFont={LXGW Neo ZhiSong Plus},ItalicFont=]{LXGW Neo ZhiSong Plus}
-
-\everymath{\color{Solarized-magenta}}
-\pagestyle{empty} % 没有页眉和页脚
+\documentclass[tikz]{standalone}
+\usepackage{avanti-tikz4slides}
 
 \tikzset{font=\Large}
-\tikzset{base/.style={smooth, very thick, Solarized-base01}}
-\tikzset{point/.style={circle, minimum height=0.8cm, base, draw=Solarized-base01, fill=#1}, point/.default=Solarized-base2}
-\tikzset{span/.style={base, line width=1.5mm, Solarized-blue}}
+\tikzset{base/.style={smooth, very thick, SolarizedBase01}}
+\tikzset{point/.style={circle, minimum height=0.8cm, base, draw=SolarizedBase01, fill=#1}, point/.default=SolarizedBase2}
+\tikzset{span/.style={base, line width=1.5mm, SolarizedBlue}}
 
 \begin{document}
 
@@ -69,7 +58,7 @@
                     \foreach \name / \x / \y [count=\c] in \nodes {
                         \pgfmathparse{\nodeStyles[3*\i+\j][\c-1]};
                         \edef \style {\pgfmathresult};
-                        \node [point={Solarized-base\style}] (\name) at (\l*\x + \j*\xshift, \l*\y - \i*\yshift) {$\name$};
+                        \node [point={SolarizedBase\style}] (\name) at (\l*\x + \j*\xshift, \l*\y - \i*\yshift) {$\name$};
                     }
 
                     \foreach \from / \to / \v / \dir / \shift / \pos [count=\c] in \edges {

@@ -1,8 +1,8 @@
 \documentclass{ctexart}
 \usepackage{avanti-color}
 \usepackage{avanti-base}
-\usepackage{avanti-font}
 \usepackage{avanti-math}
+\usepackage{avanti-font}
 \usepackage{avanti-tikz}
 \usepackage{avanti-alg}
 
@@ -149,5 +149,7 @@
 因此共有$5$个平方子问题：$a^2$、$(4a+2b+c)^2$、$(a-b+c)^2$、$(a+b+c)^2$、$c^2$，时间复杂度$\Theta(n^{\log_3 5})$，优于Karatsuba乘法。
 
 更一般的将$x$作$k$等分，此时$w(t)$是$2k-2$次多项式，共有$2k-1$个系数，线性方程组需包含$2k-1$个方程，由此产生$2k-1$个子问题，时间复杂度$\Theta(n^{\log_k (2k-1)})$。
+
+
 
 \end{document}

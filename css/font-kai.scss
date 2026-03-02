@@ -1,0 +1,192 @@
+@use "sass:list";
+
+// Ysabeau     100        200   300         400    500      600     700       800   900
+$weight-array: ExtraThin, Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold;
+
+@for $i from 1 through list.length($weight-array) {
+  $weight: list.nth($weight-array, $i);
+
+  @font-face {
+    font-family: Ysabeau;
+    src: url("../fonts/YsabeauOffice/YsabeauOffice-#{$weight}.otf");
+    font-weight: 100 * $i;
+  }
+
+  @font-face {
+    font-family: Ysabeau;
+    src: url("../fonts/YsabeauOffice/YsabeauOffice-#{$weight}Italic.otf");
+    font-style: italic;
+    font-weight: 100 * $i;
+  }
+}
+
+// Operator    200     400    600   800    
+$weight-array: XLight, Light, Book, Medium;
+
+@for $i from 1 through list.length($weight-array) {
+  $weight: list.nth($weight-array, $i);
+
+  @font-face {
+    font-family: Operator;
+    src: url("../fonts/Operator/OperatorMono-#{$weight}.otf");
+    font-weight: 100 * (2 * $i);
+  }
+
+  @font-face {
+    font-family: Operator;
+    src: url("../fonts/Operator/OperatorMono-#{$weight}Italic.otf");
+    font-style: italic;
+    font-weight: 100 * (2 * $i);
+  }
+}
+
+// 霞骛文楷      100    400      700
+$weight-array: Light, Regular, Medium;
+
+@for $i from 1 through list.length($weight-array) {
+  $weight: list.nth($weight-array, $i);
+
+  @font-face {
+    font-family: LXGWWenKai;
+    src: url("../fonts/LXGW/LXGWBright-v5.527/LXGWBright-#{$weight}.ttf");
+    font-weight: 100 * (3 * $i - 2);
+  }
+
+  @font-face {
+    font-family: LXGWWenKai;
+    src: url("../fonts/LXGW/LXGWBright-v5.527/LXGWBright-#{$weight}Italic.ttf");
+    font-style: italic;
+    font-weight: 100 * (3 * $i - 2);
+  }
+}
+
+// 霞骛文楷等宽      400      700
+$weight-array: Light, Regular;
+
+@for $i from 1 through list.length($weight-array) {
+  $weight: list.nth($weight-array, $i);
+
+  @font-face {
+    font-family: LXGWWenKai;
+    src: url("../fonts/LXGW/LxgwBrightCode-v2.822/LXGWBrightCode-#{$weight}.ttf");
+    font-weight: 100 * (3 * $i + 1);
+  }
+
+  @font-face {
+    font-family: LXGWWenKai;
+    src: url("../fonts/LXGW/LxgwBrightCode-v2.822/LXGWBrightCode-#{$weight}Italic.ttf");
+    font-style: italic;
+    font-weight: 100 * (3 * $i + 1);
+  }
+}
+
+// 霞鹜新晰黑 屏幕阅读版 26.02.09
+@font-face {
+  font-family: LXGWHei;
+  src: url("../fonts/LXGW/LXGWNeoXiHeiScreenFull.ttf");
+  font-weight: 400;
+}
+
+// 霞鹜新致宋 屏幕阅读版 26.02.09
+@font-face {
+  font-family: LXGWSong;
+  src: url("../fonts/LXGW/LXGWNeoZhiSongScreenFull.ttf");
+  font-weight: 400;
+}
+
+.reveal {
+  font-family: LXGWWenKai;
+  font-weight: 700;
+}
+
+// h1：用于首页课程名
+// h2：用于首页章节名
+// h3：用于首页单位和姓名
+// h4：用于首页邮箱
+// h5：用于每张片子标题
+.reveal h1,
+.reveal h2,
+.reveal h5 {
+  font-family: Ysabeau, LXGWHei;
+  font-weight: 700;
+}
+
+.reveal h3,
+.reveal h4 {
+  font-family: LXGWWenKai;
+  font-weight: 700;
+}
+
+.reveal h1 {
+  font-size: 5.0rem;
+}
+
+.reveal h2 {
+  font-size: 4.0rem;
+}
+
+.reveal h3 {
+  font-size: 3.0rem;
+}
+
+.reveal h4 {
+  font-size: 2.8rem;
+}
+
+.reveal h5 {
+  font-size: 3.0rem;
+}
+
+.reveal p {
+  font-size: 1.8rem;
+}
+
+.reveal ul>li,
+.reveal ol>li {
+  font-size: 1.6rem;
+}
+
+.reveal ul ul>li {
+  font-size: 1.4rem;
+}
+
+.reveal blockquote p {
+  font-size: 1.4rem;
+}
+
+.reveal .footnote {
+  font-size: 1.2rem;
+}
+
+.reveal pre {
+  font-family: Operator, LXGWWenKai;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.MathJax .mtext span,
+.mermaid text {
+  font-family: LXGWWenKai !important;
+}
+
+.reveal table th,
+.reveal table td {
+  font-size: 1.4rem;
+}
+
+.reveal table th,
+.reveal table td {
+  font-weight: 600 !important;
+}
+
+@for $i from 1 to 50 {
+  .reveal .fs#{$i} {
+
+    th,
+    td {
+      font-size: 0.1rem * $i;
+    }
+
+    font-size: 0.1rem * $i;
+  }
+}

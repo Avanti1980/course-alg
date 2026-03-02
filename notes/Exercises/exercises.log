@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2026/dev/Arch Linux) (preloaded format=xelatex 2025.11.10)  3 JAN 2026 14:59
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2026/dev/Arch Linux) (preloaded format=xelatex 2026.1.5)  6 JAN 2026 19:43
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -346,103 +346,21 @@ Package: enumitem 2025/02/06 v3.11 Customized lists
 \enit@inbox=\box59
 \enit@count@id=\count312
 \enitdp@description=\count313
-)) (/home/avanti/texmf/tex/latex/avanti/avanti-font.sty
-
-Package xeCJK Warning: Redefining CJKfamily `\CJKrmdefault'
-(xeCJK)                (FandolSong-Regular(0)).
-
-
-Package fontspec Info: 
-(fontspec)             Font family 'LXGWNeoZhiSongPlus(0)' created for font
-(fontspec)             'LXGW Neo ZhiSong Plus' with options
-(fontspec)             [Script={CJK},BoldFont={LXGW Neo XiHei
-(fontspec)             Plus},ItalicFont={LXGW Bright}].
-(fontspec)              
-(fontspec)              This font family consists of the following NFSS
-(fontspec)             series/shapes:
-(fontspec)              
-(fontspec)             - 'normal' (m/n) with NFSS spec.: <->"LXGW Neo ZhiSong
-(fontspec)             Plus/OT:script=hani;language=dflt;"
-(fontspec)             - 'bold' (b/n) with NFSS spec.: <->"LXGW Neo XiHei
-(fontspec)             Plus/OT:script=hani;language=dflt;"
-(fontspec)             - 'italic' (m/it) with NFSS spec.: <->"LXGW
-(fontspec)             Bright/OT:script=hani;language=dflt;"
-(fontspec)             - 'italic small caps'  (m/scit) with NFSS spec.:
-(fontspec)             <->"LXGW Bright/OT:script=hani;language=dflt;+smcp;"
-(fontspec)             - 'bold italic' (b/it) with NFSS spec.: <->"LXGW
-(fontspec)             Bright/B/OT:script=hani;language=dflt;"
-(fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.:
-(fontspec)             <->"LXGW Bright/B/OT:script=hani;language=dflt;+smcp;"
-
-
-Package fontspec Info: 
-(fontspec)             Font family 'OperatorMonoSSmLigBook(0)' created for
-(fontspec)             font 'Operator Mono SSm Lig Book' with options
-(fontspec)             [WordSpace={1,0,0},HyphenChar=None,PunctuationSpace=WordSpace].
-(fontspec)              
-(fontspec)              This font family consists of the following NFSS
-(fontspec)             series/shapes:
-(fontspec)              
-(fontspec)             - 'normal' (m/n) with NFSS spec.: <->"Operator Mono SSm
-(fontspec)             Lig Book/OT:script=latn;language=dflt;"
-(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: <->"Operator
-(fontspec)             Mono SSm Lig Book/OT:script=latn;language=dflt;+smcp;"
-(fontspec)             and font adjustment code:
-(fontspec)             \fontdimen 2\font =1\fontdimen 2\font \fontdimen 3\font
-(fontspec)             =0\fontdimen 3\font \fontdimen 4\font =0\fontdimen
-(fontspec)             4\font \fontdimen 7\font =0\fontdimen 2\font
-(fontspec)             \tex_hyphenchar:D \font =-1\scan_stop: 
-(fontspec)             - 'bold' (b/n) with NFSS spec.: <->"Operator Mono SSm
-(fontspec)             Lig Book/B/OT:script=latn;language=dflt;"
-(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.:
-(fontspec)             <->"Operator Mono SSm Lig
-(fontspec)             Book/B/OT:script=latn;language=dflt;+smcp;"
-(fontspec)             and font adjustment code:
-(fontspec)             \fontdimen 2\font =1\fontdimen 2\font \fontdimen 3\font
-(fontspec)             =0\fontdimen 3\font \fontdimen 4\font =0\fontdimen
-(fontspec)             4\font \fontdimen 7\font =0\fontdimen 2\font
-(fontspec)             \tex_hyphenchar:D \font =-1\scan_stop: 
-(fontspec)             - 'italic' (m/it) with NFSS spec.: <->"Operator Mono
-(fontspec)             SSm Lig Book/I/OT:script=latn;language=dflt;"
-(fontspec)             - 'italic small caps'  (m/scit) with NFSS spec.:
-(fontspec)             <->"Operator Mono SSm Lig
-(fontspec)             Book/I/OT:script=latn;language=dflt;+smcp;"
-(fontspec)             and font adjustment code:
-(fontspec)             \fontdimen 2\font =1\fontdimen 2\font \fontdimen 3\font
-(fontspec)             =0\fontdimen 3\font \fontdimen 4\font =0\fontdimen
-(fontspec)             4\font \fontdimen 7\font =0\fontdimen 2\font
-(fontspec)             \tex_hyphenchar:D \font =-1\scan_stop: 
-(fontspec)             - 'bold italic' (b/it) with NFSS spec.: <->"Operator
-(fontspec)             Mono SSm Lig Book/BI/OT:script=latn;language=dflt;"
-(fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.:
-(fontspec)             <->"Operator Mono SSm Lig
-(fontspec)             Book/BI/OT:script=latn;language=dflt;+smcp;"
-(fontspec)             and font adjustment code:
-(fontspec)             \fontdimen 2\font =1\fontdimen 2\font \fontdimen 3\font
-(fontspec)             =0\fontdimen 3\font \fontdimen 4\font =0\fontdimen
-(fontspec)             4\font \fontdimen 7\font =0\fontdimen 2\font
-(fontspec)             \tex_hyphenchar:D \font =-1\scan_stop: 
-
-(/usr/share/texmf-dist/tex/latex/psnfss/mathpazo.sty
-Package: mathpazo 2020/03/25 PSNFSS-v9.3 Palatino w/ Pazo Math (D.Puga, WaS) 
-\symupright=\mathgroup4
-)) (/usr/share/texmf-dist/tex/latex/poltawski/antpolt.sty
-Package: antpolt 2010/05/17 v0.70 Antykwa P/o/ltawskiego
-) (/home/avanti/texmf/tex/latex/avanti/avanti-math.sty (/usr/share/texmf-dist/tex/latex/stmaryrd/stmaryrd.sty
+)) (/home/avanti/texmf/tex/latex/avanti/avanti-math.sty (/usr/share/texmf-dist/tex/latex/stmaryrd/stmaryrd.sty
 Package: stmaryrd 1994/03/03 St Mary's Road symbol package
-\symstmry=\mathgroup5
+\symstmry=\mathgroup4
 LaTeX Font Info:    Overwriting symbol font `stmry' in version `bold'
 (Font)                  U/stmry/m/n --> U/stmry/b/n on input line 89.
 ) (/usr/share/texmf-dist/tex/latex/base/latexsym.sty
 Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
-\symlasy=\mathgroup6
+\symlasy=\mathgroup5
 LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
 (Font)                  U/lasy/m/n --> U/lasy/b/n on input line 52.
 ) (/usr/share/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \@emptytoks=\toks21
-\symAMSa=\mathgroup7
-\symAMSb=\mathgroup8
+\symAMSa=\mathgroup6
+\symAMSb=\mathgroup7
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
@@ -515,14 +433,14 @@ Package: amssymb 2013/01/14 v3.01 AMS font symbols
 LaTeX Font Info:    Redeclaring math symbol \boxdot on input line 44.
 ) (/usr/share/texmf-dist/tex/latex/jknapltx/mathrsfs.sty
 Package: mathrsfs 1996/01/01 Math RSFS package v1.0 (jk)
-\symrsfs=\mathgroup9
+\symrsfs=\mathgroup8
 ) (/usr/share/texmf-dist/tex/latex/tools/bm.sty
 Package: bm 2023/12/19 v1.2f Bold Symbol Support (DPC/FMi)
-\symboldoperators=\mathgroup10
-\symboldletters=\mathgroup11
-\symboldsymbols=\mathgroup12
-Package bm Info: No bold for \OMX/zplm/m/n, using \pmb.
-\symboldupright=\mathgroup13
+\symboldoperators=\mathgroup9
+\symboldletters=\mathgroup10
+\symboldsymbols=\mathgroup11
+Package bm Info: No bold for \OMX/cmex/m/n, using \pmb.
+\symboldstmry=\mathgroup12
 Package bm Info: No bold for \U/msa/m/n, using \pmb.
 Package bm Info: No bold for \U/msb/m/n, using \pmb.
 Package bm Info: No bold for \U/rsfs/m/n, using \pmb.
@@ -621,13 +539,6 @@ File: pgfcorepoints.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgf@yy=\dimen273
 \pgf@zx=\dimen274
 \pgf@zy=\dimen275
-LaTeX Font Info:    Trying to load font information for TU+antp on input line 926.
-LaTeX Font Info:    No file TUantp.fd. on input line 926.
-
-
-LaTeX Font Warning: Font shape `TU/antp/m/n' undefined
-(Font)              using `TU/lmr/m/n' instead on input line 926.
-
 ) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex
 File: pgfcorepathconstruct.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgf@path@lastx=\dimen276
@@ -808,12 +719,101 @@ Package: extarrows 2020/03/12 v1.2.0 Some extensible arrows
 Package: harpoon 1994/11/02 Harpoon drawing package by Tobias Kuipers
 \argwd=\skip76
 \arght=\skip77
+)) (/home/avanti/texmf/tex/latex/avanti/avanti-font.sty
+
+Package xeCJK Warning: Redefining CJKfamily `\CJKrmdefault'
+(xeCJK)                (FandolSong-Regular(0)).
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'LXGWNeoZhiSongPlus(0)' created for font
+(fontspec)             'LXGW Neo ZhiSong Plus' with options
+(fontspec)             [Script={CJK},BoldFont={LXGW Neo XiHei
+(fontspec)             Plus},ItalicFont={LXGW Bright}].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.: <->"LXGW Neo ZhiSong
+(fontspec)             Plus/OT:script=hani;language=dflt;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.: <->"LXGW Neo XiHei
+(fontspec)             Plus/OT:script=hani;language=dflt;"
+(fontspec)             - 'italic' (m/it) with NFSS spec.: <->"LXGW
+(fontspec)             Bright/OT:script=hani;language=dflt;"
+(fontspec)             - 'italic small caps'  (m/scit) with NFSS spec.:
+(fontspec)             <->"LXGW Bright/OT:script=hani;language=dflt;+smcp;"
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.: <->"LXGW
+(fontspec)             Bright/B/OT:script=hani;language=dflt;"
+(fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.:
+(fontspec)             <->"LXGW Bright/B/OT:script=hani;language=dflt;+smcp;"
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'OperatorMonoSSmLigBook(0)' created for
+(fontspec)             font 'Operator Mono SSm Lig Book' with options
+(fontspec)             [WordSpace={1,0,0},HyphenChar=None,PunctuationSpace=WordSpace].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.: <->"Operator Mono SSm
+(fontspec)             Lig Book/OT:script=latn;language=dflt;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: <->"Operator
+(fontspec)             Mono SSm Lig Book/OT:script=latn;language=dflt;+smcp;"
+(fontspec)             and font adjustment code:
+(fontspec)             \fontdimen 2\font =1\fontdimen 2\font \fontdimen 3\font
+(fontspec)             =0\fontdimen 3\font \fontdimen 4\font =0\fontdimen
+(fontspec)             4\font \fontdimen 7\font =0\fontdimen 2\font
+(fontspec)             \tex_hyphenchar:D \font =-1\scan_stop: 
+(fontspec)             - 'bold' (b/n) with NFSS spec.: <->"Operator Mono SSm
+(fontspec)             Lig Book/B/OT:script=latn;language=dflt;"
+(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.:
+(fontspec)             <->"Operator Mono SSm Lig
+(fontspec)             Book/B/OT:script=latn;language=dflt;+smcp;"
+(fontspec)             and font adjustment code:
+(fontspec)             \fontdimen 2\font =1\fontdimen 2\font \fontdimen 3\font
+(fontspec)             =0\fontdimen 3\font \fontdimen 4\font =0\fontdimen
+(fontspec)             4\font \fontdimen 7\font =0\fontdimen 2\font
+(fontspec)             \tex_hyphenchar:D \font =-1\scan_stop: 
+(fontspec)             - 'italic' (m/it) with NFSS spec.: <->"Operator Mono
+(fontspec)             SSm Lig Book/I/OT:script=latn;language=dflt;"
+(fontspec)             - 'italic small caps'  (m/scit) with NFSS spec.:
+(fontspec)             <->"Operator Mono SSm Lig
+(fontspec)             Book/I/OT:script=latn;language=dflt;+smcp;"
+(fontspec)             and font adjustment code:
+(fontspec)             \fontdimen 2\font =1\fontdimen 2\font \fontdimen 3\font
+(fontspec)             =0\fontdimen 3\font \fontdimen 4\font =0\fontdimen
+(fontspec)             4\font \fontdimen 7\font =0\fontdimen 2\font
+(fontspec)             \tex_hyphenchar:D \font =-1\scan_stop: 
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.: <->"Operator
+(fontspec)             Mono SSm Lig Book/BI/OT:script=latn;language=dflt;"
+(fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.:
+(fontspec)             <->"Operator Mono SSm Lig
+(fontspec)             Book/BI/OT:script=latn;language=dflt;+smcp;"
+(fontspec)             and font adjustment code:
+(fontspec)             \fontdimen 2\font =1\fontdimen 2\font \fontdimen 3\font
+(fontspec)             =0\fontdimen 3\font \fontdimen 4\font =0\fontdimen
+(fontspec)             4\font \fontdimen 7\font =0\fontdimen 2\font
+(fontspec)             \tex_hyphenchar:D \font =-1\scan_stop: 
+
+(/usr/share/texmf-dist/tex/latex/psnfss/mathpazo.sty
+Package: mathpazo 2020/03/25 PSNFSS-v9.3 Palatino w/ Pazo Math (D.Puga, WaS) 
+\symupright=\mathgroup13
+) (/usr/share/texmf-dist/tex/latex/poltawski/antpolt.sty
+Package: antpolt 2010/05/17 v0.70 Antykwa P/o/ltawskiego
 )) (/home/avanti/texmf/tex/latex/avanti/avanti-tikz.sty (/usr/share/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (/usr/share/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
 Package: pgf 2023-01-15 v3.1.10 (3.1.10)
  (/usr/share/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
 File: pgfmoduleplot.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (/usr/share/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
 Package: pgfcomp-version-0-65 2023-01-15 v3.1.10 (3.1.10)
+LaTeX Font Info:    Trying to load font information for TU+antp on input line 209.
+LaTeX Font Info:    No file TUantp.fd. on input line 209.
+
+
+LaTeX Font Warning: Font shape `TU/antp/m/n' undefined
+(Font)              using `TU/lmr/m/n' instead on input line 209.
+
 \pgf@nodesepstart=\dimen342
 \pgf@nodesepend=\dimen343
 ) (/usr/share/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
@@ -1072,11 +1072,7 @@ Package caption Info: New subtype `subfigure' on input line 238.
 \c@subfigure=\count405
 Package caption Info: New subtype `subtable' on input line 238.
 \c@subtable=\count406
-)
-\symCJKmath=\mathgroup255
-LaTeX Font Info:    Overwriting symbol font `CJKmath' in version `bold'
-(Font)                  TU/LXGWNeoZhiSongPlus(0)/m/n --> TU/LXGWNeoZhiSongPlus(0)/b/n on input line 9.
- (./exercises.aux)
+) (./exercises.aux)
 \openout1 = `exercises.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
@@ -1134,10 +1130,6 @@ LaTeX Font Info:    Trying to load font information for OMX+zplm on input line 1
  (/usr/share/texmf-dist/tex/latex/psnfss/omxzplm.fd
 File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
 )
-LaTeX Font Info:    Trying to load font information for OT1+zplm on input line 14.
- (/usr/share/texmf-dist/tex/latex/psnfss/ot1zplm.fd
-File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
-)
 LaTeX Font Info:    Trying to load font information for U+stmry on input line 14.
  (/usr/share/texmf-dist/tex/latex/stmaryrd/Ustmry.fd)
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
@@ -1155,6 +1147,14 @@ LaTeX Font Info:    Font shape `U/msb/m/n' will be
 LaTeX Font Info:    Trying to load font information for U+rsfs on input line 14.
  (/usr/share/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
+)
+
+LaTeX Font Warning: Font shape `U/stmry/b/n' undefined
+(Font)              using `U/stmry/m/n' instead on input line 14.
+
+LaTeX Font Info:    Trying to load font information for OT1+zplm on input line 14.
+(/usr/share/texmf-dist/tex/latex/psnfss/ot1zplm.fd
+File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
 )
 
 LaTeX Font Warning: Font shape `U/stmry/m/n' in size <10.53937> not available
@@ -1176,6 +1176,10 @@ LaTeX Font Info:    Font shape `U/msb/m/n' will be
 LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <10.53937> not available
 (Font)              size <10.95> substituted on input line 15.
 
+
+LaTeX Font Warning: Font shape `U/stmry/b/n' in size <10.53937> not available
+(Font)              size <10.95> substituted on input line 15.
+
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 31.
 
 LaTeX Font Warning: Font shape `TU/antp/b/n' undefined
@@ -1188,6 +1192,11 @@ LaTeX Font Warning: Font shape `TU/antp/b/n' undefined
 ]
 
 [2]
+LaTeX Font Info:    Font shape `U/lasy/b/n' in size <7> not available
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 166.
+LaTeX Font Info:    Font shape `U/lasy/b/n' in size <5> not available
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 166.
+
 
 [3] (./exercises.aux)
  ***********
@@ -1206,12 +1215,12 @@ Package rerunfilecheck Info: File `exercises.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 46331 strings out of 473832
- 1158781 string characters out of 5735457
- 1665973 words of memory out of 5000000
- 68560 multiletter control sequences out of 15000+600000
- 587200 words of font info for 161 fonts, out of 8000000 for 9000
+ 46351 strings out of 473832
+ 1158797 string characters out of 5735459
+ 1665844 words of memory out of 5000000
+ 68571 multiletter control sequences out of 15000+600000
+ 588085 words of font info for 164 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 102i,16n,112p,800b,748s stack positions out of 30000i,1000n,32767p,200000b,200000s
+ 102i,16n,112p,800b,748s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on exercises.pdf (3 pages).
