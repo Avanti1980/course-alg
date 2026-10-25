@@ -9,6 +9,11 @@
   height: 100%;
 }
 
+body {
+  background-color: rgb(from var(--solarized-base3) r g b / 0.5) !important;
+  color: rgb(from var(--solarized-base02) r g b / 0.8);
+}
+
 .reveal h1,
 .reveal h2,
 .reveal h3,
@@ -16,6 +21,7 @@
 .reveal h5,
 .reveal h6 {
   text-transform: none;
+  color: rgb(from var(--solarized-base02) r g b / 0.8);
 }
 
 .reveal h5 {
@@ -33,6 +39,7 @@
 }
 
 .reveal p {
+  color: rgb(from var(--solarized-base02) r g b / 0.8);
   margin: 1rem 2rem;
   text-align: justify;
   word-wrap: break-word;
@@ -40,7 +47,7 @@
 
 .reveal ul>li,
 .reveal ol>li {
-  color: var(--solarized-yellow);
+  color: rgb(from var(--solarized-base02) r g b / 0.7);
   margin-right: 2rem;
   text-align: justify;
   word-wrap: break-word;
@@ -89,6 +96,7 @@
 
 .reveal table {
   margin: 2rem auto;
+  color: rgb(from var(--solarized-base02) r g b / 0.7);
 }
 
 // 以下为脚注上下间距和4个图案

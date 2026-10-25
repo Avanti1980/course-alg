@@ -1,7 +1,7 @@
 @import "css/theme/solarized.css"
 @import "css/index.css"
 
-# 算法设计与分析 2025 秋
+# 算法设计与分析 2026 秋
 
 ---
 
@@ -9,12 +9,9 @@
 
 授课：张腾 _tengzhang@hust.edu.cn_
 
-地点：西十二楼 S308、西十二楼 S204
+时间：第 9 ~ 16 周，周一 3 ~ 4 节课、周三 3 ~ 4 节，共 32 学时
 
-32 学时
-
-- 第 9 ~ 10 周：周一 5 ~ 6 节课、周三 1 ~ 2 节课 (西十二楼 S308)
-- 第 11 ~ 16 周：周一 3 ~ 4 节课 (西十二楼 S204)、周三 3 ~ 4 节课 (西十二楼 S308)
+地点：西十二楼 S401
 
 <div class="top-2"></div>
 
@@ -26,27 +23,27 @@
 
 在线浏览，Space 翻页，Esc 导航，可能需要{==科学上网==}
 
-<div class="noborder threelines outline head-highlight tr-hover">
+<div class="noborder threelines head-highlight tr-hover">
 
-|        |                讲义                |                                             补充                                             |
-| :----: | :--------------------------------: | :------------------------------------------------------------------------------------------: |
-| 第一讲 |       [绪论](slides/01.html)       |                                              -                                               |
-| 第二讲 |    [函数的增长](slides/02.html)    |                                              -                                               |
-| 第三讲 |       [分治](slides/03.html)       |                     [Strassen 矩阵乘法加速](notes/Strassen/Strassen.pdf)                     |
-| 第四讲 |     [动态规划](slides/04.html)     |                                              -                                               |
-| 第五讲 |       [贪心](slides/05.html)       |                                              -                                               |
-| 第六讲 |   [单源最短路径](slides/06.html)   |                                              -                                               |
-| 第七讲 | [全结点对最短路径](slides/07.html) |                                              -                                               |
-| 第八讲 |       [回溯](slides/08.html)       |                                              -                                               |
-| 第九讲 |     [分支限界](slides/09.html)     |                                              -                                               |
-| 第十讲 |     [迭代改进](slides/10.html)     | [匹配、覆盖、流、割](notes/MCFC/MCFC.pdf)，[线性规划](notes/Max-Flow/linear-programming.pdf) |
+|        |             讲义             |         补充          |
+| :----: | :--------------------------: | :-------------------: |
+| 第一讲 |    [绪论](slides/01.html)    |           -           |
+| 第二讲 | [函数的增长](slides/02.html) |           -           |
+| 第三讲 |             分治             | Strassen 矩阵乘法加速 |
+| 第四讲 |           动态规划           |           -           |
+| 第五讲 |             贪心             |           -           |
+| 第六讲 |         单源最短路径         |           -           |
+| 第七讲 |       全结点对最短路径       |           -           |
+| 第八讲 |             回溯             |           -           |
+| 第九讲 |           分支限界           |           -           |
+| 第十讲 |           迭代改进           |           -           |
 
 </div>
 
 ## 资料
 
-<span style="font-size:1.8rem;font-style:italic">Introduction to Algorithms</span> [3ed](<books/Introduction%20to%20Algorithms%20(3ed)%20-%20Thomas%20H.%20Cormen,%20Charles%20E.%20Leiserson,%20Ronald%20L.%20Rivest,%20Clifford%20Stein.pdf>) [4ed](<books/Introduction%20to%20Algorithms%20(4ed)%20-%20Thomas%20H.%20Cormen,%20Charles%20E.%20Leiserson,%20Ronald%20L.%20Rivest,%20Clifford%20Stein.pdf>)
-Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein
+_Introduction to Algorithms_ [3ed](<books/Introduction%20to%20Algorithms%20(3ed)%20-%20Thomas%20H.%20Cormen,%20Charles%20E.%20Leiserson,%20Ronald%20L.%20Rivest,%20Clifford%20Stein (2009).pdf>) [4ed](<books/Introduction%20to%20Algorithms%20(4ed)%20-%20Thomas%20H.%20Cormen,%20Charles%20E.%20Leiserson,%20Ronald%20L.%20Rivest,%20Clifford%20Stein (2022).pdf>)
+<span style="font-size:1.7rem">Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein</span>
 
 ## 代码
 

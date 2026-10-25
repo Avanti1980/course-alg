@@ -1,0 +1,185 @@
+@use "sass:list";
+
+@font-face {
+  font-family: YsabeauTitle;
+  src: url("../fonts/YsabeauOffice/YsabeauOffice-Bold.otf");
+}
+
+@font-face {
+  font-family: YsabeauTitle;
+  src: url("../fonts/YsabeauOffice/YsabeauOffice-BoldItalic.otf");
+  font-style: italic;
+}
+
+@font-face {
+  font-family: YsabeauHeading;
+  src: url("../fonts/YsabeauOffice/YsabeauOffice-SemiBold.otf");
+}
+
+@font-face {
+  font-family: YsabeauHeading;
+  src: url("../fonts/YsabeauOffice/YsabeauOffice-SemiBoldItalic.otf");
+  font-style: italic;
+}
+
+@font-face {
+  font-family: YsabeauText;
+  src: url("../fonts/YsabeauOffice/YsabeauOffice-Medium.otf");
+}
+
+@font-face {
+  font-family: YsabeauText;
+  src: url("../fonts/YsabeauOffice/YsabeauOffice-MediumItalic.otf");
+  font-style: italic;
+}
+
+// Operator    200     400    600   800
+$weight-array: XLight, Light, Book, Medium;
+
+@for $i from 1 through list.length($weight-array) {
+  $weight: list.nth($weight-array, $i);
+
+  @font-face {
+    font-family: Operator;
+    src: url("../fonts/Operator/OperatorMono/OperatorMono-#{$weight}.otf");
+    font-weight: 100 * (2 * $i);
+  }
+
+  @font-face {
+    font-family: Operator;
+    src: url("../fonts/Operator/OperatorMono/OperatorMono-#{$weight}Italic.otf");
+    font-style: italic;
+    font-weight: 100 * (2 * $i);
+  }
+}
+
+// 方正FW筑紫A标题明朝
+@font-face {
+  font-family: FZFWZhuZiBiaoTiMinChoS;
+  src: url("../fonts/Founder/方正FW筑紫A标题明朝\ 简.TTF");
+}
+
+// 方正FW筑紫古典L明朝 简
+@font-face {
+  font-family: FZFWZhuZiGuDianSLMC;
+  src: url("../fonts/Founder/方正FW筑紫古典L明朝\ 简.TTF");
+}
+
+// 方正FW筑紫古典L黑
+@font-face {
+  font-family: FZFWZhuZiGuDianSLH;
+  src: url("../fonts/Founder/方正FW筑紫古典L黑\ 简.TTF");
+  font-weight: 400;
+}
+
+// 方正文沁永乐大典体
+@font-face {
+  font-family: FZWenQYLDDTSR;
+  src: url("../fonts/Founder/方正文沁永乐大典体R\ 简.TTF");
+  font-weight: 400;
+}
+
+// 方正文沁永乐大典体
+@font-face {
+  font-family: FZWenQYLDDTSM;
+  src: url("../fonts/Founder/方正文沁永乐大典体M\ 简.TTF");
+  font-weight: 700;
+}
+
+.reveal {
+  font-family: YsabeauText, FZFWZhuZiGuDianSLMC;
+}
+
+// h1：用于首页课程名
+// h2：用于首页章节名
+.reveal h1,
+.reveal h2 {
+  font-family: YsabeauTitle, FZFWZhuZiBiaoTiMinChoS;
+}
+
+// h3：用于首页单位和姓名
+// h4：用于首页邮箱
+.reveal h3,
+.reveal h4 {
+  font-family: YsabeauHeading, FZFWZhuZiGuDianSLH;
+}
+
+// h5：用于每张片子标题
+.reveal h5 {
+  font-family: YsabeauHeading, FZFWZhuZiGuDianSLH;
+}
+
+.reveal h1 {
+  font-size: 5rem;
+}
+
+.reveal h2 {
+  font-size: 4rem;
+}
+
+.reveal h3 {
+  font-size: 3rem;
+}
+
+.reveal h4 {
+  font-size: 2.8rem;
+}
+
+.reveal h5 {
+  font-size: 3rem;
+}
+
+.reveal p {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.reveal ul > li,
+.reveal ol > li {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.reveal ul ul > li {
+  font-size: 1.4rem;
+}
+
+.reveal blockquote p {
+  font-size: 1.4rem;
+}
+
+.reveal .footnote {
+  font-size: 1.2rem;
+}
+
+.reveal pre {
+  font-family: Operator, FZFWZhuZiGuDianSLMC !important;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.reveal mjx-mtext,
+.mermaid text {
+  font-family: FZFWZhuZiGuDianSLMC !important;
+}
+
+.reveal table th,
+.reveal table td {
+  font-size: 1.4rem;
+}
+
+.reveal table th,
+.reveal table td {
+  font-weight: 600 !important;
+}
+
+@for $i from 1 to 50 {
+  .reveal .fs#{$i} {
+    th,
+    td {
+      font-size: 0.1rem * $i;
+    }
+
+    font-size: 0.1rem * $i;
+  }
+}

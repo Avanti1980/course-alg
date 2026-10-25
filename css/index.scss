@@ -1,26 +1,28 @@
 @use "sass:list";
 
-// Ysabeau     100        200   300         400    500      600     700       800   900
-$weight-array: ExtraThin, Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold;
-
-@for $i from 1 through list.length($weight-array) {
-  $weight: list.nth($weight-array, $i);
-
-  @font-face {
-    font-family: Ysabeau;
-    src: url("../fonts/YsabeauOffice/YsabeauOffice-#{$weight}.otf");
-    font-weight: 100 * $i;
-  }
-
-  @font-face {
-    font-family: Ysabeau;
-    src: url("../fonts/YsabeauOffice/YsabeauOffice-#{$weight}Italic.otf");
-    font-style: italic;
-    font-weight: 100 * $i;
-  }
+@font-face {
+  font-family: YsabeauTitle;
+  src: url("../fonts/YsabeauOffice/YsabeauOffice-Bold.otf");
 }
 
-// Operator    200     400    600   800    
+@font-face {
+  font-family: YsabeauTitle;
+  src: url("../fonts/YsabeauOffice/YsabeauOffice-BoldItalic.otf");
+  font-style: italic;
+}
+
+@font-face {
+  font-family: YsabeauText;
+  src: url("../fonts/YsabeauOffice/YsabeauOffice-Medium.otf");
+}
+
+@font-face {
+  font-family: YsabeauText;
+  src: url("../fonts/YsabeauOffice/YsabeauOffice-MediumItalic.otf");
+  font-style: italic;
+}
+
+// Operator    200     400    600   800
 $weight-array: XLight, Light, Book, Medium;
 
 @for $i from 1 through list.length($weight-array) {
@@ -40,18 +42,50 @@ $weight-array: XLight, Light, Book, Medium;
   }
 }
 
-// 霞鹜新晰黑 屏幕阅读版 26.02.27
+// 方正FW筑紫A标题明朝
 @font-face {
-  font-family: LXGWHei;
-  src: url("../fonts/LXGW/LXGWNeoXiHeiScreenFull.ttf");
+  font-family: FZFWZhuZiBiaoTiMinChoS;
+  src: url("../fonts/Founder/方正FW筑紫A标题明朝\ 简.TTF");
+}
+
+// 方正FW筑紫古典L明朝 简
+@font-face {
+  font-family: FZFWZhuZiGuDianSLMC;
+  src: url("../fonts/Founder/方正FW筑紫古典L明朝\ 简.TTF");
+}
+
+// 方正FW筑紫古典S明朝 简
+@font-face {
+  font-family: FZFWZhuZiGuDianSSMC;
+  src: url("../fonts/Founder/方正FW筑紫古典S明朝\ 简.TTF");
+}
+
+// 方正FW筑紫古典L黑
+@font-face {
+  font-family: FZFWZhuZiGuDianSLH;
+  src: url("../fonts/Founder/方正FW筑紫古典L黑\ 简.TTF");
   font-weight: 400;
 }
 
-// 霞鹜新致宋 屏幕阅读版 26.02.09
+// 方正FW筑紫古典S黑
 @font-face {
-  font-family: LXGWSong;
-  src: url("../fonts/LXGW/LXGWNeoZhiSongScreenFull.ttf");
-  font-weight: 600;
+  font-family: FZFWZhuZiGuDianSSH;
+  src: url("../fonts/Founder/方正FW筑紫古典S黑\ 简.TTF");
+  font-weight: 500;
+}
+
+// 方正文沁永乐大典体
+@font-face {
+  font-family: FZWenQYLDDTSR;
+  src: url("../fonts/Founder/方正文沁永乐大典体R\ 简.TTF");
+  font-weight: 400;
+}
+
+// 方正文沁永乐大典体
+@font-face {
+  font-family: FZWenQYLDDTSM;
+  src: url("../fonts/Founder/方正文沁永乐大典体M\ 简.TTF");
+  font-weight: 700;
 }
 
 @each $direction in "left", "right", "top", "bottom" {
@@ -102,10 +136,9 @@ $weight-array: XLight, Light, Book, Medium;
 }
 
 @each $color in "base03", "base02", "base01", "base00", "base0", "base1",
-"base2", "base3", "yellow", "orange", "red", "magenta", "violet", "blue",
-"cyan", "green"
-
-  {
+  "base2", "base3", "yellow", "orange", "red", "magenta", "violet", "blue",
+  "cyan", "green"
+{
   .#{$color} {
     color: var(--solarized-#{$color});
   }
@@ -120,10 +153,8 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100%;
-  background-color: var(--solarized-base3) !important;
+  background-color: rgb(from var(--solarized-base3) r g b / 0.5) !important;
   color: var(--solarized-base01);
-  font-family: Ysabeau, LXGWSong;
-  font-weight: 600;
 }
 
 hr {
@@ -132,25 +163,25 @@ hr {
   background-color: var(--solarized-base01) !important;
 }
 
-h1,
-h2 {
-  font-family: Ysabeau, LXGWHei;
-  font-weight: 700 !important;
-  color: var(--solarized-base01) !important;
-}
-
 h1 {
-  font-size: 4.0rem !important;
+  font-size: 4.5rem !important;
+  font-family: YsabeauTitle, FZFWZhuZiBiaoTiMinChoS;
+  font-weight: 400;
+  color: rgb(from var(--solarized-base02) r g b / 0.8) !important;
 }
 
 h2 {
-  font-size: 2.5rem !important;
+  font-size: 3rem !important;
+  font-family: YsabeauTitle, FZFWZhuZiGuDianSLH;
+  font-weight: 500;
+  color: rgb(from var(--solarized-base02) r g b / 0.8) !important;
 }
 
 p {
-  font-family: Ysabeau, LXGWSong;
-  font-size: 1.5rem;
-  color: var(--solarized-base01);
+  font-family: YsabeauText, FZFWZhuZiGuDianSLMC;
+  font-size: 1.8rem !important;
+  font-weight: 600;
+  color: rgb(from var(--solarized-base02) r g b / 0.8);
   margin-top: 0.5rem;
   margin-bottom: 0rem;
   text-align: justify;
@@ -164,12 +195,11 @@ ul {
   margin-top: 0.5rem;
 }
 
-ul>li {
-  font-family: Ysabeau, LXGWSong;
-  font-weight: 600;
+ul > li {
+  font-family: YsabeauBold, FZFWZhuZiGuDianSLMC;
   font-size: 1.3rem;
   margin-right: 2rem;
-  color: var(--solarized-yellow);
+  color: rgb(from var(--solarized-base02) r g b / 0.8);
 }
 
 a {
@@ -185,9 +215,9 @@ a:hover {
 }
 
 table {
-  font-family: Ysabeau, LXGWSong;
+  font-family: YsabeauText, FZFWZhuZiGuDianSLMC;
   font-weight: 600;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   table-layout: fixed;
   border-collapse: collapse;
   border-spacing: 0;
@@ -196,7 +226,7 @@ table {
   th,
   td {
     padding: 0.5rem 1rem 0.1rem 1rem;
-    color: var(--solarized-base01) !important;
+    color: rgb(from var(--solarized-base02) r g b / 0.8) !important;
   }
 
   td:nth-last-child(1) {
@@ -216,33 +246,32 @@ table {
   }
 }
 
-.noborder>table {
-
+.noborder > table {
   th,
   td {
     border: 0px solid var(--solarized-base01);
   }
 }
 
-.tr-hover>table {
-  tbody tr:hover {
-    background-color: var(--solarized-base2);
-  }
-}
-
-.threelines>table {
+.threelines > table {
   th {
-    border-top: 2px solid var(--solarized-base01);
-    border-bottom: 1px solid var(--solarized-base01);
+    border-top: 2px solid rgb(from var(--solarized-base02) r g b / 0.8);
+    border-bottom: 1px solid rgb(from var(--solarized-base02) r g b / 0.8);
   }
 
   tbody tr:nth-last-child(1) {
-    border-bottom: 2px solid var(--solarized-base01);
+    border-bottom: 2px solid rgb(from var(--solarized-base02) r g b / 0.8);
   }
 }
 
-.head-highlight>table {
+.head-highlight > table {
   th:nth-child(n + 1) {
-    background-color: var(--solarized-base2);
+    background-color: rgb(from var(--solarized-base2) r g b / 0.4);
+  }
+}
+
+.tr-hover > table {
+  tbody tr:hover {
+    background-color: rgb(from var(--solarized-base2) r g b / 0.4);
   }
 }

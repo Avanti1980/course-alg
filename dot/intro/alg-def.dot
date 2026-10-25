@@ -2,7 +2,7 @@ digraph g {
     bgcolor=transparent
     graph [nodesep=0.5, ranksep=0.5]
     rankdir=LR
-    node [shape=box, color="#586e75", fontcolor="#268bd2", fontsize=16, fontname="LXGWSong"]
+    node [shape=box, color="#586e75", fontcolor="#268bd2", fontsize=16, fontname="YsabeauText, FZFWZhuZiGuDianSLMC"]
     edge [arrowhead=vee, arrowsize=0.6, color="#586e75"]
 
     输入, 输出
