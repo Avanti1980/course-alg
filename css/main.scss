@@ -1,5 +1,5 @@
 .reveal .slides section,
-.reveal .slides section>section {
+.reveal .slides section > section {
   display: flex !important;
   /* 改为flex布局 */
   flex-direction: column;
@@ -45,8 +45,8 @@ body {
   word-wrap: break-word;
 }
 
-.reveal ul>li,
-.reveal ol>li {
+.reveal ul > li,
+.reveal ol > li {
   color: rgb(from var(--solarized-base02) r g b / 0.7);
   margin-right: 2rem;
   text-align: justify;
@@ -68,6 +68,10 @@ body {
   width: 86%;
 }
 
+.reveal .token.comment {
+  font-style: normal !important;
+}
+
 .reveal .center {
   margin-left: auto;
   margin-right: auto;
@@ -83,13 +87,14 @@ body {
   width: 90%;
   margin: 0 auto;
   padding: 0 1rem;
-  font-style: italic;
+  font-style: normal !important;
   text-align: left;
   background: rgba(255, 255, 255, 0.05);
   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.2);
 }
 
 .reveal blockquote p {
+  color: rgb(from var(--solarized-base02) r g b / 0.7);
   text-align: justify;
   word-wrap: break-word;
 }
@@ -145,8 +150,8 @@ body {
 
 // 行间公式上下间隔
 .reveal mjx-container[display="true"] {
-  margin-top: -1.0rem !important;
-  margin-bottom: -1.0rem !important;
+  margin-top: -1rem !important;
+  margin-bottom: -1rem !important;
 }
 
 // 数学公式中的文本

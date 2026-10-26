@@ -24,33 +24,24 @@
 
 @font-face {
   font-family: YsabeauText;
-  src: url("../fonts/YsabeauOffice/YsabeauOffice-Medium.otf");
+  src: url("../fonts/YsabeauOffice/YsabeauOffice-Regular.otf");
 }
 
 @font-face {
   font-family: YsabeauText;
-  src: url("../fonts/YsabeauOffice/YsabeauOffice-MediumItalic.otf");
+  src: url("../fonts/YsabeauOffice/YsabeauOffice-RegularItalic.otf");
   font-style: italic;
 }
 
-// Operator    200     400    600   800
-$weight-array: XLight, Light, Book, Medium;
+@font-face {
+  font-family: Operator;
+  src: url("../fonts/Operator/OperatorMono/OperatorMono-Book.otf");
+}
 
-@for $i from 1 through list.length($weight-array) {
-  $weight: list.nth($weight-array, $i);
-
-  @font-face {
-    font-family: Operator;
-    src: url("../fonts/Operator/OperatorMono/OperatorMono-#{$weight}.otf");
-    font-weight: 100 * (2 * $i);
-  }
-
-  @font-face {
-    font-family: Operator;
-    src: url("../fonts/Operator/OperatorMono/OperatorMono-#{$weight}Italic.otf");
-    font-style: italic;
-    font-weight: 100 * (2 * $i);
-  }
+@font-face {
+  font-family: Operator;
+  src: url("../fonts/Operator/OperatorMono/OperatorMono-BookItalic.otf");
+  font-style: italic;
 }
 
 // 方正FW筑紫A标题明朝
@@ -84,6 +75,12 @@ $weight-array: XLight, Light, Book, Medium;
   font-family: FZWenQYLDDTSM;
   src: url("../fonts/Founder/方正文沁永乐大典体M\ 简.TTF");
   font-weight: 700;
+}
+
+// 方正恒仿宋
+@font-face {
+  font-family: FZHengFangSongS;
+  src: url("../fonts/Founder/恒仿宋/方正恒仿宋\ 简.TTF");
 }
 
 .reveal {
@@ -136,15 +133,18 @@ $weight-array: XLight, Light, Book, Medium;
 
 .reveal ul > li,
 .reveal ol > li {
+  font-family: YsabeauText, FZHengFangSongS;
   font-size: 1.6rem;
   font-weight: 600;
 }
 
 .reveal ul ul > li {
+  font-family: YsabeauText, FZHengFangSongS;
   font-size: 1.4rem;
 }
 
 .reveal blockquote p {
+  font-family: YsabeauText, FZHengFangSongS;
   font-size: 1.4rem;
 }
 
@@ -158,9 +158,13 @@ $weight-array: XLight, Light, Book, Medium;
   font-weight: 600;
 }
 
+.reveal .token.comment {
+  font-family: YsabeauText, FZFWZhuZiGuDianSLMC;
+}
+
 .reveal mjx-mtext,
 .mermaid text {
-  font-family: FZFWZhuZiGuDianSLMC !important;
+  font-family: YsabeauText, FZFWZhuZiGuDianSLMC !important;
 }
 
 .reveal table th,
