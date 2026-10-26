@@ -1,4 +1,4 @@
-git add *
+git add -A
 git commit -m $1
 
 case $2 in
