@@ -24,11 +24,14 @@ presentation:
 @import "../plugin/chalkboard/style.css"
 @import "../plugin/reveal.js-menu/menu.js"
 
-> 将 5 升的桶装满水，5/5、0/7
-> 将 5 升的桶中的 5 升水全部倒入7升的桶中，0/5、5/7
-> 将 5 升的桶装满水，5/5、5/7
-> 向 7 升的桶倒水，直到满，此时 5 升的桶中还剩 3 升水，3/5、7/7
-> 将 7 升的桶中的水倒掉，3/5、0/7
-> 将 5 升的桶中的 3 升水倒入 7 升的桶中，0/5、3/7
-> 将 5 升的桶装满水，5/5、3/7
-> 向 7 升的桶倒水，直到满，此时 5 升的桶中还剩 <span class="blue">1</span> 升水，<span class="blue">1</span>/5、7/7
+<!-- slide vertical=true data-notes="" -->
+
+##### 归并排序
+
+---
+
+合：取两个子数组的最小元素做比较，并将小者取出
+
+@import "../dot/sorting/merge-merge.dot" {.lefta .right8 .top2}
+
+@import "../codes/intro/sorting.py" {line_begin=26 line_end=65 .left4 .line-numbers .top-47per}
