@@ -94,7 +94,7 @@
 </div>
 <p class="bottom2">
 \begin{align}
-    &amp; \frac{2 \cdot (10^7)^2 \class{base01}{\text{指令}}}{10^{10} \class{base01}{\text{指令/秒}}} = 20000 \class{base01}{\text{秒}} &gt; 5.5 \class{base01}{\text{小时}} \\
+    &amp; \frac{2 \cdot (10^7)^2 \class{base01}{\text{指令}}}{10^{10} \class{base01}{\text{指令/秒}}} = 20000 \class{base01}{\text{秒}} &gt; 5.5 \class{base01}{\text{小时}} \\[5pt]
     &amp; \frac{50 \cdot 10^7 \lg 10^7 \class{base01}{\text{指令}}}{10^7 \class{base01}{\text{指令/秒}}} \approx 1163 \class{base01}{\text{秒}} &lt; 20 \class{base01}{\text{分钟}}
 \end{align}
 </p>
@@ -158,10 +158,10 @@
 </tbody>
 </table>
 </div>
-<p>最坏情况下<span class="mathjax-exps">$T(n) = a n^2 + bn + c$</span>，当<span class="mathjax-exps">$n \rightarrow \infty$</span>时</p>
+<p>最坏情况下<span class="mathjax-exps">$T(n) = a n^2 + bn + c = \class{blue}{\Theta(n^2)}$</span></p>
 <ul>
-<li>低阶项<span class="mathjax-exps">$bn + c$</span>相对于二次项不重要，二次项的系数<span class="mathjax-exps">$a$</span>也不重要</li>
-<li>主宰算法运行时间增长速度的就是<span class="mathjax-exps">$n^2$</span>，因此记<span class="mathjax-exps">$T(n) = \class{blue}{\Theta(n^2)}$</span></li>
+<li>当<span class="mathjax-exps">$n \rightarrow \infty$</span>时，低阶项<span class="mathjax-exps">$bn + c$</span>相对于二次项，可以忽略</li>
+<li>二次项的系数<span class="mathjax-exps">$a$</span>与执行算法的计算机相关，可以忽略</li>
 </ul>
 </section></section><section><section data-notes="" lineno="98" class="slide " data-source-line="98" data-h="2" data-v="0"><h5 id="渐进">渐进 </h5>
 <hr>
