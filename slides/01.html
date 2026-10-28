@@ -1990,7 +1990,7 @@
 <p>外层：每次进入循环前，子数组<span class="mathjax-exps">$a[0, \ldots, i-1]$</span>已经排好序</p>
 <ol>
 <li>初始：子数组<span class="mathjax-exps">$a[0]$</span>只有一个元素，已经排好序</li>
-<li>保持：内层循环终止时，<span class="mathjax-exps">$key &lt; a[0]$</span>，故令<span class="mathjax-exps">$a[0] = key$</span>；要么<span class="mathjax-exps">$key &gt; a[j]$</span> (注意同时有<span class="mathjax-exps">$key \le a[j+1]$</span>)，故令<span class="mathjax-exps">$a[j+1] = key$</span>，无论哪种情况都为<span class="mathjax-exps">$a[i]$</span>在已经排好序的子数组<span class="mathjax-exps">$a[0, \ldots, i-1]$</span>中找到了正确的插入位置，故下次进入循环前<span class="mathjax-exps">$a[0, \ldots, i]$</span>已经排好序</li>
+<li>保持：内层循环终止时，要么<span class="mathjax-exps">$key &lt; a[0]$</span>，故令<span class="mathjax-exps">$a[0] = key$</span>；要么<span class="mathjax-exps">$key &gt; a[j]$</span> (注意同时有<span class="mathjax-exps">$key \le a[j+1]$</span>)，故令<span class="mathjax-exps">$a[j+1] = key$</span>，无论哪种情况都为<span class="mathjax-exps">$a[i]$</span>在已经排好序的子数组<span class="mathjax-exps">$a[0, \ldots, i-1]$</span>中找到了正确的插入位置，故下次进入循环前<span class="mathjax-exps">$a[0, \ldots, i]$</span>已经排好序</li>
 <li>终止：<span class="mathjax-exps">$i = n$</span>，<span class="mathjax-exps">$a[0, \ldots, n-1]$</span>已经排好序</li>
 </ol>
 </section><section vertical="true" data-notes="" lineno="827" class="slide " data-source-line="827" data-h="14" data-v="3"><h5 id="插入排序-时间分析">插入排序 时间分析 </h5>
@@ -2687,10 +2687,10 @@
         quick_sort<span class="token punctuation">(</span>a<span class="token punctuation">,</span> m <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> high<span class="token punctuation">)</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></pre>
 <ul>
-<li>分：第 3 行计算主元的位置的正确位置</li>
+<li>分：第 3 行计算主元的正确位置，并将其它元素相应挪到主元的左右</li>
 <li>治：第 4 ~ 5 行对子数组递归调用快速排序</li>
 </ul>
-<p class="footnote book"> 快速排序由英国计算机学家 Tony Hoare 于 1959 年提出，迄今依然是最流行的排序算法</p>
+<p class="footnote book"> 快速排序由英国计算机学家 Tony Hoare (1980 年图灵奖) 于 1959 年提出，迄今依然是最流行的排序算法</p>
 </section><section vertical="true" data-notes="" lineno="980" class="slide " data-source-line="980" data-h="16" data-v="1"><h5 id="快速排序-1">快速排序 </h5>
 <hr>
 <pre data-role="codeBlock" data-info="py line_begin=98 line_end=103 class=&quot;left4 line-numbers top1 bottom-10&quot;" class="language-python py left4 line-numbers top1 bottom-10"><span class="token keyword keyword-def">def</span> <span class="token function">quick_sort</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> low<span class="token punctuation">,</span> high<span class="token punctuation">)</span><span class="token punctuation">:</span>
