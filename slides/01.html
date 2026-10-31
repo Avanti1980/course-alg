@@ -171,7 +171,7 @@
 <blockquote>
 <p><span class="green">当</span>最新的两个猜测数几乎相等<span class="green">时</span>，停止重复</p>
 </blockquote>
-<p class="fragment top4 center">该算法中已经出现了<span class="green">选择</span>和<span class="blue">循环 (递归)</span></p>
+<p class="fragment top4 center">该算法中已经出现了<span class="green">选择</span>和<span class="blue">循环</span></p>
 </section></section><section><section data-notes="" lineno="194" class="slide " data-source-line="194" data-h="4" data-v="0"><h5 id="算法和计算机">算法和计算机 </h5>
 <hr>
 <p>算法是我们设计的一组明确的步骤序列</p>
@@ -2099,7 +2099,8 @@
 </tbody>
 </table>
 </div>
-</section></section><section><section data-notes="" lineno="885" class="slide " data-source-line="885" data-h="15" data-v="0"><h5 id="归并排序">归并排序 </h5>
+<p class="footnote book"> 插入排序无需在算法启动前就准备好完整的待排序数组，而是能够边接收数据、边进行排序处理，具备这一特性的算法称为<span class="blue">在线算法</span> (online algorithm)，该类算法天然适用于数据源动态、流式到达的应用场景；相比之下，冒泡、选择排序等必须预先获取完整输入数据的算法称为<span class="blue">离线算法</span> (offline algorithm)</p>
+</section></section><section><section data-notes="" lineno="887" class="slide " data-source-line="887" data-h="15" data-v="0"><h5 id="归并排序">归并排序 </h5>
 <hr>
 <p><mark>分治</mark>：将原问题分成若干同类型、规模更小的子问题<mark>递归</mark>求解</p>
 <ul>
@@ -2120,7 +2121,7 @@
 <li>合：第 6 行合并已排好序的两个子数组</li>
 </ul>
 <p class="footnote book"> 归并排序的历史和计算机一样悠久，由计算机之父冯·诺依曼于 1945 年提出</p>
-</section><section vertical="true" data-notes="" lineno="905" class="slide " data-source-line="905" data-h="15" data-v="1"><h5 id="归并排序-1">归并排序 </h5>
+</section><section vertical="true" data-notes="" lineno="907" class="slide " data-source-line="907" data-h="15" data-v="1"><h5 id="归并排序-1">归并排序 </h5>
 <hr>
 <pre data-role="codeBlock" data-info="py line_begin=67 line_end=73 class=&quot;left4 line-numbers top1 bottom-10&quot;" class="language-python py left4 line-numbers top1 bottom-10"><span class="token keyword keyword-def">def</span> <span class="token function">merge_sort</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> low<span class="token punctuation">,</span> high<span class="token punctuation">)</span><span class="token punctuation">:</span>
     <span class="token keyword keyword-if">if</span> low <span class="token operator">&lt;</span> high<span class="token punctuation">:</span>
@@ -2400,7 +2401,7 @@
 </g>
 </svg>
 </p>
-</section><section vertical="true" data-notes="" lineno="915" class="slide " data-source-line="915" data-h="15" data-v="2"><h5 id="归并排序-2">归并排序 </h5>
+</section><section vertical="true" data-notes="" lineno="917" class="slide " data-source-line="917" data-h="15" data-v="2"><h5 id="归并排序-2">归并排序 </h5>
 <hr>
 <p>合：取两个子数组的最小元素做比较，并将小者取出</p>
 <p class="dot lefta right8 top2"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
@@ -2619,7 +2620,7 @@
         j <span class="token operator">+=</span> <span class="token number">1</span>
         k <span class="token operator">+=</span> <span class="token number">1</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre>
-</section><section vertical="true" data-notes="" lineno="927" class="slide " data-source-line="927" data-h="15" data-v="3"><h5 id="归并排序-时间分析">归并排序 时间分析 </h5>
+</section><section vertical="true" data-notes="" lineno="929" class="slide " data-source-line="929" data-h="15" data-v="3"><h5 id="归并排序-时间分析">归并排序 时间分析 </h5>
 <hr>
 <p>设将两个长度为<span class="mathjax-exps">$n/2$</span>的有序数组合并的时间为<span class="mathjax-exps">$f(n)$</span></p>
 <ul>
@@ -2627,10 +2628,39 @@
 <li>最坏情况：一直要比到两个数组的最大元素，<span class="mathjax-exps">$f(n) = n-1$</span></li>
 </ul>
 <div class="top2"></div>
-<p>设长度为<span class="mathjax-exps">$n$</span>的数组的排序时间为<span class="mathjax-exps">$T(n)$</span>，则有</p>
+<p>设长度为<span class="mathjax-exps">$n$</span>的数组的排序时间为<span class="mathjax-exps">$T(n)$</span>，则有递推关系</p>
 <p>
 \begin{align}
-    T(n) = \begin{cases} 1, &amp; n = 1 \\ 2 \cdot T (n/2) + f(n), &amp; n &gt; 1 \end{cases} \overset{主方法}{\Longrightarrow} T(n) = \Theta(n \lg n)
+    T(n) = \begin{cases} 1, &amp; n = 1 \\ 2 \cdot T (n/2) + f(n), &amp; n &gt; 1 \end{cases}
+\end{align}
+</p>
+<p>为求<span class="mathjax-exps">$T(n)$</span>，假设</p>
+<ul>
+<li><span class="mathjax-exps">$n = 2^t$</span>，其中<span class="mathjax-exps">$t$</span>为某个正整数，这样等号右边的<span class="mathjax-exps">$n/2$</span>总是除得尽</li>
+<li><span class="mathjax-exps">$f(n) = c \cdot n$</span>，其中<span class="mathjax-exps">$c$</span>为某个正常数</li>
+</ul>
+<div class="top2"></div>
+<p>
+\begin{align}
+    T(2^t) = \begin{cases} 1, &amp; t = 0 \\ 2 \cdot T (2^{t-1}) + c \cdot 2^t, &amp; t &gt; 0 \end{cases}
+\end{align}
+</p>
+</section><section vertical="true" data-notes="" lineno="963" class="slide " data-source-line="963" data-h="15" data-v="4"><h5 id="归并排序-时间分析-1">归并排序 时间分析 </h5>
+<hr>
+<p>
+\begin{align}
+    \begin{array}{lrclcl}
+        (\spadesuit) &amp; T(2^t) &amp; = &amp; 2 \cdot T (2^{t-1}) &amp; + &amp; c \cdot 2^t \\
+        (\heartsuit) &amp; T(2^{t-1}) &amp; = &amp; 2 \cdot T (2^{t-2}) &amp; + &amp; c \cdot 2^{(t-1)} \\
+         &amp;  &amp; \vdots &amp;  \\
+        (\clubsuit) &amp; T(2^1) &amp; = &amp; 2 \cdot T (2^0) &amp; + &amp; c \cdot 2^1
+    \end{array}
+\end{align}
+</p>
+<p>令<span class="mathjax-exps">$(\spadesuit) + (\heartsuit) \cdot 2 + \cdots + (\clubsuit) \cdot 2^{t-1}$</span>，代入<span class="mathjax-exps">$n = 2^t$</span>、<span class="mathjax-exps">$t = \lg n$</span>、<span class="mathjax-exps">$T(2^0) = 1$</span>可得</p>
+<p>
+\begin{align}
+    T(n) = T(2^t) = 2^t \cdot T(2^0) + c \cdot t \cdot 2^t = n + c \cdot \lg n \cdot n = \Theta (n \lg n)
 \end{align}
 </p>
 <div class="threelines">
@@ -2671,8 +2701,7 @@
 </tbody>
 </table>
 </div>
-<p class="footnote hand"> 主方法是一种求解递推关系式的通用方法，我们将在第三讲“分治”中学习</p>
-</section></section><section><section data-notes="" lineno="961" class="slide " data-source-line="961" data-h="16" data-v="0"><h5 id="快速排序">快速排序 </h5>
+</section></section><section><section data-notes="" lineno="999" class="slide " data-source-line="999" data-h="16" data-v="0"><h5 id="快速排序">快速排序 </h5>
 <hr>
 <p><mark>分治</mark>：将原问题分成若干同类型、规模更小的子问题<mark>递归</mark>求解</p>
 <ul>
@@ -2691,7 +2720,7 @@
 <li>治：第 4 ~ 5 行对子数组递归调用快速排序</li>
 </ul>
 <p class="footnote book"> 快速排序由英国计算机学家 Tony Hoare (1980 年图灵奖得主) 于 1959 年提出，迄今依然是最流行的排序算法</p>
-</section><section vertical="true" data-notes="" lineno="980" class="slide " data-source-line="980" data-h="16" data-v="1"><h5 id="快速排序-1">快速排序 </h5>
+</section><section vertical="true" data-notes="" lineno="1018" class="slide " data-source-line="1018" data-h="16" data-v="1"><h5 id="快速排序-1">快速排序 </h5>
 <hr>
 <pre data-role="codeBlock" data-info="py line_begin=98 line_end=103 class=&quot;left4 line-numbers top1 bottom-10&quot;" class="language-python py left4 line-numbers top1 bottom-10"><span class="token keyword keyword-def">def</span> <span class="token function">quick_sort</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> low<span class="token punctuation">,</span> high<span class="token punctuation">)</span><span class="token punctuation">:</span>
     <span class="token keyword keyword-if">if</span> low <span class="token operator">&lt;</span> high<span class="token punctuation">:</span>
@@ -2711,15 +2740,15 @@
 <g id="node1" class="node">
 <title>n1</title>
 <polygon fill="none" stroke="#586e75" points="106,-352.2 106,-379.8 121,-379.8 121,-352.2 106,-352.2"></polygon>
-<text xml:space="preserve" text-anchor="start" x="109" y="-360.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">5</text>
+<text xml:space="preserve" text-anchor="start" x="109" y="-360.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">5</text>
 <polygon fill="none" stroke="#586e75" points="121,-352.2 121,-379.8 136,-379.8 136,-352.2 121,-352.2"></polygon>
-<text xml:space="preserve" text-anchor="start" x="124" y="-360.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">2</text>
+<text xml:space="preserve" text-anchor="start" x="124" y="-360.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">2</text>
 <polygon fill="none" stroke="#586e75" points="136,-352.2 136,-379.8 151,-379.8 151,-352.2 136,-352.2"></polygon>
-<text xml:space="preserve" text-anchor="start" x="139" y="-360.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">4</text>
+<text xml:space="preserve" text-anchor="start" x="139" y="-360.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">4</text>
 <polygon fill="none" stroke="#586e75" points="151,-352.2 151,-379.8 166,-379.8 166,-352.2 151,-352.2"></polygon>
-<text xml:space="preserve" text-anchor="start" x="154" y="-360.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">6</text>
+<text xml:space="preserve" text-anchor="start" x="154" y="-360.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">6</text>
 <polygon fill="none" stroke="#586e75" points="166,-352.2 166,-379.8 181,-379.8 181,-352.2 166,-352.2"></polygon>
-<text xml:space="preserve" text-anchor="start" x="169" y="-360.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">1</text>
+<text xml:space="preserve" text-anchor="start" x="169" y="-360.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">1</text>
 <polygon fill="none" stroke="#586e75" points="181,-352.2 181,-379.8 196,-379.8 196,-352.2 181,-352.2"></polygon>
 <text xml:space="preserve" text-anchor="start" x="184" y="-360.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#268bd2">3</text>
 </g>
@@ -2727,17 +2756,17 @@
 <g id="node2" class="node">
 <title>n2</title>
 <polygon fill="none" stroke="#586e75" points="106,-294.2 106,-321.8 121,-321.8 121,-294.2 106,-294.2"></polygon>
-<text xml:space="preserve" text-anchor="start" x="109" y="-302.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">2</text>
+<text xml:space="preserve" text-anchor="start" x="109" y="-302.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">2</text>
 <polygon fill="none" stroke="#586e75" points="121,-294.2 121,-321.8 136,-321.8 136,-294.2 121,-294.2"></polygon>
-<text xml:space="preserve" text-anchor="start" x="124" y="-302.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">1</text>
+<text xml:space="preserve" text-anchor="start" x="124" y="-302.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">1</text>
 <polygon fill="none" stroke="#586e75" points="136,-294.2 136,-321.8 151,-321.8 151,-294.2 136,-294.2"></polygon>
 <text xml:space="preserve" text-anchor="start" x="139" y="-302.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#268bd2">3</text>
 <polygon fill="none" stroke="#586e75" points="151,-294.2 151,-321.8 166,-321.8 166,-294.2 151,-294.2"></polygon>
-<text xml:space="preserve" text-anchor="start" x="154" y="-302.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">6</text>
+<text xml:space="preserve" text-anchor="start" x="154" y="-302.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">6</text>
 <polygon fill="none" stroke="#586e75" points="166,-294.2 166,-321.8 181,-321.8 181,-294.2 166,-294.2"></polygon>
-<text xml:space="preserve" text-anchor="start" x="169" y="-302.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">5</text>
+<text xml:space="preserve" text-anchor="start" x="169" y="-302.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">5</text>
 <polygon fill="none" stroke="#586e75" points="181,-294.2 181,-321.8 196,-321.8 196,-294.2 181,-294.2"></polygon>
-<text xml:space="preserve" text-anchor="start" x="184" y="-302.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">4</text>
+<text xml:space="preserve" text-anchor="start" x="184" y="-302.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">4</text>
 </g>
 <!-- n1&#45;&gt;n2 -->
 <g id="edge1" class="edge">
@@ -2749,7 +2778,7 @@
 <g id="node3" class="node">
 <title>n3</title>
 <polygon fill="none" stroke="#586e75" points="53,-236.2 53,-263.8 68,-263.8 68,-236.2 53,-236.2"></polygon>
-<text xml:space="preserve" text-anchor="start" x="56" y="-244.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">2</text>
+<text xml:space="preserve" text-anchor="start" x="56" y="-244.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">2</text>
 <polygon fill="none" stroke="#586e75" points="68,-236.2 68,-263.8 83,-263.8 83,-236.2 68,-236.2"></polygon>
 <text xml:space="preserve" text-anchor="start" x="71" y="-244.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#268bd2">1</text>
 </g>
@@ -2775,9 +2804,9 @@
 <g id="node5" class="node">
 <title>n5</title>
 <polygon fill="none" stroke="#586e75" points="215.5,-236.2 215.5,-263.8 230.5,-263.8 230.5,-236.2 215.5,-236.2"></polygon>
-<text xml:space="preserve" text-anchor="start" x="218.5" y="-244.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">6</text>
+<text xml:space="preserve" text-anchor="start" x="218.5" y="-244.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">6</text>
 <polygon fill="none" stroke="#586e75" points="230.5,-236.2 230.5,-263.8 245.5,-263.8 245.5,-236.2 230.5,-236.2"></polygon>
-<text xml:space="preserve" text-anchor="start" x="233.5" y="-244.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">5</text>
+<text xml:space="preserve" text-anchor="start" x="233.5" y="-244.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">5</text>
 <polygon fill="none" stroke="#586e75" points="245.5,-236.2 245.5,-263.8 260.5,-263.8 260.5,-236.2 245.5,-236.2"></polygon>
 <text xml:space="preserve" text-anchor="start" x="248.5" y="-244.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#268bd2">4</text>
 </g>
@@ -2793,7 +2822,7 @@
 <polygon fill="none" stroke="#586e75" points="53,-178.2 53,-205.8 68,-205.8 68,-178.2 53,-178.2"></polygon>
 <text xml:space="preserve" text-anchor="start" x="56" y="-186.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#268bd2">1</text>
 <polygon fill="none" stroke="#586e75" points="68,-178.2 68,-205.8 83,-205.8 83,-178.2 68,-178.2"></polygon>
-<text xml:space="preserve" text-anchor="start" x="71" y="-186.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">2</text>
+<text xml:space="preserve" text-anchor="start" x="71" y="-186.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">2</text>
 </g>
 <!-- n3&#45;&gt;n6 -->
 <g id="edge5" class="edge">
@@ -2807,9 +2836,9 @@
 <polygon fill="none" stroke="#586e75" points="215.5,-178.2 215.5,-205.8 230.5,-205.8 230.5,-178.2 215.5,-178.2"></polygon>
 <text xml:space="preserve" text-anchor="start" x="218.5" y="-186.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#268bd2">4</text>
 <polygon fill="none" stroke="#586e75" points="230.5,-178.2 230.5,-205.8 245.5,-205.8 245.5,-178.2 230.5,-178.2"></polygon>
-<text xml:space="preserve" text-anchor="start" x="233.5" y="-186.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">5</text>
+<text xml:space="preserve" text-anchor="start" x="233.5" y="-186.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">5</text>
 <polygon fill="none" stroke="#586e75" points="245.5,-178.2 245.5,-205.8 260.5,-205.8 260.5,-178.2 245.5,-178.2"></polygon>
-<text xml:space="preserve" text-anchor="start" x="248.5" y="-186.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">6</text>
+<text xml:space="preserve" text-anchor="start" x="248.5" y="-186.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">6</text>
 </g>
 <!-- n5&#45;&gt;n7 -->
 <g id="edge6" class="edge">
@@ -2833,7 +2862,7 @@
 <g id="node9" class="node">
 <title>n9</title>
 <polygon fill="none" stroke="#586e75" points="102.5,-120.2 102.5,-147.8 117.5,-147.8 117.5,-120.2 102.5,-120.2"></polygon>
-<text xml:space="preserve" text-anchor="start" x="105.5" y="-128.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">2</text>
+<text xml:space="preserve" text-anchor="start" x="105.5" y="-128.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">2</text>
 </g>
 <!-- n6&#45;&gt;n9 -->
 <g id="edge8" class="edge">
@@ -2857,7 +2886,7 @@
 <g id="node11" class="node">
 <title>n11</title>
 <polygon fill="none" stroke="#586e75" points="284,-120.2 284,-147.8 299,-147.8 299,-120.2 284,-120.2"></polygon>
-<text xml:space="preserve" text-anchor="start" x="287" y="-128.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">5</text>
+<text xml:space="preserve" text-anchor="start" x="287" y="-128.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">5</text>
 <polygon fill="none" stroke="#586e75" points="299,-120.2 299,-147.8 314,-147.8 314,-120.2 299,-120.2"></polygon>
 <text xml:space="preserve" text-anchor="start" x="302" y="-128.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#268bd2">6</text>
 </g>
@@ -2871,7 +2900,7 @@
 <g id="node12" class="node">
 <title>n12</title>
 <polygon fill="none" stroke="#586e75" points="284,-62.2 284,-89.8 299,-89.8 299,-62.2 284,-62.2"></polygon>
-<text xml:space="preserve" text-anchor="start" x="287" y="-70.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">5</text>
+<text xml:space="preserve" text-anchor="start" x="287" y="-70.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">5</text>
 <polygon fill="none" stroke="#586e75" points="299,-62.2 299,-89.8 314,-89.8 314,-62.2 299,-62.2"></polygon>
 <text xml:space="preserve" text-anchor="start" x="302" y="-70.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#268bd2">6</text>
 </g>
@@ -2885,7 +2914,7 @@
 <g id="node13" class="node">
 <title>n13</title>
 <polygon fill="none" stroke="#586e75" points="250.5,-4.2 250.5,-31.8 265.5,-31.8 265.5,-4.2 250.5,-4.2"></polygon>
-<text xml:space="preserve" text-anchor="start" x="253.5" y="-12.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">5</text>
+<text xml:space="preserve" text-anchor="start" x="253.5" y="-12.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">5</text>
 </g>
 <!-- n12&#45;&gt;n13 -->
 <g id="edge12" class="edge">
@@ -2908,7 +2937,7 @@
 </g>
 </svg>
 </p>
-</section><section vertical="true" data-notes="" lineno="990" class="slide " data-source-line="990" data-h="16" data-v="2"><h5 id="快速排序-2">快速排序 </h5>
+</section><section vertical="true" data-notes="" lineno="1028" class="slide " data-source-line="1028" data-h="16" data-v="2"><h5 id="快速排序-2">快速排序 </h5>
 <hr>
 <pre data-role="codeBlock" data-info="py line_begin=75 line_end=96 class=&quot;left4 line-numbers top1 bottom-40&quot;" class="language-python py left4 line-numbers top1 bottom-40"><span class="token keyword keyword-def">def</span> <span class="token function">partition</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> low<span class="token punctuation">,</span> high<span class="token punctuation">)</span><span class="token punctuation">:</span>
 
@@ -2943,35 +2972,35 @@
 <!-- n1 -->
 <g id="node1" class="node">
 <title>n1</title>
-<text xml:space="preserve" text-anchor="start" x="10.5" y="-415" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">ij</text>
+<text xml:space="preserve" text-anchor="start" x="10.5" y="-415" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">ij</text>
 <polygon fill="none" stroke="#586e75" points="8,-380 8,-407.6 23,-407.6 23,-380 8,-380"></polygon>
-<text xml:space="preserve" text-anchor="start" x="11" y="-388.4" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">5</text>
+<text xml:space="preserve" text-anchor="start" x="11" y="-388.4" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">5</text>
 <polygon fill="none" stroke="#586e75" points="23,-380 23,-407.6 38,-407.6 38,-380 23,-380"></polygon>
-<text xml:space="preserve" text-anchor="start" x="26" y="-388.4" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">2</text>
+<text xml:space="preserve" text-anchor="start" x="26" y="-388.4" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">2</text>
 <polygon fill="none" stroke="#586e75" points="38,-380 38,-407.6 53,-407.6 53,-380 38,-380"></polygon>
-<text xml:space="preserve" text-anchor="start" x="41" y="-388.4" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">4</text>
+<text xml:space="preserve" text-anchor="start" x="41" y="-388.4" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">4</text>
 <polygon fill="none" stroke="#586e75" points="53,-380 53,-407.6 68,-407.6 68,-380 53,-380"></polygon>
-<text xml:space="preserve" text-anchor="start" x="56" y="-388.4" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">6</text>
+<text xml:space="preserve" text-anchor="start" x="56" y="-388.4" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">6</text>
 <polygon fill="none" stroke="#586e75" points="68,-380 68,-407.6 83,-407.6 83,-380 68,-380"></polygon>
-<text xml:space="preserve" text-anchor="start" x="71" y="-388.4" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">1</text>
+<text xml:space="preserve" text-anchor="start" x="71" y="-388.4" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">1</text>
 <polygon fill="none" stroke="#586e75" points="83,-380 83,-407.6 98,-407.6 98,-380 83,-380"></polygon>
 <text xml:space="preserve" text-anchor="start" x="86" y="-388.4" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#268bd2">3</text>
 </g>
 <!-- n2 -->
 <g id="node2" class="node">
 <title>n2</title>
-<text xml:space="preserve" text-anchor="start" x="13" y="-339.8" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">i</text>
-<text xml:space="preserve" text-anchor="start" x="28" y="-339.8" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">j</text>
+<text xml:space="preserve" text-anchor="start" x="13" y="-339.8" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">i</text>
+<text xml:space="preserve" text-anchor="start" x="28" y="-339.8" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">j</text>
 <polygon fill="none" stroke="#586e75" points="8,-304.8 8,-332.4 23,-332.4 23,-304.8 8,-304.8"></polygon>
-<text xml:space="preserve" text-anchor="start" x="11" y="-313.2" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">5</text>
+<text xml:space="preserve" text-anchor="start" x="11" y="-313.2" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">5</text>
 <polygon fill="none" stroke="#586e75" points="23,-304.8 23,-332.4 38,-332.4 38,-304.8 23,-304.8"></polygon>
-<text xml:space="preserve" text-anchor="start" x="26" y="-313.2" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">2</text>
+<text xml:space="preserve" text-anchor="start" x="26" y="-313.2" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">2</text>
 <polygon fill="none" stroke="#586e75" points="38,-304.8 38,-332.4 53,-332.4 53,-304.8 38,-304.8"></polygon>
-<text xml:space="preserve" text-anchor="start" x="41" y="-313.2" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">4</text>
+<text xml:space="preserve" text-anchor="start" x="41" y="-313.2" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">4</text>
 <polygon fill="none" stroke="#586e75" points="53,-304.8 53,-332.4 68,-332.4 68,-304.8 53,-304.8"></polygon>
-<text xml:space="preserve" text-anchor="start" x="56" y="-313.2" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">6</text>
+<text xml:space="preserve" text-anchor="start" x="56" y="-313.2" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">6</text>
 <polygon fill="none" stroke="#586e75" points="68,-304.8 68,-332.4 83,-332.4 83,-304.8 68,-304.8"></polygon>
-<text xml:space="preserve" text-anchor="start" x="71" y="-313.2" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">1</text>
+<text xml:space="preserve" text-anchor="start" x="71" y="-313.2" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">1</text>
 <polygon fill="none" stroke="#586e75" points="83,-304.8 83,-332.4 98,-332.4 98,-304.8 83,-304.8"></polygon>
 <text xml:space="preserve" text-anchor="start" x="86" y="-313.2" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#268bd2">3</text>
 </g>
@@ -2984,17 +3013,17 @@
 <!-- n3 -->
 <g id="node3" class="node">
 <title>n3</title>
-<text xml:space="preserve" text-anchor="start" x="25.5" y="-264.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">ij</text>
+<text xml:space="preserve" text-anchor="start" x="25.5" y="-264.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">ij</text>
 <polygon fill="none" stroke="#586e75" points="8,-229.6 8,-257.2 23,-257.2 23,-229.6 8,-229.6"></polygon>
-<text xml:space="preserve" text-anchor="start" x="11" y="-238" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">2</text>
+<text xml:space="preserve" text-anchor="start" x="11" y="-238" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">2</text>
 <polygon fill="none" stroke="#586e75" points="23,-229.6 23,-257.2 38,-257.2 38,-229.6 23,-229.6"></polygon>
-<text xml:space="preserve" text-anchor="start" x="26" y="-238" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">5</text>
+<text xml:space="preserve" text-anchor="start" x="26" y="-238" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">5</text>
 <polygon fill="none" stroke="#586e75" points="38,-229.6 38,-257.2 53,-257.2 53,-229.6 38,-229.6"></polygon>
-<text xml:space="preserve" text-anchor="start" x="41" y="-238" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">4</text>
+<text xml:space="preserve" text-anchor="start" x="41" y="-238" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">4</text>
 <polygon fill="none" stroke="#586e75" points="53,-229.6 53,-257.2 68,-257.2 68,-229.6 53,-229.6"></polygon>
-<text xml:space="preserve" text-anchor="start" x="56" y="-238" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">6</text>
+<text xml:space="preserve" text-anchor="start" x="56" y="-238" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">6</text>
 <polygon fill="none" stroke="#586e75" points="68,-229.6 68,-257.2 83,-257.2 83,-229.6 68,-229.6"></polygon>
-<text xml:space="preserve" text-anchor="start" x="71" y="-238" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">1</text>
+<text xml:space="preserve" text-anchor="start" x="71" y="-238" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">1</text>
 <polygon fill="none" stroke="#586e75" points="83,-229.6 83,-257.2 98,-257.2 98,-229.6 83,-229.6"></polygon>
 <text xml:space="preserve" text-anchor="start" x="86" y="-238" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#268bd2">3</text>
 </g>
@@ -3007,18 +3036,18 @@
 <!-- n5 -->
 <g id="node4" class="node">
 <title>n5</title>
-<text xml:space="preserve" text-anchor="start" x="28" y="-189.4" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">i</text>
-<text xml:space="preserve" text-anchor="start" x="73" y="-189.4" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">j</text>
+<text xml:space="preserve" text-anchor="start" x="28" y="-189.4" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">i</text>
+<text xml:space="preserve" text-anchor="start" x="73" y="-189.4" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">j</text>
 <polygon fill="none" stroke="#586e75" points="8,-154.4 8,-182 23,-182 23,-154.4 8,-154.4"></polygon>
-<text xml:space="preserve" text-anchor="start" x="11" y="-162.8" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">2</text>
+<text xml:space="preserve" text-anchor="start" x="11" y="-162.8" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">2</text>
 <polygon fill="none" stroke="#586e75" points="23,-154.4 23,-182 38,-182 38,-154.4 23,-154.4"></polygon>
-<text xml:space="preserve" text-anchor="start" x="26" y="-162.8" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">5</text>
+<text xml:space="preserve" text-anchor="start" x="26" y="-162.8" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">5</text>
 <polygon fill="none" stroke="#586e75" points="38,-154.4 38,-182 53,-182 53,-154.4 38,-154.4"></polygon>
-<text xml:space="preserve" text-anchor="start" x="41" y="-162.8" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">4</text>
+<text xml:space="preserve" text-anchor="start" x="41" y="-162.8" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">4</text>
 <polygon fill="none" stroke="#586e75" points="53,-154.4 53,-182 68,-182 68,-154.4 53,-154.4"></polygon>
-<text xml:space="preserve" text-anchor="start" x="56" y="-162.8" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">6</text>
+<text xml:space="preserve" text-anchor="start" x="56" y="-162.8" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">6</text>
 <polygon fill="none" stroke="#586e75" points="68,-154.4 68,-182 83,-182 83,-154.4 68,-154.4"></polygon>
-<text xml:space="preserve" text-anchor="start" x="71" y="-162.8" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">1</text>
+<text xml:space="preserve" text-anchor="start" x="71" y="-162.8" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">1</text>
 <polygon fill="none" stroke="#586e75" points="83,-154.4 83,-182 98,-182 98,-154.4 83,-154.4"></polygon>
 <text xml:space="preserve" text-anchor="start" x="86" y="-162.8" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#268bd2">3</text>
 </g>
@@ -3031,18 +3060,18 @@
 <!-- n6 -->
 <g id="node5" class="node">
 <title>n6</title>
-<text xml:space="preserve" text-anchor="start" x="43" y="-114.2" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">i</text>
-<text xml:space="preserve" text-anchor="start" x="73" y="-114.2" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">j</text>
+<text xml:space="preserve" text-anchor="start" x="43" y="-114.2" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">i</text>
+<text xml:space="preserve" text-anchor="start" x="73" y="-114.2" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">j</text>
 <polygon fill="none" stroke="#586e75" points="8,-79.2 8,-106.8 23,-106.8 23,-79.2 8,-79.2"></polygon>
-<text xml:space="preserve" text-anchor="start" x="11" y="-87.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">2</text>
+<text xml:space="preserve" text-anchor="start" x="11" y="-87.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">2</text>
 <polygon fill="none" stroke="#586e75" points="23,-79.2 23,-106.8 38,-106.8 38,-79.2 23,-79.2"></polygon>
-<text xml:space="preserve" text-anchor="start" x="26" y="-87.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">1</text>
+<text xml:space="preserve" text-anchor="start" x="26" y="-87.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">1</text>
 <polygon fill="none" stroke="#586e75" points="38,-79.2 38,-106.8 53,-106.8 53,-79.2 38,-79.2"></polygon>
-<text xml:space="preserve" text-anchor="start" x="41" y="-87.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">4</text>
+<text xml:space="preserve" text-anchor="start" x="41" y="-87.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">4</text>
 <polygon fill="none" stroke="#586e75" points="53,-79.2 53,-106.8 68,-106.8 68,-79.2 53,-79.2"></polygon>
-<text xml:space="preserve" text-anchor="start" x="56" y="-87.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">6</text>
+<text xml:space="preserve" text-anchor="start" x="56" y="-87.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">6</text>
 <polygon fill="none" stroke="#586e75" points="68,-79.2 68,-106.8 83,-106.8 83,-79.2 68,-79.2"></polygon>
-<text xml:space="preserve" text-anchor="start" x="71" y="-87.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">5</text>
+<text xml:space="preserve" text-anchor="start" x="71" y="-87.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">5</text>
 <polygon fill="none" stroke="#586e75" points="83,-79.2 83,-106.8 98,-106.8 98,-79.2 83,-79.2"></polygon>
 <text xml:space="preserve" text-anchor="start" x="86" y="-87.6" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#268bd2">3</text>
 </g>
@@ -3055,20 +3084,20 @@
 <!-- n7 -->
 <g id="node6" class="node">
 <title>n7</title>
-<text xml:space="preserve" text-anchor="start" x="43" y="-39" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">i</text>
-<text xml:space="preserve" text-anchor="start" x="88" y="-39" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">j</text>
+<text xml:space="preserve" text-anchor="start" x="43" y="-39" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">i</text>
+<text xml:space="preserve" text-anchor="start" x="88" y="-39" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">j</text>
 <polygon fill="none" stroke="#586e75" points="8,-4 8,-31.6 23,-31.6 23,-4 8,-4"></polygon>
-<text xml:space="preserve" text-anchor="start" x="11" y="-12.4" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">2</text>
+<text xml:space="preserve" text-anchor="start" x="11" y="-12.4" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">2</text>
 <polygon fill="none" stroke="#586e75" points="23,-4 23,-31.6 38,-31.6 38,-4 23,-4"></polygon>
-<text xml:space="preserve" text-anchor="start" x="26" y="-12.4" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">1</text>
+<text xml:space="preserve" text-anchor="start" x="26" y="-12.4" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">1</text>
 <polygon fill="none" stroke="#586e75" points="38,-4 38,-31.6 53,-31.6 53,-4 38,-4"></polygon>
 <text xml:space="preserve" text-anchor="start" x="41" y="-12.4" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#268bd2">3</text>
 <polygon fill="none" stroke="#586e75" points="53,-4 53,-31.6 68,-31.6 68,-4 53,-4"></polygon>
-<text xml:space="preserve" text-anchor="start" x="56" y="-12.4" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">6</text>
+<text xml:space="preserve" text-anchor="start" x="56" y="-12.4" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">6</text>
 <polygon fill="none" stroke="#586e75" points="68,-4 68,-31.6 83,-31.6 83,-4 68,-4"></polygon>
-<text xml:space="preserve" text-anchor="start" x="71" y="-12.4" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">5</text>
+<text xml:space="preserve" text-anchor="start" x="71" y="-12.4" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">5</text>
 <polygon fill="none" stroke="#586e75" points="83,-4 83,-31.6 98,-31.6 98,-4 83,-4"></polygon>
-<text xml:space="preserve" text-anchor="start" x="86" y="-12.4" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#b58900">4</text>
+<text xml:space="preserve" text-anchor="start" x="86" y="-12.4" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="18.00" fill="#586e75">4</text>
 </g>
 <!-- n6&#45;&gt;n7 -->
 <g id="edge5" class="edge">
@@ -3079,27 +3108,33 @@
 </g>
 </svg>
 </p>
-</section><section vertical="true" data-notes="" lineno="1000" class="slide " data-source-line="1000" data-h="16" data-v="3"><h5 id="快速排序-时间分析">快速排序 时间分析 </h5>
+</section><section vertical="true" data-notes="" lineno="1038" class="slide " data-source-line="1038" data-h="16" data-v="3"><h5 id="快速排序-时间分析">快速排序 时间分析 </h5>
 <hr>
+<p>确定主元正确位置、移动其它元素到主元的左右所需时间为<span class="mathjax-exps">$\Theta(n)$</span></p>
 <p>设长度为<span class="mathjax-exps">$n$</span>的数组的排序时间为<span class="mathjax-exps">$T(n)$</span>，则有递推关系</p>
 <p class="bottom4">
 \begin{align}
-    T(n) = \begin{cases} 1, &amp; n = 1 \\ T(n) = T(k) + T(n-1-k) + \Theta(n), &amp; n &gt; 1 \end{cases}
+    T(n) = \begin{cases} 1, &amp; n = 1 \\ T(n) = T(k) + T(n-1-k) + c \cdot n, &amp; n &gt; 1 \end{cases}
 \end{align}
 </p>
 <ul>
-<li>最好情况：主元是中位数，<span class="mathjax-exps">$T(n) = 2 \cdot T (n/2) + \Theta(n)$</span>，同归并排序</li>
-<li>最坏情况：主元是最大或最小元素，只产生一个规模为<span class="mathjax-exps">$n-1$</span>的子问题，此时递推关系为<span class="mathjax-exps">$T(n) = T (n-1) + \Theta(n)$</span>，易知有<span class="mathjax-exps">$T(n) = \Theta(n^2)$</span></li>
+<li>最好情况：主元是中位数，<span class="mathjax-exps">$T(n) = 2 \cdot T (n/2) + c \cdot n$</span>，同归并排序</li>
+<li>最坏情况：主元是最大或最小元素，只产生一个规模为<span class="mathjax-exps">$n-1$</span>的子问题，此时递推关系为<span class="mathjax-exps">$T(n) = T (n-1) + c \cdot n$</span>，易知有<span class="mathjax-exps">$T(n) = \Theta(n^2)$</span></li>
 </ul>
-<div class="top4"></div>
+<div class="top2"></div>
 <p>如何改进？</p>
 <ul>
-<li>随机选取主元</li>
-<li>随机选取三个元素并将其中位数作为主元</li>
-<li>与其它排序方法混合，比如当子问题规模较小时改用插入排序</li>
+<li>随机选取主元：简单有效，大概率避免最坏情况</li>
+<li>三数取中法：随机取三个元素的中位数作为主元</li>
+<li>混合策略：子问题规模较小时切换为插入排序 (实际库函数的常用技巧)</li>
 </ul>
-</section></section><section><section data-notes="" lineno="1025" class="slide " data-source-line="1025" data-h="17" data-v="0"><h5 id="排序小结">排序小结 </h5>
+</section></section><section><section data-notes="" lineno="1065" class="slide " data-source-line="1065" data-h="17" data-v="0"><h5 id="归并排序-vs-快速排序">归并排序 <em>vs.</em> 快速排序 </h5>
 <hr>
+<p>归并排序在最坏情况下仍能保证<span class="mathjax-exps">$\Theta(n \lg n)$</span>，理论上最优；快速排序在实际工程实践中更受青睐：</p>
+<ul>
+<li>归并排序在合并两个有序子数组时需开辟等大的辅助数组，递归过程中频繁的内存分配与释放会带来显著的性能开销</li>
+<li>快速排序的<mark>期望</mark>时间复杂度也为<span class="mathjax-exps">$\Theta(n \lg n)$</span>，即主元选取不当导致的时间复杂度退化是小概率事件；快速排序是<mark>原址排序</mark> (in-place sort)，仅需对连续内存区间内的元素进行就地交换，在 CPU 缓存命中率和空间效率上均更优</li>
+</ul>
 <div class="threelines">
 <table>
 <thead>
@@ -3144,17 +3179,10 @@
 </tbody>
 </table>
 </div>
-<p>除最坏/好情况分析，还有平均情况分析、“基准实例”测试</p>
-<p>我们通常更关心算法在最坏情况下的运行时间</p>
-<ul>
-<li>最坏情况执行时间给出了运行时间的<mark>上界</mark>，方便我们做最坏打算</li>
-<li>对某些算法最坏情况经常出现，对很多算法平均往往与最坏相同</li>
-</ul>
-</section><section vertical="true" data-notes="" lineno="1050" class="slide " data-source-line="1050" data-h="17" data-v="1"><h5 id="排序小结-1">排序小结 </h5>
+</section><section vertical="true" data-notes="" lineno="1088" class="slide " data-source-line="1088" data-h="17" data-v="1"><h5 id="排序-小结">排序 小结 </h5>
 <hr>
 <p><span class="mathjax-exps">$\Theta(n \lg n)$</span>和<span class="mathjax-exps">$\Theta(n^2)$</span>的差别有多大？</p>
-<p>设对长度一千万的数组进行排序，<span class="mathjax-exps">$n = 10^7$</span></p>
-<div class="threelines top-2 bottom0 left8 righta">
+<div class="threelines top-2 left8 righta">
 <table>
 <thead>
 <tr>
@@ -3180,39 +3208,44 @@
 </tbody>
 </table>
 </div>
-<p>
+<ol>
+<li>插入排序时间复杂度中的常数因子仅为归并排序的<span class="mathjax-exps">$2/50 = 1/25$</span></li>
+<li>插入排序所在的计算机 A 的硬件比归并排序的快<span class="mathjax-exps">$10^{10} / 10^7 = 1000$</span>倍</li>
+</ol>
+<div class="top2"></div>
+<p>对长度一千万的数组进行排序，<span class="mathjax-exps">$n = 10^7$</span></p>
+<p class="bottom6">
 \begin{align}
-    &amp; \frac{2 \cdot (10^7)^2 \class{base01}{\text{指令}}}{10^{10} \class{base01}{\text{指令/秒}}} = 20000 \class{base01}{\text{秒}} &gt; 5.5 \class{base01}{\text{小时}} \\[5pt]
-    &amp; \frac{50 \cdot 10^7 \lg 10^7 \class{base01}{\text{指令}}}{10^7 \class{base01}{\text{指令/秒}}} \approx 1163 \class{base01}{\text{秒}} &lt; 20 \class{base01}{\text{分钟}}
+    \frac{2 \cdot (10^7)^2 \class{base01}{\text{指令}}}{10^{10} \class{base01}{\text{指令/秒}}} &gt; 5.5 \class{base01}{\text{小时}}, \quad \frac{50 \cdot 10^7 \lg 10^7 \class{base01}{\text{指令}}}{10^7 \class{base01}{\text{指令/秒}}} &lt; 20 \class{base01}{\text{分钟}}
 \end{align}
 </p>
-</section></section><section data-notes="" lineno="1076" class="slide " data-source-line="1076" data-h="18" data-v="0"><h5 id="为什么研究算法">为什么研究算法 </h5>
+</section></section><section data-notes="" lineno="1118" class="slide " data-source-line="1118" data-h="18" data-v="0"><h5 id="为什么研究算法">为什么研究算法 </h5>
 <hr>
-<p>像对待计算机硬件一样把算法看成是一种技术</p>
+<p>算法是计算技术的核心：它不仅决定程序快慢，更决定问题能否求解</p>
 <ul>
-<li>选择更快的硬件可以提升总体性能</li>
-<li>运行更好的算法也可以提升总体性能，甚至可以成为胜负手</li>
+<li>升级硬件可以提速，但提升往往有物理上限</li>
+<li>选择更优的算法，带来的提升可以是数量级的，甚至是决定性的</li>
 </ul>
 <div class="top4"></div>
-<p>如果计算机计算存储资源无限，那么我们还需研究算法吗？</p>
+<p>如果计算资源无限，还需要研究算法吗？</p>
 <ul>
-<li>硬件的计算能力虽然日新月异，但终归不可能无限</li>
-<li>大数据时代问题的规模越来越大，算法间的效率差异也越来越显著</li>
-<li>有一个好的算法基础，可以做更多的事情，同时也能做得更好</li>
+<li>硬件再快也终归有限；而大数据时代，问题规模的增长远超硬件进步</li>
+<li>好的算法让我们能解决更大、更难的问题</li>
+<li>算法素养是每位计算机研究者的核心能力</li>
 </ul>
-</section><section><section data-notes="" lineno="1095" class="slide " data-source-line="1095" data-h="19" data-v="0"><h5 id="本讲目标-2">本讲目标 </h5>
+</section><section><section data-notes="" lineno="1137" class="slide " data-source-line="1137" data-h="19" data-v="0"><h5 id="本讲目标-2">本讲目标 </h5>
 <hr>
 <p>回答三个问题</p>
 <div class="top5"></div>
 <p class="left38per fs28 fragment fade-out" data-fragment-index="1">是什么 what</p>
 <p class="left38per fs28 fragment fade-out" data-fragment-index="1">为什么 why</p>
 <p class="left38per fs28">怎么样 how</p>
-</section><section vertical="true" data-notes="" lineno="1111" class="slide " data-source-line="1111" data-h="19" data-v="1"><h5 id="课程大纲">课程大纲 </h5>
+</section><section vertical="true" data-notes="" lineno="1153" class="slide " data-source-line="1153" data-h="19" data-v="1"><h5 id="课程大纲">课程大纲 </h5>
 <hr>
 <p data-processed="" as="vega" class="vega top-2"><!--?xml version="1.0" encoding="utf-8"?-->
 
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="marks" width="830" height="500" viewBox="0 0 830 500"><g fill="none" stroke-miterlimit="10" transform="translate(180,50)"><g class="mark-group role-frame root" role="graphics-object" aria-roledescription="group mark container"><g transform="translate(0,0)"><path class="background" aria-hidden="true" d="M0,0h600v400h-600Z"></path><g><g class="mark-path role-mark" role="graphics-symbol" aria-roledescription="path mark container"><path transform="translate(0,0)" d="M0,233.33333333333334C125,233.33333333333334 125,100 250,100" stroke="#586e75"></path><path transform="translate(0,0)" d="M0,233.33333333333334C125,233.33333333333334 125,266.6666666666667 250,266.6666666666667" stroke="#586e75"></path><path transform="translate(0,0)" d="M0,233.33333333333334C125,233.33333333333334 125,366.6666666666667 250,366.6666666666667" stroke="#586e75"></path><path transform="translate(0,0)" d="M250,100C375,100 375,33.333333333333336 500,33.333333333333336" stroke="#586e75"></path><path transform="translate(0,0)" d="M250,100C375,100 375,100 500,100" stroke="#586e75"></path><path transform="translate(0,0)" d="M250,100C375,100 375,166.66666666666669 500,166.66666666666669" stroke="#586e75"></path><path transform="translate(0,0)" d="M250,266.6666666666667C375,266.6666666666667 375,233.33333333333334 500,233.33333333333334" stroke="#586e75"></path><path transform="translate(0,0)" d="M250,266.6666666666667C375,266.6666666666667 375,300 500,300" stroke="#586e75"></path><path transform="translate(0,0)" d="M250,366.6666666666667C375,366.6666666666667 375,366.6666666666667 500,366.6666666666667" stroke="#586e75"></path></g><g class="mark-symbol role-mark" role="graphics-symbol" aria-roledescription="symbol mark container"><path transform="translate(0,233.33333333333334)" d="M5,0A5,5,0,1,1,-5,0A5,5,0,1,1,5,0" fill="rgb(0, 0, 4)" stroke="#fff"></path><path transform="translate(250,100)" d="M5,0A5,5,0,1,1,-5,0A5,5,0,1,1,5,0" fill="rgb(182, 55, 122)" stroke="#fff"></path><path transform="translate(500,33.333333333333336)" d="M5,0A5,5,0,1,1,-5,0A5,5,0,1,1,5,0" fill="rgb(252, 253, 191)" stroke="#fff"></path><path transform="translate(500,100)" d="M5,0A5,5,0,1,1,-5,0A5,5,0,1,1,5,0" fill="rgb(252, 253, 191)" stroke="#fff"></path><path transform="translate(500,166.66666666666669)" d="M5,0A5,5,0,1,1,-5,0A5,5,0,1,1,5,0" fill="rgb(252, 253, 191)" stroke="#fff"></path><path transform="translate(250,266.6666666666667)" d="M5,0A5,5,0,1,1,-5,0A5,5,0,1,1,5,0" fill="rgb(182, 55, 122)" stroke="#fff"></path><path transform="translate(500,233.33333333333334)" d="M5,0A5,5,0,1,1,-5,0A5,5,0,1,1,5,0" fill="rgb(252, 253, 191)" stroke="#fff"></path><path transform="translate(500,300)" d="M5,0A5,5,0,1,1,-5,0A5,5,0,1,1,5,0" fill="rgb(252, 253, 191)" stroke="#fff"></path><path transform="translate(250,366.6666666666667)" d="M5,0A5,5,0,1,1,-5,0A5,5,0,1,1,5,0" fill="rgb(182, 55, 122)" stroke="#fff"></path><path transform="translate(500,366.6666666666667)" d="M5,0A5,5,0,1,1,-5,0A5,5,0,1,1,5,0" fill="rgb(252, 253, 191)" stroke="#fff"></path></g><g class="mark-text role-mark" role="graphics-object" aria-roledescription="text mark container"><text text-anchor="end" transform="translate(-7,240.33333333333334)" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="22px" font-weight="600" fill="#b58900" opacity="1">算法设计与分析</text><text text-anchor="end" transform="translate(243,107)" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="22px" font-weight="600" fill="#b58900" opacity="1">化整为零</text><text text-anchor="start" transform="translate(507,40.333333333333336)" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="22px" font-weight="600" fill="#b58900" opacity="1">分治</text><text text-anchor="start" transform="translate(507,107)" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="22px" font-weight="600" fill="#b58900" opacity="1">动态规划</text><text text-anchor="start" transform="translate(507,173.66666666666669)" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="22px" font-weight="600" fill="#b58900" opacity="1">贪心</text><text text-anchor="end" transform="translate(243,273.6666666666667)" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="22px" font-weight="600" fill="#b58900" opacity="1">穷举搜索</text><text text-anchor="start" transform="translate(507,240.33333333333334)" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="22px" font-weight="600" fill="#b58900" opacity="1">回溯</text><text text-anchor="start" transform="translate(507,307)" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="22px" font-weight="600" fill="#b58900" opacity="1">分支限界</text><text text-anchor="end" transform="translate(243,373.6666666666667)" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="22px" font-weight="600" fill="#b58900" opacity="1">迭代改进</text><text text-anchor="start" transform="translate(507,373.6666666666667)" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="22px" font-weight="600" fill="#b58900" opacity="1">最大流</text></g></g><path class="foreground" aria-hidden="true" d="" display="none"></path></g></g></g></svg></p>
-</section></section><section data-notes="" lineno="1119" class="slide " data-source-line="1119" data-h="20" data-v="0"><h5 id="作业">作业 </h5>
+</section></section><section data-notes="" lineno="1161" class="slide " data-source-line="1161" data-h="20" data-v="0"><h5 id="作业">作业 </h5>
 <hr>
 <p>课外阅读：算法导论 4ed 前两章</p>
 <p>习题：1.2-2、1.2-3、2.1-3、2.1-4</p>

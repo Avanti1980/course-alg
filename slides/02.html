@@ -65,8 +65,7 @@
 <h4 id="tengzhanghusteducn"><em><a href="mailto:tengzhang@hust.edu.cn">tengzhang@hust.edu.cn</a></em> </h4>
 </section><section><section data-notes="" lineno="43" class="slide " data-source-line="43" data-h="1" data-v="0"><h5 id="插入排序-vs-归并排序">插入排序 <em>vs.</em> 归并排序 </h5>
 <hr>
-<p>设对长度一千万的数组进行排序，<span class="mathjax-exps">$n = 10^7$</span></p>
-<div class="threelines top-2 bottom0 left8 righta">
+<div class="threelines top-2 left8 righta">
 <table>
 <thead>
 <tr>
@@ -92,97 +91,33 @@
 </tbody>
 </table>
 </div>
-<p class="bottom2">
+<ol>
+<li>插入排序时间复杂度中的常数因子仅为归并排序的<span class="mathjax-exps">$2/50 = 1/25$</span></li>
+<li>插入排序所在的计算机 A 的硬件比归并排序的快<span class="mathjax-exps">$10^{10} / 10^7 = 1000$</span>倍</li>
+</ol>
+<div class="top2"></div>
+<p>对长度一千万的数组进行排序，<span class="mathjax-exps">$n = 10^7$</span></p>
+<p class="bottom6">
 \begin{align}
-    &amp; \frac{2 \cdot (10^7)^2 \class{base01}{\text{指令}}}{10^{10} \class{base01}{\text{指令/秒}}} = 20000 \class{base01}{\text{秒}} &gt; 5.5 \class{base01}{\text{小时}} \\[5pt]
-    &amp; \frac{50 \cdot 10^7 \lg 10^7 \class{base01}{\text{指令}}}{10^7 \class{base01}{\text{指令/秒}}} \approx 1163 \class{base01}{\text{秒}} &lt; 20 \class{base01}{\text{分钟}}
+    \frac{2 \cdot (10^7)^2 \class{base01}{\text{指令}}}{10^{10} \class{base01}{\text{指令/秒}}} &gt; 5.5 \class{base01}{\text{小时}}, \quad \frac{50 \cdot 10^7 \lg 10^7 \class{base01}{\text{指令}}}{10^7 \class{base01}{\text{指令/秒}}} &lt; 20 \class{base01}{\text{分钟}}
 \end{align}
 </p>
-<p>两点启示：</p>
-<ol>
-<li>只要问题规模<span class="mathjax-exps">$n$</span>足够大，归并排序就能胜过插入排序</li>
-<li>我们应重视算法的<mark>渐进效率</mark>，即<span class="mathjax-exps">$n \rightarrow \infty$</span>时算法运行时间的增长速度</li>
-</ol>
-</section><section vertical="true" data-notes="" lineno="72" class="slide " data-source-line="72" data-h="1" data-v="1"><h5 id="插入排序-时间分析">插入排序 时间分析 </h5>
-<hr>
-<div class="threelines left8 righta">
-<table>
-<thead>
-<tr>
-<th style="text-align:left"><span style="font-family:Operator">insertion_sort(a, n):</span></th>
-<th style="text-align:center">时间</th>
-<th style="text-align:center">次数</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left" rowspan="2"><span style="font-family:Operator">for i in range(1, n):</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$c_1, c'_1$</span></td>
-<td style="text-align:center">对<span class="mathjax-exps">$i$</span>赋值<span class="mathjax-exps">$1$</span>次、自增<span class="mathjax-exps">$n-1$</span>次</td>
-</tr>
-<tr>
-
-<td style="text-align:center"><span class="mathjax-exps">$c''_1$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$i$</span>与<span class="mathjax-exps">$n$</span>比较<span class="mathjax-exps">$n$</span>次</td>
-</tr>
-<tr>
-<td style="text-align:left"><span style="font-family:Operator">&nbsp;&nbsp;&nbsp;&nbsp;key = a[i]</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$c_2$</span></td>
-<td style="text-align:center">对<span class="mathjax-exps">$key$</span>赋值<span class="mathjax-exps">$n-1$</span>次</td>
-</tr>
-<tr>
-<td style="text-align:left"><span style="font-family:Operator">&nbsp;&nbsp;&nbsp;&nbsp;j = i - 1</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$c_3$</span></td>
-<td style="text-align:center">对<span class="mathjax-exps">$j$</span>赋值<span class="mathjax-exps">$n-1$</span>次</td>
-</tr>
-<tr>
-<td style="text-align:left"><span style="font-family:Operator">&nbsp;&nbsp;&nbsp;&nbsp;while j &gt;= 0 and key &lt; a[j]:</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$c_4,c'_4$</span></td>
-<td style="text-align:center">比较<span class="mathjax-exps">$2 \sum_{i=1}^{n-1} t_i + \{1,2\}$</span>次</td>
-</tr>
-<tr>
-<td style="text-align:left"><span style="font-family:Operator">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a[j+1] = a[j]</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$c_5$</span></td>
-<td style="text-align:center">赋值<span class="mathjax-exps">$\sum_{i=1}^{n-1} t_i$</span>次</td>
-</tr>
-<tr>
-<td style="text-align:left"><span style="font-family:Operator">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;j -= 1</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$c_6$</span></td>
-<td style="text-align:center">对<span class="mathjax-exps">$j$</span>赋值<span class="mathjax-exps">$\sum_{i=1}^{n-1} t_i$</span>次</td>
-</tr>
-<tr>
-<td style="text-align:left"><span style="font-family:Operator">&nbsp;&nbsp;&nbsp;&nbsp;a[j+1] = key</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$c_7$</span></td>
-<td style="text-align:center">赋值<span class="mathjax-exps">$n-1$</span>次</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>最坏情况下<span class="mathjax-exps">$T(n) = a n^2 + bn + c = \class{blue}{\Theta(n^2)}$</span></p>
 <ul>
-<li>当<span class="mathjax-exps">$n \rightarrow \infty$</span>时，低阶项<span class="mathjax-exps">$bn + c$</span>相对于二次项，可以忽略</li>
-<li>二次项的系数<span class="mathjax-exps">$a$</span>与执行算法的计算机相关，可以忽略</li>
+<li>问题规模<span class="mathjax-exps">$n$</span>达到一定程度后，时间复杂度中关于<span class="mathjax-exps">$n$</span>的部分会成为算法最终性能表现的决定性因素</li>
+<li>我们感兴趣的恰恰是大规模问题 (小问题上不同算法的表现拉不开差距)</li>
 </ul>
-</section></section><section><section data-notes="" lineno="98" class="slide " data-source-line="98" data-h="2" data-v="0"><h5 id="渐进">渐进 </h5>
+</section><section vertical="true" data-notes="" lineno="74" class="slide " data-source-line="74" data-h="1" data-v="1"><h5 id="渐进">渐进 </h5>
 <hr>
 <p>某个性质渐进成立：<span class="mathjax-exps">$\exists n_0 &gt; 0$</span>使得对<span class="mathjax-exps">$\forall n \ge n_0$</span>，该性质成立</p>
 <ul>
-<li>允许在<mark>有限</mark>的区间上不成立</li>
+<li>允许在开始的<mark>有限</mark>区间上不成立</li>
 <li>一定存在一个<mark>临界点</mark>，过了之后，在<mark>无限</mark>的区间上一直成立</li>
 </ul>
 <div class="top2"></div>
-<p>函数<mark>渐进非负</mark>：<span class="mathjax-exps">$\exists n_0 &gt; 0$</span>使得对<span class="mathjax-exps">$\forall n \ge n_0$</span>，函数取值非负</p>
-<p>函数<mark>渐进正</mark>：<span class="mathjax-exps">$\exists n_0 &gt; 0$</span>使得对<span class="mathjax-exps">$\forall n \ge n_0$</span>，函数取值为正</p>
-<p><span class="mathjax-exps">$a n^2 + bn + c = \class{blue}{\Theta} (n^2)$</span>表示在渐进意义下，即<span class="mathjax-exps">$n$</span>充分大时，二次函数的增长速度和<span class="mathjax-exps">$n^2$</span><mark>一样快</mark>，最多差个常数因子</p>
-<p><span class="mathjax-exps">$n$</span>充分大时，二次函数和三次函数、一次函数的增长速度显然不一样快，因此<span class="mathjax-exps">$T(n) \ne \Theta(n^3)$</span>、<span class="mathjax-exps">$T(n) \ne \Theta(n)$</span></p>
-</section><section vertical="true" data-notes="" lineno="119" class="slide " data-source-line="119" data-h="2" data-v="1"><h5 id="渐进-1">渐进 </h5>
-<hr>
-<p>除了表示<mark>一样快</mark> (相等关系) 的<span class="mathjax-exps">$\Theta$</span>外，还有表示不等关系的</p>
-<ul>
-<li><span class="mathjax-exps">$O$</span>表示<mark>不快于</mark>，<span class="mathjax-exps">$o$</span>表示<mark>严格慢于</mark></li>
-<li><span class="mathjax-exps">$\Omega$</span>表示<mark>不慢于</mark>，<span class="mathjax-exps">$\omega$</span>表示<mark>严格快于</mark></li>
-</ul>
-<div class="threelines left8 righta">
+<p>例：函数<mark>渐进非负</mark>：<span class="mathjax-exps">$\exists n_0 &gt; 0$</span>使得对<span class="mathjax-exps">$\forall n \ge n_0$</span>，函数取值非负</p>
+<p>例：<span class="mathjax-exps">$f(n) = \class{blue}{\Theta} (n^2)$</span>：<span class="mathjax-exps">$\exists n_0 &gt; 0$</span>使得对<span class="mathjax-exps">$\forall n \ge n_0$</span>，<span class="mathjax-exps">$f(n)$</span>和二次函数<span class="mathjax-exps">$n^2$</span>的增长速度<mark>一样快</mark></p>
+<p>除了表示<mark>一样快</mark> (相等关系) 的<span class="mathjax-exps">$\Theta$</span>，还有表示不等关系的<span class="mathjax-exps">$O$</span>、<span class="mathjax-exps">$\Omega$</span>、<span class="mathjax-exps">$o$</span>、<span class="mathjax-exps">$\omega$</span></p>
+<div class="threelines top-2 center">
 <table>
 <thead>
 <tr>
@@ -214,16 +149,9 @@
 </tbody>
 </table>
 </div>
-<p>例：对<span class="mathjax-exps">$T(n) = 7 n^3 + 100 n^2 - 20n + 6 = \Theta(n^3)$</span>有</p>
-<ul>
-<li><span class="mathjax-exps">$T(n) = O(n^k)$</span>其中<span class="mathjax-exps">$k \ge 3$</span>，<span class="mathjax-exps">$T(n) = o(n^k)$</span>其中<span class="mathjax-exps">$k &gt; 3$</span></li>
-<li><span class="mathjax-exps">$T(n) = \Omega(n^k)$</span>其中<span class="mathjax-exps">$k \le 3$</span>，<span class="mathjax-exps">$T(n) = \omega(n^k)$</span>其中<span class="mathjax-exps">$k &lt; 3$</span></li>
-</ul>
-<div class="top2"></div>
-<p>插入排序的运行时间为<span class="mathjax-exps">$O(n^2)$</span>、<span class="mathjax-exps">$\Omega(n)$</span>、<span class="mathjax-exps">$o(n^{2.1})$</span>、<span class="mathjax-exps">$\omega(n^{0.99})$</span></p>
-</section></section><section data-notes="" lineno="148" class="slide " data-source-line="148" data-h="3" data-v="0"><h5 id="本讲内容">本讲内容 </h5>
+</section><section vertical="true" data-notes="" lineno="102" class="slide " data-source-line="102" data-h="1" data-v="2"><h5 id="本讲内容">本讲内容 </h5>
 <hr>
-<p>引入 5 种限界函数刻画算法的渐进效率</p>
+<p>引入 5 个渐进界刻画算法的渐进效率</p>
 <div class="threelines bottom2">
 <table>
 <thead>
@@ -248,18 +176,18 @@
 </tbody>
 </table>
 </div>
-<p>限界函数的严格数学定义</p>
-<p>限界函数的各种性质和相互关系</p>
-</section><section><section data-notes="" lineno="168" class="slide " data-source-line="168" data-h="4" data-v="0"><h5 id="渐进上界-渐进下界">渐进上界 渐进下界 </h5>
+<p>渐进界的严格定义</p>
+<p>渐进界的各种性质和相互关系</p>
+</section></section><section><section data-notes="" lineno="122" class="slide " data-source-line="122" data-h="2" data-v="0"><h5 id="渐进上界-渐进下界">渐进上界 渐进下界 </h5>
 <hr>
-<p>渐进上界<span class="mathjax-exps">$O(g(n))$</span>表示<mark>渐进意义</mark>下所有<mark>小于等于</mark><span class="mathjax-exps">$g(n)$</span>某个<mark>常数倍</mark>的<mark>非负函数</mark>，代表算法在<mark>最坏</mark>情况下的时间复杂度</p>
+<p>渐进上界<span class="mathjax-exps">$O(g(n))$</span>表示<mark>渐进意义</mark>下所有<mark>小于等于</mark><span class="mathjax-exps">$g(n)$</span>某个<mark>常数倍</mark>的<mark>非负函数</mark>，用于表示算法在<mark>最坏</mark>情况下的时间复杂度</p>
 <p>
 \begin{align}
     O(g(n)) = \{ f(n) \mid \exists c, n_0 &gt; 0 ~ \forall n \ge n_0 : 0 \le f(n) \le c g(n) \}
 \end{align}
 </p>
 <div class="top2"></div>
-<p>渐进下界<span class="mathjax-exps">$\Omega(g(n))$</span>表示<mark>渐进意义</mark>下所有<mark>大于等于</mark><span class="mathjax-exps">$g(n)$</span>某个<mark>常数倍</mark>的<mark>非负函数</mark>，代表算法在<mark>最好</mark>情况下的时间复杂度</p>
+<p>渐进下界<span class="mathjax-exps">$\Omega(g(n))$</span>表示<mark>渐进意义</mark>下所有<mark>大于等于</mark><span class="mathjax-exps">$g(n)$</span>某个<mark>常数倍</mark>的<mark>非负函数</mark>，用于表示算法在<mark>最好</mark>情况下的时间复杂度</p>
 <p>
 \begin{align}
     \Omega(g(n)) = \{ f(n) \mid \exists c, n_0 &gt; 0 ~ \forall n \ge n_0 : 0 \le c g(n) \le f(n) \}
@@ -268,17 +196,19 @@
 <div class="top2"></div>
 <p>两点说明：</p>
 <ol>
-<li><span class="mathjax-exps">$O(g(n))$</span>和<span class="mathjax-exps">$\Omega(g(n))$</span>是<mark>函数集合</mark>，<span class="mathjax-exps">$g(n)$</span>本身也渐进非负，否则集合为空</li>
+<li><span class="mathjax-exps">$O(g(n))$</span>和<span class="mathjax-exps">$\Omega(g(n))$</span>是<mark>函数集合</mark>，<span class="mathjax-exps">$g(n)$</span>本身也需渐进非负，否则集合为空</li>
 <li><span class="mathjax-exps">$f(n) \in O(g(n))$</span>记为<span class="mathjax-exps">$f(n) = O(g(n))$</span>，<span class="mathjax-exps">$f(n) = \Omega(g(n))$</span>同理，方便运算</li>
 </ol>
-</section><section vertical="true" data-notes="" lineno="199" class="slide " data-source-line="199" data-h="4" data-v="1"><h5 id="渐进上界-渐进下界-1">渐进上界 渐进下界 </h5>
+<p class="footnote book"> $\exists$表示“存在”，Exist首字母“E”的左右翻转；$\forall$表示“任意/所有”，All首字母“A”的上下翻转</p>
+</section><section vertical="true" data-notes="" lineno="155" class="slide " data-source-line="155" data-h="2" data-v="1"><h5 id="多项式的渐进上下界">多项式的渐进上下界 </h5>
 <hr>
 <p><span class="mathjax-exps">$d$</span>阶多项式<span class="mathjax-exps">$p(n) = a_d n^d + a_{d-1} n^{d-1} + \cdots + a_1 n + a_0$</span>，其中<span class="mathjax-exps">$a_d &gt; 0$</span></p>
-<p>易知有<span class="mathjax-exps">$\frac{p(n)}{n^d} = a_d + \frac{a_{d-1}}{n} + \cdots + \frac{a_1}{n^{d-1}} + \frac{a_0}{n^d} \triangleq q(n) \xrightarrow{~ n \rightarrow \infty ~} a_d$</span></p>
-<p>根据极限定义，存在<span class="mathjax-exps">$n_0$</span>使得对<span class="mathjax-exps">$\forall n \ge n_0$</span>有<span class="mathjax-exps">$|q(n) - a_d| \le a_d/2$</span>，整理可得<span class="mathjax-exps">$a_d/2 \le q(n) \le 3 a_d/2$</span>，故当<span class="mathjax-exps">$n \ge \max \{ n_0, 1 \}$</span>且<span class="mathjax-exps">$k_1 \le d \le k_2$</span>时有</p>
+<p><span class="mathjax-exps">$q(n) \triangleq \frac{p(n)}{n^d} = a_d + \frac{a_{d-1}}{n} + \cdots + \frac{a_1}{n^{d-1}} + \frac{a_0}{n^d} \xrightarrow{~ n \rightarrow \infty ~} a_d$</span></p>
+<p>根据极限定义，对<span class="mathjax-exps">$\forall \epsilon &gt; 0$</span>，存在<span class="mathjax-exps">$n_0$</span>使得对<span class="mathjax-exps">$\forall n \ge n_0$</span>有<span class="mathjax-exps">$|q(n) - a_d| \le \epsilon$</span></p>
+<p>取<span class="mathjax-exps">$\epsilon = a_d/2$</span>可得</p>
 <p class="bottom4">
 \begin{align}
-    0 \le \frac{a_d}{2} n^{k_1} \le \frac{a_d}{2} n^d \le p(n) \le \frac{3 a_d}{2} n^d \le \frac{3 a_d}{2} n^{k_2}
+    \frac{a_d}{2} \le q(n) \le \frac{3 a_d}{2} \Longrightarrow \frac{a_d}{2} n^d \le p(n) \le \frac{3 a_d}{2} n^d
 \end{align}
 </p>
 <ul>
@@ -286,29 +216,35 @@
 <li>取<span class="mathjax-exps">$c = a_d/2$</span>、<span class="mathjax-exps">$n_0 = \max \{ n_0, 1 \}$</span>，有<span class="mathjax-exps">$p(n) = \Omega(n^{k_1})$</span>其中<span class="mathjax-exps">$k_1 \le d$</span></li>
 </ul>
 <div class="top2"></div>
-<p>这也印证了前面的<span class="mathjax-exps">$7 n^3 + 100 n^2 - 20n + 6 = \begin{cases} O(n^k), &amp; k \ge 3 \\ \Omega(n^k), &amp; k \le 3 \end{cases}$</span></p>
-</section></section><section><section data-notes="" lineno="224" class="slide " data-source-line="224" data-h="5" data-v="0"><h5 id="渐进紧确界">渐进紧确界 </h5>
+<p>这也印证了上一讲提到的：多项式的低阶项在其渐进界中可忽略</p>
+</section></section><section><section data-notes="" lineno="182" class="slide " data-source-line="182" data-h="3" data-v="0"><h5 id="渐进紧确界">渐进紧确界 </h5>
 <hr>
-<p>渐进紧确界<span class="mathjax-exps">$\Theta(g(n))$</span>表示<mark>渐进意义</mark>下所有<mark>介于</mark><span class="mathjax-exps">$g(n)$</span>某两个<mark>常数倍</mark>之间的<mark>非负函数</mark>，代表算法在<mark>最坏</mark>情况和<mark>最好</mark>情况下的时间复杂度一样，最多差个常数因子</p>
+<p>渐进紧确界<span class="mathjax-exps">$\Theta(g(n))$</span>表示<mark>渐进意义</mark>下所有<mark>介于</mark><span class="mathjax-exps">$g(n)$</span>某两个<mark>常数倍</mark>之间的<mark>非负函数</mark>，用于表示算法在<mark>最坏</mark>情况和<mark>最好</mark>情况下的时间复杂度一样，最多差个常数因子</p>
 <p>
 \begin{align}
-    ~ \Theta(g(n)) = \{ f(n) \mid \exists c_1, c_2, n_0 &gt; 0 ~ \forall n \ge n_0 : 0 \le c_1 g(n) \le f(n) \le c_2 g(n) \}
+    \Theta(g(n)) = \{ f(n) \mid \exists c_1, c_2, n_0 &gt; 0 ~ \forall n \ge n_0 : 0 \le c_1 g(n) \le f(n) \le c_2 g(n) \}
 \end{align}
 </p>
-<div class="top2"></div>
+<div class="top4"></div>
 <p>定理：<span class="mathjax-exps">$f(n) = \Theta(g(n))$</span>等价于<span class="mathjax-exps">$f(n) = O(g(n))$</span>且<span class="mathjax-exps">$f(n) = \Omega(g(n))$</span></p>
-<p>证明：正方向，<span class="mathjax-exps">$\Theta : \exists c_1, c_2, n_0 &gt; 0 \ldots \Longrightarrow \begin{cases} O : \exists  c_2, n_0 &gt; 0 \ldots \\ \Omega : \exists c_1, n_0  &gt; 0 \ldots \end{cases}$</span></p>
-<p>反方向，<span class="mathjax-exps">$\begin{cases} O : \exists c_2, n_2 &gt; 0 \ldots \\ \Omega : \exists c_1, n_1 &gt; 0 \ldots \end{cases} \Longrightarrow \Theta : \exists c_1, c_2, \max\{ n_1, n_2 \} &gt; 0 \ldots$</span></p>
-</section><section vertical="true" data-notes="" lineno="246" class="slide " data-source-line="246" data-h="5" data-v="1"><h5 id="渐进紧确界-1">渐进紧确界 </h5>
+<p>证明：</p>
+<p>
+\begin{align}
+    \Longrightarrow:  \quad &amp; \Theta : \exists c_1, c_2, n_0 &gt; 0 \ldots \Longrightarrow \begin{cases} O : \exists  c_2, n_0 &gt; 0 \ldots \\ \Omega : \exists c_1, n_0  &gt; 0 \ldots \end{cases} \\
+    \Longleftarrow: \quad &amp; \begin{cases} O : \exists c_2, n_2 &gt; 0 \ldots \\ \Omega : \exists c_1, n_1 &gt; 0 \ldots \end{cases} \Longrightarrow \Theta : \exists c_1, c_2, n_0 = \max\{ n_1, n_2 \} &gt; 0 \ldots
+\end{align}
+</p>
+</section><section vertical="true" data-notes="" lineno="209" class="slide " data-source-line="209" data-h="3" data-v="1"><h5 id="多项式的渐进紧确界">多项式的渐进紧确界 </h5>
 <hr>
 <p><span class="mathjax-exps">$d$</span>阶多项式<span class="mathjax-exps">$p(n) = \sum_{i=0}^d a_i n^i, ~ (a_d &gt; 0) = \begin{cases} O(n^k), &amp; k \ge d \\ \Omega(n^k), &amp; k \le d \\ \Theta(n^k), &amp; k = d \end{cases}$</span></p>
-<p>使用渐进符号时我们应力求<mark>精确</mark>、<mark>简洁</mark></p>
+<div class="top4"></div>
+<p>使用渐进界时我们应力求<mark>精确</mark>、<mark>简洁</mark></p>
 <p>例如对<span class="mathjax-exps">$T(n) = 3 n^2 - 10 n$</span>，应将其写为<span class="mathjax-exps">$T(n) = \Theta(n^2)$</span></p>
 <ul>
 <li>不应写成<span class="mathjax-exps">$T(n) = O(n^{2.5})$</span>或<span class="mathjax-exps">$T(n) = \Omega(n^{1.5})$</span>，这不精确，虽然是对的</li>
 <li>也不应写成<span class="mathjax-exps">$T(n) = \Theta(n^2 + n)$</span>，这不简洁，虽然也是对的</li>
 </ul>
-</section></section><section><section data-notes="" lineno="261" class="slide " data-source-line="261" data-h="6" data-v="0"><h5 id="不等式中的渐进记号">(不)等式中的渐进记号 </h5>
+</section></section><section><section data-notes="" lineno="226" class="slide " data-source-line="226" data-h="4" data-v="0"><h5 id="不等式中的渐进记号">(不)等式中的渐进记号 </h5>
 <hr>
 <p>若渐进记号单独出现在等号右边，如<span class="mathjax-exps">$3 n^2 = \Theta(n^2)$</span>，表示属于<span class="mathjax-exps">$\in$</span></p>
 <p>若渐进记号作为表达式中的一项，如<span class="mathjax-exps">$T(n) \le T(n-1) + \Theta(n)$</span>，表示<mark>匿名函数</mark>，即存在<span class="mathjax-exps">$f(n) \in \Theta(n)$</span>使得<span class="mathjax-exps">$T(n) \le T(n-1) + f(n)$</span></p>
@@ -324,7 +260,7 @@
 </ul>
 <div class="top2"></div>
 <p><span class="mathjax-exps">$\sum_{i=1}^n \Theta (i)$</span>表示<span class="mathjax-exps">$\sum_{i=1}^n (a i + b)$</span>，而不是<span class="mathjax-exps">$\Theta (1) + \Theta (2) + \cdots + \Theta (n)$</span></p>
-</section><section vertical="true" data-notes="" lineno="285" class="slide " data-source-line="285" data-h="6" data-v="1"><h5 id="表示常量的渐进记号">表示常量的渐进记号 </h5>
+</section><section vertical="true" data-notes="" lineno="250" class="slide " data-source-line="250" data-h="4" data-v="1"><h5 id="表示常量的渐进记号">表示常量的渐进记号 </h5>
 <hr>
 <p>通常用<span class="mathjax-exps">$n$</span>表示问题输入的规模，我们关心<span class="mathjax-exps">$n \rightarrow \infty$</span>时的情况</p>
 <p>若写成<span class="mathjax-exps">$O(g(m))$</span>，则表示的是关心<span class="mathjax-exps">$m \rightarrow \infty$</span>时的<span class="mathjax-exps">$g(m)$</span>的增长速度</p>
@@ -341,7 +277,7 @@
 </ul>
 <div class="top2"></div>
 <p class="footnote hand"> 若不致引起误解，尽可能滥用 (abuse) 符号，可以简化表达</p>
-</section></section><section><section data-notes="" lineno="311" class="slide " data-source-line="311" data-h="7" data-v="0"><h5 id="非紧确渐进上界">非紧确渐进上界 </h5>
+</section></section><section><section data-notes="" lineno="276" class="slide " data-source-line="276" data-h="5" data-v="0"><h5 id="非紧确渐进上界">非紧确渐进上界 </h5>
 <hr>
 <p>非紧确渐进上界<span class="mathjax-exps">$o(g(n))$</span>定义如下：</p>
 <p>
@@ -363,7 +299,7 @@
 </ul>
 <div class="top2"></div>
 <p>例：<span class="mathjax-exps">$2n = o(n^2)$</span>，<span class="mathjax-exps">$2n \ne o(n)$</span></p>
-</section><section vertical="true" data-notes="" lineno="343" class="slide " data-source-line="343" data-h="7" data-v="1"><h5 id="非紧确渐进上界-1">非紧确渐进上界 </h5>
+</section><section vertical="true" data-notes="" lineno="308" class="slide " data-source-line="308" data-h="5" data-v="1"><h5 id="非紧确渐进上界-1">非紧确渐进上界 </h5>
 <hr>
 <p>由<span class="mathjax-exps">$o(g(n)) = \{ f(n) \mid \class{blue}{\forall c &gt; 0} ~ \exists n_0 &gt; 0 ~ \forall n \ge n_0 : 0 \le f(n) \class{blue}{&lt;} c g(n) \}$</span></p>
 <p>
@@ -382,7 +318,7 @@
 <li>对<span class="mathjax-exps">$\forall a &gt; 1$</span>和<span class="mathjax-exps">$b$</span>有<span class="mathjax-exps">$\lim_{n \rightarrow \infty} n^b/a^n = 0$</span>，于是<span class="mathjax-exps">$n^b = o(a^n)$</span></li>
 <li>对<span class="mathjax-exps">$\forall a &gt; 0$</span>和<span class="mathjax-exps">$b$</span>有<span class="mathjax-exps">$\lim_{n \rightarrow \infty} \lg^b n/n^a = 0$</span>，于是<span class="mathjax-exps">$\lg^b n = o(n^a)$</span></li>
 </ul>
-</section></section><section><section data-notes="" lineno="369" class="slide " data-source-line="369" data-h="8" data-v="0"><h5 id="非紧确渐进下界">非紧确渐进下界 </h5>
+</section></section><section><section data-notes="" lineno="334" class="slide " data-source-line="334" data-h="6" data-v="0"><h5 id="非紧确渐进下界">非紧确渐进下界 </h5>
 <hr>
 <p>非紧确渐进下界<span class="mathjax-exps">$\omega(g(n))$</span>对比<span class="mathjax-exps">$\Omega(g(n))$</span>同样是两点区别</p>
 <p>
@@ -399,14 +335,14 @@
 </ul>
 <div class="top2"></div>
 <p>例：<span class="mathjax-exps">$2 n^2 = \omega (n)$</span>，<span class="mathjax-exps">$2 n^2 \ne \omega(n^2)$</span></p>
-</section><section vertical="true" data-notes="" lineno="395" class="slide " data-source-line="395" data-h="8" data-v="1"><h5 id="非紧确渐进界">非紧确渐进界 </h5>
+</section><section vertical="true" data-notes="" lineno="360" class="slide " data-source-line="360" data-h="6" data-v="1"><h5 id="非紧确渐进界">非紧确渐进界 </h5>
 <hr>
 <p><span class="mathjax-exps">$d$</span>阶多项式<span class="mathjax-exps">$p(n) = a_d n^d + a_{d-1} n^{d-1} + \cdots + a_1 n + a_0$</span>，其中<span class="mathjax-exps">$a_d &gt; 0$</span></p>
 <p>易知有<span class="mathjax-exps">$\frac{p(n)}{n^d} = a_d + \frac{a_{d-1}}{n} + \cdots + \frac{a_1}{n^{d-1}} + \frac{a_0}{n^d} \triangleq q(n) \xrightarrow{~ n \rightarrow \infty ~} a_d$</span></p>
 <p>若<span class="mathjax-exps">$k &gt; d$</span>，<span class="mathjax-exps">$\lim_{n \rightarrow \infty} \frac{p(n)}{n^k} = \lim_{n \rightarrow \infty} \frac{q(n)}{n^{k-d}} = 0 \Longrightarrow p(n) = o(n^k)$</span></p>
 <p>若<span class="mathjax-exps">$k &lt; d$</span>，<span class="mathjax-exps">$\lim_{n \rightarrow \infty} \frac{p(n)}{n^k} = \lim_{n \rightarrow \infty} q(n) n^{d-k} = \infty \Longrightarrow p(n) = \omega(n^k)$</span></p>
 <p>综上，最高项系数为正的<span class="mathjax-exps">$d$</span>阶多项式<span class="mathjax-exps">$p(n) = \begin{cases} O(n^k), &amp; k \ge d \\ \Omega(n^k), &amp; k \le d \\ \Theta(n^k), &amp; k = d \\ o(n^k), &amp; k &gt; d \\ \omega(n^k), &amp; k &lt; d \end{cases}$</span></p>
-</section></section><section><section data-notes="" lineno="411" class="slide " data-source-line="411" data-h="9" data-v="0"><h5 id="限界函数的相互关系">限界函数的相互关系 </h5>
+</section></section><section><section data-notes="" lineno="376" class="slide " data-source-line="376" data-h="7" data-v="0"><h5 id="限界函数的相互关系">限界函数的相互关系 </h5>
 <hr>
 <div class="threelines left8 righta">
 <table>
@@ -491,7 +427,7 @@
 </tbody>
 </table>
 </div>
-</section><section vertical="true" data-notes="" lineno="440" class="slide " data-source-line="440" data-h="9" data-v="1"><h5 id="自反性">自反性 </h5>
+</section><section vertical="true" data-notes="" lineno="405" class="slide " data-source-line="405" data-h="7" data-v="1"><h5 id="自反性">自反性 </h5>
 <hr>
 <p>求证：<span class="mathjax-exps">$f(n) = \Theta(f(n))$</span>、<span class="mathjax-exps">$f(n) = O(f(n))$</span>、<span class="mathjax-exps">$f(n) = \Omega(f(n))$</span></p>
 <p>证明：<span class="mathjax-exps">$f(n)$</span>渐进非负，设临界点为<span class="mathjax-exps">$n_f$</span>，易知对<span class="mathjax-exps">$\forall n \ge n_f$</span>有</p>
@@ -502,7 +438,7 @@
 </p>
 <p>取<span class="mathjax-exps">$c_1 = c_2 = 1$</span>、<span class="mathjax-exps">$n_0 = n_f$</span>即有<span class="mathjax-exps">$f(n) = \Theta(f(n))$</span></p>
 <p>由<span class="mathjax-exps">$f(n) = \Theta(f(n)) \Longleftrightarrow \begin{cases} f(n) = O(f(n)) \\ f(n) = \Omega(f(n)) \end{cases}$</span>可知<span class="mathjax-exps">$O$</span>、<span class="mathjax-exps">$\Omega$</span>自反性成立</p>
-</section></section><section><section data-notes="" lineno="460" class="slide " data-source-line="460" data-h="10" data-v="0"><h5 id="对称性">对称性 </h5>
+</section></section><section><section data-notes="" lineno="425" class="slide " data-source-line="425" data-h="8" data-v="0"><h5 id="对称性">对称性 </h5>
 <hr>
 <p>求证：<span class="mathjax-exps">$f(n) = \Theta(g(n)) \Longleftrightarrow g(n) = \Theta(f(n))$</span></p>
 <p>证明：</p>
@@ -516,7 +452,7 @@
 \end{align}
 </p>
 <p>其中<span class="mathjax-exps">$d_1 = 1 / c_2$</span>、<span class="mathjax-exps">$d_2 = 1 / c_1$</span></p>
-</section><section vertical="true" data-notes="" lineno="482" class="slide " data-source-line="482" data-h="10" data-v="1"><h5 id="转置对称性">转置对称性 </h5>
+</section><section vertical="true" data-notes="" lineno="447" class="slide " data-source-line="447" data-h="8" data-v="1"><h5 id="转置对称性">转置对称性 </h5>
 <hr>
 <p>求证：<span class="mathjax-exps">$f(n) = O(g(n)) \Longleftrightarrow g(n) = \Omega(f(n))$</span></p>
 <p>证明：</p>
@@ -531,7 +467,7 @@
 </p>
 <p>其中<span class="mathjax-exps">$d = 1 / c$</span></p>
 <p>同理可证<span class="mathjax-exps">$f(n) = o(g(n)) \Longleftrightarrow g(n) = \omega(f(n))$</span></p>
-</section></section><section><section data-notes="" lineno="506" class="slide " data-source-line="506" data-h="11" data-v="0"><h5 id="传递性">传递性 </h5>
+</section></section><section><section data-notes="" lineno="471" class="slide " data-source-line="471" data-h="9" data-v="0"><h5 id="传递性">传递性 </h5>
 <hr>
 <p>求证：<span class="mathjax-exps">$\begin{cases} f(n) = O(g(n)) \\ g(n) = O(h(n)) \end{cases} \Longrightarrow f(n) = O(h(n))$</span></p>
 <p>证明：</p>
@@ -548,7 +484,7 @@
 </p>
 <p>其中<span class="mathjax-exps">$c = c_1 c_2$</span>、<span class="mathjax-exps">$n_0 = \max \{n_1, n_2\}$</span></p>
 <p>同理可证<span class="mathjax-exps">$\begin{cases} f(n) = \Omega(g(n)) \\ g(n) = \Omega(h(n)) \end{cases} \Longrightarrow f(n) = \Omega(h(n))$</span></p>
-</section><section vertical="true" data-notes="" lineno="532" class="slide " data-source-line="532" data-h="11" data-v="1"><h5 id="传递性-1">传递性 </h5>
+</section><section vertical="true" data-notes="" lineno="497" class="slide " data-source-line="497" data-h="9" data-v="1"><h5 id="传递性-1">传递性 </h5>
 <hr>
 <p>求证：<span class="mathjax-exps">$\begin{cases} f(n) = \Theta(g(n)) \\ g(n) = \Theta(h(n)) \end{cases} \Longrightarrow f(n) = \Theta(h(n))$</span></p>
 <p>证明：</p>
@@ -558,7 +494,7 @@
 \end{align}
 </p>
 <p>根据<span class="mathjax-exps">$O$</span>、<span class="mathjax-exps">$\Omega$</span>的传递性有<span class="mathjax-exps">$\begin{cases} f(n) = O(h(n)) \\ f(n) = \Omega(h(n)) \end{cases} \Longrightarrow f(n) = \Theta(h(n))$</span></p>
-</section><section vertical="true" data-notes="" lineno="550" class="slide " data-source-line="550" data-h="11" data-v="2"><h5 id="传递性-2">传递性 </h5>
+</section><section vertical="true" data-notes="" lineno="515" class="slide " data-source-line="515" data-h="9" data-v="2"><h5 id="传递性-2">传递性 </h5>
 <hr>
 <p>求证：<span class="mathjax-exps">$\begin{cases} f(n) = o(g(n)) \\ g(n) = o(h(n)) \end{cases} \Longrightarrow f(n) = o(h(n))$</span></p>
 <p>证明：</p>
@@ -575,7 +511,7 @@
 </p>
 <p>其中<span class="mathjax-exps">$c = c_1 c_2$</span>、<span class="mathjax-exps">$n_0 = \max \{n_1, n_2\}$</span></p>
 <p>同理可证<span class="mathjax-exps">$\begin{cases} f(n) = \omega(g(n)) \\ g(n) = \omega(h(n)) \end{cases} \Longrightarrow f(n) = \omega(h(n))$</span></p>
-</section></section><section><section data-notes="" lineno="576" class="slide " data-source-line="576" data-h="12" data-v="0"><h5 id="运算法则">运算法则 </h5>
+</section></section><section><section data-notes="" lineno="541" class="slide " data-source-line="541" data-h="10" data-v="0"><h5 id="运算法则">运算法则 </h5>
 <hr>
 <p>求证：<span class="mathjax-exps">$\Theta( \Theta(f(n)) ) = \Theta(f(n))$</span>，类似幂等性</p>
 <p>证明：左边的渐进符号表示任意，等号表示属于<span class="mathjax-exps">$\in$</span>，即</p>
@@ -585,7 +521,7 @@
 \end{align}
 </p>
 <p>根据<span class="mathjax-exps">$\Theta$</span>的传递性有<span class="mathjax-exps">$h(n) = \Theta(f(n))$</span>，命题得证</p>
-</section><section vertical="true" data-notes="" lineno="594" class="slide " data-source-line="594" data-h="12" data-v="1"><h5 id="运算法则-1">运算法则 </h5>
+</section><section vertical="true" data-notes="" lineno="559" class="slide " data-source-line="559" data-h="10" data-v="1"><h5 id="运算法则-1">运算法则 </h5>
 <hr>
 <p>求证：<span class="mathjax-exps">$\Theta(f(n)) + O(f(n)) = \Theta(f(n))$</span>，<span class="mathjax-exps">$O$</span>可被<span class="mathjax-exps">$\Theta$</span>吸收</p>
 <p>证明：左边的渐进符号表示任意，等号表示属于<span class="mathjax-exps">$\in$</span>，即</p>
@@ -604,7 +540,7 @@
 <p>对<span class="mathjax-exps">$\forall n \ge \max\{ n_g, n_h \}$</span>有<span class="mathjax-exps">$0 \le c_1 f(n) \le g(n) + h(n) \le (c_2 + c_3) f(n)$</span></p>
 <div class="top2"></div>
 <p>同理可证：<span class="mathjax-exps">$\Theta(f(n)) + o(f(n)) = \Theta(f(n))$</span>，<span class="mathjax-exps">$o$</span>也可被<span class="mathjax-exps">$\Theta$</span>吸收</p>
-</section><section vertical="true" data-notes="" lineno="625" class="slide " data-source-line="625" data-h="12" data-v="2"><h5 id="运算法则-2">运算法则 </h5>
+</section><section vertical="true" data-notes="" lineno="590" class="slide " data-source-line="590" data-h="10" data-v="2"><h5 id="运算法则-2">运算法则 </h5>
 <hr>
 <p>求证：<span class="mathjax-exps">$\Theta(f(n)) + \Theta(g(n)) = \Theta(f(n) + g(n))$</span>，加法合并</p>
 <p>证明：左边的渐进符号表示任意，等号表示属于<span class="mathjax-exps">$\in$</span>，即</p>
@@ -626,7 +562,7 @@
     0 \le c_5 (f(n) + g(n)) \le p(n) + q(n) \le c_6 (f(n) + g(n))
 \end{align}
 </p>
-</section><section vertical="true" data-notes="" lineno="658" class="slide " data-source-line="658" data-h="12" data-v="3"><h5 id="运算法则-3">运算法则 </h5>
+</section><section vertical="true" data-notes="" lineno="623" class="slide " data-source-line="623" data-h="10" data-v="3"><h5 id="运算法则-3">运算法则 </h5>
 <hr>
 <p>求证：<span class="mathjax-exps">$\Theta(f(n)) \cdot \Theta(g(n)) = \Theta(f(n) g(n))$</span>，乘法合并</p>
 <p>证明：左边的渐进符号表示任意，等号表示属于<span class="mathjax-exps">$\in$</span>，即</p>
@@ -648,7 +584,7 @@
     0 \le c_5 f(n) g(n) \le p(n) q(n) \le c_6 f(n) g(n)
 \end{align}
 </p>
-</section></section><section><section data-notes="" lineno="691" class="slide " data-source-line="691" data-h="13" data-v="0"><h5 id="保证二歧性的渐进符号">保证二歧性的渐进符号 </h5>
+</section></section><section><section data-notes="" lineno="656" class="slide " data-source-line="656" data-h="11" data-v="0"><h5 id="保证二歧性的渐进符号">保证二歧性的渐进符号 </h5>
 <hr>
 <p>实数<mark>三歧性</mark>：<span class="mathjax-exps">$a &gt; b$</span>、<span class="mathjax-exps">$a = b$</span>、<span class="mathjax-exps">$a &lt; b$</span>恰有一个成立 <span class="red">✓</span></p>
 <p>函数二歧性：<span class="mathjax-exps">$f(n) = O(g(n))$</span>、<span class="mathjax-exps">$f(n) = \Omega(g(n))$</span>恰有一个成立 <span class="red">✗</span></p>
@@ -665,7 +601,7 @@
 \end{align}
 </p>
 <p>注意<span class="mathjax-exps">$\mathop{\Omega}\limits^{\infty}$</span>不再要求渐进性了</p>
-</section><section vertical="true" data-notes="" lineno="718" class="slide " data-source-line="718" data-h="13" data-v="1"><h5 id="忽略正负的渐进符号">忽略正负的渐进符号 </h5>
+</section><section vertical="true" data-notes="" lineno="683" class="slide " data-source-line="683" data-h="11" data-v="1"><h5 id="忽略正负的渐进符号">忽略正负的渐进符号 </h5>
 <hr>
 <p>有的书上渐进上界不要求非负，记其为<span class="mathjax-exps">$O'$</span>，与<span class="mathjax-exps">$O$</span>的关系如下：</p>
 <p class="bottom4">
@@ -684,7 +620,7 @@
 <li>正方向显然成立，因为<span class="mathjax-exps">$O(g(n)) \subseteq O'(g(n))$</span></li>
 <li>反方向，<span class="mathjax-exps">$f(n) = O'(g(n))$</span>不要求<span class="mathjax-exps">$f(n)$</span>渐进非负，但<span class="mathjax-exps">$f(n) = \Omega(g(n))$</span>弥补了这个要求，所以此时<span class="mathjax-exps">$O'(g(n))$</span>升级成了<span class="mathjax-exps">$O(g(n))$</span></li>
 </ul>
-</section><section vertical="true" data-notes="" lineno="743" class="slide " data-source-line="743" data-h="13" data-v="2"><h5 id="忽略对数的渐进符号">忽略对数的渐进符号 </h5>
+</section><section vertical="true" data-notes="" lineno="708" class="slide " data-source-line="708" data-h="11" data-v="2"><h5 id="忽略对数的渐进符号">忽略对数的渐进符号 </h5>
 <hr>
 <p>定义<span class="mathjax-exps">$\widetilde{O}$</span>、<span class="mathjax-exps">$\widetilde{\Omega}$</span>、<span class="mathjax-exps">$\widetilde{\Theta}$</span>如下：</p>
 <p class="bottom2">
@@ -703,7 +639,7 @@
     &amp; \Leftarrow: \begin{cases} \widetilde{O} : \exists c_2, k_2, n_2 &gt; 0 \ldots \\ \widetilde{\Omega} : \exists c_1, k_1, n_1 &gt; 0 \ldots \end{cases} \Longrightarrow \widetilde{\Theta} : \exists c_1, c_2, k_1, k_2, \max\{ n_1, n_2 \} &gt; 0 \ldots
 \end{align}
 </p>
-</section></section><section><section data-notes="" lineno="771" class="slide " data-source-line="771" data-h="14" data-v="0"><h5 id="一些例子-判断">一些例子 判断 </h5>
+</section></section><section><section data-notes="" lineno="736" class="slide " data-source-line="736" data-h="12" data-v="0"><h5 id="一些例子-判断">一些例子 判断 </h5>
 <hr>
 <p>例：<span class="mathjax-exps">$f(n) = O(g(n)) \rightarrow g(n) = O(f(n))$</span>是否成立？</p>
 <p>不成立，<span class="mathjax-exps">$n = O(n^2)$</span>，但<span class="mathjax-exps">$n^2 \ne O(n)$</span></p>
@@ -716,7 +652,7 @@
 <li><span class="mathjax-exps">$f(n) = O(f(n/2))$</span>不成立，取<span class="mathjax-exps">$f(n) = 4^n$</span></li>
 <li><span class="mathjax-exps">$f(n) = O(g(n)) \Longrightarrow 2^{f(n)} = O(2^{g(n)})$</span>不成立，取<span class="mathjax-exps">$f(n) = 2n$</span>、<span class="mathjax-exps">$g(n) = n$</span></li>
 </ul>
-</section><section vertical="true" data-notes="" lineno="794" class="slide " data-source-line="794" data-h="14" data-v="1"><h5 id="一些例子-判断-1">一些例子 判断 </h5>
+</section><section vertical="true" data-notes="" lineno="759" class="slide " data-source-line="759" data-h="12" data-v="1"><h5 id="一些例子-判断-1">一些例子 判断 </h5>
 <hr>
 <p>例：<span class="mathjax-exps">$f(n) = O((f(n))^2)$</span>是否成立？</p>
 <p>若成立，则<span class="mathjax-exps">$\exists c&gt;0$</span>使得<span class="mathjax-exps">$f(n) \le c (f(n))^2$</span>，即<span class="mathjax-exps">$c f(n) \ge 1$</span>渐进成立</p>
@@ -724,7 +660,7 @@
 <div class="top4"></div>
 <p>例：<span class="mathjax-exps">$\min \{ f(n), g(n) \} = \Theta(f(n) + g(n))$</span>是否成立？</p>
 <p>不成立，取<span class="mathjax-exps">$f(n) = n$</span>、<span class="mathjax-exps">$g(n) = n^2$</span>，显然<span class="mathjax-exps">$n \ne \Theta(n^2)$</span></p>
-</section></section><section><section data-notes="" lineno="812" class="slide " data-source-line="812" data-h="15" data-v="0"><h5 id="一些例子-证明">一些例子 证明 </h5>
+</section></section><section><section data-notes="" lineno="777" class="slide " data-source-line="777" data-h="13" data-v="0"><h5 id="一些例子-证明">一些例子 证明 </h5>
 <hr>
 <p>求证：<span class="mathjax-exps">$\max \{ f(n), g(n) \} = \Theta(f(n) + g(n))$</span></p>
 <p>证明：易知<span class="mathjax-exps">$(f(n) + g(n)) / 2 \le \max \{ f(n), g(n) \} \le f(n) + g(n)$</span></p>
@@ -737,7 +673,7 @@
 <li>若<span class="mathjax-exps">$k &lt; 0$</span>，则<span class="mathjax-exps">$2^k n^k \le \lceil n \rceil^k, \lfloor n \rfloor^k \le n^k / 2^k$</span></li>
 </ul>
 <p>无论哪种情况，均有<span class="mathjax-exps">$\lceil n \rceil^k = \Theta(n^k)$</span>、<span class="mathjax-exps">$\lfloor n \rfloor^k = \Theta(n^k)$</span></p>
-</section><section vertical="true" data-notes="" lineno="835" class="slide " data-source-line="835" data-h="15" data-v="1"><h5 id="一些例子-证明-1">一些例子 证明 </h5>
+</section><section vertical="true" data-notes="" lineno="800" class="slide " data-source-line="800" data-h="13" data-v="1"><h5 id="一些例子-证明-1">一些例子 证明 </h5>
 <hr>
 <p>求证：<span class="mathjax-exps">$(n + o(n))^k = \Theta(n^k)$</span></p>
 <p>证明：左边的渐进符号表示任意，等号表示属于<span class="mathjax-exps">$\in$</span>，即</p>
@@ -753,7 +689,7 @@
 <li>若<span class="mathjax-exps">$k &lt; 0$</span>，则<span class="mathjax-exps">$2^k n^k \le (n + f(n))^k \le n^k$</span></li>
 </ul>
 <p>无论哪种情况，均有<span class="mathjax-exps">$(n + f(n))^k = \Theta(n^k)$</span></p>
-</section><section vertical="true" data-notes="" lineno="860" class="slide " data-source-line="860" data-h="15" data-v="2"><h5 id="一些例子-证明-2">一些例子 证明 </h5>
+</section><section vertical="true" data-notes="" lineno="825" class="slide " data-source-line="825" data-h="13" data-v="2"><h5 id="一些例子-证明-2">一些例子 证明 </h5>
 <hr>
 <p>求证：<span class="mathjax-exps">$\lg ( \Theta(n)) = \Theta(\lg n)$</span></p>
 <p>证明：左边的渐进符号表示任意，等号表示属于<span class="mathjax-exps">$\in$</span>，即</p>
@@ -765,7 +701,7 @@
 <p>根据定义<span class="mathjax-exps">$\exists c_1, c_2, n_0 &gt; 0$</span>使得对<span class="mathjax-exps">$\forall n \ge n_0$</span>有<span class="mathjax-exps">$0 \le c_1 n \le f(n) \le c_2 n$</span></p>
 <p>从而<span class="mathjax-exps">$\lg c_1 + \lg n \le \lg (f(n)) \le \lg c_2 + \lg n$</span></p>
 <p>于是对<span class="mathjax-exps">$\forall n \ge \max \{ n_0, 1/c_1^2, c_2 \}$</span>有<span class="mathjax-exps">$\frac{1}{2} \lg n \le \lg (f(n)) \le 2 \lg n$</span></p>
-</section><section vertical="true" data-notes="" lineno="882" class="slide " data-source-line="882" data-h="15" data-v="3"><h5 id="一些例子-证明-3">一些例子 证明 </h5>
+</section><section vertical="true" data-notes="" lineno="847" class="slide " data-source-line="847" data-h="13" data-v="3"><h5 id="一些例子-证明-3">一些例子 证明 </h5>
 <hr>
 <p>求证：<span class="mathjax-exps">$k \lg k = \Theta(n) \Longrightarrow k = \Theta (n / \lg n)$</span></p>
 <p>证明：<span class="mathjax-exps">$\exists c_1, c_2, k_0 &gt; 0~\forall k \ge k_0: 0 \le c_1 n \le k \lg k \le c_2 n$</span></p>

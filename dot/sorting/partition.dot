@@ -1,10 +1,9 @@
 digraph g {
-    bgcolor=transparent
-    graph [nodesep=0.4, ranksep=0.2]
-    rankdir=TB
-    node [shape=none, color="#586e75", fontcolor="#b58900", fontsize=18, fontname="YsabeauText, FZFWZhuZiGuDianSLMC"]
-    edge [arrowhead=vee, color="#586e75", fontcolor="#268bd2", fontsize=16, fontname="YsabeauText, FZFWZhuZiGuDianSLMC", arrowsize=0.6]
-
+    bgcolor="transparent";
+    graph [nodesep=0.4, ranksep=0.2];
+    rankdir="TB";
+    node [shape="none", color="#586e75", fontcolor="#586e75", fontsize=18, fontname="YsabeauText, FZFWZhuZiGuDianSLMC"];
+    edge [arrowhead="vee", color="#586e75", fontcolor="#268bd2", fontsize=16, fontname="YsabeauText, FZFWZhuZiGuDianSLMC", arrowsize=0.6];
     n1 [label=<<table width="3" cellspacing="0" border="0"><tr>
         <td border="0">ij</td></tr><tr>
         <td border="1">5</td>
@@ -13,8 +12,7 @@ digraph g {
         <td border="1">6</td>
         <td border="1">1</td>
         <td border="1"><font color="#268bd2">3</font></td>
-        </tr></table>>]
-
+        </tr></table>>];
     n2 [label=<<table width="3" cellspacing="0" border="0"><tr>
         <td border="0">i</td><td border="0">j</td></tr><tr>
         <td border="1">5</td>
@@ -23,8 +21,7 @@ digraph g {
         <td border="1">6</td>
         <td border="1">1</td>
         <td border="1"><font color="#268bd2">3</font></td>
-        </tr></table>>]
-
+        </tr></table>>];
     n3 [label=<<table width="3" cellspacing="0" border="0"><tr>
         <td></td><td border="0">ij</td></tr><tr>
         <td border="1">2</td>
@@ -33,8 +30,7 @@ digraph g {
         <td border="1">6</td>
         <td border="1">1</td>
         <td border="1"><font color="#268bd2">3</font></td>
-        </tr></table>>]
-
+        </tr></table>>];
     n5 [label=<<table width="3" cellspacing="0" border="0"><tr>
         <td></td><td border="0">i</td><td></td><td></td><td border="0">j</td></tr><tr>
         <td border="1">2</td>
@@ -43,8 +39,7 @@ digraph g {
         <td border="1">6</td>
         <td border="1">1</td>
         <td border="1"><font color="#268bd2">3</font></td>
-        </tr></table>>]
-
+        </tr></table>>];
     n6 [label=<<table width="3" cellspacing="0" border="0"><tr>
         <td></td><td></td><td border="0">i</td><td></td><td border="0">j</td></tr><tr>
         <td border="1">2</td>
@@ -53,8 +48,7 @@ digraph g {
         <td border="1">6</td>
         <td border="1">5</td>
         <td border="1"><font color="#268bd2">3</font></td>
-        </tr></table>>]
-
+        </tr></table>>];
     n7 [label=<<table width="3" cellspacing="0" border="0"><tr>
         <td></td><td></td><td border="0">i</td><td></td><td></td><td border="0">j</td></tr><tr>
         <td border="1">2</td>
@@ -63,7 +57,6 @@ digraph g {
         <td border="1">6</td>
         <td border="1">5</td>
         <td border="1">4</td>
-        </tr></table>>]
-
-    n1 -> n2 -> n3 -> n5 -> n6 -> n7
+        </tr></table>>];
+    n1 -> n2 -> n3 -> n5 -> n6 -> n7;
 }
