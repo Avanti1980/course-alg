@@ -179,7 +179,7 @@ details[open] {
   color: rgb(from var(--solarized-base02) r g b / 0.8);
   margin: 1rem 2rem;
   cursor: pointer;
-  list-style: none;
+  list-style: none !important;
 }
 
 .reveal details[open] > :nth-child(2) {
