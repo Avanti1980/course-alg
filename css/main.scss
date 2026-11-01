@@ -143,7 +143,8 @@ body {
 // 行内公式左右间隔
 .reveal .mathjax-exps mjx-container[jax="CHTML"],
 .reveal .fragment mjx-container[jax="CHTML"],
-.reveal .footnote mjx-container[jax="CHTML"] {
+.reveal .footnote mjx-container[jax="CHTML"],
+.reveal details[open] mjx-container[jax="CHTML"] {
   margin-left: 0.2rem !important;
   margin-right: 0.2rem !important;
 }
@@ -166,4 +167,34 @@ body {
 
 .reveal mjx-xypic g {
   stroke: var(--solarized-magenta) !important;
+}
+
+.reveal details,
+details[open] {
+  text-align: justify;
+  margin: 0;
+}
+
+.reveal summary {
+  color: rgb(from var(--solarized-base02) r g b / 0.8);
+  margin: 1rem 2rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.reveal details[open] > :nth-child(2) {
+  margin-top: 1rem !important;
+}
+
+.reveal details[open] p {
+  margin: 2rem;
+}
+
+.reveal details[open] ul,
+ol {
+  margin-top: -1rem;
+}
+
+details[open] > summary {
+  display: none;
 }
