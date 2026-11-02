@@ -56,47 +56,94 @@
 </div>
     <div class="reveal">
       <div class="slides">
-        <section vertical="true" data-notes="" lineno="27" class="slide " data-source-line="27" data-h="-1" data-v="1"><h5 id="一些例题-证明">一些例题 证明 </h5>
+        <section vertical="true" data-notes="" lineno="27" class="slide " data-source-line="27" data-h="-1" data-v="1"><h5 id="分治的设计与分析">分治的设计与分析 </h5>
 <hr>
-<p>求证：<span class="mathjax-exps">$\lg ( \Theta(n)) = \Theta(\lg n)$</span></p>
-<details>
-<summary>证明</summary>
-<p>证明：左边的渐进界表示任意，等号表示属于$\in$，即</p>
+<p>分治由如下三个模块组成</p>
+<ul>
+<li>分：将原问题分成若干同类型、规模更小的子问题，子问题规模最好相同</li>
+<li>治：递归求解子问题，若子问题规模足够小，也可采用它法</li>
+<li>合：合并子问题的解得到原问题的解</li>
+</ul>
+<div class="top2"></div>
+<p>分治的时间分析</p>
+<ul>
+<li>原问题规模<span class="mathjax-exps">$n$</span>，求解时间为<span class="mathjax-exps">$T(n)$</span></li>
+<li>子问题个数<span class="mathjax-exps">$a \ge 1$</span>，子问题规模<span class="mathjax-exps">$n/b$</span>，<span class="mathjax-exps">$b &gt; 1$</span>即子问题规模严格小于原问题</li>
+<li>分解问题、合并子问题解的时间为<span class="mathjax-exps">$f(n)$</span></li>
+</ul>
+<div class="top2"></div>
 <p>
 \begin{align}
-    \forall f(n) \in \Theta(n) : \lg (f(n)) \in \Theta(\lg n)
+    T(n) = \begin{cases} 1, &amp; n = 1 \\ a \cdot T(n/b) + f(n), &amp; n &gt; 1 \end{cases}
 \end{align}
 </p>
-<p>根据定义$\exists c_1, c_2, n_0 &gt; 0$使得对$\forall n \ge n_0$有$0 \le c_1 n \le f(n) \le c_2 n$，故</p>
+<p>递推关系的求解方法：代入法、主方法</p>
+</section><section vertical="true" data-notes="" lineno="57" class="slide " data-source-line="57" data-h="-1" data-v="2"><h5 id="分治的时间分析初探">分治的时间分析初探 </h5>
+<hr>
 <p>
 \begin{align}
-    \lg c_1 + \lg n \le \lg (f(n)) \le \lg c_2 + \lg n
+    T(n) = \begin{cases} 1, &amp; n = 1 \\ a \cdot T(n/b) + f(n), &amp; n &gt; 1 \end{cases}
 \end{align}
 </p>
-<p>最后只需将上下界再放成$\lg n$的常数倍</p>
-<ul>
-  <li>$\lg c_2 \le \lg n$，这只需$n \ge c_2$</li>
-  <li>$\lg c_1$是常数，$\lg n$上无界，因此只能是$\lg c_1 \ge - \frac{1}{2} \lg n$，这只需$n \ge 1/c_1^2$</li>
-</ul>
-<div class="top-2"></div>
-<p>综上，对$\forall n \ge \max \{ n_0, 1/c_1^2, c_2 \}$有$\frac{1}{2} \lg n \le \lg (f(n)) \le 2 \lg n$</p>
-</details>
-</section><section vertical="true" data-notes="" lineno="68" class="slide " data-source-line="68" data-h="-1" data-v="2"><h5 id="一些例题-证明-1">一些例题 证明 </h5>
+<p>假设<span class="mathjax-exps">$f(n) = c \cdot n^d$</span>、<span class="mathjax-exps">$n = b^t$</span>，根据递推关系有</p>
+<p>
+\begin{align}
+    \begin{array}{lrclcl}
+        (\spadesuit) &amp; T(b^t) &amp; = &amp; a \cdot T (b^{t-1}) &amp; + &amp; c \cdot b^{td} \\
+        (\heartsuit) &amp; T(b^{t-1}) &amp; = &amp; a \cdot T (b^{t-2}) &amp; + &amp; c \cdot b^{(t-1)d} \\
+         &amp;  &amp; \vdots &amp;  \\
+        (\clubsuit) &amp; T(b^1) &amp; = &amp; a \cdot T (1) &amp; + &amp; c \cdot b^d
+    \end{array}
+\end{align}
+</p>
+<p>令<span class="mathjax-exps">$(\spadesuit) + (\heartsuit) \cdot a + \cdots + (\clubsuit) \cdot a^{t-1}$</span>可得</p>
+<p>
+\begin{align}
+    T(n) = a^t \cdot T(1) + c \cdot b^{td} \left( 1 + \frac{a}{b^d} + \left( \frac{a}{b^d} \right)^2 + \cdots + \left( \frac{a}{b^d} \right)^{t-1} \right)
+\end{align}
+</p>
+<p>其中括号中是公比为<span class="mathjax-exps">$a / b^d$</span>的等比数列求和</p>
+</section><section vertical="true" data-notes="" lineno="92" class="slide " data-source-line="92" data-h="-1" data-v="3"><h5 id="分治的时间分析初探-1">分治的时间分析初探 </h5>
 <hr>
-<p>求证：<span class="mathjax-exps">$k \lg k = \Theta(n) \Longrightarrow k = \Theta (n / \lg n)$</span></p>
-<details>
-<summary>证明</summary>
-<p>证明：$\exists c_1, c_2, k_0 &gt; 0~\forall k \ge k_0: 0 \le c_1 n \le k \lg k \le c_2 n$</p>
-<p>如果还有$\lg k$的上下界均是$\lg n$的常数倍，两式相除即得证</p>
-<p>取对数$\lg c_1 + \lg n \le \lg k + \lg (\lg k) \le \lg c_2 + \lg n$</p>
-<ul>
-  <li>上界：若$\lg (\lg k) \ge \lg c_2$则有$\lg k \le \lg n$，这需要$k \ge \exp(c_2)$</li>
-  <li>下界：若$\lg (\lg k) - \lg c_1 \le \lg k^2 = 2 \lg k$则有$\frac{1}{3} \lg n \le \lg k$，这需要$\lg k \le c_1 k^2$，即$k \le \exp (c_1 k^2)$，注意$\exp (c_1 k^2) \ge 1 + c_1 k^2 &gt; c_1 k^2$，因此有$c_1 k \ge 1$即可</li>
-</ul>
-<div class="top-2"></div>
-<p>综上对$\forall k \ge \max \{\exp(c_2), 1/ c_1 \}$有$\frac{1}{3} \lg n \le \lg k \le \lg n$</p>
-<p>$\exists c_1, c_2, k_0 &gt; 0 ~ \forall k \ge \max \{k_0, \exp(c_2), 1/ c_1 \}: c_1 \frac{n}{\lg n} \le k \le 3 c_2 \frac{n}{\lg n}$</p>
-</details>
+<p>
+\begin{align}
+    T(n) = a^t \cdot T(1) + c \cdot b^{td} \left( 1 + \frac{a}{b^d} + \left( \frac{a}{b^d} \right)^2 + \cdots + \left( \frac{a}{b^d} \right)^{t-1} \right)
+\end{align}
+</p>
+<p>若公比为<span class="mathjax-exps">$1$</span>，即<span class="mathjax-exps">$a = b^d$</span>，则<span class="mathjax-exps">$T(n) = a^t \cdot T(1) + c \cdot b^{td} \cdot t$</span></p>
+<p>若公比不为<span class="mathjax-exps">$1$</span>，即<span class="mathjax-exps">$a \ne b^d$</span>，则</p>
+<p>
+\begin{align}
+    T(n) = a^t \cdot T(1) + c \cdot b^{td} \cdot \frac{1 - a^t/b^{td}}{1 - a/b^d} = a^t \cdot T(1) + c \cdot \frac{b^{td} - a^t}{1 - a/b^d}
+\end{align}
+</p>
+<p>注意<span class="mathjax-exps">$n = b^t$</span>，即<span class="mathjax-exps">$t = \log_b n$</span>、<span class="mathjax-exps">$a^t = (b^{\log_b a})^t = (b^t)^{\log_b a} = n^{\log_b a}$</span>，回代有</p>
+<p>
+\begin{align}
+    (\diamondsuit) \quad T(n) = 
+    \begin{cases} 
+        n^{\log_b a} \cdot T(1) + c \cdot n^{\log_b a} \cdot \log_b n, &amp; 若a = b^d \\
+        n^{\log_b a} \cdot T(1) + c \cdot (n^d - n^{\log_b a})/(1 - a/b^d), &amp; 若a \ne b^d
+    \end{cases}
+\end{align}
+</p>
+<p>代入式<span class="mathjax-exps">$(\diamondsuit)$</span>，注意<span class="mathjax-exps">$a = 2$</span>、<span class="mathjax-exps">$b = 2$</span>、<span class="mathjax-exps">$d = 1$</span>，故<span class="mathjax-exps">$a = b^d$</span>、<span class="mathjax-exps">$\log_b a = 1$</span></p>
+<p>
+\begin{align}
+    T(n) &amp; = n^{\log_b a} \cdot T(1) + c \cdot n^{\log_b a} \cdot \log_b n \\
+    &amp; = n \cdot T(1) + c \cdot n \cdot \log_2 n \\
+    &amp; = \Theta(n \lg n)
+\end{align}
+</p>
+<p class="footnote hand"> 本讲后面会经常用到式$(\diamondsuit)$</p>
+</section><section vertical="true" data-notes="" lineno="138" class="slide " data-source-line="138" data-h="-1" data-v="4"><h5 id="分治的时间分析初探-2">分治的时间分析初探 </h5>
+<hr>
+<p>式<span class="mathjax-exps">$(\diamondsuit)$</span>假设了<span class="mathjax-exps">$n = b^t$</span>，即<span class="mathjax-exps">$n$</span>是<span class="mathjax-exps">$2$</span>的幂次</p>
+<p>若假设不成立，考虑大于<span class="mathjax-exps">$n$</span>的最小的<span class="mathjax-exps">$2$</span>的幂次<span class="mathjax-exps">$m$</span>，即<span class="mathjax-exps">$n &lt; m &lt; 2n$</span></p>
+<p>向数组末尾添加<span class="mathjax-exps">$m - n$</span>个<span class="mathjax-exps">$\infty$</span>，再对其进行排序</p>
+<p>由于<span class="mathjax-exps">$n \lg n &lt; m \lg m &lt; 2n \lg (2n) = 2n \lg n + 2n &lt; 4n \lg n$</span></p>
+<p>因此<span class="mathjax-exps">$m \lg m = \Theta (n \lg n)$</span></p>
+<p>从而<span class="mathjax-exps">$T(m) = \Theta(m \lg m) = \Theta(\Theta (n \lg n)) =  \Theta (n \lg n)$</span></p>
 </section>
       </div>
     </div>
