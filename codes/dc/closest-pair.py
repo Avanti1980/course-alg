@@ -1,10 +1,22 @@
 import time
 import matplotlib.pyplot as plt
 import numpy as np
+import math
+import matplotlib.font_manager as fm
 
-
-def dist(u, v):  # 计算距离
-    return np.linalg.norm(u - v)
+zhisong = fm.FontEntry(
+    fname="/home/avanti/Fonts/Founder/宋/方正FW筑紫古典L明朝 简.TTF", name="FZFW ZhuZi GuDianS LMC")
+fm.fontManager.ttflist.insert(0, zhisong)
+plt.rcParams.update({
+    "font.family": ["Ysabeau Office", "FZFW ZhuZi GuDianS LMC"],
+    "axes.unicode_minus": True,
+    "savefig.bbox": "tight",
+    'legend.fontsize': 14,
+    "xtick.labelsize": 10,
+    "ytick.labelsize": 10,
+    'savefig.transparent': True,
+    'text.color': '#586e75',
+})
 
 
 def closest_pair(low, high, sort_y):
@@ -12,29 +24,32 @@ def closest_pair(low, high, sort_y):
         closest = float("inf")
         for i in range(low, high + 1):
             for j in range(i + 1, high + 1):
-                closest = min(closest, dist(v[i], v[j]))
+                d = math.hypot(v[i, 0] - v[j, 0], v[i, 1] - v[j, 1])
+                if d < closest:
+                    closest = d
         return closest
 
-    mid = int((low + high) / 2)
+    mid = (low + high) // 2
     xmid = (v[mid, 0] + v[mid + 1, 0]) / 2  # 中线位置
 
-    index = [i for i in sort_y if low <= i and i <= mid]  # 左半元素按y升序后的索引
-    delta_left = closest_pair(low, mid, index)
+    mask_left = (sort_y >= low) & (sort_y <= mid)  # 左半元素按y升序后的索引
+    delta_left = closest_pair(low, mid, sort_y[mask_left])
 
-    index = [i for i in sort_y if mid + 1 <= i and i <= high]  # 右半元素按y升序后的索引
-    delta_right = closest_pair(mid + 1, high, index)
+    mask_right = (sort_y >= mid + 1) & (sort_y <= high)  # 右半元素按y升序后的索引
+    delta_right = closest_pair(mid + 1, high, sort_y[mask_right])
 
     delta = min(delta_left, delta_right)
-    index = []
-    for i in sort_y:
-        if v[i, 0] <= xmid + delta and v[i, 0] >= xmid - delta:  # 中间带状区域中的点
-            index.append(i)
 
-    closest = float("inf")
-    l = len(index)
+    strip = sort_y[(v[sort_y, 0] >= xmid - delta) &
+                   (v[sort_y, 0] <= xmid + delta)]  # 中间带状区域中的点
+    closest = delta
+    l = len(strip)
     for i in range(l):  # 计算带状区域中的最近点对
         for j in range(i + 1, min(i + 8, l)):  # 最多考虑7个点
-            closest = min(closest, dist(v[index[i]], v[index[j]]))
+            d = math.hypot(v[strip[i], 0] - v[strip[j], 0],
+                           v[strip[i], 1] - v[strip[j], 1])
+            if d < closest:
+                closest = d
 
     return min(closest, delta)
 
@@ -45,14 +60,15 @@ trial = 8
 time_cost = np.zeros([2, trial])
 
 for t in range(trial):
-    n = 2**(t + 4)
+    n = 2**(t + 6)
     v = np.random.rand(n, 2)     # 随机生成n个点
 
     start = time.perf_counter()
     closest = float("inf")
     for i in range(n):
         for j in range(i + 1, n):
-            closest = min(closest, dist(v[i], v[j]))  # 暴力穷举
+            closest = min(closest, math.hypot(
+                v[i, 0] - v[j, 0], v[i, 1] - v[j, 1]))  # 暴力穷举
     time_cost[0, t] = time.perf_counter() - start
 
     start = time.perf_counter()
@@ -62,11 +78,11 @@ for t in range(trial):
     time_cost[1, t] = time.perf_counter() - start
 
 with plt.style.context('Solarize_Light2'):
-    x = [v for v in range(4, 4 + trial)]
-    plt.plot(x, np.log2(time_cost[0, :]), label="BF")  # 对数坐标轴
-    plt.plot(x, np.log2(time_cost[1, :]), label="DC")  # 对数坐标轴
-    plt.xlabel('n: power of 2')
-    plt.ylabel('time: power of 2')
-    plt.legend()
+    n = [2**(t + 6) for t in range(trial)]
+    plt.loglog(n, time_cost[0, :], base=2, label="BF")  # 对数坐标轴
+    plt.loglog(n, time_cost[1, :], base=2, label="DC")  # 对数坐标轴
+    plt.xlabel('点数')
+    plt.ylabel('时间')
+    plt.legend(framealpha=0.2)
     plt.grid(color='#93a1a1', linestyle='-.', linewidth=0.7)
-    plt.savefig("closest-pair.svg", transparent=True, bbox_inches="tight")
+    plt.savefig("closest-pair.svg")
