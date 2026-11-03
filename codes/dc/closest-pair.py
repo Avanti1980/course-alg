@@ -4,9 +4,10 @@ import numpy as np
 import math
 import matplotlib.font_manager as fm
 
-zhisong = fm.FontEntry(
+
+ZhuZi = fm.FontEntry(
     fname="/home/avanti/Fonts/Founder/宋/方正FW筑紫古典L明朝 简.TTF", name="FZFW ZhuZi GuDianS LMC")
-fm.fontManager.ttflist.insert(0, zhisong)
+fm.fontManager.ttflist.insert(0, ZhuZi)
 plt.rcParams.update({
     "font.family": ["Ysabeau Office", "FZFW ZhuZi GuDianS LMC"],
     "axes.unicode_minus": True,

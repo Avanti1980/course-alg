@@ -10,13 +10,6 @@ sys.set_int_max_str_digits(100000)
 
 np.random.seed(0)
 
-ysabeau = fm.FontEntry(fname="/home/avanti/Slides/Courses/Alg/fonts/YsabeauOffice/YsabeauOffice-Medium.otf", name="Ysabeau-Regular")
-fm.fontManager.ttflist.insert(0, ysabeau)
-plt.rcParams.update({
-    "font.family": [ysabeau.name],
-    "font.size": 16,
-})
-
 
 def align(x, y, n_x, n_y):  # 若x和y长度不同 将短的左边补零
     if n_x < n_y:
@@ -55,7 +48,7 @@ def karatsuba(x, y):
 
     x, y, n = align(x, y, n_x, n_y)  # 若x和y长度不同 将短的左边补零
 
-    m = round(n / 2)
+    m = n // 2
     a, b = x[0:n - m], x[n - m:n]  # x = a 10^m + b
     c, d = y[0:n - m], y[n - m:n]  # y = c 10^m + d
 
@@ -83,16 +76,19 @@ def toom(x, y):
 
     x, y, n = align(x, y, n_x, n_y)  # 若x和y长度不同 将短的左边补零
 
-    m = round(n / 3)
+    m = n // 3
 
     a, b, c = x[0:n - 2 * m], x[n - 2 * m:n - m], x[n - m:n]
     d, e, f = y[0:n - 2 * m], y[n - 2 * m:n - m], y[n - m:n]
 
     # 5个递归子问题
     s4 = toom(a, d)  # s4 = ad
-    s3 = toom(str(4 * int(a) + 2 * int(b) + int(c)), str(4 * int(d) + 2 * int(e) + int(f)))  # s3 = (4a+2b+c)(4d+2e+f)
-    s2 = toom(str(int(a) - int(b) + int(c)), str(int(d) - int(e) + int(f)))  # s2 = (a-b+c)(d-e+f)
-    s1 = toom(str(int(a) + int(b) + int(c)), str(int(d) + int(e) + int(f)))  # s1 = (a+b+c)(d+e+f)
+    s3 = toom(str(4 * int(a) + 2 * int(b) + int(c)),
+              str(4 * int(d) + 2 * int(e) + int(f)))  # s3 = (4a+2b+c)(4d+2e+f)
+    s2 = toom(str(int(a) - int(b) + int(c)),
+              str(int(d) - int(e) + int(f)))  # s2 = (a-b+c)(d-e+f)
+    s1 = toom(str(int(a) + int(b) + int(c)),
+              str(int(d) + int(e) + int(f)))  # s1 = (a+b+c)(d+e+f)
     s0 = toom(c, f)  # s0 = cf
 
     w4 = s4
@@ -110,7 +106,8 @@ for t in range(trial):
     n = 2**(t + 4)  # 2^4, 2^5, ..., 2^13
 
     # 随机生成长度为n的字符串x和y
-    x, y = ''.join(random.choices(string.digits, k=n)), ''.join(random.choices(string.digits, k=n))
+    x, y = ''.join(random.choices(string.digits, k=n)), ''.join(
+        random.choices(string.digits, k=n))
 
     start = time.perf_counter()
     z0 = int(x) * int(y)
@@ -128,35 +125,4 @@ for t in range(trial):
     z3 = toom(x, y)
     time_cost[3, t] = time.perf_counter() - start
 
-    print(z0 - z1, z0 - z2, z0 - z3)
-
-print(time_cost)
-
 np.save('time_cost.npy', time_cost)
-
-with plt.style.context('Solarize_Light2'):
-    _, ax = plt.subplots(figsize=(8, 6))
-    x = [v + 4 for v in range(trial)]
-    ax.plot(x, np.log2(time_cost[0, :]), ls="solid", label="built-in")  # 对数坐标轴
-    ax.plot(x, np.log2(time_cost[1, :]), ls="dashed", label="grade school")
-    ax.plot(x, np.log2(time_cost[2, :]), ls="dashdot", label="Karatsuba")
-    ax.plot(x, np.log2(time_cost[3, :]), ls="dotted", label="Toom")
-    ax.set_xlabel("n: power of 2", fontsize=18)
-    ax.set_ylabel("time: power of 2", fontsize=18)
-    ax.legend(loc="best")
-    ax.xaxis.set_major_locator(plt.MultipleLocator(1))
-    ax.yaxis.set_major_locator(plt.MultipleLocator(2))
-    ax.grid(color='#93a1a1', linestyle='-.', linewidth=0.7)
-    plt.savefig(f"integer-multiplication-all.svg", transparent=True, bbox_inches="tight")
-
-    _, ax = plt.subplots(figsize=(8, 6))
-    x = [v + 4 for v in range(trial)]
-    ax.plot(x, np.log2(time_cost[1, :]), ls="dashed", label="grade school")  # 对数坐标轴
-    ax.plot(x, np.log2(time_cost[2, :]), ls="dashdot", label="Karatsuba")
-    ax.set_xlabel("n: power of 2", fontsize=18)
-    ax.set_ylabel("time: power of 2", fontsize=18)
-    ax.legend(loc="best")
-    ax.xaxis.set_major_locator(plt.MultipleLocator(1))
-    ax.yaxis.set_major_locator(plt.MultipleLocator(2))
-    ax.grid(color='#93a1a1', linestyle='-.', linewidth=0.7)
-    plt.savefig(f"integer-multiplication-karatsuba.svg", transparent=True, bbox_inches="tight")
