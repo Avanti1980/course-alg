@@ -106,15 +106,15 @@
     <li>问题规模$n$达到一定程度后，时间复杂度中关于$n$的部分会成为算法最终性能表现的决定性因素</li>
     <li>我们感兴趣的恰恰是大规模问题 (小问题上不同算法的表现拉不开差距)</li>
 </ul>
-</section><section vertical="true" data-notes="" lineno="76" class="slide " data-source-line="76" data-h="1" data-v="1"><h5 id="渐进">渐进 </h5>
+</section><section vertical="true" data-notes="" lineno="76" class="slide " data-source-line="76" data-h="1" data-v="1"><h5 id="渐近">渐近 </h5>
 <hr>
-<p>某个性质渐进成立：<span class="mathjax-exps">$\exists n_0 &gt; 0$</span>使得对<span class="mathjax-exps">$\forall n \ge n_0$</span>，该性质成立</p>
+<p>某个性质渐近成立：<span class="mathjax-exps">$\exists n_0 &gt; 0$</span>使得对<span class="mathjax-exps">$\forall n \ge n_0$</span>，该性质成立</p>
 <ul>
 <li>允许在开始的<mark>有限</mark>区间上不成立</li>
 <li>一定存在一个<mark>临界点</mark>，过了之后，在<mark>无限</mark>的区间上一直成立</li>
 </ul>
 <div class="top2"></div>
-<p class="fragment" data-fragment-index="1">例：函数<span class="blue">渐进非负</span>：$\exists n_0 &gt; 0$使得对$\forall n \ge n_0$，函数取值非负</p>
+<p class="fragment" data-fragment-index="1">例：函数<span class="blue">渐近非负</span>：$\exists n_0 &gt; 0$使得对$\forall n \ge n_0$，函数取值非负</p>
 <p class="fragment" data-fragment-index="2">例：$f(n) = \class{blue}{\Theta} (n^2)$：$\exists n_0 &gt; 0$使得对$\forall n \ge n_0$，$f(n)$和二次函数$n^2$的增长速度<span class="blue">一样快</span></p>
 <p class="fragment" data-fragment-index="3">除表示<span class="blue">一样快</span> (相等关系) 的$\Theta$，还有表示不等关系的$O$、$\Omega$、$o$、$\omega$</p>
 <div class="threelines top-2 center fragment" data-fragment-index="3">
@@ -151,17 +151,17 @@
 </div>
 </section><section vertical="true" data-notes="" lineno="104" class="slide " data-source-line="104" data-h="1" data-v="2"><h5 id="本讲内容">本讲内容 </h5>
 <hr>
-<p>引入 5 个渐进界刻画算法的渐进效率</p>
+<p>引入 5 个渐近界刻画算法的渐近效率</p>
 <div class="threelines bottom2">
 <table>
 <thead>
 <tr>
 <th style="text-align:center">含义</th>
-<th style="text-align:center">渐进上界</th>
-<th style="text-align:center">渐进下界</th>
-<th style="text-align:center">渐进紧确界</th>
-<th style="text-align:center">非紧确渐进上界</th>
-<th style="text-align:center">非紧确渐进下界</th>
+<th style="text-align:center">渐近上界</th>
+<th style="text-align:center">渐近下界</th>
+<th style="text-align:center">渐近紧确界</th>
+<th style="text-align:center">非紧确渐近上界</th>
+<th style="text-align:center">非紧确渐近下界</th>
 </tr>
 </thead>
 <tbody>
@@ -176,18 +176,18 @@
 </tbody>
 </table>
 </div>
-<p>渐进界的严格定义</p>
-<p>渐进界的各种性质和相互关系</p>
-</section></section><section><section data-notes="" lineno="124" class="slide " data-source-line="124" data-h="2" data-v="0"><h5 id="渐进上界-渐进下界">渐进上界 渐进下界 </h5>
+<p>渐近界的严格定义</p>
+<p>渐近界的各种性质和相互关系</p>
+</section></section><section><section data-notes="" lineno="124" class="slide " data-source-line="124" data-h="2" data-v="0"><h5 id="渐近上界-渐近下界">渐近上界 渐近下界 </h5>
 <hr>
-<p>渐进上界<span class="mathjax-exps">$O(g(n))$</span>表示<mark>渐进意义</mark>下所有<mark>小于等于</mark><span class="mathjax-exps">$g(n)$</span>某个<mark>常数倍</mark>的<mark>非负函数</mark>，用于表示算法在<mark>最坏</mark>情况下的时间复杂度</p>
+<p>渐近上界<span class="mathjax-exps">$O(g(n))$</span>表示<mark>渐近意义</mark>下所有<mark>小于等于</mark><span class="mathjax-exps">$g(n)$</span>某个<mark>常数倍</mark>的<mark>非负函数</mark>，用于刻画算法时间的上界，最常见的用法是界定最坏情况</p>
 <p>
 \begin{align}
     O(g(n)) = \{ f(n) \mid \exists c, n_0 &gt; 0 ~ \forall n \ge n_0 : 0 \le f(n) \le c g(n) \}
 \end{align}
 </p>
 <div class="top2"></div>
-<p class="fragment" data-fragment-index="1">渐进下界$\Omega(g(n))$表示<span class="blue">渐进意义</span>下所有<span class="blue">大于等于</span>$g(n)$某个<span class="blue">常数倍</span>的<span class="blue">非负函数</span>，用于表示算法在<span class="blue">最好</span>情况下的时间复杂度</p>
+<p class="fragment" data-fragment-index="1">渐近下界$\Omega(g(n))$表示<span class="blue">渐近意义</span>下所有<span class="blue">大于等于</span>$g(n)$某个<span class="blue">常数倍</span>的<span class="blue">非负函数</span>，用于刻画算法时间的下界，最常见的用法是界定最好情况</p>
 <p class="fragment" data-fragment-index="1">
 \begin{align}
     \Omega(g(n)) = \{ f(n) \mid \exists c, n_0 &gt; 0 ~ \forall n \ge n_0 : 0 \le c g(n) \le f(n) \}
@@ -196,11 +196,11 @@
 <div class="top2"></div>
 <p class="fragment" data-fragment-index="2">两点说明：</p>
 <ol class="fragment" data-fragment-index="2">
-    <li>$O(g(n))$和$\Omega(g(n))$是<span class="blue">函数集合</span>，$g(n)$本身也需渐进非负，否则集合为空</li>
+    <li>$O(g(n))$和$\Omega(g(n))$是<span class="blue">函数集合</span>，$g(n)$本身也需渐近非负，否则集合为空</li>
     <li>$f(n) \in O(g(n))$记为$f(n) = O(g(n))$，$f(n) = \Omega(g(n))$同理，方便运算</li>
 </ol>
 <p class="footnote book"> $\exists$表示“存在”，Exist首字母“E”的左右翻转；$\forall$表示“任意/所有”，All首字母“A”的上下翻转</p>
-</section><section vertical="true" data-notes="" lineno="159" class="slide " data-source-line="159" data-h="2" data-v="1"><h5 id="多项式的渐进界">多项式的渐进界 </h5>
+</section><section vertical="true" data-notes="" lineno="159" class="slide " data-source-line="159" data-h="2" data-v="1"><h5 id="多项式的渐近界">多项式的渐近界 </h5>
 <hr>
 <p>对<span class="mathjax-exps">$d$</span>阶多项式<span class="mathjax-exps">$p(n) = a_d n^d + a_{d-1} n^{d-1} + \cdots + a_1 n + a_0$</span>，其中<span class="mathjax-exps">$a_d &gt; 0$</span></p>
 <p>记<span class="mathjax-exps">$q(n) \triangleq \frac{p(n)}{n^d} = a_d + \frac{a_{d-1}}{n} + \cdots + \frac{a_1}{n^{d-1}} + \frac{a_0}{n^d} \xrightarrow{~ n \rightarrow \infty ~} a_d$</span></p>
@@ -216,10 +216,10 @@
 <li>取<span class="mathjax-exps">$c = a_d/2$</span>、<span class="mathjax-exps">$n_0 = \max \{ n_0, 1 \}$</span>，有<span class="mathjax-exps">$p(n) = \Omega(n^{k_1})$</span>其中<span class="mathjax-exps">$k_1 \le d$</span></li>
 </ul>
 <div class="top2"></div>
-<p>这也印证了上一讲提到的：多项式的低阶项在其渐进界中可忽略</p>
-</section></section><section><section data-notes="" lineno="186" class="slide " data-source-line="186" data-h="3" data-v="0"><h5 id="渐进紧确界">渐进紧确界 </h5>
+<p>这也印证了上一讲提到的：多项式的低阶项在其渐近界中可忽略</p>
+</section></section><section><section data-notes="" lineno="186" class="slide " data-source-line="186" data-h="3" data-v="0"><h5 id="渐近紧确界">渐近紧确界 </h5>
 <hr>
-<p>渐进紧确界<span class="mathjax-exps">$\Theta(g(n))$</span>表示<mark>渐进意义</mark>下所有<mark>介于</mark><span class="mathjax-exps">$g(n)$</span>某两个<mark>常数倍</mark>之间的<mark>非负函数</mark>，用于表示算法在<mark>最坏</mark>情况和<mark>最好</mark>情况下的时间复杂度一样，最多差个常数因子</p>
+<p>渐近紧确界<span class="mathjax-exps">$\Theta(g(n))$</span>表示<mark>渐近意义</mark>下所有<mark>介于</mark><span class="mathjax-exps">$g(n)$</span>某两个<mark>常数倍</mark>之间的<mark>非负函数</mark>，用于表示算法在<mark>最坏</mark>情况和<mark>最好</mark>情况下的时间复杂度一样，最多差个常数因子</p>
 <p>
 \begin{align}
     \Theta(g(n)) = \{ f(n) \mid \exists c_1, c_2, n_0 &gt; 0 ~ \forall n \ge n_0 : 0 \le c_1 g(n) \le f(n) \le c_2 g(n) \}
@@ -234,27 +234,27 @@
     \Longleftarrow: \quad &amp; \begin{cases} O : \exists c_2, n_2 &gt; 0 \ldots \\ \Omega : \exists c_1, n_1 &gt; 0 \ldots \end{cases} \Longrightarrow \Theta : \exists c_1, c_2, n_0 = \max\{ n_1, n_2 \} &gt; 0 \ldots
 \end{align}
 </p>
-</section><section vertical="true" data-notes="" lineno="213" class="slide " data-source-line="213" data-h="3" data-v="1"><h5 id="多项式的渐进界-1">多项式的渐进界 </h5>
+</section><section vertical="true" data-notes="" lineno="213" class="slide " data-source-line="213" data-h="3" data-v="1"><h5 id="多项式的渐近界-1">多项式的渐近界 </h5>
 <hr>
 <p>对<span class="mathjax-exps">$p(n) = \sum_{i=0}^d a_i n^i, ~ (a_d &gt; 0)$</span>，同时有<span class="mathjax-exps">$p(n) = O(n^d)$</span>和<span class="mathjax-exps">$p(n) = \Omega(n^d)$</span>成立，因此<span class="mathjax-exps">$p(n) = \Theta(n^d)$</span></p>
 <p>综上，<span class="mathjax-exps">$p(n) = \begin{cases} O(n^k), &amp; k \ge d \\ \Omega(n^k), &amp; k \le d \\ \Theta(n^k), &amp; k = d \end{cases}$</span></p>
 <div class="top4"></div>
-<p>使用渐进界时我们应力求<mark>精确</mark>、<mark>简洁</mark></p>
+<p>使用渐近界时我们应力求<mark>精确</mark>、<mark>简洁</mark></p>
 <p>例如对<span class="mathjax-exps">$T(n) = 3 n^2 - 10 n$</span>，应将其写为<span class="mathjax-exps">$T(n) = \Theta(n^2)$</span></p>
 <ul>
 <li>不应写成<span class="mathjax-exps">$T(n) = O(n^{2.5})$</span>或<span class="mathjax-exps">$T(n) = \Omega(n^{1.5})$</span>，这不精确，虽然是对的</li>
 <li>也不应写成<span class="mathjax-exps">$T(n) = \Theta(n^2 + n)$</span>，这不简洁，虽然也是对的</li>
 </ul>
-</section></section><section><section data-notes="" lineno="232" class="slide " data-source-line="232" data-h="4" data-v="0"><h5 id="非紧确渐进上界">非紧确渐进上界 </h5>
+</section></section><section><section data-notes="" lineno="232" class="slide " data-source-line="232" data-h="4" data-v="0"><h5 id="非紧确渐近上界">非紧确渐近上界 </h5>
 <hr>
-<p>非紧确渐进上界<span class="mathjax-exps">$o(g(n))$</span>定义如下：</p>
+<p>非紧确渐近上界<span class="mathjax-exps">$o(g(n))$</span>定义如下：</p>
 <p>
 \begin{align}
     o(g(n)) = \{ f(n) \mid \class{blue}{\forall c &gt; 0} ~ \exists n_0 &gt; 0 ~ \forall n \ge n_0 : 0 \le f(n) \class{blue}{&lt;} c g(n) \}
 \end{align}
 </p>
 <div class="top2"></div>
-<p>对比渐进上界<span class="mathjax-exps">$O(g(n))$</span>，两点区别</p>
+<p>对比渐近上界<span class="mathjax-exps">$O(g(n))$</span>，两点区别</p>
 <ol>
 <li><span class="mathjax-exps">$\class{blue}{\exists} c &gt; 0$</span>变成了<span class="mathjax-exps">$\class{blue}{\forall} c &gt; 0$</span></li>
 <li><span class="mathjax-exps">$0 \le f(n) \class{blue}{\le} c g(n)$</span>变成了<span class="mathjax-exps">$0 \le f(n) \class{blue}{&lt;} c g(n)$</span></li>
@@ -267,7 +267,7 @@
 </ul>
 <div class="top2"></div>
 <p>例：<span class="mathjax-exps">$2n = o(n^2)$</span>，<span class="mathjax-exps">$2n \ne o(n)$</span></p>
-</section><section vertical="true" data-notes="" lineno="264" class="slide " data-source-line="264" data-h="4" data-v="1"><h5 id="非紧确渐进上界-1">非紧确渐进上界 </h5>
+</section><section vertical="true" data-notes="" lineno="264" class="slide " data-source-line="264" data-h="4" data-v="1"><h5 id="非紧确渐近上界-1">非紧确渐近上界 </h5>
 <hr>
 <p>由<span class="mathjax-exps">$o(g(n)) = \{ f(n) \mid \class{blue}{\forall c &gt; 0} ~ \exists n_0 &gt; 0 ~ \forall n \ge n_0 : 0 \le f(n) \class{blue}{&lt;} c g(n) \}$</span></p>
 <p>
@@ -275,10 +275,10 @@
     \class{blue}{\forall c &gt; 0} : 0 \le \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} &lt; c \Longleftrightarrow \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} = 0
 \end{align}
 </p>
-<p><span class="mathjax-exps">$f(n) = o(g(n))$</span>表示在渐进意义下<span class="mathjax-exps">$f(n)$</span>的增长速度严格慢于<span class="mathjax-exps">$g(n)$</span></p>
+<p><span class="mathjax-exps">$f(n) = o(g(n))$</span>表示在渐近意义下<span class="mathjax-exps">$f(n)$</span>的增长速度严格慢于<span class="mathjax-exps">$g(n)$</span></p>
 <ul>
-<li>有的算法教材会用<span class="mathjax-exps">$\lim_{n \rightarrow \infty} f(n)/g(n) = 0$</span>来定义<span class="mathjax-exps">$o(\cdot)$</span>，在<span class="mathjax-exps">$f(n)$</span>渐进非负的前提下两者等价</li>
-<li>根据极限定义，对<span class="mathjax-exps">$\forall c &gt; 0$</span>存在<span class="mathjax-exps">$n_0$</span>使得对<span class="mathjax-exps">$\forall n \ge n_0$</span>有<span class="mathjax-exps">$|f(n)/g(n) - 0| &lt; c$</span>，若<span class="mathjax-exps">$f(n)$</span>渐进非负，则<span class="mathjax-exps">$0 \le f(n) &lt; c g(n)$</span></li>
+<li>有的算法教材会用<span class="mathjax-exps">$\lim_{n \rightarrow \infty} f(n)/g(n) = 0$</span>来定义<span class="mathjax-exps">$o(\cdot)$</span>，在<span class="mathjax-exps">$f(n)$</span>渐近非负的前提下两者等价</li>
+<li>根据极限定义，对<span class="mathjax-exps">$\forall c &gt; 0$</span>存在<span class="mathjax-exps">$n_0$</span>使得对<span class="mathjax-exps">$\forall n \ge n_0$</span>有<span class="mathjax-exps">$|f(n)/g(n) - 0| &lt; c$</span>，若<span class="mathjax-exps">$f(n)$</span>渐近非负，则<span class="mathjax-exps">$0 \le f(n) &lt; c g(n)$</span></li>
 </ul>
 <div class="top2"></div>
 <p class="fragment" data-fragment-index="1">对数函数$&lt;$多项式函数$&lt;$指数函数$&lt;$阶乘函数：</p>
@@ -287,16 +287,16 @@
     <li>对$\forall a &gt; 1$和$b$有$\lim_{n \rightarrow \infty} n^b/a^n = 0$，于是$n^b = o(a^n)$</li>
     <li>对$\forall a &gt; 0$有$\lim_{n \rightarrow \infty} a^n/n! = 0$，于是$a^n = o(n!)$</li>
 </ul>
-</section></section><section><section data-notes="" lineno="293" class="slide " data-source-line="293" data-h="5" data-v="0"><h5 id="非紧确渐进下界">非紧确渐进下界 </h5>
+</section></section><section><section data-notes="" lineno="293" class="slide " data-source-line="293" data-h="5" data-v="0"><h5 id="非紧确渐近下界">非紧确渐近下界 </h5>
 <hr>
-<p>非紧确渐进下界<span class="mathjax-exps">$\omega(g(n))$</span>对比<span class="mathjax-exps">$\Omega(g(n))$</span>同样是两点区别</p>
+<p>非紧确渐近下界<span class="mathjax-exps">$\omega(g(n))$</span>对比<span class="mathjax-exps">$\Omega(g(n))$</span>同样是两点区别</p>
 <p>
 \begin{align}
     \omega(g(n)) &amp; = \{ f(n) \mid \class{blue}{\forall c &gt; 0} ~ \exists n_0 &gt; 0 ~ \forall n \ge n_0 : 0 \le c g(n) \class{blue}{&lt;} f(n) \} \\[4px]
     &amp; \Longrightarrow \class{blue}{\forall c &gt; 0} : c &lt; \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} \Longleftrightarrow \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} = \infty
 \end{align}
 </p>
-<p><span class="mathjax-exps">$f(n) = \omega(g(n))$</span>表示在渐进意义下<span class="mathjax-exps">$f(n)$</span>的增长速度严格快于<span class="mathjax-exps">$g(n)$</span></p>
+<p><span class="mathjax-exps">$f(n) = \omega(g(n))$</span>表示在渐近意义下<span class="mathjax-exps">$f(n)$</span>的增长速度严格快于<span class="mathjax-exps">$g(n)$</span></p>
 <p>对称的有<span class="mathjax-exps">$\omega(g(n)) = \Omega(g(n)) \setminus \Theta(g(n))$</span></p>
 <ul>
 <li>对<span class="mathjax-exps">$c$</span>任取某个固定的正常数，可知<span class="mathjax-exps">$\omega \subseteq \Omega$</span></li>
@@ -305,18 +305,18 @@
 <div class="top2"></div>
 <p>例：<span class="mathjax-exps">$2 n^2 = \omega (n)$</span>，<span class="mathjax-exps">$2 n^2 \ne \omega(n^2)$</span></p>
 <p class="footnote comments"> $\lim_{n \rightarrow \infty} f(n) / g(n) = \infty$在数学上是不严谨的写法，这里只是为了与$o$的$\lim_{n \rightarrow \infty} f(n) / g(n) = 0$对应</p>
-</section><section vertical="true" data-notes="" lineno="321" class="slide " data-source-line="321" data-h="5" data-v="1"><h5 id="多项式的渐进界-2">多项式的渐进界 </h5>
+</section><section vertical="true" data-notes="" lineno="321" class="slide " data-source-line="321" data-h="5" data-v="1"><h5 id="多项式的渐近界-2">多项式的渐近界 </h5>
 <hr>
 <p>对<span class="mathjax-exps">$p(n) = \sum_{i=0}^d a_i n^i, ~ (a_d &gt; 0)$</span>，记<span class="mathjax-exps">$q(n) \triangleq \frac{p(n)}{n^d} \xrightarrow{~ n \rightarrow \infty ~} a_d$</span></p>
 <p>若<span class="mathjax-exps">$k &gt; d$</span>，<span class="mathjax-exps">$\lim_{n \rightarrow \infty} \frac{p(n)}{n^k} = \lim_{n \rightarrow \infty} \frac{q(n)}{n^{k-d}} = 0 \Longrightarrow p(n) = o(n^k)$</span></p>
 <p>若<span class="mathjax-exps">$k &lt; d$</span>，<span class="mathjax-exps">$\lim_{n \rightarrow \infty} \frac{p(n)}{n^k} = \lim_{n \rightarrow \infty} q(n) n^{d-k} = \infty \Longrightarrow p(n) = \omega(n^k)$</span></p>
 <p>综上，<span class="mathjax-exps">$p(n) = \begin{cases} O(n^k), &amp; k \ge d \\ \Omega(n^k), &amp; k \le d \\ \Theta(n^k), &amp; k = d \\ o(n^k), &amp; k &gt; d \\ \omega(n^k), &amp; k &lt; d \end{cases}$</span></p>
-</section></section><section><section data-notes="" lineno="335" class="slide " data-source-line="335" data-h="6" data-v="0"><h5 id="表达式中的渐进界">表达式中的渐进界 </h5>
+</section></section><section><section data-notes="" lineno="335" class="slide " data-source-line="335" data-h="6" data-v="0"><h5 id="表达式中的渐近界">表达式中的渐近界 </h5>
 <hr>
-<p>若等式右边为渐进界，如<span class="mathjax-exps">$3 n^2 = \Theta(n^2)$</span>，表示等号左边的函数<span class="mathjax-exps">$\in$</span>等号右边的函数集合</p>
-<p>若渐进界作为表达式中的一项，如<span class="mathjax-exps">$T(n) \le T(n-1) + \Theta(n)$</span>，表示<mark>匿名函数</mark>，即存在<span class="mathjax-exps">$f(n) \in \Theta(n)$</span>使得<span class="mathjax-exps">$T(n) \le T(n-1) + f(n)$</span></p>
+<p>若等式右边为渐近界，如<span class="mathjax-exps">$3 n^2 = \Theta(n^2)$</span>，表示等号左边的函数<span class="mathjax-exps">$\in$</span>等号右边的函数集合</p>
+<p>若渐近界作为表达式中的一项，如<span class="mathjax-exps">$T(n) \le T(n-1) + \Theta(n)$</span>，表示<mark>匿名函数</mark>，即存在<span class="mathjax-exps">$f(n) \in \Theta(n)$</span>使得<span class="mathjax-exps">$T(n) \le T(n-1) + f(n)$</span></p>
 <ul>
-<li>函数名<span class="mathjax-exps">$f$</span>及其精确形式不重要，不影响<span class="mathjax-exps">$T(n)$</span>的渐进行为</li>
+<li>函数名<span class="mathjax-exps">$f$</span>及其精确形式不重要，不影响<span class="mathjax-exps">$T(n)$</span>的渐近行为</li>
 <li>实际求<span class="mathjax-exps">$T(n)$</span>时，根据问题对<span class="mathjax-exps">$\Theta(n)$</span>予以具体化</li>
 </ul>
 <div class="top2"></div>
@@ -325,23 +325,23 @@
 <li>第一个等号表示存在<span class="mathjax-exps">$f(n) \in \Theta(n)$</span>使得<span class="mathjax-exps">$2 n^2 + 3 n + 1 = 2 n^2 + f(n)$</span></li>
 <li>第二个等号表示对任意<span class="mathjax-exps">$g(n) \in \Theta(n)$</span>，存在<span class="mathjax-exps">$h(n) \in \Theta(n^2)$</span>使得<span class="mathjax-exps">$2 n^2 + g(n) = h(n)$</span>，先左后右，左边任意，右边存在，右适配左</li>
 </ul>
-</section><section vertical="true" data-notes="" lineno="355" class="slide " data-source-line="355" data-h="6" data-v="1"><h5 id="表达式中的渐进界-1">表达式中的渐进界 </h5>
+</section><section vertical="true" data-notes="" lineno="355" class="slide " data-source-line="355" data-h="6" data-v="1"><h5 id="表达式中的渐近界-1">表达式中的渐近界 </h5>
 <hr>
-<p>若渐进界中的<span class="mathjax-exps">$g(n)$</span>为常数，如<span class="mathjax-exps">$f(n) = O(1)$</span></p>
+<p>若渐近界中的<span class="mathjax-exps">$g(n)$</span>为常数，如<span class="mathjax-exps">$f(n) = O(1)$</span></p>
 <ul>
-<li><span class="mathjax-exps">$f(n)$</span>有个正常数为其渐进上界</li>
+<li><span class="mathjax-exps">$f(n)$</span>有个正常数为其渐近上界</li>
 <li>常数时间复杂度一般指单个步骤，算法的整体时间开销通常不会与<span class="mathjax-exps">$n$</span>无关</li>
 </ul>
 <div class="top2"></div>
 <p>如何理解当<span class="mathjax-exps">$n&lt;3$</span>时<span class="mathjax-exps">$T(n) = O(1)$</span>？</p>
 <ul>
-<li><span class="mathjax-exps">$n&lt;3$</span>的限定和<span class="mathjax-exps">$O$</span>的渐进性是个矛盾，因为<span class="mathjax-exps">$O$</span>对应的<span class="mathjax-exps">$n_0$</span>可能大于<span class="mathjax-exps">$3$</span></li>
-<li>此时忽略<span class="mathjax-exps">$O$</span>的渐进意义，即存在正常数<span class="mathjax-exps">$c$</span>使得当<span class="mathjax-exps">$n&lt;3$</span>时<span class="mathjax-exps">$T(n) \le c$</span></li>
+<li><span class="mathjax-exps">$n&lt;3$</span>的限定和<span class="mathjax-exps">$O$</span>的渐近性是个矛盾，因为<span class="mathjax-exps">$O$</span>对应的<span class="mathjax-exps">$n_0$</span>可能大于<span class="mathjax-exps">$3$</span></li>
+<li>此时忽略<span class="mathjax-exps">$O$</span>的渐近意义，即存在正常数<span class="mathjax-exps">$c$</span>使得当<span class="mathjax-exps">$n&lt;3$</span>时<span class="mathjax-exps">$T(n) \le c$</span></li>
 </ul>
 <div class="top2"></div>
-<p>累加中的渐进界，如<span class="mathjax-exps">$\sum_{i=1}^n \Theta (i)$</span>，表示的是<span class="mathjax-exps">$\sum_{i=1}^n (a i + b)$</span>，而不是<span class="mathjax-exps">$\Theta (1) + \Theta (2) + \cdots + \Theta (n)$</span>，后者甚至不是良定义的</p>
+<p>累加中的渐近界，如<span class="mathjax-exps">$\sum_{i=1}^n \Theta (i)$</span>，表示的是<span class="mathjax-exps">$\sum_{i=1}^n (a i + b)$</span>，而不是<span class="mathjax-exps">$\Theta (1) + \Theta (2) + \cdots + \Theta (n)$</span>，后者甚至不是良定义的</p>
 <p class="footnote comments"> 若不致引起误解，尽可能滥用 (abuse) 符号，可以简化表达</p>
-</section></section><section><section data-notes="" lineno="379" class="slide " data-source-line="379" data-h="7" data-v="0"><h5 id="渐进界的相互关系">渐进界的相互关系 </h5>
+</section></section><section><section data-notes="" lineno="379" class="slide " data-source-line="379" data-h="7" data-v="0"><h5 id="渐近界的相互关系">渐近界的相互关系 </h5>
 <hr>
 <div class="threelines left8 righta">
 <table>
@@ -431,7 +431,7 @@
 <p>求证：<span class="mathjax-exps">$f(n) = \Theta(f(n))$</span>、<span class="mathjax-exps">$f(n) = O(f(n))$</span>、<span class="mathjax-exps">$f(n) = \Omega(f(n))$</span></p>
 <details>
 <summary>证明</summary>
-<p>证明：$f(n)$渐进非负，设临界点为$n_f$，易知对$\forall n \ge n_f$有</p>
+<p>证明：$f(n)$渐近非负，设临界点为$n_f$，易知对$\forall n \ge n_f$有</p>
 <p>
 \begin{align}
     0 \le 1 \cdot f(n) \le f(n) \le 1 \cdot f(n)
@@ -530,7 +530,7 @@
 <p>求证：<span class="mathjax-exps">$\Theta( \Theta(f(n)) ) = \Theta(f(n))$</span>，类似幂等性</p>
 <details>
 <summary>证明</summary>
-<p>证明：左边的渐进界表示任意，等号表示属于$\in$，即</p>
+<p>证明：左边的渐近界表示任意，等号表示属于$\in$，即</p>
 <p>
 \begin{align}
     \forall g(n) = \Theta(f(n)) ~ \forall h(n) = \Theta(g(n)) : h(n) \in \Theta(f(n))
@@ -543,7 +543,7 @@
 <p>求证：<span class="mathjax-exps">$\Theta(f(n)) + O(f(n)) = \Theta(f(n))$</span>，<span class="mathjax-exps">$O$</span>可被<span class="mathjax-exps">$\Theta$</span>吸收</p>
 <details>
 <summary>证明</summary>
-<p>证明：左边的渐进界表示任意，等号表示属于$\in$，即</p>
+<p>证明：左边的渐近界表示任意，等号表示属于$\in$，即</p>
 <p>
 \begin{align}
     \forall g(n) = \Theta(f(n)) ~ \forall h(n) = O(f(n)) : g(n) + h(n) \in \Theta(f(n))
@@ -565,7 +565,7 @@
 <p>求证：<span class="mathjax-exps">$\Theta(f(n)) + \Theta(g(n)) = \Theta(f(n) + g(n))$</span>，加法合并</p>
 <details>
 <summary>证明</summary>
-<p>证明：左边的渐进界表示任意，等号表示属于$\in$，即</p>
+<p>证明：左边的渐近界表示任意，等号表示属于$\in$，即</p>
 <p>
 \begin{align}
     \forall p(n) = \Theta(f(n)) ~ \forall q(n) = \Theta(g(n)) : p(n) + q(n) \in \Theta(f(n) + g(n))
@@ -590,7 +590,7 @@
 <p>求证：<span class="mathjax-exps">$\Theta(f(n)) \cdot \Theta(g(n)) = \Theta(f(n) g(n))$</span>，乘法合并</p>
 <details>
 <summary>证明</summary>
-<p>证明：左边的渐进界表示任意，等号表示属于$\in$，即</p>
+<p>证明：左边的渐近界表示任意，等号表示属于$\in$，即</p>
 <p>
 \begin{align}
     \forall p(n) = \Theta(f(n)) ~ \forall q(n) = \Theta(g(n)) : p(n) q(n) \in \Theta(f(n) g(n))
@@ -610,7 +610,7 @@
 \end{align}
 </p>
 </details>
-</section></section><section><section data-notes="" lineno="713" class="slide " data-source-line="713" data-h="11" data-v="0"><h5 id="保证二歧性的渐进界">保证二歧性的渐进界 </h5>
+</section></section><section><section data-notes="" lineno="713" class="slide " data-source-line="713" data-h="11" data-v="0"><h5 id="保证二歧性的渐近界">保证二歧性的渐近界 </h5>
 <hr>
 <p>实数<mark>三歧性</mark>：<span class="mathjax-exps">$a &gt; b$</span>、<span class="mathjax-exps">$a = b$</span>、<span class="mathjax-exps">$a &lt; b$</span>恰有一个成立 <span class="red">✓</span></p>
 <p>函数二歧性：<span class="mathjax-exps">$f(n) = O(g(n))$</span>、<span class="mathjax-exps">$f(n) = \Omega(g(n))$</span>恰有一个成立 <span class="red fragment" data-fragment-index="1">✗</span></p>
@@ -620,15 +620,15 @@
     <li>当$n$在$[-3 \pi/4, -\pi/4] \pm 2 \zb \pi$区间内变化时，$f(n) = \omega(g(n))$</li>
 </ul>
 <div class="top2"></div>
-<p class="fragment" data-fragment-index="3">为了保证二歧性，保持$O$不变，将$\Omega$改成$\mathop{\Omega}\limits^{\infty}$，不再要求渐进性：</p>
+<p class="fragment" data-fragment-index="3">为了保证二歧性，保持$O$不变，将$\Omega$改成$\mathop{\Omega}\limits^{\infty}$，不再要求渐近性：</p>
 <p class="fragment" data-fragment-index="3">
 \begin{align}
     \mathop{\Omega}\limits^{\infty}(g(n)) = \{ f(n) \mid \exists c &gt; 0 : 0 \le c g(n) \le f(n) 对无穷多个整数成立\}
 \end{align}
 </p>
-</section><section vertical="true" data-notes="" lineno="740" class="slide " data-source-line="740" data-h="11" data-v="1"><h5 id="忽略正负的渐进界">忽略正负的渐进界 </h5>
+</section><section vertical="true" data-notes="" lineno="740" class="slide " data-source-line="740" data-h="11" data-v="1"><h5 id="忽略正负的渐近界">忽略正负的渐近界 </h5>
 <hr>
-<p>有的算法教材的渐进上界不要求非负，记其为<span class="mathjax-exps">$O'$</span>，与<span class="mathjax-exps">$O$</span>的关系如下：</p>
+<p>有的算法教材的渐近上界不要求非负，记其为<span class="mathjax-exps">$O'$</span>，与<span class="mathjax-exps">$O$</span>的关系如下：</p>
 <p class="bottom4">
 \begin{align}
     f(n) = O'(g(n)) \Longleftrightarrow |f(n)| = O(g(n))
@@ -636,16 +636,16 @@
 </p>
 <ul>
 <li>如果<span class="mathjax-exps">$f(n)$</span>本身非负，两个定义没有区别</li>
-<li><span class="mathjax-exps">$O$</span>的定义要求<span class="mathjax-exps">$f(n)$</span>渐进非负，其实也是给<span class="mathjax-exps">$f(n)$</span>强制了一个渐进下界</li>
-<li><span class="mathjax-exps">$O'$</span>的定义中<span class="mathjax-exps">$f(n)$</span>同样有渐进下界，就是<span class="mathjax-exps">$-c \cdot g(n)$</span></li>
+<li><span class="mathjax-exps">$O$</span>的定义要求<span class="mathjax-exps">$f(n)$</span>渐近非负，其实也是给<span class="mathjax-exps">$f(n)$</span>强制了一个渐近下界</li>
+<li><span class="mathjax-exps">$O'$</span>的定义中<span class="mathjax-exps">$f(n)$</span>同样有渐近下界，就是<span class="mathjax-exps">$-c \cdot g(n)$</span></li>
 </ul>
 <div class="top2"></div>
 <p class="fragment" data-fragment-index="1">依然有$f(n) = \Theta(g(n))$等价于$f(n) = O'(g(n))$且$f(n) = \Omega(g(n))$</p>
 <ul class="fragment" data-fragment-index="2">
     <li>$\Longrightarrow$：显然成立，因为$O(g(n)) \subseteq O'(g(n))$</li>
-    <li>$\Longleftarrow$：$f(n) = O'(g(n))$不要求$f(n)$渐进非负，但$f(n) = \Omega(g(n))$弥补了这个要求，所以此时$O'(g(n))$升级成了$O(g(n))$</li>
+    <li>$\Longleftarrow$：$f(n) = O'(g(n))$不要求$f(n)$渐近非负，但$f(n) = \Omega(g(n))$弥补了这个要求，所以此时$O'(g(n))$升级成了$O(g(n))$</li>
 </ul>
-</section><section vertical="true" data-notes="" lineno="767" class="slide " data-source-line="767" data-h="11" data-v="2"><h5 id="忽略对数的渐进界">忽略对数的渐进界 </h5>
+</section><section vertical="true" data-notes="" lineno="767" class="slide " data-source-line="767" data-h="11" data-v="2"><h5 id="忽略对数的渐近界">忽略对数的渐近界 </h5>
 <hr>
 <p>定义<span class="mathjax-exps">$\widetilde{O}$</span>、<span class="mathjax-exps">$\widetilde{\Omega}$</span>、<span class="mathjax-exps">$\widetilde{\Theta}$</span>如下：</p>
 <p class="bottom2">
@@ -683,7 +683,7 @@
 <p><span class="mathjax-exps">$2^{2n} = O(2^n)$</span>是否成立？</p>
 <details>
 <summary>判断</summary>
-<p>不成立，否则存在正常数$c$使得$2^{2n} = 2^n \cdot 2^n \le c \cdot 2^n$渐进成立</p>
+<p>不成立，否则存在正常数$c$使得$2^{2n} = 2^n \cdot 2^n \le c \cdot 2^n$渐近成立</p>
 <p>由此亦可得出</p>
 <ul>
     <li>$f(n) = O(f(n/2))$不成立，取$f(n) = 4^n$</li>
@@ -696,8 +696,8 @@
 <p><span class="mathjax-exps">$f(n) = O((f(n))^2)$</span>是否成立？</p>
 <details>
 <summary>判断</summary>
-<p>若成立，则$\exists c&gt;0$使得$f(n) \le c (f(n))^2$，即$1 \le c f(n)$渐进成立</p>
-<p>若$f(n)$有常数渐进下界$l &gt; 0$，取$c = 1/l$即可，否则结论不成立</p>
+<p>若成立，则$\exists c&gt;0$使得$f(n) \le c (f(n))^2$，即$1 \le c f(n)$渐近成立</p>
+<p>若$f(n)$有常数渐近下界$l &gt; 0$，取$c = 1/l$即可，否则结论不成立</p>
 </details>
 </section><section vertical="true" data-notes="" lineno="870" class="slide " data-source-line="870" data-h="12" data-v="4"><h5 id="一些例题-判断-4">一些例题 判断 </h5>
 <hr>
@@ -732,7 +732,7 @@
 <p>求证：<span class="mathjax-exps">$(n + o(n))^k = \Theta(n^k)$</span></p>
 <details>
 <summary>证明</summary>
-<p>证明：左边的渐进界表示任意，等号表示属于$\in$，即</p>
+<p>证明：左边的渐近界表示任意，等号表示属于$\in$，即</p>
 <p>
 \begin{align}
     \forall f(n) \in o(n) : (n + f(n))^k \in \Theta(n^k)
@@ -752,7 +752,7 @@
 <p>求证：<span class="mathjax-exps">$\lg ( \Theta(n)) = \Theta(\lg n)$</span></p>
 <details>
 <summary>证明</summary>
-<p>证明：左边的渐进界表示任意，等号表示属于$\in$，即</p>
+<p>证明：左边的渐近界表示任意，等号表示属于$\in$，即</p>
 <p>
 \begin{align}
     \forall f(n) \in \Theta(n) : \lg (f(n)) \in \Theta(\lg n)

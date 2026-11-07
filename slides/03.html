@@ -1963,7 +1963,7 @@ time_cost <span class="token operator">=</span> np<span class="token punctuation
 <p class="fragment">向上取整等于向下取整加$1$，故向上取整也可忽略</p>
 </section></section><section><section data-notes="" lineno="1778" class="slide " data-source-line="1778" data-h="26" data-v="0"><h5 id="代入法-减去低阶项">代入法 减去低阶项 </h5>
 <hr>
-<p>猜出了正确的渐进界，却卡在了归纳证明</p>
+<p>猜出了正确的渐近界，却卡在了归纳证明</p>
 <p>假设不够强，减去一个低阶项</p>
 <p>例：<span class="mathjax-exps">$T(n) = \begin{cases} 1, &amp; n = 1 \\ T(\lfloor n/2 \rfloor) + T(\lceil n/2 \rceil) + 1, &amp; n &gt; 1 \end{cases}$</span></p>
 <ul>
@@ -2259,7 +2259,7 @@ time_cost <span class="token operator">=</span> np<span class="token punctuation
 \end{align}
 </p>
 <p>若<span class="mathjax-exps">$a &lt; b^d$</span>，则<span class="mathjax-exps">$\log_b a &lt; d \Longrightarrow n^{\log_b a} &lt; n^d = f(n)$</span>，<span class="mathjax-exps">$T(n)$</span>由<span class="mathjax-exps">$g(n)$</span>主导</p>
-<p>显然<span class="mathjax-exps">$g(n) &gt; n^d = f(n)$</span>，若想有<span class="mathjax-exps">$g(n) = \Theta(f(n))$</span>，等比数列的和得是常数 (不发散)，注意等比数列公比<span class="mathjax-exps">$a / b^d &lt; 1$</span>，其和不超过<span class="mathjax-exps">$1 / (1 - a / b^d)$</span>，因此只需在渐进意义下 (<span class="mathjax-exps">$n$</span>充分大时)，公比不无限趋近<span class="mathjax-exps">$1$</span>，即存在常数<span class="mathjax-exps">$c &lt; 1$</span>使得<span class="mathjax-exps">$a / b^d \le c \Longrightarrow a f(x/b) = a (x/b)^d \le c x^d = c f(x)$</span>，这正是主定理情形 3 中的正则条件</p>
+<p>显然<span class="mathjax-exps">$g(n) &gt; n^d = f(n)$</span>，若想有<span class="mathjax-exps">$g(n) = \Theta(f(n))$</span>，等比数列的和得是常数 (不发散)，注意等比数列公比<span class="mathjax-exps">$a / b^d &lt; 1$</span>，其和不超过<span class="mathjax-exps">$1 / (1 - a / b^d)$</span>，因此只需在渐近意义下 (<span class="mathjax-exps">$n$</span>充分大时)，公比不无限趋近<span class="mathjax-exps">$1$</span>，即存在常数<span class="mathjax-exps">$c &lt; 1$</span>使得<span class="mathjax-exps">$a / b^d \le c \Longrightarrow a f(x/b) = a (x/b)^d \le c x^d = c f(x)$</span>，这正是主定理情形 3 中的正则条件</p>
 </section></section><section><section data-notes="" lineno="2226" class="slide " data-source-line="2226" data-h="35" data-v="0"><h5 id="主方法-证明">主方法 证明 </h5>
 <hr>
 <p>对于一般的<span class="mathjax-exps">$f(n)$</span>，<span class="mathjax-exps">$g(n) = \sum_{i=0}^{t-1} a^i f(n/b^i)$</span></p>
