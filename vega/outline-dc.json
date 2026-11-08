@@ -4,7 +4,7 @@
     "width": 600,
     "height": 400,
     "background": "transparent",
-    "padding": 50,
+    "padding": 80,
     "signals": [
         {
             "name": "labels",
@@ -65,7 +65,7 @@
                             "signal": "height"
                         },
                         {
-                            "signal": "width - 100"
+                            "signal": "width-250"
                         }
                     ],
                     "separation": {

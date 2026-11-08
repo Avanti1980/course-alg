@@ -1,62 +1,56 @@
 import random
+from typing import List
 
 
-def bruteforce(a):
+def bruteforce(a: List[int]) -> int:
     n, count = len(a), 0
     for i in range(n):
+        ai = a[i]
         for j in range(i + 1, n):
-            if a[i] > a[j]:
+            if ai > a[j]:
                 count += 1
     return count
 
 
-def count_cross_inv(a, low, mid, high):
-    n1, n2 = mid - low + 1, high - mid  # 子数组的长度
-    L, R = [0] * n1, [0] * n2  # 创建临时数组
+def count_cross_inv(a: List[int], low: int, mid: int, high: int, temp: List[int]) -> int:
+    # a[low:mid+1]、a[mid+1:high+1]已排好序
+    # 拷贝数据到临时数组
+    temp[low:high+1] = a[low:high+1]
 
-    for i in range(0, n1):  # 拷贝数据到临时数组L
-        L[i] = a[low + i]
-
-    for j in range(0, n2):  # 拷贝数据到临时数组R
-        R[j] = a[mid + 1 + j]
-
-    count = 0
-    i, j, k = 0, 0, low
-    while i < n1 and j < n2:  # 归并L和R到a[low,...,high]
-        if L[i] <= R[j]:      # 跨越中点的顺序对
-            a[k] = L[i]
+    # i = low -> mid
+    # j = mid+1 -> high
+    i, j, k, count = low, mid+1, low, 0
+    while i <= mid and j <= high:
+        if temp[i] <= temp[j]:  # 顺序对
+            a[k] = temp[i]
             i += 1
-        else:                 # 跨越中点的逆序对
-            a[k] = R[j]
+        else:  # 逆序对
+            a[k] = temp[j]
             j += 1
-            count += (n1 - i)  # L[i], ..., L[n1-1]均与R[j]构成逆序对
+            count += (mid + 1 - i)
         k += 1
 
-    while i < n1:  # 拷贝L的剩余元素
-        a[k] = L[i]
-        i += 1
-        k += 1
-
-    while j < n2:  # 拷贝R的剩余元素
-        a[k] = R[j]
-        j += 1
-        k += 1
+    if i <= mid:  # 拷贝 left 的剩余元素
+        a[k:high+1] = temp[i:mid+1]
 
     return count
 
 
-def sort_and_count(a, low, high):
+def sort_and_count(a: List[int], low: int, high: int, temp: List[int]) -> int:
     if low < high:
-        mid = int((low + high) / 2)  # 取中间点分开
-        left_inv = sort_and_count(a, low, mid)
-        right_inv = sort_and_count(a, mid + 1, high)
-        cross_inv = count_cross_inv(a, low, mid, high)
-        return left_inv + right_inv + cross_inv
+        mid = (low + high) // 2  # 取中间点分开
+        count = 0
+        count += sort_and_count(a, low, mid, temp)
+        count += sort_and_count(a, mid + 1, high, temp)
+        if a[mid] > a[mid+1]:
+            count += count_cross_inv(a, low, mid, high, temp)
+        return count
     else:
         return 0
 
 
-a = [x for x in range(1000)]
-random.shuffle(a)
-print(bruteforce(a))
-print(sort_and_count(a, 0, len(a) - 1))
+random.seed(1)
+a = [random.randint(0, 10000) for _ in range(1000)]
+n = len(a)
+temp = [0] * n
+print(bruteforce(a), sort_and_count(a, 0, n-1, temp))

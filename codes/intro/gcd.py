@@ -10,7 +10,7 @@ def coef(a: int, b: int, t: int, d: int) -> tuple[int, int]:
     if t % d != 0:
         raise ValueError("t必须是最大公约数d的倍数")
     a, b, t = a // d, b // d, t // d  # 此时 a b 互素
-    for x in range(1, b):         # 0 a 2a ... (b-1)a 构成一个模 b 的剩余系
+    for x in range(b):         # 0 a 2a ... (b-1)a 构成一个模 b 的剩余系
         if (a * x) % b == 1:
             y = (1 - a * x) // b
             return t * x, t * y
@@ -22,8 +22,8 @@ def Euclidean(a: int, b: int) -> int:  # 辗转相除
     return a
 
 
-# 返回 (d, x, y) 使得 ax + by = d = gcd(a, b)
 def Euclidean_extended(a: int, b: int) -> tuple[int, int, int]:
+    # 返回 (d, x, y) 使得 ax + by = d = gcd(a, b)
     if b == 0:
         return a, 1, 0
     else:

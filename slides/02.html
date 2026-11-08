@@ -219,7 +219,7 @@
 <p>这也印证了上一讲提到的：多项式的低阶项在其渐近界中可忽略</p>
 </section></section><section><section data-notes="" lineno="186" class="slide " data-source-line="186" data-h="3" data-v="0"><h5 id="渐近紧确界">渐近紧确界 </h5>
 <hr>
-<p>渐近紧确界<span class="mathjax-exps">$\Theta(g(n))$</span>表示<mark>渐近意义</mark>下所有<mark>介于</mark><span class="mathjax-exps">$g(n)$</span>某两个<mark>常数倍</mark>之间的<mark>非负函数</mark>，用于表示算法在<mark>最坏</mark>情况和<mark>最好</mark>情况下的时间复杂度一样，最多差个常数因子</p>
+<p>渐近紧确界<span class="mathjax-exps">$\Theta(g(n))$</span>表示<mark>渐近意义</mark>下所有<mark>介于</mark><span class="mathjax-exps">$g(n)$</span>某两个<mark>常数倍</mark>之间的<mark>非负函数</mark>，用于表示算法时间的上界与下界同阶：最坏情况与最好情况的增长速度一样，最多差个常数因子</p>
 <p>
 \begin{align}
     \Theta(g(n)) = \{ f(n) \mid \exists c_1, c_2, n_0 &gt; 0 ~ \forall n \ge n_0 : 0 \le c_1 g(n) \le f(n) \le c_2 g(n) \}
@@ -281,7 +281,7 @@
 <li>根据极限定义，对<span class="mathjax-exps">$\forall c &gt; 0$</span>存在<span class="mathjax-exps">$n_0$</span>使得对<span class="mathjax-exps">$\forall n \ge n_0$</span>有<span class="mathjax-exps">$|f(n)/g(n) - 0| &lt; c$</span>，若<span class="mathjax-exps">$f(n)$</span>渐近非负，则<span class="mathjax-exps">$0 \le f(n) &lt; c g(n)$</span></li>
 </ul>
 <div class="top2"></div>
-<p class="fragment" data-fragment-index="1">对数函数$&lt;$多项式函数$&lt;$指数函数$&lt;$阶乘函数：</p>
+<p class="fragment" data-fragment-index="1">对数函数$\prec$多项式函数$\prec$指数函数$\prec$阶乘函数：</p>
 <ul class="fragment" data-fragment-index="1">
     <li>对$\forall a &gt; 0$和$b$有$\lim_{n \rightarrow \infty} \lg^b n/n^a = 0$，于是$\lg^b n = o(n^a)$</li>
     <li>对$\forall a &gt; 1$和$b$有$\lim_{n \rightarrow \infty} n^b/a^n = 0$，于是$n^b = o(a^n)$</li>
@@ -339,7 +339,7 @@
 <li>此时忽略<span class="mathjax-exps">$O$</span>的渐近意义，即存在正常数<span class="mathjax-exps">$c$</span>使得当<span class="mathjax-exps">$n&lt;3$</span>时<span class="mathjax-exps">$T(n) \le c$</span></li>
 </ul>
 <div class="top2"></div>
-<p>累加中的渐近界，如<span class="mathjax-exps">$\sum_{i=1}^n \Theta (i)$</span>，表示的是<span class="mathjax-exps">$\sum_{i=1}^n (a i + b)$</span>，而不是<span class="mathjax-exps">$\Theta (1) + \Theta (2) + \cdots + \Theta (n)$</span>，后者甚至不是良定义的</p>
+<p>累加中的渐近界，如<span class="mathjax-exps">$\sum_{i=1}^n \Theta (i)$</span>，表示的是<span class="mathjax-exps">$\sum_{i=1}^n (a i + b)$</span>，而不是<span class="mathjax-exps">$\Theta (1) + \Theta (2) + \cdots + \Theta (n)$</span>，后者不是良定义的</p>
 <p class="footnote comments"> 若不致引起误解，尽可能滥用 (abuse) 符号，可以简化表达</p>
 </section></section><section><section data-notes="" lineno="379" class="slide " data-source-line="379" data-h="7" data-v="0"><h5 id="渐近界的相互关系">渐近界的相互关系 </h5>
 <hr>
@@ -392,7 +392,7 @@
 <td style="text-align:center"><span class="mathjax-exps">$\Theta$</span></td>
 <td style="text-align:center">✓</td>
 <td style="text-align:center">✓</td>
-<td style="text-align:center">✗</td>
+<td style="text-align:center">-</td>
 <td style="text-align:center">✓</td>
 </tr>
 <tr>
@@ -610,17 +610,17 @@
 \end{align}
 </p>
 </details>
-</section></section><section><section data-notes="" lineno="713" class="slide " data-source-line="713" data-h="11" data-v="0"><h5 id="保证二歧性的渐近界">保证二歧性的渐近界 </h5>
+</section></section><section><section data-notes="" lineno="713" class="slide " data-source-line="713" data-h="11" data-v="0"><h5 id="保证全序性的渐近界">保证全序性的渐近界 </h5>
 <hr>
-<p>实数<mark>三歧性</mark>：<span class="mathjax-exps">$a &gt; b$</span>、<span class="mathjax-exps">$a = b$</span>、<span class="mathjax-exps">$a &lt; b$</span>恰有一个成立 <span class="red">✓</span></p>
-<p>函数二歧性：<span class="mathjax-exps">$f(n) = O(g(n))$</span>、<span class="mathjax-exps">$f(n) = \Omega(g(n))$</span>恰有一个成立 <span class="red fragment" data-fragment-index="1">✗</span></p>
+<p>实数全序性：<span class="mathjax-exps">$a \ge b$</span>、<span class="mathjax-exps">$a \le b$</span>至少有一个成立 <span class="red">✓</span></p>
+<p>函数全序性：<span class="mathjax-exps">$f(n) = O(g(n))$</span>、<span class="mathjax-exps">$f(n) = \Omega(g(n))$</span>至少有一个成立 <span class="red fragment" data-fragment-index="1">✗</span></p>
 <p class="fragment" data-fragment-index="2">设$f(n) = n$、$g(n) = n^{1 + \sin n}$，注意$\sin n$是周期函数</p>
 <ul class="fragment" data-fragment-index="2">
     <li>当$n$在$[\pi/4, 3 \pi/4] \pm 2 \zb \pi$区间内变化时，$f(n) = o(g(n))$</li>
     <li>当$n$在$[-3 \pi/4, -\pi/4] \pm 2 \zb \pi$区间内变化时，$f(n) = \omega(g(n))$</li>
 </ul>
 <div class="top2"></div>
-<p class="fragment" data-fragment-index="3">为了保证二歧性，保持$O$不变，将$\Omega$改成$\mathop{\Omega}\limits^{\infty}$，不再要求渐近性：</p>
+<p class="fragment" data-fragment-index="3">为了保证全序性，保持$O$不变，将$\Omega$改成$\mathop{\Omega}\limits^{\infty}$，不再要求渐近性：</p>
 <p class="fragment" data-fragment-index="3">
 \begin{align}
     \mathop{\Omega}\limits^{\infty}(g(n)) = \{ f(n) \mid \exists c &gt; 0 : 0 \le c g(n) \le f(n) 对无穷多个整数成立\}

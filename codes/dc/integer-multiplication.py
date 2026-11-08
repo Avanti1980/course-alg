@@ -1,17 +1,15 @@
 import time
 import numpy as np
-import matplotlib.pyplot as plt
 import random
 import string
 import sys
-import matplotlib.font_manager as fm
 
 sys.set_int_max_str_digits(100000)
-
 np.random.seed(0)
 
 
-def align(x, y, n_x, n_y):  # 若x和y长度不同 将短的左边补零
+def align(x: str, y: str, n_x: int, n_y: int) -> tuple[str, str, int]:
+    # 将字符串数字x和y左补零至等长 返回对齐后的字符串和统一长度
     if n_x < n_y:
         x = x.rjust(n_y, "0")
         n = n_y
@@ -21,26 +19,31 @@ def align(x, y, n_x, n_y):  # 若x和y长度不同 将短的左边补零
     return x, y, n
 
 
-def grade_school(x, y):
+def grade_school(x: str, y: str) -> int:
     n_x, n_y = len(x), len(y)
     x, y, n = align(x, y, n_x, n_y)  # 若x和y长度不同 将短的左边补零
-    c = 0  # 初始进位为零
-    z = str()
+
+    x_list = [int(ch) for ch in x]
+    y_list = [int(ch) for ch in y]
+
+    carry = 0  # 初始进位为零
+    z: list[str] = []
     for k in range(2 * n):
-        # 遍历所有满足i+j=k的二元组(i,j) 注意i的范围防止越界
-        for i in range(max(0, k - n + 1), min(k + 1, n)):
+        # 遍历所有满足i+j=k的二元组(i,j) 注意不要越界
+        low = max(0, k - n + 1)
+        high = min(k + 1, n)
+        for i in range(low, high):
             j = k - i
-            c += int(x[-1 - i]) * int(y[-1 - j])
-        c, q = divmod(c, 10)
-        z = str(q) + z
-    z = z.lstrip("0")  # 去掉高位连续的0
-    if z == "":  # 若乘积本就是0 去掉所有0后会变成空字符串
-        return 0
-    else:
-        return int(z)
+            carry += x_list[-1 - i] * y_list[-1 - j]
+        carry, q = divmod(carry, 10)
+        z.append(str(q))
+
+    # z中低位在前、高位在后 翻转得到正常顺序
+    result = "".join(reversed(z)).lstrip("0")
+    return int(result) if result else 0
 
 
-def karatsuba(x, y):
+def karatsuba(x: str, y: str) -> int:
     n_x, n_y = len(x), len(y)
 
     if n_x == 1 or n_y == 1:  # 如果其中一个数只有1位 不再递归
@@ -49,24 +52,28 @@ def karatsuba(x, y):
     x, y, n = align(x, y, n_x, n_y)  # 若x和y长度不同 将短的左边补零
 
     m = n // 2
-    a, b = x[0:n - m], x[n - m:n]  # x = a 10^m + b
-    c, d = y[0:n - m], y[n - m:n]  # y = c 10^m + d
+    a, b = x[:n - m], x[n - m:]  # x = a * 10^m + b
+    c, d = y[:n - m], y[n - m:]  # y = c * 10^m + d
+
+    a_int, b_int = int(a), int(b)
+    c_int, d_int = int(c), int(d)
 
     # 3个递归子问题
     ac = karatsuba(a, c)
     bd = karatsuba(b, d)
-    ad_bc = karatsuba(str(int(a) + int(b)), str(int(c) + int(d))) - ac - bd
+    ad_bc = karatsuba(str(a_int + b_int), str(c_int + d_int)) - ac - bd
 
     return ac * 10**(2 * m) + ad_bc * 10**m + bd
 
 
-def preprocess(x):
+def preprocess(x: str) -> tuple[int, int, str]:
+    # 去除负号前缀 返回 (符号, 有效位数, 纯数字字符串)
     if x[0] == "-":
         return -1, len(x) - 1, x[1:]
     return 1, len(x), x
 
 
-def toom(x, y):
+def toom(x: str, y: str) -> int:
     sign_x, n_x, x = preprocess(x)
     sign_y, n_y, y = preprocess(y)
     sign = sign_x * sign_y
@@ -78,17 +85,20 @@ def toom(x, y):
 
     m = n // 3
 
-    a, b, c = x[0:n - 2 * m], x[n - 2 * m:n - m], x[n - m:n]
-    d, e, f = y[0:n - 2 * m], y[n - 2 * m:n - m], y[n - m:n]
+    a, b, c = x[:n - 2 * m], x[n - 2 * m:n - m], x[n - m:]
+    d, e, f = y[:n - 2 * m], y[n - 2 * m:n - m], y[n - m:]
+
+    a_int, b_int, c_int = int(a), int(b), int(c)
+    d_int, e_int, f_int = int(d), int(e), int(f)
 
     # 5个递归子问题
     s4 = toom(a, d)  # s4 = ad
-    s3 = toom(str(4 * int(a) + 2 * int(b) + int(c)),
-              str(4 * int(d) + 2 * int(e) + int(f)))  # s3 = (4a+2b+c)(4d+2e+f)
-    s2 = toom(str(int(a) - int(b) + int(c)),
-              str(int(d) - int(e) + int(f)))  # s2 = (a-b+c)(d-e+f)
-    s1 = toom(str(int(a) + int(b) + int(c)),
-              str(int(d) + int(e) + int(f)))  # s1 = (a+b+c)(d+e+f)
+    s3 = toom(str(4 * a_int + 2 * b_int + c_int),
+              str(4 * d_int + 2 * e_int + f_int))  # s3 = (4a+2b+c)(4d+2e+f)
+    s2 = toom(str(a_int - b_int + c_int),
+              str(d_int - e_int + f_int))  # s2 = (a-b+c)(d-e+f)
+    s1 = toom(str(a_int + b_int + c_int),
+              str(d_int + e_int + f_int))  # s1 = (a+b+c)(d+e+f)
     s0 = toom(c, f)  # s0 = cf
 
     w4 = s4
@@ -101,28 +111,33 @@ def toom(x, y):
 
 
 trial = 10
-time_cost = np.empty((4, trial))
+time_cost = np.empty([trial, 4])
 for t in range(trial):
-    n = 2**(t + 4)  # 2^4, 2^5, ..., 2^13
+    n = 2**(t + 6)  # 2^4, 2^5, ..., 2^13
 
     # 随机生成长度为n的字符串x和y
-    x, y = ''.join(random.choices(string.digits, k=n)), ''.join(
-        random.choices(string.digits, k=n))
+    x = ''.join(random.choices(string.digits, k=n))
+    y = ''.join(random.choices(string.digits, k=n))
 
     start = time.perf_counter()
     z0 = int(x) * int(y)
-    time_cost[0, t] = time.perf_counter() - start
+    time_cost[t, 0] = time.perf_counter() - start
 
     start = time.perf_counter()
     z1 = grade_school(x, y)
-    time_cost[1, t] = time.perf_counter() - start
+    time_cost[t, 1] = time.perf_counter() - start
 
     start = time.perf_counter()
     z2 = karatsuba(x, y)
-    time_cost[2, t] = time.perf_counter() - start
+    time_cost[t, 2] = time.perf_counter() - start
 
     start = time.perf_counter()
     z3 = toom(x, y)
-    time_cost[3, t] = time.perf_counter() - start
+    time_cost[t, 3] = time.perf_counter() - start
 
-np.save('time_cost.npy', time_cost)
+    print(z0)
+    print(z1)
+    print(z2)
+    print(z3)
+
+np.save('integer-multiplication-time-cost.npy', time_cost)

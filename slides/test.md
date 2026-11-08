@@ -26,22 +26,10 @@ presentation:
 
 <!-- slide vertical=true data-notes="" -->
 
-##### 归并排序
+##### 最近点对 对比
 
 ---
 
-@import "../codes/intro/sorting.py" {line_begin=68 line_end=79 .left4 .line-numbers .top1 .bottom-10}
+<img src="../codes/dc/closest-pair.svg" class="center width70 top2">
 
-@import "../dot/sorting/merge-sort.dot" {.lefta .right4 .top-16 .bottom-10}
-
-<!-- slide vertical=true data-notes="" -->
-
-##### 归并排序
-
----
-
-合：取两个子数组的最小元素做比较，并将小者取出
-
-@import "../codes/intro/sorting.py" {line_begin=45 line_end=66 .left4 .line-numbers .top0 .bottom2}
-
-@import "../dot/sorting/merge-merge.dot" {.lefta .right6 .top-50per .bottom-10}
+<p class="footnote book"> 在对数坐标轴上，$T(n) = n^d$是斜率为$d$的直线</p>
