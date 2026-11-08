@@ -29,7 +29,7 @@ trial = time_cost.shape[0]
 plt = setup_matplotlib()
 with plt.style.context('Solarize_Light2'):
     _, ax = plt.subplots(figsize=(8, 6))
-    n = [2**(t + 4) for t in range(trial)]
+    n = [2**(t + 6) for t in range(trial)]
     # ax.loglog(n, time_cost[:, 0], base=2, ls="solid", label="built-in")  # 对数坐标轴
     ax.loglog(n, time_cost[:, 1], base=2, marker='o', label="小学算法")
     ax.loglog(n, time_cost[:, 2], base=2, marker='s', label="Karatsuba")
