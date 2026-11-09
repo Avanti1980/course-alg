@@ -1,7 +1,4 @@
-from typing import List
-
-
-def find_max_subarray(a: List[int], low: int, high: int) -> tuple[int, int, int]:
+def find_max_subarray(a: list[int], low: int, high: int) -> tuple[int, int, int]:
     # 返回最大子数组的起始索引、结束索引、和
     if low == high:
         return low, high, a[low]
@@ -26,7 +23,7 @@ def find_max_subarray(a: List[int], low: int, high: int) -> tuple[int, int, int]
     )
 
 
-def find_max_cross_subarray(a: List[int], low: int, mid: int, high: int) -> tuple[int, int, int]:
+def find_max_cross_subarray(a: list[int], low: int, mid: int, high: int) -> tuple[int, int, int]:
     l_sum = r_sum = float("-inf")
 
     s = 0  # 找结束于 mid 的最大子数组的起始索引

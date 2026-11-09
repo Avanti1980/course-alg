@@ -1,10 +1,9 @@
 import time
 import math
 import numpy as np
-import numpy.typing as npt
 
 
-def closest_pair(x: npt.NDArray, y: npt.NDArray, low: int, high: int, order_y: npt.NDArray) -> float:
+def closest_pair(x: np.ndarray, y: np.ndarray, low: int, high: int, order_y: np.ndarray) -> float:
     if high - low <= 2:  # 如果不超过3个点 不再递归 直接求最小距离
         closest = float("inf")
         for i in range(low, high + 1):

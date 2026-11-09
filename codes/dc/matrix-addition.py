@@ -1,7 +1,8 @@
 import numpy as np
 
 
-def add(A, B, m, n):
+def add(A: np.ndarray, B: np.ndarray) -> np.ndarray:
+    m, n = A.shape
     C = np.empty((m, n))
     for i in range(m):
         for j in range(n):
@@ -9,33 +10,31 @@ def add(A, B, m, n):
     return C
 
 
-def add_rec(A, B, C, shape):
-    m, n = shape
+def add_rec(A: np.ndarray, B: np.ndarray) -> np.ndarray:
+    m, n = A.shape
     if m == 1 or n == 1:
-        C[:] = A[:] + B[:]
-    else:
-        mid_m, mid_n = int(m / 2), int(n / 2)
+        return A + B
 
-        # 四个子矩阵的索引
-        block_11 = slice(None, mid_m), slice(None, mid_n)
-        block_12 = slice(None, mid_m), slice(mid_n, None)
-        block_21 = slice(mid_m, None), slice(None, mid_n)
-        block_22 = slice(mid_m, None), slice(mid_n, None)
+    mid_m, mid_n = m // 2, n // 2
 
-        add_rec(A[block_11], B[block_11], C[block_11], A[block_11].shape)
-        add_rec(A[block_12], B[block_12], C[block_12], A[block_12].shape)
-        add_rec(A[block_21], B[block_21], C[block_21], A[block_21].shape)
-        add_rec(A[block_22], B[block_22], C[block_22], A[block_22].shape)
+    # 四个子矩阵的索引
+    block_slices = [
+        (slice(None, mid_m), slice(None, mid_n)),
+        (slice(None, mid_m), slice(mid_n, None)),
+        (slice(mid_m, None), slice(None, mid_n)),
+        (slice(mid_m, None), slice(mid_n, None)),
+    ]
+    C = np.empty((m, n))
+    for bs in block_slices:
+        C[bs] = add_rec(A[bs], B[bs])
+
+    return C
 
 
 m, n = 5, 7
 A, B = np.random.rand(m, n), np.random.rand(m, n)
 
-C1 = add(A, B, m, n)
+C1 = add(A, B)
+C2 = add_rec(A, B)
 
-C2 = np.empty((m, n))
-add_rec(A, B, C2, [m, n])
-
-print("C1 =\n", C1)
-print("C2 =\n", C2)
 print((C1 - C2).max(), (C1 - C2).min())
