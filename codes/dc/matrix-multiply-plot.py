@@ -1,127 +1,40 @@
-import time
 import numpy as np
-import matplotlib.pyplot as plt
 
 
-def mul(A: np.ndarray, B: np.ndarray) -> np.ndarray:
-    n = A.shape[0]
-    C = np.zeros((n, n))
-    for i in range(n):
-        for j in range(n):
-            for k in range(n):
-                C[i, j] += A[i, k] * B[k, j]
-    return C
+def setup_matplotlib():
+    """配置中文字体与样式"""
+    import matplotlib.font_manager as fm
+    import matplotlib.pyplot as plt
+
+    font_path = '/home/avanti/Fonts/Founder/宋/方正FW筑紫古典L明朝 简.TTF'
+    fm.fontManager.addfont(font_path)
+    plt.rcParams.update({
+        'font.family': ['Ysabeau Office', fm.FontProperties(fname=font_path).get_name()],
+        'axes.unicode_minus': True,
+        'xtick.labelsize': 10,
+        'ytick.labelsize': 10,
+        'legend.fontsize': 12,
+        'legend.framealpha': 0.4,
+        'legend.loc': 'best',
+        'savefig.bbox': 'tight',
+        'savefig.transparent': True,
+        'text.color': '#586e75',
+    })
+    return plt
 
 
-def mul_rec(A: np.ndarray, B: np.ndarray) -> np.ndarray:
-    n = A.shape[0]
-    if n == 1:
-        return A * B
+if __name__ == "__main__":
+    time_cost = np.load('matrix-multiply-time-cost.npy')
+    trial = time_cost.shape[0]
 
-    mid = n // 2
-
-    # 四个子矩阵的索引
-    block_11 = slice(None, mid), slice(None, mid)
-    block_12 = slice(None, mid), slice(mid, None)
-    block_21 = slice(mid, None), slice(None, mid)
-    block_22 = slice(mid, None), slice(mid, None)
-
-    C = np.zeros((n, n))
-    C[block_11] = mul_rec(A[block_11], B[block_11]) + \
-        mul_rec(A[block_12], B[block_21])
-    C[block_12] = mul_rec(A[block_11], B[block_12]) + \
-        mul_rec(A[block_12], B[block_22])
-    C[block_21] = mul_rec(A[block_21], B[block_11]) + \
-        mul_rec(A[block_22], B[block_21])
-    C[block_22] = mul_rec(A[block_21], B[block_12]) + \
-        mul_rec(A[block_22], B[block_22])
-
-    return C
-
-
-def mul_rec_strassen(A: np.ndarray, B: np.ndarray) -> np.ndarray:
-    n = A.shape[0]
-    if n == 1:
-        return A * B
-
-    mid = n // 2
-
-    # 四个子矩阵的索引
-    block_11 = slice(None, mid), slice(None, mid)
-    block_12 = slice(None, mid), slice(mid, None)
-    block_21 = slice(mid, None), slice(None, mid)
-    block_22 = slice(mid, None), slice(mid, None)
-
-    # 10次加减计算中间变量
-    R1 = A[block_11]
-    R2 = A[block_22]
-    R3 = A[block_11] - A[block_22]
-    R4 = A[block_12] - A[block_22]
-    R5 = A[block_11] - A[block_12]
-    R6 = A[block_11] - A[block_21]
-    R7 = A[block_21] - A[block_22]
-
-    S1 = B[block_11] + B[block_21]
-    S2 = B[block_12] + B[block_22]
-    S3 = B[block_12] + B[block_21]
-    S4 = B[block_22] - B[block_21]
-    S5 = -B[block_21]
-    S6 = B[block_12] - B[block_11]
-    S7 = B[block_12]
-
-    # 7个子问题 递归调用
-    T1 = mul_rec_strassen(R1, S1)
-    T2 = mul_rec_strassen(R2, S2)
-    T3 = mul_rec_strassen(R3, S3)
-    T4 = mul_rec_strassen(R4, S4)
-    T5 = mul_rec_strassen(R5, S5)
-    T6 = mul_rec_strassen(R6, S6)
-    T7 = mul_rec_strassen(R7, S7)
-
-    C = np.empty((n, n))
-
-    # 8次加减计算C
-    C[block_11] = T1 + T5
-    C[block_12] = T2 + T3 + T4 + T5
-    C[block_21] = T1 - T3 + T6 + T7
-    C[block_22] = T2 + T7
-
-    return C
-
-
-np.random.seed(2024)
-
-trial = 4
-time_cost = np.zeros([3, trial])
-
-for t in range(trial):
-
-    n = int(2**(t + 3))
-    A, B = np.random.rand(n, n), np.random.rand(n, n)
-    C1, C2, C3 = np.zeros([n, n]), np.zeros([n, n]), np.empty([n, n])
-
-    start = time.perf_counter()
-    mul_rec_copy(A, B, C1, n)
-    time_cost[0, t] = time.perf_counter() - start
-
-    start = time.perf_counter()
-    mul_rec_nocopy(A, B, C2, 0, n, 0, n, 0, n, 0, n, 0, n, 0, n)
-    time_cost[1, t] = time.perf_counter() - start
-
-    start = time.perf_counter()
-    mul_rec_strassen(A, B, C3, n)
-    time_cost[2, t] = time.perf_counter() - start
-
-np.set_printoptions(precision=6, suppress=True)
-print(time_cost)
-
-with plt.style.context('Solarize_Light2'):
-    x = [t + 2 for t in range(trial)]
-    plt.plot(x, np.log2(time_cost[0, :]), label="rec_copy")  # 对数坐标轴
-    plt.plot(x, np.log2(time_cost[1, :]), label="rec_nocopy")  # 对数坐标轴
-    plt.plot(x, np.log2(time_cost[2, :]), label="strassen")  # 对数坐标轴
-    plt.xlabel('n: power of 2')
-    plt.ylabel('time: power of 2')
-    plt.legend()
-    plt.grid(color='#93a1a1', linestyle='-.', linewidth=0.7)
-    plt.show()
+    plt = setup_matplotlib()
+    with plt.style.context('Solarize_Light2'):
+        n = [2**(t + 5) for t in range(trial)]
+        plt.loglog(n, time_cost[:, 1], base=2, marker='o', label="三重循环")
+        plt.loglog(n, time_cost[:, 2], base=2, marker='s', label="朴素分治")
+        plt.loglog(n, time_cost[:, 3], base=2, marker='x', label="Strassen")
+        plt.xlabel("矩阵阶数")
+        plt.ylabel("时间 (秒)")
+        plt.grid(color='#93a1a1', linestyle='-.', linewidth=0.7)
+        plt.legend()
+        plt.savefig(f"matrix-multiply.svg")

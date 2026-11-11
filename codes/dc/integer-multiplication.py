@@ -111,7 +111,7 @@ def toom(x: str, y: str) -> int:
 
 
 trial = 10
-time_cost = np.empty([trial, 4])
+time_cost = np.empty((trial, 4))
 for t in range(trial):
     n = 2**(t + 6)  # 2^4, 2^5, ..., 2^13
 

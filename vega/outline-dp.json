@@ -65,7 +65,7 @@
                             "signal": "height"
                         },
                         {
-                            "signal": "width - 100"
+                            "signal": "width - 250"
                         }
                     ],
                     "separation": {
