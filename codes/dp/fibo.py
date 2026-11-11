@@ -5,7 +5,7 @@ def fibo_rec(n: int) -> int:
     return fibo_rec(n - 1) + fibo_rec(n - 2)
 
 
-def fibo_dp_memoized(n: int) -> tuple[int, list]:
+def fibo_dp_memoized(n: int) -> int:
     F = [-float("inf")] * (n + 1)  # 备忘录初始化为负无穷
     return fibo_dp_memoized_aux(n, F)
 
