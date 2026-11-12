@@ -37,31 +37,29 @@ def closest_pair(x: np.ndarray, y: np.ndarray, low: int, high: int, order_y: np.
 
 np.random.seed(0)
 
-if __name__ == "__main__":
+trial = 8
+time_cost = np.empty([trial, 2])
 
-    trial = 8
-    time_cost = np.empty([trial, 2])
+for t in range(trial):
+    n = 2**(t + 6)
+    x = np.random.rand(n)     # 随机生成 n 个点的横坐标
+    y = np.random.rand(n)     # 随机生成 n 个点的纵坐标
 
-    for t in range(trial):
-        n = 2**(t + 6)
-        x = np.random.rand(n)     # 随机生成 n 个点的横坐标
-        y = np.random.rand(n)     # 随机生成 n 个点的纵坐标
+    start = time.perf_counter()
+    closest = float("inf")
+    for i in range(n):
+        for j in range(i + 1, n):
+            closest = min(closest, math.hypot(
+                x[i] - x[j], y[i] - y[j]))  # 暴力穷举
+    time_cost[t, 0] = time.perf_counter() - start
 
-        start = time.perf_counter()
-        closest = float("inf")
-        for i in range(n):
-            for j in range(i + 1, n):
-                closest = min(closest, math.hypot(
-                    x[i] - x[j], y[i] - y[j]))  # 暴力穷举
-        time_cost[t, 0] = time.perf_counter() - start
+    start = time.perf_counter()
+    order = x.argsort()    # x 升序的索引表
+    x = x[order]           # x 升序
+    y = y[order]           # 按 x 升序的 y
+    order_y = y.argsort()  # y 升序的索引表
+    closest = closest_pair(x, y, 0, n - 1, order_y)
+    time_cost[t, 1] = time.perf_counter() - start
 
-        start = time.perf_counter()
-        order = x.argsort()    # x 升序的索引表
-        x = x[order]           # x 升序
-        y = y[order]           # 按 x 升序的 y
-        order_y = y.argsort()  # y 升序的索引表
-        closest = closest_pair(x, y, 0, n - 1, order_y)
-        time_cost[t, 1] = time.perf_counter() - start
-
-    print(time_cost)
-    np.save('closest-pair-time-cost.npy', time_cost)
+print(time_cost)
+np.save('closest-pair-time-cost.npy', time_cost)

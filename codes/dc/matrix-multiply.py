@@ -13,76 +13,54 @@ def mul(A: np.ndarray, B: np.ndarray) -> np.ndarray:
 
 def mul_rec(A: np.ndarray, B: np.ndarray) -> np.ndarray:
     n = A.shape[0]
-    if n == 1:
-        return A * B
+    if n <= 1:
+        return A @ B
 
     mid = n // 2
 
-    # 四个子矩阵的索引
-    block_11 = slice(None, mid), slice(None, mid)
-    block_12 = slice(None, mid), slice(mid, None)
-    block_21 = slice(mid, None), slice(None, mid)
-    block_22 = slice(mid, None), slice(mid, None)
+    # 四个子矩阵
+    A11, A12 = A[:mid, :mid], A[:mid, mid:]
+    A21, A22 = A[mid:, :mid], A[mid:, mid:]
+    B11, B12 = B[:mid, :mid], B[:mid, mid:]
+    B21, B22 = B[mid:, :mid], B[mid:, mid:]
 
-    C = np.zeros((n, n))
-    C[block_11] = mul_rec(A[block_11], B[block_11]) + \
-        mul_rec(A[block_12], B[block_21])
-    C[block_12] = mul_rec(A[block_11], B[block_12]) + \
-        mul_rec(A[block_12], B[block_22])
-    C[block_21] = mul_rec(A[block_21], B[block_11]) + \
-        mul_rec(A[block_22], B[block_21])
-    C[block_22] = mul_rec(A[block_21], B[block_12]) + \
-        mul_rec(A[block_22], B[block_22])
+    C = np.empty((n, n))
+    C[:mid, :mid] = mul_rec(A11, B11) + mul_rec(A12, B21)
+    C[:mid, mid:] = mul_rec(A11, B12) + mul_rec(A12, B22)
+    C[mid:, :mid] = mul_rec(A21, B11) + mul_rec(A22, B21)
+    C[mid:, mid:] = mul_rec(A21, B12) + mul_rec(A22, B22)
 
     return C
 
 
 def mul_rec_strassen(A: np.ndarray, B: np.ndarray) -> np.ndarray:
     n = A.shape[0]
-    if n == 1:
-        return A * B
+    if n <= 1:
+        return A @ B
 
     mid = n // 2
 
-    # 四个子矩阵的索引
-    block_11 = slice(None, mid), slice(None, mid)
-    block_12 = slice(None, mid), slice(mid, None)
-    block_21 = slice(mid, None), slice(None, mid)
-    block_22 = slice(mid, None), slice(mid, None)
-
-    # 10次加减计算中间变量
-    R1 = A[block_11]
-    R2 = A[block_22]
-    R3 = A[block_11] - A[block_22]
-    R4 = A[block_12] - A[block_22]
-    R5 = A[block_11] - A[block_12]
-    R6 = A[block_11] - A[block_21]
-    R7 = A[block_21] - A[block_22]
-
-    S1 = B[block_11] + B[block_21]
-    S2 = B[block_12] + B[block_22]
-    S3 = B[block_12] + B[block_21]
-    S4 = B[block_22] - B[block_21]
-    S5 = -B[block_21]
-    S6 = B[block_12] - B[block_11]
-    S7 = B[block_12]
+    # 四个子矩阵
+    A11, A12 = A[:mid, :mid], A[:mid, mid:]
+    A21, A22 = A[mid:, :mid], A[mid:, mid:]
+    B11, B12 = B[:mid, :mid], B[:mid, mid:]
+    B21, B22 = B[mid:, :mid], B[mid:, mid:]
 
     # 7个子问题 递归调用
-    T1 = mul_rec_strassen(R1, S1)
-    T2 = mul_rec_strassen(R2, S2)
-    T3 = mul_rec_strassen(R3, S3)
-    T4 = mul_rec_strassen(R4, S4)
-    T5 = mul_rec_strassen(R5, S5)
-    T6 = mul_rec_strassen(R6, S6)
-    T7 = mul_rec_strassen(R7, S7)
-
-    C = np.empty((n, n))
+    T1 = mul_rec_strassen(A11, B11 + B21)
+    T2 = mul_rec_strassen(A22, B12 + B22)
+    T3 = mul_rec_strassen(A11 - A22, B12 + B21)
+    T4 = mul_rec_strassen(A12 - A22, B22 - B21)
+    T5 = mul_rec_strassen(A11 - A12, -B21)
+    T6 = mul_rec_strassen(A11 - A21, B12 - B11)
+    T7 = mul_rec_strassen(A21 - A22, B12)
 
     # 8次加减计算C
-    C[block_11] = T1 + T5
-    C[block_12] = T2 + T3 + T4 + T5
-    C[block_21] = T1 - T3 + T6 + T7
-    C[block_22] = T2 + T7
+    C = np.empty((n, n))
+    C[:mid, :mid] = T1 + T5
+    C[:mid, mid:] = T2 + T3 + T4 + T5
+    C[mid:, :mid] = T1 - T3 + T6 + T7
+    C[mid:, mid:] = T2 + T7
 
     return C
 
@@ -114,5 +92,5 @@ C3 = C3[:n, :n]
 print("C1 = \n", C1)
 print("C2 = \n", C2)
 print("C3 = \n", C3)
-print((C1 - C2).max(), (C1 - C2).min())
-print((C1 - C3).max(), (C1 - C3).min())
+print(np.allclose(C1, C2))
+print(np.allclose(C1, C3))

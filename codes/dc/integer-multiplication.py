@@ -1,105 +1,102 @@
-import time
 import numpy as np
-import random
-import string
-import sys
-
-sys.set_int_max_str_digits(100000)
-np.random.seed(0)
 
 
-def align(x: str, y: str, n_x: int, n_y: int) -> tuple[str, str, int]:
-    # 将字符串数字x和y左补零至等长 返回对齐后的字符串和统一长度
-    if n_x < n_y:
-        x = x.rjust(n_y, "0")
-        n = n_y
+def process_sign(x: str, y: str) -> tuple[str, str, int]:
+    """处理负号"""
+    x, sign_x = (x[1:], -1) if x and x[0] == "-" else (x, 1)
+    y, sign_y = (y[1:], -1) if y and y[0] == "-" else (y, 1)
+    sign = sign_x * sign_y
+    return x, y, sign
+
+
+def align(x: str, y: str) -> tuple[str, str]:
+    """左补零到等长"""
+    if len(x) < len(y):
+        x = x.rjust(len(y), "0")
     else:
-        y = y.rjust(n_x, "0")
-        n = n_x
-    return x, y, n
+        y = y.rjust(len(x), "0")
+    return x, y, len(x)
 
 
-def grade_school(x: str, y: str) -> int:
-    n_x, n_y = len(x), len(y)
-    x, y, n = align(x, y, n_x, n_y)  # 若x和y长度不同 将短的左边补零
+def grade_school(x: str, y: str) -> str:
+    x, y, sign = process_sign(x, y)
+    x_len, y_len = len(x), len(y)
 
-    x_list = [int(ch) for ch in x]
-    y_list = [int(ch) for ch in y]
+    x = x[::-1]  # 逆序 低位在前、高位在后
 
-    carry = 0  # 初始进位为零
-    z: list[str] = []
-    for k in range(2 * n):
-        # 遍历所有满足i+j=k的二元组(i,j) 注意不要越界
-        low = max(0, k - n + 1)
-        high = min(k + 1, n)
-        for i in range(low, high):
-            j = k - i
-            carry += x_list[-1 - i] * y_list[-1 - j]
-        carry, q = divmod(carry, 10)
-        z.append(str(q))
+    # 数字字符串 => 整数数组 例如 "123" => [1,2,3]
+    x = np.frombuffer(x.encode(), dtype=np.uint8) - 48
+    y = np.frombuffer(y.encode(), dtype=np.uint8) - 48
 
-    # z中低位在前、高位在后 翻转得到正常顺序
-    result = "".join(reversed(z)).lstrip("0")
-    return int(result) if result else 0
+    # 为做卷积 第一个输入参数两端补零
+    x = np.pad(x, pad_width=(y_len-1, y_len-1))
+
+    # 计算卷积 x[0]y[0], x[0]y[1] + x[1]y[0], ...
+    l = x_len + y_len - 1
+    conv = np.zeros(l, dtype=np.int64)
+    for i in range(l):
+        for j in range(y_len):
+            conv[i] += x[i+j] * y[j]
+
+    h = 0  # 初始进位为零
+    z = []
+    for c in conv:
+        c += h
+        h, q = divmod(c, 10)
+        z.append(q)
+    while h:
+        h, q = divmod(h, 10)
+        z.append(q)
+
+    # 反向并去掉高位零
+    s = ''.join(map(str, reversed(z))).lstrip('0') or '0'
+    return ('-' + s) if sign < 0 and s != '0' else s
 
 
 def karatsuba(x: str, y: str) -> int:
-    n_x, n_y = len(x), len(y)
+    x, y, sign = process_sign(x, y)
+    x, y, n = align(x, y)
 
-    if n_x == 1 or n_y == 1:  # 如果其中一个数只有1位 不再递归
-        return int(x) * int(y)
-
-    x, y, n = align(x, y, n_x, n_y)  # 若x和y长度不同 将短的左边补零
+    if n <= 1:
+        v = int(x) * int(y)
+        return sign * v
 
     m = n // 2
     a, b = x[:n - m], x[n - m:]  # x = a * 10^m + b
     c, d = y[:n - m], y[n - m:]  # y = c * 10^m + d
 
-    a_int, b_int = int(a), int(b)
-    c_int, d_int = int(c), int(d)
-
-    # 3个递归子问题
+    ai, bi, ci, di = int(a), int(b), int(c), int(d)
     ac = karatsuba(a, c)
     bd = karatsuba(b, d)
-    ad_bc = karatsuba(str(a_int + b_int), str(c_int + d_int)) - ac - bd
+    ad_bc = karatsuba(str(ai + bi), str(ci + di)) - ac - bd
 
-    return ac * 10**(2 * m) + ad_bc * 10**m + bd
-
-
-def preprocess(x: str) -> tuple[int, int, str]:
-    # 去除负号前缀 返回 (符号, 有效位数, 纯数字字符串)
-    if x[0] == "-":
-        return -1, len(x) - 1, x[1:]
-    return 1, len(x), x
+    pow10 = 10 ** m
+    v = ac * pow10 * pow10 + ad_bc * pow10 + bd
+    return sign * v
 
 
 def toom(x: str, y: str) -> int:
-    sign_x, n_x, x = preprocess(x)
-    sign_y, n_y, y = preprocess(y)
-    sign = sign_x * sign_y
+    x, y, sign = process_sign(x, y)
+    x, y, n = align(x, y)
 
-    if n_x <= 2 or n_y <= 2:  # 如果其中一个数小于3位 不再递归
-        return sign * int(x) * int(y)
-
-    x, y, n = align(x, y, n_x, n_y)  # 若x和y长度不同 将短的左边补零
+    if n <= 2:
+        v = int(x) * int(y)
+        return sign * v
 
     m = n // 3
 
     a, b, c = x[:n - 2 * m], x[n - 2 * m:n - m], x[n - m:]
     d, e, f = y[:n - 2 * m], y[n - 2 * m:n - m], y[n - m:]
 
-    a_int, b_int, c_int = int(a), int(b), int(c)
-    d_int, e_int, f_int = int(d), int(e), int(f)
+    ai, bi, ci = int(a), int(b), int(c)
+    di, ei, fi = int(d), int(e), int(f)
 
     # 5个递归子问题
-    s4 = toom(a, d)  # s4 = ad
-    s3 = toom(str(4 * a_int + 2 * b_int + c_int),
-              str(4 * d_int + 2 * e_int + f_int))  # s3 = (4a+2b+c)(4d+2e+f)
-    s2 = toom(str(a_int - b_int + c_int),
-              str(d_int - e_int + f_int))  # s2 = (a-b+c)(d-e+f)
-    s1 = toom(str(a_int + b_int + c_int),
-              str(d_int + e_int + f_int))  # s1 = (a+b+c)(d+e+f)
-    s0 = toom(c, f)  # s0 = cf
+    s4 = toom(a, d)
+    s3 = toom(str(4 * ai + 2 * bi + ci), str(4 * di + 2 * ei + fi))
+    s2 = toom(str(ai - bi + ci), str(di - ei + fi))
+    s1 = toom(str(ai + bi + ci), str(di + ei + fi))
+    s0 = toom(c, f)
 
     w4 = s4
     w3 = (-12 * s4 + s3 - s2 - 3 * s1 + 3 * s0) // 6
@@ -107,37 +104,45 @@ def toom(x: str, y: str) -> int:
     w1 = (12 * s4 - s3 - 2 * s2 + 6 * s1 - 3 * s0) // 6
     w0 = s0
 
-    return sign * (w4 * 10**(4 * m) + w3 * 10**(3 * m) + w2 * 10**(2 * m) + w1 * 10**m + w0)
+    p1 = 10 ** m
+    p2 = p1 * p1
+    v = w4*p2*p2 + w3*p2*p1 + w2*p2 + w1*p1 + w0
+    return sign * v
 
 
-trial = 10
-time_cost = np.empty((trial, 4))
-for t in range(trial):
-    n = 2**(t + 6)  # 2^4, 2^5, ..., 2^13
+if __name__ == "__main__":
 
-    # 随机生成长度为n的字符串x和y
-    x = ''.join(random.choices(string.digits, k=n))
-    y = ''.join(random.choices(string.digits, k=n))
+    import string
+    import time
+    import sys
+    sys.set_int_max_str_digits(1000000)
+    import random
+    random.seed(0)
 
-    start = time.perf_counter()
-    z0 = int(x) * int(y)
-    time_cost[t, 0] = time.perf_counter() - start
+    trial = 12
+    time_cost = np.empty((trial, 3))
+    for t in range(trial):
+        n = 2**(t + 5)
 
-    start = time.perf_counter()
-    z1 = grade_school(x, y)
-    time_cost[t, 1] = time.perf_counter() - start
+        # 随机生成长度为n的字符串x和y
+        x = ''.join(random.choices(string.digits, k=n))
+        y = ''.join(random.choices(string.digits, k=n))
 
-    start = time.perf_counter()
-    z2 = karatsuba(x, y)
-    time_cost[t, 2] = time.perf_counter() - start
+        z0 = int(x) * int(y)
 
-    start = time.perf_counter()
-    z3 = toom(x, y)
-    time_cost[t, 3] = time.perf_counter() - start
+        start = time.perf_counter()
+        z1 = grade_school(x, y)
+        time_cost[t, 0] = time.perf_counter() - start
 
-    print(z0)
-    print(z1)
-    print(z2)
-    print(z3)
+        start = time.perf_counter()
+        z2 = karatsuba(x, y)
+        time_cost[t, 1] = time.perf_counter() - start
 
-np.save('integer-multiplication-time-cost.npy', time_cost)
+        start = time.perf_counter()
+        z3 = toom(x, y)
+        time_cost[t, 2] = time.perf_counter() - start
+
+        print(str(z0) == z1, z0 == z2, z0 == z3)
+        print(time_cost[t, 0], time_cost[t, 1], time_cost[t, 2])
+
+    np.save('integer-multiplication-time-cost.npy', time_cost)
