@@ -1,7 +1,7 @@
 import random
 
 
-def bruteforce(a: list[int]) -> int:
+def bruteforce(a: list) -> int:
     n, count = len(a), 0
     for i in range(n):
         ai = a[i]
@@ -11,7 +11,7 @@ def bruteforce(a: list[int]) -> int:
     return count
 
 
-def count_cross_inv(a: list[int], low: int, mid: int, high: int, temp: list[int]) -> int:
+def count_cross_inv(a: list, low: int, mid: int, high: int, temp: list) -> int:
     # a[low:mid+1]、a[mid+1:high+1]已排好序
     # 拷贝数据到临时数组
     temp[low:high+1] = a[low:high+1]
@@ -35,7 +35,7 @@ def count_cross_inv(a: list[int], low: int, mid: int, high: int, temp: list[int]
     return count
 
 
-def sort_and_count(a: list[int], low: int, high: int, temp: list[int]) -> int:
+def sort_and_count(a: list, low: int, high: int, temp: list) -> int:
     if low < high:
         mid = (low + high) // 2  # 取中间点分开
         count = 0

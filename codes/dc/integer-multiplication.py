@@ -122,7 +122,7 @@ if __name__ == "__main__":
     trial = 12
     time_cost = np.empty((trial, 3))
     for t in range(trial):
-        n = 2**(t + 5)
+        n = 2**(t + 6)
 
         # 随机生成长度为n的字符串x和y
         x = ''.join(random.choices(string.digits, k=n))

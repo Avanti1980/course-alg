@@ -1,28 +1,29 @@
 def fibo_rec(n: int) -> int:
     if n <= 1:
         return n
+    
     # 递归求解两个子问题
     return fibo_rec(n - 1) + fibo_rec(n - 2)
 
 
 def fibo_dp_memoized(n: int) -> int:
-    F = [-float("inf")] * (n + 1)  # 备忘录初始化为负无穷
-    return fibo_dp_memoized_aux(n, F)
+    memo: list[int | None] = [None] * (n + 1)
+    memo[0:2] = [0, 1]
 
+    def solve(k: int) -> int:
+        if memo[k] is not None:
+            return memo[k]
 
-def fibo_dp_memoized_aux(n: int, F: list) -> int:
-    if n <= 1:
-        return n
+        memo[k] = solve(k - 1) + solve(k - 2)
+        return memo[k]
 
-    if F[n] >= 0:
-        return F[n]
-    else:
-        F[n] = fibo_dp_memoized_aux(
-            n - 1, F) + fibo_dp_memoized_aux(n - 2, F)
-        return F[n]
+    return solve(n)
 
 
 def fibo_dp_iter(n: int) -> int:
+    if n <= 1:
+        return n
+
     F = [0] * (n + 1)
     F[1] = 1
     for i in range(2, n + 1):
@@ -31,28 +32,32 @@ def fibo_dp_iter(n: int) -> int:
 
 
 def fibo_dp_iter2(n: int) -> int:
+    if n <= 1:
+        return n
+
     prev, curr = 0, 1
-    for i in range(n - 1):
-        next = prev + curr
-        prev, curr = curr, next
+    for _ in range(n - 1):
+        prev, curr = curr, prev + curr
     return curr
 
 
 def fibo_rec_faster(n: int) -> tuple[int, int]:
-    if n == 1:
-        return 0, 1
-    m = n // 2
-    prev_, curr_ = fibo_rec_faster(m)
-    prev = prev_**2 + curr_**2
-    curr = curr_ * (2 * prev_ + curr_)
-    next = prev + curr
-    if n & 1:
-        return curr, next
-    else:
-        return prev, curr
+
+    def _fib_pair(m) -> tuple[int, int]:  # 返回 F(m), F(m+1)
+        if m == 0:
+            return 0, 1
+
+        a, b = _fib_pair(m >> 1)  # a=F(k), b=F(k+1)
+        c = a * (2 * b - a)       # F(2k)
+        d = a * a + b * b         # F(2k+1)
+        if m & 1:
+            return d, c + d
+        return c, d
+
+    return _fib_pair(n)[0]
 
 
-n = 32
+n = 21
 print(fibo_rec(n))
 print(fibo_dp_memoized(n))
 print(fibo_dp_iter(n))

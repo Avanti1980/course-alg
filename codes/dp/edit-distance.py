@@ -3,42 +3,43 @@ import numpy as np
 
 def edit_dis(X, Y):
     m, n = len(X), len(Y)
-    c, b = np.empty((m + 1, n + 1), dtype='int'), np.empty((m, n), dtype='str')
-    for i in range(m + 1):
+    c, b = np.empty((m+1, n+1), dtype='int'), np.empty((m, n), dtype='str')
+    for i in range(m+1):
         c[i, 0] = i
-    for j in range(n + 1):
+    for j in range(n+1):
         c[0, j] = j
-    for i in range(1, m + 1):
-        for j in range(1, n + 1):
-            a = [c[i - 1, j - 1] + int(X[i - 1] != Y[j - 1]), c[i, j - 1] + 1, c[i - 1, j] + 1]
+    for i in range(1, m+1):
+        for j in range(1, n+1):
+            a = [c[i-1, j-1] +
+                 int(X[i-1] != Y[j-1]), c[i, j-1] + 1, c[i-1, j] + 1]
             index = np.argmin(a)
             c[i, j] = a[index]
             if index == 0:
-                b[i - 1, j - 1] = '↖'
+                b[i-1, j-1] = '↖'
             elif index == 1:
-                b[i - 1, j - 1] = '←'
+                b[i-1, j-1] = '←'
             else:
-                b[i - 1, j - 1] = '↑'
+                b[i-1, j-1] = '↑'
     return c, b
 
 
 def restore_sol(i, j, b, l):
     if i == -1:
-        for k in range(j + 1):
+        for k in range(j+1):
             l.append([' ', Y[j]])
         return
     if j == -1:
-        for k in range(i + 1):
+        for k in range(i+1):
             l.append([X[i], ' '])
         return
     if b[i, j] == '↖':
-        restore_sol(i - 1, j - 1, b, l)
+        restore_sol(i-1, j-1, b, l)
         l.append([X[i], Y[j]])
     elif b[i, j] == '↑':
-        restore_sol(i - 1, j, b, l)
+        restore_sol(i-1, j, b, l)
         l.append([X[i], ' '])
     else:
-        restore_sol(i, j - 1, b, l)
+        restore_sol(i, j-1, b, l)
         l.append([' ', Y[j]])
 
 
