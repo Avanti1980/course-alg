@@ -1,7 +1,7 @@
 def fibo_rec(n: int) -> int:
     if n <= 1:
         return n
-    
+
     # 递归求解两个子问题
     return fibo_rec(n - 1) + fibo_rec(n - 2)
 
@@ -49,7 +49,7 @@ def fibo_rec_faster(n: int) -> tuple[int, int]:
 
         a, b = _fib_pair(m >> 1)  # a=F(k), b=F(k+1)
         c = a * (2 * b - a)       # F(2k)
-        d = a * a + b * b         # F(2k+1)
+        d = a**2 + b**2           # F(2k+1)
         if m & 1:
             return d, c + d
         return c, d
