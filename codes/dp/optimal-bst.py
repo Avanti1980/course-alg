@@ -1,32 +1,32 @@
-import numpy as np
+INF = float("inf")
 
 
-def optimal_bst(p, q):
+def optimal_bst(p: list[float], q: list[float]) -> tuple[list[list[float]], list[list[float]], list[list[int]]]:
     n = len(p)
-    e = np.full((n + 2, n + 1), float("inf"))
-    w = np.zeros((n + 2, n + 1))
-    root = np.zeros((n + 1, n + 1), dtype="int")
+    e: list[list[float]] = [[INF] * (n+1) for _ in range(n+2)]
+    w: list[list[float]] = [[0.0] * (n+1) for _ in range(n+2)]
+    root: list[list[int]] = [[0] * (n+1) for _ in range(n+1)]
     for i in range(1, n + 2):
-        e[i, i - 1] = w[i, i - 1] = q[i - 1]  # 边界情况
+        e[i][i - 1] = w[i][i - 1] = q[i - 1]  # 边界情况
     for l in range(1, n + 1):  # 子问题 l = 1 -> n
         for i in range(1, n - l + 2):  # 从第i个关键字
             j = i + l - 1  # 到第j个关键字
-            w[i, j] = w[i, j - 1] + p[j - 1] + q[j]  # 填写w表
+            w[i][j] = w[i][j - 1] + p[j - 1] + q[j]  # 填写w表
             for r in range(i, j + 1):  # 遍历寻找最优根节点
-                t = e[i, r - 1] + e[r + 1, j] + w[i, j]
-                if t < e[i, j]:
-                    e[i, j] = t  # 更新期望搜索代价
-                    root[i, j] = r  # 更新最优根节点
+                t = e[i][r - 1] + e[r + 1][j] + w[i][j]
+                if t < e[i][j]:
+                    e[i][j] = t  # 更新期望搜索代价
+                    root[i][j] = r  # 更新最优根节点
     return e, w, root
 
 
 p = [0.15, 0.1, 0.05, 0.1, 0.2]
 q = [0.05, 0.1, 0.05, 0.05, 0.05, 0.1]
 e, w, root = optimal_bst(p, q)
-print(e[1, -1])
-print("e =\n", e[1:, :])
-print("w =\n", w[1:, :])
-print("root =\n", root[1:, 1:])
+print(e[1][-1])
+print([row[:] for row in e[1:]])
+print([row[:] for row in w[1:]])
+print([row[1:] for row in root[1:]])
 # --------------------------------------------------------
 # 2.75
 # e =

@@ -24,23 +24,22 @@ presentation:
 @import "../plugin/chalkboard/style.css"
 @import "../plugin/reveal.js-menu/menu.js"
 
-<!-- slide vertical=true data-notes="" -->
+<!-- slide data-notes="" -->
 
-##### 子问题图
+##### 构造最优解
 
 ---
 
-自底向上处理子问题的顺序：
+$s[i,j]$表示$\Av_i \cdots \Av_j$的最优分开位置
 
-- 对任意子问题，先求解它指向的子问题
-- 当它指向的所有子问题都求解完才会求解它
+- $s[1,6]=3$，故$\Av_1 \cdots \Av_6$在$\Av_3$后分开
+- $s[1,3]=1$，故$\Av_1 \cdots \Av_3$在$\Av_1$后分开
+- $s[4,6]=5$，故$\Av_4 \cdots \Av_6$在$\Av_5$后分开
 
 <div class="top2"></div>
 
-<p class="fragment">算法运行时间等于所有子问题求解时间之和</p>
+最优方案：$(\Av_1 (\Av_2 \Av_3)) ((\Av_4 \Av_5) \Av_6)$
 
-<p class="fragment">子问题的求解时间与对应顶点的<span class="blue">出度</span>成正比</p>
+@import "../codes/dp/matrix-chain.py" {line_begin=18 line_end=26 .left2 .line-numbers .top0 .bottom0}
 
-<p class="fragment">动态规划的运行时间一般与顶点和边的数量至少呈线性关系</p>
-
-<img src="../dot/dp/subproblem.svg" class="top-40per lefta right14">
+<img src="../tikz/matrix-chain/matrix-chain-s.svg" class="width35 lefta right6 top-50per">

@@ -1,34 +1,35 @@
-import numpy as np
+INF = float("inf")
 
 
-def matrix_chain(p, n):
-    m, s = np.zeros((n, n)), np.zeros((n, n), dtype=int)
+def matrix_chain(p: list[int], n: int) -> tuple[list[list[int]], list[list[int]]]:
+    m: list[list[int]] = [[0] * n for _ in range(n)]
+    s: list[list[int]] = [[0] * n for _ in range(n)]
     for l in range(2, n + 1):           # 子问题长度 l = 2 -> n
         for i in range(0, n - l + 1):   # 从第i个矩阵开始
             j = i + l - 1               # 到第j个矩阵结束
-            m[i, j] = float("inf")      # 初始化为无穷大
+            m[i][j] = INF               # 初始化为无穷大
             for k in range(i, j):       # 遍历最优分开位置
-                cost = m[i, k] + m[k + 1, j] + p[i] * p[k + 1] * p[j + 1]
-                if cost < m[i, j]:
-                    m[i, j] = cost
-                    s[i, j] = k + 1
-    return m.astype(int), s
+                cost = m[i][k] + m[k + 1][j] + p[i] * p[k + 1] * p[j + 1]
+                if cost < m[i][j]:
+                    m[i][j] = cost
+                    s[i][j] = k + 1
+    return m, s
 
 
-def print_sol(s, i, j):
+def print_sol(s: list[list[int]], i: int, j: int) -> None:
     if i == j:
         print(f"A{i + 1}", end='')
     else:
         print("(", end='')
-        print_sol(s, i, s[i, j] - 1)
-        print_sol(s, s[i, j], j)
+        print_sol(s, i, s[i][j] - 1)
+        print_sol(s, s[i][j], j)
         print(")", end='')
 
 
 p = [30, 35, 15, 5, 10, 20, 25]
 n = len(p) - 1  # 矩阵个数
 m, s = matrix_chain(p, n)
-print(m[0, n - 1])
+print(m[0][n - 1])
 print(m)
 print(s)
 print_sol(s, 0, n - 1)
