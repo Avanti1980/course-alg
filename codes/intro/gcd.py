@@ -10,7 +10,7 @@ def coef(a: int, b: int, t: int, d: int) -> tuple[int, int]:
     if t % d != 0:
         raise ValueError("t必须是最大公约数d的倍数")
     a, b, t = a // d, b // d, t // d  # 此时 a b 互素
-    for x in range(b):         # 0 a 2a ... (b-1)a 构成一个模 b 的剩余系
+    for x in range(b):         # 0, a, 2a, ..., (b-1)a构成一个模b的剩余系
         if (a * x) % b == 1:
             y = (1 - a * x) // b
             return t * x, t * y
@@ -23,7 +23,7 @@ def Euclidean(a: int, b: int) -> int:  # 辗转相除
 
 
 def Euclidean_extended(a: int, b: int) -> tuple[int, int, int]:
-    # 返回 (d, x, y) 使得 ax + by = d = gcd(a, b)
+    # 返回 (d,x,y) 使得 ax + by = d = gcd(a, b)
     if b == 0:
         return a, 1, 0
     else:
@@ -40,8 +40,8 @@ def Euclidean_coef(a: int, b: int, t: int) -> tuple[int, int]:
 
 
 def alternative_subtraction(a: int, b: int) -> int:  # 更相减损
-    shift = 0  # 最大公约数的质因子分解中 2 的幂次
-    while not (a & 1) and not (b & 1):  # a、b 均为偶 2是公因子
+    shift = 0  # 最大公约数的质因子分解中2的幂次
+    while not (a & 1) and not (b & 1):  # a、b均为偶 2是公因子
         a >>= 1  # a <- a / 2
         b >>= 1  # b <- b / 2
         shift += 1
@@ -55,20 +55,20 @@ def alternative_subtraction(a: int, b: int) -> int:  # 更相减损
 
 
 def gcd_opt(a: int, b: int) -> int:  # 改进的更相减损
-    shift = 0  # 最大公约数的质因子分解中 2 的幂次
+    shift = 0  # 最大公约数的质因子分解中2的幂次
     while not (a & 1) and not (b & 1):  # 均为偶 2是公因子
         a >>= 1  # a <- a / 2
         b >>= 1  # b <- b / 2
         shift += 1
-    # 此时 2 已不再是公因子
-    while not (a & 1):  # a 不断除以 2 变成奇数
+    # 此时2已不再是公因子
+    while not (a & 1):  # a不断除以2变成奇数
         a >>= 1
     while b:
-        while not (b & 1):  # b 不断除以 2 变成奇数
+        while not (b & 1):  # b不断除以2变成奇数
             b >>= 1
         if a < b:
-            a, b = b, a  # 确保 a 大 b 小
-        a -= b  # 更相减损 新的 a 必为偶
+            a, b = b, a  # 确保a大b小
+        a -= b  # 更相减损 新的a必为偶
     return a << shift
 
 
