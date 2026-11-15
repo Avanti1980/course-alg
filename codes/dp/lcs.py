@@ -1,30 +1,29 @@
-import numpy as np
-
-
-def lcs(X, Y):
+def lcs(X: list[str], Y: list[str]) -> tuple[list[list[int]], list[list[str]]]:
     m, n = len(X), len(Y)
-    c, b = np.zeros((m + 1, n + 1), dtype=int), np.empty((m, n), dtype=str)
+    c: list[list[int]] = [[0] * (n+1) for _ in range(m+1)]
+    b: list[list[str]] = [[None] * (n+1) for _ in range(m+1)]
     for i in range(1, m + 1):
         for j in range(1, n + 1):
             if X[i - 1] == Y[j - 1]:
-                c[i, j] = c[i - 1, j - 1] + 1
-                b[i - 1, j - 1] = "↖"
-            elif c[i - 1, j] >= c[i, j - 1]:
-                c[i, j] = c[i - 1, j]
-                b[i - 1, j - 1] = "↑"
+                c[i][j] = c[i - 1][j - 1] + 1
+                b[i][j] = "↖"
+            elif c[i - 1][j] >= c[i][j - 1]:
+                c[i][j] = c[i - 1][j]
+                b[i][j] = "↑"
             else:
-                c[i, j] = c[i, j - 1]
-                b[i - 1, j - 1] = "←"
+                c[i][j] = c[i][j - 1]
+                b[i][j] = "←"
     return c, b
 
 
-def restore_lcs(i, j, LCS):
-    if i == -1 or j == -1:
+def restore_lcs(i: int, j: int,
+                LCS: list[str]) -> None:
+    if i == 0 or j == 0:
         return
-    if b[i, j] == "↖":
+    if b[i][j] == "↖":
         restore_lcs(i - 1, j - 1, LCS)
-        LCS.append(X[i])
-    elif b[i, j] == "↑":
+        LCS.append(X[i-1])
+    elif b[i][j] == "↑":
         restore_lcs(i - 1, j, LCS)
     else:
         restore_lcs(i, j - 1, LCS)
@@ -37,7 +36,7 @@ print(c)
 print(b)
 
 LCS = []
-restore_lcs(len(X) - 1, len(Y) - 1, LCS)
+restore_lcs(len(X), len(Y), LCS)
 print(LCS)
 # -----------------------------------
 # [[0 0 0 0 0 0 0]
