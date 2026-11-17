@@ -108,7 +108,7 @@ $ss[i, m] = ss[i+1, m] \vee ss[i+1, m-w[i]]$
 
 <p>
 \begin{align}
-    ss[i, m] = \begin{cases} \true, & m = 0 \\ \false, & m < 0 ~ 或 ~ i > n \\ ss[i+1, m], & m < w_i \\ ss[i+1, m] \vee ss[i+1, m-w_i], & 其它 \end{cases}
+    ss[i, m] = \begin{cases} \text{True}, & m = 0 \\ \text{False}, & m < 0 ~ 或 ~ i > n \\ ss[i+1, m], & m < w_i \\ ss[i+1, m] \vee ss[i+1, m-w_i], & 其它 \end{cases}
 \end{align}
 </p>
 
@@ -128,11 +128,11 @@ $ss[i, m] = ss[i+1, m] \vee ss[i+1, m-w[i]]$
 
 <p>
 \begin{align}
-    ss[i, m] = \begin{cases} \true, & m = 0 \\ \false, & m < 0 ~ 或 ~ i > n \\ ss[i+1, m], & m < w_i \\ ss[i+1, m] \vee ss[i+1, m-w_i], & 其它 \end{cases}
+    ss[i, m] = \begin{cases} \text{True}, & m = 0 \\ \text{False}, & m < 0 ~ 或 ~ i > n \\ ss[i+1, m], & m < w_i \\ ss[i+1, m] \vee ss[i+1, m-w_i], & 其它 \end{cases}
 \end{align}
 </p>
 
-@import "../codes/dp/subset-sum-dp.py" {line_begin=3 line_end=16 .left2 .line-numbers .top0 .bottom0}
+@import "../codes/dp/subset-sum-dp.py" {line_begin=0 line_end=13 .left2 .line-numbers .top0 .bottom0}
 
 <!-- slide vertical=true data-notes="" -->
 
@@ -140,7 +140,7 @@ $ss[i, m] = ss[i+1, m] \vee ss[i+1, m-w[i]]$
 
 ---
 
-@import "../codes/dp/subset-sum-dp.py" {line_begin=18 line_end=41 .left2 .line-numbers .top1 .bottom0}
+@import "../codes/dp/subset-sum-dp.py" {line_begin=15 line_end=27 .left2 .line-numbers .top0 .bottom0}
 
 <!-- slide data-notes="" -->
 
@@ -148,7 +148,7 @@ $ss[i, m] = ss[i+1, m] \vee ss[i+1, m-w[i]]$
 
 ---
 
-@import "../codes/dp/subset-sum-dp.py" {line_begin=3 line_end=16 .left2 .line-numbers .top1 .bottom0 highlight=[7-8]}
+@import "../codes/dp/subset-sum-dp.py" {line_begin=0 line_end=13 .left2 .line-numbers .top0 .bottom0 highlight=[7-8]}
 
 二重 for 循环，复杂度$O(nM)$
 
