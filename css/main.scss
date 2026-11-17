@@ -122,6 +122,12 @@ body {
   color: var(--solarized-yellow);
 }
 
+.reveal .commenting::before {
+  content: "\f27a";
+  font-family: FontAwesome;
+  color: var(--solarized-base01);
+}
+
 .reveal .book::before {
   content: "\f02d";
   font-family: FontAwesome;
@@ -132,6 +138,12 @@ body {
   content: "\f044";
   font-family: FontAwesome;
   color: var(--solarized-blue);
+}
+
+.reveal .info::before {
+  content: "\f05a";
+  font-family: FontAwesome;
+  color: var(--solarized-base01);
 }
 
 // 以下用于mathjax4的样式

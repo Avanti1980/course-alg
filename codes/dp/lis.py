@@ -7,16 +7,9 @@ def lis_dp(X: list) -> tuple[list[int], list[int]]:
     for i in range(1, n):
         for j in range(i):
             if X[j] < X[i] and d[i] < d[j] + 1:  # X[i]可接在X[j]后面
-                d[i] = d[j] + 1
+                d[i] += 1
                 b[i] = j  # 更新前一个元素的索引
     return d, b
-
-
-def restore_lis_rec(X: list, b: list[int], index: int, LIS: list) -> None:
-    if index == -1:
-        return
-    restore_lis_rec(X, b, b[index], LIS)
-    LIS.append(X[index])
 
 
 def restore_lis_iter(X: list, b: list[int], index: int) -> list:
@@ -26,6 +19,13 @@ def restore_lis_iter(X: list, b: list[int], index: int) -> list:
         index = b[index]
     path.reverse()
     return [X[i] for i in path]
+
+
+def restore_lis_rec(X: list, b: list[int], index: int, LIS: list) -> None:
+    if index == -1:
+        return
+    restore_lis_rec(X, b, b[index], LIS)
+    LIS.append(X[index])
 
 
 def lis_dp_plus(X: list) -> tuple[list[int], list[int]]:

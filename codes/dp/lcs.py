@@ -16,11 +16,29 @@ def lcs(X: list, Y: list) -> tuple[list[list[int]], list[list[str]]]:
     return c, b
 
 
-def restore_lcs_rec(b: list[list[str]]) -> list:
+def restore_lcs_iter(X: list, b: list[list[str]]) -> list:
+    LCS = []
+    i, j = len(b)-1, len(b[0])-1
+
+    while i > 0 and j > 0:
+        if b[i][j] == "↖":
+            LCS.append(X[i-1])
+            i -= 1
+            j -= 1
+        elif b[i][j] == "↑":
+            i -= 1
+        else:
+            j -= 1
+
+    LCS.reverse()
+    return LCS
+
+
+def restore_lcs_rec(X: list, b: list[list[str]]) -> list:
     LCS = []
     m, n = len(b)-1, len(b[0])-1
 
-    def _restore_lcs_rec(i: int, j: int):
+    def _restore_lcs_rec(i: int, j: int) -> None:
         if i == 0 or j == 0:
             return
         if b[i][j] == "↖":
@@ -39,6 +57,7 @@ X = ["A", "B", "C", "B", "D", "A", "B"]
 Y = ["B", "D", "C", "A", "B", "A"]
 c, b = lcs(X, Y)
 
+print(c[len(X)][len(Y)])
 print("***** c *****")
 for row in c:
     print(*row)
@@ -46,7 +65,8 @@ print("****** b ******")
 for row in b[1:]:
     print(*[f"{item}" for item in row[1:]])
 
-print(restore_lcs_rec(b))
+print(*restore_lcs_iter(X, b))
+print(*restore_lcs_rec(X, b))
 # -----------------------------------
 # ***** c *****
 # 0 0 0 0 0 0 0
@@ -65,4 +85,5 @@ print(restore_lcs_rec(b))
 # ↑ ↖ ↑ ↑ ↑ ↑
 # ↑ ↑ ↑ ↖ ↑ ↖
 # ↖ ↑ ↑ ↑ ↖ ↑
+# B C B A
 # B C B A
