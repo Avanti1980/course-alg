@@ -1,8 +1,8 @@
 digraph g {
     bgcolor="transparent";
     graph [nodesep=0.8, ranksep=0.3];
-    node [shape="plain", color="#586e75", fontcolor="#b58900", fontsize=18, fontname="Ysabeau, LXGWSong"];
-    edge [arrowhead="none", color="#586e75", fontcolor="#268bd2", fontsize=16, fontname="Ysabeau, LXGWSong"];
+    node [shape="plain", color="#586e75", fontcolor="#b58900", fontsize=18, fontname="YsabeauText, FZFWZhuZiGuDianSLMC"];
+    edge [arrowhead="none", color="#586e75", fontcolor="#268bd2", fontsize=16, fontname="YsabeauText, FZFWZhuZiGuDianSLMC"];
     cr31 [label="③"];
     cr21 [label="②"];
     cr22 [label="②"];

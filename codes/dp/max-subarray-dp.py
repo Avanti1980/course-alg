@@ -1,4 +1,5 @@
-def find_max_subarray_dp(A, n):
+def find_max_subarray_dp(A: list) -> tuple[int, int, float]:
+    n = len(A)
     dp = [0] * n                    # dp[i]为以A[i]作结尾的最大子数组的和
     s = [0] * n                     # s[i]为以A[i]作结尾的最大子数组的起始索引
     dp[0], s[0] = A[0], 0
@@ -14,7 +15,7 @@ def find_max_subarray_dp(A, n):
 
 
 A = [13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7]
-n = len(A)
-print(find_max_subarray_dp(A, n))
+
+print(find_max_subarray_dp(A))
 # ----------------------------------
 # (7, 10, 43)

@@ -1,3 +1,7 @@
+import random
+import sys
+import time
+import string
 import numpy as np
 
 
@@ -110,39 +114,33 @@ def toom(x: str, y: str) -> int:
     return sign * v
 
 
-if __name__ == "__main__":
+sys.set_int_max_str_digits(1000000)
+random.seed(0)
 
-    import string
-    import time
-    import sys
-    sys.set_int_max_str_digits(1000000)
-    import random
-    random.seed(0)
+trial = 12
+time_cost = np.empty((trial, 3))
+for t in range(trial):
+    n = 2**(t + 6)
 
-    trial = 12
-    time_cost = np.empty((trial, 3))
-    for t in range(trial):
-        n = 2**(t + 6)
+    # 随机生成长度为n的字符串x和y
+    x = ''.join(random.choices(string.digits, k=n))
+    y = ''.join(random.choices(string.digits, k=n))
 
-        # 随机生成长度为n的字符串x和y
-        x = ''.join(random.choices(string.digits, k=n))
-        y = ''.join(random.choices(string.digits, k=n))
+    z0 = int(x) * int(y)
 
-        z0 = int(x) * int(y)
+    start = time.perf_counter()
+    z1 = grade_school(x, y)
+    time_cost[t, 0] = time.perf_counter() - start
 
-        start = time.perf_counter()
-        z1 = grade_school(x, y)
-        time_cost[t, 0] = time.perf_counter() - start
+    start = time.perf_counter()
+    z2 = karatsuba(x, y)
+    time_cost[t, 1] = time.perf_counter() - start
 
-        start = time.perf_counter()
-        z2 = karatsuba(x, y)
-        time_cost[t, 1] = time.perf_counter() - start
+    start = time.perf_counter()
+    z3 = toom(x, y)
+    time_cost[t, 2] = time.perf_counter() - start
 
-        start = time.perf_counter()
-        z3 = toom(x, y)
-        time_cost[t, 2] = time.perf_counter() - start
+    print(str(z0) == z1, z0 == z2, z0 == z3)
+    print(time_cost[t, 0], time_cost[t, 1], time_cost[t, 2])
 
-        print(str(z0) == z1, z0 == z2, z0 == z3)
-        print(time_cost[t, 0], time_cost[t, 1], time_cost[t, 2])
-
-    np.save('integer-multiplication-time-cost.npy', time_cost)
+np.save('integer-multiplication-time-cost.npy', time_cost)

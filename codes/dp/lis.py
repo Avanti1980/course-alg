@@ -1,11 +1,8 @@
 from bisect import bisect_left
 
-import numpy as np
 
-# np.random.seed(0)
-
-
-def lis_dp(X, n):
+def lis_dp(X: list) -> tuple[list[int], list[int]]:
+    n = len(X)
     d, b = [1] * n, [-1] * n
     for i in range(1, n):
         for j in range(i):
@@ -15,14 +12,24 @@ def lis_dp(X, n):
     return d, b
 
 
-def restore_lis_dp(X, b, index, LIS):
+def restore_lis_rec(X: list, b: list[int], index: int, LIS: list) -> None:
     if index == -1:
         return
-    restore_lis_dp(X, b, b[index], LIS)
+    restore_lis_rec(X, b, b[index], LIS)
     LIS.append(X[index])
 
 
-def lis_dp_plus(X, n):
+def restore_lis_iter(X: list, b: list[int], index: int) -> list:
+    path: list[int] = []
+    while index != -1:
+        path.append(index)
+        index = b[index]
+    path.reverse()
+    return [X[i] for i in path]
+
+
+def lis_dp_plus(X: list) -> tuple[list[int], list[int]]:
+    n = len(X)
     e = []
     b = [-1] * n  # b[i]记录i在LIS中的前一个元素的值
     for i in range(n):
@@ -38,7 +45,8 @@ def lis_dp_plus(X, n):
     return e, b
 
 
-def restore_lis_dp_plus(X, n, e, b):
+def restore_lis_dp_plus(X, e, b):
+    n = len(X)
     dict = {key: value for key, value in zip(X, range(n))}  # 倒排索引字典 X[i]: i
     pre = e[-1]  # e的最后一个元素是LIS的最后一个元素
     LIS = []
@@ -53,21 +61,18 @@ def restore_lis_dp_plus_aux(dict, b, pre, LIS):
     LIS.append(pre)
 
 
-n = 10
-X = np.random.permutation(n)
+X = [2, 8, 4, 9, 1, 6, 7, 3, 0, 5]
 print("X =", X)
 
-d, b = lis_dp(X, n)
-# print('d: %s' % d)
-# print('b: %s' % b)
-
+d, b = lis_dp(X)
 LIS = []
-restore_lis_dp(X, b, np.argmax(d), LIS)
+restore_lis_rec(X, b, d.index(max(d)), LIS)
 print("LIS =", LIS)
+print("LIS =", restore_lis_iter(X, b, d.index(max(d))))
 
-e, b = lis_dp_plus(X, n)
+e, b = lis_dp_plus(X)
 # print('e: %s' % e)
 # print('b: %s' % b)
 
-LIS = restore_lis_dp_plus(X, n, e, b)
+LIS = restore_lis_dp_plus(X, e, b)
 print("LIS =", LIS)

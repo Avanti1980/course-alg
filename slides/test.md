@@ -30,16 +30,20 @@ presentation:
 
 ---
 
-$s[i,j]$表示$\Av_i \cdots \Av_j$的最优分开位置
+$r[i,j]$表示仅包含$k_i, \ldots, k_j$和$d_{i-1}, \ldots, d_j$的 OBST 的根结点
 
-- $s[1,6]=3$，故$\Av_1 \cdots \Av_6$在$\Av_3$后分开
-- $s[1,3]=1$，故$\Av_1 \cdots \Av_3$在$\Av_1$后分开
-- $s[4,6]=5$，故$\Av_4 \cdots \Av_6$在$\Av_5$后分开
+- $r[1,5]=2$，故$k_2$是 OBST 的根结点
+- $r[1,1]=1$，故$k_2$的左子结点是$k_1$
+- $r[3,6]=5$，故$k_2$的右子结点是$k_5$
 
-<div class="top2"></div>
+<img src="../tikz/obst/obst-r.svg" class="width30 lefta right4 top-14per">
 
-最优方案：$(\Av_1 (\Av_2 \Av_3)) ((\Av_4 \Av_5) \Av_6)$
+@import "../codes/dp/optimal-bst.py" {line_begin=23 line_end=46 .left2 .line-numbers .top-8 .bottom4}
 
-@import "../codes/dp/matrix-chain.py" {line_begin=18 line_end=26 .left2 .line-numbers .top0 .bottom0}
+<!-- slide vertical=true data-notes="" -->
 
-<img src="../tikz/matrix-chain/matrix-chain-s.svg" class="width35 lefta right6 top-50per">
+##### 实现
+
+---
+
+@import "../codes/dp/optimal-bst.py" {line_begin=48 line_end=100 .left2 .line-numbers .top0 .bottom0}

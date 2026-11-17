@@ -38,7 +38,7 @@ def closest_pair(x: np.ndarray, y: np.ndarray, low: int, high: int, order_y: np.
 np.random.seed(0)
 
 trial = 8
-time_cost = np.empty([trial, 2])
+time_cost = np.empty((trial, 2))
 
 for t in range(trial):
     n = 2**(t + 6)

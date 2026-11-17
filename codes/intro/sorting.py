@@ -1,4 +1,4 @@
-def bubble_sort(a: list[int]) -> None:
+def bubble_sort(a: list) -> None:
     n = len(a)
     for i in range(n-1):
         for j in range(n-1, i, -1):  # 从后往前遍历，将较小的元素像气泡一样浮到前面
@@ -6,7 +6,7 @@ def bubble_sort(a: list[int]) -> None:
                 a[j], a[j-1] = a[j-1], a[j]
 
 
-def bubble_sort_opt(a: list[int]) -> None:
+def bubble_sort_opt(a: list) -> None:
     n = len(a)
     for i in range(n-1):
         swapped = False
@@ -18,7 +18,7 @@ def bubble_sort_opt(a: list[int]) -> None:
             break
 
 
-def selection_sort(a: list[int]) -> None:
+def selection_sort(a: list) -> None:
     n = len(a)
     for i in range(n-1):
         smallest = i
@@ -29,7 +29,7 @@ def selection_sort(a: list[int]) -> None:
             a[i], a[smallest] = a[smallest], a[i]
 
 
-def insertion_sort(a: list[int]) -> None:
+def insertion_sort(a: list) -> None:
     n = len(a)
     for i in range(1, n):
         key = a[i]
@@ -40,7 +40,7 @@ def insertion_sort(a: list[int]) -> None:
         a[j+1] = key
 
 
-def merge(a: list[int], low: int, mid: int, high: int, temp: list[int]) -> None:
+def merge(a: list, low: int, mid: int, high: int, temp: list) -> None:
     # a[low:mid+1]、a[mid+1:high+1]已排好序
     # 拷贝数据到临时数组
     temp[low:high+1] = a[low:high+1]
@@ -61,7 +61,7 @@ def merge(a: list[int], low: int, mid: int, high: int, temp: list[int]) -> None:
         a[k:high+1] = temp[i:mid+1]
 
 
-def merge_sort(a: list[int], low: int, high: int, temp: list[int]) -> None:
+def merge_sort(a: list, low: int, high: int, temp: list) -> None:
     if low < high:
         # 分：计算分解的中间点
         mid = (low + high) // 2
@@ -72,7 +72,7 @@ def merge_sort(a: list[int], low: int, high: int, temp: list[int]) -> None:
         merge(a, low, mid, high, temp)
 
 
-def partition(a: list[int], low: int, high: int) -> int:
+def partition(a: list, low: int, high: int) -> int:
     pivot = a[high]  # 最右元素作为主元
 
     # i指向小于主元的元素的存放位置 初始为最左
@@ -93,7 +93,7 @@ def partition(a: list[int], low: int, high: int) -> int:
     return i
 
 
-def quick_sort(a: list[int], low: int, high: int) -> None:
+def quick_sort(a: list, low: int, high: int) -> None:
     if low < high:
         # 分：计算主元位置并将其它元素挪到主元左右
         m = partition(a, low, high)

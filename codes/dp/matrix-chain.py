@@ -1,7 +1,8 @@
 INF = float("inf")
 
 
-def matrix_chain(p: list[int], n: int) -> tuple[list[list[int]], list[list[int]]]:
+def matrix_chain(p: list[int]) -> tuple[list[list[int]], list[list[int]]]:
+    n = len(p) - 1  # 矩阵个数
     m: list[list[int]] = [[0] * n for _ in range(n)]
     s: list[list[int]] = [[0] * n for _ in range(n)]
     for l in range(2, n + 1):           # 子问题长度 l = 2 -> n
@@ -16,35 +17,45 @@ def matrix_chain(p: list[int], n: int) -> tuple[list[list[int]], list[list[int]]
     return m, s
 
 
-def print_sol(s: list[list[int]], i: int, j: int) -> None:
-    if i == j:
-        print(f"A{i + 1}", end='')
-    else:
-        print("(", end='')
-        print_sol(s, i, s[i][j] - 1)
-        print_sol(s, s[i][j], j)
-        print(")", end='')
+def restore_sol(s: list[list[int]]) -> str:
+    sol: list[str] = []
+
+    def _restore_sol(i: int, j: int) -> None:
+        if i == j:
+            sol.append(f"A{i + 1}")
+        else:
+            sol.append("(")
+            _restore_sol(i, s[i][j] - 1)
+            _restore_sol(s[i][j], j)
+            sol.append(")")
+
+    _restore_sol(0, len(s)-1)
+    return "".join(sol)
 
 
 p = [30, 35, 15, 5, 10, 20, 25]
-n = len(p) - 1  # 矩阵个数
-m, s = matrix_chain(p, n)
-print(m[0][n - 1])
-print(m)
-print(s)
-print_sol(s, 0, n - 1)
+m, s = matrix_chain(p)
+print(m[0][len(p) - 2])
+print("**************** m ****************")
+for row in m:
+    print(*[f"{item:>5}" for item in row])
+print("*** s ***")
+for row in s[:-1]:
+    print(*[f"{item:>1}" for item in row[1:]])
+print(restore_sol(s))
 # ------------------------------------------
 # 15125
-# [[    0 15750  7875  9375 11875 15125]
-#  [    0     0  2625  4375  7125 10500]
-#  [    0     0     0   750  2500  5375]
-#  [    0     0     0     0  1000  3500]
-#  [    0     0     0     0     0  5000]
-#  [    0     0     0     0     0     0]]
-# [[0 1 1 3 3 3]
-#  [0 0 2 3 3 3]
-#  [0 0 0 3 3 3]
-#  [0 0 0 0 4 5]
-#  [0 0 0 0 0 5]
-#  [0 0 0 0 0 0]]
+# **************** m ****************
+#     0 15750  7875  9375 11875 15125
+#     0     0  2625  4375  7125 10500
+#     0     0     0   750  2500  5375
+#     0     0     0     0  1000  3500
+#     0     0     0     0     0  5000
+#     0     0     0     0     0     0
+# *** s ***
+# 1 1 3 3 3
+# 0 2 3 3 3
+# 0 0 3 3 3
+# 0 0 0 4 5
+# 0 0 0 0 5
 # ((A1(A2A3))((A4A5)A6))

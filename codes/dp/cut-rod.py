@@ -1,7 +1,7 @@
 NEG_INF = float("-inf")
 
 
-def cut_rod_rec2(n: int, p: list[float]) -> float:
+def cut_rod_rec2(n: int, p: list) -> float:
     if n <= 1:
         return p[n]
 
@@ -11,7 +11,7 @@ def cut_rod_rec2(n: int, p: list[float]) -> float:
     return best
 
 
-def cut_rod_rec(n: int, p: list[float]) -> float:
+def cut_rod_rec(n: int, p: list) -> float:
     if n <= 1:
         return p[n]
 
@@ -21,7 +21,7 @@ def cut_rod_rec(n: int, p: list[float]) -> float:
     return best
 
 
-def cut_rod_dp_memoized(n: int, p: list[float]) -> float:
+def cut_rod_dp_memoized(n: int, p: list) -> float:
     memo: list[float | None] = [None] * (n + 1)
     memo[0:2] = p[0:2]
 
@@ -37,7 +37,7 @@ def cut_rod_dp_memoized(n: int, p: list[float]) -> float:
     return solve(n)
 
 
-def cut_rod_dp_bottom_up(n: int, p: list[float]) -> float:
+def cut_rod_dp_bottom_up(n: int, p: list) -> float:
     r = [0] * (n+1)
     for j in range(1, n+1):  # 依次求解 r[1], r[2], ...
         best = NEG_INF
@@ -47,7 +47,7 @@ def cut_rod_dp_bottom_up(n: int, p: list[float]) -> float:
     return r[n]
 
 
-def cut_rod_dp_with_solution(n: int, p: list[float]) -> tuple[float, list[int]]:
+def cut_rod_dp_with_solution(n: int, p: list) -> tuple[float, list[int]]:
     r = [0] * (n + 1)
     s = [0] * (n + 1)  # s[i]是长度为i的钢条的第一刀最优切割位置
     for j in range(1, n + 1):
