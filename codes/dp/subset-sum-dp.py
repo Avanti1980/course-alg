@@ -1,7 +1,8 @@
-def subset_sum_dp(w: list, M: int) -> list[list[bool]]:
+def subset_sum_dp(w: list[int], M: int) -> list[list[bool]]:
     n = len(w)
     ss: list[list[bool]] = [[False] * (M + 1) for _ in range(n)]
-    ss[:][0] = True  # 第0列全为真
+    for i in range(n):
+        ss[i][0] = True  # 第0列全为真
     if w[-1] <= M:
         ss[-1][w[-1]] = True  # 填最后一行
     for i in range(n - 2, 0, -1):  # 倒数第二行 -> 第一行
@@ -13,7 +14,7 @@ def subset_sum_dp(w: list, M: int) -> list[list[bool]]:
     return ss
 
 
-def print_sol(ss, w, i, m, M, sol):
+def print_sol(ss: list[list[bool]], w: list[int], i: int, m: int, M: int, sol: list[int]) -> None:
     if w[i] == m:  # 如果当前目标和等于w[i] 则找到一个解
         for j in sol:
             print(f"{j} + ", end="")
