@@ -50,5 +50,4 @@ def sort_and_count(a: list, low: int, high: int, temp: list) -> int:
 
 a = [random.randint(0, 10000) for _ in range(1000)]
 n = len(a)
-temp = [0] * n
-print(bruteforce(a), sort_and_count(a, 0, n-1, temp))
+print(bruteforce(a), sort_and_count(a, 0, n-1, [None] * n))

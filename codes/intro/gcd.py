@@ -6,20 +6,33 @@ def gcd(a: int, b: int) -> int:
     return d
 
 
+a, b, t = 98, 63, 21
+d = gcd(a, b)
+print(f"gcd({a}, {b}) = {d}")
+
+
 def coef(a: int, b: int, t: int, d: int) -> tuple[int, int]:
     if t % d != 0:
         raise ValueError("t必须是最大公约数d的倍数")
     a, b, t = a // d, b // d, t // d  # 此时 a b 互素
-    for x in range(b):         # 0, a, 2a, ..., (b-1)a构成一个模b的剩余系
+    for x in range(b):  # 0, a, 2a, ..., (b-1)a构成一个模b的剩余系
         if (a * x) % b == 1:
             y = (1 - a * x) // b
             return t * x, t * y
+
+
+x, y = coef(a, b, t, d)
+print(f"{a} × ({x}) + {b} × ({y}) = {t}")
 
 
 def Euclidean(a: int, b: int) -> int:  # 辗转相除
     while b:
         a, b = b, a % b
     return a
+
+
+d = Euclidean(a, b)
+print(f"gcd({a}, {b}) = {d}")
 
 
 def Euclidean_extended(a: int, b: int) -> tuple[int, int, int]:
@@ -39,6 +52,10 @@ def Euclidean_coef(a: int, b: int, t: int) -> tuple[int, int]:
     return t * x, t * y
 
 
+x, y = Euclidean_coef(a, b, t)
+print(f"{a} × ({x}) + {b} × ({y}) = {t}")
+
+
 def alternative_subtraction(a: int, b: int) -> int:  # 更相减损
     shift = 0  # 最大公约数的质因子分解中2的幂次
     while not (a & 1) and not (b & 1):  # a、b均为偶 2是公因子
@@ -52,6 +69,10 @@ def alternative_subtraction(a: int, b: int) -> int:  # 更相减损
             b = b - a
         else:
             return b << shift
+
+
+d = alternative_subtraction(a, b)
+print(f"gcd({a}, {b}) = {d}")
 
 
 def gcd_opt(a: int, b: int) -> int:  # 改进的更相减损
@@ -72,21 +93,5 @@ def gcd_opt(a: int, b: int) -> int:  # 改进的更相减损
     return a << shift
 
 
-a, b, t = 98, 63, 21
-
-d = gcd(a, b)
-print(d)
-x, y = coef(a, b, t, d)
-print(x, y)
-
-d = Euclidean(a, b)
-print(d)
-
-x, y = Euclidean_coef(a, b, t)
-print(x, y)
-
-d = alternative_subtraction(a, b)
-print(d)
-
 d = gcd_opt(a, b)
-print(d)
+print(f"gcd({a}, {b}) = {d}")

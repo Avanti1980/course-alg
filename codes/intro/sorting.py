@@ -1,12 +1,16 @@
-def bubble_sort(a: list) -> None:
+def bubble_sort(a: list) -> list:
     n = len(a)
     for i in range(n-1):
         for j in range(n-1, i, -1):  # 从后往前遍历，将较小的元素像气泡一样浮到前面
             if a[j] < a[j-1]:
                 a[j], a[j-1] = a[j-1], a[j]
+    return a
 
 
-def bubble_sort_opt(a: list) -> None:
+print(bubble_sort([5, 2, 4, 6, 1, 3]))
+
+
+def bubble_sort_opt(a: list) -> list:
     n = len(a)
     for i in range(n-1):
         swapped = False
@@ -16,9 +20,13 @@ def bubble_sort_opt(a: list) -> None:
                 swapped = True
         if not swapped:
             break
+    return a
 
 
-def selection_sort(a: list) -> None:
+print(bubble_sort_opt([5, 2, 4, 6, 1, 3]))
+
+
+def selection_sort(a: list) -> list:
     n = len(a)
     for i in range(n-1):
         smallest = i
@@ -27,9 +35,13 @@ def selection_sort(a: list) -> None:
                 smallest = j
         if smallest != i:  # 只有当最小元素不是当前元素时才交换
             a[i], a[smallest] = a[smallest], a[i]
+    return a
 
 
-def insertion_sort(a: list) -> None:
+print(selection_sort([5, 2, 4, 6, 1, 3]))
+
+
+def insertion_sort(a: list) -> list:
     n = len(a)
     for i in range(1, n):
         key = a[i]
@@ -38,6 +50,10 @@ def insertion_sort(a: list) -> None:
             a[j+1] = a[j]
             j -= 1
         a[j+1] = key
+    return a
+
+
+print(insertion_sort([5, 2, 4, 6, 1, 3]))
 
 
 def merge(a: list, low: int, mid: int, high: int, temp: list) -> None:
@@ -72,6 +88,12 @@ def merge_sort(a: list, low: int, high: int, temp: list) -> None:
         merge(a, low, mid, high, temp)
 
 
+a = [5, 2, 4, 6, 1, 3]
+n = len(a)
+merge_sort(a, 0, n-1, [None] * n)
+print(a)
+
+
 def partition(a: list, low: int, high: int) -> int:
     pivot = a[high]  # 最右元素作为主元
 
@@ -102,25 +124,6 @@ def quick_sort(a: list, low: int, high: int) -> None:
         quick_sort(a, m+1, high)
 
 
-if __name__ == "__main__":
-
-    import random
-
-    random.seed(2026)
-    a = [random.randint(0, 100) for _ in range(10)]
-
-    sorting = [bubble_sort, selection_sort, insertion_sort]
-    for s in sorting:
-        b = a[:]
-        s(b)
-        print(b)
-
-    b = a[:]
-    n = len(b)
-    temp = [0] * n
-    merge_sort(b, 0, n-1, temp)
-    print(b)
-
-    b = a[:]
-    quick_sort(b, 0, n-1)
-    print(b)
+a = [5, 2, 4, 6, 1, 3]
+quick_sort(a, 0, len(a)-1)
+print(a)

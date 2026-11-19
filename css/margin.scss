@@ -1,5 +1,5 @@
 @each $direction in "left", "right", "top", "bottom" {
-  @for $i from -50 to 50 {
+  @for $i from -100 to 100 {
     .reveal .#{$direction}#{$i} {
       margin-#{$direction}: 0.5rem * $i;
     }

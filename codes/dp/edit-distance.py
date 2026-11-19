@@ -22,6 +22,38 @@ def edit_dis(X: list[str], Y: list[str]) -> tuple[list[list[int]], list[list[str
     return c, b
 
 
+X = ['A', 'B', 'C', 'B', 'D', 'A', 'B']
+Y = ['B', 'D', 'C', 'A', 'B', 'A']
+c, b = edit_dis(X, Y)
+
+print(c[len(X)][len(Y)])
+print("***** c *****")
+for row in c:
+    print(*row)
+print("****** b *******")
+for row in b[1:]:
+    print(*[f"{item}" for item in row[1:]])
+# ----------------------------------------
+# 5
+# ***** c *****
+# 0 1 2 3 4 5 6
+# 1 1 2 3 3 4 5
+# 2 1 2 3 4 3 4
+# 3 2 2 2 3 4 4
+# 4 3 3 3 3 3 4
+# 5 4 3 4 4 4 4
+# 6 5 4 4 4 5 4
+# 7 6 5 5 5 4 5
+# ****** b *******
+# ↖ ↖ ↖ ↖ ← ↖
+# ↖ ↖ ↖ ↖ ↖ ←
+# ↑ ↖ ↖ ← ← ↖
+# ↖ ↖ ↖ ↖ ↖ ←
+# ↑ ↖ ↖ ↖ ↖ ↖
+# ↑ ↑ ↖ ↖ ↖ ↖
+# ↖ ↑ ↖ ↖ ↖ ←
+
+
 def restore_sol_iter(X: list, b: list[list[str]]) -> list:
     l = []
     i, j = len(b)-1, len(b[0])-1
@@ -46,6 +78,14 @@ def restore_sol_iter(X: list, b: list[list[str]]) -> list:
 
     l.reverse()
     return [list(row) for row in zip(*l)]
+
+
+l = restore_sol_iter(X, b)
+print(*l[0])
+print(*l[1])
+# ----------------------------------------
+# A B C B D A B
+#   B   D C A B A
 
 
 def restore_sol_rec(X: list, b: list[list[str]]) -> list:
@@ -76,40 +116,9 @@ def restore_sol_rec(X: list, b: list[list[str]]) -> list:
     return [list(row) for row in zip(*l)]
 
 
-X = ['A', 'B', 'C', 'B', 'D', 'A', 'B']
-Y = ['B', 'D', 'C', 'A', 'B', 'A']
-c, b = edit_dis(X, Y)
-
-print(c[len(X)][len(Y)])
-print("***** c *****")
-for row in c:
-    print(*row)
-print("****** b *******")
-for row in b[1:]:
-    print(*[f"{item}" for item in row[1:]])
-
-l = restore_sol_iter(X, b)
-print(*l[0])
-print(*l[1])
 l = restore_sol_rec(X, b)
 print(*l[0])
 print(*l[1])
 # ----------------------------------------
-# [0 1 2 3 4 5 6]
-# [1 1 2 3 3 4 5]
-# [2 1 2 3 4 3 4]
-# [3 2 2 2 3 4 4]
-# [4 3 3 3 3 3 4]
-# [5 4 3 4 4 4 4]
-# [6 5 4 4 4 5 4]
-# [7 6 5 5 5 4 5]
-# ['↖' '↖' '↖' '↖' '←' '↖']
-# ['↖' '↖' '↖' '↖' '↖' '←']
-# ['↑' '↖' '↖' '←' '←' '↖']
-# ['↖' '↖' '↖' '↖' '↖' '←']
-# ['↑' '↖' '↖' '↖' '↖' '↖']
-# ['↑' '↑' '↖' '↖' '↖' '↖']
-# ['↖' '↑' '↖' '↖' '↖' '←']
-# 5
-# ['A', 'B', 'C', 'B', 'D', 'A', 'B', ' ']
-# [' ', 'B', ' ', 'D', 'C', 'A', 'B', 'A']
+# A B C B D A B
+#   B   D C A B A

@@ -14,26 +14,62 @@ def subset_sum_dp(w: list[int], M: int) -> list[list[bool]]:
     return ss
 
 
-def print_sol(ss: list[list[bool]], w: list[int], i: int, m: int, M: int, sol: list[int]) -> None:
-    if w[i] == m:  # 如果当前目标和等于w[i] 则找到一个解
-        for j in sol:
-            print(f"{j} + ", end="")
-        print(f"{w[i]} = {M}")
-    else:
-        if ss[i + 1][m - w[i]]:  # 如果w[i]是加数之一
-            sol.append(w[i])  # 入栈
-            print_sol(ss, w, i + 1, m - w[i], M, sol)
-            sol.pop()  # 出栈
-        if ss[i + 1][m]:
-            print_sol(ss, w, i + 1, m, M, sol)
-
-
 w, M = [0, 5, 10, 12, 13, 15, 18], 30
 ss = subset_sum_dp(w, M)
 print(ss[1][M])
-print_sol(ss, w, 1, M, M, sol=[])
 # ------------------------------------------
 # True
+
+
+def restore_sol_stack(ss: list[list[bool]], w: list[int], M: int) -> list[list[int]]:
+    n = len(w)
+    sol: list[list[int]] = []
+    stack = [(1, M, [])]
+    while stack:
+        i, m, subset = stack.pop()
+        if m == w[i]:  # 如果当前目标和等于w[i] 则找到一个解
+            sol.append(subset + [i])
+            continue
+        if i == n-1:
+            continue
+        if ss[i+1][m]:  # 不选w[i]
+            stack.append((i+1, m, subset))
+        if ss[i+1][m - w[i]]:  # 选w[i]
+            stack.append((i+1, m - w[i], subset + [i]))
+    return sol
+
+
+sol = restore_sol_stack(ss, w, M)
+for subset in sol:
+    print(" + ".join([str(w[i]) for i in subset]) + f" = {M}")
+# ------------------------------------------
+# 5 + 10 + 15 = 30
+# 5 + 12 + 13 = 30
+# 12 + 18 = 30
+
+
+def restore_sol_rec(ss: list[list[bool]], w: list[int], M: int) -> list[list[int]]:
+    sol: list[list[int]] = []
+
+    def _restore_subsets_rec(i: int, m: int, subset: list[int]) -> None:
+        if w[i] == m:  # 如果当前目标和等于w[i] 则找到一个解
+            sol.append(subset + [i])
+        else:
+            if ss[i + 1][m - w[i]]:  # 选w[i]
+                subset.append(i)     # 入栈
+                _restore_subsets_rec(i + 1, m - w[i], subset)
+                subset.pop()  # 出栈
+            if ss[i + 1][m]:  # 不选w[i]
+                _restore_subsets_rec(i + 1, m, subset)
+
+    _restore_subsets_rec(1, M, [])
+    return sol
+
+
+sol = restore_sol_rec(ss, w, M)
+for subset in sol:
+    print(" + ".join([str(w[i]) for i in subset]) + f" = {M}")
+# ------------------------------------------
 # 5 + 10 + 15 = 30
 # 5 + 12 + 13 = 30
 # 12 + 18 = 30

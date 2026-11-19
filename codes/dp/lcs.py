@@ -5,15 +5,44 @@ def lcs(X: list, Y: list) -> tuple[list[list[int]], list[list[str]]]:
     for i in range(1, m + 1):
         for j in range(1, n + 1):
             if X[i - 1] == Y[j - 1]:
-                c[i][j] = c[i - 1][j - 1] + 1
-                b[i][j] = "↖"
+                c[i][j], b[i][j] = c[i - 1][j - 1] + 1, "↖"
             elif c[i - 1][j] >= c[i][j - 1]:
-                c[i][j] = c[i - 1][j]
-                b[i][j] = "↑"
+                c[i][j], b[i][j] = c[i - 1][j], "↑"
             else:
-                c[i][j] = c[i][j - 1]
-                b[i][j] = "←"
+                c[i][j], b[i][j] = c[i][j - 1], "←"
     return c, b
+
+
+X = ["A", "B", "C", "B", "D", "A", "B"]
+Y = ["B", "D", "C", "A", "B", "A"]
+c, b = lcs(X, Y)
+
+print(c[len(X)][len(Y)])
+print("***** c *****")
+for row in c:
+    print(*row)
+print("****** b ******")
+for row in b[1:]:
+    print(*[f"{item}" for item in row[1:]])
+# -----------------------------------
+# 4
+# ***** c *****
+# 0 0 0 0 0 0 0
+# 0 0 0 0 1 1 1
+# 0 1 1 1 1 2 2
+# 0 1 1 2 2 2 2
+# 0 1 1 2 2 3 3
+# 0 1 2 2 2 3 3
+# 0 1 2 2 3 3 4
+# 0 1 2 2 3 4 4
+# ****** b *******
+# ↑ ↑ ↑ ↖ ← ↖
+# ↖ ← ← ↑ ↖ ←
+# ↑ ↑ ↖ ← ↑ ↑
+# ↖ ↑ ↑ ↑ ↖ ←
+# ↑ ↖ ↑ ↑ ↑ ↑
+# ↑ ↑ ↑ ↖ ↑ ↖
+# ↖ ↑ ↑ ↑ ↖ ↑
 
 
 def restore_lcs_iter(X: list, b: list[list[str]]) -> list:
@@ -32,6 +61,11 @@ def restore_lcs_iter(X: list, b: list[list[str]]) -> list:
 
     LCS.reverse()
     return LCS
+
+
+print(*restore_lcs_iter(X, b))
+# -----------------------------------
+# B C B A
 
 
 def restore_lcs_rec(X: list, b: list[list[str]]) -> list:
@@ -53,37 +87,6 @@ def restore_lcs_rec(X: list, b: list[list[str]]) -> list:
     return LCS
 
 
-X = ["A", "B", "C", "B", "D", "A", "B"]
-Y = ["B", "D", "C", "A", "B", "A"]
-c, b = lcs(X, Y)
-
-print(c[len(X)][len(Y)])
-print("***** c *****")
-for row in c:
-    print(*row)
-print("****** b ******")
-for row in b[1:]:
-    print(*[f"{item}" for item in row[1:]])
-
-print(*restore_lcs_iter(X, b))
 print(*restore_lcs_rec(X, b))
 # -----------------------------------
-# ***** c *****
-# 0 0 0 0 0 0 0
-# 0 0 0 0 1 1 1
-# 0 1 1 1 1 2 2
-# 0 1 1 2 2 2 2
-# 0 1 1 2 2 3 3
-# 0 1 2 2 2 3 3
-# 0 1 2 2 3 3 4
-# 0 1 2 2 3 4 4
-# ****** b *******
-# ↑ ↑ ↑ ↖ ← ↖
-# ↖ ← ← ↑ ↖ ←
-# ↑ ↑ ↖ ← ↑ ↑
-# ↖ ↑ ↑ ↑ ↖ ←
-# ↑ ↖ ↑ ↑ ↑ ↑
-# ↑ ↑ ↑ ↖ ↑ ↖
-# ↖ ↑ ↑ ↑ ↖ ↑
-# B C B A
 # B C B A

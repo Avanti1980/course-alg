@@ -17,6 +17,32 @@ def matrix_chain(p: list[int]) -> tuple[list[list[int]], list[list[int]]]:
     return m, s
 
 
+p = [30, 35, 15, 5, 10, 20, 25]
+m, s = matrix_chain(p)
+print(m[0][len(p) - 2])
+print("**************** m ****************")
+for row in m:
+    print(*[f"{item:>5}" for item in row])
+print("*** s ***")
+for row in s[:-1]:
+    print(*[f"{item:>1}" for item in row[1:]])
+# ------------------------------------------
+# 15125
+# **************** m ****************
+#     0 15750  7875  9375 11875 15125
+#     0     0  2625  4375  7125 10500
+#     0     0     0   750  2500  5375
+#     0     0     0     0  1000  3500
+#     0     0     0     0     0  5000
+#     0     0     0     0     0     0
+# *** s ***
+# 1 1 3 3 3
+# 0 2 3 3 3
+# 0 0 3 3 3
+# 0 0 0 4 5
+# 0 0 0 0 5
+
+
 def restore_sol(s: list[list[int]]) -> str:
     sol: list[str] = []
 
@@ -33,29 +59,6 @@ def restore_sol(s: list[list[int]]) -> str:
     return "".join(sol)
 
 
-p = [30, 35, 15, 5, 10, 20, 25]
-m, s = matrix_chain(p)
-print(m[0][len(p) - 2])
-print("**************** m ****************")
-for row in m:
-    print(*[f"{item:>5}" for item in row])
-print("*** s ***")
-for row in s[:-1]:
-    print(*[f"{item:>1}" for item in row[1:]])
 print(restore_sol(s))
 # ------------------------------------------
-# 15125
-# **************** m ****************
-#     0 15750  7875  9375 11875 15125
-#     0     0  2625  4375  7125 10500
-#     0     0     0   750  2500  5375
-#     0     0     0     0  1000  3500
-#     0     0     0     0     0  5000
-#     0     0     0     0     0     0
-# *** s ***
-# 1 1 3 3 3
-# 0 2 3 3 3
-# 0 0 3 3 3
-# 0 0 0 4 5
-# 0 0 0 0 5
 # ((A1(A2A3))((A4A5)A6))

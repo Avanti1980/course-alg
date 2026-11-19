@@ -26,135 +26,81 @@ presentation:
 
 <!-- slide data-notes="" -->
 
-##### 子集和数
+##### 另一改进思路
 
 ---
 
-输入：$n$个正整数的集合$W = \{ w_1, w_2, \ldots, w_n \}$和正整数$M$
+子数组$a[low, ..., high]$的最大子数组为下面三者中的最大者：
 
-<div class="top-2"></div>
+- $a[low, ..., mid]$的最大子数组
+- $a[mid + 1, ..., high]$的最大子数组
+- 跨越中点的最大子数组
 
-输出：$W$中的和数等于$M$的所有子集
-
-例 1：
-
-- $n=4$，$(w_1, w_2, w_3, w_4) = (7, 11, 13, 24)$，$M = 31$
-- 子集：$(7, 11, 13)$、$(7, 24)$
-
-<div class="top2"></div>
-
-例 2：
-
-- $n=6$，$(w_1, w_2, w_3, w_4, w_5, w_6) = (5, 10, 12, 13, 15, 18)$，$M = 30$
-- 子集：$(5, 10, 15)$、$(5, 12, 13)$、$(12,18)$
-
-<!-- slide vertical=true data-notes="" -->
-
-##### 子集和数 分治
-
----
-
-子问题：$\{ w_i, w_{i+1}, \ldots, w_n \}$的子集和为$m$
-
-<p class="fragment">令$ss[i, m]$表示子问题是否有解，$ss[1, M]$即为所求目标</p>
-
-<ul>
-    <li class="fragment">若$w[i]$不是和为$m$的加数之一，则$ss[i, m] = ss[i+1, m]$</li>
-    <li class="fragment">若$w[i]$是和为$m$的加数之一，则$ss[i, m] = ss[i+1, m-w[i]]$</li>
-</ul>
-
-<div class="top2"></div>
-
-<p class="fragment">综上，$ss[i, m] = ss[i+1, m] \vee ss[i+1, m-w[i]]$</p>
-
-<p class="fragment">$i$从$1$开始每增大$1$，产生两个新的子问题，子问题总数为$2^n$</p>
-
-<!-- slide data-notes="" -->
-
-##### 子集和数 动态规划
-
----
-
-子问题：$\{ w_i, w_{i+1}, \ldots, w_n \}$的子集和为$m$
-
-令$ss[i, m]$表示子问题是否有解，$ss[1, M]$即为所求目标
-
-$ss[i, m] = ss[i+1, m] \vee ss[i+1, m-w[i]]$
-
-<p class="fragment">边界：</p>
-
-<ul>
-    <li class="fragment">若$m = 0$，$ss[i, m]$恒为真</li>
-    <li class="fragment">若$m < 0$或$i>n$，$ss[i, m]$恒为假</li>
-</ul>
-
-<div class="top2"></div>
-
-<p class="fragment">优化 (减少一个子问题)：</p>
-
-<ul>
-    <li class="fragment">若$m < w[i]$，则$w[i]$必然不是加数之一，$ss[i, m] = ss[i+1, m]$</li>
-</ul>
-
-<!-- slide vertical=true data-notes="" -->
-
-##### 子集和数 动态规划
-
----
-
-子问题：$\{ w_i, w_{i+1}, \ldots, w_n \}$的子集和为$m$
-
-令$ss[i, m]$表示子问题是否有解，$ss[1, M]$即为所求目标
+其中跨越中点的最大子数组的起始索引$i$需要从$mid$向前遍历确定；结束索引$j$需要从$mid + 1$向后遍历确定，因此$f(n) = \Theta(n)$，从而
 
 <p>
 \begin{align}
-    ss[i, m] = \begin{cases} \text{True}, & m = 0 \\ \text{False}, & m < 0 ~ 或 ~ i > n \\ ss[i+1, m], & m < w_i \\ ss[i+1, m] \vee ss[i+1, m-w_i], & 其它 \end{cases}
+    T(n) = 2 \cdot T (n/2) + f(n) \Longrightarrow T(n) = \Theta(n \lg n)
 \end{align}
 </p>
 
 <div class="top2"></div>
 
-- 表$ss$的大小为$n \times (M+1)$，元素为布尔值
-- 表第$0$列全部为真
-- 第$i$行依赖第$i+1$行的元素，填表时从最后一行往前填
-
-<!-- slide data-notes="" -->
-
-##### 子集和数 实现
-
----
-
-令$ss[i, m]$表示子问题是否有解
-
-<p>
-\begin{align}
-    ss[i, m] = \begin{cases} \text{True}, & m = 0 \\ \text{False}, & m < 0 ~ 或 ~ i > n \\ ss[i+1, m], & m < w_i \\ ss[i+1, m] \vee ss[i+1, m-w_i], & 其它 \end{cases}
-\end{align}
-</p>
-
-@import "../codes/dp/subset-sum-dp.py" {line_begin=0 line_end=13 .left2 .line-numbers .top0 .bottom0}
+根据主定理，要想改进$T(n)$，需优化$f(n)$
 
 <!-- slide vertical=true data-notes="" -->
 
-##### 子集和数 重构解
+##### 另一改进思路
 
 ---
 
-@import "../codes/dp/subset-sum-dp.py" {line_begin=15 line_end=27 .left2 .line-numbers .top0 .bottom0}
+对任意子数组$a[l, ..., r]$
 
-<!-- slide data-notes="" -->
+- 若维护以$l$为起始索引的最大子数组的和 (最大前缀和) 以及最大前缀的结束索引 (最大前缀终点)，则确定$j$只需$\Theta(1)$的时间 (将$mid+1$看作$l$)
+- 若维护以$r$为结束索引的最大子数组的和 (最大后缀和) 以及最大后缀的起始索引 (最大后缀起点)，则确定$i$只需$\Theta(1)$的时间 (将$mid$看作$r$)
 
-##### 子集和数 效率
+<div class="top2"></div>
+
+对每个子数组，还需要维护最大前缀、最大后缀
+
+- $a[l, ..., r]$的最大前缀要么等于$a[l, ..., m]$的最大前缀，要么等于$a[l, ..., m]$加上$a[m + 1, ..., r]$的最大前缀
+- $a[l, ..., r]$的最大后缀要么等于$a[m+1, ..., r]$的最大后缀，要么等于$a[l, ..., m]$的最大后缀加上$a[m + 1, ..., r]$
+
+<div class="top2"></div>
+
+对每个子数组，还需要维护全部元素和
+
+<!-- slide vertical=true data-notes="" -->
+
+##### 另一改进思路
 
 ---
 
-@import "../codes/dp/subset-sum-dp.py" {line_begin=0 line_end=13 .left2 .line-numbers .top0 .bottom0 highlight=[7-8]}
+综上，对每个子数组，维护八元组
 
-二重 for 循环，复杂度$O(nM)$
+1. 子数组总和
+2. 最大前缀和
+3. 最大前缀的结束索引
+4. 最大后缀和
+5. 最大后缀的起始索引
+6. 最大子数组的和
+7. 最大子数组的起始索引
+8. 最大子数组的结束索引
 
-<ul>
-    <li class="fragment">若$M \ll 2^n$，动态规划可以带来显著收益</li>
-    <li class="fragment">若$M \ge 2^n$，动态规划不如分治，计算了大量分治不会考虑的子问题</li>
-</ul>
+<div class="top2"></div>
 
-<p class="conclusion fragment top4"> 不要无脑动态规划，它并不是总能有提升的</p>
+由$a[low, ..., mid]$和$a[mid+1, ..., high]$的八元组得到$a[low, ..., high]$的八元组只需$\Theta(1)$的时间
+
+<p>
+\begin{align}
+    T(n) = 2 \cdot T (n/2) + \Theta(1) \Longrightarrow T(n) = \Theta(n)
+\end{align}
+</p>
+
+<!-- slide vertical=true data-notes="" -->
+
+##### 另一改进思路 实现
+
+---
+
+@import "../codes/dc/max-subarray-dc.py" {line_begin=49 line_end=90 .line-numbers highlight=[]}

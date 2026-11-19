@@ -400,7 +400,7 @@
 <p>问题 1：输入正整数<span class="mathjax-exps">$a$</span>、<span class="mathjax-exps">$b$</span>，输出<span class="mathjax-exps">$d = \gcd(a,b)$</span></p>
 <p><span class="mathjax-exps">$1$</span>必然是公约数</p>
 <p>从<span class="mathjax-exps">$2$</span>遍历到<span class="mathjax-exps">$\min(a,b)$</span>，最大能同时整除<span class="mathjax-exps">$a$</span>、<span class="mathjax-exps">$b$</span>的数就是最大公约数</p>
-<pre data-role="codeBlock" data-info="py line_begin=0 line_end=6 class=&quot;left2 top0 line-numbers&quot;" class="language-python py left2 top0 line-numbers"><span class="token keyword keyword-def">def</span> <span class="token function">gcd</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> b<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+<pre data-role="codeBlock" data-info="py line_begin=0 line_end=6 class=&quot;line-numbers&quot;" class="language-python py line-numbers"><span class="token keyword keyword-def">def</span> <span class="token function">gcd</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> b<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span><span class="token punctuation">:</span>
     d <span class="token operator">=</span> <span class="token number">1</span>
     <span class="token keyword keyword-for">for</span> i <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token builtin">min</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># 最大公约数不会大于两者中的较小者</span>
         <span class="token keyword keyword-if">if</span> a <span class="token operator">%</span> i <span class="token operator">==</span> <span class="token number">0</span> <span class="token keyword keyword-and">and</span> b <span class="token operator">%</span> i <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>  <span class="token comment"># 同时整除即为公约数</span>
@@ -413,11 +413,11 @@
 <p>定理：<span class="mathjax-exps">$\{ 0, a, \ldots, (b-1) a \}$</span>中的<span class="mathjax-exps">$b$</span>个数除以<span class="mathjax-exps">$b$</span>的余数恰为<span class="mathjax-exps">$0, 1, \ldots, b-1$</span></p>
 <p>证明：设<span class="mathjax-exps">$i \ne j$</span>且<span class="mathjax-exps">$ia \equiv ja \bmod b$</span>，则<span class="mathjax-exps">$b \mid (i - j) a$</span>，又<span class="mathjax-exps">$a$</span>、<span class="mathjax-exps">$b$</span>互素，故<span class="mathjax-exps">$b \mid (i - j)$</span>，注意<span class="mathjax-exps">$i, j \in \{ 0, 1, \ldots, b-1 \}$</span>，即<span class="mathjax-exps">$|i - j| &lt; b$</span>，只能是<span class="mathjax-exps">$i = j$</span>，矛盾</p>
 <p class="fragment" data-fragment-index="1">若$ax+by=1$，则$ax \bmod b = 1$，恰为剩余系中除$0$外的某个数</p>
-<pre data-role="codeBlock" data-info="py line_begin=8 line_end=16 class=&quot;left2 top0 line-numbers fragment&quot; data-fragment-index=&quot;1&quot;" class="language-python py left2 top0 line-numbers fragment"><span class="token keyword keyword-def">def</span> <span class="token function">coef</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> b<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> t<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> d<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">tuple</span><span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+<pre data-role="codeBlock" data-info="py line_begin=13 line_end=21 class=&quot;line-numbers fragment&quot; data-fragment-index=&quot;1&quot;" class="language-python py line-numbers fragment"><span class="token keyword keyword-def">def</span> <span class="token function">coef</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> b<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> t<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> d<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">tuple</span><span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
     <span class="token keyword keyword-if">if</span> t <span class="token operator">%</span> d <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">:</span>
         <span class="token keyword keyword-raise">raise</span> ValueError<span class="token punctuation">(</span><span class="token string">"t必须是最大公约数d的倍数"</span><span class="token punctuation">)</span>
     a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> t <span class="token operator">=</span> a <span class="token operator">//</span> d<span class="token punctuation">,</span> b <span class="token operator">//</span> d<span class="token punctuation">,</span> t <span class="token operator">//</span> d  <span class="token comment"># 此时 a b 互素</span>
-    <span class="token keyword keyword-for">for</span> x <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">:</span>         <span class="token comment"># 0, a, 2a, ..., (b-1)a构成一个模b的剩余系</span>
+    <span class="token keyword keyword-for">for</span> x <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># 0, a, 2a, ..., (b-1)a构成一个模b的剩余系</span>
         <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>a <span class="token operator">*</span> x<span class="token punctuation">)</span> <span class="token operator">%</span> b <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span>
             y <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">-</span> a <span class="token operator">*</span> x<span class="token punctuation">)</span> <span class="token operator">//</span> b
             <span class="token keyword keyword-return">return</span> t <span class="token operator">*</span> x<span class="token punctuation">,</span> t <span class="token operator">*</span> y
@@ -429,7 +429,7 @@
 <p>记<span class="mathjax-exps">$a = b \cdot q + r$</span>且<span class="mathjax-exps">$r &lt; b$</span>，故<span class="mathjax-exps">$\gcd(a,b) \mid a - b \cdot q = r$</span></p>
 <p>于是<span class="mathjax-exps">$\gcd(a,b) \mid \gcd(b,r)$</span>，同理可证<span class="mathjax-exps">$\gcd(b,r) \mid \gcd(a,b)$</span>，故两者相等</p>
 <p>不断令<span class="mathjax-exps">$(a,b) \gets (b,r)$</span>直到<span class="mathjax-exps">$b = 0$</span>停止循环，此时<span class="mathjax-exps">$a$</span>就是最大公约数</p>
-<pre data-role="codeBlock" data-info="py line_begin=18 line_end=22 class=&quot;left2 top0 bottom1 line-numbers&quot;" class="language-python py left2 top0 bottom1 line-numbers"><span class="token keyword keyword-def">def</span> <span class="token function">Euclidean</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> b<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span><span class="token punctuation">:</span>  <span class="token comment"># 辗转相除</span>
+<pre data-role="codeBlock" data-info="py line_begin=27 line_end=31 class=&quot;line-numbers bottom1&quot;" class="language-python py line-numbers bottom1"><span class="token keyword keyword-def">def</span> <span class="token function">Euclidean</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> b<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span><span class="token punctuation">:</span>  <span class="token comment"># 辗转相除</span>
     <span class="token keyword keyword-while">while</span> b<span class="token punctuation">:</span>
         a<span class="token punctuation">,</span> b <span class="token operator">=</span> b<span class="token punctuation">,</span> a <span class="token operator">%</span> b
     <span class="token keyword keyword-return">return</span> a
@@ -446,7 +446,7 @@
 <li>若<span class="mathjax-exps">$\class{blue}{d} = b \cdot \class{blue}{x} + r \cdot \class{blue}{y}$</span>，则<span class="mathjax-exps">$\class{blue}{d} = b \cdot x + (a - b \cdot q) \cdot y = a \cdot \class{blue}{y} + b \cdot \class{blue}{(x - \lfloor a / b \rfloor \cdot y)}$</span></li>
 <li>当<span class="mathjax-exps">$b = 0$</span>时，<span class="mathjax-exps">$a$</span>就是最大公约数，此时<span class="mathjax-exps">$d = \class{blue}{a} = a \cdot \class{blue}{1} + b \cdot \class{blue}{0}$</span></li>
 </ul>
-<pre data-role="codeBlock" data-info="py line_begin=24 line_end=39 class=&quot;left2 top1 bottom1 line-numbers&quot;" class="language-python py left2 top1 bottom1 line-numbers"><span class="token keyword keyword-def">def</span> <span class="token function">Euclidean_extended</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> b<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">tuple</span><span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+<pre data-role="codeBlock" data-info="py line_begin=37 line_end=52 class=&quot;line-numbers top1 bottom1&quot;" class="language-python py line-numbers top1 bottom1"><span class="token keyword keyword-def">def</span> <span class="token function">Euclidean_extended</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> b<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">tuple</span><span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
     <span class="token comment"># 返回 (d,x,y) 使得 ax + by = d = gcd(a, b)</span>
     <span class="token keyword keyword-if">if</span> b <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
         <span class="token keyword keyword-return">return</span> a<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span>
@@ -477,7 +477,7 @@
 </section><section vertical="true" data-notes="" lineno="550" class="slide " data-source-line="550" data-h="11" data-v="1"><h5 id="更相减损-1">更相减损 </h5>
 <hr>
 <p><span class="mathjax-exps">$\gcd(a,b) = \gcd(a-b,b)$</span>，不断令<span class="mathjax-exps">$(a,b) \gets (a-b,b)$</span>直到<span class="mathjax-exps">$a=b$</span></p>
-<pre data-role="codeBlock" data-info="py line_begin=41 line_end=54 class=&quot;left2 top0 bottom2 line-numbers&quot;" class="language-python py left2 top0 bottom2 line-numbers"><span class="token keyword keyword-def">def</span> <span class="token function">alternative_subtraction</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> b<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span><span class="token punctuation">:</span>  <span class="token comment"># 更相减损</span>
+<pre data-role="codeBlock" data-info="py line_begin=58 line_end=71 class=&quot;line-numbers bottom1&quot;" class="language-python py line-numbers bottom1"><span class="token keyword keyword-def">def</span> <span class="token function">alternative_subtraction</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> b<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span><span class="token punctuation">:</span>  <span class="token comment"># 更相减损</span>
     shift <span class="token operator">=</span> <span class="token number">0</span>  <span class="token comment"># 最大公约数的质因子分解中2的幂次</span>
     <span class="token keyword keyword-while">while</span> <span class="token keyword keyword-not">not</span> <span class="token punctuation">(</span>a <span class="token operator">&amp;</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword keyword-and">and</span> <span class="token keyword keyword-not">not</span> <span class="token punctuation">(</span>b <span class="token operator">&amp;</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># a、b均为偶 2是公因子</span>
         a <span class="token operator">&gt;&gt;</span><span class="token operator">=</span> <span class="token number">1</span>  <span class="token comment"># a &lt;- a / 2</span>
@@ -498,7 +498,7 @@
 </section></section><section><section data-notes="" lineno="563" class="slide " data-source-line="563" data-h="12" data-v="0"><h5 id="改进的更相减损">改进的更相减损 </h5>
 <hr>
 <p>更相减损没有将“可半者半之”应用到极致</p>
-<pre data-role="codeBlock" data-info="py line_begin=56 line_end=72 class=&quot;left2 line-numbers top0 bottom0&quot;" class="language-python py left2 line-numbers top0 bottom0"><span class="token keyword keyword-def">def</span> <span class="token function">gcd_opt</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> b<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span><span class="token punctuation">:</span>  <span class="token comment"># 改进的更相减损</span>
+<pre data-role="codeBlock" data-info="py line_begin=77 line_end=93 class=&quot;line-numbers&quot;" class="language-python py line-numbers"><span class="token keyword keyword-def">def</span> <span class="token function">gcd_opt</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> b<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span><span class="token punctuation">:</span>  <span class="token comment"># 改进的更相减损</span>
     shift <span class="token operator">=</span> <span class="token number">0</span>  <span class="token comment"># 最大公约数的质因子分解中2的幂次</span>
     <span class="token keyword keyword-while">while</span> <span class="token keyword keyword-not">not</span> <span class="token punctuation">(</span>a <span class="token operator">&amp;</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword keyword-and">and</span> <span class="token keyword keyword-not">not</span> <span class="token punctuation">(</span>b <span class="token operator">&amp;</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># 均为偶 2是公因子</span>
         a <span class="token operator">&gt;&gt;</span><span class="token operator">=</span> <span class="token number">1</span>  <span class="token comment"># a &lt;- a / 2</span>
@@ -519,7 +519,7 @@
 </section><section vertical="true" data-notes="" lineno="575" class="slide " data-source-line="575" data-h="12" data-v="1"><h5 id="求最大公约数">求最大公约数 </h5>
 <hr>
 <p>四种方法</p>
-<div class="threelines top-2 bottom2 left8 righta">
+<div class="threelines bottom2 center">
 <table>
 <thead>
 <tr>
@@ -558,9 +558,9 @@
 </ul>
 </section></section><section data-notes="" lineno="597" class="slide " data-source-line="597" data-h="13" data-v="0"><h5 id="排序">排序 </h5>
 <hr>
-<p>输入：数组<span class="mathjax-exps">$a = \langle a_1, a_2, \ldots, a_n \rangle$</span></p>
+<p>输入：数组<span class="mathjax-exps">$a$</span></p>
 <div class="top-2"></div>
-<p>输出：<span class="mathjax-exps">$a$</span>的元素的重排列<span class="mathjax-exps">$\langle a'_1, a'_2, \ldots, a'_n \rangle$</span>且<span class="mathjax-exps">$a'_1 \le a'_2 \le \cdots \le a'_n$</span></p>
+<p>输出：<span class="mathjax-exps">$a$</span>中元素的升序排列</p>
 <ul>
 <li>新华字典按音序排序</li>
 <li>银行流水按时间排序</li>
@@ -1001,13 +1001,14 @@
 </p>
 </section><section vertical="true" data-notes="" lineno="635" class="slide " data-source-line="635" data-h="14" data-v="1"><h5 id="冒泡排序-正确性">冒泡排序 正确性 </h5>
 <hr>
-<pre data-role="codeBlock" data-info="py line_begin=0 line_end=6 class=&quot;left2 line-numbers top0 bottom0&quot;" class="language-python py left2 line-numbers top0 bottom0"><span class="token keyword keyword-def">def</span> <span class="token function">bubble_sort</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+<pre data-role="codeBlock" data-info="py line_begin=0 line_end=7 class=&quot;line-numbers&quot;" class="language-python py line-numbers"><span class="token keyword keyword-def">def</span> <span class="token function">bubble_sort</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">list</span><span class="token punctuation">:</span>
     n <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
     <span class="token keyword keyword-for">for</span> i <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
         <span class="token keyword keyword-for">for</span> j <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># 从后往前遍历，将较小的元素像气泡一样浮到前面</span>
             <span class="token keyword keyword-if">if</span> a<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&lt;</span> a<span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
                 a<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span> a<span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> a<span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> a<span class="token punctuation">[</span>j<span class="token punctuation">]</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></pre>
+    <span class="token keyword keyword-return">return</span> a
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre>
 <p>如何证明算法中循环结构的正确性？</p>
 <p><mark>循环不变式</mark> (loop-invariant)：一个关于循环状态的命题，满足：</p>
 <ol>
@@ -1017,13 +1018,14 @@
 </ol>
 </section><section vertical="true" data-notes="" lineno="651" class="slide " data-source-line="651" data-h="14" data-v="2"><h5 id="冒泡排序-正确性-1">冒泡排序 正确性 </h5>
 <hr>
-<pre data-role="codeBlock" data-info="py line_begin=0 line_end=6 class=&quot;left2 line-numbers top0 bottom0&quot;" class="language-python py left2 line-numbers top0 bottom0"><span class="token keyword keyword-def">def</span> <span class="token function">bubble_sort</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+<pre data-role="codeBlock" data-info="py line_begin=0 line_end=7 class=&quot;line-numbers&quot;" class="language-python py line-numbers"><span class="token keyword keyword-def">def</span> <span class="token function">bubble_sort</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">list</span><span class="token punctuation">:</span>
     n <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
     <span class="token keyword keyword-for">for</span> i <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
         <span class="token keyword keyword-for">for</span> j <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># 从后往前遍历，将较小的元素像气泡一样浮到前面</span>
             <span class="token keyword keyword-if">if</span> a<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&lt;</span> a<span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
                 a<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span> a<span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> a<span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> a<span class="token punctuation">[</span>j<span class="token punctuation">]</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></pre>
+    <span class="token keyword keyword-return">return</span> a
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre>
 <p>内层：每次进入循环前，子数组<span class="mathjax-exps">$a[j, \ldots, n-1]$</span>的第一个元素最小</p>
 <ol>
 <li>初始：<span class="mathjax-exps">$j = n-1$</span>，子数组<span class="mathjax-exps">$a[n-1]$</span>只有一个元素，循环不变式显然成立</li>
@@ -1034,13 +1036,14 @@
 <p>外层：每次进入循环前，子数组<span class="mathjax-exps">$a[0, \ldots, i-1]$</span>有序排列着整个数组最小的<span class="mathjax-exps">$i$</span>个元素</p>
 </section><section vertical="true" data-notes="" lineno="669" class="slide " data-source-line="669" data-h="14" data-v="3"><h5 id="冒泡排序-正确性-2">冒泡排序 正确性 </h5>
 <hr>
-<pre data-role="codeBlock" data-info="py line_begin=0 line_end=6 class=&quot;left2 line-numbers top0 bottom0&quot;" class="language-python py left2 line-numbers top0 bottom0"><span class="token keyword keyword-def">def</span> <span class="token function">bubble_sort</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+<pre data-role="codeBlock" data-info="py line_begin=0 line_end=7 class=&quot;line-numbers&quot;" class="language-python py line-numbers"><span class="token keyword keyword-def">def</span> <span class="token function">bubble_sort</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">list</span><span class="token punctuation">:</span>
     n <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
     <span class="token keyword keyword-for">for</span> i <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
         <span class="token keyword keyword-for">for</span> j <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># 从后往前遍历，将较小的元素像气泡一样浮到前面</span>
             <span class="token keyword keyword-if">if</span> a<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&lt;</span> a<span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
                 a<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span> a<span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> a<span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> a<span class="token punctuation">[</span>j<span class="token punctuation">]</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></pre>
+    <span class="token keyword keyword-return">return</span> a
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre>
 <p>内层：每次进入循环前，子数组<span class="mathjax-exps">$a[j, \ldots, n-1]$</span>的第一个元素最小</p>
 <p>外层：每次进入循环前，子数组<span class="mathjax-exps">$a[0, \ldots, i-1]$</span>有序排列着整个数组最小的<span class="mathjax-exps">$i$</span>个元素</p>
 <ol>
@@ -1095,16 +1098,21 @@
 <td style="text-align:center"><span class="mathjax-exps">$c_4$</span></td>
 <td style="text-align:center"><span class="blue">交换</span><span class="mathjax-exps">$\sum_{i=0}^{n-2} t_i$</span>次</td>
 </tr>
+<tr>
+<td style="text-align:left"><span style="font-family:Operator">return a</span></td>
+<td style="text-align:center"><span class="mathjax-exps">$c_5$</span></td>
+<td style="text-align:center"><span class="blue">返回结果</span><span class="mathjax-exps">$1$</span>次</td>
+</tr>
 </tbody>
 </table>
 </div>
 <p>
 \begin{align}
-    T = c_0 &amp; + c'_0 + c_1 + c'_1 (n-1) + c''_1 n + c_2 (n-1) + c'_2 \frac{n^2-n}{2} \\
+    T = c_0 &amp; + c'_0 + c_1 + c_5 + c'_1 (n-1) + c''_1 n + c_2 (n-1) + c'_2 \frac{n^2-n}{2} \\
     &amp; + c''_2 \frac{n^2+n-2}{2} + c_3 \frac{n^2-n}{2} + c_4 \sum_{i=0}^{n-2} t_i = a n^2 + b n + c + c_4 \sum_{i=0}^{n-2} t_i
 \end{align}
 </p>
-</section><section vertical="true" data-notes="" lineno="712" class="slide " data-source-line="712" data-h="15" data-v="1"><h5 id="冒泡排序-时间分析-1">冒泡排序 时间分析 </h5>
+</section><section vertical="true" data-notes="" lineno="713" class="slide " data-source-line="713" data-h="15" data-v="1"><h5 id="冒泡排序-时间分析-1">冒泡排序 时间分析 </h5>
 <hr>
 <p>
 \begin{align}
@@ -1128,7 +1136,7 @@
 <li>我们仅关注问题规模达到一定程度时的时间复杂度，当$n$足够大时，二次函数中的一次项、常数项可以忽略</li>
 </ul>
 <p class="footnote hand fragment" data-fragment-index="1"> $\Theta$是渐近符号，暂且理解为“相当”，其严格定义我们将在第二讲“函数的增长”中学习</p>
-</section><section vertical="true" data-notes="" lineno="746" class="slide " data-source-line="746" data-h="15" data-v="2"><h5 id="冒泡排序-小结">冒泡排序 小结 </h5>
+</section><section vertical="true" data-notes="" lineno="747" class="slide " data-source-line="747" data-h="15" data-v="2"><h5 id="冒泡排序-小结">冒泡排序 小结 </h5>
 <hr>
 <div class="threelines">
 <table>
@@ -1151,7 +1159,7 @@
 </table>
 </div>
 <p class="fragment">优化：可以引入一个变量检测某轮外层循环是否有交换发生，若没有则当前数组已经排好序，这样最好情况下运行时间降为$\Theta(n)$</p>
-<pre data-role="codeBlock" data-info="py line_begin=8 line_end=18 class=&quot;left2 line-numbers top0 bottom0 fragment&quot; highlight=[4, &quot;8-10&quot;]" class="language-python py left2 line-numbers top0 bottom0 fragment" data-line="4,8-10"><span class="token keyword keyword-def">def</span> <span class="token function">bubble_sort_opt</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+<pre data-role="codeBlock" data-info="py line_begin=12 line_end=23 class=&quot;line-numbers fragment&quot; highlight=[4, &quot;8-10&quot;]" class="language-python py line-numbers fragment" data-line="4,8-10"><span class="token keyword keyword-def">def</span> <span class="token function">bubble_sort_opt</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">list</span><span class="token punctuation">:</span>
     n <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
     <span class="token keyword keyword-for">for</span> i <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
         swapped <span class="token operator">=</span> <span class="token boolean">False</span>
@@ -1161,7 +1169,8 @@
                 swapped <span class="token operator">=</span> <span class="token boolean">True</span>
         <span class="token keyword keyword-if">if</span> <span class="token keyword keyword-not">not</span> swapped<span class="token punctuation">:</span>
             <span class="token keyword keyword-break">break</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span><div class="line-highlight-wrapper">
+    <span class="token keyword keyword-return">return</span> a
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span><div class="line-highlight-wrapper">
 
 
 <div aria-hidden="true" class="line-highlight" data-range="4" data-start="4">
@@ -1176,7 +1185,7 @@
 
 
 </div></div></pre>
-</section></section><section><section data-notes="" lineno="764" class="slide " data-source-line="764" data-h="16" data-v="0"><h5 id="选择排序">选择排序 </h5>
+</section></section><section><section data-notes="" lineno="765" class="slide " data-source-line="765" data-h="16" data-v="0"><h5 id="选择排序">选择排序 </h5>
 <hr>
 <p>最小元与第一个元素互换，次小元与第二个元素互换，……</p>
 <p class="dot center top2"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
@@ -1380,7 +1389,7 @@
 </g>
 </svg>
 </p>
-<pre data-role="codeBlock" data-info="py line_begin=20 line_end=29 class=&quot;left2 line-numbers top-1&quot;" class="language-python py left2 line-numbers top-1"><span class="token keyword keyword-def">def</span> <span class="token function">selection_sort</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+<pre data-role="codeBlock" data-info="py line_begin=28 line_end=38 class=&quot;line-numbers&quot;" class="language-python py line-numbers"><span class="token keyword keyword-def">def</span> <span class="token function">selection_sort</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">list</span><span class="token punctuation">:</span>
     n <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
     <span class="token keyword keyword-for">for</span> i <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
         smallest <span class="token operator">=</span> i
@@ -1389,10 +1398,11 @@
                 smallest <span class="token operator">=</span> j
         <span class="token keyword keyword-if">if</span> smallest <span class="token operator">!=</span> i<span class="token punctuation">:</span>  <span class="token comment"># 只有当最小元素不是当前元素时才交换</span>
             a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> a<span class="token punctuation">[</span>smallest<span class="token punctuation">]</span> <span class="token operator">=</span> a<span class="token punctuation">[</span>smallest<span class="token punctuation">]</span><span class="token punctuation">,</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre>
-</section><section vertical="true" data-notes="" lineno="776" class="slide " data-source-line="776" data-h="16" data-v="1"><h5 id="选择排序-正确性">选择排序 正确性 </h5>
+    <span class="token keyword keyword-return">return</span> a
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre>
+</section><section vertical="true" data-notes="" lineno="777" class="slide " data-source-line="777" data-h="16" data-v="1"><h5 id="选择排序-正确性">选择排序 正确性 </h5>
 <hr>
-<pre data-role="codeBlock" data-info="py line_begin=20 line_end=29 class=&quot;left2 line-numbers top0 bottom-1&quot;" class="language-python py left2 line-numbers top0 bottom-1"><span class="token keyword keyword-def">def</span> <span class="token function">selection_sort</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+<pre data-role="codeBlock" data-info="py line_begin=28 line_end=38 class=&quot;line-numbers&quot;" class="language-python py line-numbers"><span class="token keyword keyword-def">def</span> <span class="token function">selection_sort</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">list</span><span class="token punctuation">:</span>
     n <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
     <span class="token keyword keyword-for">for</span> i <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
         smallest <span class="token operator">=</span> i
@@ -1401,7 +1411,8 @@
                 smallest <span class="token operator">=</span> j
         <span class="token keyword keyword-if">if</span> smallest <span class="token operator">!=</span> i<span class="token punctuation">:</span>  <span class="token comment"># 只有当最小元素不是当前元素时才交换</span>
             a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> a<span class="token punctuation">[</span>smallest<span class="token punctuation">]</span> <span class="token operator">=</span> a<span class="token punctuation">[</span>smallest<span class="token punctuation">]</span><span class="token punctuation">,</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre>
+    <span class="token keyword keyword-return">return</span> a
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre>
 <p>内层：每次进入循环前，<span class="mathjax-exps">$a[smallest]$</span>是子数组<span class="mathjax-exps">$a[i, \ldots, j-1]$</span>的最小元素</p>
 <ol>
 <li>初始：<span class="mathjax-exps">$j=i+1$</span>，子数组<span class="mathjax-exps">$a[i, \ldots, j-1]$</span>只有<span class="mathjax-exps">$a[smallest]$</span>，循环不变式成立</li>
@@ -1410,9 +1421,9 @@
 </ol>
 <div class="top2"></div>
 <p>外层：每次进入循环前，子数组<span class="mathjax-exps">$a[0, \ldots, i-1]$</span>有序排列着整个数组最小的<span class="mathjax-exps">$i$</span>个元素</p>
-</section><section vertical="true" data-notes="" lineno="794" class="slide " data-source-line="794" data-h="16" data-v="2"><h5 id="选择排序-正确性-1">选择排序 正确性 </h5>
+</section><section vertical="true" data-notes="" lineno="795" class="slide " data-source-line="795" data-h="16" data-v="2"><h5 id="选择排序-正确性-1">选择排序 正确性 </h5>
 <hr>
-<pre data-role="codeBlock" data-info="py line_begin=20 line_end=29 class=&quot;left2 line-numbers top0 bottom-1&quot;" class="language-python py left2 line-numbers top0 bottom-1"><span class="token keyword keyword-def">def</span> <span class="token function">selection_sort</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+<pre data-role="codeBlock" data-info="py line_begin=28 line_end=38 class=&quot;line-numbers&quot;" class="language-python py line-numbers"><span class="token keyword keyword-def">def</span> <span class="token function">selection_sort</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">list</span><span class="token punctuation">:</span>
     n <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
     <span class="token keyword keyword-for">for</span> i <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
         smallest <span class="token operator">=</span> i
@@ -1421,15 +1432,16 @@
                 smallest <span class="token operator">=</span> j
         <span class="token keyword keyword-if">if</span> smallest <span class="token operator">!=</span> i<span class="token punctuation">:</span>  <span class="token comment"># 只有当最小元素不是当前元素时才交换</span>
             a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> a<span class="token punctuation">[</span>smallest<span class="token punctuation">]</span> <span class="token operator">=</span> a<span class="token punctuation">[</span>smallest<span class="token punctuation">]</span><span class="token punctuation">,</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre>
+    <span class="token keyword keyword-return">return</span> a
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre>
 <p>内层：每次进入循环前，<span class="mathjax-exps">$a[smallest]$</span>是子数组<span class="mathjax-exps">$a[i, \ldots, j-1]$</span>的最小元素</p>
 <p>外层：每次进入循环前，子数组<span class="mathjax-exps">$a[0, \ldots, i-1]$</span>有序排列着整个数组最小的<span class="mathjax-exps">$i$</span>个元素</p>
 <ol start="2">
 <li>保持：若子数组<span class="mathjax-exps">$a[0, \ldots, i-1]$</span>有序排列着整个数组最小的<span class="mathjax-exps">$i$</span>个元素，又<span class="mathjax-exps">$a[smallest]$</span>是子数组<span class="mathjax-exps">$a[i, \ldots, n-1]$</span>的最小元素，经过第 7 行的交换，<span class="mathjax-exps">$a[i]$</span>是<span class="mathjax-exps">$a[i, \ldots, n-1]$</span>的最小元素，因此子数组<span class="mathjax-exps">$a[0, \ldots, i]$</span>有序排列着整个数组最小的<span class="mathjax-exps">$i+1$</span>个元素</li>
 </ol>
-</section><section vertical="true" data-notes="" lineno="808" class="slide " data-source-line="808" data-h="16" data-v="3"><h5 id="选择排序-时间分析">选择排序 时间分析 </h5>
+</section><section vertical="true" data-notes="" lineno="809" class="slide " data-source-line="809" data-h="16" data-v="3"><h5 id="选择排序-时间分析">选择排序 时间分析 </h5>
 <hr>
-<pre data-role="codeBlock" data-info="py line_begin=20 line_end=29 class=&quot;left2 line-numbers top0&quot;" class="language-python py left2 line-numbers top0"><span class="token keyword keyword-def">def</span> <span class="token function">selection_sort</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+<pre data-role="codeBlock" data-info="py line_begin=28 line_end=38 class=&quot;line-numbers bottom1&quot;" class="language-python py line-numbers bottom1"><span class="token keyword keyword-def">def</span> <span class="token function">selection_sort</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">list</span><span class="token punctuation">:</span>
     n <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
     <span class="token keyword keyword-for">for</span> i <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
         smallest <span class="token operator">=</span> i
@@ -1438,7 +1450,8 @@
                 smallest <span class="token operator">=</span> j
         <span class="token keyword keyword-if">if</span> smallest <span class="token operator">!=</span> i<span class="token punctuation">:</span>  <span class="token comment"># 只有当最小元素不是当前元素时才交换</span>
             a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> a<span class="token punctuation">[</span>smallest<span class="token punctuation">]</span> <span class="token operator">=</span> a<span class="token punctuation">[</span>smallest<span class="token punctuation">]</span><span class="token punctuation">,</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre>
+    <span class="token keyword keyword-return">return</span> a
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre>
 <ul>
 <li>第 6 行的比较操作在二重循环里，因此算法总时间<span class="mathjax-exps">$\Theta(n^2)$</span></li>
 <li>第 9 行的交换操作在一重循环里，因此最坏情况下交换次数<span class="mathjax-exps">$\Theta(n)$</span></li>
@@ -1469,7 +1482,7 @@
 </tbody>
 </table>
 </div>
-</section></section><section><section data-notes="" lineno="828" class="slide " data-source-line="828" data-h="17" data-v="0"><h5 id="插入排序">插入排序 </h5>
+</section></section><section><section data-notes="" lineno="829" class="slide " data-source-line="829" data-h="17" data-v="0"><h5 id="插入排序">插入排序 </h5>
 <hr>
 <p>类似打牌时摸牌理牌的过程，手上始终是理好序的牌，每摸一张新牌，将其插入适当的位置，保持牌序不被破坏</p>
 <p class="dot center top1 bottom-4"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
@@ -2021,9 +2034,9 @@
 </g>
 </svg>
 </p>
-</section><section vertical="true" data-notes="" lineno="838" class="slide " data-source-line="838" data-h="17" data-v="1"><h5 id="插入排序-正确性">插入排序 正确性 </h5>
+</section><section vertical="true" data-notes="" lineno="839" class="slide " data-source-line="839" data-h="17" data-v="1"><h5 id="插入排序-正确性">插入排序 正确性 </h5>
 <hr>
-<pre data-role="codeBlock" data-info="py line_begin=31 line_end=40 class=&quot;left2 line-numbers top0 bottom-1&quot;" class="language-python py left2 line-numbers top0 bottom-1"><span class="token keyword keyword-def">def</span> <span class="token function">insertion_sort</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+<pre data-role="codeBlock" data-info="py line_begin=43 line_end=53 class=&quot;line-numbers&quot;" class="language-python py line-numbers"><span class="token keyword keyword-def">def</span> <span class="token function">insertion_sort</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">list</span><span class="token punctuation">:</span>
     n <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
     <span class="token keyword keyword-for">for</span> i <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">:</span>
         key <span class="token operator">=</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
@@ -2032,7 +2045,8 @@
             a<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> a<span class="token punctuation">[</span>j<span class="token punctuation">]</span>
             j <span class="token operator">-=</span> <span class="token number">1</span>
         a<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> key
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre>
+    <span class="token keyword keyword-return">return</span> a
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre>
 <p>内层：每次进入循环前，<span class="mathjax-exps">$key \le a[j+1]$</span></p>
 <ol>
 <li>初始：<span class="mathjax-exps">$key = a[i] = a[j+1]$</span></li>
@@ -2041,9 +2055,9 @@
 </ol>
 <div class="top2"></div>
 <p>外层：每次进入循环前，子数组<span class="mathjax-exps">$a[0, \ldots, i-1]$</span>已经排好序</p>
-</section><section vertical="true" data-notes="" lineno="856" class="slide " data-source-line="856" data-h="17" data-v="2"><h5 id="插入排序-正确性-1">插入排序 正确性 </h5>
+</section><section vertical="true" data-notes="" lineno="857" class="slide " data-source-line="857" data-h="17" data-v="2"><h5 id="插入排序-正确性-1">插入排序 正确性 </h5>
 <hr>
-<pre data-role="codeBlock" data-info="py line_begin=31 line_end=40 class=&quot;left2 line-numbers top0 bottom-1&quot;" class="language-python py left2 line-numbers top0 bottom-1"><span class="token keyword keyword-def">def</span> <span class="token function">insertion_sort</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+<pre data-role="codeBlock" data-info="py line_begin=43 line_end=53 class=&quot;line-numbers&quot;" class="language-python py line-numbers"><span class="token keyword keyword-def">def</span> <span class="token function">insertion_sort</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">list</span><span class="token punctuation">:</span>
     n <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
     <span class="token keyword keyword-for">for</span> i <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">:</span>
         key <span class="token operator">=</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
@@ -2052,15 +2066,16 @@
             a<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> a<span class="token punctuation">[</span>j<span class="token punctuation">]</span>
             j <span class="token operator">-=</span> <span class="token number">1</span>
         a<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> key
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre>
+    <span class="token keyword keyword-return">return</span> a
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre>
 <p>内层：每次进入循环前，<span class="mathjax-exps">$key \le a[j+1]$</span></p>
 <p>外层：每次进入循环前，子数组<span class="mathjax-exps">$a[0, \ldots, i-1]$</span>已经排好序</p>
 <ol>
 <li>初始：子数组<span class="mathjax-exps">$a[0]$</span>只有一个元素，已经排好序</li>
-<li>保持：内层循环终止时，要么<span class="mathjax-exps">$key &lt; a[0]$</span>，故令<span class="mathjax-exps">$a[0] = key$</span>；要么<span class="mathjax-exps">$key &gt; a[j]$</span> (注意同时有<span class="mathjax-exps">$key \le a[j+1]$</span>)，故令<span class="mathjax-exps">$a[j+1] = key$</span>，无论哪种情况都为<span class="mathjax-exps">$a[i]$</span>在已经排好序的子数组<span class="mathjax-exps">$a[0, \ldots, i-1]$</span>中找到了正确的插入位置，故下次进入循环前<span class="mathjax-exps">$a[0, \ldots, i]$</span>已经排好序</li>
+<li>保持：内层循环终止时，要么<span class="mathjax-exps">$key &lt; a[0]$</span>，要么<span class="mathjax-exps">$a[j]&lt;key&lt;a[j+1]$</span>，无论哪种情况都为<span class="mathjax-exps">$a[i]$</span>在已经排好序的子数组<span class="mathjax-exps">$a[0, \ldots, i-1]$</span>中找到了正确的插入位置，故下次进入循环前<span class="mathjax-exps">$a[0, \ldots, i]$</span>已经排好序</li>
 <li>终止：<span class="mathjax-exps">$i = n$</span>，<span class="mathjax-exps">$a[0, \ldots, n-1]$</span>已经排好序</li>
 </ol>
-</section><section vertical="true" data-notes="" lineno="872" class="slide " data-source-line="872" data-h="17" data-v="3"><h5 id="插入排序-时间分析">插入排序 时间分析 </h5>
+</section><section vertical="true" data-notes="" lineno="873" class="slide " data-source-line="873" data-h="17" data-v="3"><h5 id="插入排序-时间分析">插入排序 时间分析 </h5>
 <hr>
 <div class="threelines left8 righta top-2 bottom0">
 <table>
@@ -2117,6 +2132,11 @@
 <td style="text-align:center"><span class="mathjax-exps">$c_7$</span></td>
 <td style="text-align:center"><span class="blue">赋值</span><span class="mathjax-exps">$n-1$</span>次</td>
 </tr>
+<tr>
+<td style="text-align:left"><span style="font-family:Operator">return a</span></td>
+<td style="text-align:center"><span class="mathjax-exps">$c_8$</span></td>
+<td style="text-align:center"><span class="blue">返回结果</span><span class="mathjax-exps">$1$</span>次</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -2125,7 +2145,7 @@
     T = b n + c + d \sum_{i=1}^{n-1} t_i
 \end{align}
 </p>
-</section><section vertical="true" data-notes="" lineno="900" class="slide " data-source-line="900" data-h="17" data-v="4"><h5 id="插入排序-时间分析-1">插入排序 时间分析 </h5>
+</section><section vertical="true" data-notes="" lineno="902" class="slide " data-source-line="902" data-h="17" data-v="4"><h5 id="插入排序-时间分析-1">插入排序 时间分析 </h5>
 <hr>
 <p><span class="mathjax-exps">$t_i$</span>是外层 for 循环第<span class="mathjax-exps">$i$</span>轮中内层 while 循环的执行次数</p>
 <ul>
@@ -2171,7 +2191,7 @@
 </table>
 </div>
 <p class="footnote book"> 插入排序无需在算法启动前就准备好完整的待排序数组，而是能够边接收数据、边进行排序处理，具备这一特性的算法称为<span class="blue">在线算法</span> (online algorithm)，该类算法天然适用于数据源动态、流式到达的应用场景；相比之下，冒泡、选择排序等必须预先获取完整输入数据的算法称为<span class="blue">离线算法</span> (offline algorithm)</p>
-</section></section><section><section data-notes="" lineno="931" class="slide " data-source-line="931" data-h="18" data-v="0"><h5 id="归并排序">归并排序 </h5>
+</section></section><section><section data-notes="" lineno="933" class="slide " data-source-line="933" data-h="18" data-v="0"><h5 id="归并排序">归并排序 </h5>
 <hr>
 <p><mark>分治</mark>：将原问题分成若干同类型、规模更小的子问题<mark>递归</mark>求解</p>
 <ul>
@@ -2179,7 +2199,7 @@
 <li>治：分别对<span class="mathjax-exps">$a[low, \ldots, mid]$</span>和<span class="mathjax-exps">$a[mid+1, \ldots, high]$</span>进行排序，递归实现</li>
 <li>合：将排好序的<span class="mathjax-exps">$a[low, \ldots, mid]$</span>、<span class="mathjax-exps">$a[mid+1, \ldots, high]$</span>合并成<span class="mathjax-exps">$a[low, \ldots, high]$</span></li>
 </ul>
-<pre data-role="codeBlock" data-info="py line_begin=63 line_end=72 class=&quot;left2 line-numbers top2&quot;" class="language-python py left2 line-numbers top2"><span class="token keyword keyword-def">def</span> <span class="token function">merge_sort</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">,</span> low<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> high<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> temp<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+<pre data-role="codeBlock" data-info="py line_begin=79 line_end=88 class=&quot;line-numbers top2&quot;" class="language-python py line-numbers top2"><span class="token keyword keyword-def">def</span> <span class="token function">merge_sort</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">,</span> low<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> high<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> temp<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
     <span class="token keyword keyword-if">if</span> low <span class="token operator">&lt;</span> high<span class="token punctuation">:</span>
         <span class="token comment"># 分：计算分解的中间点</span>
         mid <span class="token operator">=</span> <span class="token punctuation">(</span>low <span class="token operator">+</span> high<span class="token punctuation">)</span> <span class="token operator">//</span> <span class="token number">2</span>
@@ -2190,9 +2210,9 @@
         merge<span class="token punctuation">(</span>a<span class="token punctuation">,</span> low<span class="token punctuation">,</span> mid<span class="token punctuation">,</span> high<span class="token punctuation">,</span> temp<span class="token punctuation">)</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre>
 <p class="footnote book"> 归并排序的历史和计算机一样悠久，由计算机之父冯·诺依曼于 1945 年提出</p>
-</section><section vertical="true" data-notes="" lineno="947" class="slide " data-source-line="947" data-h="18" data-v="1"><h5 id="归并排序-1">归并排序 </h5>
+</section><section vertical="true" data-notes="" lineno="949" class="slide " data-source-line="949" data-h="18" data-v="1"><h5 id="归并排序-1">归并排序 </h5>
 <hr>
-<pre data-role="codeBlock" data-info="py line_begin=63 line_end=72 class=&quot;left2 line-numbers top0 bottom-10&quot;" class="language-python py left2 line-numbers top0 bottom-10"><span class="token keyword keyword-def">def</span> <span class="token function">merge_sort</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">,</span> low<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> high<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> temp<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+<pre data-role="codeBlock" data-info="py line_begin=79 line_end=88 class=&quot;line-numbers&quot;" class="language-python py line-numbers"><span class="token keyword keyword-def">def</span> <span class="token function">merge_sort</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">,</span> low<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> high<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> temp<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
     <span class="token keyword keyword-if">if</span> low <span class="token operator">&lt;</span> high<span class="token punctuation">:</span>
         <span class="token comment"># 分：计算分解的中间点</span>
         mid <span class="token operator">=</span> <span class="token punctuation">(</span>low <span class="token operator">+</span> high<span class="token punctuation">)</span> <span class="token operator">//</span> <span class="token number">2</span>
@@ -2202,7 +2222,7 @@
         <span class="token comment"># 合：合并已排好序的两个子数组</span>
         merge<span class="token punctuation">(</span>a<span class="token punctuation">,</span> low<span class="token punctuation">,</span> mid<span class="token punctuation">,</span> high<span class="token punctuation">,</span> temp<span class="token punctuation">)</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre>
-<p class="dot lefta right4 top-12 bottom-10"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+<p class="dot lefta right4 top-22"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
 
 <!-- Generated by graphviz version 14.1.1 (20251213.1925)
  -->
@@ -2473,10 +2493,10 @@
 </g>
 </svg>
 </p>
-</section><section vertical="true" data-notes="" lineno="957" class="slide " data-source-line="957" data-h="18" data-v="2"><h5 id="归并排序-2">归并排序 </h5>
+</section><section vertical="true" data-notes="" lineno="959" class="slide " data-source-line="959" data-h="18" data-v="2"><h5 id="归并排序-2">归并排序 </h5>
 <hr>
 <p>合：取两个子数组的最小元素做比较，并将小者取出</p>
-<pre data-role="codeBlock" data-info="py line_begin=42 line_end=61 class=&quot;left2 line-numbers top0 bottom2&quot;" class="language-python py left2 line-numbers top0 bottom2"><span class="token keyword keyword-def">def</span> <span class="token function">merge</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">,</span> low<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> mid<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> high<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> temp<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+<pre data-role="codeBlock" data-info="py line_begin=58 line_end=77 class=&quot;line-numbers&quot;" class="language-python py line-numbers"><span class="token keyword keyword-def">def</span> <span class="token function">merge</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">,</span> low<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> mid<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> high<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> temp<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
     <span class="token comment"># a[low:mid+1]、a[mid+1:high+1]已排好序</span>
     <span class="token comment"># 拷贝数据到临时数组</span>
     temp<span class="token punctuation">[</span>low<span class="token punctuation">:</span>high<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> a<span class="token punctuation">[</span>low<span class="token punctuation">:</span>high<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span>
@@ -2496,7 +2516,7 @@
     <span class="token keyword keyword-if">if</span> i <span class="token operator">&lt;=</span> mid<span class="token punctuation">:</span>  <span class="token comment"># 拷贝 left 的剩余元素</span>
         a<span class="token punctuation">[</span>k<span class="token punctuation">:</span>high<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">[</span>i<span class="token punctuation">:</span>mid<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre>
-<p class="dot lefta right6 top-45per bottom-10"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+<p class="dot lefta right6 top-44per bottom-10"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
 
 <!-- Generated by graphviz version 14.1.1 (20251213.1925)
  -->
@@ -2672,7 +2692,7 @@
 </g>
 </svg>
 </p>
-</section><section vertical="true" data-notes="" lineno="969" class="slide " data-source-line="969" data-h="18" data-v="3"><h5 id="归并排序-时间分析">归并排序 时间分析 </h5>
+</section><section vertical="true" data-notes="" lineno="971" class="slide " data-source-line="971" data-h="18" data-v="3"><h5 id="归并排序-时间分析">归并排序 时间分析 </h5>
 <hr>
 <p>设将两个长度为<span class="mathjax-exps">$n/2$</span>的有序数组合并的时间为<span class="mathjax-exps">$f(n)$</span></p>
 <ul>
@@ -2697,7 +2717,7 @@
     T(2^t) = \begin{cases} 1, &amp; t = 0 \\ 2 \cdot T (2^{t-1}) + c \cdot 2^t, &amp; t &gt; 0 \end{cases}
 \end{align}
 </p>
-</section><section vertical="true" data-notes="" lineno="1003" class="slide " data-source-line="1003" data-h="18" data-v="4"><h5 id="归并排序-时间分析-1">归并排序 时间分析 </h5>
+</section><section vertical="true" data-notes="" lineno="1005" class="slide " data-source-line="1005" data-h="18" data-v="4"><h5 id="归并排序-时间分析-1">归并排序 时间分析 </h5>
 <hr>
 <p>
 \begin{align}
@@ -2753,7 +2773,7 @@
 </tbody>
 </table>
 </div>
-</section></section><section><section data-notes="" lineno="1039" class="slide " data-source-line="1039" data-h="19" data-v="0"><h5 id="快速排序">快速排序 </h5>
+</section></section><section><section data-notes="" lineno="1041" class="slide " data-source-line="1041" data-h="19" data-v="0"><h5 id="快速排序">快速排序 </h5>
 <hr>
 <p><mark>分治</mark>：将原问题分成若干同类型、规模更小的子问题<mark>递归</mark>求解</p>
 <ul>
@@ -2761,7 +2781,7 @@
 <li>治：分别对子数组<span class="mathjax-exps">$a[low, \ldots, m-1]$</span>和<span class="mathjax-exps">$a[m+1, \ldots, high]$</span>进行递归排序</li>
 <li>合：什么也不做</li>
 </ul>
-<pre data-role="codeBlock" data-info="py line_begin=95 line_end=102 class=&quot;left2 line-numbers top2&quot;" class="language-python py left2 line-numbers top2"><span class="token keyword keyword-def">def</span> <span class="token function">quick_sort</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">,</span> low<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> high<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+<pre data-role="codeBlock" data-info="py line_begin=117 line_end=124 class=&quot;line-numbers top2&quot;" class="language-python py line-numbers top2"><span class="token keyword keyword-def">def</span> <span class="token function">quick_sort</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">,</span> low<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> high<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
     <span class="token keyword keyword-if">if</span> low <span class="token operator">&lt;</span> high<span class="token punctuation">:</span>
         <span class="token comment"># 分：计算主元位置并将其它元素挪到主元左右</span>
         m <span class="token operator">=</span> partition<span class="token punctuation">(</span>a<span class="token punctuation">,</span> low<span class="token punctuation">,</span> high<span class="token punctuation">)</span>
@@ -2770,9 +2790,9 @@
         quick_sort<span class="token punctuation">(</span>a<span class="token punctuation">,</span> m<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> high<span class="token punctuation">)</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre>
 <p class="footnote book"> 快速排序由英国计算机学家 Tony Hoare (1980 年图灵奖得主) 于 1959 年提出，迄今依然是最流行的排序算法</p>
-</section><section vertical="true" data-notes="" lineno="1055" class="slide " data-source-line="1055" data-h="19" data-v="1"><h5 id="快速排序-1">快速排序 </h5>
+</section><section vertical="true" data-notes="" lineno="1057" class="slide " data-source-line="1057" data-h="19" data-v="1"><h5 id="快速排序-1">快速排序 </h5>
 <hr>
-<pre data-role="codeBlock" data-info="py line_begin=95 line_end=102 class=&quot;left2 line-numbers top0 bottom-10&quot;" class="language-python py left2 line-numbers top0 bottom-10"><span class="token keyword keyword-def">def</span> <span class="token function">quick_sort</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">,</span> low<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> high<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+<pre data-role="codeBlock" data-info="py line_begin=117 line_end=124 class=&quot;line-numbers&quot;" class="language-python py line-numbers"><span class="token keyword keyword-def">def</span> <span class="token function">quick_sort</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">,</span> low<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> high<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
     <span class="token keyword keyword-if">if</span> low <span class="token operator">&lt;</span> high<span class="token punctuation">:</span>
         <span class="token comment"># 分：计算主元位置并将其它元素挪到主元左右</span>
         m <span class="token operator">=</span> partition<span class="token punctuation">(</span>a<span class="token punctuation">,</span> low<span class="token punctuation">,</span> high<span class="token punctuation">)</span>
@@ -2780,7 +2800,7 @@
         quick_sort<span class="token punctuation">(</span>a<span class="token punctuation">,</span> low<span class="token punctuation">,</span> m<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
         quick_sort<span class="token punctuation">(</span>a<span class="token punctuation">,</span> m<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> high<span class="token punctuation">)</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre>
-<p class="dot lefta right2 top-8 bottom-10"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+<p class="dot lefta right2 top-18"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
 
 <!-- Generated by graphviz version 14.1.1 (20251213.1925)
  -->
@@ -2989,9 +3009,9 @@
 </g>
 </svg>
 </p>
-</section><section vertical="true" data-notes="" lineno="1065" class="slide " data-source-line="1065" data-h="19" data-v="2"><h5 id="快速排序-2">快速排序 </h5>
+</section><section vertical="true" data-notes="" lineno="1067" class="slide " data-source-line="1067" data-h="19" data-v="2"><h5 id="快速排序-2">快速排序 </h5>
 <hr>
-<pre data-role="codeBlock" data-info="py line_begin=74 line_end=93 class=&quot;left2 line-numbers top0 bottom0&quot;" class="language-python py left2 line-numbers top0 bottom0"><span class="token keyword keyword-def">def</span> <span class="token function">partition</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">,</span> low<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> high<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+<pre data-role="codeBlock" data-info="py line_begin=96 line_end=115 class=&quot;line-numbers&quot;" class="language-python py line-numbers"><span class="token keyword keyword-def">def</span> <span class="token function">partition</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">,</span> low<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> high<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span><span class="token punctuation">:</span>
     pivot <span class="token operator">=</span> a<span class="token punctuation">[</span>high<span class="token punctuation">]</span>  <span class="token comment"># 最右元素作为主元</span>
 
     <span class="token comment"># i指向小于主元的元素的存放位置 初始为最左</span>
@@ -3011,7 +3031,7 @@
 
     <span class="token keyword keyword-return">return</span> i
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre>
-<p class="dot lefta right10 top-52per bottom-10"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+<p class="dot lefta right16 top-52per"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
 
 <!-- Generated by graphviz version 14.1.1 (20251213.1925)
  -->
@@ -3158,7 +3178,7 @@
 </g>
 </svg>
 </p>
-</section><section vertical="true" data-notes="" lineno="1075" class="slide " data-source-line="1075" data-h="19" data-v="3"><h5 id="快速排序-时间分析">快速排序 时间分析 </h5>
+</section><section vertical="true" data-notes="" lineno="1077" class="slide " data-source-line="1077" data-h="19" data-v="3"><h5 id="快速排序-时间分析">快速排序 时间分析 </h5>
 <hr>
 <p>确定主元正确位置、移动其它元素到主元的左右所需时间为<span class="mathjax-exps">$\Theta(n)$</span></p>
 <p>设长度为<span class="mathjax-exps">$n$</span>的数组的排序时间为<span class="mathjax-exps">$T(n)$</span>，则有递推关系</p>
@@ -3178,7 +3198,7 @@
 <li>三数取中法：随机取三个元素的中位数作为主元</li>
 <li>混合策略：子问题规模较小时切换为插入排序 (实际库函数的常用技巧)</li>
 </ul>
-</section></section><section><section data-notes="" lineno="1102" class="slide " data-source-line="1102" data-h="20" data-v="0"><h5 id="归并排序-vs-快速排序">归并排序 <em>vs.</em> 快速排序 </h5>
+</section></section><section><section data-notes="" lineno="1104" class="slide " data-source-line="1104" data-h="20" data-v="0"><h5 id="归并排序-vs-快速排序">归并排序 <em>vs.</em> 快速排序 </h5>
 <hr>
 <p>归并排序在最坏情况下仍能保证<span class="mathjax-exps">$\Theta(n \lg n)$</span>，理论上最优；快速排序在实际工程实践中更受青睐：</p>
 <ul>
@@ -3229,7 +3249,7 @@
 </tbody>
 </table>
 </div>
-</section><section vertical="true" data-notes="" lineno="1125" class="slide " data-source-line="1125" data-h="20" data-v="1"><h5 id="排序-小结">排序 小结 </h5>
+</section><section vertical="true" data-notes="" lineno="1127" class="slide " data-source-line="1127" data-h="20" data-v="1"><h5 id="排序-小结">排序 小结 </h5>
 <hr>
 <p><span class="mathjax-exps">$\Theta(n \lg n)$</span>和<span class="mathjax-exps">$\Theta(n^2)$</span>的差别有多大？</p>
 <div class="threelines top-2 left8 righta">
@@ -3269,7 +3289,7 @@
     \frac{2 \cdot (10^7)^2 \class{base01}{\text{指令}}}{10^{10} \class{base01}{\text{指令/秒}}} &gt; 5.5 \class{base01}{\text{小时}}, \quad \frac{50 \cdot 10^7 \lg 10^7 \class{base01}{\text{指令}}}{10^7 \class{base01}{\text{指令/秒}}} &lt; 20 \class{base01}{\text{分钟}}
 \end{align}
 </p>
-</section></section><section data-notes="" lineno="1155" class="slide " data-source-line="1155" data-h="21" data-v="0"><h5 id="为什么研究算法">为什么研究算法 </h5>
+</section></section><section data-notes="" lineno="1157" class="slide " data-source-line="1157" data-h="21" data-v="0"><h5 id="为什么研究算法">为什么研究算法 </h5>
 <hr>
 <p>算法是计算技术的核心：它不仅决定程序快慢，更决定问题能否求解</p>
 <ul>
@@ -3283,19 +3303,19 @@
 <li>好的算法让我们能解决更大、更难的问题</li>
 <li>算法素养是每位计算机研究者的核心能力</li>
 </ul>
-</section><section><section data-notes="" lineno="1174" class="slide " data-source-line="1174" data-h="22" data-v="0"><h5 id="本讲目标-2">本讲目标 </h5>
+</section><section><section data-notes="" lineno="1176" class="slide " data-source-line="1176" data-h="22" data-v="0"><h5 id="本讲目标-2">本讲目标 </h5>
 <hr>
 <p>回答三个问题</p>
 <div class="top5"></div>
 <p class="left38per fs28 fragment fade-out" data-fragment-index="1">是什么 what</p>
 <p class="left38per fs28 fragment fade-out" data-fragment-index="1">为什么 why</p>
 <p class="left38per fs28">怎么样 how</p>
-</section><section vertical="true" data-notes="" lineno="1190" class="slide " data-source-line="1190" data-h="22" data-v="1"><h5 id="学习路线图">学习路线图 </h5>
+</section><section vertical="true" data-notes="" lineno="1192" class="slide " data-source-line="1192" data-h="22" data-v="1"><h5 id="学习路线图">学习路线图 </h5>
 <hr>
 <p data-processed="" as="vega" class="vega top-2"><!--?xml version="1.0" encoding="utf-8"?-->
 
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="marks" width="830" height="500" viewBox="0 0 830 500"><g fill="none" stroke-miterlimit="10" transform="translate(180,50)"><g class="mark-group role-frame root" role="graphics-object" aria-roledescription="group mark container"><g transform="translate(0,0)"><path class="background" aria-hidden="true" d="M0,0h600v400h-600Z"></path><g><g class="mark-path role-mark" role="graphics-symbol" aria-roledescription="path mark container"><path transform="translate(0,0)" d="M0,233.33333333333334C125,233.33333333333334 125,100 250,100" stroke="#586e75"></path><path transform="translate(0,0)" d="M0,233.33333333333334C125,233.33333333333334 125,266.6666666666667 250,266.6666666666667" stroke="#586e75"></path><path transform="translate(0,0)" d="M0,233.33333333333334C125,233.33333333333334 125,366.6666666666667 250,366.6666666666667" stroke="#586e75"></path><path transform="translate(0,0)" d="M250,100C375,100 375,33.333333333333336 500,33.333333333333336" stroke="#586e75"></path><path transform="translate(0,0)" d="M250,100C375,100 375,100 500,100" stroke="#586e75"></path><path transform="translate(0,0)" d="M250,100C375,100 375,166.66666666666669 500,166.66666666666669" stroke="#586e75"></path><path transform="translate(0,0)" d="M250,266.6666666666667C375,266.6666666666667 375,233.33333333333334 500,233.33333333333334" stroke="#586e75"></path><path transform="translate(0,0)" d="M250,266.6666666666667C375,266.6666666666667 375,300 500,300" stroke="#586e75"></path><path transform="translate(0,0)" d="M250,366.6666666666667C375,366.6666666666667 375,366.6666666666667 500,366.6666666666667" stroke="#586e75"></path></g><g class="mark-symbol role-mark" role="graphics-symbol" aria-roledescription="symbol mark container"><path transform="translate(0,233.33333333333334)" d="M5,0A5,5,0,1,1,-5,0A5,5,0,1,1,5,0" fill="rgb(0, 0, 4)" stroke="#fff"></path><path transform="translate(250,100)" d="M5,0A5,5,0,1,1,-5,0A5,5,0,1,1,5,0" fill="rgb(182, 55, 122)" stroke="#fff"></path><path transform="translate(500,33.333333333333336)" d="M5,0A5,5,0,1,1,-5,0A5,5,0,1,1,5,0" fill="rgb(252, 253, 191)" stroke="#fff"></path><path transform="translate(500,100)" d="M5,0A5,5,0,1,1,-5,0A5,5,0,1,1,5,0" fill="rgb(252, 253, 191)" stroke="#fff"></path><path transform="translate(500,166.66666666666669)" d="M5,0A5,5,0,1,1,-5,0A5,5,0,1,1,5,0" fill="rgb(252, 253, 191)" stroke="#fff"></path><path transform="translate(250,266.6666666666667)" d="M5,0A5,5,0,1,1,-5,0A5,5,0,1,1,5,0" fill="rgb(182, 55, 122)" stroke="#fff"></path><path transform="translate(500,233.33333333333334)" d="M5,0A5,5,0,1,1,-5,0A5,5,0,1,1,5,0" fill="rgb(252, 253, 191)" stroke="#fff"></path><path transform="translate(500,300)" d="M5,0A5,5,0,1,1,-5,0A5,5,0,1,1,5,0" fill="rgb(252, 253, 191)" stroke="#fff"></path><path transform="translate(250,366.6666666666667)" d="M5,0A5,5,0,1,1,-5,0A5,5,0,1,1,5,0" fill="rgb(182, 55, 122)" stroke="#fff"></path><path transform="translate(500,366.6666666666667)" d="M5,0A5,5,0,1,1,-5,0A5,5,0,1,1,5,0" fill="rgb(252, 253, 191)" stroke="#fff"></path></g><g class="mark-text role-mark" role="graphics-object" aria-roledescription="text mark container"><text text-anchor="end" transform="translate(-7,240.33333333333334)" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="22px" font-weight="600" fill="#b58900" opacity="1">算法设计与分析</text><text text-anchor="end" transform="translate(243,107)" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="22px" font-weight="600" fill="#b58900" opacity="1">化整为零</text><text text-anchor="start" transform="translate(507,40.333333333333336)" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="22px" font-weight="600" fill="#b58900" opacity="1">分治</text><text text-anchor="start" transform="translate(507,107)" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="22px" font-weight="600" fill="#b58900" opacity="1">动态规划</text><text text-anchor="start" transform="translate(507,173.66666666666669)" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="22px" font-weight="600" fill="#b58900" opacity="1">贪心</text><text text-anchor="end" transform="translate(243,273.6666666666667)" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="22px" font-weight="600" fill="#b58900" opacity="1">穷举搜索</text><text text-anchor="start" transform="translate(507,240.33333333333334)" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="22px" font-weight="600" fill="#b58900" opacity="1">回溯</text><text text-anchor="start" transform="translate(507,307)" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="22px" font-weight="600" fill="#b58900" opacity="1">分支限界</text><text text-anchor="end" transform="translate(243,373.6666666666667)" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="22px" font-weight="600" fill="#b58900" opacity="1">迭代改进</text><text text-anchor="start" transform="translate(507,373.6666666666667)" font-family="YsabeauText, FZFWZhuZiGuDianSLMC" font-size="22px" font-weight="600" fill="#b58900" opacity="1">最大流</text></g></g><path class="foreground" aria-hidden="true" d="" display="none"></path></g></g></g></svg></p>
-</section></section><section data-notes="" lineno="1198" class="slide " data-source-line="1198" data-h="23" data-v="0"><h5 id="作业">作业 </h5>
+</section></section><section data-notes="" lineno="1200" class="slide " data-source-line="1200" data-h="23" data-v="0"><h5 id="作业">作业 </h5>
 <hr>
 <p>课外阅读：算法导论 4ed 前两章</p>
 <p>习题：1.2-2、1.2-3、2.1-3、2.1-4</p>

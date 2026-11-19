@@ -16,13 +16,12 @@
 
 ---
 
-算法导论 4ed
+算法导论 3^rd^
 
-计算题：14.2-1、14.4-1、14.5-2
+16.1-4、16.2-7、16.3-3、16-1
 
-设计题：14.1-3、14-9、14-11
-
-证明题：14.2-5、14.3-5
+求以下背包问题的最优解：
+$n=7$，$M=15$，$\pv = [10,5,15,7,6,18,3]$，$\wv = [2,3,5,7,1,4,1]$
 
 
 pdf-merge -i part1-cover.pdf part1-main.pdf part2-cover.pdf part2-main.pdf part3-cover.pdf part3-main.pdf part4-cover.pdf part4-main.pdf part5-cover.pdf part5-main.pdf part6-cover.pdf part6-main1.pdf part6-main2.pdf part7-cover.pdf part7-main.pdf part8-cover.pdf part8-main1.pdf part8-main2.pdf part9-cover.pdf part9-main.pdf -o 第一册-技术资料1.pdf

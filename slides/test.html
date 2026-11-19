@@ -56,131 +56,102 @@
 </div>
     <div class="reveal">
       <div class="slides">
-        <section><section data-notes="" lineno="27" class="slide " data-source-line="27" data-h="0" data-v="0"><h5 id="子集和数">子集和数 </h5>
+        <section><section data-notes="" lineno="27" class="slide " data-source-line="27" data-h="0" data-v="0"><h5 id="另一改进思路">另一改进思路 </h5>
 <hr>
-<p>输入：<span class="mathjax-exps">$n$</span>个正整数的集合<span class="mathjax-exps">$W = \{ w_1, w_2, \ldots, w_n \}$</span>和正整数<span class="mathjax-exps">$M$</span></p>
-<div class="top-2"></div>
-<p>输出：<span class="mathjax-exps">$W$</span>中的和数等于<span class="mathjax-exps">$M$</span>的所有子集</p>
-<p>例 1：</p>
+<p>子数组<span class="mathjax-exps">$a[low, ..., high]$</span>的最大子数组为下面三者中的最大者：</p>
 <ul>
-<li><span class="mathjax-exps">$n=4$</span>，<span class="mathjax-exps">$(w_1, w_2, w_3, w_4) = (7, 11, 13, 24)$</span>，<span class="mathjax-exps">$M = 31$</span></li>
-<li>子集：<span class="mathjax-exps">$(7, 11, 13)$</span>、<span class="mathjax-exps">$(7, 24)$</span></li>
+<li><span class="mathjax-exps">$a[low, ..., mid]$</span>的最大子数组</li>
+<li><span class="mathjax-exps">$a[mid + 1, ..., high]$</span>的最大子数组</li>
+<li>跨越中点的最大子数组</li>
 </ul>
-<div class="top2"></div>
-<p>例 2：</p>
-<ul>
-<li><span class="mathjax-exps">$n=6$</span>，<span class="mathjax-exps">$(w_1, w_2, w_3, w_4, w_5, w_6) = (5, 10, 12, 13, 15, 18)$</span>，<span class="mathjax-exps">$M = 30$</span></li>
-<li>子集：<span class="mathjax-exps">$(5, 10, 15)$</span>、<span class="mathjax-exps">$(5, 12, 13)$</span>、<span class="mathjax-exps">$(12,18)$</span></li>
-</ul>
-</section><section vertical="true" data-notes="" lineno="51" class="slide " data-source-line="51" data-h="0" data-v="1"><h5 id="子集和数-分治">子集和数 分治 </h5>
-<hr>
-<p>子问题：<span class="mathjax-exps">$\{ w_i, w_{i+1}, \ldots, w_n \}$</span>的子集和为<span class="mathjax-exps">$m$</span></p>
-<p class="fragment">令$ss[i, m]$表示子问题是否有解，$ss[1, M]$即为所求目标</p>
-<ul>
-    <li class="fragment">若$w[i]$不是和为$m$的加数之一，则$ss[i, m] = ss[i+1, m]$</li>
-    <li class="fragment">若$w[i]$是和为$m$的加数之一，则$ss[i, m] = ss[i+1, m-w[i]]$</li>
-</ul>
-<div class="top2"></div>
-<p class="fragment">综上，$ss[i, m] = ss[i+1, m] \vee ss[i+1, m-w[i]]$</p>
-<p class="fragment">$i$从$1$开始每增大$1$，产生两个新的子问题，子问题总数为$2^n$</p>
-</section></section><section><section data-notes="" lineno="72" class="slide " data-source-line="72" data-h="1" data-v="0"><h5 id="子集和数-动态规划">子集和数 动态规划 </h5>
-<hr>
-<p>子问题：<span class="mathjax-exps">$\{ w_i, w_{i+1}, \ldots, w_n \}$</span>的子集和为<span class="mathjax-exps">$m$</span></p>
-<p>令<span class="mathjax-exps">$ss[i, m]$</span>表示子问题是否有解，<span class="mathjax-exps">$ss[1, M]$</span>即为所求目标</p>
-<p><span class="mathjax-exps">$ss[i, m] = ss[i+1, m] \vee ss[i+1, m-w[i]]$</span></p>
-<p class="fragment">边界：</p>
-<ul>
-    <li class="fragment">若$m = 0$，$ss[i, m]$恒为真</li>
-    <li class="fragment">若$m &lt; 0$或$i&gt;n$，$ss[i, m]$恒为假</li>
-</ul>
-<div class="top2"></div>
-<p class="fragment">优化 (减少一个子问题)：</p>
-<ul>
-    <li class="fragment">若$m &lt; w[i]$，则$w[i]$必然不是加数之一，$ss[i, m] = ss[i+1, m]$</li>
-</ul>
-</section><section vertical="true" data-notes="" lineno="99" class="slide " data-source-line="99" data-h="1" data-v="1"><h5 id="子集和数-动态规划-1">子集和数 动态规划 </h5>
-<hr>
-<p>子问题：<span class="mathjax-exps">$\{ w_i, w_{i+1}, \ldots, w_n \}$</span>的子集和为<span class="mathjax-exps">$m$</span></p>
-<p>令<span class="mathjax-exps">$ss[i, m]$</span>表示子问题是否有解，<span class="mathjax-exps">$ss[1, M]$</span>即为所求目标</p>
+<p>其中跨越中点的最大子数组的起始索引<span class="mathjax-exps">$i$</span>需要从<span class="mathjax-exps">$mid$</span>向前遍历确定；结束索引<span class="mathjax-exps">$j$</span>需要从<span class="mathjax-exps">$mid + 1$</span>向后遍历确定，因此<span class="mathjax-exps">$f(n) = \Theta(n)$</span>，从而</p>
 <p>
 \begin{align}
-    ss[i, m] = \begin{cases} \text{True}, &amp; m = 0 \\ \text{False}, &amp; m &lt; 0 ~ 或 ~ i &gt; n \\ ss[i+1, m], &amp; m &lt; w_i \\ ss[i+1, m] \vee ss[i+1, m-w_i], &amp; 其它 \end{cases}
+    T(n) = 2 \cdot T (n/2) + f(n) \Longrightarrow T(n) = \Theta(n \lg n)
 \end{align}
 </p>
 <div class="top2"></div>
-<ul>
-<li>表<span class="mathjax-exps">$ss$</span>的大小为<span class="mathjax-exps">$n \times (M+1)$</span>，元素为布尔值</li>
-<li>表第<span class="mathjax-exps">$0$</span>列全部为真</li>
-<li>第<span class="mathjax-exps">$i$</span>行依赖第<span class="mathjax-exps">$i+1$</span>行的元素，填表时从最后一行往前填</li>
-</ul>
-</section></section><section><section data-notes="" lineno="121" class="slide " data-source-line="121" data-h="2" data-v="0"><h5 id="子集和数-实现">子集和数 实现 </h5>
+<p>根据主定理，要想改进<span class="mathjax-exps">$T(n)$</span>，需优化<span class="mathjax-exps">$f(n)$</span></p>
+</section><section vertical="true" data-notes="" lineno="51" class="slide " data-source-line="51" data-h="0" data-v="1"><h5 id="另一改进思路-1">另一改进思路 </h5>
 <hr>
-<p>令<span class="mathjax-exps">$ss[i, m]$</span>表示子问题是否有解</p>
+<p>对任意子数组<span class="mathjax-exps">$a[l, ..., r]$</span></p>
+<ul>
+<li>若维护以<span class="mathjax-exps">$l$</span>为起始索引的最大子数组的和 (最大前缀和) 以及最大前缀的结束索引 (最大前缀终点)，则确定<span class="mathjax-exps">$j$</span>只需<span class="mathjax-exps">$\Theta(1)$</span>的时间 (将<span class="mathjax-exps">$mid+1$</span>看作<span class="mathjax-exps">$l$</span>)</li>
+<li>若维护以<span class="mathjax-exps">$r$</span>为结束索引的最大子数组的和 (最大后缀和) 以及最大后缀的起始索引 (最大后缀起点)，则确定<span class="mathjax-exps">$i$</span>只需<span class="mathjax-exps">$\Theta(1)$</span>的时间 (将<span class="mathjax-exps">$mid$</span>看作<span class="mathjax-exps">$r$</span>)</li>
+</ul>
+<div class="top2"></div>
+<p>对每个子数组，还需要维护最大前缀、最大后缀</p>
+<ul>
+<li><span class="mathjax-exps">$a[l, ..., r]$</span>的最大前缀要么等于<span class="mathjax-exps">$a[l, ..., m]$</span>的最大前缀，要么等于<span class="mathjax-exps">$a[l, ..., m]$</span>加上<span class="mathjax-exps">$a[m + 1, ..., r]$</span>的最大前缀</li>
+<li><span class="mathjax-exps">$a[l, ..., r]$</span>的最大后缀要么等于<span class="mathjax-exps">$a[m+1, ..., r]$</span>的最大后缀，要么等于<span class="mathjax-exps">$a[l, ..., m]$</span>的最大后缀加上<span class="mathjax-exps">$a[m + 1, ..., r]$</span></li>
+</ul>
+<div class="top2"></div>
+<p>对每个子数组，还需要维护全部元素和</p>
+</section><section vertical="true" data-notes="" lineno="73" class="slide " data-source-line="73" data-h="0" data-v="2"><h5 id="另一改进思路-2">另一改进思路 </h5>
+<hr>
+<p>综上，对每个子数组，维护八元组</p>
+<ol>
+<li>子数组总和</li>
+<li>最大前缀和</li>
+<li>最大前缀的结束索引</li>
+<li>最大后缀和</li>
+<li>最大后缀的起始索引</li>
+<li>最大子数组的和</li>
+<li>最大子数组的起始索引</li>
+<li>最大子数组的结束索引</li>
+</ol>
+<div class="top2"></div>
+<p>由<span class="mathjax-exps">$a[low, ..., mid]$</span>和<span class="mathjax-exps">$a[mid+1, ..., high]$</span>的八元组得到<span class="mathjax-exps">$a[low, ..., high]$</span>的八元组只需<span class="mathjax-exps">$\Theta(1)$</span>的时间</p>
 <p>
 \begin{align}
-    ss[i, m] = \begin{cases} \text{True}, &amp; m = 0 \\ \text{False}, &amp; m &lt; 0 ~ 或 ~ i &gt; n \\ ss[i+1, m], &amp; m &lt; w_i \\ ss[i+1, m] \vee ss[i+1, m-w_i], &amp; 其它 \end{cases}
+    T(n) = 2 \cdot T (n/2) + \Theta(1) \Longrightarrow T(n) = \Theta(n)
 \end{align}
 </p>
-<pre data-role="codeBlock" data-info="py line_begin=0 line_end=13 class=&quot;left2 line-numbers top0 bottom0&quot;" class="language-python py left2 line-numbers top0 bottom0"><span class="token keyword keyword-def">def</span> <span class="token function">subset_sum_dp</span><span class="token punctuation">(</span>w<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">,</span> M<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">list</span><span class="token punctuation">[</span><span class="token builtin">list</span><span class="token punctuation">[</span><span class="token builtin">bool</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
-    n <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>w<span class="token punctuation">)</span>
-    ss<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">[</span><span class="token builtin">list</span><span class="token punctuation">[</span><span class="token builtin">bool</span><span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token boolean">False</span><span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token punctuation">(</span>M <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword keyword-for">for</span> _ <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">]</span>
-    ss<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">True</span>  <span class="token comment"># 第0列全为真</span>
-    <span class="token keyword keyword-if">if</span> w<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">&lt;=</span> M<span class="token punctuation">:</span>
-        ss<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>w<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">True</span>  <span class="token comment"># 填最后一行</span>
-    <span class="token keyword keyword-for">for</span> i <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># 倒数第二行 -&gt; 第一行</span>
-        <span class="token keyword keyword-for">for</span> m <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> M <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># 每行 左 -&gt; 右</span>
-            <span class="token keyword keyword-if">if</span> m <span class="token operator">&lt;</span> w<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">:</span>  <span class="token comment"># 如果目标和小于w[i] 只产生一个子问题</span>
-                ss<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>m<span class="token punctuation">]</span> <span class="token operator">=</span> ss<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>m<span class="token punctuation">]</span>
-            <span class="token keyword keyword-else">else</span><span class="token punctuation">:</span>
-                ss<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>m<span class="token punctuation">]</span> <span class="token operator">=</span> ss<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>m<span class="token punctuation">]</span> <span class="token keyword keyword-or">or</span> ss<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>m <span class="token operator">-</span> w<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span>
-    <span class="token keyword keyword-return">return</span> ss
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre>
-</section><section vertical="true" data-notes="" lineno="137" class="slide " data-source-line="137" data-h="2" data-v="1"><h5 id="子集和数-重构解">子集和数 重构解 </h5>
+</section><section vertical="true" data-notes="" lineno="100" class="slide " data-source-line="100" data-h="0" data-v="3"><h5 id="另一改进思路-实现">另一改进思路 实现 </h5>
 <hr>
-<pre data-role="codeBlock" data-info="py line_begin=15 line_end=27 class=&quot;left2 line-numbers top0 bottom0&quot;" class="language-python py left2 line-numbers top0 bottom0"><span class="token keyword keyword-def">def</span> <span class="token function">print_sol</span><span class="token punctuation">(</span>ss<span class="token punctuation">,</span> w<span class="token punctuation">,</span> i<span class="token punctuation">,</span> m<span class="token punctuation">,</span> M<span class="token punctuation">,</span> sol<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword keyword-if">if</span> w<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> m<span class="token punctuation">:</span>  <span class="token comment"># 如果当前目标和等于w[i] 则找到一个解</span>
-        <span class="token keyword keyword-for">for</span> j <span class="token keyword keyword-in">in</span> sol<span class="token punctuation">:</span>
-            <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"</span><span class="token interpolation"><span class="token punctuation">{</span>j<span class="token punctuation">}</span></span><span class="token string"> + "</span></span><span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">""</span><span class="token punctuation">)</span>
-        <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"</span><span class="token interpolation"><span class="token punctuation">{</span>w<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">}</span></span><span class="token string"> = </span><span class="token interpolation"><span class="token punctuation">{</span>M<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
-    <span class="token keyword keyword-else">else</span><span class="token punctuation">:</span>
-        <span class="token keyword keyword-if">if</span> ss<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>m <span class="token operator">-</span> w<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">:</span>  <span class="token comment"># 如果w[i]是加数之一</span>
-            sol<span class="token punctuation">.</span>append<span class="token punctuation">(</span>w<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token comment"># 入栈</span>
-            print_sol<span class="token punctuation">(</span>ss<span class="token punctuation">,</span> w<span class="token punctuation">,</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> m <span class="token operator">-</span> w<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> M<span class="token punctuation">,</span> sol<span class="token punctuation">)</span>
-            sol<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 出栈</span>
-        <span class="token keyword keyword-if">if</span> ss<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>m<span class="token punctuation">]</span><span class="token punctuation">:</span>
-            print_sol<span class="token punctuation">(</span>ss<span class="token punctuation">,</span> w<span class="token punctuation">,</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> m<span class="token punctuation">,</span> M<span class="token punctuation">,</span> sol<span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre>
-</section></section><section data-notes="" lineno="145" class="slide " data-source-line="145" data-h="3" data-v="0"><h5 id="子集和数-效率">子集和数 效率 </h5>
-<hr>
-<pre data-role="codeBlock" data-info="py line_begin=0 line_end=13 class=&quot;left2 line-numbers top0 bottom0&quot; highlight=[&quot;7-8&quot;]" class="language-python py left2 line-numbers top0 bottom0" data-line="7-8"><span class="token keyword keyword-def">def</span> <span class="token function">subset_sum_dp</span><span class="token punctuation">(</span>w<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">,</span> M<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">list</span><span class="token punctuation">[</span><span class="token builtin">list</span><span class="token punctuation">[</span><span class="token builtin">bool</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
-    n <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>w<span class="token punctuation">)</span>
-    ss<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">[</span><span class="token builtin">list</span><span class="token punctuation">[</span><span class="token builtin">bool</span><span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token boolean">False</span><span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token punctuation">(</span>M <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword keyword-for">for</span> _ <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">]</span>
-    ss<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">True</span>  <span class="token comment"># 第0列全为真</span>
-    <span class="token keyword keyword-if">if</span> w<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">&lt;=</span> M<span class="token punctuation">:</span>
-        ss<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>w<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">True</span>  <span class="token comment"># 填最后一行</span>
-    <span class="token keyword keyword-for">for</span> i <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># 倒数第二行 -&gt; 第一行</span>
-        <span class="token keyword keyword-for">for</span> m <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> M <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># 每行 左 -&gt; 右</span>
-            <span class="token keyword keyword-if">if</span> m <span class="token operator">&lt;</span> w<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">:</span>  <span class="token comment"># 如果目标和小于w[i] 只产生一个子问题</span>
-                ss<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>m<span class="token punctuation">]</span> <span class="token operator">=</span> ss<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>m<span class="token punctuation">]</span>
-            <span class="token keyword keyword-else">else</span><span class="token punctuation">:</span>
-                ss<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>m<span class="token punctuation">]</span> <span class="token operator">=</span> ss<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>m<span class="token punctuation">]</span> <span class="token keyword keyword-or">or</span> ss<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>m <span class="token operator">-</span> w<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span>
-    <span class="token keyword keyword-return">return</span> ss
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span><div class="line-highlight-wrapper">
+<pre data-role="codeBlock" data-info="py line_begin=49 line_end=90 class=&quot;line-numbers&quot; highlight=[]" class="language-python py line-numbers" data-line=""><span class="token keyword keyword-def">def</span> <span class="token function">find_max_subarray_dc_linear</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">,</span> low<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> high<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">tuple</span><span class="token punctuation">[</span><span class="token builtin">float</span><span class="token punctuation">,</span> <span class="token builtin">float</span><span class="token punctuation">,</span> <span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token builtin">float</span><span class="token punctuation">,</span> <span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token builtin">float</span><span class="token punctuation">,</span> <span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+    <span class="token comment"># 返回8项：子数组总和</span>
+    <span class="token comment"># 最大前缀和 最大前缀的结束索引</span>
+    <span class="token comment"># 最大后缀和 最大后缀的起始索引</span>
+    <span class="token comment"># 最大子数组的和 最大子数组的起始索引 最大子数组的结束索引</span>
+    <span class="token keyword keyword-if">if</span> low <span class="token operator">==</span> high<span class="token punctuation">:</span>
+        <span class="token keyword keyword-return">return</span> a<span class="token punctuation">[</span>low<span class="token punctuation">]</span><span class="token punctuation">,</span> a<span class="token punctuation">[</span>low<span class="token punctuation">]</span><span class="token punctuation">,</span> low<span class="token punctuation">,</span> a<span class="token punctuation">[</span>low<span class="token punctuation">]</span><span class="token punctuation">,</span> low<span class="token punctuation">,</span> a<span class="token punctuation">[</span>low<span class="token punctuation">]</span><span class="token punctuation">,</span> low<span class="token punctuation">,</span> high
 
+    mid <span class="token operator">=</span> <span class="token punctuation">(</span>low <span class="token operator">+</span> high<span class="token punctuation">)</span> <span class="token operator">//</span> <span class="token number">2</span>
 
+    <span class="token comment"># 递归求解左半</span>
+    l_total<span class="token punctuation">,</span> l_pre_sum<span class="token punctuation">,</span> l_pre_end<span class="token punctuation">,</span> l_suf_sum<span class="token punctuation">,</span> l_suf_start<span class="token punctuation">,</span> l_best<span class="token punctuation">,</span> l_low<span class="token punctuation">,</span> l_high <span class="token operator">=</span> find_max_subarray_dc_linear<span class="token punctuation">(</span>
+        a<span class="token punctuation">,</span> low<span class="token punctuation">,</span> mid<span class="token punctuation">)</span>
 
+    <span class="token comment"># 递归求解右半</span>
+    r_total<span class="token punctuation">,</span> r_pre_sum<span class="token punctuation">,</span> r_pre_end<span class="token punctuation">,</span> r_suf_sum<span class="token punctuation">,</span> r_suf_start<span class="token punctuation">,</span> r_best<span class="token punctuation">,</span> r_low<span class="token punctuation">,</span> r_high <span class="token operator">=</span> find_max_subarray_dc_linear<span class="token punctuation">(</span>
+        a<span class="token punctuation">,</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> high<span class="token punctuation">)</span>
 
+    <span class="token comment"># 子数组总和 = 左半子数组总和 + 右半子数组总和</span>
+    total <span class="token operator">=</span> l_total <span class="token operator">+</span> r_total
 
-<div aria-hidden="true" class="line-highlight" data-range="7-8" data-start="7" data-end="8">
+    <span class="token comment"># 最大前缀和 = max{左半子数组的最大前缀和, 左半子数组总和+右半子数组的最大前缀和}</span>
+    pre_sum<span class="token punctuation">,</span> pre_end <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>
+        <span class="token punctuation">(</span>l_pre_sum<span class="token punctuation">,</span> l_pre_end<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">(</span>l_total <span class="token operator">+</span> r_pre_sum<span class="token punctuation">,</span> r_pre_end<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        key<span class="token operator">=</span><span class="token keyword keyword-lambda">lambda</span> x<span class="token punctuation">:</span> x<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
 
-</div></div></pre>
-<p>二重 for 循环，复杂度<span class="mathjax-exps">$O(nM)$</span></p>
-<ul>
-    <li class="fragment">若$M \ll 2^n$，动态规划可以带来显著收益</li>
-    <li class="fragment">若$M \ge 2^n$，动态规划不如分治，计算了大量分治不会考虑的子问题</li>
-</ul>
-<p class="conclusion fragment top4"> 不要无脑动态规划，它并不是总能有提升的</p>
-</section>
+    <span class="token comment"># 最大后缀和 = max{右半子数组的最大后缀和, 右半子数组总和+左半子数组的最大后缀和}</span>
+    suf_sum<span class="token punctuation">,</span> suf_start <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>
+        <span class="token punctuation">(</span>r_suf_sum<span class="token punctuation">,</span> r_suf_start<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">(</span>r_total <span class="token operator">+</span> l_suf_sum<span class="token punctuation">,</span> l_suf_start<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        key<span class="token operator">=</span><span class="token keyword keyword-lambda">lambda</span> x<span class="token punctuation">:</span> x<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+    <span class="token comment"># 最大子数组的和 = max{ 左半最大子数组的和, 右半最大子数组的和, 左半子数组的最大后缀和 + 右半子数组的最大前缀和 }</span>
+    best_sum<span class="token punctuation">,</span> best_low<span class="token punctuation">,</span> best_high <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>
+        <span class="token punctuation">(</span>l_best<span class="token punctuation">,</span> l_low<span class="token punctuation">,</span> l_high<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">(</span>r_best<span class="token punctuation">,</span> r_low<span class="token punctuation">,</span> r_high<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">(</span>l_suf_sum <span class="token operator">+</span> r_pre_sum<span class="token punctuation">,</span> l_suf_start<span class="token punctuation">,</span> r_pre_end<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        key<span class="token operator">=</span><span class="token keyword keyword-lambda">lambda</span> x<span class="token punctuation">:</span> x<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+    <span class="token keyword keyword-return">return</span> total<span class="token punctuation">,</span> pre_sum<span class="token punctuation">,</span> pre_end<span class="token punctuation">,</span> suf_sum<span class="token punctuation">,</span> suf_start<span class="token punctuation">,</span> best_sum<span class="token punctuation">,</span> best_low<span class="token punctuation">,</span> best_high
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre>
+</section></section>
       </div>
     </div>
     

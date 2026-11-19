@@ -1,4 +1,4 @@
-<div class="threelines left4 righta top-1 bottom0">
+<div class="threelines">
 
 | $p_1$ | $p_2$ | $p_3$ | $p_4$ | $p_5$ | $q_0$ | $q_1$ | $q_2$ | $q_3$ | $q_4$ | $q_5$ |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |

@@ -6,18 +6,25 @@ def fibo_rec(n: int) -> int:
     return fibo_rec(n - 1) + fibo_rec(n - 2)
 
 
+n = 21
+print(fibo_rec(n))
+
+
 def fibo_dp_memoized(n: int) -> int:
     memo: list[int | None] = [None] * (n + 1)
     memo[0:2] = [0, 1]
 
-    def solve(k: int) -> int:
+    def _fibo_dp_memoized(k: int) -> int:
         if memo[k] is not None:
             return memo[k]
 
-        memo[k] = solve(k - 1) + solve(k - 2)
+        memo[k] = _fibo_dp_memoized(k - 1) + _fibo_dp_memoized(k - 2)
         return memo[k]
 
-    return solve(n)
+    return _fibo_dp_memoized(n)
+
+
+print(fibo_dp_memoized(n))
 
 
 def fibo_dp_iter(n: int) -> int:
@@ -31,6 +38,9 @@ def fibo_dp_iter(n: int) -> int:
     return F[n]
 
 
+print(fibo_dp_iter(n))
+
+
 def fibo_dp_iter2(n: int) -> int:
     if n <= 1:
         return n
@@ -41,25 +51,23 @@ def fibo_dp_iter2(n: int) -> int:
     return curr
 
 
-def fibo_rec_faster(n: int) -> tuple[int, int]:
+print(fibo_dp_iter2(n))
 
-    def _fib_pair(m) -> tuple[int, int]:  # 返回 F(m), F(m+1)
+
+def fibo_rec_faster(n: int) -> int:
+
+    def _fibo_rec_faster(m: int) -> tuple[int, int]:
         if m == 0:
             return 0, 1
 
-        a, b = _fib_pair(m >> 1)  # a=F(k), b=F(k+1)
-        c = a * (2 * b - a)       # F(2k)
-        d = a**2 + b**2           # F(2k+1)
+        a, b = _fibo_rec_faster(m >> 1)  # a=F(k), b=F(k+1)
+        c = a * (2 * b - a)              # F(2k)
+        d = a**2 + b**2                  # F(2k+1)
         if m & 1:
             return d, c + d
         return c, d
 
-    return _fib_pair(n)[0]
+    return _fibo_rec_faster(n)[0]
 
 
-n = 21
-print(fibo_rec(n))
-print(fibo_dp_memoized(n))
-print(fibo_dp_iter(n))
-print(fibo_dp_iter2(n))
 print(fibo_rec_faster(n))

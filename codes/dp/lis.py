@@ -1,6 +1,3 @@
-from bisect import bisect_left
-
-
 def lis_dp(X: list) -> tuple[list[int], list[int]]:
     n = len(X)
     d, b = [1] * n, [-1] * n
@@ -29,6 +26,7 @@ def restore_lis_rec(X: list, b: list[int], index: int, LIS: list) -> None:
 
 
 def lis_dp_plus(X: list) -> tuple[list[int], list[int]]:
+    from bisect import bisect_left
     n = len(X)
     e = []
     b = [-1] * n  # b[i]记录i在LIS中的前一个元素的值

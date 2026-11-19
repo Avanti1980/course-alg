@@ -14,13 +14,19 @@ def find_max_subarray_dp(a: list) -> tuple[int, int, float]:
     return s[max_index], max_index, d[max_index]
 
 
-def find_max_subarray_dp2(a: list) -> tuple[int, int, float]:
+a = [13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7]
+print(find_max_subarray_dp(a))
+# ----------------------------------
+# (7, 10, 43)
+
+
+def find_max_subarray_space_opt(a: list) -> tuple[int, int, float]:
     n = len(a)
-    cur_sum = a[0]          # 以当前元素结尾的最大子数组和
-    cur_start = 0           # 该段的起始下标
-    best_sum = cur_sum      # 全局最优和
-    best_start = 0          # 全局最优段起始
-    best_end = 0            # 全局最优段结束
+    cur_sum = a[0]      # 以当前元素结尾的最大子数组和
+    cur_start = 0       # 该段的起始下标
+    best_sum = cur_sum  # 全局最优和
+    best_start = 0      # 全局最优段起始
+    best_end = 0        # 全局最优段结束
     for i in range(1, n):
         if cur_sum >= 0:
             cur_sum += a[i]  # a[i]接在a[j,...,i-1]后面
@@ -34,8 +40,6 @@ def find_max_subarray_dp2(a: list) -> tuple[int, int, float]:
     return best_start, best_end, best_sum
 
 
-a = [13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7]
-print(find_max_subarray_dp(a))
-print(find_max_subarray_dp2(a))
+print(find_max_subarray_space_opt(a))
 # ----------------------------------
 # (7, 10, 43)
