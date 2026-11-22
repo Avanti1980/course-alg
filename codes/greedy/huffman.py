@@ -2,17 +2,18 @@ import heapq  # python自带的二叉堆库
 
 
 class HuffmanNode:  # 编码树结点类
-    def __init__(self, symbol, frequency):
+    def __init__(self, symbol: str, frequency: int) -> None:
         self.symbol = symbol
         self.frequency = frequency
         self.left = None
         self.right = None
 
-    def __lt__(self, other):  # 比较两个HuffmanNode实例时调用
+    def __lt__(self, other: HuffmanNode) -> bool:  # 比较两个HuffmanNode实例时调用
         return self.frequency < other.frequency
 
 
-def get_min_freq(l):  # 删除并返回结点列表中频率最小的结点
+def get_min_freq(l: list[HuffmanNode]) -> HuffmanNode:
+    # 删除并返回结点列表中频率最小的结点
     node, index = l[0], 0
     for i in range(1, len(l)):
         if l[i] < node:
@@ -20,13 +21,16 @@ def get_min_freq(l):  # 删除并返回结点列表中频率最小的结点
     return l.pop(index)
 
 
-def merge(left_node, right_node):  # 合并两个结点
-    merged_node = HuffmanNode(None, left_node.frequency + right_node.frequency)  # 合并两个结点
+def merge(left_node: HuffmanNode, right_node: HuffmanNode) -> HuffmanNode:
+    # 合并两个结点
+    merged_node = HuffmanNode(
+        None, left_node.frequency + right_node.frequency)  # 合并两个结点
     merged_node.left, merged_node.right = left_node, right_node
     return merged_node
 
 
-def build_huffman_tree_elementary(C):  # 用列表保存结点
+def build_huffman_tree_elementary(C: dict) -> HuffmanNode:
+    # 用列表保存结点
     l = [HuffmanNode(symbol, frequency) for symbol, frequency in C.items()]
     while len(l) > 1:  # 最终l中只剩编码树的根结点
         left_node = get_min_freq(l)  # 寻找频率最小的结点
@@ -35,7 +39,8 @@ def build_huffman_tree_elementary(C):  # 用列表保存结点
     return l[0]
 
 
-def build_huffman_tree_advanced(C):  # 用二叉堆保存结点
+def build_huffman_tree_advanced(C: dict) -> HuffmanNode:
+    # 用二叉堆保存结点
     l = [HuffmanNode(symbol, frequency) for symbol, frequency in C.items()]
     heapq.heapify(l)  # 将列表l转换成二叉堆 原地 线性时间
     while len(l) > 1:   # 最终l中只剩编码树的根结点
@@ -45,7 +50,8 @@ def build_huffman_tree_advanced(C):  # 用二叉堆保存结点
     return l[0]
 
 
-def huffman_codes(node, current_code="", code_map=None):  # 递归保存字符的编码
+def huffman_codes(node: HuffmanNode, current_code: str = "", code_map: dict = None) -> dict:
+    # 递归保存字符的编码
     if code_map is None:
         code_map = {}
     if node is not None:

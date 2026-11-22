@@ -1,12 +1,13 @@
 import heapq  # python自带的二叉堆库
 
 
-def prim(graph, start):
+def prim(graph: dict, start: str) -> list[tuple[int, str]]:
     min_spanning_tree = []
     in_mst = {start}  # 已在mst中的结点
 
     # 初始点出发的边组成二叉堆
-    h = [(weight, start, neighbor) for neighbor, weight in graph[start].items()]
+    h = [(weight, start, neighbor)
+         for neighbor, weight in graph[start].items()]
     heapq.heapify(h)
 
     while h:
@@ -14,7 +15,7 @@ def prim(graph, start):
         if node2 not in in_mst:  # 若是横跨切割的轻量边
             in_mst.add(node2)
             min_spanning_tree.append((weight, f"{node1} - {node2}"))
-            for node2_neighbor, weight in graph[node2].items(): 
+            for node2_neighbor, weight in graph[node2].items():
                 if node2_neighbor not in in_mst:  # node2出发的横跨切割的边入堆
                     heapq.heappush(h, (weight, node2, node2_neighbor))
 

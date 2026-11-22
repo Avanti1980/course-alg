@@ -1,4 +1,4 @@
-def lis_dp(X: list) -> tuple[list[int], list[int]]:
+def lis(X: list) -> tuple[list[int], list[int]]:
     n = len(X)
     d, b = [1] * n, [-1] * n
     for i in range(1, n):
@@ -9,68 +9,62 @@ def lis_dp(X: list) -> tuple[list[int], list[int]]:
     return d, b
 
 
-def restore_lis_iter(X: list, b: list[int], index: int) -> list:
-    path: list[int] = []
-    while index != -1:
-        path.append(index)
-        index = b[index]
-    path.reverse()
-    return [X[i] for i in path]
-
-
-def restore_lis_rec(X: list, b: list[int], index: int, LIS: list) -> None:
-    if index == -1:
-        return
-    restore_lis_rec(X, b, b[index], LIS)
-    LIS.append(X[index])
-
-
-def lis_dp_plus(X: list) -> tuple[list[int], list[int]]:
-    from bisect import bisect_left
-    n = len(X)
-    e = []
-    b = [-1] * n  # b[i]记录i在LIS中的前一个元素的值
-    for i in range(n):
-        j = bisect_left(e, X[i])  # 在e中对X[i]进行二分查找
-        if j == len(e):  # X[i] > e[-1]
-            if j > 0:
-                b[i] = e[-1]
-            e.append(X[i])  # 将其接在e后面表示找到了更长的递增子序列
-        else:  # e[j-1] < X[i] < e[j]
-            if j > 0:
-                b[i] = e[j - 1]
-            e[j] = X[i]  # 将e[j]改为X[i] 可以改进现有长度为j的递增子序列
-    return e, b
-
-
-def restore_lis_dp_plus(X, e, b):
-    n = len(X)
-    dict = {key: value for key, value in zip(X, range(n))}  # 倒排索引字典 X[i]: i
-    pre = e[-1]  # e的最后一个元素是LIS的最后一个元素
-    LIS = []
-    restore_lis_dp_plus_aux(dict, b, pre, LIS)  # 从最后一个元素开始 向前将LIS构造出来
-    return LIS
-
-
-def restore_lis_dp_plus_aux(dict, b, pre, LIS):
-    if pre < 0:
-        return
-    restore_lis_dp_plus_aux(dict, b, b[dict[pre]], LIS)
-    LIS.append(pre)
+def restore_lis_iter(X: list, b: list[int], idx: int) -> list:
+    LIS: list[int] = []
+    while idx != -1:
+        LIS.append(idx)
+        idx = b[idx]
+    LIS.reverse()
+    return [X[i] for i in LIS]
 
 
 X = [2, 8, 4, 9, 1, 6, 7, 3, 0, 5]
-print("X =", X)
+d, b = lis(X)
+idx = d.index(max(d))
+print(restore_lis_iter(X, b, idx))
+# ----------------------------------
+# [2, 4, 6, 7]
 
-d, b = lis_dp(X)
-LIS = []
-restore_lis_rec(X, b, d.index(max(d)), LIS)
-print("LIS =", LIS)
-print("LIS =", restore_lis_iter(X, b, d.index(max(d))))
 
-e, b = lis_dp_plus(X)
-# print('e: %s' % e)
-# print('b: %s' % b)
+def restore_lis_rec(X: list, b: list[int], idx: int) -> list:
+    LIS: list[int] = []
 
-LIS = restore_lis_dp_plus(X, e, b)
-print("LIS =", LIS)
+    def _restore_lis_rec(idx: int) -> None:
+        if idx == -1:
+            return
+        _restore_lis_rec(b[idx])
+        LIS.append(idx)
+
+    _restore_lis_rec(idx)
+    return [X[i] for i in LIS]
+
+
+print(restore_lis_rec(X, b, idx))
+# ----------------------------------
+# [2, 4, 6, 7]
+
+
+def lis_plus(X: list) -> tuple[list[int], list[int], list[int]]:
+    from bisect import bisect_left
+    e: list[int] = []             # e[i]记录长度为i的递增子序列的末位元素最小值
+    b: list[int] = [-1] * len(X)  # b[i]记录X[i]在LIS中的前驱索引
+    idx: list[int] = []           # idx[i]记录e[i]在X中的索引
+    for i, xi in enumerate(X):
+        j = bisect_left(e, xi)  # 在e中对X[i]进行二分查找
+        if j == len(e):  # X[i] > e[-1]
+            if j > 0:
+                b[i] = idx[-1]
+            e.append(xi)  # 将其接在e后面表示找到了更长的递增子序列
+            idx.append(i)
+        else:  # e[j-1] < X[i] < e[j]
+            if j > 0:
+                b[i] = idx[j - 1]
+            e[j] = xi  # 将e[j]改为X[i] 可以改进现有长度为j的递增子序列
+            idx[j] = i
+    return e, b, idx
+
+
+e, b, idx = lis_plus(X)
+print(restore_lis_iter(X, b, idx[-1]))
+# ----------------------------------
+# [2, 4, 6, 7]

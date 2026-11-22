@@ -1,10 +1,11 @@
-def find(parent, node):  # 返回给定结点所在树的根结点
+def find(parent: dict, node: str) -> str:
+    # 返回给定结点所在树的根结点
     if parent[node] != node:
         parent[node] = find(parent, parent[node])
     return parent[node]
 
 
-def union(parent, size, node1, node2):
+def union(parent: dict, size: int, node1: str, node2: str) -> None:
     root1 = find(parent, node1)
     root2 = find(parent, node2)
 
@@ -17,7 +18,7 @@ def union(parent, size, node1, node2):
             size[root2] += size[root1]
 
 
-def kruskal(graph):
+def kruskal(graph: dict) -> list[tuple[int, str]]:
     min_spanning_tree = []
 
     # 保存图中所有边并排序
