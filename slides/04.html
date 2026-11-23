@@ -2196,9 +2196,9 @@ print_obst<span class="token punctuation">(</span>restore_obst<span class="token
 <p class="fragment" data-fragment-index="2">记$c[i,j]$为$X_i$和$Y_j$的编辑距离</p>
 <p class="fragment" data-fragment-index="3">最后一列分 3 种情况：</p>
 <ul class="fragment" data-fragment-index="4">
-    <li class="fragment" data-fragment-index="4">删除：$x_m$对空格，$c[i,j] = c[i-1,j] + 1$</li>
-    <li class="fragment" data-fragment-index="5">插入：空格对$y_n$，$c[i,j] = c[i,j-1] + 1$</li>
-    <li class="fragment" data-fragment-index="6">替换：$x_m$对$y_n$，$c[i,j] = c[i-1,j-1] + \ib(x_m \neq y_n)$，其中$\ib(\cdot)$为指示函数</li>
+    <li class="fragment" data-fragment-index="4">删除：$x_m$对空格，$c[m,n] = c[m-1,n] + 1$</li>
+    <li class="fragment" data-fragment-index="5">插入：空格对$y_n$，$c[m,n] = c[m,n-1] + 1$</li>
+    <li class="fragment" data-fragment-index="6">替换：$x_m$对$y_n$，$c[m,n] = c[m-1,n-1] + \ib(x_m \neq y_n)$，其中$\ib(\cdot)$为指示函数</li>
 </ul>
 <div class="lefta right4 twolines column1-border1-right-solid-head row1-column1-border1-right-solid column2-border1-right-solid-head row1-column2-border1-right-solid column3-border1-right-solid-head row1-column3-border1-right-solid column7-border1-right-solid-head row1-column7-border1-right-solid column5-border1-right-solid-head row1-column5-border1-right-solid top-26per">
 <table>
@@ -2234,9 +2234,9 @@ print_obst<span class="token punctuation">(</span>restore_obst<span class="token
 <p>记<span class="mathjax-exps">$c[i,j]$</span>为<span class="mathjax-exps">$X_i$</span>和<span class="mathjax-exps">$Y_j$</span>的编辑距离</p>
 <p>最后一列分 3 种情况：</p>
 <ul>
-<li>删除：<span class="mathjax-exps">$x_m$</span>对空格，<span class="mathjax-exps">$c[i,j] = c[i-1,j] + 1$</span></li>
-<li>插入：空格对<span class="mathjax-exps">$y_n$</span>，<span class="mathjax-exps">$c[i,j] = c[i,j-1] + 1$</span></li>
-<li>替换：<span class="mathjax-exps">$x_m$</span>对<span class="mathjax-exps">$y_n$</span>，<span class="mathjax-exps">$c[i,j] = c[i-1,j-1] + \ib(x_m \neq y_n)$</span>，其中<span class="mathjax-exps">$\ib(\cdot)$</span>为指示函数</li>
+<li>删除：<span class="mathjax-exps">$x_m$</span>对空格，<span class="mathjax-exps">$c[m,n] = c[m-1,n] + 1$</span></li>
+<li>插入：空格对<span class="mathjax-exps">$y_n$</span>，<span class="mathjax-exps">$c[m,n] = c[m,n-1] + 1$</span></li>
+<li>替换：<span class="mathjax-exps">$x_m$</span>对<span class="mathjax-exps">$y_n$</span>，<span class="mathjax-exps">$c[m,n] = c[m-1,n-1] + \ib(x_m \neq y_n)$</span>，其中<span class="mathjax-exps">$\ib(\cdot)$</span>为指示函数</li>
 </ul>
 <div class="top2"></div>
 <p>3 种情况取最小即为最优</p>
