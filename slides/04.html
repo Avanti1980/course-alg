@@ -2198,7 +2198,7 @@ print_obst<span class="token punctuation">(</span>restore_obst<span class="token
 <ul class="fragment" data-fragment-index="4">
     <li class="fragment" data-fragment-index="4">删除：$x_m$对空格，$c[m,n] = c[m-1,n] + 1$</li>
     <li class="fragment" data-fragment-index="5">插入：空格对$y_n$，$c[m,n] = c[m,n-1] + 1$</li>
-    <li class="fragment" data-fragment-index="6">替换：$x_m$对$y_n$，$c[m,n] = c[m-1,n-1] + \ib(x_m \neq y_n)$，其中$\ib(\cdot)$为指示函数</li>
+    <li class="fragment" data-fragment-index="6">替换：$x_m$对$y_n$，$c[m,n] = c[m-1,n-1] + \ib(x_m \neq y_n)$</li>
 </ul>
 <div class="lefta right4 twolines column1-border1-right-solid-head row1-column1-border1-right-solid column2-border1-right-solid-head row1-column2-border1-right-solid column3-border1-right-solid-head row1-column3-border1-right-solid column7-border1-right-solid-head row1-column7-border1-right-solid column5-border1-right-solid-head row1-column5-border1-right-solid top-26per">
 <table>
@@ -2228,7 +2228,7 @@ print_obst<span class="token punctuation">(</span>restore_obst<span class="token
 </tbody>
 </table>
 </div>
-<p class="footnote info fragment" data-fragment-index="6"> 指示函数在输入条件成立时输出 1，否则输出 0</p>
+<p class="footnote info fragment" data-fragment-index="6"> $\ib(\cdot)$为指示函数 (indicator function)，在输入条件成立时输出 1，否则输出 0</p>
 </section><section vertical="true" data-notes="" lineno="1490" class="slide " data-source-line="1490" data-h="24" data-v="2"><h5 id="递推关系-2">递推关系 </h5>
 <hr>
 <p>记<span class="mathjax-exps">$c[i,j]$</span>为<span class="mathjax-exps">$X_i$</span>和<span class="mathjax-exps">$Y_j$</span>的编辑距离</p>
@@ -2236,7 +2236,7 @@ print_obst<span class="token punctuation">(</span>restore_obst<span class="token
 <ul>
 <li>删除：<span class="mathjax-exps">$x_m$</span>对空格，<span class="mathjax-exps">$c[m,n] = c[m-1,n] + 1$</span></li>
 <li>插入：空格对<span class="mathjax-exps">$y_n$</span>，<span class="mathjax-exps">$c[m,n] = c[m,n-1] + 1$</span></li>
-<li>替换：<span class="mathjax-exps">$x_m$</span>对<span class="mathjax-exps">$y_n$</span>，<span class="mathjax-exps">$c[m,n] = c[m-1,n-1] + \ib(x_m \neq y_n)$</span>，其中<span class="mathjax-exps">$\ib(\cdot)$</span>为指示函数</li>
+<li>替换：<span class="mathjax-exps">$x_m$</span>对<span class="mathjax-exps">$y_n$</span>，<span class="mathjax-exps">$c[m,n] = c[m-1,n-1] + \ib(x_m \neq y_n)$</span></li>
 </ul>
 <div class="top2"></div>
 <p>3 种情况取最小即为最优</p>
@@ -3357,13 +3357,114 @@ sol <span class="token operator">=</span> restore_sol_stack<span class="token pu
     <li class="fragment">若$M \ge 2^n$，动态规划不如分治，计算了大量分治不会考虑的子问题</li>
 </ul>
 <p class="fragment top4"> 不要无脑动态规划，它并不是总能有提升的</p>
-</section><section data-notes="" lineno="2059" class="slide " data-source-line="2059" data-h="35" data-v="0"><h5 id="作业">作业 </h5>
+</section><section><section data-notes="" lineno="2059" class="slide " data-source-line="2059" data-h="35" data-v="0"><h5 id="各问题复杂度一览">各问题复杂度一览 </h5>
+<hr>
+<div class="threelines">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">问题</th>
+<th style="text-align:center">子问题数</th>
+<th style="text-align:center">子问题时间复杂度</th>
+<th style="text-align:center">时间复杂度</th>
+<th style="text-align:center">空间复杂度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">费波拿契数</td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(n)$</span></td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(n)$</span></td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(n^2)$</span></td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(n)$</span></td>
+</tr>
+<tr>
+<td style="text-align:left">钢条切割</td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(n)$</span></td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(n)$</span></td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(n^2)$</span></td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(n)$</span></td>
+</tr>
+<tr>
+<td style="text-align:left">矩阵连乘</td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(n^2)$</span></td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(n)$</span></td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(n^3)$</span></td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(n^2)$</span></td>
+</tr>
+<tr>
+<td style="text-align:left">最优二叉搜索树</td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(n^2)$</span></td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(n)$</span></td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(n^3)$</span></td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(n^2)$</span></td>
+</tr>
+<tr>
+<td style="text-align:left">最长公共子序列</td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(mn)$</span></td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(1)$</span></td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(mn)$</span></td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(mn)$</span></td>
+</tr>
+<tr>
+<td style="text-align:left">编辑距离</td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(mn)$</span></td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(1)$</span></td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(mn)$</span></td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(mn)$</span></td>
+</tr>
+<tr>
+<td style="text-align:left">最长递增子序列</td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(n)$</span></td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(n)$</span></td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(n^2)$</span></td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(n)$</span></td>
+</tr>
+<tr>
+<td style="text-align:left">最长递增子序列 (改进)</td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(n)$</span></td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(\lg n)$</span></td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(n \lg n)$</span></td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(n)$</span></td>
+</tr>
+<tr>
+<td style="text-align:left">最大子数组 (分治)</td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(n)$</span></td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(1)$</span></td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(n)$</span></td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(1)$</span></td>
+</tr>
+<tr>
+<td style="text-align:left">最大子数组 (动态规划)</td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(n)$</span></td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(1)$</span></td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(n)$</span></td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(1)$</span></td>
+</tr>
+<tr>
+<td style="text-align:left">子集和数 (分治)</td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(2^n)$</span></td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(1)$</span></td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(2^n)$</span></td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(1)$</span></td>
+</tr>
+<tr>
+<td style="text-align:left">子集和数 (动态规划)</td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(nM)$</span></td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(1)$</span></td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(nM)$</span></td>
+<td style="text-align:center"><span class="mathjax-exps">$\Theta(nM)$</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section><section vertical="true" data-notes="" lineno="2084" class="slide " data-source-line="2084" data-h="35" data-v="1"><h5 id="作业">作业 </h5>
 <hr>
 <p>课外阅读：算法导论 4ed 第十四章</p>
 <p>计算题：14.2-1、14.4-1、14.5-2</p>
 <p>设计题：14.1-3、14-9、14-11</p>
 <p>证明题：14.2-5、14.3-5</p>
-</section>
+</section></section>
       </div>
     </div>
     
