@@ -68,12 +68,12 @@ def mul_rec_strassen(A: np.ndarray, B: np.ndarray) -> np.ndarray:
 
 np.random.seed(0)
 
-trial = 6
-time_cost = np.zeros((trial, 3))
+trial = 9
+time_cost = np.zeros((trial, 2))
 
 for t in range(trial):
 
-    n = int(2**(t + 6))
+    n = int(2**(t + 4))  # 16, 32, 64, 128, 256, 512, 1024, 2048
     A, B = np.random.rand(n, n), np.random.rand(n, n)
 
     start = time.perf_counter()
@@ -81,14 +81,10 @@ for t in range(trial):
     time_cost[t, 0] = time.perf_counter() - start
 
     start = time.perf_counter()
-    C2 = mul_rec(A, B)
+    C2 = mul_rec_strassen(A, B)
     time_cost[t, 1] = time.perf_counter() - start
 
-    start = time.perf_counter()
-    C3 = mul_rec_strassen(A, B)
-    time_cost[t, 2] = time.perf_counter() - start
-
     print(np.allclose(C1, C2))
-    print(np.allclose(C1, C3))
+    print(time_cost[t, :])
 
 np.save('matrix-multiply-time-cost.npy', time_cost)
