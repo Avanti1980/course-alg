@@ -3193,22 +3193,22 @@ e<span class="token punctuation">,</span> b<span class="token punctuation">,</sp
     r_total<span class="token punctuation">,</span> r_pre_sum<span class="token punctuation">,</span> r_pre_end<span class="token punctuation">,</span> r_suf_sum<span class="token punctuation">,</span> r_suf_start<span class="token punctuation">,</span> r_best<span class="token punctuation">,</span> r_low<span class="token punctuation">,</span> r_high <span class="token operator">=</span> find_max_subarray_dc_linear<span class="token punctuation">(</span>
         a<span class="token punctuation">,</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> high<span class="token punctuation">)</span>
 
-    <span class="token comment"># 子数组总和 = 左半子数组总和 + 右半子数组总和</span>
+    <span class="token comment"># 子数组总和 = 左半总和 + 右半总和</span>
     total <span class="token operator">=</span> l_total <span class="token operator">+</span> r_total
 
-    <span class="token comment"># 最大前缀和 = max{左半子数组的最大前缀和, 左半子数组总和+右半子数组的最大前缀和}</span>
+    <span class="token comment"># 最大前缀和 = max{左半最大前缀和, 左半总和 + 右半最大前缀和}</span>
     pre_sum<span class="token punctuation">,</span> pre_end <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>
         <span class="token punctuation">(</span>l_pre_sum<span class="token punctuation">,</span> l_pre_end<span class="token punctuation">)</span><span class="token punctuation">,</span>
         <span class="token punctuation">(</span>l_total <span class="token operator">+</span> r_pre_sum<span class="token punctuation">,</span> r_pre_end<span class="token punctuation">)</span><span class="token punctuation">,</span>
         key<span class="token operator">=</span><span class="token keyword keyword-lambda">lambda</span> x<span class="token punctuation">:</span> x<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
 
-    <span class="token comment"># 最大后缀和 = max{右半子数组的最大后缀和, 右半子数组总和+左半子数组的最大后缀和}</span>
+    <span class="token comment"># 最大后缀和 = max{右半最大后缀和, 右半总和 + 左半最大后缀和}</span>
     suf_sum<span class="token punctuation">,</span> suf_start <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>
         <span class="token punctuation">(</span>r_suf_sum<span class="token punctuation">,</span> r_suf_start<span class="token punctuation">)</span><span class="token punctuation">,</span>
         <span class="token punctuation">(</span>r_total <span class="token operator">+</span> l_suf_sum<span class="token punctuation">,</span> l_suf_start<span class="token punctuation">)</span><span class="token punctuation">,</span>
         key<span class="token operator">=</span><span class="token keyword keyword-lambda">lambda</span> x<span class="token punctuation">:</span> x<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
 
-    <span class="token comment"># 最大子数组的和 = max{ 左半最大子数组的和, 右半最大子数组的和, 左半子数组的最大后缀和 + 右半子数组的最大前缀和 }</span>
+    <span class="token comment"># 最大子数组的和 = max{左/右半最大子数组的和, 左半最大后缀和 + 右半最大前缀和}</span>
     best_sum<span class="token punctuation">,</span> best_low<span class="token punctuation">,</span> best_high <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>
         <span class="token punctuation">(</span>l_best<span class="token punctuation">,</span> l_low<span class="token punctuation">,</span> l_high<span class="token punctuation">)</span><span class="token punctuation">,</span>
         <span class="token punctuation">(</span>r_best<span class="token punctuation">,</span> r_low<span class="token punctuation">,</span> r_high<span class="token punctuation">)</span><span class="token punctuation">,</span>
@@ -3356,7 +3356,7 @@ sol <span class="token operator">=</span> restore_sol_stack<span class="token pu
     <li class="fragment">若$M \ll 2^n$，动态规划可以带来显著收益</li>
     <li class="fragment">若$M \ge 2^n$，动态规划不如分治，计算了大量分治不会考虑的子问题</li>
 </ul>
-<p class="fragment top4"> 不要无脑动态规划，它并不是总能有提升的</p>
+<p class="fragment top4"> 不要无脑动态规划，它并不是总能带来提升的</p>
 </section><section><section data-notes="" lineno="2059" class="slide " data-source-line="2059" data-h="35" data-v="0"><h5 id="各问题复杂度一览">各问题复杂度一览 </h5>
 <hr>
 <div class="threelines">

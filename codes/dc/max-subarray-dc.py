@@ -65,22 +65,22 @@ def find_max_subarray_dc_linear(a: list, low: int, high: int) -> tuple[float, fl
     r_total, r_pre_sum, r_pre_end, r_suf_sum, r_suf_start, r_best, r_low, r_high = find_max_subarray_dc_linear(
         a, mid + 1, high)
 
-    # 子数组总和 = 左半子数组总和 + 右半子数组总和
+    # 子数组总和 = 左半总和 + 右半总和
     total = l_total + r_total
 
-    # 最大前缀和 = max{左半子数组的最大前缀和, 左半子数组总和+右半子数组的最大前缀和}
+    # 最大前缀和 = max{左半最大前缀和, 左半总和 + 右半最大前缀和}
     pre_sum, pre_end = max(
         (l_pre_sum, l_pre_end),
         (l_total + r_pre_sum, r_pre_end),
         key=lambda x: x[0])
 
-    # 最大后缀和 = max{右半子数组的最大后缀和, 右半子数组总和+左半子数组的最大后缀和}
+    # 最大后缀和 = max{右半最大后缀和, 右半总和 + 左半最大后缀和}
     suf_sum, suf_start = max(
         (r_suf_sum, r_suf_start),
         (r_total + l_suf_sum, l_suf_start),
         key=lambda x: x[0])
 
-    # 最大子数组的和 = max{ 左半最大子数组的和, 右半最大子数组的和, 左半子数组的最大后缀和 + 右半子数组的最大前缀和 }
+    # 最大子数组的和 = max{左/右半最大子数组的和, 左半最大后缀和 + 右半最大前缀和}
     best_sum, best_low, best_high = max(
         (l_best, l_low, l_high),
         (r_best, r_low, r_high),
