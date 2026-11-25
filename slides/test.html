@@ -56,281 +56,105 @@
 </div>
     <div class="reveal">
       <div class="slides">
-        <section><section data-notes="" lineno="27" class="slide " data-source-line="27" data-h="0" data-v="0"><h5 id="最长递增子序列">最长递增子序列 </h5>
+        <section><section data-notes="" lineno="27" class="slide " data-source-line="27" data-h="0" data-v="0"><h5 id="形式化">形式化 </h5>
 <hr>
-<p>求序列<span class="mathjax-exps">$X$</span>、<span class="mathjax-exps">$Y$</span>的最长公共子序列 (LCS)</p>
-<p>若<span class="mathjax-exps">$Y$</span>已升序排好，则 LCS 是<span class="mathjax-exps">$X$</span>的最长递增子序列 (<span class="blue">l</span>ongest <span class="blue">i</span>ncreasing <span class="blue">s</span>ubsequence, LIS)</p>
+<p>现有<span class="mathjax-exps">$n$</span>个文件，编号分别为<span class="mathjax-exps">$1, \ldots, n$</span>，长度分别为<span class="mathjax-exps">$L[1], \ldots, L[n]$</span></p>
+<p class="fragment" data-fragment-index="1">将这些文件按$\pi(1), \ldots, \pi(n)$的顺序保存到磁带上，其中$\pi(i)$表示磁带上第$i$个文件的实际文件编号</p>
+<p class="fragment" data-fragment-index="2">读取磁带上第$k$个文件的开销为</p>
+<p class="fragment" data-fragment-index="2">
+\begin{align}
+    c(\pi(k)) = \sum_{i=1}^k L[\pi(i)]
+\end{align}
+</p>
+<p class="fragment" data-fragment-index="3">所有文件的平均读取开销为</p>
+<p class="fragment" data-fragment-index="3">
+\begin{align}
+    c (\pi) = \frac{1}{n} \sum_{k=1}^n c(\pi(k)) = \frac{1}{n} \sum_{k=1}^n \sum_{i=1}^k L[\pi(i)]
+\end{align}
+</p>
+<p class="fragment" data-fragment-index="4">问题：求最优排列$\pi^\star$使平均读取开销$c (\pi)$最小</p>
+</section><section vertical="true" data-notes="" lineno="55" class="slide " data-source-line="55" data-h="0" data-v="1"><h5 id="暴力穷举-动态规划">暴力穷举 动态规划 </h5>
+<hr>
+<p>很多共享资源的任务调度都属于这类问题</p>
+<p>暴力穷举：遍历全排列，<span class="mathjax-exps">$\Omega(n!)$</span></p>
 <div class="top4"></div>
-<p class="fragment" data-fragment-index="1">输入：序列$X$</p>
-<p class="fragment" data-fragment-index="1">输出：$X$的最长递增子序列</p>
-</section><section vertical="true" data-notes="" lineno="43" class="slide " data-source-line="43" data-h="0" data-v="1"><h5 id="最优子结构">最优子结构 </h5>
+<p class="fragment" data-fragment-index="1">动态规划？</p>
+<p class="fragment" data-fragment-index="2">最优子结构：设$\pi^\star(1), \ldots, \pi^\star(n)$是最优排列，则$\pi^\star(2), \ldots, \pi^\star(n)$是除$\pi^\star(1)$外所有文件的最优排列</p>
+<p class="fragment" data-fragment-index="3">递推关系？</p>
+<p class="footnote fragment commenting" data-fragment-index="2"> 倒过来也可以，设$\pi^\star(1), \ldots, \pi^\star(n)$是最优排列，则$\pi^\star(1), \ldots, \pi^\star(n-1)$是除$\pi^\star(n)$外所有文件的最优排列</p>
+</section><section vertical="true" data-notes="" lineno="75" class="slide " data-source-line="75" data-h="0" data-v="2"><h5 id="动态规划">动态规划 </h5>
 <hr>
-<p>设以<span class="mathjax-exps">$X[i]$</span>作结尾的 LIS 为<span class="mathjax-exps">$X[i_1], \ldots, X[i_k], X[i]$</span>，则前缀<span class="mathjax-exps">$X[i_1], \ldots, X[i_k]$</span>必然是以<span class="mathjax-exps">$X[i_k]$</span>作结尾的 LIS</p>
-<p class="fragment" data-fragment-index="1">记$d[i]$为以$X[i]$结尾的 LIS 的长度，显然所有$d[i]$的最小值是 1</p>
-<p class="fragment" data-fragment-index="2">$d[0] = 1$，以$X[0]$结尾的 LIS 就是$X[0]$</p>
-<p class="fragment" data-fragment-index="3">$d[1]$根据$X[1]$是否可以接在$X[0]$后面分两种情况：</p>
-<ul class="fragment" data-fragment-index="4">
-    <li>若$X[0] &lt; X[1]$，则$d[1] = 2$，此时 LIS 就是$X[0, 1]$</li>
-    <li>若$X[0] &gt; X[1]$，则$d[1] = 1$，此时 LIS 就是$X[1]$</li>
-</ul>
-</section><section vertical="true" data-notes="" lineno="62" class="slide " data-source-line="62" data-h="0" data-v="2"><h5 id="递推关系">递推关系 </h5>
-<hr>
-<p><span class="mathjax-exps">$X[i]$</span>接在以<span class="mathjax-exps">$X[0], X[1], \ldots, X[i-1]$</span>结尾的哪个 LIS 后面？</p>
-<p>在所有可接的 LIS 后面选一个最长的，若无则为<span class="mathjax-exps">$1$</span>：</p>
+<p>记<span class="mathjax-exps">$\ac = \{1, 2, \ldots, n\}$</span>、<span class="mathjax-exps">$\ac_{-i} = \{1, 2, \ldots, n\} \setminus \{ i \}$</span></p>
 <p>
 \begin{align}
-    d[i] = \begin{cases}
-    1, &amp; i = 0 \\
-    \max_{j &lt; i, X[j] &lt; X[i]} \{ 1, d[j] + 1 \}, &amp; i &gt; 0 \\
-    \end{cases}
+    c (\pi, \ac) = \sum_{k=1}^n \frac{n+1-k}{n} L[\pi(k)] = L[\pi(1)] + \frac{n-1}{n} c (\pi, \ac_{-\pi(1)})
 \end{align}
 </p>
-<pre data-role="codeBlock" data-info="py line_begin=0 line_end=9 class=&quot;fragment line-numbers&quot; highlight=[&quot;4-5&quot;]" class="language-python py fragment line-numbers" data-line="4-5"><span class="token keyword keyword-def">def</span> <span class="token function">lis</span><span class="token punctuation">(</span>X<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">tuple</span><span class="token punctuation">[</span><span class="token builtin">list</span><span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token builtin">list</span><span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
-    n <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>X<span class="token punctuation">)</span>
-    d<span class="token punctuation">,</span> b <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">*</span> n<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">*</span> n
-    <span class="token keyword keyword-for">for</span> i <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword keyword-for">for</span> j <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token keyword keyword-if">if</span> X<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&lt;</span> X<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token keyword keyword-and">and</span> d<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;</span> d<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">:</span>  <span class="token comment"># X[i]可接在X[j]后面</span>
-                d<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token number">1</span>
-                b<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> j  <span class="token comment"># 更新前一个元素的索引</span>
-    <span class="token keyword keyword-return">return</span> d<span class="token punctuation">,</span> b
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span><div class="line-highlight-wrapper">
-
-
-<div aria-hidden="true" class="line-highlight" data-range="4-5" data-start="4" data-end="5">
-
-</div></div></pre>
-<p class="fragment">二重循环时间复杂度$\Theta(n^2)$，一维表格空间复杂度$\Theta(n)$</p>
-</section><section vertical="true" data-notes="" lineno="85" class="slide " data-source-line="85" data-h="0" data-v="3"><h5 id="例子">例子 </h5>
-<hr>
-<p>
+<p class="fragment" data-fragment-index="1">
 \begin{align}
-    d[i] = \begin{cases}
-    1, &amp; i = 0 \\
-    \max_{j &lt; i, X[j] &lt; X[i]} \{ 1, d[j] + 1 \}, &amp; i &gt; 0 \\
-    \end{cases}
+    \pi^\star(1) = \argmin_{i \in \ac} \left\{ L[i] + \frac{n-1}{n} c (\pi^\star, \ac_{-i}) \right\}
 \end{align}
 </p>
-<div class="threelines">
-<table>
-<thead>
-<tr>
-<th style="text-align:center"><span class="mathjax-exps">$i$</span></th>
-<th style="text-align:center"><span class="yellow">0</span></th>
-<th style="text-align:center">1</th>
-<th style="text-align:center"><span class="yellow">2</span></th>
-<th style="text-align:center">3</th>
-<th style="text-align:center">4</th>
-<th style="text-align:center"><span class="yellow">5</span></th>
-<th style="text-align:center">6</th>
-<th style="text-align:center">7</th>
-<th style="text-align:center">8</th>
-<th style="text-align:center">9</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><span class="mathjax-exps">$X$</span></td>
-<td style="text-align:center"><span class="blue">②</span></td>
-<td style="text-align:center">8</td>
-<td style="text-align:center"><span class="blue">④</span></td>
-<td style="text-align:center">9</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center"><span class="blue">⑥</span></td>
-<td style="text-align:center"><span class="blue">⑦</span></td>
-<td style="text-align:center">3</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">5</td>
-</tr>
-<tr>
-<td style="text-align:center"><span class="mathjax-exps">$d$</span></td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">3</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">3</td>
-<td style="text-align:center"><span class="red">4</span></td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">3</td>
-</tr>
-<tr>
-<td style="text-align:center"><span class="mathjax-exps">$b$</span></td>
-<td style="text-align:center">-1</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center"><span class="yellow">0</span></td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">-1</td>
-<td style="text-align:center"><span class="yellow">2</span></td>
-<td style="text-align:center"><span class="yellow">5</span></td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">-1</td>
-<td style="text-align:center">2</td>
-</tr>
-</tbody>
-</table>
-</div>
-<pre data-role="codeBlock" data-info="py line_begin=11 line_end=18 class=&quot;line-numbers&quot; highlight=[]" class="language-python py line-numbers" data-line=""><span class="token keyword keyword-def">def</span> <span class="token function">restore_lis_iter</span><span class="token punctuation">(</span>X<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">,</span> b<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">,</span> idx<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">list</span><span class="token punctuation">:</span>
-    LIS<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
-    <span class="token keyword keyword-while">while</span> idx <span class="token operator">!=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">:</span>
-        LIS<span class="token punctuation">.</span>append<span class="token punctuation">(</span>idx<span class="token punctuation">)</span>
-        idx <span class="token operator">=</span> b<span class="token punctuation">[</span>idx<span class="token punctuation">]</span>
-    LIS<span class="token punctuation">.</span>reverse<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword keyword-return">return</span> <span class="token punctuation">[</span>X<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token keyword keyword-for">for</span> i <span class="token keyword keyword-in">in</span> LIS<span class="token punctuation">]</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre>
-</section></section><section><section data-notes="" lineno="112" class="slide " data-source-line="112" data-h="1" data-v="0"><h5 id="改进">改进 </h5>
-<hr>
-<p>维护表<span class="mathjax-exps">$e[]$</span>，初始为空</p>
-<p><span class="mathjax-exps">$e[j]$</span>始终记录当前<span class="blue">长度为</span><span class="mathjax-exps">$\class{blue}{j}$</span><span class="blue">的递增子序列的末位元素最小值</span></p>
-<div class="top4"></div>
-<p class="fragment" data-fragment-index="1">以$X = [2, 8, 4, 9, 1, 6, 7, 3, 0, 5]$为例，最终$e = [0, 3, 5, 7]$</p>
-<p class="fragment" data-fragment-index="1">$e$的长度为 4 代表 LIS 的长度为$4$</p>
-<p class="fragment" data-fragment-index="1">$e[-1] = 7$代表 LIS 末位元素为$7$，$[2, 4, 6, 7]$是一个 LIS</p>
-<p class="fragment" data-fragment-index="2"> $e$的元素是单调递增的，这是提升速度的关键</p>
-</section><section vertical="true" data-notes="" lineno="132" class="slide " data-source-line="132" data-h="1" data-v="1"><h5 id="改进-1">改进 </h5>
-<hr>
-<p><span class="mathjax-exps">$e[j]$</span>记录<span class="blue">长度为</span><span class="mathjax-exps">$\class{blue}{j}$</span><span class="blue">的递增子序列的末位元素最小值</span>，初始为空</p>
-<div class="threelines top-2 bottom0">
-<table>
-<thead>
-<tr>
-<th style="text-align:center"><span class="mathjax-exps">$X$</span></th>
-<th style="text-align:center"><span class="mathjax-exps">$e$</span></th>
-<th style="text-align:center"><span class="mathjax-exps">$\len(\lis)=1$</span></th>
-<th style="text-align:center"><span class="mathjax-exps">$\len(\lis)=2$</span></th>
-<th style="text-align:center"><span class="mathjax-exps">$\len(\lis)=3$</span></th>
-<th style="text-align:center"><span class="mathjax-exps">$\len(\lis)=4$</span></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><span class="mathjax-exps">$2$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[2]$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[2]$</span></td>
-<td style="text-align:center">‌</td>
-<td style="text-align:center">‌</td>
-<td style="text-align:center">‌</td>
-</tr>
-<tr>
-<td style="text-align:center"><span class="mathjax-exps">$8$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[2, \class{blue}{8}]$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[2]$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[2, \class{blue}{8}]$</span></td>
-<td style="text-align:center">‌</td>
-<td style="text-align:center">‌</td>
-</tr>
-<tr>
-<td style="text-align:center"><span class="mathjax-exps">$4$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[2, \class{blue}{4}]$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[2]$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[2, \class{blue}{4}]$</span></td>
-<td style="text-align:center">‌</td>
-<td style="text-align:center">‌</td>
-</tr>
-<tr>
-<td style="text-align:center"><span class="mathjax-exps">$9$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[2, 4, \class{blue}{9}]$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[2]$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[2, 4]$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[2, 4, \class{blue}{9}]$</span></td>
-<td style="text-align:center">‌</td>
-</tr>
-<tr>
-<td style="text-align:center"><span class="mathjax-exps">$1$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[\class{blue}{1}, 4, 9]$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[\class{blue}{1}]$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[2, 4]$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[2, 4, 9]$</span></td>
-<td style="text-align:center">‌</td>
-</tr>
-<tr>
-<td style="text-align:center"><span class="mathjax-exps">$6$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[1, 4, \class{blue}{6}]$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[1]$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[2, 4]$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[2, 4, \class{blue}{6}]$</span></td>
-<td style="text-align:center">‌</td>
-</tr>
-<tr>
-<td style="text-align:center"><span class="mathjax-exps">$7$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[1, 4, 6, \class{blue}{7}]$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[1]$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[2, 4]$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[2, 4, 6]$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[2, 4, 6, \class{blue}{7}]$</span></td>
-</tr>
-<tr>
-<td style="text-align:center"><span class="mathjax-exps">$3$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[1, \class{blue}{3}, 6, 7]$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[1]$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[2, \class{blue}{3}]$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[2, 4, 6]$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[2, 4, 6, 7]$</span></td>
-</tr>
-<tr>
-<td style="text-align:center"><span class="mathjax-exps">$0$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[\class{blue}{0}, 3, 6, 7]$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[\class{blue}{0}]$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[2, 3]$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[2, 4, 6]$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[2, 4, 6, 7]$</span></td>
-</tr>
-<tr>
-<td style="text-align:center"><span class="mathjax-exps">$5$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[0, 3, \class{blue}{5}, 7]$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[0]$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[2, 3]$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[2, 4, \class{blue}{5}]$</span></td>
-<td style="text-align:center"><span class="mathjax-exps">$[2, 4, 6, 7]$</span></td>
-</tr>
-</tbody>
-</table>
-</div>
-</section><section vertical="true" data-notes="" lineno="157" class="slide " data-source-line="157" data-h="1" data-v="2"><h5 id="改进-2">改进 </h5>
-<hr>
-<p><span class="blue">在任意时刻</span><span class="mathjax-exps">$\class{blue}{e}$</span><span class="blue">都是严格单调递增的</span>，若<span class="mathjax-exps">$i&lt;j$</span>且<span class="mathjax-exps">$e[i] &gt; e[j]$</span>，则有</p>
-<p>
-\begin{align}
-    \lis_i:~ \underbrace{\square ~ \square ~ \cdots ~ \square ~ e[i]}_{\len~=~i}, \quad \lis_j:~ \underbrace{\square ~ \square ~ \square ~ \square ~ \cdots ~ \square ~ \square ~ e[j]}_{\len~=~j}
-\end{align}
-</p>
-<p>去掉<span class="mathjax-exps">$\lis_j$</span>前<span class="mathjax-exps">$j-i$</span>个元素可得长度<span class="mathjax-exps">$i$</span>、末位元素<span class="mathjax-exps">$&lt; e[i]$</span>的递增序列</p>
 <div class="top2"></div>
-<p class="fragment" data-fragment-index="1">在遍历$X$时，对于$X[i]$</p>
+<p class="fragment" data-fragment-index="2">时间复杂度？</p>
 <ul>
-  <li class="fragment" data-fragment-index="2">若$X[i] &gt; e[-1]$，其可接在当前 LIS 后产生更长的 LIS，$e = [e, [X[i]]$</li>
-  <li class="fragment" data-fragment-index="3">若$e[j-1] &lt; X[i] &lt; e[j]$，其可接在长度为$j-1$的递增子序列后产生长度为$j$末位元素更小的递增子序列，$e[j] = X[i]$，确定$j$可用二分查找</li>
+  <li class="fragment" data-fragment-index="3">确定$\pi^\star(1)$会产生$n$个规模为$n-1$的不同子问题</li>
+  <li class="fragment" data-fragment-index="4">对每个子问题，确定$\pi^\star(2)$会产生$n-1$个规模为$n-2$的不同子问题</li>
+  <li class="fragment" data-fragment-index="5">……</li>
+  <li class="fragment" data-fragment-index="6">对每个子问题，确定$\pi^\star(n-1)$会产生$2$个规模为$1$的不同子问题</li>
 </ul>
 <div class="top2"></div>
-<p class="fragment" data-fragment-index="4">二分查找时间复杂度$O(\lg n)$，总时间复杂度$O(n \lg n)$</p>
-</section><section vertical="true" data-notes="" lineno="186" class="slide " data-source-line="186" data-h="1" data-v="3"><h5 id="改进-3">改进 </h5>
+<p class="fragment" data-fragment-index="7">子问题总数为$n!$，动态规划与暴力穷举复杂度相当！</p>
+</section></section><section><section data-notes="" lineno="110" class="slide " data-source-line="110" data-h="1" data-v="0"><h5 id="贪心">贪心 </h5>
 <hr>
-<pre data-role="codeBlock" data-info="py line_begin=46 line_end=70 class=&quot;line-numbers&quot;" class="language-python py line-numbers"><span class="token keyword keyword-def">def</span> <span class="token function">lis_plus</span><span class="token punctuation">(</span>X<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">tuple</span><span class="token punctuation">[</span><span class="token builtin">list</span><span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token builtin">list</span><span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token builtin">list</span><span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
-    <span class="token keyword keyword-from">from</span> bisect <span class="token keyword keyword-import">import</span> bisect_left
-    e<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>             <span class="token comment"># e[i]记录长度为i的递增子序列的末位元素最小值</span>
-    b<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token builtin">len</span><span class="token punctuation">(</span>X<span class="token punctuation">)</span>  <span class="token comment"># b[i]记录X[i]在LIS中的前驱索引</span>
-    idx<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>           <span class="token comment"># idx[i]记录e[i]在X中的索引</span>
-    <span class="token keyword keyword-for">for</span> i<span class="token punctuation">,</span> xi <span class="token keyword keyword-in">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>X<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        j <span class="token operator">=</span> bisect_left<span class="token punctuation">(</span>e<span class="token punctuation">,</span> xi<span class="token punctuation">)</span>  <span class="token comment"># 在e中对X[i]进行二分查找</span>
-        <span class="token keyword keyword-if">if</span> j <span class="token operator">==</span> <span class="token builtin">len</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># X[i] &gt; e[-1]</span>
-            <span class="token keyword keyword-if">if</span> j <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">:</span>
-                b<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> idx<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
-            e<span class="token punctuation">.</span>append<span class="token punctuation">(</span>xi<span class="token punctuation">)</span>  <span class="token comment"># 将其接在e后面表示找到了更长的递增子序列</span>
-            idx<span class="token punctuation">.</span>append<span class="token punctuation">(</span>i<span class="token punctuation">)</span>
-        <span class="token keyword keyword-else">else</span><span class="token punctuation">:</span>  <span class="token comment"># e[j-1] &lt; X[i] &lt; e[j]</span>
-            <span class="token keyword keyword-if">if</span> j <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">:</span>
-                b<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> idx<span class="token punctuation">[</span>j <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span>
-            e<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> xi  <span class="token comment"># 将e[j]改为X[i] 可以改进现有长度为j的递增子序列</span>
-            idx<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> i
-    <span class="token keyword keyword-return">return</span> e<span class="token punctuation">,</span> b<span class="token punctuation">,</span> idx
-
-
-e<span class="token punctuation">,</span> b<span class="token punctuation">,</span> idx <span class="token operator">=</span> lis_plus<span class="token punctuation">(</span>X<span class="token punctuation">)</span>
-<span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>restore_lis_iter<span class="token punctuation">(</span>X<span class="token punctuation">,</span> b<span class="token punctuation">,</span> idx<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token comment"># ----------------------------------</span>
-<span class="token comment"># [2, 4, 6, 7]</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre>
+<p>当前存入的文件会出现在后续所有文件的读取开销中，故优先存短文件</p>
+<p>贪心法：初始磁带为空，每轮迭代做<span class="blue">贪心选择</span> <span class="fragment" data-fragment-index="1">- 将剩余文件中长度最短的文件存入磁带</span></p>
+<p class="fragment top4" data-fragment-index="2">和动态规划不同，贪心法每轮贪心选择后只产生一个子问题，时间复杂度与排序相同，$\Theta ( n \lg n )$</p>
+</section><section vertical="true" data-notes="" lineno="122" class="slide " data-source-line="122" data-h="1" data-v="1"><h5 id="贪心正确性">贪心正确性 </h5>
+<hr>
+<p>贪心法给出的就是<span class="mathjax-exps">$L[1], \ldots, L[n]$</span>的升序排列<span class="mathjax-exps">$\pi^\ins$</span></p>
+<p>对任意排列<span class="mathjax-exps">$\pi \ne \pi^\ins$</span>，必存在<span class="mathjax-exps">$i$</span>使得<span class="mathjax-exps">$L[\pi(i)] \ge L[\pi(i+1)]$</span>，记交换文件<span class="mathjax-exps">$\pi(i)$</span>、<span class="mathjax-exps">$\pi(i+1)$</span>后得到的新排列为<span class="mathjax-exps">$\pi'$</span>，则<span class="mathjax-exps">$c(\pi') \le c(\pi)$</span></p>
+<p class="fragment" data-fragment-index="1">证明：交换文件$\pi(i)$、文件$\pi(i+1)$后</p>
+<ul class="fragment" data-fragment-index="1">
+  <li>文件$\pi(i)$在磁带上的位置往后挪了一位，读取开销增加$L[\pi(i+1)]$</li>
+  <li>文件$\pi(i+1)$在磁带上的位置往前挪了一位，读取开销减少$L[\pi(i)]$</li>
+  <li>其它$n-2$个文件的读取开销不变</li>
+</ul>
+<div class="top2"></div>
+<p class="fragment" data-fragment-index="2">平均读取开销变化$c(\pi') - c(\pi) = \frac{1}{n} (L[\pi(i+1)] - L[\pi(i)]) \le 0$</p>
+<p class="fragment" data-fragment-index="3">对任意排列，包括最优的$\pi^\star$，都可以通过上述读取开销变化非正的交换操作使其变成$\pi^\ins$，因此$\pi^\ins$就是最优排列</p>
+</section></section><section><section data-notes="" lineno="146" class="slide " data-source-line="146" data-h="2" data-v="0"><h5 id="带读取频率">带读取频率 </h5>
+<hr>
+<p>假设除长度外，还有读取频率<span class="mathjax-exps">$F[1], \ldots, F[n]$</span></p>
+<p class="fragment" data-fragment-index="2">读取磁带上第$k$个文件的开销为</p>
+<p class="fragment" data-fragment-index="2">
+\begin{align}
+    c(\pi(k)) = \sum_{i=1}^k L[\pi(i)] F[\pi(k)]
+\end{align}
+</p>
+<p class="fragment" data-fragment-index="3">所有文件的平均读取开销为</p>
+<p class="fragment" data-fragment-index="3">
+\begin{align}
+    c(\pi) = \frac{1}{n} \sum_{k=1}^n c(\pi(k)) = \frac{1}{n} \sum_{k=1}^n \sum_{i=1}^k L[\pi(i)] F[\pi(k)]
+\end{align}
+</p>
+<p class="fragment" data-fragment-index="4">假设所有文件长度相同，则应优先存高频文件，不难猜正确的贪心选择为：将剩余文件中<span class="blue">长度/频率</span>最小的文件存入磁带</p>
+</section><section vertical="true" data-notes="" lineno="172" class="slide " data-source-line="172" data-h="2" data-v="1"><h5 id="贪心正确性-1">贪心正确性 </h5>
+<hr>
+<p>对任意排列<span class="mathjax-exps">$\pi \ne \pi^\greedy$</span>，必存在<span class="mathjax-exps">$i$</span>使得<span class="mathjax-exps">$\frac{L[\pi(i)]}{F[\pi(i)]} \ge \frac{L[\pi(i+1)]}{F[\pi(i+1)]}$</span>，记交换文件<span class="mathjax-exps">$\pi(i)$</span>、<span class="mathjax-exps">$\pi(i+1)$</span>后得到的新排列为<span class="mathjax-exps">$\pi'$</span>，则<span class="mathjax-exps">$c(\pi') \le c(\pi)$</span></p>
+<p class="fragment" data-fragment-index="1">证明：交换文件$\pi(i)$、文件$\pi(i+1)$后</p>
+<ul class="fragment" data-fragment-index="1">
+  <li>文件$\pi(i)$往后挪了一位，读取开销增加$F[\pi(i)] L[\pi(i+1)]$</li>
+  <li>文件$\pi(i+1)$往前挪了一位，读取开销减少$F[\pi(i+1)] L[\pi(i)]$</li>
+  <li>其它$n-2$个文件的读取开销不变</li>
+</ul>
+<p class="fragment top3" data-fragment-index="2">平均读取开销变化非正：</p>
+<p class="fragment top3" data-fragment-index="2">
+\begin{align}
+    c(\pi') - c(\pi) &amp; = \frac{1}{n} (F[\pi(i)] L[\pi(i+1)] - F[\pi(i+1)] L[\pi(i)]) \\
+    &amp; = \frac{1}{n} F[\pi(i+1)] F[\pi(i)] \left( \frac{L[\pi(i+1)]}{F[\pi(i+1)]} - \frac{L[\pi(i)]}{F[\pi(i)]} \right) \le 0
+\end{align}
+</p>
 </section></section>
       </div>
     </div>

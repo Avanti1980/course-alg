@@ -25,10 +25,3 @@ presentation:
 @import "../plugin/reveal.js-menu/menu.js"
 
 
-<!-- slide data-notes="" -->
-
-##### Strassen 矩阵乘法
-
----
-
-<img src="../codes/dc/matrix-multiply.svg" class="center .width75 .top2">

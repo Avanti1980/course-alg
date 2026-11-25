@@ -28,7 +28,7 @@ def kruskal(graph: dict) -> list[tuple[int, str]]:
             edges.append((weight, node, neighbor))
     edges.sort()
 
-    # 父图初始化
+    # 并查集初始化
     parent = {node: node for node in graph}
     size = {node: 1 for node in graph}
 
